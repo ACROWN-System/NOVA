@@ -13,7 +13,7 @@ def call_groq(prompt):
         return None
     url = "https://api.groq.com/openai/v1/chat/completions"
     headers = {
-        "Authorization": f"Bearer {GROQ_API_KEY_01}",
+        "Authorization": f"Bearer {GROQ_API_KEY_01.strip()}",
         "Content-Type": "application/json"
     }
     data = {
@@ -34,7 +34,10 @@ def call_gemini(prompt):
     if not GEMINI_API_KEY_01:
         print("Gemini Warning: GEMINI_API_KEY_01 is missing or not passed to environment.")
         return None
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={GEMINI_API_KEY_01}"
+    
+    # Updated to active Gemini model endpoint
+    key = GEMINI_API_KEY_01.strip()
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={key}"
     headers = {"Content-Type": "application/json"}
     data = {
         "contents": [{"parts": [{"text": prompt}]}],
@@ -52,16 +55,26 @@ def call_gemini(prompt):
 def intelligent_router(prompt, complexity="low"):
     print(f"[{datetime.utcnow().isoformat()}] NOVA Routing Sequence Initiated...")
     
-    if complexity == "low":
-        response = call_groq(prompt)
-        if response:
-            return f"[ROUTED via GROQ Llama 3.3] {response}"
-            
-    print("Metacognitive Probe triggered failover/escalation to Gemini.")
-    response = call_gemini(prompt)
-    if response:
-        return f"[ROUTED via GEMINI Flash] {response}"
-        
+    # Primary Route: Gemini for high complexity, Groq for low
+    if complexity == "high":
+        print("Executing Primary Route: Gemini Flash")
+        res = call_gemini(prompt)
+        if res:
+            return f"[ROUTED via GEMINI Flash] {res}"
+        print("Primary Route Failed. Executing Failover to Groq Llama 3.3...")
+        res = call_groq(prompt)
+        if res:
+            return f"[ROUTED via GROQ Llama 3.3 (FAILOVER)] {res}"
+    else:
+        print("Executing Primary Route: Groq Llama 3.3")
+        res = call_groq(prompt)
+        if res:
+            return f"[ROUTED via GROQ Llama 3.3] {res}"
+        print("Primary Route Failed. Executing Failover to Gemini Flash...")
+        res = call_gemini(prompt)
+        if res:
+            return f"[ROUTED via GEMINI Flash (FAILOVER)] {res}"
+
     return "CRITICAL FAULT: All Phase 0 API endpoints unresponsive."
 
 if __name__ == "__main__":
