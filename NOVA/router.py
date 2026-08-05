@@ -4,9 +4,15 @@ import urllib.request
 import urllib.error
 from datetime import datetime
 
-# Auto-strip trailing spaces, single quotes, or double quotes
+# Auto-sanitize quotes and whitespace
 GROQ_API_KEY_01 = os.environ.get("GROQ_API_KEY_01", "").strip().strip('"').strip("'")
 GEMINI_API_KEY_01 = os.environ.get("GEMINI_API_KEY_01", "").strip().strip('"').strip("'")
+
+# Standard Headers to prevent Cloudflare Error 1010 (User-Agent blocking)
+COMMON_HEADERS = {
+    "Content-Type": "application/json",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+}
 
 def call_groq(prompt):
     if not GROQ_API_KEY_01:
@@ -15,11 +21,10 @@ def call_groq(prompt):
         
     url = "https://api.groq.com/openai/v1/chat/completions"
     headers = {
-        "Authorization": f"Bearer {GROQ_API_KEY_01}",
-        "Content-Type": "application/json"
+        **COMMON_HEADERS,
+        "Authorization": f"Bearer {GROQ_API_KEY_01}"
     }
     
-    # Try primary 70B model, fallback to 8B instant if permissions/limits apply
     for model in ["llama-3.3-70b-versatile", "llama-3.1-8b-instant"]:
         data = {
             "model": model,
@@ -35,7 +40,7 @@ def call_groq(prompt):
             err_body = e.read().decode("utf-8", errors="ignore")
             print(f"Groq HTTP Error {e.code} ({model}): {err_body}")
         except Exception as e:
-            print(f"Groq Probe Exception ({model}): {e}")
+            print(f"Groq Exception ({model}): {e}")
             
     return None
 
@@ -44,9 +49,8 @@ def call_gemini(prompt):
         print("Gemini Warning: GEMINI_API_KEY_01 is missing or empty.")
         return None
     
-    # Header authentication avoids key-in-URL parsing/404 issues
     headers = {
-        "Content-Type": "application/json",
+        **COMMON_HEADERS,
         "x-goog-api-key": GEMINI_API_KEY_01
     }
     data = {
@@ -54,7 +58,7 @@ def call_gemini(prompt):
         "generationConfig": {"temperature": 0.1}
     }
     
-    for model in ["gemini-2.0-flash", "gemini-1.5-flash"]:
+    for model in ["gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-2.0-flash"]:
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
         req = urllib.request.Request(url, data=json.dumps(data).encode("utf-8"), headers=headers)
         try:
@@ -65,7 +69,7 @@ def call_gemini(prompt):
             err_body = e.read().decode("utf-8", errors="ignore")
             print(f"Gemini HTTP Error {e.code} ({model}): {err_body}")
         except Exception as e:
-            print(f"Gemini Probe Exception ({model}): {e}")
+            print(f"Gemini Exception ({model}): {e}")
             
     return None
 
