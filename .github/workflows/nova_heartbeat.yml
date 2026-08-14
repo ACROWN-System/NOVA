@@ -2,34 +2,59 @@ name: NOVA Autonomous Heartbeat
 
 on:
   schedule:
+    # Runs automatically every 6 hours
     - cron: '0 */6 * * *'
+  # Allows manual triggers from GitHub UI for real-time testing
   workflow_dispatch:
 
+# Ensures a manual trigger and a scheduled run can never execute at the same time —
+# queues the second one instead of racing it against the first.
+concurrency:
+  group: nova-heartbeat
+  cancel-in-progress: false
+
 permissions:
-  contents: write
+  contents: write  # Allows committing updated NOVA/roster.json & NOVA/README.md back to main
+  issues: write    # Required for alerts.py to auto-open GitHub alert issues
 
 jobs:
-  metacognitive_sync:
+  heartbeat:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup Python
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: Execute NOVA Router
+      - name:  Execute NOVA Router
         env:
+          # GitHub context for alerts.py
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+
+          # Active roster provider API keys
           GROQ_API_KEY_01: ${{ secrets.GROQ_API_KEY_01 }}
           GEMINI_API_KEY_01: ${{ secrets.GEMINI_API_KEY_01 }}
+          CEREBRAS_API_KEY_01: ${{ secrets.CEREBRAS_API_KEY_01 }}
+          MISTRAL_API_KEY_01: ${{ secrets.MISTRAL_API_KEY_01 }}
+          CLOUDFLARE_API_KEY_01: ${{ secrets.CLOUDFLARE_API_KEY_01 }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+          # Optional — one-time SMS/voice feasibility test / future emergency channel
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+          TWILIO_FROM_NUMBER: ${{ secrets.TWILIO_FROM_NUMBER }}
+          TWILIO_TO_NUMBER: ${{ secrets.TWILIO_TO_NUMBER }}
         run: python NOVA/router.py
 
       - name: Commit Graph Memory Updates
         run: |
           git config --global user.name "NOVA Autonomous Engine"
           git config --global user.email "nova@haan.system"
-          git add NOVA/README.md
-          git commit -m "feat(NOVA): Autonomous memory state update" || echo "No changes to commit"
-          git push
+          git add NOVA/roster.json NOVA/README.md
+          # Only commit if roster.json or README.md actually changed
+          git diff --staged --quiet || (git commit -m "chore(nova): update provider roster state [skip ci]" && git push)
