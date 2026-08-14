@@ -1,0 +1,51 @@
+{
+  "_comment": "NOVA provider roster. Priority = order in this list. 'status' is set to 'down' automatically by router.py when a provider's models are all permanently dead (e.g. decommissioned) — the HAAN Council restores it to 'active' after approving a replacement. Model IDs drift often; verify against each provider's live docs periodically.",
+  "providers": [
+    {
+      "name": "groq",
+      "status": "active",
+      "kind": "openai_compatible",
+      "base_url": "https://api.groq.com/openai/v1/chat/completions",
+      "api_key_env": "GROQ_API_KEY_01",
+      "models": ["openai/gpt-oss-120b", "openai/gpt-oss-20b"]
+    },
+    {
+      "name": "gemini",
+      "status": "active",
+      "kind": "gemini",
+      "base_url": "https://generativelanguage.googleapis.com/v1beta/models",
+      "api_key_env": "GEMINI_API_KEY_01",
+      "models": ["gemini-2.5-flash", "gemini-2.5-flash-lite"]
+    },
+    {
+      "name": "cerebras",
+      "status": "active",
+      "kind": "openai_compatible",
+      "base_url": "https://api.cerebras.ai/v1/chat/completions",
+      "api_key_env": "CEREBRAS_API_KEY_01",
+      "models": ["gpt-oss-120b"]
+    },
+    {
+      "name": "mistral",
+      "status": "active",
+      "kind": "openai_compatible",
+      "base_url": "https://api.mistral.ai/v1/chat/completions",
+      "api_key_env": "MISTRAL_API_KEY_01",
+      "models": ["mistral-small-latest"]
+    },
+    {
+      "name": "cloudflare",
+      "status": "active",
+      "kind": "openai_compatible",
+      "base_url": "https://api.cloudflare.com/client/v4/accounts/{CF_ACCOUNT_ID}/ai/v1/chat/completions",
+      "api_key_env": "CLOUDFLARE_API_KEY_01",
+      "account_id_env": "CLOUDFLARE_ACCOUNT_ID",
+      "models": ["@cf/meta/llama-3.3-70b-instruct-fp8-fast"]
+    }
+  ],
+  "candidates_not_in_roster": [
+    "OpenRouter (aggregator, 70+ backends, 20+ free models, single key) — good next add if the roster shrinks",
+    "NVIDIA NIM (OpenAI-compatible, wide open-weight catalog) — appears credit-based rather than a perpetual free tier, verify before relying on it",
+    "HuggingFace Inference API (large model catalog, free tier)"
+  ]
+}
