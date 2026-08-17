@@ -3174,3 +3174,138 @@ All allocations remain inside the Phase 0 governance‑approved risk band (≤
 ---  
 
 *Prepared on* **[YYYY‑MM‑DD]** *by the Operations & Finance Teams.*
+
+
+### System Update: 2026-08-17T06:36:54.837739+00:00
+[ROUTED via GROQ] **Phase 0 – Daily Health‑Check & Treasury Status Report**  
+*Date:* [Insert YYYY‑MM‑DD] *Prepared by:* [Name / Team] *Report ID:* PH0‑HC‑[YYYYMMDD]
+
+---
+
+## 1. Executive Summary
+- **Overall System Health:** ✅ Stable / ⚠️ Minor Issues / ❌ Critical (choose one)  
+- **Treasury Position:** $[Current Balance] (Δ + $[Net Change] vs. previous day)  
+- **Key Highlights:**  
+  - No service‑level incidents reported.  
+  - Treasury inflow driven by [e.g., token sales, staking rewards, grant].  
+  - Upcoming maintenance window scheduled for **[date & time]**.
+
+---
+
+## 2. System Health‑Check
+
+| Metric | Target / SLA | Current Value | Status | Comments / Action |
+|--------|--------------|---------------|--------|-------------------|
+| **Node Uptime** | ≥ 99.9 % | [xx %] | ✅ / ⚠️ / ❌ | |
+| **Block Production Time** | ≤ 2 s avg | [xx s] | ✅ / ⚠️ / ❌ | |
+| **API Latency (p95)** | ≤ 150 ms | [xx ms] | ✅ / ⚠️ / ❌ | |
+| **Database Replication Lag** | ≤ 5 s | [xx s] | ✅ / ⚠️ / ❌ | |
+| **Disk I/O Utilisation** | ≤ 70 % | [xx %] | ✅ / ⚠️ / ❌ | |
+| **CPU / Memory Utilisation (avg)** | ≤ 80 % | CPU [xx %] / MEM [xx %] | ✅ / ⚠️ / ❌ | |
+| **Security Alerts (IDS/IPS)** | 0 critical | [#] critical / [#] warning | ✅ / ⚠️ / ❌ | |
+| **Smart‑Contract Health** | 0 failing calls | [#] failures / [#] retries | ✅ / ⚠️ / ❌ | |
+| **Backup Status** | Daily successful | Last backup: [timestamp] | ✅ / ⚠️ / ❌ | |
+| **Compliance Checks** | 100 % passed | [#] passed / [#] failed | ✅ / ⚠️ / ❌ | |
+
+### 2.1 Incident Log (Last 24 h)
+
+| Time (UTC) | Service / Component | Severity | Description | Mitigation | Status |
+|------------|---------------------|----------|-------------|------------|--------|
+| – | – | – | – | – | – |
+
+*If no incidents, state “No incidents reported in the last 24 h.”*
+
+### 2.2 Operational Alerts
+
+- **Alert #1:** [Brief description] – *Owner:* [Team/Person] – *ETA resolution:* [hh:mm]  
+- **Alert #2:** …  
+
+---
+
+## 3. Treasury Status
+
+### 3.1 Balance Snapshot
+
+| Asset | Quantity | Current Price (USD) | USD Value | % of Total |
+|-------|----------|---------------------|----------|------------|
+| **Native Token (XYZ)** | [x 000 000] | $[price] | $[value] | [xx %] |
+| **Stablecoin (USDC)** | [x 000] | $1.00 | $[value] | [xx %] |
+| **Other Tokens** | – | – | – | – |
+| **Cash / Bank** | – | – | $[value] | [xx %] |
+| **Total Treasury** | – | – | **$[total]** | 100 % |
+
+### 3.2 Daily Cash‑Flow
+
+| Category | Inflow (USD) | Outflow (USD) | Net Δ (USD) |
+|----------|--------------|---------------|-------------|
+| Token Sales / ICO | $[x] | – | +$[x] |
+| Staking / Yield | $[x] | – | +$[x] |
+| Grants / Sponsorships | $[x] | – | +$[x] |
+| Operational Expenses (OPEX) | – | $[x] | –$[x] |
+| Development Bounties | – | $[x] | –$[x] |
+| Marketing Campaigns | – | $[x] | –$[x] |
+| **Net Daily Δ** | **$[total in]** | **$[total out]** | **$[net]** |
+
+### 3.3 Expense Breakdown (Last 7 days)
+
+| Category | Cumulative Spend (USD) | % of Total Spend |
+|----------|------------------------|------------------|
+| Payroll & Contractor Fees | $[x] | [xx %] |
+| Cloud / Infra Costs | $[x] | [xx %] |
+| Legal & Compliance | $[x] | [xx %] |
+| Marketing & Community | $[x] | [xx %] |
+| Audits & Security | $[x] | [xx %] |
+| Miscellaneous | $[x] | [xx %] |
+
+### 3.4 Forecast (7‑day horizon)
+
+| Day | Projected Inflow | Projected Outflow | Projected End‑of‑Day Balance |
+|-----|------------------|-------------------|------------------------------|
+| D+1 | $[x] | $[x] | $[x] |
+| D+2 | $[x] | $[x] | $[x] |
+| … | … | … | … |
+| D+7 | $[x] | $[x] | $[x] |
+
+*Assumptions:* token price stability, scheduled payouts, no unexpected events.
+
+---
+
+## 4. Risk & Compliance Overview
+
+| Risk Area | Current Rating (Low/Med/High) | Mitigation |
+|-----------|------------------------------|------------|
+| Market Volatility (XYZ) | Medium | Hedge 20 % of XYZ exposure via stablecoins |
+| Smart‑Contract Bugs | Low | Ongoing formal verification; last audit passed |
+| Regulatory Changes | Medium | Legal counsel monitoring; compliance checklist updated |
+| Operational Continuity | Low | Redundant node architecture, daily backups |
+| Liquidity Shortfall | Low | Maintain minimum 30 % of treasury in liquid assets |
+
+---
+
+## 5. Action Items & Recommendations
+
+| # | Owner | Description | Due Date | Status |
+|---|-------|-------------|----------|--------|
+| 1 | Ops Team | Verify API latency thresholds after recent load test | [date] | Pending |
+| 2 | Finance | Re‑balance 15 % of XYZ into USDC to reduce exposure | [date] | In‑Progress |
+| 3 | Security | Conduct penetration test on new bridge module | [date] | Scheduled |
+| 4 | Community | Publish daily health‑check summary on Discord & Telegram | Daily | Ongoing |
+| 5 | Governance | Review treasury policy for expense caps (Q3) | [date] | Not started |
+
+---
+
+## 6. Attachments / Supporting Data
+
+- **Log Files:** `node‑uptime‑20230817.log`, `api‑latency‑20230817.csv`  
+- **Treasury Ledger:** `treasury‑ledger‑20230817.xlsx`  
+- **Security Scan Report:** `sec‑scan‑20230817.pdf`  
+
+*(Provide links or internal paths as appropriate.)*
+
+---
+
+**Prepared by:**  
+[Name] – Head of Operations  
+[Name] – Treasury Manager  
+
+*End of Report*
