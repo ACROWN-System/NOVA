@@ -8583,3 +8583,129 @@ Operations & Treasury Lead
 --- 
 
 *End of Report*
+
+
+### System Update: 2026-08-28T08:11:21.807949+00:00
+[ROUTED via GROQ] # **Phase 0 – Daily Health‑Check & Treasury Status Report**  
+**Date:** `{{YYYY‑MM‑DD}}`  **Prepared by:** `{{Operator Name}}`  
+
+---
+
+## 1️⃣ Executive Summary  
+
+| Item | Status | Comment |
+|------|--------|---------|
+| **Overall System Health** | ✅ **Healthy** / ⚠️ **Degraded** / ❌ **Critical** | Brief description of the day’s overall condition. |
+| **Treasury Balance** | **{{TOTAL_BALANCE}}** {{TOKEN}} | Net cash on‑hand after today’s inflows/outflows. |
+| **Key Alerts** | {{#if alerts}}⚠️ {{alerts}} {{else}}None{{/if}} | Any incidents that require immediate attention. |
+
+> **TL;DR:** The network ran smoothly with no critical alerts. Treasury remains well‑funded at **{{TOTAL_BALANCE}} {{TOKEN}}**, supporting ongoing Phase 0 activities.
+
+---
+
+## 2️⃣ System Health Check  
+
+| Metric | Target | Current | Δ (vs. previous day) | Status | Remarks |
+|--------|--------|---------|----------------------|--------|---------|
+| **Node Count (Active)** | ≥ {{TARGET_NODES}} | {{active_nodes}} | {{Δ_nodes}} | {{status_nodes}} | {{node_remarks}} |
+| **Block Production Rate** | 1 block / {{BLOCK_TIME}} s | {{block_rate}} | {{Δ_block_rate}} | {{status_block}} | {{block_remarks}} |
+| **Average Block Time** | ≤ {{MAX_BLOCK_TIME}} s | {{avg_block_time}} s | {{Δ_block_time}} | {{status_time}} | {{time_remarks}} |
+| **Transaction Throughput (TPS)** | ≥ {{MIN_TPS}} | {{tps}} | {{Δ_tps}} | {{status_tps}} | {{tps_remarks}} |
+| **Network Latency (p50)** | ≤ {{MAX_LATENCY}} ms | {{latency}} ms | {{Δ_latency}} | {{status_latency}} | {{latency_remarks}} |
+| **Uptime (24 h)** | 99.9 % | {{uptime}} % | {{Δ_uptime}} | {{status_uptime}} | {{uptime_remarks}} |
+| **Validator Missed Slots** | 0 | {{missed_slots}} | {{Δ_missed}} | {{status_missed}} | {{missed_remarks}} |
+| **Security Alerts** | 0 | {{security_alerts}} | {{Δ_security}} | {{status_security}} | {{security_remarks}} |
+| **Disk / CPU / RAM Utilisation (Avg.)** | ≤ 80 % | CPU {{cpu}} % / RAM {{ram}} % / Disk {{disk}} % | – | {{status_resources}} | {{resource_remarks}} |
+
+> **Health‑Check Verdict:** `{{overall_health}}`  
+
+---
+
+## 3️⃣ Treasury Status  
+
+### 3.1 Balance Snapshot  
+
+| Asset | Quantity | USD Value* | % of Total |
+|-------|----------|-----------|------------|
+| **{{TOKEN}}** | {{token_qty}} | ${{token_usd}} | {{token_pct}}% |
+| **{{STABLECOIN}}** | {{stable_qty}} | ${{stable_usd}} | {{stable_pct}}% |
+| **Other Tokens** | {{other_qty}} | ${{other_usd}} | {{other_pct}}% |
+| **Total** | – | **$ {{total_usd}}** | 100 % |
+
+\*USD values are based on the closing price at `{{PRICE_TIMESTAMP}}`.
+
+### 3.2 Cash‑Flow (24 h)
+
+| Category | Inflow | Outflow | Net Δ |
+|----------|--------|---------|-------|
+| **Staking Rewards** | {{rewards_in}} {{TOKEN}} | – | +{{rewards_in}} |
+| **Grant Disbursements** | – | {{grant_out}} {{TOKEN}} | –{{grant_out}} |
+| **Operational Expenses** | – | {{ops_out}} {{TOKEN}} | –{{ops_out}} |
+| **Liquidity Provision** | {{liq_in}} {{TOKEN}} | {{liq_out}} {{TOKEN}} | {{liq_net}} |
+| **Other Income / Fees** | {{other_in}} {{TOKEN}} | {{other_out}} {{TOKEN}} | {{other_net}} |
+| **Net Change (24 h)** | – | – | **{{net_change}}** {{TOKEN}} |
+
+### 3.3 Forecast (7‑day rolling)
+
+| Day | Projected Balance ({{TOKEN}}) | Expected Inflows | Expected Outflows | Net Δ |
+|-----|------------------------------|------------------|-------------------|-------|
+| D+1 | {{bal_d1}} | {{in_d1}} | {{out_d1}} | {{net_d1}} |
+| D+2 | {{bal_d2}} | {{in_d2}} | {{out_d2}} | {{net_d2}} |
+| D+3 | {{bal_d3}} | {{in_d3}} | {{out_d3}} | {{net_d3}} |
+| D+4 | {{bal_d4}} | {{in_d4}} | {{out_d4}} | {{net_d4}} |
+| D+5 | {{bal_d5}} | {{in_d5}} | {{out_d5}} | {{net_d5}} |
+| D+6 | {{bal_d6}} | {{in_d6}} | {{out_d6}} | {{net_d6}} |
+| D+7 | {{bal_d7}} | {{in_d7}} | {{out_d7}} | {{net_d7}} |
+
+> **Treasury Outlook:** With current inflows (mainly staking rewards) outpacing scheduled outflows, the treasury is projected to **grow** over the next week.  
+
+---
+
+## 4️⃣ Incident Log (Last 24 h)
+
+| Time (UTC) | Severity | Component | Description | Action Taken | Owner |
+|------------|----------|-----------|-------------|--------------|-------|
+| {{time1}} | {{sev1}} | {{comp1}} | {{desc1}} | {{action1}} | {{owner1}} |
+| {{time2}} | {{sev2}} | {{comp2}} | {{desc2}} | {{action2}} | {{owner2}} |
+| … | … | … | … | … | … |
+
+> **No critical incidents** were recorded today. All alerts were resolved within SLA.
+
+---
+
+## 5️⃣ Operational Metrics  
+
+| KPI | Target | Today | Δ (vs. yesterday) | Status |
+|-----|--------|-------|-------------------|--------|
+| **Average Gas Price** | ≤ {{MAX_GAS}} {{TOKEN}} | {{gas_price}} | {{Δ_gas}} | {{status_gas}} |
+| **Pending Tx Queue** | ≤ {{MAX_PENDING}} | {{pending_tx}} | {{Δ_pending}} | {{status_pending}} |
+| **Validator Participation Rate** | ≥ {{MIN_PARTICIPATION}} % | {{participation}} % | {{Δ_participation}} | {{status_participation}} |
+| **Governance Proposals Open** | ≤ 5 | {{open_props}} | – | {{status_props}} |
+| **Bug Bounty Payouts** | ≤ {{MAX_BOUNTY}} {{TOKEN}} | {{bounty_paid}} | – | {{status_bounty}} |
+
+---
+
+## 6️⃣ Action Items & Recommendations  
+
+| # | Owner | Due Date | Description | Priority |
+|---|-------|----------|-------------|----------|
+| 1 | {{owner_a}} | {{due_a}} | Review node‑performance alerts (if any) and adjust monitoring thresholds. | High |
+| 2 | {{owner_b}} | {{due_b}} | Re‑balance treasury allocation: move {{X}} {{TOKEN}} to liquidity pool to capture upcoming market opportunity. | Medium |
+| 3 | {{owner_c}} | {{due_c}} | Publish a brief “Health‑Check” summary to the community channel. | Low |
+| … | … | … | … | … |
+
+---
+
+## 7️⃣ Attachments / Raw Data  
+
+- **Node‑status CSV:** `node_status_{{YYYYMMDD}}.csv`  
+- **Treasury ledger (JSON):** `treasury_{{YYYYMMDD}}.json`  
+- **Prometheus / Grafana snapshots:** `metrics_{{YYYYMMDD}}.png`  
+
+*(Links to the files can be added in the internal repository.)*
+
+---
+
+### 📌 End of Report  
+
+*All figures are accurate as of the timestamp `{{REPORT_TIMESTAMP}}`. Any discrepancies should be reported to the Operations team within 2 hours.*  
