@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 """Shared NOVA health telemetry, memory, and safe-action primitives.
 
-This module is dependency-free and intentionally separates:
-1. live service probes (which must run when a heart beats),
-2. historical health memory,
-3. reusable observation memory for non-heart intelligence, and
-4. reversible routing/action decisions.
+Live heart probes are never skipped: a heart exists to test the live service.
+External observations are fingerprinted separately so a future reasoning layer
+can reuse prior analysis when meaningful inputs have not changed.
 
 Secrets are never persisted; only credential environment-variable names are.
 """
@@ -27,20 +25,24 @@ def utc_now() -> str:
 
 
 def canonicalize(value: Any) -> Any:
-    """Normalize JSON-like observations while preserving meaningful content."""
+    """Normalize JSON-like observations without retaining volatile transport fields."""
+    volatile = {
+        "timestamp",
+        "observed_at",
+        "request_id",
+        "trace_id",
+        "run_id",
+        "latency_ms",
+        "duration_ms",
+    }
     if isinstance(value, dict):
         return {
             str(key): canonicalize(value[key])
             for key in sorted(value)
-            if str(key).lower() not in {
-                "timestamp",
-                "observed_at",
-                "request_id",
-                "trace_id",
-                "run_id",
-            }
+            if str(key).lower() not in volatile
         }
     if isinstance(value, list):
+        # List order can be transport noise for sets of annotations/events.
         normalized = [canonicalize(item) for item in value]
         try:
             return sorted(normalized, key=lambda item: json.dumps(item, sort_keys=True))
@@ -126,7 +128,7 @@ def record_probe(
     latency_min_samples: int,
     unacceptable_failure_streak: int,
 ) -> dict[str, Any]:
-    """Record one live probe and return the resulting health/action decision."""
+    """Record one live probe and return its resulting health/action decision."""
     key = _target_key(namespace, provider, actual_model or requested_model)
     target = state["targets"].setdefault(
         key,
@@ -144,23 +146,79 @@ def record_probe(
         },
     )
 
-    if actual_model:
-        target["actual_model"] = actual_model
+    target["credential_env"] = credential_env
     if requested_model:
         target["requested_model"] = requested_model
-    target["credential_env"] = credential_env
+    if actual_model:
+        target["actual_model"] = actual_model
 
-    success = authentication == "PASS" and api_status is not None and 200 <= api_status < 300 and response_valid
-    if success:
-        target["failure_streak"] = 0
-        if latency_ms is not None:
-            target["latency_ms"].append(round(latency_ms, 3))
-            target["latency_ms"] = target["latency_ms"][-max_samples:]
+    not_configured = authentication in {"NOT_CONFIGURED", "BLOCKED"} and error_class in {
+        "credential_not_configured",
+        "health_url_not_configured",
+        "unsupported_auth_type",
+    }
+
+    success = (
+        authentication == "PASS"
+        and api_status is not None
+        and 200 <= api_status < 300
+        and response_valid
+    )
+
+    if not_configured:
+        target["health_status"] = "UNCONFIGURED"
+        target["last_action"] = "WAIT_FOR_CONFIGURATION"
     else:
-        target["failure_streak"] = int(target.get("failure_streak", 0)) + 1
+        if success:
+            target["failure_streak"] = 0
+            if latency_ms is not None:
+                target["latency_ms"].append(round(latency_ms, 3))
+                target["latency_ms"] = target["latency_ms"][-max_samples:]
+        else:
+            target["failure_streak"] = int(target.get("failure_streak", 0)) + 1
+
+        samples = [float(value) for value in target.get("latency_ms", [])]
+        baseline_source = samples[:-1] if len(samples) > 1 else samples
+        baseline_ms = (
+            round(statistics.median(baseline_source), 3) if baseline_source else None
+        )
+        latency_degraded = (
+            success
+            and latency_ms is not None
+            and baseline_ms is not None
+            and len(samples) >= latency_min_samples
+            and latency_ms > baseline_ms * latency_degraded_multiplier
+        )
+
+        if not success:
+            health_status = (
+                "UNACCEPTABLE"
+                if target["failure_streak"] >= unacceptable_failure_streak
+                else "DEGRADED"
+            )
+        elif quality_status not in {"PASS", "NOT_APPLICABLE"}:
+            health_status = "DEGRADED"
+        elif latency_degraded:
+            health_status = "DEGRADED"
+        else:
+            health_status = "HEALTHY"
+
+        if health_status == "HEALTHY":
+            action = "MAINTAIN"
+        elif health_status == "DEGRADED":
+            action = "MONITOR_AND_DEPRIORITIZE"
+        else:
+            action = "FAILOVER_AND_ALERT"
+
+        target["health_status"] = health_status
+        target["last_action"] = action
 
     samples = [float(value) for value in target.get("latency_ms", [])]
-    baseline_ms = round(statistics.median(samples[:-1] if len(samples) > 1 else samples), 3) if samples else None
+    baseline_ms = (
+        round(statistics.median(samples[:-1] if len(samples) > 1 else samples), 3)
+        if samples
+        else None
+    )
     latency_degraded = (
         success
         and latency_ms is not None
@@ -168,26 +226,6 @@ def record_probe(
         and len(samples) >= latency_min_samples
         and latency_ms > baseline_ms * latency_degraded_multiplier
     )
-
-    if not success:
-        health_status = (
-            "UNACCEPTABLE"
-            if target["failure_streak"] >= unacceptable_failure_streak
-            else "DEGRADED"
-        )
-    elif quality_status not in {"PASS", "NOT_APPLICABLE"}:
-        health_status = "DEGRADED"
-    elif latency_degraded:
-        health_status = "DEGRADED"
-    else:
-        health_status = "HEALTHY"
-
-    if health_status == "HEALTHY":
-        action = "MAINTAIN"
-    elif health_status == "DEGRADED":
-        action = "MONITOR_AND_DEPRIORITIZE"
-    else:
-        action = "FAILOVER_AND_ALERT"
 
     observation = {
         "observed_at": utc_now(),
@@ -204,25 +242,19 @@ def record_probe(
         "latency_degraded": latency_degraded,
         "error_class": error_class,
         "error_detail": error_detail,
-        "health_status": health_status,
-        "action": action,
+        "health_status": target.get("health_status", "UNKNOWN"),
+        "action": target.get("last_action", "INITIALIZE"),
     }
 
-    target["health_status"] = health_status
-    target["last_action"] = action
     target["last_observation"] = observation
     target["history"].append(observation)
     target["history"] = target["history"][-max_samples:]
-
     state["updated_at"] = utc_now()
     return observation
 
 
 def provider_health_status(
-    state: dict[str, Any],
-    *,
-    provider: str,
-    namespace: str,
+    state: dict[str, Any], *, provider: str, namespace: str
 ) -> str:
     statuses = []
     prefix = namespace + ":" + provider + ":"
@@ -235,6 +267,8 @@ def provider_health_status(
         return "DEGRADED"
     if "HEALTHY" in statuses:
         return "HEALTHY"
+    if "UNCONFIGURED" in statuses:
+        return "UNCONFIGURED"
     return "UNKNOWN"
 
 
@@ -246,14 +280,26 @@ def remember_observation(
     observation: Any,
     analysis: dict[str, Any] | None = None,
     valid_for_seconds: int | None = None,
+    max_analysis_history: int = 12,
 ) -> dict[str, Any]:
-    """Remember a non-heart observation and determine whether it changed."""
+    """Remember a non-heart observation and retain prior analyses when it changes."""
     canonical = canonicalize(observation)
     fp = fingerprint(canonical)
     key = f"{namespace}:{source}"
     previous = state["observations"].get(key)
 
     unchanged = bool(previous and previous.get("fingerprint") == fp)
+    history = list(previous.get("analysis_history", [])) if previous else []
+
+    previous_analysis = previous.get("analysis") if previous else None
+    if previous and not unchanged and isinstance(previous_analysis, dict):
+        history.append({
+            "fingerprint": previous.get("fingerprint"),
+            "observed_at": previous.get("observed_at"),
+            "analysis": previous_analysis,
+        })
+        history = history[-max_analysis_history:]
+
     record = {
         "namespace": namespace,
         "source": source,
@@ -261,14 +307,9 @@ def remember_observation(
         "observed_at": utc_now(),
         "unchanged_from_previous": unchanged,
         "observation": canonical,
+        "analysis": analysis if analysis is not None else (previous.get("analysis") if previous else None),
+        "analysis_history": history,
     }
-
-    if previous and analysis is None:
-        record["analysis"] = previous.get("analysis")
-
-    if analysis is not None:
-        record["analysis"] = analysis
-        record["analysis_fingerprint"] = fp
 
     if valid_for_seconds is not None:
         record["analysis_valid_for_seconds"] = int(valid_for_seconds)
@@ -284,15 +325,26 @@ def reusable_analysis(
     namespace: str,
     source: str,
     current_observation: Any,
+    now: datetime | None = None,
 ) -> dict[str, Any] | None:
-    """Return a previous analysis only when the meaningful observation is unchanged.
-
-    Validity windows are enforced by the caller using the recorded timestamp.
-    This function deliberately does not suppress live heart probes.
-    """
+    """Return previous analysis only when meaningful input is unchanged and still valid."""
     key = f"{namespace}:{source}"
     previous = state.get("observations", {}).get(key)
     if not previous or previous.get("fingerprint") != fingerprint(current_observation):
         return None
+
     analysis = previous.get("analysis")
-    return analysis if isinstance(analysis, dict) else None
+    if not isinstance(analysis, dict):
+        return None
+
+    valid_for = previous.get("analysis_valid_for_seconds")
+    observed_at = previous.get("observed_at")
+    if valid_for is not None and observed_at:
+        try:
+            observed_dt = datetime.fromisoformat(observed_at)
+            current_dt = now or datetime.now(timezone.utc)
+            if (current_dt - observed_dt).total_seconds() > int(valid_for):
+                return None
+        except (ValueError, TypeError):
+            return None
+    return analysis
