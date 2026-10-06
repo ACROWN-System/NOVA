@@ -21,16 +21,21 @@ from typing import Any
 try:
     from . import alerts  # package execution
     from .health import (
+        atomic_write_json,
+        load_health_state,
+        load_json,
+        provider_health_status,
+        record_probe,
+    )
 except ImportError:  # direct script execution
     import alerts
     from health import (
-    atomic_write_json,
-    load_health_state,
-    load_json,
-    provider_health_status,
-    record_probe,
-)
-
+        atomic_write_json,
+        load_health_state,
+        load_json,
+        provider_health_status,
+        record_probe,
+    )
 ROOT = Path(__file__).resolve().parent
 ROSTER_PATH = ROOT / "roster.json"
 HEALTH_POLICY_PATH = ROOT / "health_policy.json"
