@@ -19,15 +19,26 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-from health import (
-    atomic_write_json,
-    fingerprint,
-    load_json,
-    load_health_state,
-    remember_observation,
-    reusable_analysis,
-    utc_now,
-)
+try:
+    from .health import (
+        atomic_write_json,
+        fingerprint,
+        load_json,
+        load_health_state,
+        remember_observation,
+        reusable_analysis,
+        utc_now,
+    )
+except ImportError:  # direct script execution from the NOVA directory
+    from health import (
+        atomic_write_json,
+        fingerprint,
+        load_json,
+        load_health_state,
+        remember_observation,
+        reusable_analysis,
+        utc_now,
+    )
 
 DEFAULT_WATCHLIST = {"schema_version": 1, "sources": []}
 
