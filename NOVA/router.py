@@ -89,7 +89,7 @@ def validate_health_payload(content: Any) -> tuple[bool, str]:
     return True, "PASS"
 
 
-def call_openai_compatible(provider: dict[str, Any]) -> tuple[str | None, str, list[dict[str, Any]]]:
+def call_openai_compatible(provider: dict[str, Any], prompt: str, validator=validate_health_payload) -> tuple[str | None, str, list[dict[str, Any]]]:
     api_key = get_env(provider["api_key_env"])
     if not api_key:
         return None, "unconfigured", [{
@@ -151,7 +151,7 @@ def call_openai_compatible(provider: dict[str, Any]) -> tuple[str | None, str, l
                 choices = result.get("choices")
                 message = choices[0].get("message") if isinstance(choices, list) and choices else None
                 content = message.get("content") if isinstance(message, dict) else None
-                valid, quality = validate_health_payload(content)
+                valid, quality = validator(content)
                 actual_model = result.get("model") or model
                 probe = {
                     "provider": provider["name"],
@@ -215,7 +215,7 @@ def call_openai_compatible(provider: dict[str, Any]) -> tuple[str | None, str, l
     return None, "quality_or_transient", probes
 
 
-def call_gemini(provider: dict[str, Any]) -> tuple[str | None, str, list[dict[str, Any]]]:
+def call_gemini(provider: dict[str, Any], prompt: str, validator=validate_health_payload) -> tuple[str | None, str, list[dict[str, Any]]]:
     api_key = get_env(provider["api_key_env"])
     if not api_key:
         return None, "unconfigured", [{
@@ -260,7 +260,7 @@ def call_gemini(provider: dict[str, Any]) -> tuple[str | None, str, list[dict[st
                     else []
                 )
                 content = parts[0].get("text") if parts and isinstance(parts[0], dict) else None
-                valid, quality = validate_health_payload(content)
+                valid, quality = validator(content)
                 probe = {
                     "provider": provider["name"],
                     "credential_env": provider["api_key_env"],
@@ -319,10 +319,10 @@ def call_gemini(provider: dict[str, Any]) -> tuple[str | None, str, list[dict[st
     return None, "quality_or_transient", probes
 
 
-def call_provider(provider: dict[str, Any], prompt: str) -> tuple[str | None, str, list[dict[str, Any]]]:
+def call_provider(provider: dict[str, Any], prompt: str, validator=validate_health_payload) -> tuple[str | None, str, list[dict[str, Any]]]:
     if provider["kind"] == "gemini":
-        return call_gemini(provider)
-    return call_openai_compatible(provider)
+        return call_gemini(provider, prompt, validator)
+    return call_openai_compatible(provider, prompt, validator)
 
 
 def rotate_starting_provider(providers: list[dict[str, Any]]) -> list[dict[str, Any]]:
