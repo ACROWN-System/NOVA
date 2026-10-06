@@ -319,7 +319,12 @@ def call_gemini(provider: dict[str, Any]) -> tuple[str | None, str, list[dict[st
     return None, "quality_or_transient", probes
 
 
-def call_provider(provider: dict[str, Any]) -> tuple[str | None, str, list[dict[str, Any]]]:
+def call_provider(provider: dict[str, Any], prompt: str) -> tuple[str | None, str, list[dict[str, Any]]]:
+    # The heart passes its deterministic probe prompt. The prompt parameter remains
+    # explicit so the router can later support other controlled probes without
+    # duplicating transport code.
+    if prompt != HEALTH_PROMPT:
+        raise ValueError("NOVA AI heart accepts only its protected health probe prompt at this stage.")
     if provider["kind"] == "gemini":
         return call_gemini(provider)
     return call_openai_compatible(provider)
@@ -366,7 +371,7 @@ def intelligent_router(prompt: str) -> tuple[str, dict[str, Any]]:
 
     for provider in active:
         print(f"Trying provider: {provider['name']}")
-        text, signal, probes = call_provider(provider)
+        text, signal, probes = call_provider(provider, prompt)
 
         for probe in probes:
             observation = record_probe(
