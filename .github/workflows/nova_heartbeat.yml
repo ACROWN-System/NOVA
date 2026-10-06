@@ -44,6 +44,11 @@ jobs:
           CLOUDFLARE_API_KEY_01: ${{ secrets.CLOUDFLARE_API_KEY_01 }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
+          # Rotate the first provider attempted on each heartbeat pulse.
+          # router.py preserves the existing roster order after the rotated start,
+          # so ordinary failover remains unchanged.
+          NOVA_PROVIDER_ROTATION_INDEX: ${{ github.run_number }}
+
           # Optional — one-time SMS/voice feasibility test / future emergency channel
           TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
           TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
