@@ -320,11 +320,6 @@ def call_gemini(provider: dict[str, Any]) -> tuple[str | None, str, list[dict[st
 
 
 def call_provider(provider: dict[str, Any], prompt: str) -> tuple[str | None, str, list[dict[str, Any]]]:
-    # The heart passes its deterministic probe prompt. The prompt parameter remains
-    # explicit so the router can later support other controlled probes without
-    # duplicating transport code.
-    if prompt != HEALTH_PROMPT:
-        raise ValueError("NOVA AI heart accepts only its protected health probe prompt at this stage.")
     if provider["kind"] == "gemini":
         return call_gemini(provider)
     return call_openai_compatible(provider)
@@ -394,6 +389,12 @@ def intelligent_router(prompt: str) -> tuple[str, dict[str, Any]]:
                 unacceptable_failure_streak=int(failure_policy.get("unacceptable_consecutive_failures", 3)),
             )
             all_probes.append(observation)
+            if observation["health_status"] == "UNACCEPTABLE":
+                alerts.send_all_alerts(
+                    title=f"NOVA AI heart: {provider['name']} health is unacceptable",
+                    body=json.dumps(observation, indent=2, sort_keys=True),
+                    severity="urgent",
+                )
 
         atomic_write_json(HEALTH_STATE_PATH, state)
 
