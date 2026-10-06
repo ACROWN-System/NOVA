@@ -25,6 +25,7 @@ from health import (
     load_json,
     load_health_state,
     remember_observation,
+    reusable_analysis,
     utc_now,
 )
 
@@ -85,17 +86,42 @@ def observe_source(source: dict, state: dict, *, timeout: int, max_bytes: int) -
         "content_fingerprint": fingerprint(normalized),
         "content_excerpt": normalized[:4000],
     }
+    valid_for = source.get("analysis_valid_for_seconds")
+    previous_analysis = reusable_analysis(
+        state,
+        namespace="external-annotation",
+        source=str(name),
+        current_observation=observation,
+    )
     memory = remember_observation(
         state,
         namespace="external-annotation",
         source=str(name),
         observation=observation,
+        valid_for_seconds=int(valid_for) if valid_for is not None else None,
     )
+
+    if memory["unchanged_from_previous"] and previous_analysis is not None:
+        analysis_action = "REUSE_PRIOR_ANALYSIS"
+    elif memory["unchanged_from_previous"]:
+        analysis_action = "NO_CHANGE_NO_ANALYSIS"
+    else:
+        analysis_action = "ANALYSIS_REQUIRED"
+        state.setdefault("events", {})[memory["fingerprint"]] = {
+            "event_type": "external-annotation-change",
+            "source": str(name),
+            "observed_at": memory["observed_at"],
+            "fingerprint": memory["fingerprint"],
+            "analysis_status": "PENDING",
+            "action_status": "PENDING_POLICY_DECISION",
+            "risk_level": source.get("risk_level", "UNKNOWN"),
+        }
 
     return {
         "source": name,
         "url": url,
         "status": "UNCHANGED" if memory["unchanged_from_previous"] else "CHANGED",
+        "analysis_action": analysis_action,
         "http_status": status,
         "fingerprint": memory["fingerprint"],
     }
