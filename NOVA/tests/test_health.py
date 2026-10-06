@@ -1,7 +1,7 @@
 import unittest
 from datetime import datetime, timezone
 
-from health import _state_defaults, fingerprint, record_probe, remember_observation, reusable_analysis
+from NOVA.health import _state_defaults, fingerprint, record_probe, remember_observation, reusable_analysis
 
 
 class HealthTests(unittest.TestCase):
