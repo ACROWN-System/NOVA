@@ -1,5 +1,6 @@
 import unittest
-from operational_observer import normalize_content
+
+from NOVA.operational_observer import normalize_content
 
 
 class ObserverTests(unittest.TestCase):
