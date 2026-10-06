@@ -18,8 +18,12 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-import alerts  # NOVA/alerts.py — comparative-analysis generation + GitHub/SMS/voice delivery
-from health import (
+try:
+    from . import alerts  # package execution
+    from .health import (
+except ImportError:  # direct script execution
+    import alerts
+    from health import (
     atomic_write_json,
     load_health_state,
     load_json,
