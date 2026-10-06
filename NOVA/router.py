@@ -121,10 +121,35 @@ def call_provider(provider, prompt):
     return call_openai_compatible(provider, prompt)
 
 
+def rotate_starting_provider(providers):
+    """Rotate which active provider is tried first while preserving failover order."""
+    if not providers:
+        return providers
+
+    raw_index = get_env("NOVA_PROVIDER_ROTATION_INDEX")
+    if not raw_index:
+        return providers
+
+    try:
+        offset = int(raw_index) % len(providers)
+    except ValueError:
+        print(
+            f"[router] Invalid NOVA_PROVIDER_ROTATION_INDEX={raw_index!r}; "
+            "using roster order."
+        )
+        return providers
+
+    if offset == 0:
+        return providers
+
+    return providers[offset:] + providers[:offset]
+
+
 def intelligent_router(prompt):
     print(f"[{datetime.now(timezone.utc).isoformat()}] NOVA Routing Sequence Initiated...")
     roster = load_roster()
     active = [p for p in roster["providers"] if p["status"] == "active"]
+    active = rotate_starting_provider(active)
 
     for provider in active:
         print(f"Trying provider: {provider['name']}")
