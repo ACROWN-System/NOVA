@@ -15,14 +15,24 @@ import os
 from pathlib import Path
 from typing import Any
 
-import alerts
-from health import (
-    atomic_write_json,
-    load_health_state,
-    load_json,
-    record_probe,
-)
-from router import call_provider, order_providers
+try:
+    from . import alerts
+    from .health import (
+        atomic_write_json,
+        load_health_state,
+        load_json,
+        record_probe,
+    )
+    from .router import call_provider, order_providers
+except ImportError:  # direct script execution
+    import alerts
+    from health import (
+        atomic_write_json,
+        load_health_state,
+        load_json,
+        record_probe,
+    )
+    from router import call_provider, order_providers
 
 
 ROOT = Path(__file__).resolve().parent
