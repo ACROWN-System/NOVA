@@ -2,64 +2,68 @@ name: NOVA Autonomous Heartbeat
 
 on:
   schedule:
-    # Runs automatically every 6 hours
     - cron: '0 */6 * * *'
-  # Allows manual triggers from GitHub UI for real-time testing
   workflow_dispatch:
 
-# Ensures a manual trigger and a scheduled run can never execute at the same time —
-# queues the second one instead of racing it against the first.
 concurrency:
   group: nova-heartbeat
   cancel-in-progress: false
 
 permissions:
-  contents: write  # Allows committing updated NOVA/roster.json & NOVA/README.md back to main
-  issues: write    # Required for alerts.py to auto-open GitHub alert issues
+  contents: write
+  issues: write
 
 jobs:
   heartbeat:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: '3.11'
 
-      - name:  Execute NOVA Router
+      - name: Test NOVA health and observer primitives
+        run: python -m unittest discover -s NOVA/tests -p 'test_*.py' -v
+
+      - name: Observe external operational annotations
+        run: python NOVA/operational_observer.py
+
+      - name: Execute NOVA AI Heart
         env:
-          # GitHub context for alerts.py
+          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: \${{ github.repository }}
+          GROQ_API_KEY_01: \${{ secrets.GROQ_API_KEY_01 }}
+          GEMINI_API_KEY_01: \${{ secrets.GEMINI_API_KEY_01 }}
+          CEREBRAS_API_KEY_01: \${{ secrets.CEREBRAS_API_KEY_01 }}
+          MISTRAL_API_KEY_01: \${{ secrets.MISTRAL_API_KEY_01 }}
+          CLOUDFLARE_API_KEY_01: \${{ secrets.CLOUDFLARE_API_KEY_01 }}
+          CLOUDFLARE_ACCOUNT_ID: \${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          NOVA_PROVIDER_ROTATION_INDEX: \${{ github.run_number }}
+          TWILIO_ACCOUNT_SID: \${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTH_TOKEN: \${{ secrets.TWILIO_AUTH_TOKEN }}
+          TWILIO_FROM_NUMBER: \${{ secrets.TWILIO_FROM_NUMBER }}
+          TWILIO_TO_NUMBER: \${{ secrets.TWILIO_TO_NUMBER }}
+        run: python NOVA/router.py
+
+      - name: Analyze newly changed operational annotations
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-
-          # Active roster provider API keys
           GROQ_API_KEY_01: ${{ secrets.GROQ_API_KEY_01 }}
           GEMINI_API_KEY_01: ${{ secrets.GEMINI_API_KEY_01 }}
           CEREBRAS_API_KEY_01: ${{ secrets.CEREBRAS_API_KEY_01 }}
           MISTRAL_API_KEY_01: ${{ secrets.MISTRAL_API_KEY_01 }}
           CLOUDFLARE_API_KEY_01: ${{ secrets.CLOUDFLARE_API_KEY_01 }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          NOVA_REASONING_PROVIDER_ROTATION_INDEX: ${{ github.run_number }}
+        run: python NOVA/reasoning.py --pending
 
-          # Rotate the first provider attempted on each heartbeat pulse.
-          # router.py preserves the existing roster order after the rotated start,
-          # so ordinary failover remains unchanged.
-          NOVA_PROVIDER_ROTATION_INDEX: ${{ github.run_number }}
-
-          # Optional — one-time SMS/voice feasibility test / future emergency channel
-          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
-          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
-          TWILIO_FROM_NUMBER: ${{ secrets.TWILIO_FROM_NUMBER }}
-          TWILIO_TO_NUMBER: ${{ secrets.TWILIO_TO_NUMBER }}
-        run: python NOVA/router.py
-
-      - name: Commit Graph Memory Updates
+      - name: Commit NOVA structured state
         run: |
           git config --global user.name "NOVA Autonomous Engine"
           git config --global user.email "nova@haan.system"
-          git add NOVA/roster.json NOVA/README.md
-          # Only commit if roster.json or README.md actually changed
-          git diff --staged --quiet || (git commit -m "chore(nova): update provider roster state [skip ci]" && git push)
+          git add NOVA/roster.json NOVA/README.md NOVA/health_state.json
+          git diff --staged --quiet || (git commit -m "chore(nova): update AI heart health state [skip ci]" && git push)

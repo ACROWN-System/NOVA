@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "_comment": "GPU provider roster. Keep credentials out of this file; only environment-variable names belong here.",
+  "providers": [],
+  "provider_template": {
+    "name": "example-provider",
+    "status": "unconfigured",
+    "kind": "gpu_api",
+    "api_key_env": "PROVIDER_GPU_API_KEY_01",
+    "health_url": "https://provider.example/v1/health",
+    "health_method": "GET",
+    "auth": {
+      "type": "bearer"
+    },
+    "compute_probe": {
+      "enabled": false,
+      "adapter": null
+    },
+    "gpu_expectations": {
+      "requested_gpu": null,
+      "minimum_vram_gb": null
+    }
+  },
+  "notes": [
+    "Providers become live only after their API contract and credential have been verified.",
+    "compute_probe adapters are provider-specific and must not assume a common GPU API.",
+    "NOVA may record degraded or unavailable provider state without deleting the provider configuration."
+  ]
+}
