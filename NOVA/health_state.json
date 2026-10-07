@@ -1,7 +1,7 @@
 {
   "events": {},
   "last_annotation_scan": {
-    "observed_at": "2026-10-07T12:22:45.026287+00:00",
+    "observed_at": "2026-10-07T22:24:48.059778+00:00",
     "results": []
   },
   "last_gpu_heartbeat": {
@@ -53,6 +53,24 @@
           "quality_status": "NOT_APPLICABLE",
           "requested_model": null,
           "response_valid": false
+        },
+        {
+          "action": "WAIT_FOR_CONFIGURATION",
+          "actual_model": null,
+          "api_status": null,
+          "authentication": "NOT_CONFIGURED",
+          "baseline_latency_ms": null,
+          "credential_env": "CEREBRAS_API_KEY_01",
+          "error_class": "credential_not_configured",
+          "error_detail": "Credential is not configured.",
+          "health_status": "UNCONFIGURED",
+          "latency_degraded": false,
+          "latency_ms": null,
+          "observed_at": "2026-10-07T22:24:48.150547+00:00",
+          "provider": "cerebras",
+          "quality_status": "NOT_APPLICABLE",
+          "requested_model": null,
+          "response_valid": false
         }
       ],
       "last_action": "WAIT_FOR_CONFIGURATION",
@@ -68,7 +86,7 @@
         "health_status": "UNCONFIGURED",
         "latency_degraded": false,
         "latency_ms": null,
-        "observed_at": "2026-10-07T12:22:45.104131+00:00",
+        "observed_at": "2026-10-07T22:24:48.150547+00:00",
         "provider": "cerebras",
         "quality_status": "NOT_APPLICABLE",
         "requested_model": null,
@@ -120,6 +138,24 @@
           "quality_status": "NOT_APPLICABLE",
           "requested_model": null,
           "response_valid": false
+        },
+        {
+          "action": "WAIT_FOR_CONFIGURATION",
+          "actual_model": null,
+          "api_status": null,
+          "authentication": "NOT_CONFIGURED",
+          "baseline_latency_ms": null,
+          "credential_env": "CLOUDFLARE_API_KEY_01",
+          "error_class": "credential_not_configured",
+          "error_detail": "Credential is not configured.",
+          "health_status": "UNCONFIGURED",
+          "latency_degraded": false,
+          "latency_ms": null,
+          "observed_at": "2026-10-07T22:24:48.152320+00:00",
+          "provider": "cloudflare",
+          "quality_status": "NOT_APPLICABLE",
+          "requested_model": null,
+          "response_valid": false
         }
       ],
       "last_action": "WAIT_FOR_CONFIGURATION",
@@ -135,7 +171,7 @@
         "health_status": "UNCONFIGURED",
         "latency_degraded": false,
         "latency_ms": null,
-        "observed_at": "2026-10-07T12:22:45.100165+00:00",
+        "observed_at": "2026-10-07T22:24:48.152320+00:00",
         "provider": "cloudflare",
         "quality_status": "NOT_APPLICABLE",
         "requested_model": null,
@@ -243,6 +279,145 @@
       "namespace": "ai-heart",
       "provider": "gemini",
       "requested_model": "gemini-2.5-flash-lite"
+    },
+    "ai-heart:gemini:gemini-3.1-flash-lite": {
+      "actual_model": "gemini-3.1-flash-lite",
+      "credential_env": "GEMINI_API_KEY_01",
+      "failure_streak": 0,
+      "health_status": "HEALTHY",
+      "history": [
+        {
+          "action": "MAINTAIN",
+          "actual_model": "gemini-3.1-flash-lite",
+          "api_status": 200,
+          "authentication": "PASS",
+          "baseline_latency_ms": 668.347,
+          "capacity": {
+            "last_request_usage": {
+              "candidatesTokenCount": 17,
+              "promptTokenCount": 34,
+              "promptTokensDetails": "[{'modality': 'TEXT', 'tokenCount': 34}]",
+              "serviceTier": "standard",
+              "totalTokenCount": 51
+            },
+            "measurement_state": "NOT_EXPOSED",
+            "metrics": {},
+            "observed_at": "2026-10-07T22:24:50.739072+00:00",
+            "provider": "gemini"
+          },
+          "credential_env": "GEMINI_API_KEY_01",
+          "error_class": null,
+          "error_detail": null,
+          "health_status": "HEALTHY",
+          "latency_degraded": false,
+          "latency_ms": 668.347,
+          "observed_at": "2026-10-07T22:24:50.739170+00:00",
+          "provider": "gemini",
+          "quality_status": "PASS",
+          "requested_model": "gemini-3.1-flash-lite",
+          "response_valid": true
+        }
+      ],
+      "last_action": "MAINTAIN",
+      "last_capacity": {
+        "last_request_usage": {
+          "candidatesTokenCount": 17,
+          "promptTokenCount": 34,
+          "promptTokensDetails": "[{'modality': 'TEXT', 'tokenCount': 34}]",
+          "serviceTier": "standard",
+          "totalTokenCount": 51
+        },
+        "measurement_state": "NOT_EXPOSED",
+        "metrics": {},
+        "observed_at": "2026-10-07T22:24:50.739072+00:00",
+        "provider": "gemini"
+      },
+      "last_observation": {
+        "action": "MAINTAIN",
+        "actual_model": "gemini-3.1-flash-lite",
+        "api_status": 200,
+        "authentication": "PASS",
+        "baseline_latency_ms": 668.347,
+        "capacity": {
+          "last_request_usage": {
+            "candidatesTokenCount": 17,
+            "promptTokenCount": 34,
+            "promptTokensDetails": "[{'modality': 'TEXT', 'tokenCount': 34}]",
+            "serviceTier": "standard",
+            "totalTokenCount": 51
+          },
+          "measurement_state": "NOT_EXPOSED",
+          "metrics": {},
+          "observed_at": "2026-10-07T22:24:50.739072+00:00",
+          "provider": "gemini"
+        },
+        "credential_env": "GEMINI_API_KEY_01",
+        "error_class": null,
+        "error_detail": null,
+        "health_status": "HEALTHY",
+        "latency_degraded": false,
+        "latency_ms": 668.347,
+        "observed_at": "2026-10-07T22:24:50.739170+00:00",
+        "provider": "gemini",
+        "quality_status": "PASS",
+        "requested_model": "gemini-3.1-flash-lite",
+        "response_valid": true
+      },
+      "latency_ms": [
+        668.347
+      ],
+      "namespace": "ai-heart",
+      "provider": "gemini",
+      "requested_model": "gemini-3.1-flash-lite"
+    },
+    "ai-heart:gemini:gemini-3.8-flash": {
+      "actual_model": null,
+      "credential_env": "GEMINI_API_KEY_01",
+      "failure_streak": 1,
+      "health_status": "DEGRADED",
+      "history": [
+        {
+          "action": "MONITOR_AND_DEPRIORITIZE",
+          "actual_model": null,
+          "api_status": 503,
+          "authentication": "UNKNOWN",
+          "baseline_latency_ms": null,
+          "credential_env": "GEMINI_API_KEY_01",
+          "error_class": "transient",
+          "error_detail": "{\n  \"error\": {\n    \"code\": 503,\n    \"message\": \"this model is currently experiencing high demand. spikes in demand are usually temporary. please try again later.\",\n    \"status\": \"unavailable\"\n  }\n}\n",
+          "health_status": "DEGRADED",
+          "latency_degraded": false,
+          "latency_ms": 1915.932,
+          "observed_at": "2026-10-07T22:24:50.739135+00:00",
+          "provider": "gemini",
+          "quality_status": "NOT_APPLICABLE",
+          "requested_model": "gemini-3.8-flash",
+          "response_valid": false
+        }
+      ],
+      "last_action": "MONITOR_AND_DEPRIORITIZE",
+      "last_observation": {
+        "action": "MONITOR_AND_DEPRIORITIZE",
+        "actual_model": null,
+        "api_status": 503,
+        "authentication": "UNKNOWN",
+        "baseline_latency_ms": null,
+        "credential_env": "GEMINI_API_KEY_01",
+        "error_class": "transient",
+        "error_detail": "{\n  \"error\": {\n    \"code\": 503,\n    \"message\": \"this model is currently experiencing high demand. spikes in demand are usually temporary. please try again later.\",\n    \"status\": \"unavailable\"\n  }\n}\n",
+        "health_status": "DEGRADED",
+        "latency_degraded": false,
+        "latency_ms": 1915.932,
+        "observed_at": "2026-10-07T22:24:50.739135+00:00",
+        "provider": "gemini",
+        "quality_status": "NOT_APPLICABLE",
+        "requested_model": "gemini-3.8-flash",
+        "response_valid": false
+      },
+      "latency_ms": [],
+      "namespace": "ai-heart",
+      "provider": "gemini",
+      "requested_model": "gemini-3.8-flash"
     },
     "ai-heart:groq:openai/gpt-oss-120b": {
       "actual_model": "openai/gpt-oss-120b",
@@ -419,6 +594,24 @@
           "quality_status": "NOT_APPLICABLE",
           "requested_model": null,
           "response_valid": false
+        },
+        {
+          "action": "WAIT_FOR_CONFIGURATION",
+          "actual_model": null,
+          "api_status": null,
+          "authentication": "NOT_CONFIGURED",
+          "baseline_latency_ms": null,
+          "credential_env": "MISTRAL_API_KEY_01",
+          "error_class": "credential_not_configured",
+          "error_detail": "Credential is not configured.",
+          "health_status": "UNCONFIGURED",
+          "latency_degraded": false,
+          "latency_ms": null,
+          "observed_at": "2026-10-07T22:24:48.151458+00:00",
+          "provider": "mistral",
+          "quality_status": "NOT_APPLICABLE",
+          "requested_model": null,
+          "response_valid": false
         }
       ],
       "last_action": "WAIT_FOR_CONFIGURATION",
@@ -434,7 +627,7 @@
         "health_status": "UNCONFIGURED",
         "latency_degraded": false,
         "latency_ms": null,
-        "observed_at": "2026-10-07T12:22:45.099366+00:00",
+        "observed_at": "2026-10-07T22:24:48.151458+00:00",
         "provider": "mistral",
         "quality_status": "NOT_APPLICABLE",
         "requested_model": null,
@@ -446,5 +639,5 @@
       "requested_model": null
     }
   },
-  "updated_at": "2026-10-07T12:22:45.865267+00:00"
+  "updated_at": "2026-10-07T22:24:50.739174+00:00"
 }
