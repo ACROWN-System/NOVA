@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+from datetime import datetime, timedelta, timezone
 from decimal import Decimal
 from typing import Any
 
@@ -61,4 +62,33 @@ def recommend_price(
         "bounded_change_ratio": str(bounded_delta),
         "provider_independent": True,
         "requires_approval": True,
+    }
+
+
+
+def create_quote(
+    reference_amount: Decimal | int | float,
+    *,
+    rate_to_settlement: Decimal | int | float,
+    settlement_asset: str,
+    validity_seconds: int = 300,
+) -> dict[str, Any]:
+    """Create a provider-independent crypto quote with a fixed validity window."""
+    if validity_seconds <= 0:
+        raise ValueError("validity_seconds must be positive")
+    created_at = datetime.now(timezone.utc)
+    expires_at = created_at + timedelta(seconds=validity_seconds)
+    settlement_amount = convert_price(
+        reference_amount,
+        rate_to_settlement=rate_to_settlement,
+    )
+    return {
+        "reference_amount": str(d(reference_amount)),
+        "settlement_amount": str(settlement_amount),
+        "settlement_asset": settlement_asset,
+        "created_at": created_at.isoformat(),
+        "expires_at": expires_at.isoformat(),
+        "validity_seconds": validity_seconds,
+        "provider_independent": True,
+        "backend_switch_must_not_reprice": True,
     }
