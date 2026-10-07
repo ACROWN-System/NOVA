@@ -36,6 +36,7 @@ except ImportError:  # direct script execution
         provider_health_status,
         record_probe,
     )
+    from capacity import annotate_probe
 ROOT = Path(__file__).resolve().parent
 ROSTER_PATH = ROOT / "roster.json"
 HEALTH_POLICY_PATH = ROOT / "health_policy.json"
@@ -175,6 +176,12 @@ def call_openai_compatible(provider: dict[str, Any], prompt: str, validator=vali
                     "error_class": None if valid else "response_contract",
                     "error_detail": None if valid else quality,
                 }
+                annotate_probe(
+                    probe,
+                    provider=provider["name"],
+                    headers=response.headers,
+                    usage=result.get("usage") if isinstance(result.get("usage"), dict) else None,
+                )
                 probes.append(probe)
                 if valid:
                     return content, "success", probes
@@ -195,6 +202,13 @@ def call_openai_compatible(provider: dict[str, Any], prompt: str, validator=vali
                 "latency_ms": latency_ms,
                 "error_class": signal,
                 "error_detail": body[:400],
+                "capacity": annotate_probe(
+                    {
+                        "provider": provider["name"],
+                    },
+                    provider=provider["name"],
+                    headers=exc.headers,
+                ).get("capacity"),
             })
             print(
                 f"[{provider['name']}] HTTP {exc.code} on model '{model}' "
