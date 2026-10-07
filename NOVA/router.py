@@ -146,6 +146,23 @@ def call_openai_compatible(provider: dict[str, Any], prompt: str, validator=vali
             "temperature": 0,
             "max_tokens": 64,
         }
+        if provider["name"] == "groq":
+            data["response_format"] = {
+                "type": "json_schema",
+                "json_schema": {
+                    "name": "nova_health_probe",
+                    "strict": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "nova_health": {"type": "string", "enum": ["OK"]},
+                            "ack": {"type": "string", "enum": ["NOVA_HEALTH_PROBE"]}
+                        },
+                        "required": ["nova_health", "ack"],
+                        "additionalProperties": false
+                    }
+                }
+            }
         req = urllib.request.Request(
             base_url,
             data=json.dumps(data).encode("utf-8"),
@@ -415,6 +432,7 @@ def intelligent_router(prompt: str) -> tuple[str, dict[str, Any]]:
                 latency_ms=probe.get("latency_ms"),
                 error_class=probe.get("error_class"),
                 error_detail=probe.get("error_detail"),
+                capacity=probe.get("capacity") if isinstance(probe.get("capacity"), dict) else None,
                 max_samples=int(latency_policy.get("max_samples_per_target", 24)),
                 latency_degraded_multiplier=float(latency_policy.get("degraded_multiplier", 2.0)),
                 latency_min_samples=int(latency_policy.get("minimum_samples_for_comparison", 4)),
