@@ -56,15 +56,16 @@ def extract_rate_limit_snapshot(
     normalized = _header_lookup(headers or {})
     provider_name = provider.lower()
 
-    prefix_maps = {
-        "groq": {
-            "requests": ("x-ratelimit-limit-requests", "x-ratelimit-remaining-requests", "x-ratelimit-reset-requests"),
-            "tokens": ("x-ratelimit-limit-tokens", "x-ratelimit-remaining-tokens", "x-ratelimit-reset-tokens"),
-        }
+    generic_mapping = {
+        "requests": ("x-ratelimit-limit-requests", "x-ratelimit-remaining-requests", "x-ratelimit-reset-requests"),
+        "tokens": ("x-ratelimit-limit-tokens", "x-ratelimit-remaining-tokens", "x-ratelimit-reset-tokens"),
+    }
+    provider_mapping = {
+        "groq": generic_mapping,
     }
 
     metrics: dict[str, Any] = {}
-    mapping = prefix_maps.get(provider_name, {})
+    mapping = provider_mapping.get(provider_name, generic_mapping)
     for metric, (limit_key, remaining_key, reset_key) in mapping.items():
         present = any(k in normalized for k in (limit_key, remaining_key, reset_key))
         if not present:
