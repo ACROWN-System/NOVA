@@ -142,7 +142,7 @@ def call_openai_compatible(provider: dict[str, Any], prompt: str, validator=vali
     for model in provider["models"]:
         data = {
             "model": model,
-            "messages": [{"role": "user", "content": HEALTH_PROMPT}],
+            "messages": [{"role": "user", "content": prompt}],
             "temperature": 0,
             "max_tokens": 64,
         }
@@ -262,7 +262,7 @@ def call_gemini(provider: dict[str, Any], prompt: str, validator=validate_health
     for model in provider["models"]:
         url = f"{provider['base_url']}/{model}:generateContent"
         data = {
-            "contents": [{"parts": [{"text": HEALTH_PROMPT}]}],
+            "contents": [{"parts": [{"text": prompt}]}],
             "generationConfig": {"temperature": 0, "maxOutputTokens": 64},
         }
         req = urllib.request.Request(
