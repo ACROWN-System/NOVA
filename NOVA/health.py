@@ -123,6 +123,7 @@ def record_probe(
     latency_ms: float | None,
     error_class: str | None,
     error_detail: str | None,
+    capacity: dict[str, Any] | None = None,
     max_samples: int,
     latency_degraded_multiplier: float,
     latency_min_samples: int,
@@ -242,6 +243,7 @@ def record_probe(
         "latency_degraded": latency_degraded,
         "error_class": error_class,
         "error_detail": error_detail,
+        "capacity": capacity or {},
         "health_status": target.get("health_status", "UNKNOWN"),
         "action": target.get("last_action", "INITIALIZE"),
     }
