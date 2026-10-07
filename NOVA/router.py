@@ -280,7 +280,20 @@ def call_gemini(provider: dict[str, Any], prompt: str, validator=validate_health
         url = f"{provider['base_url']}/{model}:generateContent"
         data = {
             "contents": [{"parts": [{"text": prompt}]}],
-            "generationConfig": {"temperature": 0, "maxOutputTokens": 64},
+            "generationConfig": {
+                "temperature": 0,
+                "maxOutputTokens": 64,
+                "responseMimeType": "application/json",
+                "responseSchema": {
+                    "type": "OBJECT",
+                    "properties": {
+                        "nova_health": {"type": "STRING", "enum": ["OK"]},
+                        "ack": {"type": "STRING", "enum": ["NOVA_HEALTH_PROBE"]}
+                    },
+                    "required": ["nova_health", "ack"],
+                    "propertyOrdering": ["nova_health", "ack"]
+                }
+            },
         }
         req = urllib.request.Request(
             url,
