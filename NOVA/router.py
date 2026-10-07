@@ -27,6 +27,7 @@ try:
         provider_health_status,
         record_probe,
     )
+    from .capacity import annotate_probe
 except ImportError:  # direct script execution
     import alerts
     from health import (
@@ -36,6 +37,7 @@ except ImportError:  # direct script execution
         provider_health_status,
         record_probe,
     )
+    from capacity import annotate_probe
 ROOT = Path(__file__).resolve().parent
 ROSTER_PATH = ROOT / "roster.json"
 HEALTH_POLICY_PATH = ROOT / "health_policy.json"
@@ -140,7 +142,7 @@ def call_openai_compatible(provider: dict[str, Any], prompt: str, validator=vali
     for model in provider["models"]:
         data = {
             "model": model,
-            "messages": [{"role": "user", "content": HEALTH_PROMPT}],
+            "messages": [{"role": "user", "content": prompt}],
             "temperature": 0,
             "max_tokens": 64,
         }
@@ -175,6 +177,12 @@ def call_openai_compatible(provider: dict[str, Any], prompt: str, validator=vali
                     "error_class": None if valid else "response_contract",
                     "error_detail": None if valid else quality,
                 }
+                annotate_probe(
+                    probe,
+                    provider=provider["name"],
+                    headers=response.headers,
+                    usage=result.get("usage") if isinstance(result.get("usage"), dict) else None,
+                )
                 probes.append(probe)
                 if valid:
                     return content, "success", probes
@@ -195,6 +203,13 @@ def call_openai_compatible(provider: dict[str, Any], prompt: str, validator=vali
                 "latency_ms": latency_ms,
                 "error_class": signal,
                 "error_detail": body[:400],
+                "capacity": annotate_probe(
+                    {
+                        "provider": provider["name"],
+                    },
+                    provider=provider["name"],
+                    headers=exc.headers,
+                ).get("capacity"),
             })
             print(
                 f"[{provider['name']}] HTTP {exc.code} on model '{model}' "
@@ -247,7 +262,7 @@ def call_gemini(provider: dict[str, Any], prompt: str, validator=validate_health
     for model in provider["models"]:
         url = f"{provider['base_url']}/{model}:generateContent"
         data = {
-            "contents": [{"parts": [{"text": HEALTH_PROMPT}]}],
+            "contents": [{"parts": [{"text": prompt}]}],
             "generationConfig": {"temperature": 0, "maxOutputTokens": 64},
         }
         req = urllib.request.Request(
@@ -283,6 +298,14 @@ def call_gemini(provider: dict[str, Any], prompt: str, validator=validate_health
                     "error_class": None if valid else "response_contract",
                     "error_detail": None if valid else quality,
                 }
+                annotate_probe(
+                    probe,
+                    provider=provider["name"],
+                    headers=response.headers,
+                    usage=result.get("usageMetadata")
+                    if isinstance(result.get("usageMetadata"), dict)
+                    else None,
+                )
                 probes.append(probe)
                 if valid:
                     return content, "success", probes

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "pricing_principle": "PUBLIC_PRICE_IS_SERVICE_BASED_NOT_PROVIDER_BASED",
+  "provider_switch_must_not_change_user_price": true,
+  "free_backend_cost_does_not_reduce_public_price": true,
+  "paid_backend_cost_is_absorbed_by_operating_pool": true,
+  "public_price_change_requires_governed_policy_change": true,
+  "currency_policy": {
+    "preferred_public_asset": "USDC",
+    "supported_future_assets": ["USDC", "USDT", "ACROWN"],
+    "price_display_may_use_fiat_reference": true,
+    "settlement_asset_must_be_explicit": true
+  },
+  "services": {},
+  "transition": {
+    "preserve_public_price_across_provider_switch": true,
+    "preemptive_replenishment_required": true,
+    "minimum_runway_multiple": 1.0,
+    "user_facing_provider_identity_disclosure": "optional",
+    "never_reprice_only_because_backend_cost_changed": true
+  },
+  "dynamic_pricing": {
+    "enabled": false,
+    "recommendation_only_by_default": true,
+    "minimum_evidence_window_transactions": 100,
+    "minimum_margin_ratio": 0.20,
+    "requires_human_approval": true
+  }
+}
