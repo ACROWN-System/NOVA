@@ -21,9 +21,10 @@ from pathlib import Path
 
 import alerts
 from health import atomic_write_json, load_health_state, load_json, record_probe, utc_now
+from capacity import annotate_probe
 
 
-def request_health(provider: dict) -> tuple[int | None, str, float | None, str | None]:
+def request_health(provider: dict) -> tuple[int | None, str, float | None, str | None, dict]:
     api_key_env = provider.get("api_key_env", "")
     if not api_key_env:
         return None, "BLOCKED", None, "missing_api_key_env"
@@ -52,14 +53,14 @@ def request_health(provider: dict) -> tuple[int | None, str, float | None, str |
         with urllib.request.urlopen(request, timeout=30) as response:
             response.read(65536)
             latency_ms = (time.perf_counter() - started) * 1000
-            return response.status, "PASS", latency_ms, None
+                return response.status, "PASS", latency_ms, None, dict(response.headers)
     except urllib.error.HTTPError as exc:
         latency_ms = (time.perf_counter() - started) * 1000
         signal = "permanent" if exc.code in {401, 403, 404} else "transient"
-        return exc.code, "FAIL", latency_ms, signal
+        return exc.code, "FAIL", latency_ms, signal, dict(exc.headers or {})
     except Exception as exc:
         latency_ms = (time.perf_counter() - started) * 1000
-        return None, "FAIL", latency_ms, str(exc)
+        return None, "FAIL", latency_ms, str(exc), {}
 
 
 def run(root: Path) -> int:
@@ -96,7 +97,15 @@ def run(root: Path) -> int:
     results = []
 
     for provider in ordered:
-        status, auth_status, latency_ms, error = request_health(provider)
+        status, auth_status, latency_ms, error, response_headers = request_health(provider)
+        probe_context = {
+            "provider": provider["name"],
+            "credential_env": str(provider.get("api_key_env", "")),
+            "requested_model": None,
+            "actual_model": None,
+            "api_status": status,
+        }
+        annotate_probe(probe_context, provider=provider["name"], headers=response_headers)
         observation = record_probe(
             state,
             namespace="gpu-heart",
@@ -126,6 +135,7 @@ def run(root: Path) -> int:
                 failure_policy.get("unacceptable_consecutive_failures", 3)
             ),
         )
+        observation["capacity"] = probe_context.get("capacity", {})
         results.append(observation)
 
         # A healthy provider closes the health pulse successfully. Degraded or
