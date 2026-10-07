@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "measurement_principle": "USE_PROVIDER_EXPOSED_MEASUREMENTS_WHEN_AVAILABLE",
+  "missing_measurement_state": "UNKNOWN",
+  "never_assume_unlimited": true,
+  "never_assume_zero_cost": true,
+  "measurement_sources": [
+    "http_response_headers",
+    "provider_api",
+    "provider_dashboard",
+    "provider_invoice",
+    "manual_verified_record"
+  ],
+  "metrics": [
+    "requests",
+    "tokens",
+    "input_tokens",
+    "output_tokens",
+    "credits",
+    "neurons",
+    "gpu_seconds",
+    "gpu_hours",
+    "storage_bytes",
+    "bandwidth_bytes",
+    "time_window"
+  ],
+  "renewal": {
+    "track_reset_after": true,
+    "track_next_reset_at": true,
+    "unknown_reset_is_allowed": true
+  },
+  "providers": {
+    "groq": {
+      "automatic_header_measurement": true,
+      "token_measurement": "headers",
+      "request_measurement": "headers"
+    },
+    "gemini": {
+      "automatic_header_measurement": false,
+      "quota_measurement": "provider_account_or_dashboard"
+    },
+    "cloudflare": {
+      "automatic_header_measurement": false,
+      "quota_measurement": "provider_dashboard_or_account_api",
+      "unit": "neurons"
+    },
+    "gpu_marketplace": {
+      "automatic_header_measurement": "provider_specific_adapter",
+      "quota_measurement": "credits_or_invoice"
+    }
+  }
+}
