@@ -131,8 +131,8 @@ def analyze_pending(root: Path) -> int:
     active = [p for p in roster.get("providers", []) if p.get("status") == "active"]
     active = order_providers(active, state)
     if not active:
-        print(json.dumps({"status": "BLOCKED", "reason": "No active AI providers."}))
-        return 1
+        print(json.dumps({"status": "BLOCKED", "reason": "No active AI providers.", "action": "WAIT_FOR_CREDENTIAL_CONFIGURATION"}))
+        return 0
 
     latency_policy = policy.get("latency", {})
     failure_policy = policy.get("failure", {})

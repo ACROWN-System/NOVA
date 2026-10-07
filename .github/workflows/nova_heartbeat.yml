@@ -33,19 +33,19 @@ jobs:
 
       - name: Execute NOVA AI Heart
         env:
-          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: \${{ github.repository }}
-          GROQ_API_KEY_01: \${{ secrets.GROQ_API_KEY_01 }}
-          GEMINI_API_KEY_01: \${{ secrets.GEMINI_API_KEY_01 }}
-          CEREBRAS_API_KEY_01: \${{ secrets.CEREBRAS_API_KEY_01 }}
-          MISTRAL_API_KEY_01: \${{ secrets.MISTRAL_API_KEY_01 }}
-          CLOUDFLARE_API_KEY_01: \${{ secrets.CLOUDFLARE_API_KEY_01 }}
-          CLOUDFLARE_ACCOUNT_ID: \${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          NOVA_PROVIDER_ROTATION_INDEX: \${{ github.run_number }}
-          TWILIO_ACCOUNT_SID: \${{ secrets.TWILIO_ACCOUNT_SID }}
-          TWILIO_AUTH_TOKEN: \${{ secrets.TWILIO_AUTH_TOKEN }}
-          TWILIO_FROM_NUMBER: \${{ secrets.TWILIO_FROM_NUMBER }}
-          TWILIO_TO_NUMBER: \${{ secrets.TWILIO_TO_NUMBER }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GROQ_API_KEY_01: ${{ secrets.GROQ_API_KEY_01 }}
+          GEMINI_API_KEY_01: ${{ secrets.GEMINI_API_KEY_01 }}
+          CEREBRAS_API_KEY_01: ${{ secrets.CEREBRAS_API_KEY_01 }}
+          MISTRAL_API_KEY_01: ${{ secrets.MISTRAL_API_KEY_01 }}
+          CLOUDFLARE_API_KEY_01: ${{ secrets.CLOUDFLARE_API_KEY_01 }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          NOVA_PROVIDER_ROTATION_INDEX: ${{ github.run_number }}
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+          TWILIO_FROM_NUMBER: ${{ secrets.TWILIO_FROM_NUMBER }}
+          TWILIO_TO_NUMBER: ${{ secrets.TWILIO_TO_NUMBER }}
         run: python NOVA/router.py
 
       - name: Analyze newly changed operational annotations
@@ -65,5 +65,5 @@ jobs:
         run: |
           git config --global user.name "NOVA Autonomous Engine"
           git config --global user.email "nova@haan.system"
-          git add NOVA/roster.json NOVA/README.md NOVA/health_state.json
+          git add NOVA/roster.json NOVA/health_state.json
           git diff --staged --quiet || (git commit -m "chore(nova): update AI heart health state [skip ci]" && git push)
