@@ -46,5 +46,13 @@
       "do_not_wait_until_quota_exhaustion": true,
       "recommend_earlier_when_runway_is_below_notice_plus_replenishment": true
     }
+  },
+  "quote_policy": {
+    "enabled": true,
+    "default_validity_seconds": 300,
+    "backend_switch_must_not_reprice": true,
+    "market_rate_refresh_requires_new_quote": true,
+    "expired_quote_requires_requote": true,
+    "volatile_asset_quotes_should_be_shorter_or_governed": true
   }
 }
