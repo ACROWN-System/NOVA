@@ -42,7 +42,6 @@ def canonicalize(value: Any) -> Any:
             if str(key).lower() not in volatile
         }
     if isinstance(value, list):
-        # List order can be transport noise for sets of annotations/events.
         normalized = [canonicalize(item) for item in value]
         try:
             return sorted(normalized, key=lambda item: json.dumps(item, sort_keys=True))
@@ -123,12 +122,18 @@ def record_probe(
     latency_ms: float | None,
     error_class: str | None,
     error_detail: str | None,
-    max_samples: int,
-    latency_degraded_multiplier: float,
-    latency_min_samples: int,
-    unacceptable_failure_streak: int,
+    capacity: dict[str, Any] | None = None,
+    max_samples: int = 24,
+    latency_degraded_multiplier: float = 2.0,
+    latency_min_samples: int = 4,
+    unacceptable_failure_streak: int = 3,
 ) -> dict[str, Any]:
-    """Record one live probe and return its resulting health/action decision."""
+    """Record one live probe and return its resulting health/action decision.
+
+    Capacity data is persisted with the same durable observation as health so
+    remaining quota/credits and reset information are not lost after the pulse.
+    Missing capacity stays absent/UNKNOWN rather than being inferred.
+    """
     key = _target_key(namespace, provider, actual_model or requested_model)
     target = state["targets"].setdefault(
         key,
@@ -151,6 +156,9 @@ def record_probe(
         target["requested_model"] = requested_model
     if actual_model:
         target["actual_model"] = actual_model
+
+    if isinstance(capacity, dict):
+        target["last_capacity"] = capacity
 
     not_configured = authentication in {"NOT_CONFIGURED", "BLOCKED"} and error_class in {
         "credential_not_configured",
@@ -245,6 +253,8 @@ def record_probe(
         "health_status": target.get("health_status", "UNKNOWN"),
         "action": target.get("last_action", "INITIALIZE"),
     }
+    if isinstance(capacity, dict):
+        observation["capacity"] = capacity
 
     target["last_observation"] = observation
     target["history"].append(observation)
