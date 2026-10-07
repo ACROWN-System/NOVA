@@ -18,8 +18,29 @@
     "gemini": {
       "secret": "GEMINI_API_KEY_01",
       "budget_unit": "project_quota_and_tokens",
-      "daily_test_budget": "UNSET_UNTIL_AI_STUDIO_QUOTA_OBSERVATION",
-      "reserve": "UNSET_UNTIL_AI_STUDIO_QUOTA_OBSERVATION"
+      "daily_test_budget": "MODEL_SPECIFIC_INITIAL_CAPS_FROM_2026-10-08_OBSERVATION",
+      "reserve": "MODEL_SPECIFIC_MINIMUM_RPD_RESERVES",
+      "model_budgets": {
+        "gemini-3.8-flash": {
+          "observed_rpm_limit": 5,
+          "observed_tpm_limit": 250000,
+          "observed_rpd_limit": 20,
+          "daily_test_requests_initial_cap": 2,
+          "minimum_remaining_rpd_reserve": 4,
+          "daily_test_tpm_initial_cap": 25000,
+          "source_observation": "NOVA/capacity_observations/gemini_2026-10-08.json"
+        },
+        "gemini-3.1-flash-lite": {
+          "observed_rpm_limit": 15,
+          "observed_tpm_limit": 250000,
+          "observed_rpd_limit": 500,
+          "daily_test_requests_initial_cap": 50,
+          "minimum_remaining_rpd_reserve": 100,
+          "daily_test_tpm_initial_cap": 25000,
+          "source_observation": "NOVA/capacity_observations/gemini_2026-10-08.json"
+        }
+      },
+      "quota_scope": "project"
     },
     "mistral": {
       "secret": "MISTRAL_API_KEY_01",
