@@ -27,15 +27,15 @@ from capacity import annotate_probe
 def request_health(provider: dict) -> tuple[int | None, str, float | None, str | None, dict]:
     api_key_env = provider.get("api_key_env", "")
     if not api_key_env:
-        return None, "BLOCKED", None, "missing_api_key_env"
+        return None, "BLOCKED", None, "missing_api_key_env", {}
 
     api_key = os.environ.get(api_key_env, "").strip()
     if not api_key:
-        return None, "BLOCKED", None, "credential_not_configured"
+        return None, "BLOCKED", None, "credential_not_configured", {}
 
     url = provider.get("health_url")
     if not isinstance(url, str) or not url:
-        return None, "BLOCKED", None, "health_url_not_configured"
+        return None, "BLOCKED", None, "health_url_not_configured", {}
 
     method = str(provider.get("health_method", "GET")).upper()
     headers = {"User-Agent": "NOVA-GPU-Heartbeat/1.0"}
@@ -45,7 +45,7 @@ def request_health(provider: dict) -> tuple[int | None, str, float | None, str |
     elif auth.get("type") == "x-api-key":
         headers["X-API-Key"] = api_key
     else:
-        return None, "BLOCKED", None, "unsupported_auth_type"
+        return None, "BLOCKED", None, "unsupported_auth_type", {}
 
     request = urllib.request.Request(url, headers=headers, method=method)
     started = time.perf_counter()
