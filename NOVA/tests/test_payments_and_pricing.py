@@ -2,7 +2,7 @@ import unittest
 from decimal import Decimal
 
 from NOVA.payments import create_payment_intent, validate_payment_intent, settle_payment
-from NOVA.pricing import convert_price, recommend_price
+from NOVA.pricing import convert_price, recommend_price, create_quote
 from NOVA.economics import continuity_headroom, pricing_change_ready
 
 
@@ -23,6 +23,18 @@ class PaymentsPricingTests(unittest.TestCase):
         self.assertTrue(result["provider_independent"])
         self.assertTrue(result["requires_approval"])
         self.assertEqual(result["recommended_price"], "11.00000000")
+
+    def test_crypto_quote_is_fixed_for_user_during_validity_window(self):
+        quote = create_quote(
+            Decimal("10"),
+            rate_to_settlement=Decimal("2"),
+            settlement_asset="USDC",
+            validity_seconds=300,
+        )
+        self.assertEqual(quote["settlement_amount"], "20.00000000")
+        self.assertEqual(quote["settlement_asset"], "USDC")
+        self.assertTrue(quote["provider_independent"])
+        self.assertTrue(quote["backend_switch_must_not_reprice"])
 
     def test_pricing_headroom_covers_notice_and_replenishment(self):
         headroom = continuity_headroom(
