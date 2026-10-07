@@ -3,6 +3,7 @@ from decimal import Decimal
 
 from NOVA.payments import create_payment_intent, validate_payment_intent, settle_payment
 from NOVA.pricing import convert_price, recommend_price
+from NOVA.economics import continuity_headroom, pricing_change_ready
 
 
 class PaymentsPricingTests(unittest.TestCase):
@@ -22,6 +23,31 @@ class PaymentsPricingTests(unittest.TestCase):
         self.assertTrue(result["provider_independent"])
         self.assertTrue(result["requires_approval"])
         self.assertEqual(result["recommended_price"], "11.00000000")
+
+    def test_pricing_headroom_covers_notice_and_replenishment(self):
+        headroom = continuity_headroom(
+            operating_pool=Decimal("100"),
+            projected_daily_paid_cost=Decimal("1"),
+            notice_period_days=30,
+            replenishment_target=Decimal("40"),
+            emergency_reserve_ratio=Decimal("1"),
+        )
+        self.assertEqual(headroom["required_headroom"], "100")
+        self.assertEqual(headroom["status"], "FULLY_BUFFERED")
+        self.assertTrue(pricing_change_ready(
+            operating_pool=Decimal("100"),
+            projected_daily_paid_cost=Decimal("1"),
+            notice_period_days=30,
+            replenishment_target=Decimal("40"),
+            emergency_reserve_ratio=Decimal("1"),
+        ))
+        self.assertFalse(pricing_change_ready(
+            operating_pool=Decimal("99"),
+            projected_daily_paid_cost=Decimal("1"),
+            notice_period_days=30,
+            replenishment_target=Decimal("40"),
+            emergency_reserve_ratio=Decimal("1"),
+        ))
 
     def test_payment_intent_is_not_automatic(self):
         state = {"payment_intents": []}
