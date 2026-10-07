@@ -461,20 +461,7 @@ if __name__ == "__main__":
     test_prompt = HEALTH_PROMPT
     system_state, summary = intelligent_router(test_prompt)
 
-    readme_path = ROOT / "README.md"
-    with readme_path.open("a", encoding="utf-8") as handle:
-        handle.write(f"\n\n### AI Heart Update: {datetime.now(timezone.utc).isoformat()}\n")
-        handle.write(
-            json.dumps(
-                {
-                    "status": summary["status"],
-                    "provider": summary.get("provider"),
-                    "action": summary["action"],
-                    "probe_count": len(summary.get("probes", [])),
-                },
-                sort_keys=True,
-            )
-            + "\n"
-        )
+    # README is documentation, not operational memory. Scheduled heartbeats persist
+    # structured state only, preventing unbounded documentation churn.
     print(json.dumps(summary, indent=2, sort_keys=True))
     print("NOVA AI heart state synced to structured health memory.")
