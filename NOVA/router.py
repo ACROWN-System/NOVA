@@ -27,6 +27,7 @@ try:
         provider_health_status,
         record_probe,
     )
+    from .capacity import annotate_probe
 except ImportError:  # direct script execution
     import alerts
     from health import (
