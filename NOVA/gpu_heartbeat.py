@@ -53,7 +53,7 @@ def request_health(provider: dict) -> tuple[int | None, str, float | None, str |
         with urllib.request.urlopen(request, timeout=30) as response:
             response.read(65536)
             latency_ms = (time.perf_counter() - started) * 1000
-                return response.status, "PASS", latency_ms, None, dict(response.headers)
+            return response.status, "PASS", latency_ms, None, dict(response.headers)
     except urllib.error.HTTPError as exc:
         latency_ms = (time.perf_counter() - started) * 1000
         signal = "permanent" if exc.code in {401, 403, 404} else "transient"
