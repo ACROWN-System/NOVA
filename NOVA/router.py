@@ -298,6 +298,14 @@ def call_gemini(provider: dict[str, Any], prompt: str, validator=validate_health
                     "error_class": None if valid else "response_contract",
                     "error_detail": None if valid else quality,
                 }
+                annotate_probe(
+                    probe,
+                    provider=provider["name"],
+                    headers=response.headers,
+                    usage=result.get("usageMetadata")
+                    if isinstance(result.get("usageMetadata"), dict)
+                    else None,
+                )
                 probes.append(probe)
                 if valid:
                     return content, "success", probes
