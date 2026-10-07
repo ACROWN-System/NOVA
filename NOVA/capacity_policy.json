@@ -48,5 +48,28 @@
       "automatic_header_measurement": "provider_specific_adapter",
       "quota_measurement": "credits_or_invoice"
     }
+  },
+  "scope_levels": [
+    "credential",
+    "project",
+    "organization",
+    "account",
+    "subscription",
+    "workspace",
+    "provider"
+  ],
+  "measurement_record_requirements": {
+    "scope_required": true,
+    "source_required": true,
+    "observed_at_required": true,
+    "unit_required": true,
+    "reset_or_expiration_if_exposed": true,
+    "remaining_must_not_be_inferred_as_authoritative": true
+  },
+  "development_test_protection": {
+    "separate_budget_required": true,
+    "unit_tests_must_not_call_live_providers": true,
+    "live_tests_use_minimal_requests": true,
+    "preserve_minimum_free_quota_reserve": true
   }
 }
