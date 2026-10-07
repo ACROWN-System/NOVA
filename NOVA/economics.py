@@ -101,6 +101,80 @@ def record_transaction(
     return entry
 
 
+
+
+def continuity_headroom(
+    *,
+    operating_pool: Decimal | int | float,
+    projected_daily_paid_cost: Decimal | int | float,
+    notice_period_days: int,
+    replenishment_target: Decimal | int | float,
+    emergency_reserve_ratio: Decimal | int | float = 1,
+) -> dict[str, Any]:
+    """Measure whether the operating pool can absorb a provider-cost transition."""
+    pool = money(operating_pool)
+    daily = money(projected_daily_paid_cost)
+    replenishment = money(replenishment_target)
+    reserve_ratio = money(emergency_reserve_ratio)
+
+    if notice_period_days < 0:
+        raise ValueError("notice_period_days cannot be negative")
+    if reserve_ratio < 0:
+        raise ValueError("emergency_reserve_ratio cannot be negative")
+
+    notice_cost = daily * Decimal(notice_period_days)
+    emergency_reserve = notice_cost * reserve_ratio
+    required = notice_cost + replenishment + emergency_reserve
+    coverage_ratio = (pool / required) if required > 0 else Decimal("Infinity")
+    runway_days = (pool / daily) if daily > 0 else Decimal("Infinity")
+    notice_funded = pool >= notice_cost
+    replenishment_funded = pool >= notice_cost + replenishment
+    fully_buffered = pool >= required
+
+    return {
+        "operating_pool": str(pool),
+        "projected_daily_paid_cost": str(daily),
+        "notice_period_days": notice_period_days,
+        "notice_period_cost": str(notice_cost),
+        "replenishment_target": str(replenishment),
+        "emergency_reserve": str(emergency_reserve),
+        "required_headroom": str(required),
+        "coverage_ratio": "INFINITE" if required == 0 else str(coverage_ratio),
+        "estimated_runway_days": "INFINITE" if daily == 0 else str(runway_days),
+        "notice_period_funded": notice_funded,
+        "replenishment_after_notice_funded": replenishment_funded,
+        "fully_buffered": fully_buffered,
+        "status": (
+            "FULLY_BUFFERED"
+            if fully_buffered
+            else "NOTICE_AND_REPLENISHMENT_RISK"
+            if replenishment_funded
+            else "NOTICE_PERIOD_RISK"
+            if notice_funded
+            else "PAYMENT_OR_PRICING_RISK"
+        ),
+    }
+
+
+def pricing_change_ready(
+    *,
+    operating_pool: Decimal | int | float,
+    projected_daily_paid_cost: Decimal | int | float,
+    notice_period_days: int,
+    replenishment_target: Decimal | int | float,
+    emergency_reserve_ratio: Decimal | int | float = 1,
+) -> bool:
+    return bool(
+        continuity_headroom(
+            operating_pool=operating_pool,
+            projected_daily_paid_cost=projected_daily_paid_cost,
+            notice_period_days=notice_period_days,
+            replenishment_target=replenishment_target,
+            emergency_reserve_ratio=emergency_reserve_ratio,
+        )["fully_buffered"]
+    )
+
+
 def transition_status(
     state: dict[str, Any],
     *,

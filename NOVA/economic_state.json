@@ -14,5 +14,13 @@
     "projected_paid_cost": "0",
     "replenishment_target": "0",
     "next_purchase_required_at": null
+  },
+  "pricing_headroom": {
+    "status": "NOT_YET_MEASURED",
+    "notice_period_days": 30,
+    "required_headroom": "0",
+    "operating_pool_coverage_ratio": "INFINITE",
+    "estimated_runway_days": "INFINITE",
+    "next_price_change_eligible_at": null
   }
 }

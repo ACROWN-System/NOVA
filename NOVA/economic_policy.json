@@ -11,9 +11,17 @@
     "preferred_behavior": "CONTINUOUS_INTERNAL_TRANSITION",
     "preemptive_replenishment": true,
     "do_not_wait_for_quota_exhaustion_before_replenishing": true,
-    "minimum_runway_ratio": 1.0,
-    "warning_ratio": 2.0,
-    "target_ratio": 3.0
+    "minimum_runway_ratio": 1,
+    "warning_ratio": 2,
+    "target_ratio": 3,
+    "price_change_headroom": {
+      "required": true,
+      "default_notice_period_days": 30,
+      "must_cover_notice_period_cost": true,
+      "must_cover_next_replenishment_target": true,
+      "emergency_reserve_ratio": 1,
+      "prefer_preemptive_replenishment": true
+    }
   },
   "payments": {
     "payment_intent_creation": "AUTONOMOUSLY_ALLOWED",
