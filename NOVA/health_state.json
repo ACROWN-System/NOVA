@@ -1,7 +1,7 @@
 {
   "events": {},
   "last_annotation_scan": {
-    "observed_at": "2026-10-07T03:31:04.712250+00:00",
+    "observed_at": "2026-10-07T12:22:45.026287+00:00",
     "results": []
   },
   "last_gpu_heartbeat": {
@@ -35,6 +35,24 @@
           "quality_status": "NOT_APPLICABLE",
           "requested_model": null,
           "response_valid": false
+        },
+        {
+          "action": "WAIT_FOR_CONFIGURATION",
+          "actual_model": null,
+          "api_status": null,
+          "authentication": "NOT_CONFIGURED",
+          "baseline_latency_ms": null,
+          "credential_env": "CEREBRAS_API_KEY_01",
+          "error_class": "credential_not_configured",
+          "error_detail": "Credential is not configured.",
+          "health_status": "UNCONFIGURED",
+          "latency_degraded": false,
+          "latency_ms": null,
+          "observed_at": "2026-10-07T12:22:45.104131+00:00",
+          "provider": "cerebras",
+          "quality_status": "NOT_APPLICABLE",
+          "requested_model": null,
+          "response_valid": false
         }
       ],
       "last_action": "WAIT_FOR_CONFIGURATION",
@@ -50,7 +68,7 @@
         "health_status": "UNCONFIGURED",
         "latency_degraded": false,
         "latency_ms": null,
-        "observed_at": "2026-10-07T03:31:06.527390+00:00",
+        "observed_at": "2026-10-07T12:22:45.104131+00:00",
         "provider": "cerebras",
         "quality_status": "NOT_APPLICABLE",
         "requested_model": null,
@@ -84,6 +102,24 @@
           "quality_status": "NOT_APPLICABLE",
           "requested_model": null,
           "response_valid": false
+        },
+        {
+          "action": "WAIT_FOR_CONFIGURATION",
+          "actual_model": null,
+          "api_status": null,
+          "authentication": "NOT_CONFIGURED",
+          "baseline_latency_ms": null,
+          "credential_env": "CLOUDFLARE_API_KEY_01",
+          "error_class": "credential_not_configured",
+          "error_detail": "Credential is not configured.",
+          "health_status": "UNCONFIGURED",
+          "latency_degraded": false,
+          "latency_ms": null,
+          "observed_at": "2026-10-07T12:22:45.100165+00:00",
+          "provider": "cloudflare",
+          "quality_status": "NOT_APPLICABLE",
+          "requested_model": null,
+          "response_valid": false
         }
       ],
       "last_action": "WAIT_FOR_CONFIGURATION",
@@ -99,7 +135,7 @@
         "health_status": "UNCONFIGURED",
         "latency_degraded": false,
         "latency_ms": null,
-        "observed_at": "2026-10-07T03:31:04.788370+00:00",
+        "observed_at": "2026-10-07T12:22:45.100165+00:00",
         "provider": "cloudflare",
         "quality_status": "NOT_APPLICABLE",
         "requested_model": null,
@@ -211,7 +247,7 @@
     "ai-heart:groq:openai/gpt-oss-120b": {
       "actual_model": "openai/gpt-oss-120b",
       "credential_env": "GROQ_API_KEY_01",
-      "failure_streak": 1,
+      "failure_streak": 2,
       "health_status": "DEGRADED",
       "history": [
         {
@@ -231,6 +267,24 @@
           "quality_status": "INVALID_JSON",
           "requested_model": "openai/gpt-oss-120b",
           "response_valid": false
+        },
+        {
+          "action": "MONITOR_AND_DEPRIORITIZE",
+          "actual_model": "openai/gpt-oss-120b",
+          "api_status": 200,
+          "authentication": "PASS",
+          "baseline_latency_ms": null,
+          "credential_env": "GROQ_API_KEY_01",
+          "error_class": "response_contract",
+          "error_detail": "INVALID_JSON",
+          "health_status": "DEGRADED",
+          "latency_degraded": false,
+          "latency_ms": 562.592,
+          "observed_at": "2026-10-07T12:22:45.865241+00:00",
+          "provider": "groq",
+          "quality_status": "INVALID_JSON",
+          "requested_model": "openai/gpt-oss-120b",
+          "response_valid": false
         }
       ],
       "last_action": "MONITOR_AND_DEPRIORITIZE",
@@ -245,8 +299,8 @@
         "error_detail": "INVALID_JSON",
         "health_status": "DEGRADED",
         "latency_degraded": false,
-        "latency_ms": 456.806,
-        "observed_at": "2026-10-07T03:31:05.566680+00:00",
+        "latency_ms": 562.592,
+        "observed_at": "2026-10-07T12:22:45.865241+00:00",
         "provider": "groq",
         "quality_status": "INVALID_JSON",
         "requested_model": "openai/gpt-oss-120b",
@@ -260,7 +314,7 @@
     "ai-heart:groq:openai/gpt-oss-20b": {
       "actual_model": "openai/gpt-oss-20b",
       "credential_env": "GROQ_API_KEY_01",
-      "failure_streak": 1,
+      "failure_streak": 2,
       "health_status": "DEGRADED",
       "history": [
         {
@@ -280,6 +334,24 @@
           "quality_status": "EMPTY_RESPONSE",
           "requested_model": "openai/gpt-oss-20b",
           "response_valid": false
+        },
+        {
+          "action": "MONITOR_AND_DEPRIORITIZE",
+          "actual_model": "openai/gpt-oss-20b",
+          "api_status": 200,
+          "authentication": "PASS",
+          "baseline_latency_ms": null,
+          "credential_env": "GROQ_API_KEY_01",
+          "error_class": "response_contract",
+          "error_detail": "EMPTY_RESPONSE",
+          "health_status": "DEGRADED",
+          "latency_degraded": false,
+          "latency_ms": 196.946,
+          "observed_at": "2026-10-07T12:22:45.865263+00:00",
+          "provider": "groq",
+          "quality_status": "EMPTY_RESPONSE",
+          "requested_model": "openai/gpt-oss-20b",
+          "response_valid": false
         }
       ],
       "last_action": "MONITOR_AND_DEPRIORITIZE",
@@ -294,8 +366,8 @@
         "error_detail": "EMPTY_RESPONSE",
         "health_status": "DEGRADED",
         "latency_degraded": false,
-        "latency_ms": 319.619,
-        "observed_at": "2026-10-07T03:31:05.566712+00:00",
+        "latency_ms": 196.946,
+        "observed_at": "2026-10-07T12:22:45.865263+00:00",
         "provider": "groq",
         "quality_status": "EMPTY_RESPONSE",
         "requested_model": "openai/gpt-oss-20b",
@@ -329,6 +401,24 @@
           "quality_status": "NOT_APPLICABLE",
           "requested_model": null,
           "response_valid": false
+        },
+        {
+          "action": "WAIT_FOR_CONFIGURATION",
+          "actual_model": null,
+          "api_status": null,
+          "authentication": "NOT_CONFIGURED",
+          "baseline_latency_ms": null,
+          "credential_env": "MISTRAL_API_KEY_01",
+          "error_class": "credential_not_configured",
+          "error_detail": "Credential is not configured.",
+          "health_status": "UNCONFIGURED",
+          "latency_degraded": false,
+          "latency_ms": null,
+          "observed_at": "2026-10-07T12:22:45.099366+00:00",
+          "provider": "mistral",
+          "quality_status": "NOT_APPLICABLE",
+          "requested_model": null,
+          "response_valid": false
         }
       ],
       "last_action": "WAIT_FOR_CONFIGURATION",
@@ -344,7 +434,7 @@
         "health_status": "UNCONFIGURED",
         "latency_degraded": false,
         "latency_ms": null,
-        "observed_at": "2026-10-07T03:31:04.787806+00:00",
+        "observed_at": "2026-10-07T12:22:45.099366+00:00",
         "provider": "mistral",
         "quality_status": "NOT_APPLICABLE",
         "requested_model": null,
@@ -356,5 +446,5 @@
       "requested_model": null
     }
   },
-  "updated_at": "2026-10-07T03:31:06.527410+00:00"
+  "updated_at": "2026-10-07T12:22:45.865267+00:00"
 }
