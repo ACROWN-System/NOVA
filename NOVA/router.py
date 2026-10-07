@@ -151,7 +151,7 @@ def call_openai_compatible(provider: dict[str, Any], prompt: str, validator=vali
                 "type": "json_schema",
                 "json_schema": {
                     "name": "nova_health_probe",
-                    "strict": true,
+                    "strict": True,
                     "schema": {
                         "type": "object",
                         "properties": {
