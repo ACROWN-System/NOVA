@@ -66,6 +66,13 @@
     "reset_or_expiration_if_exposed": true,
     "remaining_must_not_be_inferred_as_authoritative": true
   },
+  "runtime_allocation": {
+    "expiry_aware": true,
+    "urgency_window_seconds": 300,
+    "minimum_remaining_reserve_fraction": 0.2,
+    "maximum_capacity_observation_age_seconds": 900,
+    "principle": "Prefer usable capacity approaching reset or expiration when doing so does not consume the configured protected reserve. Never infer missing capacity."
+  },
   "development_test_protection": {
     "separate_budget_required": true,
     "unit_tests_must_not_call_live_providers": true,
