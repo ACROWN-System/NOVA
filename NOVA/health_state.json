@@ -14,7 +14,14 @@
     "ai-heart": {
       "last_scheduled_at": "2026-10-08T01:43:08.999464+00:00",
       "last_scheduled_provider": "groq",
-      "next_index": 1
+      "next_index": 3,
+      "next_provider": "mistral",
+      "last_probe_providers": [
+        "groq",
+        "cerebras",
+        "cloudflare",
+        "gemini"
+      ]
     }
   },
   "schema_version": 1,
