@@ -41,6 +41,14 @@ class RouterRotationTests(unittest.TestCase):
 
         self.assertEqual([item["name"] for item in ordered], ["gemini", "groq"])
 
+    def test_order_providers_accepts_task_context_without_live_credentials(self):
+        ordered = health_order_providers(
+            self.providers[:2],
+            self.state,
+            max_observation_age_seconds=6 * 3600,
+        )
+        self.assertEqual(len(ordered), 2)
+
     def test_scheduled_provider_is_first_even_when_degraded(self):
         self.state["provider_rotation"]["ai-heart"]["next_index"] = 1
         self.state["targets"]["ai-heart:gemini:model"] = {"health_status": "UNACCEPTABLE"}
