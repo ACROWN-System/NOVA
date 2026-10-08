@@ -394,25 +394,43 @@ def rotate_starting_provider(providers: list[dict[str, Any]], start_index: int =
     return providers[offset:] + providers[:offset] if offset else providers
 
 
-def health_order_providers(providers: list[dict[str, Any]], state: dict[str, Any]) -> list[dict[str, Any]]:
+def health_order_providers(
+    providers: list[dict[str, Any]],
+    state: dict[str, Any],
+    *,
+    max_observation_age_seconds: int | float | None = None,
+) -> list[dict[str, Any]]:
     preferred, degraded = [], []
     for provider in providers:
         status = provider_health_status(
             state,
             provider=provider["name"],
             namespace="ai-heart",
+            max_observation_age_seconds=max_observation_age_seconds,
         )
-        (degraded if status in {"DEGRADED", "UNACCEPTABLE"} else preferred).append(provider)
+        (degraded if status in {"DEGRADED", "UNACCEPTABLE", "STALE"} else preferred).append(provider)
     return preferred + degraded
 
 
-def order_providers(providers: list[dict[str, Any]], state: dict[str, Any]) -> list[dict[str, Any]]:
+def order_providers(
+    providers: list[dict[str, Any]],
+    state: dict[str, Any],
+    *,
+    max_observation_age_seconds: int | float | None = None,
+) -> list[dict[str, Any]]:
     """Compatibility wrapper: reasoning uses health ordering, not scheduled heartbeat rotation."""
-    return health_order_providers(providers, state)
+    return health_order_providers(
+        providers,
+        state,
+        max_observation_age_seconds=max_observation_age_seconds,
+    )
 
 
 def scheduled_probe_provider_order(
-    providers: list[dict[str, Any]], state: dict[str, Any]
+    providers: list[dict[str, Any]],
+    state: dict[str, Any],
+    *,
+    max_observation_age_seconds: int | float | None = None,
 ) -> list[dict[str, Any]]:
     """Put the scheduled rotation target first; health ordering applies only to fallback."""
     if not providers:
@@ -445,7 +463,11 @@ def scheduled_probe_provider_order(
             rotation["next_index"] = 0
     rotated = rotate_starting_provider(providers, start_index)
     scheduled = rotated[0]
-    return [scheduled] + health_order_providers(rotated[1:], state)
+    return [scheduled] + health_order_providers(
+        rotated[1:],
+        state,
+        max_observation_age_seconds=max_observation_age_seconds,
+    )
 
 
 def advance_scheduled_probe_rotation(
@@ -512,7 +534,15 @@ def intelligent_router(prompt: str) -> tuple[str, dict[str, Any]]:
     policy = load_json(HEALTH_POLICY_PATH, {})
     state = load_health_state(HEALTH_STATE_PATH)
     active_roster = [p for p in roster["providers"] if p["status"] == "active"]
-    active = scheduled_probe_provider_order(active_roster, state)
+    freshness_policy = policy.get("freshness", {})
+    heart_max_age = freshness_policy.get("heart_observation_max_age_seconds")
+    active = scheduled_probe_provider_order(
+        active_roster,
+        state,
+        max_observation_age_seconds=(
+            int(heart_max_age) if heart_max_age is not None else None
+        ),
+    )
     scheduled_provider = active[0] if active else None
 
     latency_policy = policy.get("latency", {})
