@@ -27,7 +27,7 @@ try:
         provider_health_status,
         record_probe,
     )
-    from .capacity import annotate_probe
+    from .capacity import annotate_probe, provider_capacity_opportunity
 except ImportError:  # direct script execution
     import alerts
     from health import (
@@ -37,7 +37,7 @@ except ImportError:  # direct script execution
         provider_health_status,
         record_probe,
     )
-    from capacity import annotate_probe
+    from capacity import annotate_probe, provider_capacity_opportunity
 ROOT = Path(__file__).resolve().parent
 ROSTER_PATH = ROOT / "roster.json"
 HEALTH_POLICY_PATH = ROOT / "health_policy.json"
@@ -418,12 +418,45 @@ def order_providers(
     *,
     max_observation_age_seconds: int | float | None = None,
 ) -> list[dict[str, Any]]:
-    """Compatibility wrapper: reasoning uses health ordering, not scheduled heartbeat rotation."""
-    return health_order_providers(
+    """Order providers by health first, then exploit imminent capacity windows."""
+    ordered = health_order_providers(
         providers,
         state,
         max_observation_age_seconds=max_observation_age_seconds,
     )
+    policy = load_json(ROOT / "capacity_policy.json", {})
+    allocation = policy.get("runtime_allocation", {})
+    urgency = float(allocation.get("urgency_window_seconds", 300))
+    reserve = float(allocation.get("minimum_remaining_reserve_fraction", 0.2))
+    capacity_age = allocation.get("maximum_capacity_observation_age_seconds")
+
+    ranked = []
+    for position, provider in enumerate(ordered):
+        status = provider_health_status(
+            state,
+            provider=provider["name"],
+            namespace="ai-heart",
+            max_observation_age_seconds=max_observation_age_seconds,
+        )
+        opportunity = provider_capacity_opportunity(
+            state.get("targets"),
+            provider=provider["name"],
+            namespace="ai-heart",
+            urgency_window_seconds=urgency,
+            minimum_remaining_reserve_fraction=reserve,
+            max_observation_age_seconds=(
+                int(capacity_age) if capacity_age is not None else None
+            ),
+        )
+        ranked.append((status, float(opportunity.get("priority", 0.0)), position, provider))
+
+    # Expiry-aware scheduling only reorders within the set of providers that
+    # are not currently unacceptable/degraded. Health remains a hard preference.
+    preferred = [item for item in ranked if item[0] not in {"DEGRADED", "UNACCEPTABLE", "STALE"}]
+    fallback = [item for item in ranked if item[0] in {"DEGRADED", "UNACCEPTABLE", "STALE"}]
+    preferred.sort(key=lambda item: (-item[1], item[2]))
+    fallback.sort(key=lambda item: (-item[1], item[2]))
+    return [item[3] for item in preferred + fallback]
 
 
 def scheduled_probe_provider_order(
