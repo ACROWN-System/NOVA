@@ -220,13 +220,42 @@ def capacity_opportunity(
             "observation_age_seconds": age,
         }
 
-    metric, deadline = min(positive_deadlines, key=lambda item: item[1])
-    seconds_to_deadline = (deadline - current).total_seconds()
-
+    metric_deadlines = {
+        metric_name: deadline for metric_name, deadline in positive_deadlines
+    }
     eligible = []
     for resource_metric, remaining, fraction in positive_remaining:
-        if fraction is None or fraction > minimum_remaining_reserve_fraction:
+        if resource_metric in metric_deadlines and (
+            fraction is None or fraction > minimum_remaining_reserve_fraction
+        ):
             eligible.append((resource_metric, remaining, fraction))
+
+    # A direct expiration deadline may apply to the whole snapshot rather than
+    # to one named metric, so retain it as a fallback when no metric-specific
+    # deadline is available for the remaining resource.
+    if not eligible and any(name == "expiration" for name, _ in positive_deadlines):
+        for resource_metric, remaining, fraction in positive_remaining:
+            if fraction is None or fraction > minimum_remaining_reserve_fraction:
+                eligible.append((resource_metric, remaining, fraction))
+
+    if not eligible:
+        return {
+            "state": "PROTECTED_RESERVE",
+            "priority": 0.0,
+            "seconds_to_deadline": None,
+            "metric": None,
+            "observation_age_seconds": age,
+        }
+
+    metric, deadline = min(
+        (
+            (name, deadline)
+            for name, deadline in positive_deadlines
+            if name in {item[0] for item in eligible} or name == "expiration"
+        ),
+        key=lambda item: item[1],
+    )
+    seconds_to_deadline = (deadline - current).total_seconds()
 
     if not eligible:
         return {
