@@ -1,7 +1,7 @@
 {
   "events": {},
   "last_annotation_scan": {
-    "observed_at": "2026-10-08T01:16:34.130708+00:00",
+    "observed_at": "2026-10-08T01:43:07.304029+00:00",
     "results": []
   },
   "last_gpu_heartbeat": {
@@ -10,6 +10,13 @@
     "status": "UNCONFIGURED"
   },
   "observations": {},
+  "provider_rotation": {
+    "ai-heart": {
+      "last_scheduled_at": "2026-10-08T01:43:08.999464+00:00",
+      "last_scheduled_provider": "groq",
+      "next_index": 1
+    }
+  },
   "schema_version": 1,
   "targets": {
     "ai-heart:cerebras:-": {
@@ -107,6 +114,25 @@
           "quality_status": "NOT_APPLICABLE",
           "requested_model": null,
           "response_valid": false
+        },
+        {
+          "action": "WAIT_FOR_CONFIGURATION",
+          "actual_model": null,
+          "api_status": null,
+          "authentication": "NOT_CONFIGURED",
+          "baseline_latency_ms": null,
+          "credential_env": "CEREBRAS_API_KEY_01",
+          "error_class": "credential_not_configured",
+          "error_detail": "Credential is not configured.",
+          "health_status": "UNCONFIGURED",
+          "latency_degraded": false,
+          "latency_ms": null,
+          "observed_at": "2026-10-08T01:43:09.001591+00:00",
+          "probe_role": "failover_probe",
+          "provider": "cerebras",
+          "quality_status": "NOT_APPLICABLE",
+          "requested_model": null,
+          "response_valid": false
         }
       ],
       "last_action": "WAIT_FOR_CONFIGURATION",
@@ -122,7 +148,8 @@
         "health_status": "UNCONFIGURED",
         "latency_degraded": false,
         "latency_ms": null,
-        "observed_at": "2026-10-08T01:16:34.195752+00:00",
+        "observed_at": "2026-10-08T01:43:09.001591+00:00",
+        "probe_role": "failover_probe",
         "provider": "cerebras",
         "quality_status": "NOT_APPLICABLE",
         "requested_model": null,
@@ -228,6 +255,25 @@
           "quality_status": "NOT_APPLICABLE",
           "requested_model": null,
           "response_valid": false
+        },
+        {
+          "action": "WAIT_FOR_CONFIGURATION",
+          "actual_model": null,
+          "api_status": null,
+          "authentication": "NOT_CONFIGURED",
+          "baseline_latency_ms": null,
+          "credential_env": "CLOUDFLARE_API_KEY_01",
+          "error_class": "credential_not_configured",
+          "error_detail": "Credential is not configured.",
+          "health_status": "UNCONFIGURED",
+          "latency_degraded": false,
+          "latency_ms": null,
+          "observed_at": "2026-10-08T01:43:09.003447+00:00",
+          "probe_role": "failover_probe",
+          "provider": "cloudflare",
+          "quality_status": "NOT_APPLICABLE",
+          "requested_model": null,
+          "response_valid": false
         }
       ],
       "last_action": "WAIT_FOR_CONFIGURATION",
@@ -243,7 +289,8 @@
         "health_status": "UNCONFIGURED",
         "latency_degraded": false,
         "latency_ms": null,
-        "observed_at": "2026-10-08T01:16:34.196764+00:00",
+        "observed_at": "2026-10-08T01:43:09.003447+00:00",
+        "probe_role": "failover_probe",
         "provider": "cloudflare",
         "quality_status": "NOT_APPLICABLE",
         "requested_model": null,
@@ -450,6 +497,38 @@
           "quality_status": "PASS",
           "requested_model": "gemini-3.1-flash-lite",
           "response_valid": true
+        },
+        {
+          "action": "MAINTAIN",
+          "actual_model": "gemini-3.1-flash-lite",
+          "api_status": 200,
+          "authentication": "PASS",
+          "baseline_latency_ms": 678.841,
+          "capacity": {
+            "last_request_usage": {
+              "candidatesTokenCount": 17,
+              "promptTokenCount": 34,
+              "promptTokensDetails": "[{'modality': 'TEXT', 'tokenCount': 34}]",
+              "serviceTier": "standard",
+              "totalTokenCount": 51
+            },
+            "measurement_state": "NOT_EXPOSED",
+            "metrics": {},
+            "observed_at": "2026-10-08T01:43:22.065695+00:00",
+            "provider": "gemini"
+          },
+          "credential_env": "GEMINI_API_KEY_01",
+          "error_class": null,
+          "error_detail": null,
+          "health_status": "HEALTHY",
+          "latency_degraded": false,
+          "latency_ms": 730.714,
+          "observed_at": "2026-10-08T01:43:22.518313+00:00",
+          "probe_role": "failover_probe",
+          "provider": "gemini",
+          "quality_status": "PASS",
+          "requested_model": "gemini-3.1-flash-lite",
+          "response_valid": true
         }
       ],
       "last_action": "MAINTAIN",
@@ -463,7 +542,7 @@
         },
         "measurement_state": "NOT_EXPOSED",
         "metrics": {},
-        "observed_at": "2026-10-08T01:16:56.102023+00:00",
+        "observed_at": "2026-10-08T01:43:22.065695+00:00",
         "provider": "gemini"
       },
       "last_observation": {
@@ -471,7 +550,7 @@
         "actual_model": "gemini-3.1-flash-lite",
         "api_status": 200,
         "authentication": "PASS",
-        "baseline_latency_ms": 673.594,
+        "baseline_latency_ms": 678.841,
         "capacity": {
           "last_request_usage": {
             "candidatesTokenCount": 17,
@@ -482,7 +561,7 @@
           },
           "measurement_state": "NOT_EXPOSED",
           "metrics": {},
-          "observed_at": "2026-10-08T01:16:56.102023+00:00",
+          "observed_at": "2026-10-08T01:43:22.065695+00:00",
           "provider": "gemini"
         },
         "credential_env": "GEMINI_API_KEY_01",
@@ -490,8 +569,9 @@
         "error_detail": null,
         "health_status": "HEALTHY",
         "latency_degraded": false,
-        "latency_ms": 14905.406,
-        "observed_at": "2026-10-08T01:16:56.635051+00:00",
+        "latency_ms": 730.714,
+        "observed_at": "2026-10-08T01:43:22.518313+00:00",
+        "probe_role": "failover_probe",
         "provider": "gemini",
         "quality_status": "PASS",
         "requested_model": "gemini-3.1-flash-lite",
@@ -500,7 +580,8 @@
       "latency_ms": [
         668.347,
         678.841,
-        14905.406
+        14905.406,
+        730.714
       ],
       "namespace": "ai-heart",
       "provider": "gemini",
@@ -509,7 +590,7 @@
     "ai-heart:gemini:gemini-3.8-flash": {
       "actual_model": "gemini-3.8-flash",
       "credential_env": "GEMINI_API_KEY_01",
-      "failure_streak": 3,
+      "failure_streak": 4,
       "health_status": "UNACCEPTABLE",
       "history": [
         {
@@ -593,6 +674,39 @@
           "quality_status": "INVALID_JSON",
           "requested_model": "gemini-3.8-flash",
           "response_valid": false
+        },
+        {
+          "action": "FAILOVER_AND_ALERT",
+          "actual_model": "gemini-3.8-flash",
+          "api_status": 200,
+          "authentication": "PASS",
+          "baseline_latency_ms": null,
+          "capacity": {
+            "last_request_usage": {
+              "candidatesTokenCount": 1,
+              "promptTokenCount": 34,
+              "promptTokensDetails": "[{'modality': 'TEXT', 'tokenCount': 34}]",
+              "serviceTier": "standard",
+              "thoughtsTokenCount": 59,
+              "totalTokenCount": 94
+            },
+            "measurement_state": "NOT_EXPOSED",
+            "metrics": {},
+            "observed_at": "2026-10-08T01:43:21.334737+00:00",
+            "provider": "gemini"
+          },
+          "credential_env": "GEMINI_API_KEY_01",
+          "error_class": "response_contract",
+          "error_detail": "INVALID_JSON",
+          "health_status": "UNACCEPTABLE",
+          "latency_degraded": false,
+          "latency_ms": 12328.269,
+          "observed_at": "2026-10-08T01:43:22.065756+00:00",
+          "probe_role": "failover_probe",
+          "provider": "gemini",
+          "quality_status": "INVALID_JSON",
+          "requested_model": "gemini-3.8-flash",
+          "response_valid": false
         }
       ],
       "last_action": "FAILOVER_AND_ALERT",
@@ -607,7 +721,7 @@
         },
         "measurement_state": "NOT_EXPOSED",
         "metrics": {},
-        "observed_at": "2026-10-08T01:16:41.196433+00:00",
+        "observed_at": "2026-10-08T01:43:21.334737+00:00",
         "provider": "gemini"
       },
       "last_observation": {
@@ -627,7 +741,7 @@
           },
           "measurement_state": "NOT_EXPOSED",
           "metrics": {},
-          "observed_at": "2026-10-08T01:16:41.196433+00:00",
+          "observed_at": "2026-10-08T01:43:21.334737+00:00",
           "provider": "gemini"
         },
         "credential_env": "GEMINI_API_KEY_01",
@@ -635,8 +749,9 @@
         "error_detail": "INVALID_JSON",
         "health_status": "UNACCEPTABLE",
         "latency_degraded": false,
-        "latency_ms": 5063.367,
-        "observed_at": "2026-10-08T01:16:56.102081+00:00",
+        "latency_ms": 12328.269,
+        "observed_at": "2026-10-08T01:43:22.065756+00:00",
+        "probe_role": "failover_probe",
         "provider": "gemini",
         "quality_status": "INVALID_JSON",
         "requested_model": "gemini-3.8-flash",
@@ -650,7 +765,7 @@
     "ai-heart:groq:openai/gpt-oss-120b": {
       "actual_model": "openai/gpt-oss-120b",
       "credential_env": "GROQ_API_KEY_01",
-      "failure_streak": 4,
+      "failure_streak": 5,
       "health_status": "UNACCEPTABLE",
       "history": [
         {
@@ -770,13 +885,55 @@
           "quality_status": "NOT_APPLICABLE",
           "requested_model": "openai/gpt-oss-120b",
           "response_valid": false
+        },
+        {
+          "action": "FAILOVER_AND_ALERT",
+          "actual_model": null,
+          "api_status": 400,
+          "authentication": "UNKNOWN",
+          "baseline_latency_ms": null,
+          "capacity": {
+            "estimated_next_reset_at": {
+              "requests": "2026-10-08T01:44:34.226441+00:00",
+              "tokens": "2026-10-08T01:43:09.888441+00:00"
+            },
+            "measurement_state": "OBSERVED",
+            "metrics": {
+              "requests": {
+                "limit": 1000,
+                "remaining": 999,
+                "reset_after_seconds": 86.4,
+                "source": "http_response_headers"
+              },
+              "tokens": {
+                "limit": 8000,
+                "remaining": 7725,
+                "reset_after_seconds": 2.062,
+                "source": "http_response_headers"
+              }
+            },
+            "observed_at": "2026-10-08T01:43:07.826441+00:00",
+            "provider": "groq"
+          },
+          "credential_env": "GROQ_API_KEY_01",
+          "error_class": "transient",
+          "error_detail": "{\"error\":{\"message\":\"failed to validate json. please adjust your prompt. see 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}}\n",
+          "health_status": "UNACCEPTABLE",
+          "latency_degraded": false,
+          "latency_ms": 435.274,
+          "observed_at": "2026-10-08T01:43:08.009275+00:00",
+          "probe_role": "scheduled_probe",
+          "provider": "groq",
+          "quality_status": "NOT_APPLICABLE",
+          "requested_model": "openai/gpt-oss-120b",
+          "response_valid": false
         }
       ],
       "last_action": "FAILOVER_AND_ALERT",
       "last_capacity": {
         "estimated_next_reset_at": {
-          "requests": "2026-10-08T01:18:01.163320+00:00",
-          "tokens": "2026-10-08T01:16:36.825320+00:00"
+          "requests": "2026-10-08T01:44:34.226441+00:00",
+          "tokens": "2026-10-08T01:43:09.888441+00:00"
         },
         "measurement_state": "OBSERVED",
         "metrics": {
@@ -793,7 +950,7 @@
             "source": "http_response_headers"
           }
         },
-        "observed_at": "2026-10-08T01:16:34.763320+00:00",
+        "observed_at": "2026-10-08T01:43:07.826441+00:00",
         "provider": "groq"
       },
       "last_observation": {
@@ -804,8 +961,8 @@
         "baseline_latency_ms": null,
         "capacity": {
           "estimated_next_reset_at": {
-            "requests": "2026-10-08T01:18:01.163320+00:00",
-            "tokens": "2026-10-08T01:16:36.825320+00:00"
+            "requests": "2026-10-08T01:44:34.226441+00:00",
+            "tokens": "2026-10-08T01:43:09.888441+00:00"
           },
           "measurement_state": "OBSERVED",
           "metrics": {
@@ -822,7 +979,7 @@
               "source": "http_response_headers"
             }
           },
-          "observed_at": "2026-10-08T01:16:34.763320+00:00",
+          "observed_at": "2026-10-08T01:43:07.826441+00:00",
           "provider": "groq"
         },
         "credential_env": "GROQ_API_KEY_01",
@@ -830,8 +987,9 @@
         "error_detail": "{\"error\":{\"message\":\"failed to validate json. please adjust your prompt. see 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}}\n",
         "health_status": "UNACCEPTABLE",
         "latency_degraded": false,
-        "latency_ms": 564.512,
-        "observed_at": "2026-10-08T01:16:35.056257+00:00",
+        "latency_ms": 435.274,
+        "observed_at": "2026-10-08T01:43:08.009275+00:00",
+        "probe_role": "scheduled_probe",
         "provider": "groq",
         "quality_status": "NOT_APPLICABLE",
         "requested_model": "openai/gpt-oss-120b",
@@ -845,7 +1003,7 @@
     "ai-heart:groq:openai/gpt-oss-20b": {
       "actual_model": "openai/gpt-oss-20b",
       "credential_env": "GROQ_API_KEY_01",
-      "failure_streak": 4,
+      "failure_streak": 5,
       "health_status": "UNACCEPTABLE",
       "history": [
         {
@@ -965,13 +1123,55 @@
           "quality_status": "NOT_APPLICABLE",
           "requested_model": "openai/gpt-oss-20b",
           "response_valid": false
+        },
+        {
+          "action": "FAILOVER_AND_ALERT",
+          "actual_model": null,
+          "api_status": 400,
+          "authentication": "UNKNOWN",
+          "baseline_latency_ms": null,
+          "capacity": {
+            "estimated_next_reset_at": {
+              "requests": "2026-10-08T01:44:34.409206+00:00",
+              "tokens": "2026-10-08T01:43:10.071206+00:00"
+            },
+            "measurement_state": "OBSERVED",
+            "metrics": {
+              "requests": {
+                "limit": 1000,
+                "remaining": 999,
+                "reset_after_seconds": 86.4,
+                "source": "http_response_headers"
+              },
+              "tokens": {
+                "limit": 8000,
+                "remaining": 7725,
+                "reset_after_seconds": 2.062,
+                "source": "http_response_headers"
+              }
+            },
+            "observed_at": "2026-10-08T01:43:08.009206+00:00",
+            "provider": "groq"
+          },
+          "credential_env": "GROQ_API_KEY_01",
+          "error_class": "transient",
+          "error_detail": "{\"error\":{\"message\":\"failed to validate json. please adjust your prompt. see 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}}\n",
+          "health_status": "UNACCEPTABLE",
+          "latency_degraded": false,
+          "latency_ms": 181.647,
+          "observed_at": "2026-10-08T01:43:08.521419+00:00",
+          "probe_role": "scheduled_probe",
+          "provider": "groq",
+          "quality_status": "NOT_APPLICABLE",
+          "requested_model": "openai/gpt-oss-20b",
+          "response_valid": false
         }
       ],
       "last_action": "FAILOVER_AND_ALERT",
       "last_capacity": {
         "estimated_next_reset_at": {
-          "requests": "2026-10-08T01:18:01.456189+00:00",
-          "tokens": "2026-10-08T01:16:37.118189+00:00"
+          "requests": "2026-10-08T01:44:34.409206+00:00",
+          "tokens": "2026-10-08T01:43:10.071206+00:00"
         },
         "measurement_state": "OBSERVED",
         "metrics": {
@@ -988,7 +1188,7 @@
             "source": "http_response_headers"
           }
         },
-        "observed_at": "2026-10-08T01:16:35.056189+00:00",
+        "observed_at": "2026-10-08T01:43:08.009206+00:00",
         "provider": "groq"
       },
       "last_observation": {
@@ -999,8 +1199,8 @@
         "baseline_latency_ms": null,
         "capacity": {
           "estimated_next_reset_at": {
-            "requests": "2026-10-08T01:18:01.456189+00:00",
-            "tokens": "2026-10-08T01:16:37.118189+00:00"
+            "requests": "2026-10-08T01:44:34.409206+00:00",
+            "tokens": "2026-10-08T01:43:10.071206+00:00"
           },
           "measurement_state": "OBSERVED",
           "metrics": {
@@ -1017,7 +1217,7 @@
               "source": "http_response_headers"
             }
           },
-          "observed_at": "2026-10-08T01:16:35.056189+00:00",
+          "observed_at": "2026-10-08T01:43:08.009206+00:00",
           "provider": "groq"
         },
         "credential_env": "GROQ_API_KEY_01",
@@ -1025,8 +1225,9 @@
         "error_detail": "{\"error\":{\"message\":\"failed to validate json. please adjust your prompt. see 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}}\n",
         "health_status": "UNACCEPTABLE",
         "latency_degraded": false,
-        "latency_ms": 291.902,
-        "observed_at": "2026-10-08T01:16:35.512856+00:00",
+        "latency_ms": 181.647,
+        "observed_at": "2026-10-08T01:43:08.521419+00:00",
+        "probe_role": "scheduled_probe",
         "provider": "groq",
         "quality_status": "NOT_APPLICABLE",
         "requested_model": "openai/gpt-oss-20b",
@@ -1190,5 +1391,5 @@
       "requested_model": "mistral-small-latest"
     }
   },
-  "updated_at": "2026-10-08T01:16:56.635067+00:00"
+  "updated_at": "2026-10-08T01:43:22.518329+00:00"
 }
