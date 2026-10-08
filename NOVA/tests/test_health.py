@@ -1,7 +1,15 @@
 import unittest
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
-from NOVA.health import _state_defaults, fingerprint, record_probe, remember_observation, reusable_analysis
+from NOVA.health import (
+    _state_defaults,
+    fingerprint,
+    observation_freshness,
+    provider_health_status,
+    record_probe,
+    remember_observation,
+    reusable_analysis,
+)
 
 
 class HealthTests(unittest.TestCase):
@@ -39,6 +47,75 @@ class HealthTests(unittest.TestCase):
         observation = record_probe(state, latency_ms=250, **kwargs)
         self.assertEqual(observation["health_status"], "DEGRADED")
         self.assertTrue(observation["latency_degraded"])
+
+
+    def test_observation_freshness_is_explicit_and_temporal(self):
+        now = datetime(2026, 10, 8, 12, 0, tzinfo=timezone.utc)
+        observed = (now - timedelta(minutes=30)).isoformat()
+        self.assertEqual(
+            observation_freshness(observed, fresh_for_seconds=3600, now=now),
+            "FRESH",
+        )
+        self.assertEqual(
+            observation_freshness(observed, fresh_for_seconds=1200, now=now),
+            "STALE",
+        )
+        self.assertEqual(
+            observation_freshness(observed, fresh_for_seconds=None, now=now),
+            "UNSPECIFIED",
+        )
+
+    def test_stale_observation_does_not_reuse_analysis(self):
+        state = _state_defaults()
+        observed_at = (datetime.now(timezone.utc) - timedelta(hours=2)).isoformat()
+        remember_observation(
+            state,
+            namespace="external-annotation",
+            source="source",
+            observation={"headline": "A"},
+            analysis={"decision": "monitor"},
+            fresh_for_seconds=3600,
+        )
+        state["observations"]["external-annotation:source"]["observed_at"] = observed_at
+        self.assertIsNone(
+            reusable_analysis(
+                state,
+                namespace="external-annotation",
+                source="source",
+                current_observation={"headline": "A"},
+                now=datetime.now(timezone.utc),
+            )
+        )
+
+    def test_stale_provider_health_is_not_reported_as_current(self):
+        state = _state_defaults()
+        old = (datetime.now(timezone.utc) - timedelta(hours=8)).isoformat()
+        record_probe(
+            state,
+            namespace="ai-heart",
+            provider="test",
+            credential_env="TEST_AI_API_KEY_01",
+            requested_model="model-a",
+            actual_model="model-a",
+            api_status=200,
+            authentication="PASS",
+            response_valid=True,
+            quality_status="PASS",
+            latency_ms=100,
+            error_class=None,
+            error_detail=None,
+        )
+        target = state["targets"]["ai-heart:test:model-a"]
+        target["last_observation"]["observed_at"] = old
+        self.assertEqual(
+            provider_health_status(
+                state,
+                provider="test",
+                namespace="ai-heart",
+                max_observation_age_seconds=6 * 3600,
+            ),
+            "STALE",
+        )
 
     def test_changed_observation_preserves_prior_analysis(self):
         state = _state_defaults()
