@@ -1,10 +1,12 @@
 import os
 import unittest
+from datetime import datetime, timedelta, timezone
 from unittest.mock import patch
 
 from NOVA.health import _state_defaults
 from NOVA.router import (
     advance_scheduled_probe_rotation,
+    health_order_providers,
     scheduled_probe_provider_order,
 )
 
@@ -23,6 +25,21 @@ class RouterRotationTests(unittest.TestCase):
             provider("cloudflare"),
         ]
         self.state = _state_defaults()
+
+    def test_stale_provider_is_deprioritized_when_age_boundary_is_enabled(self):
+        old = (datetime.now(timezone.utc) - timedelta(hours=8)).isoformat()
+        self.state["targets"]["ai-heart:groq:model"] = {
+            "health_status": "HEALTHY",
+            "last_observation": {"observed_at": old},
+        }
+
+        ordered = health_order_providers(
+            self.providers[:2],
+            self.state,
+            max_observation_age_seconds=6 * 3600,
+        )
+
+        self.assertEqual([item["name"] for item in ordered], ["gemini", "groq"])
 
     def test_scheduled_provider_is_first_even_when_degraded(self):
         self.state["provider_rotation"]["ai-heart"]["next_index"] = 1
