@@ -10,6 +10,11 @@
   "failure": {
     "unacceptable_consecutive_failures": 3
   },
+  "freshness": {
+    "principle": "A stale observation is not proof that the underlying state is false; it is evidence that current reality has not been freshly observed.",
+    "heart_observation_max_age_seconds": 21600,
+    "external_observations_default": "UNSPECIFIED"
+  },
   "heartbeats": {
     "llm": {
       "schedule_hours": 6,
