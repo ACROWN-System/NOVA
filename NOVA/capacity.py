@@ -200,6 +200,60 @@ def _parse_time(value: Any) -> datetime | None:
 
 
 
+
+def economic_net_value(
+    *,
+    expected_benefit: Any,
+    direct_cash_cost: Any = None,
+    opportunity_cost: Any = None,
+    negative_effects_cost: Any = None,
+    value_asset: str = "UNSPECIFIED",
+) -> dict[str, Any]:
+    """Compute net value only when all supplied monetary-like terms share a unit."""
+    benefit = _number(expected_benefit)
+    cost = _number(direct_cash_cost)
+    opportunity = _number(opportunity_cost)
+    negative = _number(negative_effects_cost)
+
+    if benefit is None:
+        return {
+            "state": "BENEFIT_UNKNOWN",
+            "net_value": None,
+            "value_asset": value_asset,
+            "comparable": False,
+        }
+
+    terms = [cost, opportunity, negative]
+    if any(value is not None and value < 0 for value in terms):
+        return {
+            "state": "INVALID_NEGATIVE_COST",
+            "net_value": None,
+            "value_asset": value_asset,
+            "comparable": False,
+        }
+
+    if cost is None and opportunity is None and negative is None:
+        return {
+            "state": "BENEFIT_ONLY",
+            "net_value": benefit,
+            "value_asset": value_asset,
+            "comparable": False,
+        }
+
+    total_cost = sum(value or 0.0 for value in terms)
+    net = benefit - total_cost
+    return {
+        "state": "POSITIVE" if net > 0 else "NON_POSITIVE",
+        "net_value": net,
+        "benefit": benefit,
+        "direct_cash_cost": cost,
+        "opportunity_cost": opportunity,
+        "negative_effects_cost": negative,
+        "value_asset": value_asset,
+        "comparable": True,
+    }
+
+
 def capacity_economic_signal(
     snapshot: Mapping[str, Any] | None,
     *,
@@ -252,6 +306,16 @@ def capacity_economic_signal(
         renewability = "UNKNOWN"
 
     task_benefit = _number(expected_task_benefit)
+    negative_effects = _number(economics.get("negative_effects_cost"))
+    opportunity_cost = _number(economics.get("opportunity_cost"))
+    net_value = economic_net_value(
+        expected_benefit=task_benefit,
+        direct_cash_cost=cash_cost,
+        opportunity_cost=opportunity_cost,
+        negative_effects_cost=negative_effects,
+        value_asset=expected_task_value_asset,
+    )
+
     if task_benefit is None:
         return {
             "state": "BENEFIT_UNKNOWN",
@@ -262,12 +326,13 @@ def capacity_economic_signal(
             "value_asset": expected_task_value_asset,
         }
 
-    if cash_cost is not None and task_benefit < cash_cost:
+    if net_value["comparable"] and float(net_value["net_value"]) <= 0:
         return {
             "state": "NEGATIVE_NET_VALUE",
             "priority_multiplier": -1.0,
             "cash_cost": cash_cost,
             "task_benefit": task_benefit,
+            "net_value": net_value,
             "resource_opportunity": "DO_NOT_PREFER",
             "renewability": renewability,
             "value_asset": expected_task_value_asset,
@@ -279,6 +344,7 @@ def capacity_economic_signal(
             "priority_multiplier": 1.0,
             "cash_cost": 0.0 if cash_cost is None else cash_cost,
             "task_benefit": task_benefit,
+            "net_value": net_value,
             "resource_opportunity": "USABLE_IF_WORK_IS_ALREADY_REQUIRED",
             "renewability": renewability,
             "value_asset": expected_task_value_asset,
@@ -290,6 +356,7 @@ def capacity_economic_signal(
             "priority_multiplier": 1.0,
             "cash_cost": cash_cost,
             "task_benefit": task_benefit,
+            "net_value": net_value,
             "resource_opportunity": "USABLE_IF_ALTERNATIVE_COST_IS_NOT_LOWER",
             "renewability": renewability,
             "value_asset": expected_task_value_asset,
@@ -300,6 +367,7 @@ def capacity_economic_signal(
         "priority_multiplier": 0.0,
         "cash_cost": cash_cost,
         "task_benefit": task_benefit,
+        "net_value": net_value,
         "resource_opportunity": "UNKNOWN",
         "renewability": renewability,
         "value_asset": expected_task_value_asset,
