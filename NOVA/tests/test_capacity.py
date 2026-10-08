@@ -4,6 +4,7 @@ from datetime import datetime, timedelta, timezone
 from NOVA.capacity import (
     capacity_economic_signal,
     capacity_opportunity,
+    economic_net_value,
     extract_rate_limit_snapshot,
     resource_balance,
     split_capacity_dimensions,
@@ -181,6 +182,25 @@ class CapacityMemoryTests(unittest.TestCase):
         self.assertEqual(resource["measurement_type"], "TOTAL_RESOURCE")
         self.assertEqual(resource["remaining"], 900)
         self.assertEqual(resource["total"], 1000)
+
+    def test_economic_net_value_accounts_for_negative_effects_when_comparable(self):
+        value = economic_net_value(
+            expected_benefit=10,
+            direct_cash_cost=2,
+            opportunity_cost=1,
+            negative_effects_cost=3,
+            value_asset="USD",
+        )
+        self.assertEqual(value["state"], "POSITIVE")
+        self.assertEqual(value["net_value"], 4)
+
+    def test_non_comparable_missing_costs_do_not_create_false_positive(self):
+        value = economic_net_value(
+            expected_benefit=10,
+            value_asset="USD",
+        )
+        self.assertEqual(value["state"], "BENEFIT_ONLY")
+        self.assertFalse(value["comparable"])
 
     def test_missing_capacity_is_not_invented(self):
         snapshot = extract_rate_limit_snapshot("mistral", {})
