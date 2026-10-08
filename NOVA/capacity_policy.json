@@ -68,10 +68,15 @@
   },
   "runtime_allocation": {
     "expiry_aware": true,
+    "renewability_aware": true,
+    "economic_guard": true,
     "urgency_window_seconds": 300,
     "minimum_remaining_reserve_fraction": 0.2,
     "maximum_capacity_observation_age_seconds": 900,
-    "principle": "Prefer usable capacity approaching reset or expiration when doing so does not consume the configured protected reserve. Never infer missing capacity."
+    "require_non_negative_economic_case_for_expiry_boost": true,
+    "never_generate_work_only_to_consume_expiring_capacity": true,
+    "unknown_economics_priority": 0,
+    "principle": "Prefer usable capacity approaching reset or expiration only for work that is already required and only when the observed economic case is non-negative. Consider renewal frequency, paid cost, protected reserve, and downstream negative effects before increasing priority. Never infer missing capacity or economics."
   },
   "development_test_protection": {
     "separate_budget_required": true,
