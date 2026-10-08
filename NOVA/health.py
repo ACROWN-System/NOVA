@@ -91,6 +91,13 @@ def _state_defaults() -> dict[str, Any]:
         "targets": {},
         "observations": {},
         "events": {},
+        "provider_rotation": {
+            "ai-heart": {
+                "next_index": 0,
+                "last_scheduled_provider": None,
+                "last_scheduled_at": None,
+            }
+        },
     }
 
 
@@ -123,6 +130,7 @@ def record_probe(
     error_class: str | None,
     error_detail: str | None,
     capacity: dict[str, Any] | None = None,
+    probe_role: str = "health",
     max_samples: int = 24,
     latency_degraded_multiplier: float = 2.0,
     latency_min_samples: int = 4,
@@ -250,6 +258,7 @@ def record_probe(
         "latency_degraded": latency_degraded,
         "error_class": error_class,
         "error_detail": error_detail,
+        "probe_role": probe_role,
         "health_status": target.get("health_status", "UNKNOWN"),
         "action": target.get("last_action", "INITIALIZE"),
     }
