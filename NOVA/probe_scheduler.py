@@ -18,8 +18,12 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Mapping
 
-from .capacity import provider_capacity_opportunity
-from .health import load_health_state, load_json, provider_health_status
+try:
+    from .capacity import provider_capacity_opportunity
+    from .health import load_health_state, load_json, provider_health_status
+except ImportError:
+    from capacity import provider_capacity_opportunity
+    from health import load_health_state, load_json, provider_health_status
 
 
 ROOT = Path(__file__).resolve().parent
@@ -207,6 +211,7 @@ def select_probe_candidate(
     reserve = float(allocation.get("minimum_remaining_reserve_fraction", 0.2))
     max_age = allocation.get("maximum_capacity_observation_age_seconds")
 
+    _, safety_margin = _policy()
     opportunities: list[dict[str, Any]] = []
     for name in queue:
         provider = provider_by_name.get(name)
@@ -247,7 +252,7 @@ def select_probe_candidate(
         # Only preempt when the normal check lies after the observed capacity
         # deadline. A small safety margin prevents a deadline race.
         if due is not None and deadline + timedelta(
-            seconds=60
+            seconds=safety_margin
         ) >= due:
             continue
 
@@ -284,7 +289,7 @@ def select_probe_candidate(
         # A scheduled check is already due. Preemption still wins only if the
         # expiry is inside the short safety horizon and would be endangered by
         # doing the scheduled probe first.
-        if selected["seconds_to_deadline"] > 120:
+        if selected["seconds_to_deadline"] > max(120.0, safety_margin):
             return {
                 "provider": scheduled_name,
                 "reason": "SCHEDULED_DUE",
