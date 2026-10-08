@@ -35,15 +35,16 @@ class RouterRotationTests(unittest.TestCase):
             ["gemini", "cerebras", "mistral", "groq"],
         )
 
-    def test_manual_run_does_not_consume_scheduled_rotation(self):
+    def test_manual_run_advances_provider_rotation(self):
         rotation = self.state["provider_rotation"]["ai-heart"]
         rotation["next_index"] = 2
 
-        with patch.dict(os.environ, {"NOVA_ADVANCE_PROVIDER_ROTATION": "false"}):
+        with patch.dict(os.environ, {"NOVA_ADVANCE_PROVIDER_ROTATION": "true"}):
             advance_scheduled_probe_rotation(self.state, self.providers, self.providers[2])
 
-        self.assertEqual(rotation["next_index"], 2)
-        self.assertIsNone(rotation["last_scheduled_provider"])
+        self.assertEqual(rotation["next_index"], 3)
+        self.assertEqual(rotation["last_scheduled_provider"], "cerebras")
+        self.assertIsNotNone(rotation["last_scheduled_at"])
 
     def test_scheduled_run_advances_after_probe(self):
         rotation = self.state["provider_rotation"]["ai-heart"]
