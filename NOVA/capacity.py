@@ -260,7 +260,6 @@ def capacity_economic_signal(
     task_units: float | int | None = None,
     expected_task_benefit: float | int | None = None,
     expected_task_value_asset: str = "UNSPECIFIED",
-    allow_required_work_reuse: bool = False,
 ) -> dict[str, Any]:
     """Evaluate whether consuming observed capacity has a positive/known economic case.
 
@@ -544,7 +543,7 @@ def capacity_opportunity(
 
     window = max(float(urgency_window_seconds), 1.0)
     if seconds_to_deadline <= window:
-        urgency = max(0.0, 1.0 - (seconds_to_deadline / window))
+        urgency = max(0.001, 1.0 - (seconds_to_deadline / window))
         return {
             "state": "EXPIRING_SOON",
             "priority": 1.0 + urgency,
@@ -580,6 +579,7 @@ def provider_capacity_opportunity(
     task_units: float | int | None = None,
     expected_task_benefit: float | int | None = None,
     expected_task_value_asset: str = "UNSPECIFIED",
+    allow_required_work_reuse: bool = False,
 ) -> dict[str, Any]:
     """Return the strongest current expiry opportunity across a provider's targets."""
     if not isinstance(targets, Mapping):
