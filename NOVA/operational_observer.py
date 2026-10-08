@@ -98,6 +98,7 @@ def observe_source(source: dict, state: dict, *, timeout: int, max_bytes: int) -
         "content_excerpt": normalized[:4000],
     }
     valid_for = source.get("analysis_valid_for_seconds")
+    fresh_for = source.get("observation_fresh_for_seconds")
     previous_analysis = reusable_analysis(
         state,
         namespace="external-annotation",
@@ -110,6 +111,7 @@ def observe_source(source: dict, state: dict, *, timeout: int, max_bytes: int) -
         source=str(name),
         observation=observation,
         valid_for_seconds=int(valid_for) if valid_for is not None else None,
+        fresh_for_seconds=int(fresh_for) if fresh_for is not None else None,
     )
 
     if memory["unchanged_from_previous"] and previous_analysis is not None:
