@@ -1,6 +1,7 @@
 import unittest
+from datetime import datetime, timedelta, timezone
 
-from NOVA.capacity import extract_rate_limit_snapshot
+from NOVA.capacity import capacity_opportunity, extract_rate_limit_snapshot
 from NOVA.health import _state_defaults, record_probe
 
 
@@ -25,6 +26,50 @@ class CapacityMemoryTests(unittest.TestCase):
             snapshot["estimated_next_reset_at"]["requests"],
             "2026-10-08T00:02:00+00:00",
         )
+
+
+    def test_expiring_capacity_is_marked_as_actionable(self):
+        now = datetime(2026, 10, 8, 12, 0, tzinfo=timezone.utc)
+        snapshot = {
+            "provider": "groq",
+            "observed_at": now.isoformat(),
+            "estimated_next_reset_at": {
+                "requests": (now + timedelta(minutes=5)).isoformat()
+            },
+            "metrics": {
+                "requests": {"limit": 100, "remaining": 80}
+            },
+        }
+        opportunity = capacity_opportunity(
+            snapshot,
+            now=now,
+            urgency_window_seconds=300,
+            minimum_remaining_reserve_fraction=0.2,
+            max_observation_age_seconds=900,
+        )
+        self.assertEqual(opportunity["state"], "EXPIRING_SOON")
+        self.assertGreater(opportunity["priority"], 1.0)
+
+    def test_expiring_capacity_below_protected_reserve_is_not_burned(self):
+        now = datetime(2026, 10, 8, 12, 0, tzinfo=timezone.utc)
+        snapshot = {
+            "provider": "groq",
+            "observed_at": now.isoformat(),
+            "estimated_next_reset_at": {
+                "requests": (now + timedelta(minutes=2)).isoformat()
+            },
+            "metrics": {
+                "requests": {"limit": 100, "remaining": 10}
+            },
+        }
+        opportunity = capacity_opportunity(
+            snapshot,
+            now=now,
+            urgency_window_seconds=300,
+            minimum_remaining_reserve_fraction=0.2,
+        )
+        self.assertEqual(opportunity["state"], "PROTECTED_RESERVE")
+        self.assertEqual(opportunity["priority"], 0.0)
 
     def test_missing_capacity_is_not_invented(self):
         snapshot = extract_rate_limit_snapshot("mistral", {})
