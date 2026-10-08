@@ -98,7 +98,16 @@
     "require_non_negative_economic_case_for_expiry_boost": true,
     "never_generate_work_only_to_consume_expiring_capacity": true,
     "unknown_economics_priority": 0,
-    "principle": "Prefer usable capacity approaching reset or expiration only for work that is already required and only when the observed economic case is non-negative. Consider renewal frequency, paid cost, protected reserve, and downstream negative effects before increasing priority. Never infer missing capacity or economics."
+    "principle": "Prefer usable capacity approaching reset or expiration only for work that is already required and only when the observed economic case is non-negative. Consider renewal frequency, paid cost, protected reserve, and downstream negative effects before increasing priority. Never infer missing capacity or economics.",
+    "required_work_reuse": {
+      "enabled": true,
+      "eligible_work": [
+        "provider_health_probe"
+      ],
+      "must_not_create_new_work": true,
+      "must_not_claim_monetary_value_without_comparable_evidence": true,
+      "principle": "An already-required health probe may be advanced to reuse observed capacity that would otherwise expire. The scheduler records preserved/avoided expiry opportunity separately from cash economics."
+    }
   },
   "development_test_protection": {
     "separate_budget_required": true,
