@@ -95,6 +95,7 @@ def _state_defaults() -> dict[str, Any]:
             "ai-heart": {
                 "next_index": 0,
                 "next_provider": None,
+                "last_probe_providers": [],
                 "last_scheduled_provider": None,
                 "last_scheduled_at": None,
             }
