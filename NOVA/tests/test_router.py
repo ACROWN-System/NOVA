@@ -25,8 +25,8 @@ class RouterRotationTests(unittest.TestCase):
 
     def test_scheduled_provider_is_first_even_when_degraded(self):
         self.state["provider_rotation"]["ai-heart"]["next_index"] = 1
-        self.state["targets"]["ai-heart:gemini:model"]["health_status"] = "UNACCEPTABLE"
-        self.state["targets"]["ai-heart:groq:model"]["health_status"] = "DEGRADED"
+        self.state["targets"]["ai-heart:gemini:model"] = {"health_status": "UNACCEPTABLE"}
+        self.state["targets"]["ai-heart:groq:model"] = {"health_status": "DEGRADED"}
 
         ordered = scheduled_probe_provider_order(self.providers, self.state)
 
