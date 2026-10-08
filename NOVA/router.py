@@ -477,6 +477,8 @@ def scheduled_probe_provider_order(
 ) -> list[dict[str, Any]]:
     """Select the scheduled provider, or preempt for a real expiry opportunity."""
     decision = select_probe_candidate(providers, state)
+    rotation = state.setdefault("provider_rotation", {}).setdefault("ai-heart", {})
+    rotation["last_selection_decision"] = decision
     selected_name = decision.get("provider")
     if not selected_name:
         return []
