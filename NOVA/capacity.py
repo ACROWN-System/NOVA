@@ -550,6 +550,10 @@ def capacity_opportunity(
             "seconds_to_deadline": seconds_to_deadline,
             "metric": metric,
             "remaining": max(item[1] for item in eligible),
+            "dimension": next(
+                item[3] for item in eligible
+                if item[1] == max(candidate[1] for candidate in eligible)
+            ),
             "observation_age_seconds": age,
         }
 
