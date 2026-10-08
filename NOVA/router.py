@@ -417,6 +417,7 @@ def order_providers(
     state: dict[str, Any],
     *,
     max_observation_age_seconds: int | float | None = None,
+    task: Mapping[str, Any] | None = None,
 ) -> list[dict[str, Any]]:
     """Order providers by health first, then exploit imminent capacity windows."""
     ordered = health_order_providers(
@@ -446,6 +447,13 @@ def order_providers(
             minimum_remaining_reserve_fraction=reserve,
             max_observation_age_seconds=(
                 int(capacity_age) if capacity_age is not None else None
+            ),
+            task_units=task.get("task_units") if isinstance(task, Mapping) else None,
+            expected_task_benefit=task.get("expected_benefit") if isinstance(task, Mapping) else None,
+            expected_task_value_asset=(
+                str(task.get("value_asset") or "UNSPECIFIED")
+                if isinstance(task, Mapping)
+                else "UNSPECIFIED"
             ),
         )
         ranked.append((status, float(opportunity.get("priority", 0.0)), position, provider))
