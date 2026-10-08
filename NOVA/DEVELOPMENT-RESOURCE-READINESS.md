@@ -24,6 +24,10 @@ NOVA must not assume that a quota belongs to an individual API key. Providers ma
 | Cloudflare Workers AI | CLOUDFLARE_API_KEY_01 + CLOUDFLARE_ACCOUNT_ID | Independent inference path and free Neuron testing | Neurons used/remaining, reset, model availability, request errors | 10,000 Neurons/day on Free; many models remain free, including GLM-4.7 Flash | REQUIRED |
 | Cerebras | CEREBRAS_API_KEY_01 | Additional independent LLM/failover benchmark | usage/rate-limit data exposed by account/API, token usage, latency | Current documentation provides a $0 Free tier with lower rate limits | RECOMMENDED |
 
+### Mistral account-specific observation (2026-10-08)
+
+The selected Mistral Studio workspace currently displays the Free plan but also displays “Upgrade to use your API keys,” with no API key present. NOVA therefore treats Mistral as **BLOCKED / not configured for this workspace** and does not require a paid upgrade for current $0 development. This account-specific state must be re-verified before changing the provider to VERIFIED_AVAILABLE.
+
 ## GPU resources
 
 | Provider | Credential/resource | Development role | Measurements required | State |
