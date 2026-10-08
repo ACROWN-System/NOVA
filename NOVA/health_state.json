@@ -6,7 +6,7 @@
   },
   "last_gpu_heartbeat": {
     "message": "No GPU providers are configured yet; add verified providers and credentials later.",
-    "observed_at": "2026-10-08T03:15:39.444326+00:00",
+    "observed_at": "2026-10-08T12:21:26.942754+00:00",
     "status": "UNCONFIGURED"
   },
   "observations": {},
