@@ -41,7 +41,7 @@ jobs:
           MISTRAL_API_KEY_01: ${{ secrets.MISTRAL_API_KEY_01 }}
           CLOUDFLARE_API_KEY_01: ${{ secrets.CLOUDFLARE_API_KEY_01 }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          NOVA_PROVIDER_ROTATION_INDEX: ${{ github.run_number }}
+          NOVA_ADVANCE_PROVIDER_ROTATION: ${{ github.event_name == 'schedule' }}
           TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
           TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
           TWILIO_FROM_NUMBER: ${{ secrets.TWILIO_FROM_NUMBER }}

@@ -387,24 +387,16 @@ def call_provider(provider: dict[str, Any], prompt: str, validator=validate_heal
     return call_openai_compatible(provider, prompt, validator)
 
 
-def rotate_starting_provider(providers: list[dict[str, Any]]) -> list[dict[str, Any]]:
+def rotate_starting_provider(providers: list[dict[str, Any]], start_index: int = 0) -> list[dict[str, Any]]:
     if not providers:
         return providers
-    raw_index = get_env("NOVA_PROVIDER_ROTATION_INDEX")
-    if not raw_index:
-        return providers
-    try:
-        offset = int(raw_index) % len(providers)
-    except ValueError:
-        print(f"[router] Invalid NOVA_PROVIDER_ROTATION_INDEX={raw_index!r}; using roster order.")
-        return providers
+    offset = int(start_index) % len(providers)
     return providers[offset:] + providers[:offset] if offset else providers
 
 
-def order_providers(providers: list[dict[str, Any]], state: dict[str, Any]) -> list[dict[str, Any]]:
-    rotated = rotate_starting_provider(providers)
+def health_order_providers(providers: list[dict[str, Any]], state: dict[str, Any]) -> list[dict[str, Any]]:
     preferred, degraded = [], []
-    for provider in rotated:
+    for provider in providers:
         status = provider_health_status(
             state,
             provider=provider["name"],
@@ -414,13 +406,66 @@ def order_providers(providers: list[dict[str, Any]], state: dict[str, Any]) -> l
     return preferred + degraded
 
 
+def order_providers(providers: list[dict[str, Any]], state: dict[str, Any]) -> list[dict[str, Any]]:
+    """Compatibility wrapper: reasoning uses health ordering, not scheduled heartbeat rotation."""
+    return health_order_providers(providers, state)
+
+
+def scheduled_probe_provider_order(
+    providers: list[dict[str, Any]], state: dict[str, Any]
+) -> list[dict[str, Any]]:
+    """Put the scheduled rotation target first; health ordering applies only to fallback."""
+    if not providers:
+        return []
+    rotation = state.setdefault("provider_rotation", {}).setdefault(
+        "ai-heart",
+        {
+            "next_index": 0,
+            "last_scheduled_provider": None,
+            "last_scheduled_at": None,
+        },
+    )
+    try:
+        start_index = int(rotation.get("next_index", 0))
+    except (TypeError, ValueError):
+        start_index = 0
+        rotation["next_index"] = 0
+    rotated = rotate_starting_provider(providers, start_index)
+    scheduled = rotated[0]
+    return [scheduled] + health_order_providers(rotated[1:], state)
+
+
+def advance_scheduled_probe_rotation(
+    state: dict[str, Any], providers: list[dict[str, Any]], scheduled_provider: dict[str, Any]
+) -> None:
+    """Advance only for scheduled workflows; manual probes must not consume a future turn."""
+    if not providers or get_env("NOVA_ADVANCE_PROVIDER_ROTATION").lower() not in {"1", "true", "yes"}:
+        return
+    rotation = state.setdefault("provider_rotation", {}).setdefault("ai-heart", {})
+    try:
+        current_index = int(rotation.get("next_index", 0))
+    except (TypeError, ValueError):
+        current_index = 0
+    try:
+        scheduled_index = next(
+            i for i, provider in enumerate(providers)
+            if provider["name"] == scheduled_provider["name"]
+        )
+    except StopIteration:
+        scheduled_index = current_index % len(providers)
+    rotation["next_index"] = (scheduled_index + 1) % len(providers)
+    rotation["last_scheduled_provider"] = scheduled_provider["name"]
+    rotation["last_scheduled_at"] = datetime.now(timezone.utc).isoformat()
+
+
 def intelligent_router(prompt: str) -> tuple[str, dict[str, Any]]:
     print(f"[{datetime.now(timezone.utc).isoformat()}] NOVA AI Heart Pulse Initiated...")
     roster = load_roster()
     policy = load_json(HEALTH_POLICY_PATH, {})
     state = load_health_state(HEALTH_STATE_PATH)
     active = [p for p in roster["providers"] if p["status"] == "active"]
-    active = order_providers(active, state)
+    active = scheduled_probe_provider_order(active, state)
+    scheduled_provider = active[0] if active else None
 
     latency_policy = policy.get("latency", {})
     failure_policy = policy.get("failure", {})
@@ -431,6 +476,11 @@ def intelligent_router(prompt: str) -> tuple[str, dict[str, Any]]:
         text, signal, probes = call_provider(provider, prompt)
 
         for probe in probes:
+            probe_role = (
+                "scheduled_probe"
+                if scheduled_provider and provider["name"] == scheduled_provider["name"]
+                else "failover_probe"
+            )
             observation = record_probe(
                 state,
                 namespace="ai-heart",
@@ -446,6 +496,7 @@ def intelligent_router(prompt: str) -> tuple[str, dict[str, Any]]:
                 error_class=probe.get("error_class"),
                 error_detail=probe.get("error_detail"),
                 capacity=probe.get("capacity") if isinstance(probe.get("capacity"), dict) else None,
+                probe_role=probe_role,
                 max_samples=int(latency_policy.get("max_samples_per_target", 24)),
                 latency_degraded_multiplier=float(latency_policy.get("degraded_multiplier", 2.0)),
                 latency_min_samples=int(latency_policy.get("minimum_samples_for_comparison", 4)),
@@ -458,6 +509,9 @@ def intelligent_router(prompt: str) -> tuple[str, dict[str, Any]]:
                     body=json.dumps(observation, indent=2, sort_keys=True),
                     severity="urgent",
                 )
+
+        if scheduled_provider and provider["name"] == scheduled_provider["name"]:
+            advance_scheduled_probe_rotation(state, active, scheduled_provider)
 
         atomic_write_json(HEALTH_STATE_PATH, state)
 
