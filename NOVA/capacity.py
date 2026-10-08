@@ -116,6 +116,112 @@ def _parse_time(value: Any) -> datetime | None:
     return parsed.astimezone(timezone.utc)
 
 
+
+def capacity_economic_signal(
+    snapshot: Mapping[str, Any] | None,
+    *,
+    task_units: float | int | None = None,
+    expected_task_benefit: float | int | None = None,
+    expected_task_value_asset: str = "UNSPECIFIED",
+) -> dict[str, Any]:
+    """Evaluate whether consuming observed capacity has a positive/known economic case.
+
+    No benefit, cost, or renewal rate is inferred. Unknown economics produce a
+    neutral signal and therefore cannot by themselves trigger additional work.
+    """
+    if not isinstance(snapshot, Mapping):
+        return {
+            "state": "UNKNOWN",
+            "priority_multiplier": 0.0,
+            "cash_cost": None,
+            "resource_opportunity": None,
+            "renewability": "UNKNOWN",
+        }
+
+    economics = snapshot.get("economics")
+    if not isinstance(economics, Mapping):
+        return {
+            "state": "ECONOMICS_UNKNOWN",
+            "priority_multiplier": 0.0,
+            "cash_cost": None,
+            "resource_opportunity": None,
+            "renewability": "UNKNOWN",
+        }
+
+    free = economics.get("free")
+    unit_cost = _number(economics.get("cash_cost_per_unit"))
+    explicit_cost = _number(economics.get("cash_cost"))
+    units = float(task_units) if task_units is not None else None
+    cash_cost = explicit_cost
+    if cash_cost is None and unit_cost is not None and units is not None:
+        cash_cost = unit_cost * units
+
+    renewal = economics.get("renewal")
+    renewal_period = _number(renewal.get("period_seconds")) if isinstance(renewal, Mapping) else None
+    replenishment = _number(renewal.get("units_per_period")) if isinstance(renewal, Mapping) else None
+    if renewal_period is not None and renewal_period > 0:
+        renewability = (
+            "FAST" if renewal_period <= 300
+            else "MODERATE" if renewal_period <= 3600
+            else "SLOW"
+        )
+    else:
+        renewability = "UNKNOWN"
+
+    task_benefit = _number(expected_task_benefit)
+    if task_benefit is None:
+        return {
+            "state": "BENEFIT_UNKNOWN",
+            "priority_multiplier": 0.0,
+            "cash_cost": cash_cost,
+            "resource_opportunity": "UNKNOWN",
+            "renewability": renewability,
+            "value_asset": expected_task_value_asset,
+        }
+
+    if cash_cost is not None and task_benefit < cash_cost:
+        return {
+            "state": "NEGATIVE_NET_VALUE",
+            "priority_multiplier": -1.0,
+            "cash_cost": cash_cost,
+            "task_benefit": task_benefit,
+            "resource_opportunity": "DO_NOT_PREFER",
+            "renewability": renewability,
+            "value_asset": expected_task_value_asset,
+        }
+
+    if free is True or cash_cost == 0:
+        return {
+            "state": "NON_NEGATIVE_FREE_RESOURCE",
+            "priority_multiplier": 1.0,
+            "cash_cost": 0.0 if cash_cost is None else cash_cost,
+            "task_benefit": task_benefit,
+            "resource_opportunity": "USABLE_IF_WORK_IS_ALREADY_REQUIRED",
+            "renewability": renewability,
+            "value_asset": expected_task_value_asset,
+        }
+
+    if cash_cost is not None:
+        return {
+            "state": "POSITIVE_NET_VALUE",
+            "priority_multiplier": 1.0,
+            "cash_cost": cash_cost,
+            "task_benefit": task_benefit,
+            "resource_opportunity": "USABLE_IF_ALTERNATIVE_COST_IS_NOT_LOWER",
+            "renewability": renewability,
+            "value_asset": expected_task_value_asset,
+        }
+
+    return {
+        "state": "ECONOMICS_PARTIAL",
+        "priority_multiplier": 0.0,
+        "cash_cost": cash_cost,
+        "task_benefit": task_benefit,
+        "resource_opportunity": "UNKNOWN",
+        "renewability": renewability,
+        "value_asset": expected_task_value_asset,
+    }
+
 def capacity_opportunity(
     snapshot: Mapping[str, Any] | None,
     *,
@@ -297,6 +403,9 @@ def provider_capacity_opportunity(
     urgency_window_seconds: int | float = 300,
     minimum_remaining_reserve_fraction: float = 0.2,
     max_observation_age_seconds: int | float | None = None,
+    task_units: float | int | None = None,
+    expected_task_benefit: float | int | None = None,
+    expected_task_value_asset: str = "UNSPECIFIED",
 ) -> dict[str, Any]:
     """Return the strongest current expiry opportunity across a provider's targets."""
     if not isinstance(targets, Mapping):
@@ -315,6 +424,24 @@ def provider_capacity_opportunity(
             minimum_remaining_reserve_fraction=minimum_remaining_reserve_fraction,
             max_observation_age_seconds=max_observation_age_seconds,
         )
+        economics = capacity_economic_signal(
+            snapshot,
+            task_units=task_units,
+            expected_task_benefit=expected_task_benefit,
+            expected_task_value_asset=expected_task_value_asset,
+        )
+        opportunity["economic_signal"] = economics
+
+        # Expiry pressure cannot create work. Without a non-negative economic
+        # case, keep the opportunity neutral so routing does not chase expiring
+        # capacity at additional cost or resource risk.
+        if opportunity.get("state") == "EXPIRING_SOON":
+            multiplier = float(economics.get("priority_multiplier", 0.0))
+            opportunity["priority"] = (
+                float(opportunity.get("priority", 0.0)) * multiplier
+                if multiplier > 0
+                else 0.0
+            )
         candidates.append((float(opportunity.get("priority", 0.0)), opportunity))
 
     if not candidates:
