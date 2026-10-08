@@ -39,6 +39,22 @@ Nosana's current API exposes credit balance, spending history and transactions. 
 
 Hugging Face currently documents free ZeroGPU access and a programmatic `get_zero_gpu_quota()` path returning base quota, remaining GPU-seconds and reset time. Free accounts have a 5-minute daily quota under the current documentation. See: https://huggingface.co/docs/huggingface_hub/main/guides/manage-spaces and https://huggingface.co/docs/hub/en/spaces-zerogpu
 
+## Implemented before secrets
+
+The following architecture and deterministic mechanisms are ready without live provider/GPU credentials:
+
+- observation freshness and stale-evidence handling
+- separation of total-resource balances from call/window allowances
+- expiry/reset opportunity detection
+- renewal metadata and economic guards
+- comparable net-value calculation including explicit negative effects
+- deterministic multi-resource task allocation using a Pareto frontier
+- optional task context for capacity-aware provider ordering
+- secret-safe credential readiness inspection
+- offline unit-test coverage
+
+No live provider or GPU call is required for these mechanisms.
+
 ## What is required before live development can start
 
 ### A. Architecture-only development
