@@ -260,6 +260,7 @@ def capacity_economic_signal(
     task_units: float | int | None = None,
     expected_task_benefit: float | int | None = None,
     expected_task_value_asset: str = "UNSPECIFIED",
+    allow_required_work_reuse: bool = False,
 ) -> dict[str, Any]:
     """Evaluate whether consuming observed capacity has a positive/known economic case.
 
@@ -447,7 +448,9 @@ def capacity_opportunity(
             "observation_age_seconds": age,
         }
 
-    positive_remaining: list[tuple[str, float, float | None]] = []
+    positive_remaining: list[tuple[str, float, float | None, str]] = []
+
+    # Rate-limit/call-allowance observations may have reset deadlines.
     for metric, data in (snapshot.get("metrics") or {}).items():
         if not isinstance(data, Mapping):
             continue
@@ -456,7 +459,23 @@ def capacity_opportunity(
         if remaining is None or remaining <= 0:
             continue
         fraction = (float(remaining) / float(limit)) if limit and limit > 0 else None
-        positive_remaining.append((str(metric), float(remaining), fraction))
+        positive_remaining.append(
+            (str(metric), float(remaining), fraction, "CALL_ALLOWANCE")
+        )
+
+    # Explicit total-resource observations (credits, GPU-hours, neurons, etc.)
+    # may expire independently from call allowances.
+    for metric, data in (snapshot.get("resources") or {}).items():
+        if not isinstance(data, Mapping):
+            continue
+        remaining = _number(data.get("remaining"))
+        total = _number(data.get("total"))
+        if remaining is None or remaining <= 0:
+            continue
+        fraction = (float(remaining) / float(total)) if total and total > 0 else None
+        positive_remaining.append(
+            (str(metric), float(remaining), fraction, "TOTAL_RESOURCE")
+        )
 
     if not positive_remaining:
         return {
@@ -481,19 +500,19 @@ def capacity_opportunity(
         metric_name: deadline for metric_name, deadline in positive_deadlines
     }
     eligible = []
-    for resource_metric, remaining, fraction in positive_remaining:
+    for resource_metric, remaining, fraction, dimension in positive_remaining:
         if resource_metric in metric_deadlines and (
             fraction is None or fraction > minimum_remaining_reserve_fraction
         ):
-            eligible.append((resource_metric, remaining, fraction))
+            eligible.append((resource_metric, remaining, fraction, dimension))
 
     # A direct expiration deadline may apply to the whole snapshot rather than
     # to one named metric, so retain it as a fallback when no metric-specific
     # deadline is available for the remaining resource.
     if not eligible and any(name == "expiration" for name, _ in positive_deadlines):
-        for resource_metric, remaining, fraction in positive_remaining:
+        for resource_metric, remaining, fraction, dimension in positive_remaining:
             if fraction is None or fraction > minimum_remaining_reserve_fraction:
-                eligible.append((resource_metric, remaining, fraction))
+                eligible.append((resource_metric, remaining, fraction, dimension))
 
     if not eligible:
         return {
@@ -541,6 +560,10 @@ def capacity_opportunity(
         "seconds_to_deadline": seconds_to_deadline,
         "metric": metric,
         "remaining": max(item[1] for item in eligible),
+        "dimension": next(
+            item[3] for item in eligible
+            if item[1] == max(candidate[1] for candidate in eligible)
+        ),
         "observation_age_seconds": age,
     }
 
@@ -583,16 +606,30 @@ def provider_capacity_opportunity(
         )
         opportunity["economic_signal"] = economics
 
-        # Expiry pressure cannot create work. Without a non-negative economic
-        # case, keep the opportunity neutral so routing does not chase expiring
-        # capacity at additional cost or resource risk.
+        # Expiry pressure cannot create work. An already-required health
+        # probe may, however, reuse capacity that would otherwise expire.
         if opportunity.get("state") == "EXPIRING_SOON":
             multiplier = float(economics.get("priority_multiplier", 0.0))
-            opportunity["priority"] = (
-                float(opportunity.get("priority", 0.0)) * multiplier
-                if multiplier > 0
-                else 0.0
-            )
+            if allow_required_work_reuse and economics.get("state") in {
+                "ECONOMICS_UNKNOWN",
+                "BENEFIT_UNKNOWN",
+            }:
+                opportunity["economic_signal"] = {
+                    "state": "REQUIRED_WORK_EXPIRY_REUSE",
+                    "priority_multiplier": 1.0,
+                    "cash_cost": economics.get("cash_cost"),
+                    "resource_opportunity": "REUSE_EXPIRING_CAPACITY_FOR_ALREADY_REQUIRED_WORK",
+                    "renewability": economics.get("renewability", "UNKNOWN"),
+                    "value_asset": expected_task_value_asset,
+                    "comparable": False,
+                }
+                opportunity["priority"] = float(opportunity.get("priority", 0.0))
+            else:
+                opportunity["priority"] = (
+                    float(opportunity.get("priority", 0.0)) * multiplier
+                    if multiplier > 0
+                    else 0.0
+                )
         candidates.append((float(opportunity.get("priority", 0.0)), opportunity))
 
     if not candidates:
