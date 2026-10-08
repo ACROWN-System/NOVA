@@ -1,10 +1,6 @@
 name: NOVA Validation
 
 on:
-  push:
-    paths:
-      - "NOVA/**"
-      - ".github/workflows/nova_validation.yml"
   workflow_dispatch:
 
 concurrency:
@@ -25,6 +21,9 @@ jobs:
         uses: actions/setup-python@v7
         with:
           python-version: "3.11"
+
+      - name: Compile NOVA Python
+        run: python -m compileall -q NOVA
 
       - name: Run NOVA unit tests
         run: python -m unittest discover -s NOVA/tests -p "test_*.py" -v
