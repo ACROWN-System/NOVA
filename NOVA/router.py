@@ -421,15 +421,27 @@ def scheduled_probe_provider_order(
         "ai-heart",
         {
             "next_index": 0,
+            "next_provider": None,
             "last_scheduled_provider": None,
             "last_scheduled_at": None,
         },
     )
-    try:
-        start_index = int(rotation.get("next_index", 0))
-    except (TypeError, ValueError):
-        start_index = 0
-        rotation["next_index"] = 0
+    next_provider = rotation.get("next_provider")
+    if isinstance(next_provider, str):
+        matching_index = next(
+            (i for i, provider in enumerate(providers) if provider["name"] == next_provider),
+            None,
+        )
+    else:
+        matching_index = None
+    if matching_index is not None:
+        start_index = matching_index
+    else:
+        try:
+            start_index = int(rotation.get("next_index", 0))
+        except (TypeError, ValueError):
+            start_index = 0
+            rotation["next_index"] = 0
     rotated = rotate_starting_provider(providers, start_index)
     scheduled = rotated[0]
     return [scheduled] + health_order_providers(rotated[1:], state)
@@ -438,23 +450,49 @@ def scheduled_probe_provider_order(
 def advance_scheduled_probe_rotation(
     state: dict[str, Any], providers: list[dict[str, Any]], scheduled_provider: dict[str, Any]
 ) -> None:
-    """Advance the provider rotation after every heartbeat probe, scheduled or manual."""
+    """Advance to the next active roster provider after every heartbeat probe."""
     if not providers or get_env("NOVA_ADVANCE_PROVIDER_ROTATION").lower() not in {"1", "true", "yes"}:
         return
+
     rotation = state.setdefault("provider_rotation", {}).setdefault("ai-heart", {})
-    try:
-        current_index = int(rotation.get("next_index", 0))
-    except (TypeError, ValueError):
-        current_index = 0
+    scheduled_name = scheduled_provider["name"]
+
+    active_providers = [provider for provider in providers if provider.get("status") == "active"]
+    if not active_providers:
+        return
+
     try:
         scheduled_index = next(
-            i for i, provider in enumerate(providers)
-            if provider["name"] == scheduled_provider["name"]
+            i for i, provider in enumerate(active_providers)
+            if provider["name"] == scheduled_name
         )
+        next_provider = active_providers[(scheduled_index + 1) % len(active_providers)]
     except StopIteration:
-        scheduled_index = current_index % len(providers)
-    rotation["next_index"] = (scheduled_index + 1) % len(providers)
-    rotation["last_scheduled_provider"] = scheduled_provider["name"]
+        try:
+            roster_index = next(
+                i for i, provider in enumerate(providers)
+                if provider["name"] == scheduled_name
+            )
+        except StopIteration:
+            roster_index = -1
+
+        next_provider = None
+        if roster_index >= 0:
+            for offset in range(1, len(providers) + 1):
+                candidate = providers[(roster_index + offset) % len(providers)]
+                if candidate.get("status") == "active":
+                    next_provider = candidate
+                    break
+
+        if next_provider is None:
+            return
+
+    rotation["next_provider"] = next_provider["name"]
+    rotation["next_index"] = next(
+        i for i, provider in enumerate(active_providers)
+        if provider["name"] == next_provider["name"]
+    )
+    rotation["last_scheduled_provider"] = scheduled_name
     rotation["last_scheduled_at"] = datetime.now(timezone.utc).isoformat()
 
 
@@ -463,8 +501,8 @@ def intelligent_router(prompt: str) -> tuple[str, dict[str, Any]]:
     roster = load_roster()
     policy = load_json(HEALTH_POLICY_PATH, {})
     state = load_health_state(HEALTH_STATE_PATH)
-    active = [p for p in roster["providers"] if p["status"] == "active"]
-    active = scheduled_probe_provider_order(active, state)
+    active_roster = [p for p in roster["providers"] if p["status"] == "active"]
+    active = scheduled_probe_provider_order(active_roster, state)
     scheduled_provider = active[0] if active else None
 
     latency_policy = policy.get("latency", {})
@@ -511,7 +549,7 @@ def intelligent_router(prompt: str) -> tuple[str, dict[str, Any]]:
                 )
 
         if scheduled_provider and provider["name"] == scheduled_provider["name"]:
-            advance_scheduled_probe_rotation(state, active, scheduled_provider)
+            advance_scheduled_probe_rotation(state, roster["providers"], scheduled_provider)
 
         atomic_write_json(HEALTH_STATE_PATH, state)
 
