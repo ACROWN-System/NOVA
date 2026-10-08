@@ -62,6 +62,85 @@ def fingerprint(value: Any) -> str:
     return "sha256:" + hashlib.sha256(payload).hexdigest()
 
 
+
+def _parse_observed_at(observed_at: Any) -> datetime | None:
+    """Parse an observation timestamp without treating malformed time as current."""
+    if not isinstance(observed_at, str) or not observed_at.strip():
+        return None
+    try:
+        value = observed_at.strip().replace("Z", "+00:00")
+        parsed = datetime.fromisoformat(value)
+    except (TypeError, ValueError):
+        return None
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    return parsed.astimezone(timezone.utc)
+
+
+def observation_age_seconds(
+    observed_at: Any,
+    *,
+    now: datetime | None = None,
+) -> float | None:
+    """Return observation age, or None when its timestamp cannot be trusted."""
+    observed_dt = _parse_observed_at(observed_at)
+    if observed_dt is None:
+        return None
+    current_dt = now or datetime.now(timezone.utc)
+    if current_dt.tzinfo is None:
+        current_dt = current_dt.replace(tzinfo=timezone.utc)
+    current_dt = current_dt.astimezone(timezone.utc)
+    age = (current_dt - observed_dt).total_seconds()
+    if age < 0:
+        return None
+    return age
+
+
+def observation_freshness(
+    observed_at: Any,
+    *,
+    fresh_for_seconds: int | float | None,
+    now: datetime | None = None,
+) -> str:
+    """Classify evidence freshness without asserting that stale evidence is false."""
+    if observed_at is None:
+        return "UNOBSERVED"
+    if fresh_for_seconds is None:
+        return "UNSPECIFIED"
+    try:
+        ttl = float(fresh_for_seconds)
+    except (TypeError, ValueError):
+        return "INVALID_FRESHNESS_POLICY"
+    if ttl < 0:
+        return "INVALID_FRESHNESS_POLICY"
+
+    observed_dt = _parse_observed_at(observed_at)
+    if observed_dt is None:
+        return "INVALID_TIMESTAMP"
+    current_dt = now or datetime.now(timezone.utc)
+    if current_dt.tzinfo is None:
+        current_dt = current_dt.replace(tzinfo=timezone.utc)
+    current_dt = current_dt.astimezone(timezone.utc)
+    age = (current_dt - observed_dt).total_seconds()
+    if age < 0:
+        return "FUTURE_TIMESTAMP"
+    return "FRESH" if age <= ttl else "STALE"
+
+
+def observation_record_freshness(
+    record: dict[str, Any] | None,
+    *,
+    now: datetime | None = None,
+) -> str:
+    """Return freshness for a stored observation using its explicit freshness policy."""
+    if not isinstance(record, dict):
+        return "UNOBSERVED"
+    return observation_freshness(
+        record.get("observed_at"),
+        fresh_for_seconds=record.get("observation_fresh_for_seconds"),
+        now=now,
+    )
+
 def load_json(path: Path, default: Any) -> Any:
     if not path.exists():
         return default
@@ -275,13 +354,30 @@ def record_probe(
 
 
 def provider_health_status(
-    state: dict[str, Any], *, provider: str, namespace: str
+    state: dict[str, Any],
+    *,
+    provider: str,
+    namespace: str,
+    max_observation_age_seconds: int | float | None = None,
+    now: datetime | None = None,
 ) -> str:
     statuses = []
+    saw_stale = False
     prefix = namespace + ":" + provider + ":"
     for key, target in state.get("targets", {}).items():
-        if key.startswith(prefix):
-            statuses.append(target.get("health_status", "UNKNOWN"))
+        if not key.startswith(prefix):
+            continue
+        if max_observation_age_seconds is not None:
+            freshness = observation_freshness(
+                target.get("last_observation", {}).get("observed_at"),
+                fresh_for_seconds=max_observation_age_seconds,
+                now=now,
+            )
+            if freshness != "FRESH":
+                if freshness == "STALE":
+                    saw_stale = True
+                continue
+        statuses.append(target.get("health_status", "UNKNOWN"))
     if "UNACCEPTABLE" in statuses:
         return "UNACCEPTABLE"
     if "DEGRADED" in statuses:
@@ -290,6 +386,8 @@ def provider_health_status(
         return "HEALTHY"
     if "UNCONFIGURED" in statuses:
         return "UNCONFIGURED"
+    if saw_stale:
+        return "STALE"
     return "UNKNOWN"
 
 
@@ -301,6 +399,7 @@ def remember_observation(
     observation: Any,
     analysis: dict[str, Any] | None = None,
     valid_for_seconds: int | None = None,
+    fresh_for_seconds: int | None = None,
     max_analysis_history: int = 12,
 ) -> dict[str, Any]:
     """Remember a non-heart observation and retain prior analyses when it changes."""
@@ -332,6 +431,13 @@ def remember_observation(
         "analysis_history": history,
     }
 
+    if fresh_for_seconds is not None:
+        record["observation_fresh_for_seconds"] = int(fresh_for_seconds)
+        record["observation_freshness"] = observation_freshness(
+            record["observed_at"],
+            fresh_for_seconds=fresh_for_seconds,
+        )
+
     if valid_for_seconds is not None:
         record["analysis_valid_for_seconds"] = int(valid_for_seconds)
 
@@ -356,6 +462,10 @@ def reusable_analysis(
 
     analysis = previous.get("analysis")
     if not isinstance(analysis, dict):
+        return None
+
+    observation_freshness_state = observation_record_freshness(previous, now=now)
+    if observation_freshness_state not in {"FRESH", "UNSPECIFIED"}:
         return None
 
     valid_for = previous.get("analysis_valid_for_seconds")
