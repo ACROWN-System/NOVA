@@ -159,7 +159,7 @@ def call_openai_compatible(provider: dict[str, Any], prompt: str, validator=vali
                             "ack": {"type": "string", "enum": ["NOVA_HEALTH_PROBE"]}
                         },
                         "required": ["nova_health", "ack"],
-                        "additionalProperties": false
+                        "additionalProperties": False
                     }
                 }
             }
