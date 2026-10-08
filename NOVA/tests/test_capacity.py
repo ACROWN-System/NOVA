@@ -5,6 +5,8 @@ from NOVA.capacity import (
     capacity_economic_signal,
     capacity_opportunity,
     extract_rate_limit_snapshot,
+    resource_balance,
+    split_capacity_dimensions,
 )
 from NOVA.health import _state_defaults, record_probe
 
@@ -149,6 +151,36 @@ class CapacityMemoryTests(unittest.TestCase):
         self.assertGreater(opportunity["priority"], 1.0)
         signal = capacity_economic_signal(snapshot, task_units=1, expected_task_benefit=1)
         self.assertEqual(signal["state"], "ECONOMICS_UNKNOWN")
+
+    def test_call_allowance_is_not_total_resource(self):
+        snapshot = extract_rate_limit_snapshot(
+            "groq",
+            {
+                "x-ratelimit-limit-requests": "5",
+                "x-ratelimit-remaining-requests": "4",
+                "x-ratelimit-reset-requests": "10s",
+            },
+            observed_at="2026-10-08T00:00:00+00:00",
+        )
+        dimensions = split_capacity_dimensions(snapshot)
+        self.assertEqual(dimensions["resources"], {})
+        self.assertEqual(
+            dimensions["call_allowances"]["requests"]["measurement_type"],
+            "CALL_ALLOWANCE",
+        )
+        self.assertEqual(dimensions["call_allowances"]["requests"]["limit"], 5)
+
+    def test_explicit_total_resource_is_separate_from_call_allowance(self):
+        resource = resource_balance(
+            name="credits",
+            remaining=900,
+            total=1000,
+            unit="credits",
+            renewal_period_seconds="24h",
+        )
+        self.assertEqual(resource["measurement_type"], "TOTAL_RESOURCE")
+        self.assertEqual(resource["remaining"], 900)
+        self.assertEqual(resource["total"], 1000)
 
     def test_missing_capacity_is_not_invented(self):
         snapshot = extract_rate_limit_snapshot("mistral", {})
