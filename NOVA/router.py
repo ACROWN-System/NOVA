@@ -438,7 +438,7 @@ def scheduled_probe_provider_order(
 def advance_scheduled_probe_rotation(
     state: dict[str, Any], providers: list[dict[str, Any]], scheduled_provider: dict[str, Any]
 ) -> None:
-    """Advance only for scheduled workflows; manual probes must not consume a future turn."""
+    """Advance the provider rotation after every heartbeat probe, scheduled or manual."""
     if not providers or get_env("NOVA_ADVANCE_PROVIDER_ROTATION").lower() not in {"1", "true", "yes"}:
         return
     rotation = state.setdefault("provider_rotation", {}).setdefault("ai-heart", {})
