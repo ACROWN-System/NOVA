@@ -406,6 +406,11 @@ def health_order_providers(providers: list[dict[str, Any]], state: dict[str, Any
     return preferred + degraded
 
 
+def order_providers(providers: list[dict[str, Any]], state: dict[str, Any]) -> list[dict[str, Any]]:
+    """Compatibility wrapper: reasoning uses health ordering, not scheduled heartbeat rotation."""
+    return health_order_providers(providers, state)
+
+
 def scheduled_probe_provider_order(
     providers: list[dict[str, Any]], state: dict[str, Any]
 ) -> list[dict[str, Any]]:
