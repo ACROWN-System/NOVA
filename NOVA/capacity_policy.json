@@ -11,19 +11,22 @@
     "provider_invoice",
     "manual_verified_record"
   ],
-  "metrics": [
-    "requests",
-    "tokens",
-    "input_tokens",
-    "output_tokens",
+  "resource_metrics": [
     "credits",
     "neurons",
     "gpu_seconds",
     "gpu_hours",
     "storage_bytes",
-    "bandwidth_bytes",
+    "bandwidth_bytes"
+  ],
+  "call_allowance_metrics": [
+    "requests",
+    "tokens",
+    "input_tokens",
+    "output_tokens",
     "time_window"
   ],
+  "dimension_rule": "CALL_ALLOWANCE_LIMITS_MUST_NOT_BE_TREATED_AS_TOTAL_RESOURCE_BALANCE",
   "renewal": {
     "track_reset_after": true,
     "track_next_reset_at": true,
