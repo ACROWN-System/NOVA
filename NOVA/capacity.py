@@ -46,6 +46,77 @@ def _header_lookup(headers: Mapping[str, Any]) -> dict[str, str]:
     return {str(k).lower(): str(v) for k, v in headers.items()}
 
 
+
+def split_capacity_dimensions(
+    snapshot: Mapping[str, Any] | None,
+) -> dict[str, Any]:
+    """Separate total resource observations from call/rate allowances.
+
+    Rate-limit headers describe what may be consumed in a call/window; they are
+    not authoritative evidence of the total resource pool. Total resources must
+    come from explicit resource observations such as account/project balances,
+    credits, GPU time, or provider-reported allocation records.
+    """
+    if not isinstance(snapshot, Mapping):
+        return {"resources": {}, "call_allowances": {}}
+
+    resources = snapshot.get("resources")
+    allowances = snapshot.get("call_allowances")
+
+    return {
+        "resources": dict(resources) if isinstance(resources, Mapping) else {},
+        "call_allowances": dict(allowances) if isinstance(allowances, Mapping) else {},
+    }
+
+
+def resource_balance(
+    *,
+    name: str,
+    remaining: Any,
+    total: Any = None,
+    unit: str = "UNSPECIFIED",
+    renewal_period_seconds: Any = None,
+    expiration_at: str | None = None,
+    source: str = "explicit_observation",
+) -> dict[str, Any]:
+    """Create a total-resource observation without confusing it with call limits."""
+    balance = {
+        "name": str(name),
+        "remaining": _number(remaining),
+        "total": _number(total),
+        "unit": str(unit),
+        "renewal_period_seconds": _seconds(renewal_period_seconds),
+        "expiration_at": expiration_at,
+        "source": source,
+        "measurement_type": "TOTAL_RESOURCE",
+    }
+    return balance
+
+
+def call_allowance(
+    *,
+    name: str,
+    limit: Any,
+    remaining: Any,
+    window_seconds: Any = None,
+    reset_after_seconds: Any = None,
+    unit: str = "requests",
+    source: str = "rate_limit_observation",
+) -> dict[str, Any]:
+    """Create a call/window allowance observation distinct from total resources."""
+    allowance = {
+        "name": str(name),
+        "limit": _number(limit),
+        "remaining": _number(remaining),
+        "window_seconds": _seconds(window_seconds),
+        "reset_after_seconds": _seconds(reset_after_seconds),
+        "unit": str(unit),
+        "source": source,
+        "measurement_type": "CALL_ALLOWANCE",
+    }
+    return allowance
+
+
 def extract_rate_limit_snapshot(
     provider: str,
     headers: Mapping[str, Any] | None = None,
@@ -65,17 +136,27 @@ def extract_rate_limit_snapshot(
     }
 
     metrics: dict[str, Any] = {}
+    call_allowances: dict[str, Any] = {}
     mapping = provider_mapping.get(provider_name, generic_mapping)
     for metric, (limit_key, remaining_key, reset_key) in mapping.items():
         present = any(k in normalized for k in (limit_key, remaining_key, reset_key))
         if not present:
             continue
-        metrics[metric] = {
+        record = {
             "limit": _number(normalized.get(limit_key)),
             "remaining": _number(normalized.get(remaining_key)),
             "reset_after_seconds": _seconds(normalized.get(reset_key)),
             "source": "http_response_headers",
+            "measurement_type": "CALL_ALLOWANCE",
         }
+        metrics[metric] = record
+        call_allowances[metric] = call_allowance(
+            name=metric,
+            limit=normalized.get(limit_key),
+            remaining=normalized.get(remaining_key),
+            reset_after_seconds=normalized.get(reset_key),
+            unit=metric,
+        )
 
     retry_after = _seconds(normalized.get("retry-after"))
     if retry_after is not None:
@@ -86,6 +167,8 @@ def extract_rate_limit_snapshot(
         "observed_at": observed_at or datetime.now(timezone.utc).isoformat(),
         "measurement_state": "OBSERVED" if metrics else "NOT_EXPOSED",
         "metrics": metrics,
+        "resources": {},
+        "call_allowances": call_allowances,
     }
 
     if metrics:
@@ -448,6 +531,29 @@ def provider_capacity_opportunity(
         return capacity_opportunity(None)
     return max(candidates, key=lambda item: item[0])[1]
 
+def attach_resource_observations(
+    snapshot: dict[str, Any],
+    resources: Mapping[str, Any] | None,
+) -> dict[str, Any]:
+    """Attach explicitly observed total resources; never derive them from rate limits."""
+    if not isinstance(resources, Mapping):
+        return snapshot
+    normalized: dict[str, Any] = {}
+    for name, value in resources.items():
+        if isinstance(value, Mapping):
+            item = dict(value)
+            item.setdefault("measurement_type", "TOTAL_RESOURCE")
+            normalized[str(name)] = item
+        else:
+            normalized[str(name)] = {
+                "remaining": _number(value),
+                "measurement_type": "TOTAL_RESOURCE",
+                "source": "explicit_observation",
+            }
+    snapshot["resources"] = normalized
+    return snapshot
+
+
 def merge_usage(
     quota_snapshot: dict[str, Any],
     usage: Mapping[str, Any] | None,
@@ -473,8 +579,10 @@ def annotate_probe(
     provider: str,
     headers: Mapping[str, Any] | None = None,
     usage: Mapping[str, Any] | None = None,
+    resources: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     snapshot = extract_rate_limit_snapshot(provider, headers)
+    snapshot = attach_resource_observations(snapshot, resources)
     snapshot = merge_usage(snapshot, usage)
     probe["capacity"] = snapshot
     return probe
