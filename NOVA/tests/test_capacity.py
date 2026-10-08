@@ -1,7 +1,11 @@
 import unittest
 from datetime import datetime, timedelta, timezone
 
-from NOVA.capacity import capacity_opportunity, extract_rate_limit_snapshot
+from NOVA.capacity import (
+    capacity_economic_signal,
+    capacity_opportunity,
+    extract_rate_limit_snapshot,
+)
 from NOVA.health import _state_defaults, record_probe
 
 
@@ -70,6 +74,81 @@ class CapacityMemoryTests(unittest.TestCase):
         )
         self.assertEqual(opportunity["state"], "PROTECTED_RESERVE")
         self.assertEqual(opportunity["priority"], 0.0)
+
+
+    def test_paid_expiring_capacity_requires_positive_economic_case(self):
+        now = datetime(2026, 10, 8, 12, 0, tzinfo=timezone.utc)
+        snapshot = {
+            "provider": "paid",
+            "observed_at": now.isoformat(),
+            "estimated_next_reset_at": {
+                "requests": (now + timedelta(minutes=2)).isoformat()
+            },
+            "metrics": {
+                "requests": {"limit": 100, "remaining": 80}
+            },
+            "economics": {
+                "free": False,
+                "cash_cost_per_unit": 0.10,
+                "renewal": {
+                    "period_seconds": 3600,
+                    "units_per_period": 100
+                }
+            }
+        }
+        signal = capacity_economic_signal(
+            snapshot,
+            task_units=1,
+            expected_task_benefit=0.05,
+            expected_task_value_asset="USD",
+        )
+        self.assertEqual(signal["state"], "NEGATIVE_NET_VALUE")
+        self.assertEqual(signal["renewability"], "MODERATE")
+
+    def test_free_expiring_capacity_is_positive_only_for_required_work(self):
+        snapshot = {
+            "provider": "free",
+            "observed_at": "2026-10-08T12:00:00+00:00",
+            "economics": {
+                "free": True,
+                "renewal": {
+                    "period_seconds": 300,
+                    "units_per_period": 5
+                }
+            }
+        }
+        signal = capacity_economic_signal(
+            snapshot,
+            task_units=1,
+            expected_task_benefit=1,
+        )
+        self.assertEqual(signal["state"], "NON_NEGATIVE_FREE_RESOURCE")
+        self.assertEqual(signal["renewability"], "FAST")
+        self.assertEqual(
+            signal["resource_opportunity"],
+            "USABLE_IF_WORK_IS_ALREADY_REQUIRED",
+        )
+
+    def test_unknown_economics_do_not_boost_expiry_priority(self):
+        now = datetime(2026, 10, 8, 12, 0, tzinfo=timezone.utc)
+        snapshot = {
+            "provider": "unknown",
+            "observed_at": now.isoformat(),
+            "estimated_next_reset_at": {
+                "requests": (now + timedelta(minutes=2)).isoformat()
+            },
+            "metrics": {
+                "requests": {"limit": 100, "remaining": 80}
+            },
+        }
+        opportunity = capacity_opportunity(
+            snapshot,
+            now=now,
+            urgency_window_seconds=300,
+        )
+        self.assertGreater(opportunity["priority"], 1.0)
+        signal = capacity_economic_signal(snapshot, task_units=1, expected_task_benefit=1)
+        self.assertEqual(signal["state"], "ECONOMICS_UNKNOWN")
 
     def test_missing_capacity_is_not_invented(self):
         snapshot = extract_rate_limit_snapshot("mistral", {})
