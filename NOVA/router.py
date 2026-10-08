@@ -422,6 +422,7 @@ def scheduled_probe_provider_order(
         {
             "next_index": 0,
             "next_provider": None,
+            "last_probe_providers": [],
             "last_scheduled_provider": None,
             "last_scheduled_at": None,
         },
@@ -448,50 +449,59 @@ def scheduled_probe_provider_order(
 
 
 def advance_scheduled_probe_rotation(
-    state: dict[str, Any], providers: list[dict[str, Any]], scheduled_provider: dict[str, Any]
+    state: dict[str, Any],
+    providers: list[dict[str, Any]],
+    scheduled_provider: dict[str, Any],
+    probed_provider_names: list[str] | None = None,
 ) -> None:
-    """Advance to the next active roster provider after every heartbeat probe."""
+    """Advance to the next active provider that was not probed in this heartbeat."""
     if not providers or get_env("NOVA_ADVANCE_PROVIDER_ROTATION").lower() not in {"1", "true", "yes"}:
         return
 
     rotation = state.setdefault("provider_rotation", {}).setdefault("ai-heart", {})
     scheduled_name = scheduled_provider["name"]
+    probed = list(dict.fromkeys(probed_provider_names or [scheduled_name]))
+    probed_set = set(probed)
 
     active_providers = [provider for provider in providers if provider.get("status") == "active"]
     if not active_providers:
         return
 
-    try:
+    scheduled_index = next(
+        (i for i, provider in enumerate(active_providers) if provider["name"] == scheduled_name),
+        None,
+    )
+    if scheduled_index is None:
         scheduled_index = next(
-            i for i, provider in enumerate(active_providers)
-            if provider["name"] == scheduled_name
+            (i for i, provider in enumerate(providers) if provider["name"] == scheduled_name),
+            0,
         )
-        next_provider = active_providers[(scheduled_index + 1) % len(active_providers)]
-    except StopIteration:
-        try:
-            roster_index = next(
-                i for i, provider in enumerate(providers)
-                if provider["name"] == scheduled_name
-            )
-        except StopIteration:
-            roster_index = -1
+        ordered_candidates = [
+            provider for offset in range(1, len(providers) + 1)
+            for provider in [providers[(scheduled_index + offset) % len(providers)]]
+            if provider.get("status") == "active"
+        ]
+    else:
+        ordered_candidates = [
+            active_providers[(scheduled_index + offset) % len(active_providers)]
+            for offset in range(1, len(active_providers) + 1)
+        ]
 
-        next_provider = None
-        if roster_index >= 0:
-            for offset in range(1, len(providers) + 1):
-                candidate = providers[(roster_index + offset) % len(providers)]
-                if candidate.get("status") == "active":
-                    next_provider = candidate
-                    break
-
-        if next_provider is None:
-            return
+    next_provider = next(
+        (provider for provider in ordered_candidates if provider["name"] not in probed_set),
+        None,
+    )
+    if next_provider is None:
+        next_provider = ordered_candidates[0] if ordered_candidates else None
+    if next_provider is None:
+        return
 
     rotation["next_provider"] = next_provider["name"]
     rotation["next_index"] = next(
         i for i, provider in enumerate(active_providers)
         if provider["name"] == next_provider["name"]
     )
+    rotation["last_probe_providers"] = probed
     rotation["last_scheduled_provider"] = scheduled_name
     rotation["last_scheduled_at"] = datetime.now(timezone.utc).isoformat()
 
@@ -508,10 +518,13 @@ def intelligent_router(prompt: str) -> tuple[str, dict[str, Any]]:
     latency_policy = policy.get("latency", {})
     failure_policy = policy.get("failure", {})
     all_probes: list[dict[str, Any]] = []
+    probed_provider_names: list[str] = []
 
     for provider in active:
         print(f"Trying provider: {provider['name']}")
         text, signal, probes = call_provider(provider, prompt)
+        if probes and provider["name"] not in probed_provider_names:
+            probed_provider_names.append(provider["name"])
 
         for probe in probes:
             probe_role = (
@@ -548,12 +561,15 @@ def intelligent_router(prompt: str) -> tuple[str, dict[str, Any]]:
                     severity="urgent",
                 )
 
-        if scheduled_provider and provider["name"] == scheduled_provider["name"]:
-            advance_scheduled_probe_rotation(state, roster["providers"], scheduled_provider)
-
-        atomic_write_json(HEALTH_STATE_PATH, state)
-
         if text:
+            advance_scheduled_probe_rotation(
+                state,
+                roster["providers"],
+                scheduled_provider,
+                probed_provider_names,
+            )
+            atomic_write_json(HEALTH_STATE_PATH, state)
+
             summary = {
                 "heart": "AI",
                 "status": "HEALTHY",
@@ -579,6 +595,15 @@ def intelligent_router(prompt: str) -> tuple[str, dict[str, Any]]:
                 body=analysis,
                 severity=severity,
             )
+
+    if scheduled_provider:
+        advance_scheduled_probe_rotation(
+            state,
+            roster["providers"],
+            scheduled_provider,
+            probed_provider_names,
+        )
+    atomic_write_json(HEALTH_STATE_PATH, state)
 
     summary = {
         "heart": "AI",

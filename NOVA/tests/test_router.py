@@ -20,6 +20,7 @@ class RouterRotationTests(unittest.TestCase):
             provider("gemini"),
             provider("cerebras"),
             provider("mistral"),
+            provider("cloudflare"),
         ]
         self.state = _state_defaults()
 
@@ -32,38 +33,49 @@ class RouterRotationTests(unittest.TestCase):
 
         self.assertEqual(
             [item["name"] for item in ordered],
-            ["gemini", "cerebras", "mistral", "groq"],
+            ["gemini", "cerebras", "mistral", "cloudflare", "groq"],
         )
 
-    def test_rotation_advances_across_multiple_manual_runs(self):
+    def test_rotation_advances_to_next_unprobed_provider(self):
         rotation = self.state["provider_rotation"]["ai-heart"]
-
-        with patch.dict(os.environ, {"NOVA_ADVANCE_PROVIDER_ROTATION": "true"}):
-            expected = ["groq", "gemini", "cerebras", "mistral"]
-            for name in expected[:-1]:
-                ordered = scheduled_probe_provider_order(self.providers, self.state)
-                self.assertEqual(ordered[0]["name"], name)
-                advance_scheduled_probe_rotation(self.state, self.providers, ordered[0])
-
-            ordered = scheduled_probe_provider_order(self.providers, self.state)
-            self.assertEqual(ordered[0]["name"], "mistral")
-            advance_scheduled_probe_rotation(self.state, self.providers, ordered[0])
-            self.assertEqual(rotation["next_provider"], "groq")
-            self.assertEqual(rotation["next_index"], 0)
-
-    def test_rotation_skips_provider_removed_from_active_roster(self):
-        rotation = self.state["provider_rotation"]["ai-heart"]
-        rotation["next_provider"] = "groq"
 
         with patch.dict(os.environ, {"NOVA_ADVANCE_PROVIDER_ROTATION": "true"}):
             scheduled = scheduled_probe_provider_order(self.providers, self.state)[0]
             self.assertEqual(scheduled["name"], "groq")
 
-            self.providers[1]["status"] = "down"
-            advance_scheduled_probe_rotation(self.state, self.providers, scheduled)
+            probed = ["groq", "cerebras", "cloudflare", "gemini"]
+            advance_scheduled_probe_rotation(
+                self.state, self.providers, scheduled, probed
+            )
 
-        self.assertEqual(rotation["next_provider"], "cerebras")
-        self.assertEqual(rotation["next_index"], 1)
+        self.assertEqual(rotation["next_provider"], "mistral")
+        self.assertEqual(rotation["next_index"], 3)
+        self.assertEqual(rotation["last_probe_providers"], probed)
+
+    def test_rotation_continues_without_retesting_previous_heartbeat_probes(self):
+        rotation = self.state["provider_rotation"]["ai-heart"]
+        rotation["next_provider"] = "mistral"
+        rotation["last_probe_providers"] = ["groq", "cerebras", "cloudflare", "gemini"]
+
+        ordered = scheduled_probe_provider_order(self.providers, self.state)
+        self.assertEqual(ordered[0]["name"], "mistral")
+
+    def test_rotation_falls_back_to_next_active_after_scheduled_provider_is_down(self):
+        rotation = self.state["provider_rotation"]["ai-heart"]
+        rotation["next_provider"] = "mistral"
+        self.providers[4]["status"] = "down"
+
+        with patch.dict(os.environ, {"NOVA_ADVANCE_PROVIDER_ROTATION": "true"}):
+            scheduled = scheduled_probe_provider_order(self.providers, self.state)[0]
+            self.assertEqual(scheduled["name"], "mistral")
+
+            self.providers[0]["status"] = "down"
+            advance_scheduled_probe_rotation(
+                self.state, self.providers, scheduled, ["mistral"]
+            )
+
+        self.assertEqual(rotation["next_provider"], "gemini")
+        self.assertEqual(rotation["next_index"], 0)
 
     def test_legacy_index_state_remains_supported(self):
         rotation = self.state["provider_rotation"]["ai-heart"]
