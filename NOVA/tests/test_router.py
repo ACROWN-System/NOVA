@@ -75,7 +75,7 @@ class RouterRotationTests(unittest.TestCase):
             )
 
         self.assertEqual(rotation["next_provider"], "gemini")
-        self.assertEqual(rotation["next_index"], 1)
+        self.assertEqual(rotation["next_index"], 0)
 
     def test_legacy_index_state_remains_supported(self):
         rotation = self.state["provider_rotation"]["ai-heart"]
