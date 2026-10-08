@@ -27,7 +27,7 @@ def inspect_roster(roster: Mapping[str, Any]) -> dict[str, Any]:
                 if required and all(state == "CONFIGURED_NOT_VERIFIED" for state in states.values())
                 else "REQUIRED_NOT_CONFIGURED"
                 if required
-                else "UNKNOWN",
+                else "UNKNOWN"
             ),
         })
     return {"providers": providers}
