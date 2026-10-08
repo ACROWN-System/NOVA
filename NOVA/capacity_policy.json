@@ -69,6 +69,25 @@
     "reset_or_expiration_if_exposed": true,
     "remaining_must_not_be_inferred_as_authoritative": true
   },
+  "allocation_engine": {
+    "enabled": true,
+    "selection_method": "PARETO_FRONTIER",
+    "no_universal_weighted_score": true,
+    "hard_dimensions": [
+      "health_validity",
+      "call_allowance_fit",
+      "total_resource_fit"
+    ],
+    "optimization_dimensions": [
+      "economic_priority",
+      "expiry_priority",
+      "renewability",
+      "quality",
+      "latency",
+      "negative_effects"
+    ],
+    "unknown_values_must_not_create_positive_priority": true
+  },
   "runtime_allocation": {
     "expiry_aware": true,
     "renewability_aware": true,
