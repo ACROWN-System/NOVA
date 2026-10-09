@@ -20,7 +20,15 @@
     "Vercel AI Gateway — VERCEL_AI_GATEWAY_API_KEY_01; monthly free credit for selected models, amount not stated; gateway aggregator, free access and terms need current account verification; https://vercel.com/docs/ai-gateway/pricing",
     "AI Horde — anonymous access may use documented public key 0000000000; volunteer-hosted text/image service with queue-dependent availability, no SLA; https://aihorde.net/",
     "Typhoon / SCB 10X — TYPHOON_API_KEY_01; free research showcase API for Thai-oriented LLM/audio/OCR, terms and service guarantees need verification; https://docs.opentyphoon.ai/en/faq/",
-    "SiliconFlow — SILICONFLOW_API_KEY_01; free international terms differ from siliconflow.cn perpetual-free models; latter may require mainland-China real-name verification; eligibility unclear; https://docs.siliconflow.cn/docs/userguide/faqs/rate-limit-and-upgradation"
+    "SiliconFlow — SILICONFLOW_API_KEY_01; free international terms differ from siliconflow.cn perpetual-free models; latter may require mainland-China real-name verification; eligibility unclear; https://docs.siliconflow.cn/docs/userguide/faqs/rate-limit-and-upgradation",
+    "Fireworks AI — FIREWORKS_API_KEY_01; reported $1 trial credit without card; one-time only, exhaustion/top-up behavior must be verified; https://docs.fireworks.ai/faq-new/billing-pricing/",
+    "AI21 Labs — AI21_API_KEY_01; reported $10 trial credit valid 3 months and no card for trial; future account access may require a card; https://docs.ai21.com/docs/usage-cost",
+    "Scaleway Generative APIs — SCALEWAY_API_KEY_01; reported 1M free tokens plus 60 minutes Whisper one-time, no card; verify region and ensure over-quota requests fail closed; https://www.scaleway.com/en/pricing/model-as-a-service/",
+    "Upstage — UPSTAGE_API_KEY_01; reported $10 signup credit for LLM, OCR and embeddings, no card; one-time, and model pricing changes are time-sensitive; https://console.upstage.ai/docs/getting-started",
+    "Voyage AI — VOYAGE_API_KEY_01; reported one-time 200M free tokens for eligible embedding/reranker models; retrieval-focused, not general chat; https://docs.voyageai.com/docs/pricing",
+    "Contextual AI — CONTEXTUAL_API_KEY_01; reported one-time $25 credit for Generate/Rerank, no card listed; commercial rights and exhaustion behavior need verification; https://contextual.ai/pricing/",
+    "Mixedbread — MIXEDBREAD_API_KEY_01; reported one-time $5 for embedding/reranking/multimodal search, no card; finite credit; https://www.mixedbread.com/pricing",
+    "Tencent Hunyuan — TENCENT_HUNYUAN_API_KEY_01; reported one-time 1M tokens for eligible models plus separate embedding package; real-name verification/regional constraints may apply; https://cloud.tencent.com/document/product/1729/97731"
   ],
   "credential_policy": {
     "future_multiple_key_slots": "Use suffixed environment names such as PROVIDER_API_KEY_01, _02 without changing routing contracts.",
