@@ -49,14 +49,25 @@ Credential slots: CLOUDFLARE_API_KEY_01, CLOUDFLARE_ACCOUNT_ID
 Keep the provider configuration only after current account access, model availability, and free-mode terms are verified.
 Credential slot: MISTRAL_API_KEY_01
 
-### Cerebras — verify before treating as a $0 dependency
+### Cerebras — blocked under the current $0 / no-payment-method rule
 
-The provider remains in the roster for compatibility/fallback architecture, but NOVA must not assume a perpetual free tier. Verify current signup, billing/credit requirements, model catalog, and quota before obtaining or depending on a credential.
-Credential slot: CEREBRAS_API_KEY_01
+Current official pricing says a one-time $5 promotional credit requires a valid payment method and expires 30 days after activation. Access pauses when the promotional credit expires or is exhausted unless paid credits are purchased separately. It is not a perpetual free tier and is not eligible under the current no-payment-method requirement.
 
-### Additional candidates
+Source: https://www.cerebras.ai/pricing
+Credential slot: CEREBRAS_API_KEY_01 (retain for compatibility; do not prioritize)
 
-OpenRouter, Hugging Face Inference, SambaNova, Cohere, NVIDIA and other providers may be evaluated later. Candidates remain candidates until current terms, model availability, commercial-use conditions, privacy/data-use terms, and measurable API behavior are verified.
+### Additional candidates — evidence classification (2026-10-09)
+
+| Candidate | Proposed secret slot | Evidence and boundary | Current classification |
+| --- | --- | --- | --- |
+| OpenRouter | `OPENROUTER_API_KEY_01` | Official free plan lists 25+ free models, four free providers and 50 requests/day; current support guidance says 20 RPM. It is an aggregator/proxy, so it expands model access but does not provide fully independent upstream capacity. Free models and upstream availability can change. Sources: https://openrouter.ai/pricing/ ; https://openrouter.zendesk.com/hc/en-us/articles/39501163636379-OpenRouter-Rate-Limits-What-You-Need-to-Know | CANDIDATE — useful breadth, low daily quota |
+| Hugging Face Inference Providers | `HF_INFERENCE_API_KEY_01` | Official docs state free accounts receive $0.10/month in credits, subject to change, across a routed catalog of 200+ models/providers. It is another aggregation layer, not an independent provider for every model route. Never purchase credits or enable paid usage under the current rule. Source: https://huggingface.co/docs/inference-providers/pricing | CANDIDATE — small experimentation budget |
+| Cohere trial API | `COHERE_TRIAL_API_KEY_01` | Trial API keys are free but limited (including 1,000 calls/month for trial keys); Cohere says trial keys are not permitted for production/commercial use. Source: https://cohere.com/pricing ; https://docs.cohere.com/v2/docs/rate-limits | NON-COMMERCIAL DEVELOPMENT ONLY — not a production fallback |
+| SambaNova Cloud | `SAMBANOVA_API_KEY_01` | Current official plan page states users must add a payment method and purchase credits to run first requests. Source: https://cloud.sambanova.ai/plans | NOT ELIGIBLE under current no-card/$0 rule |
+| NVIDIA NIM / API Catalog | `NVIDIA_NIM_API_KEY_01` | Model/API breadth is worth investigating, but no verified evidence in this pass establishes sustained no-card, no-cost API access and current quota for this project. | UNKNOWN / BLOCKED — do not rely on it yet |
+| GitHub Models | — | GitHub officially retired the playground, catalog, inference API and BYOK on July 30, 2026. Source: https://github.blog/changelog/2026-07-30-github-models-is-now-retired/ | RETIRED — do not acquire a key |
+
+Candidate directories and community lists may help discover providers, but their claims are leads only. Before a provider enters the active roster, verify current official terms, payment-method requirement, commercial-use conditions, model/API compatibility, data policy, limits and a live minimal response. Do not make every discovered candidate a runtime dependency.
 
 ## GPU acquisition queue
 
@@ -74,7 +85,7 @@ Activation requires a provider-specific adapter. A generic GET health endpoint m
 Hugging Face currently documents ZeroGPU as shared GPU infrastructure for Spaces, with a free-account daily quota. This is not a generic GPU rental API and therefore requires a dedicated adapter.
 
 Source: https://huggingface.co/docs/hub/main/spaces-zerogpu
-Credential slot: HF_TOKEN_01 when authentication is required by the selected integration.
+Credential slot: HF_ZEROGPU_TOKEN_01 when authentication is required by the selected integration. Keep this GPU token scope distinct from `HF_INFERENCE_API_KEY_01` used for routed LLM inference.
 
 ## Activation gates
 
