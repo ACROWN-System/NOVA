@@ -79,13 +79,54 @@ def get_env(name: str) -> str:
 
 
 def classify_http_error(exc: urllib.error.HTTPError) -> tuple[str, str]:
+    """Classify an HTTP error without destroying the provider's original message."""
     try:
-        body = exc.read().decode("utf-8", errors="ignore").lower()
+        body = exc.read().decode("utf-8", errors="ignore")
     except Exception:
         body = ""
-    if exc.code == 404 or any(marker in body for marker in PERMANENT_ERROR_MARKERS):
+    normalized_body = body.lower()
+    if exc.code == 404 or any(
+        marker in normalized_body for marker in PERMANENT_ERROR_MARKERS
+    ):
         return "permanent", body
     return "transient", body
+
+
+# Allowlisted response headers only: never persist arbitrary headers that might
+# contain credentials or unrelated provider/account metadata.
+HTTP_DIAGNOSTIC_HEADER_NAMES = (
+    "retry-after",
+    "ratelimit-limit",
+    "ratelimit-remaining",
+    "ratelimit-reset",
+    "x-ratelimit-limit",
+    "x-ratelimit-remaining",
+    "x-ratelimit-reset",
+    "x-ratelimit-limit-requests",
+    "x-ratelimit-remaining-requests",
+    "x-ratelimit-reset-requests",
+    "x-ratelimit-limit-tokens",
+    "x-ratelimit-remaining-tokens",
+    "x-ratelimit-reset-tokens",
+    "x-request-id",
+    "request-id",
+)
+
+
+def diagnostic_http_headers(headers: Any) -> dict[str, str]:
+    """Return a small allowlisted set of response headers useful for diagnosis."""
+    if headers is None:
+        return {}
+    try:
+        items = headers.items()
+    except AttributeError:
+        return {}
+    normalized = {str(name).lower(): str(value) for name, value in items}
+    return {
+        name: normalized[name]
+        for name in HTTP_DIAGNOSTIC_HEADER_NAMES
+        if name in normalized
+    }
 
 
 def validate_health_payload(content: Any) -> tuple[bool, str]:
@@ -222,6 +263,7 @@ def call_openai_compatible(provider: dict[str, Any], prompt: str, validator=vali
                 "latency_ms": latency_ms,
                 "error_class": signal,
                 "error_detail": body[:400],
+                "response_headers": diagnostic_http_headers(exc.headers),
                 "capacity": annotate_probe(
                     {
                         "provider": provider["name"],
@@ -232,7 +274,8 @@ def call_openai_compatible(provider: dict[str, Any], prompt: str, validator=vali
             })
             print(
                 f"[{provider['name']}] HTTP {exc.code} on model '{model}' "
-                f"({signal}): {body[:200]}"
+                f"({signal}): {body[:200]} "
+                f"diagnostic_headers={diagnostic_http_headers(exc.headers)}"
             )
         except Exception as exc:
             latency_ms = (time.perf_counter() - started) * 1000
@@ -356,10 +399,12 @@ def call_gemini(provider: dict[str, Any], prompt: str, validator=validate_health
                 "latency_ms": latency_ms,
                 "error_class": signal,
                 "error_detail": body[:400],
+                "response_headers": diagnostic_http_headers(exc.headers),
             })
             print(
                 f"[{provider['name']}] HTTP {exc.code} on model '{model}' "
-                f"({signal}): {body[:200]}"
+                f"({signal}): {body[:200]} "
+                f"diagnostic_headers={diagnostic_http_headers(exc.headers)}"
             )
         except Exception as exc:
             latency_ms = (time.perf_counter() - started) * 1000

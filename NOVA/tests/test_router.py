@@ -1,11 +1,17 @@
 import os
 import unittest
+from email.message import Message
+from io import BytesIO
+import urllib.error
 from datetime import datetime, timedelta, timezone
 from unittest.mock import patch
 
 from NOVA.health import _state_defaults
 from NOVA.router import (
     advance_scheduled_probe_rotation,
+    call_openai_compatible,
+    classify_http_error,
+    diagnostic_http_headers,
     health_order_providers,
     scheduled_probe_provider_order,
 )
@@ -111,6 +117,72 @@ class RouterRotationTests(unittest.TestCase):
 
         self.assertEqual(ordered[0]["name"], "cerebras")
 
+
+    def test_http_error_preserves_original_body_and_classifies_case_insensitively(self):
+        headers = Message()
+        error = urllib.error.HTTPError(
+            "https://api.mistral.ai/v1/chat/completions",
+            429,
+            "Too Many Requests",
+            headers,
+            BytesIO(b'{"message":"Rate Limit Exceeded","type":"rate_limited","code":"1300"}'),
+        )
+
+        signal, body = classify_http_error(error)
+
+        self.assertEqual(signal, "transient")
+        self.assertIn("Rate Limit Exceeded", body)
+
+    def test_diagnostic_http_headers_are_allowlisted_and_case_insensitive(self):
+        headers = Message()
+        headers["Retry-After"] = "12"
+        headers["X-RateLimit-Remaining-Requests"] = "0"
+        headers["X-Request-Id"] = "req-123"
+        headers["Authorization"] = "Bearer DO_NOT_LOG"
+
+        diagnostic = diagnostic_http_headers(headers)
+
+        self.assertEqual(diagnostic["retry-after"], "12")
+        self.assertEqual(diagnostic["x-ratelimit-remaining-requests"], "0")
+        self.assertEqual(diagnostic["x-request-id"], "req-123")
+        self.assertNotIn("authorization", diagnostic)
+        self.assertNotIn("DO_NOT_LOG", repr(diagnostic))
+
+    def test_mistral_429_probe_records_rate_limit_headers_without_secrets(self):
+        headers = Message()
+        headers["Retry-After"] = "12"
+        headers["X-RateLimit-Limit-Requests"] = "1"
+        headers["X-RateLimit-Remaining-Requests"] = "0"
+        headers["X-Request-Id"] = "mistral-request-123"
+        headers["Authorization"] = "Bearer DO_NOT_LOG"
+        error = urllib.error.HTTPError(
+            "https://api.mistral.ai/v1/chat/completions",
+            429,
+            "Too Many Requests",
+            headers,
+            BytesIO(b'{"message":"rate limit exceeded","type":"rate_limited","code":"1300"}'),
+        )
+        mistral = {
+            "name": "mistral",
+            "api_key_env": "TEST_MISTRAL_KEY",
+            "base_url": "https://api.mistral.ai/v1/chat/completions",
+            "models": ["mistral-small-latest"],
+        }
+
+        with patch.dict(os.environ, {"TEST_MISTRAL_KEY": "test-key"}):
+            with patch("NOVA.router.urllib.request.urlopen", side_effect=error):
+                _, _, probes = call_openai_compatible(mistral, "test prompt")
+
+        probe = probes[0]
+        self.assertEqual(probe["api_status"], 429)
+        self.assertIn('"code":"1300"', probe["error_detail"])
+        self.assertEqual(probe["response_headers"]["retry-after"], "12")
+        self.assertEqual(
+            probe["response_headers"]["x-ratelimit-remaining-requests"], "0"
+        )
+        self.assertNotIn("authorization", probe["response_headers"])
+        self.assertNotIn("test-key", repr(probe))
+        self.assertEqual(probe["capacity"]["metrics"]["requests"]["remaining"], 0)
 
 if __name__ == "__main__":
     unittest.main()
