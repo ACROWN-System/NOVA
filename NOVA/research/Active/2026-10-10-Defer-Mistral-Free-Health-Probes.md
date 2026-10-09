@@ -22,11 +22,11 @@ Temporarily remove Mistral Free API from NOVA's active provider roster and autom
 ## Scope
 
 1. Remove the `mistral` provider from `NOVA/roster.json`'s active `providers` list and record it as deferred, not as active free capacity.
-2. Remove `MISTRAL_API_KEY_01` from both secret-injection blocks in `.github/workflows/nova_heartbeat.yml`, so the AI health and reasoning workflow no longer receives the secret.
+2. Remove `MISTRAL_API_KEY_01` from `.github/workflows/nova_heartbeat.yml` and `.github/workflows/nova_probe_scheduler.yml`, so neither live LLM health/failover workflow receives the secret.
 3. Remove Mistral from the current minimum free-development provider list and the minimum live-LLM configuration checklist in `NOVA/DEVELOPMENT-RESOURCE-READINESS.md`; preserve the dated historical incident evidence and annotate the deferred decision.
 4. Reclassify Mistral in `NOVA/PROVIDER-ACQUISITION-READINESS.md` as deferred pending explicit requalification.
 5. Update scheduler unit-test fixtures so they do not simulate Mistral as an active rotating provider. Keep the mocked Mistral HTTP-header regression tests because they are deterministic offline tests and do not call the provider.
-6. Add a deterministic regression assertion that Mistral is absent from the active runtime roster and the scheduled heartbeat workflow's secret environment.
+6. Add a deterministic regression assertion that Mistral is absent from the active runtime roster and both live health workflows' secret environments.
 7. Inspect and validate the resulting patch and run the existing offline test workflow.
 
 ## Explicit exclusions
