@@ -211,6 +211,7 @@ def record_probe(
     error_class: str | None,
     error_detail: str | None,
     capacity: dict[str, Any] | None = None,
+    response_headers: dict[str, str] | None = None,
     probe_role: str = "health",
     max_samples: int = 24,
     latency_degraded_multiplier: float = 2.0,
@@ -345,6 +346,9 @@ def record_probe(
     }
     if isinstance(capacity, dict):
         observation["capacity"] = capacity
+    if isinstance(response_headers, dict) and response_headers:
+        # Only the router's allowlisted response headers are accepted here.
+        observation["response_headers"] = response_headers
 
     target["last_observation"] = observation
     target["history"].append(observation)

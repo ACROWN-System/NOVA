@@ -153,5 +153,34 @@ class HealthTests(unittest.TestCase):
         )
 
 
+
+    def test_allowlisted_response_headers_are_persisted_in_health_history(self):
+        state = _state_defaults()
+        response_headers = {
+            "mistral-correlation-id": "corr-test-123",
+            "x-ratelimit-limit-req-minute": "4",
+            "x-ratelimit-remaining-req-minute": "0",
+        }
+        observation = record_probe(
+            state,
+            namespace="ai-heart",
+            provider="mistral",
+            credential_env="TEST_MISTRAL_KEY",
+            requested_model="mistral-small-latest",
+            actual_model=None,
+            api_status=429,
+            authentication="UNKNOWN",
+            response_valid=False,
+            quality_status="NOT_APPLICABLE",
+            latency_ms=100,
+            error_class="transient",
+            error_detail='{"code":"1300","type":"rate_limited"}',
+            response_headers=response_headers,
+        )
+        target = state["targets"]["ai-heart:mistral:mistral-small-latest"]
+        self.assertEqual(observation["response_headers"], response_headers)
+        self.assertEqual(target["last_observation"]["response_headers"], response_headers)
+        self.assertEqual(target["history"][-1]["response_headers"], response_headers)
+
 if __name__ == "__main__":
     unittest.main()

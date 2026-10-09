@@ -32,6 +32,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
+          NOSANA_GPU_API_KEY_01: ${{ secrets.NOSANA_GPU_API_KEY_01 }}
+          HF_ZEROGPU_TOKEN_01: ${{ secrets.HF_ZEROGPU_TOKEN_01 }}
           NOVA_GPU_PROVIDER_ROTATION_INDEX: ${{ github.run_number }}
         run: python NOVA/gpu_heartbeat.py
 

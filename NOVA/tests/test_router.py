@@ -1,10 +1,11 @@
+import json
 import os
 import unittest
 from email.message import Message
 from io import BytesIO
 import urllib.error
 from datetime import datetime, timedelta, timezone
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 from NOVA.health import _state_defaults
 from NOVA.router import (
@@ -138,22 +139,34 @@ class RouterRotationTests(unittest.TestCase):
         headers["Retry-After"] = "12"
         headers["X-RateLimit-Remaining-Requests"] = "0"
         headers["X-Request-Id"] = "req-123"
+        headers["Mistral-Correlation-Id"] = "mistral-corr-123"
+        headers["X-Kong-Request-Id"] = "kong-req-123"
+        headers["X-RateLimit-Limit-Req-Minute"] = "0"
+        headers["X-RateLimit-Remaining-Req-Minute"] = "0"
         headers["Authorization"] = "Bearer DO_NOT_LOG"
+        headers["Set-Cookie"] = "session=DO_NOT_PERSIST"
 
         diagnostic = diagnostic_http_headers(headers)
 
         self.assertEqual(diagnostic["retry-after"], "12")
         self.assertEqual(diagnostic["x-ratelimit-remaining-requests"], "0")
         self.assertEqual(diagnostic["x-request-id"], "req-123")
+        self.assertEqual(diagnostic["mistral-correlation-id"], "mistral-corr-123")
+        self.assertEqual(diagnostic["x-kong-request-id"], "kong-req-123")
+        self.assertEqual(diagnostic["x-ratelimit-limit-req-minute"], "0")
+        self.assertEqual(diagnostic["x-ratelimit-remaining-req-minute"], "0")
         self.assertNotIn("authorization", diagnostic)
+        self.assertNotIn("set-cookie", diagnostic)
         self.assertNotIn("DO_NOT_LOG", repr(diagnostic))
+        self.assertNotIn("DO_NOT_PERSIST", repr(diagnostic))
 
     def test_mistral_429_probe_records_rate_limit_headers_without_secrets(self):
         headers = Message()
         headers["Retry-After"] = "12"
-        headers["X-RateLimit-Limit-Requests"] = "1"
-        headers["X-RateLimit-Remaining-Requests"] = "0"
-        headers["X-Request-Id"] = "mistral-request-123"
+        headers["X-RateLimit-Limit-Req-Minute"] = "4"
+        headers["X-RateLimit-Remaining-Req-Minute"] = "0"
+        headers["Mistral-Correlation-Id"] = "mistral-request-123"
+        headers["X-Kong-Request-Id"] = "mistral-request-123"
         headers["Authorization"] = "Bearer DO_NOT_LOG"
         error = urllib.error.HTTPError(
             "https://api.mistral.ai/v1/chat/completions",
@@ -178,11 +191,60 @@ class RouterRotationTests(unittest.TestCase):
         self.assertIn('"code":"1300"', probe["error_detail"])
         self.assertEqual(probe["response_headers"]["retry-after"], "12")
         self.assertEqual(
-            probe["response_headers"]["x-ratelimit-remaining-requests"], "0"
+            probe["response_headers"]["x-ratelimit-remaining-req-minute"], "0"
+        )
+        self.assertEqual(
+            probe["response_headers"]["mistral-correlation-id"], "mistral-request-123"
         )
         self.assertNotIn("authorization", probe["response_headers"])
         self.assertNotIn("test-key", repr(probe))
-        self.assertEqual(probe["capacity"]["metrics"]["requests"]["remaining"], 0)
+        self.assertEqual(
+            probe["capacity"]["metrics"]["requests_per_minute"]["remaining"], 0
+        )
+
+
+    def test_groq_gpt_oss_uses_bounded_completion_token_budget(self):
+        response_payload = {
+            "model": "openai/gpt-oss-120b",
+            "choices": [{
+                "message": {
+                    "content": json.dumps({
+                        "nova_health": "OK",
+                        "ack": "NOVA_HEALTH_PROBE",
+                    })
+                }
+            }],
+        }
+        response = MagicMock()
+        response.__enter__.return_value = response
+        response.status = 200
+        response.headers = Message()
+        response.read.return_value = json.dumps(response_payload).encode("utf-8")
+        groq = {
+            "name": "groq",
+            "api_key_env": "TEST_GROQ_KEY",
+            "base_url": "https://api.groq.com/openai/v1/chat/completions",
+            "models": ["openai/gpt-oss-120b"],
+        }
+
+        with patch.dict(os.environ, {"TEST_GROQ_KEY": "test-key"}):
+            with patch(
+                "NOVA.router.urllib.request.urlopen", return_value=response
+            ) as urlopen:
+                content, signal, probes = call_openai_compatible(
+                    groq, 'Return only the expected NOVA health JSON.'
+                )
+
+        request = urlopen.call_args.args[0]
+        sent = json.loads(request.data.decode("utf-8"))
+        self.assertEqual(signal, "success")
+        self.assertEqual(probes[0]["api_status"], 200)
+        self.assertIsNotNone(content)
+        self.assertEqual(sent["max_completion_tokens"], 256)
+        self.assertEqual(sent["reasoning_effort"], "low")
+        self.assertNotIn("max_tokens", sent)
+        self.assertEqual(sent["response_format"]["type"], "json_schema")
+        self.assertNotIn("test-key", repr(probes))
 
 if __name__ == "__main__":
     unittest.main()
