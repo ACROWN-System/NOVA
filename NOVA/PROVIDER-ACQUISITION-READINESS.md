@@ -122,6 +122,23 @@ The current 2026-10-09 discovery register lists free or trial-backed services fo
 
 Do not acquire all of these keys now. Select a capability first, verify the latest terms/account entitlement, then add one key and a tested adapter for the concrete workload. A one-time credit should be recorded with remaining quota and expiry, and never presented as recurring free capacity.
 
+### One-time no-card credits for development and benchmarking (not recurring capacity)
+
+One-time trials can help us benchmark adapters and models while building the prototype. They must be recorded as finite, expiring/non-renewing resources and never counted as sustainable free capacity.
+
+| Provider | Proposed secret slot | Reported free allowance | Classification / caution |
+| --- | --- | --- | --- |
+| Fireworks AI | FIREWORKS_API_KEY_01 | Reported $1 trial credit with no card. https://docs.fireworks.ai/faq-new/billing-pricing/ | CANDIDATE for a bounded smoke/quality test; verify whether a card is needed after the credit is consumed and don't enable top-up |
+| AI21 Labs | AI21_API_KEY_01 | Reported $10 trial credit, valid for 3 months, no card for the trial. https://docs.ai21.com/docs/usage-cost | CANDIDATE for evaluation; future access after expiry may require a card |
+| Scaleway Generative APIs | SCALEWAY_API_KEY_01 | Reported one-time 1,000,000 token allowance plus 60 minutes Whisper transcription; no card reported. https://www.scaleway.com/en/pricing/model-as-a-service/ | CANDIDATE; verify region, account activation, exact eligible models and that over-quota requests fail closed without a payment method |
+| Upstage | UPSTAGE_API_KEY_01 | Reported $10 signup credit covering LLM and document/embedding APIs; no card reported. https://console.upstage.ai/docs/getting-started | CANDIDATE for testing; one-time only. Record dated price changes (public docs indicate Solar pricing changes on 2026-10-11) |
+| Voyage AI | VOYAGE_API_KEY_01 | Reported one-time 200M free tokens per eligible embeddings/reranking model, subject to the pricing table and model-specific exclusions. https://docs.voyageai.com/docs/pricing | CANDIDATE for retrieval/embedding evaluation, not general-purpose chat; no paid fallback after free tokens are consumed |
+| Contextual AI | CONTEXTUAL_API_KEY_01 | Reported one-time $25 credit for Generate and Rerank APIs, no card listed. https://contextual.ai/pricing/ | CANDIDATE; commercial rights and exhaustion behavior need confirmation |
+| Mixedbread | MIXEDBREAD_API_KEY_01 | Reported one-time $5 credit for embeddings/reranking and multimodal search, no card. https://www.mixedbread.com/pricing | CANDIDATE for knowledge retrieval tests; finite credits |
+| Tencent Hunyuan | TENCENT_HUNYUAN_API_KEY_01 | Reported first-activation package of 1M tokens (and separate embedding package), valid for one year; no card reported. https://cloud.tencent.com/document/product/1729/97731 | LOW PRIORITY / ELIGIBILITY CHECK — identity verification and regional/account constraints may block access; don't bypass provider eligibility controls |
+
+Before signup, verify the current official pricing/terms and account flow. These details were surfaced by the 2026-10-09 discovery dataset and may change; this table is not proof that a particular account is eligible.
+
 ## GPU acquisition queue
 
 ### Nosana — first GPU candidate
