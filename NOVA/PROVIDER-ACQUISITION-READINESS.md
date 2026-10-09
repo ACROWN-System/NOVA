@@ -44,11 +44,6 @@ Workers AI currently provides a 10,000-Neuron/day free allocation. NOVA's roster
 Source: https://developers.cloudflare.com/workers-ai/platform/pricing/
 Credential slots: CLOUDFLARE_API_KEY_01, CLOUDFLARE_ACCOUNT_ID
 
-### Mistral — verify before activation
-
-Keep the provider configuration only after current account access, model availability, and free-mode terms are verified.
-Credential slot: MISTRAL_API_KEY_01
-
 ### Cerebras — blocked under the current $0 / no-payment-method rule
 
 Current official pricing says a one-time $5 promotional credit requires a valid payment method and expires 30 days after activation. Access pauses when the promotional credit expires or is exhausted unless paid credits are purchased separately. It is not a perpetual free tier and is not eligible under the current no-payment-method requirement.
@@ -156,6 +151,20 @@ Hugging Face currently documents ZeroGPU as shared GPU infrastructure for Spaces
 
 Source: https://huggingface.co/docs/hub/main/spaces-zerogpu
 Credential slot: HF_ZEROGPU_TOKEN_01 when authentication is required by the selected integration. Keep this GPU token scope distinct from `HF_INFERENCE_API_KEY_01` used for routed LLM inference.
+
+## Deferred suppliers (not in the active free-tier acquisition queue)
+
+### Mistral Free API — DEFERRED (decision: 2026-10-10)
+
+Mistral Free API has been removed from NOVA's active runtime roster and scheduled LLM heartbeat/failover environment by user decision after repeated HTTP 429 / code 1300 failures under negligible reported successful usage and the provider chatbot's explanation of best-effort Free-mode capacity prioritization.
+
+- Active model previously configured: `mistral-small-latest`.
+- Historical credential slot: `MISTRAL_API_KEY_01`; it is not injected into the scheduled heartbeat workflow and no secret was deleted or rotated.
+- Do not count Mistral as available free capacity or run automated live health probes while deferred.
+- Retain historical health observations, support correspondence, the incident record, and deterministic mocked header-parsing tests.
+- The API rejection's exact underlying cause is not independently verified; this decision does not establish provider misconduct or determine whether the paid API is suitable.
+
+**Requalification gate:** only reconsider after explicit user authorization and evidence-based evaluation of actual availability, response quality, reliability, current terms, and economic suitability. Do not add Mistral back to the active roster merely because a credential exists or a single request succeeds.
 
 ## Activation gates
 
