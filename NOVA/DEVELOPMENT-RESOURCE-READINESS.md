@@ -51,7 +51,7 @@ These do not replace the direct-provider rows above and must not become active r
 | Provider | Credential/resource | Development role | Measurements required | State |
 | --- | --- | --- | --- | --- |
 | Nosana | NOSANA_GPU_API_KEY_01 | First real GPU workload path; image/video/model experiments | available credits, reserved credits, settled credits, available credits, spending history, workload runtime, GPU class | REQUIRED for GPU/media development |
-| Hugging Face ZeroGPU | HF_TOKEN_01 when authentication is needed | Shared GPU validation and provider-independent experiments | GPU-seconds remaining, reset time, queue/priority, over-quota credit usage if applicable | SECONDARY |
+| Hugging Face ZeroGPU | HF_ZEROGPU_TOKEN_01 when authentication is needed | Shared GPU validation and provider-independent experiments | GPU-seconds remaining, reset time, queue/priority, over-quota credit usage if applicable | SECONDARY |
 
 Nosana's current API exposes credit balance, spending history and transactions. API-key scopes include `credits:read`, `jobs:read`, and workload-writing scopes; least privilege should be used. Free-credit eligibility can also be checked through the API. See: https://learn.nosana.com/api/credits.html and https://learn.nosana.com/api/scopes.html
 
