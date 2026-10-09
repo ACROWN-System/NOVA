@@ -22,7 +22,7 @@ NOVA must not assume that a quota belongs to an individual API key. Providers ma
 | Google Gemini | GEMINI_API_KEY_01 | Independent model-family benchmark and multimodal testing | project quota/limits, token usage, model, response latency; account/dashboard quota where API does not expose remaining | Free tier provides access to selected models and limits are visible in AI Studio; limits are project-level | REQUIRED |
 | Mistral | MISTRAL_API_KEY_01 | Independent fallback and quality benchmark | monthly included usage, rate limits, token usage, remaining credit when account data exposes it | Free mode provides API access without a credit card; included monthly usage and limits are shown in the account | REQUIRED |
 | Cloudflare Workers AI | CLOUDFLARE_API_KEY_01 + CLOUDFLARE_ACCOUNT_ID | Independent inference path and free Neuron testing | Neurons used/remaining, reset, model availability, request errors | 10,000 Neurons/day on Free; many models remain free, including GLM-4.7 Flash | REQUIRED |
-| Cerebras | CEREBRAS_API_KEY_01 | Additional independent LLM/failover benchmark | usage/rate-limit data exposed by account/API, token usage, latency | Current documentation provides a $0 Free tier with lower rate limits | RECOMMENDED |
+| Cerebras | CEREBRAS_API_KEY_01 | Optional fallback only if the no-payment-method rule changes | usage/rate-limit data exposed by account/API, token usage, latency | Official pricing says the one-time $5 promotional credit requires a valid payment method and expires after 30 days | BLOCKED FOR CURRENT $0 / NO-PAYMENT RULE |
 
 ### Mistral account-specific observation and later evidence
 
@@ -33,6 +33,18 @@ NOVA must not assume that a quota belongs to an individual API key. Providers ma
 **Current classification:** The older “no API key / upgrade required” observation is not sufficient to describe the later state. The 429 demonstrates that the heartbeat request reached a rate-limit response; it does not identify which limit triggered or establish the current monthly balance. Keep the cause **UNKNOWN** until the response headers, exact model limits, usage timing, and organization-level activity have been correlated. Do not enable pay-as-you-go, add a payment method, or replace the key merely to test a hypothesis.
 
 Continue the investigation using [the Mistral 429 diagnostic loop](research/2026.10.09-IMPLEMENTED-mistral-429-diagnostics-investigation-loop.md). Preserve this historical record rather than overwriting it with an undated current-state claim.
+
+## Additional LLM access candidates
+
+These do not replace the direct-provider rows above and must not become active runtime dependencies until an adapter and tests exist.
+
+| Candidate | Secret slot | Current evidence | Use boundary |
+| --- | --- | --- | --- |
+| OpenRouter | `OPENROUTER_API_KEY_01` | Official free plan: 25+ free models, four free providers and 50 requests/day; support documents 20 RPM. https://openrouter.ai/pricing/ ; https://openrouter.zendesk.com/hc/en-us/articles/39501163636379-OpenRouter-Rate-Limits-What-You-Need-to-Know | Aggregator, not independent upstream capacity; free models change |
+| Hugging Face Inference Providers | `HF_INFERENCE_API_KEY_01` | Free-account allowance $0.10/month, subject to change. https://huggingface.co/docs/inference-providers/pricing | Aggregator; do not purchase credits or enable paid usage |
+| Cohere trial | `COHERE_TRIAL_API_KEY_01` | Free trial, 1,000 calls/month; not permitted for production/commercial use. https://docs.cohere.com/v2/docs/rate-limits | Development only; not a public-service fallback |
+| SambaNova Cloud | `SAMBANOVA_API_KEY_01` | Current plan page says payment method plus purchased credits are required for first requests. https://cloud.sambanova.ai/plans | Ineligible under current rule |
+| NVIDIA NIM / API Catalog | `NVIDIA_NIM_API_KEY_01` | No verified no-card/no-cost sustained API offer confirmed in this pass | UNKNOWN / BLOCKED |
 
 ## GPU resources
 
@@ -87,7 +99,7 @@ Obtain and configure at least:
 - CLOUDFLARE_API_KEY_01
 - CLOUDFLARE_ACCOUNT_ID
 
-CEREBRAS_API_KEY_01 should be added as an additional independent fallback if its current account terms are acceptable.
+CEREBRAS_API_KEY_01 is not a priority while the project requires $0 use without adding a payment method; the current official offer is a one-time $5 credit that requires a valid payment method and expires after 30 days. See https://www.cerebras.ai/pricing.
 
 ### C. Live development test categories
 
