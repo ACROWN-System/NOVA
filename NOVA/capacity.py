@@ -181,10 +181,7 @@ def extract_rate_limit_snapshot(
             ),
         }
     else:
-        mappings = {
-            metric: (*keys, None)
-            for metric, keys in generic_mapping.items()
-        }
+        mappings = generic_mapping
 
     for metric, (limit_key, remaining_key, reset_key, unit, window_seconds) in mappings.items():
         present = any(k in normalized for k in (limit_key, remaining_key, reset_key))
