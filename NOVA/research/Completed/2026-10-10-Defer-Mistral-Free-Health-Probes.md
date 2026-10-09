@@ -1,7 +1,7 @@
 # Defer Mistral Free API from Runtime Health Checks
 
 **Date:** 2026-10-10  
-**Status:** ACTIVE — implementation and automated validation pending  
+**Status:** COMPLETED — PR #58 merged; offline CI passed 57 tests; no live provider calls made  
 **Branch:** `chore/defer-mistral-free-health-probes`
 
 ## Navigation-process limitation
@@ -52,3 +52,12 @@ Temporarily remove Mistral Free API from NOVA's active provider roster and autom
 - Confirm offline scheduler fixtures no longer model Mistral as active and the new guard regression test covers roster/workflow exclusion.
 - Run repository CI and inspect its result. Live-only Mistral diagnostics remain historical and out of scope.
 - Keep the plan Active until the implementation stage is reviewed and automated checks pass; then move this plan to `NOVA/research/Completed/` if that workflow is supported.
+
+
+## Completion record
+
+- Pull request [#58](https://github.com/ACROWN-System/NOVA/pull/58) merged into `main` as commit `448ab60da10ca777cd9f1a5681b2c17391093d8d`.
+- NOVA Health Tests run [37991457070](https://github.com/ACROWN-System/NOVA/actions/runs/37991457070) passed compilation and all 57 offline tests, including the new deferral guard test.
+- No provider API was called by validation. Historical Mistral health observations and mocked diagnostic regression tests remain preserved.
+- Mistral Free API is deferred from active free-tier capacity and live health/failover workflows. Requalification requires explicit user authorization and evidence of suitability.
+- The missing repository-level navigation protocol/template remains an unresolved governance gap.
