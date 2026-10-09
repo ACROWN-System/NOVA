@@ -238,5 +238,34 @@ class CapacityMemoryTests(unittest.TestCase):
         self.assertEqual(target["history"][-1]["capacity"], capacity)
 
 
+
+    def test_mistral_specific_rate_limit_windows_and_query_cost_are_extracted(self):
+        snapshot = extract_rate_limit_snapshot(
+            "mistral",
+            {
+                "x-ratelimit-limit-req-minute": "4",
+                "x-ratelimit-remaining-req-minute": "0",
+                "x-ratelimit-limit-req-10-second": "2",
+                "x-ratelimit-remaining-req-10-second": "0",
+                "x-ratelimit-limit-tokens-minute": "5000000",
+                "x-ratelimit-remaining-tokens-minute": "4999911",
+                "x-ratelimit-limit-tokens-month": "1000000000000",
+                "x-ratelimit-remaining-tokens-month": "999998798434",
+                "x-ratelimit-tokens-query-cost": "52",
+            },
+            observed_at="2026-10-09T00:00:00+00:00",
+        )
+
+        self.assertEqual(snapshot["measurement_state"], "OBSERVED")
+        self.assertEqual(snapshot["metrics"]["requests_per_minute"]["limit"], 4)
+        self.assertEqual(snapshot["metrics"]["requests_per_minute"]["remaining"], 0)
+        self.assertEqual(snapshot["metrics"]["requests_per_minute"]["window_seconds"], 60)
+        self.assertEqual(snapshot["metrics"]["requests_per_10_seconds"]["remaining"], 0)
+        self.assertEqual(snapshot["metrics"]["requests_per_10_seconds"]["window_seconds"], 10)
+        self.assertEqual(snapshot["metrics"]["tokens_per_minute"]["remaining"], 4999911)
+        self.assertEqual(snapshot["metrics"]["tokens_per_month"]["remaining"], 999998798434)
+        self.assertEqual(snapshot["metrics"]["tokens_query_cost"]["value"], 52)
+        self.assertEqual(snapshot["call_allowances"]["tokens_per_month"]["unit"], "tokens")
+
 if __name__ == "__main__":
     unittest.main()
