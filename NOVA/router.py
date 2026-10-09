@@ -108,6 +108,22 @@ HTTP_DIAGNOSTIC_HEADER_NAMES = (
     "x-ratelimit-limit-tokens",
     "x-ratelimit-remaining-tokens",
     "x-ratelimit-reset-tokens",
+    # Mistral-specific rate-limit headers documented in real responses.
+    "x-ratelimit-limit-req-minute",
+    "x-ratelimit-remaining-req-minute",
+    "x-ratelimit-reset-req-minute",
+    "x-ratelimit-limit-req-10-second",
+    "x-ratelimit-remaining-req-10-second",
+    "x-ratelimit-reset-req-10-second",
+    "x-ratelimit-limit-tokens-minute",
+    "x-ratelimit-remaining-tokens-minute",
+    "x-ratelimit-reset-tokens-minute",
+    "x-ratelimit-limit-tokens-month",
+    "x-ratelimit-remaining-tokens-month",
+    "x-ratelimit-reset-tokens-month",
+    "x-ratelimit-tokens-query-cost",
+    "mistral-correlation-id",
+    "x-kong-request-id",
     "x-request-id",
     "request-id",
 )
@@ -190,6 +206,14 @@ def call_openai_compatible(provider: dict[str, Any], prompt: str, validator=vali
             "max_tokens": 64,
         }
         if provider["name"] == "groq":
+            # GPT-OSS is a reasoning model; use Groq's current completion-token
+            # field and a bounded low-effort health probe instead of max_tokens.
+            # This is a request-contract correction; live success still requires
+            # verification against the account's current API behavior.
+            if model.startswith("openai/gpt-oss-"):
+                data.pop("max_tokens", None)
+                data["max_completion_tokens"] = 256
+                data["reasoning_effort"] = "low"
             data["response_format"] = {
                 "type": "json_schema",
                 "json_schema": {
@@ -243,6 +267,7 @@ def call_openai_compatible(provider: dict[str, Any], prompt: str, validator=vali
                     headers=response.headers,
                     usage=result.get("usage") if isinstance(result.get("usage"), dict) else None,
                 )
+                probe["response_headers"] = diagnostic_http_headers(response.headers)
                 probes.append(probe)
                 if valid:
                     return content, "success", probes
@@ -620,6 +645,11 @@ def intelligent_router(prompt: str) -> tuple[str, dict[str, Any]]:
                 error_class=probe.get("error_class"),
                 error_detail=probe.get("error_detail"),
                 capacity=probe.get("capacity") if isinstance(probe.get("capacity"), dict) else None,
+                response_headers=(
+                    probe.get("response_headers")
+                    if isinstance(probe.get("response_headers"), dict)
+                    else None
+                ),
                 probe_role=probe_role,
                 max_samples=int(latency_policy.get("max_samples_per_target", 24)),
                 latency_degraded_multiplier=float(latency_policy.get("degraded_multiplier", 2.0)),
