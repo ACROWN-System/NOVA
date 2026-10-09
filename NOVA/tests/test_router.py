@@ -5,6 +5,7 @@ from email.message import Message
 from io import BytesIO
 import urllib.error
 from datetime import datetime, timedelta, timezone
+from pathlib import Path
 from unittest.mock import MagicMock, patch
 
 from NOVA.health import _state_defaults
@@ -28,7 +29,7 @@ class RouterRotationTests(unittest.TestCase):
             provider("groq"),
             provider("gemini"),
             provider("cerebras"),
-            provider("mistral"),
+            provider("test_provider_d"),
             provider("cloudflare"),
         ]
         self.state = _state_defaults()
@@ -65,7 +66,7 @@ class RouterRotationTests(unittest.TestCase):
 
         self.assertEqual(
             [item["name"] for item in ordered],
-            ["gemini", "cerebras", "mistral", "cloudflare", "groq"],
+            ["gemini", "cerebras", "test_provider_d", "cloudflare", "groq"],
         )
 
     def test_rotation_advances_to_next_unprobed_provider(self):
@@ -80,30 +81,30 @@ class RouterRotationTests(unittest.TestCase):
                 self.state, self.providers, scheduled, probed
             )
 
-        self.assertEqual(rotation["next_provider"], "mistral")
+        self.assertEqual(rotation["next_provider"], "test_provider_d")
         self.assertEqual(rotation["next_index"], 3)
         self.assertEqual(rotation["last_probe_providers"], probed)
 
     def test_rotation_continues_without_retesting_previous_heartbeat_probes(self):
         rotation = self.state["provider_rotation"]["ai-heart"]
-        rotation["next_provider"] = "mistral"
+        rotation["next_provider"] = "test_provider_d"
         rotation["last_probe_providers"] = ["groq", "cerebras", "cloudflare", "gemini"]
 
         ordered = scheduled_probe_provider_order(self.providers, self.state)
-        self.assertEqual(ordered[0]["name"], "mistral")
+        self.assertEqual(ordered[0]["name"], "test_provider_d")
 
     def test_rotation_falls_back_to_next_active_after_scheduled_provider_is_down(self):
         rotation = self.state["provider_rotation"]["ai-heart"]
-        rotation["next_provider"] = "mistral"
+        rotation["next_provider"] = "test_provider_d"
         self.providers[4]["status"] = "down"
 
         with patch.dict(os.environ, {"NOVA_ADVANCE_PROVIDER_ROTATION": "true"}):
             scheduled = scheduled_probe_provider_order(self.providers, self.state)[0]
-            self.assertEqual(scheduled["name"], "mistral")
+            self.assertEqual(scheduled["name"], "test_provider_d")
 
             self.providers[0]["status"] = "down"
             advance_scheduled_probe_rotation(
-                self.state, self.providers, scheduled, ["mistral"]
+                self.state, self.providers, scheduled, ["test_provider_d"]
             )
 
         self.assertEqual(rotation["next_provider"], "gemini")
@@ -245,6 +246,43 @@ class RouterRotationTests(unittest.TestCase):
         self.assertNotIn("max_tokens", sent)
         self.assertEqual(sent["response_format"]["type"], "json_schema")
         self.assertNotIn("test-key", repr(probes))
+
+class DeferredProviderRosterTests(unittest.TestCase):
+    def test_mistral_is_deferred_and_not_in_live_health_workflows(self):
+        repository_root = Path(__file__).resolve().parents[2]
+        nova_root = Path(__file__).resolve().parents[1]
+
+        roster = json.loads((nova_root / "roster.json").read_text(encoding="utf-8"))
+        active_names = {item.get("name") for item in roster.get("providers", [])}
+        self.assertNotIn("mistral", active_names)
+
+        deferred = {
+            item.get("name"): item
+            for item in roster.get("deferred_providers", [])
+        }
+        self.assertEqual(deferred["mistral"]["status"], "DEFERRED")
+
+        for workflow_name in (
+            "nova_heartbeat.yml",
+            "nova_probe_scheduler.yml",
+        ):
+            workflow = (
+                repository_root / ".github" / "workflows" / workflow_name
+            ).read_text(encoding="utf-8")
+            self.assertNotIn("MISTRAL_API_KEY_01", workflow, workflow_name)
+
+        # A previously persisted queue may still mention Mistral. Scheduler
+        # normalization must rebuild it from the current active provider roster.
+        state = _state_defaults()
+        rotation = state["provider_rotation"]["ai-heart"]
+        rotation["next_provider"] = "mistral"
+        rotation["probe_queue"] = [
+            "mistral", "groq", "gemini", "cerebras", "cloudflare"
+        ]
+        ordered = scheduled_probe_provider_order(roster["providers"], state)
+        self.assertNotIn("mistral", [item["name"] for item in ordered])
+        self.assertNotIn("mistral", rotation["probe_queue"])
+
 
 if __name__ == "__main__":
     unittest.main()

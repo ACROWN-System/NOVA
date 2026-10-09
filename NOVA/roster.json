@@ -71,16 +71,6 @@
       "status": "active"
     },
     {
-      "api_key_env": "MISTRAL_API_KEY_01",
-      "base_url": "https://api.mistral.ai/v1/chat/completions",
-      "kind": "openai_compatible",
-      "models": [
-        "mistral-small-latest"
-      ],
-      "name": "mistral",
-      "status": "active"
-    },
-    {
       "account_id_env": "CLOUDFLARE_ACCOUNT_ID",
       "api_key_env": "CLOUDFLARE_API_KEY_01",
       "base_url": "https://api.cloudflare.com/client/v4/accounts/{CF_ACCOUNT_ID}/ai/v1/chat/completions",
@@ -90,6 +80,19 @@
       ],
       "name": "cloudflare",
       "status": "active"
+    }
+  ],
+  "deferred_providers": [
+    {
+      "name": "mistral",
+      "status": "DEFERRED",
+      "models": [
+        "mistral-small-latest"
+      ],
+      "credential_env": "MISTRAL_API_KEY_01",
+      "decision_date": "2026-10-10",
+      "reason": "User decision to pause Mistral Free API after repeated HTTP 429/code 1300 failures under negligible reported usage and the provider chatbot's Free-mode capacity-prioritization explanation. The exact cause of the individual rejection and any broader intent remain unverified.",
+      "requalification_gate": "Do not restore to active providers or live health/failover probes unless the user explicitly requests requalification and objective availability, quality, and reliability criteria are satisfied."
     }
   ]
 }
