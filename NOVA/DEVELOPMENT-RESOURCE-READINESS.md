@@ -34,6 +34,10 @@ NOVA must not assume that a quota belongs to an individual API key. Providers ma
 
 Continue the investigation using [the Mistral 429 diagnostic loop](research/2026.10.09-IMPLEMENTED-mistral-429-diagnostics-investigation-loop.md). Preserve this historical record rather than overwriting it with an undated current-state claim.
 
+## GPU credential injection boundary
+
+The GPU heartbeat workflow exports the two candidate secret environment-variable names `NOSANA_GPU_API_KEY_01` and `HF_ZEROGPU_TOKEN_01`. The GPU roster currently has no active providers, so the heartbeat remains UNCONFIGURED until a provider-specific adapter and an approved active provider entry exist. Mapping a secret into a workflow must never be mistaken for activating or testing a provider.
+
 ## Additional LLM access candidates
 
 These do not replace the direct-provider rows above and must not become active runtime dependencies until an adapter and tests exist.
