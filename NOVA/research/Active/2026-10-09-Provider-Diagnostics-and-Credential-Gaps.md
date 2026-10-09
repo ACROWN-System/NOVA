@@ -1,7 +1,7 @@
 # Provider Diagnostics and Credential-Gap Plan
 
 **Date:** 2026-10-09  
-**Status:** ACTIVE — implementation and verification in progress  
+**Status:** ACTIVE — PR #57 is open; offline CI passed 56 tests at the current branch head; live provider verification remains pending  
 **Branch:** `fix/provider-error-diagnostics-and-readiness`
 
 ## Navigation-process limitation
@@ -18,6 +18,8 @@ Use the 2026-10-09 heartbeat evidence and public provider reports to improve dia
 - Public Mistral reports show code 1300 accompanied by `x-ratelimit-limit-req-minute`, `x-ratelimit-remaining-req-minute`, `mistral-correlation-id`, and `x-kong-request-id`. Other reports show different request limits, so the code alone does not establish the underlying limit.
 - The current allowlist omits those Mistral-specific names; the structured health-history path also drops the captured `response_headers`.
 - NOVA run 37926549165 showed Groq 400 `json_validate_failed` with empty `failed_generation` on both GPT-OSS models. Current request config uses `max_tokens: 64`; official Groq docs specify reasoning controls and `max_completion_tokens` for GPT-OSS. Test a bounded provider-specific request update, but do not label it a verified live fix until a later manual run confirms.
+- Current branch is tracked by PR [#57](https://github.com/ACROWN-System/NOVA/pull/57); CI run [37932057048](https://github.com/ACROWN-System/NOVA/actions/runs/37932057048) passed compilation and all 56 offline tests. PR remains unmerged; CI does not call live providers.
+- The 2026-10-09 discovery snapshot at [free-llm-api-hub provider data](https://github.com/pacocartones/free-llm-api-hub/blob/main/data/providers.json) contains 68 entries spanning text models, gateways, vision, embeddings, audio and document processing. This is a discovery index, not authoritative proof. The provider register distinguishes recurring quotas, one-time credits, aggregators, trial-only keys, eligibility barriers and UNKNOWN terms.
 - The run showed empty Cerebras and Cloudflare credentials in Actions; Cloudflare also requires an account ID. Current GPU resource documentation already names Nosana and Hugging Face ZeroGPU credential slots.
 - Official Cerebras pricing states the $5 promotional credit requires a valid payment method and expires after 30 days; do not represent it as a perpetual no-card free tier.
 
