@@ -6,7 +6,13 @@
     "NVIDIA NIM / API Catalog — NVIDIA_NIM_API_KEY_01; no verified sustained no-card/no-cost API entitlement established; UNKNOWN/BLOCKED pending official account-term verification",
     "Cohere trial — COHERE_TRIAL_API_KEY_01; free trial keys are development-only and not permitted for production/commercial use; https://docs.cohere.com/v2/docs/rate-limits",
     "SambaNova Cloud — SAMBANOVA_API_KEY_01; current plan page requires payment method and purchased credits before first requests; ineligible under current $0/no-card rule; https://cloud.sambanova.ai/plans",
-    "GitHub Models — RETIRED as of 2026-07-30; do not add as a candidate; https://github.blog/changelog/2026-07-30-github-models-is-now-retired/"
+    "GitHub Models — RETIRED as of 2026-07-30; do not add as a candidate; https://github.blog/changelog/2026-07-30-github-models-is-now-retired/",
+    "Requesty Gateway — REQUESTY_API_KEY_01; official $0 plan with free models, 200 requests/day, no card; aggregator/router, not independent capacity; https://www.requesty.ai/pricing",
+    "Kilo AI Gateway — anonymous free-model access needs no key and is documented at 200 requests/hour/IP; some upstream trial endpoints may log/use data for improvement; check selected model route/privacy before use; https://kilo.ai/docs/gateway/authentication",
+    "Nous Portal — NOUS_PORTAL_API_KEY_01; secondary-directory lead only; verify official API, free quota, payment method and data terms before use",
+    "OVHcloud AI Endpoints — OVHCLOUD_AI_ENDPOINTS_API_KEY_01; secondary-directory lead only; verify official free model scope/quota and auth requirements",
+    "Aion Labs API — AION_API_KEY_01; secondary-directory lead only; verify current official API and terms before use",
+    "OpenCode Zen / Console — OPENCODE_ZEN_API_KEY_01; do not assume free promotions are durable; official console requires billing details/credits for paid endpoint; https://opencode.ai/v2/docs/console/models/"
   ],
   "credential_policy": {
     "future_multiple_key_slots": "Use suffixed environment names such as PROVIDER_API_KEY_01, _02 without changing routing contracts.",
