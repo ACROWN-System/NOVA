@@ -102,6 +102,26 @@ A fresh discovery pass surfaced additional gateways/directories beyond the short
 
 Candidate directories and community lists may help discover providers, but their claims are leads only. Before a provider enters the active roster, verify current official terms, payment-method requirement, commercial-use conditions, model/API compatibility, data policy, limits and a live minimal response. Do not make every discovered candidate a runtime dependency.
 
+### Capability-specific API candidates (not chat-provider substitutes)
+
+The current 2026-10-09 discovery register lists free or trial-backed services for retrieval, vision, voice, OCR/document parsing and image/video workflows. These may be useful to AstroCrown/NOVA even where they cannot replace a general LLM provider. The amounts below are discovery evidence, not live NOVA entitlement.
+
+| Capability | Proposed secret slot / access | Reported free access | Use boundary / state |
+| --- | --- | --- | --- |
+| Embeddings / reranking / reader | JINA_API_KEY_01 (Reader also has a keyless basic endpoint) | Discovery record reports one-time 10M free tokens across embedding/reranking models; no card. https://jina.ai/embeddings/ | CANDIDATE for NOVA knowledge retrieval; verify model choices, quotas and provider terms |
+| Speech-to-text / text-to-speech | DEEPGRAM_API_KEY_01 | Reported $200 signup credit, no card and no expiry. Its Model Improvement Program is opt-out: enforce the provider's supported opt-out field per request when required. https://deepgram.com/pricing | CANDIDATE for media/audio; set privacy controls before any real user data |
+| Speech-to-text / speech understanding / LLM gateway | ASSEMBLYAI_API_KEY_01 | Reported $50 signup credit, no card; one-time credit. https://www.assemblyai.com/pricing | CANDIDATE; verify model/gateway limits and remaining credit before reliance |
+| Text-to-speech | SPEECHIFY_API_KEY_01 | Discovery record reports 500K characters/month with commercial use permitted. https://speechify.ai/pricing | CANDIDATE; verify hard cap and actual API account entitlement |
+| Text-to-speech | UNREALSPEECH_API_KEY_01 | Discovery record reports 250K characters/month, commercial use permitted with attribution. https://unrealspeech.com/pricing | CANDIDATE; attribution is an output/publishing requirement to assess |
+| Image/video/audio/3D generation | RUNWARE_API_KEY_01 | Reported one-time $2 credit without a card, business email required; output rights depend on model license. https://runware.ai/pricing | SMALL PROTOTYPE ONLY; not sustained free GPU capacity |
+| Vision/image understanding | MOONDREAM_API_KEY_01 | Reported recurring $5/month usage credits without a card. https://moondream.ai/pricing | CANDIDATE; current API and commercial terms need verification |
+| Video/audio/image/text embeddings and analysis | TWELVE_LABS_API_KEY_01 | Reported free plan includes 600 minutes of video indexing; indexed data expires after 90 days unless upgraded. https://www.twelvelabs.io/pricing | CANDIDATE for media search, not a chat LLM; verify retention and quota |
+| OCR / document parsing | LLAMAPARSE_API_KEY_01 ; OCR_SPACE_API_KEY_01 ; UNSTRUCTURED_API_KEY_01 | Discovery record reports no-card free quotas for document parsing/OCR: LlamaParse 10,000 credits/month, OCR.space 25,000 conversions/month plus 1,000 Engine 3, and Unstructured 10,000 pages one-time. https://www.llamaindex.ai/pricing ; https://ocr.space/OCRAPI ; https://unstructured.io/pricing | SPECIALIZED CANDIDATES; verify payload limits, commercial use and quota units |
+| Text and image generation | Anonymous AI Horde access; registration optional | Crowdsourced free generation without a card or account for anonymous low-priority queueing. https://aihorde.net/ | LOW PRIORITY / BATCH ONLY; volunteer availability means no dependable latency or SLA |
+| Background removal / image editing | PHOTOROOM_API_KEY_01 | Discovery record reports 10 one-time clean production calls and 1,000 sandbox calls/month (watermarked). https://www.photoroom.com/api/pricing | SPECIALIZED CANDIDATE; not a general image-generation provider |
+
+Do not acquire all of these keys now. Select a capability first, verify the latest terms/account entitlement, then add one key and a tested adapter for the concrete workload. A one-time credit should be recorded with remaining quota and expiry, and never presented as recurring free capacity.
+
 ## GPU acquisition queue
 
 ### Nosana — first GPU candidate
