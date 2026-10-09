@@ -17,7 +17,7 @@
       "status": "candidate",
       "kind": "shared_gpu_spaces",
       "credential_mode": "account_or_token",
-      "api_key_env": "HF_TOKEN_01",
+      "api_key_env": "HF_ZEROGPU_TOKEN_01",
       "activation_requirement": "Use only as a provider-specific adapter for Spaces/ZeroGPU; do not treat it as a generic GPU rental API.",
       "source": "https://huggingface.co/docs/hub/main/spaces-zerogpu"
     }
