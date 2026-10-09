@@ -6,7 +6,7 @@
 
 ## Navigation-process limitation
 
-The repository's required `NAVIGATION-PROTOCOL.md` and `NAVIGATION-PLAN-TEMPLATE.md` were not found in the earlier repository investigation documented in `NOVA/research/Active/2026-10-09-Provider-Diagnostics-and-Credential-Gaps.md`. This plan records the same blocker; it does not claim those documents were reviewed. Keep the work limited to the explicitly requested supplier-roster and health-workflow change.
+The repository's required `NAVIGATION-PROTOCOL.md` and `NAVIGATION-PLAN-TEMPLATE.md` were not found in the earlier repository investigation documented in `NOVA/research/Completed/2026-10-09-Provider-Diagnostics-and-Credential-Gaps.md`. This plan records the same blocker; it does not claim those documents were reviewed. Keep the work limited to the explicitly requested supplier-roster and health-workflow change.
 
 ## Objective
 
