@@ -20,19 +20,29 @@ NOVA must not assume that a quota belongs to an individual API key. Providers ma
 | --- | --- | --- | --- | --- | --- |
 | Groq | GROQ_API_KEY_01 | Primary fast LLM smoke/failover provider | requests remaining, tokens remaining, reset intervals, usage, model | Free plan documents RPM/RPD/TPM/TPD and exposes remaining/reset headers | REQUIRED |
 | Google Gemini | GEMINI_API_KEY_01 | Independent model-family benchmark and multimodal testing | project quota/limits, token usage, model, response latency; account/dashboard quota where API does not expose remaining | Free tier provides access to selected models and limits are visible in AI Studio; limits are project-level | REQUIRED |
-| Mistral | MISTRAL_API_KEY_01 | Independent fallback and quality benchmark | monthly included usage, rate limits, token usage, remaining credit when account data exposes it | Free mode provides API access without a credit card; included monthly usage and limits are shown in the account | REQUIRED |
 | Cloudflare Workers AI | CLOUDFLARE_API_KEY_01 + CLOUDFLARE_ACCOUNT_ID | Independent inference path and free Neuron testing | Neurons used/remaining, reset, model availability, request errors | 10,000 Neurons/day on Free; many models remain free, including GLM-4.7 Flash | REQUIRED |
 | Cerebras | CEREBRAS_API_KEY_01 | Optional fallback only if the no-payment-method rule changes | usage/rate-limit data exposed by account/API, token usage, latency | Official pricing says the one-time $5 promotional credit requires a valid payment method and expires after 30 days | BLOCKED FOR CURRENT $0 / NO-PAYMENT RULE |
 
-### Mistral account-specific observation and later evidence
+## Deferred supplier history: Mistral Free API
 
-**Historical observation (2026-10-08):** The selected Mistral Studio workspace displayed the Free plan together with “Upgrade to use your API keys,” and the observation record at that time recorded zero API keys. Preserve this as a timestamped historical observation; do not present it as current state without re-verification.
+**Current decision (2026-10-10): DEFERRED — excluded from active free-tier capacity and live health/failover checks by user decision.**
 
-**Later evidence (2026-10-09):** A Mistral Playground request succeeded at a different point in time. NOVA heartbeat run [37889314591](https://github.com/ACROWN-System/NOVA/actions/runs/37889314591) later used model alias `mistral-small-latest` and credential environment-variable name `MISTRAL_API_KEY_01`, and received HTTP 429 with error type `rate_limited`, code `1300`, and message `rate limit exceeded`.
+Mistral is no longer listed as a minimum free-development provider, is absent from the active `NOVA/roster.json` provider list, and its secret is no longer injected into the scheduled AI heartbeat/reasoning workflow. The credential name is retained only in the deferred-provider record and the historical evidence below. No secret was deleted or rotated.
 
-**Current classification:** The older “no API key / upgrade required” observation is not sufficient to describe the later state. The 429 demonstrates that the heartbeat request reached a rate-limit response; it does not identify which limit triggered or establish the current monthly balance. Keep the cause **UNKNOWN** until the response headers, exact model limits, usage timing, and organization-level activity have been correlated. Do not enable pay-as-you-go, add a payment method, or replace the key merely to test a hypothesis.
+### Historical evidence preserved
 
-Continue the investigation using [the Mistral 429 diagnostic loop](research/2026.10.09-IMPLEMENTED-mistral-429-diagnostics-investigation-loop.md). Preserve this historical record rather than overwriting it with an undated current-state claim.
+- **2026-10-08:** The selected Mistral Studio workspace displayed the Free plan together with “Upgrade to use your API keys,” and the observation record at that time recorded zero API keys. This is a historical dashboard observation, not a statement of current account state.
+- **2026-10-09:** The user reported that a Playground request succeeded, while the dashboard showed one request and $0.00 usage. The NOVA heartbeat then received HTTP 429, error type `rate_limited`, code `1300`, for `mistral-small-latest`. Relevant runs: [37889314591](https://github.com/ACROWN-System/NOVA/actions/runs/37889314591) and [37926549165](https://github.com/ACROWN-System/NOVA/actions/runs/37926549165).
+- The chatbot in Mistral support attributed Free-mode errors to best-effort capacity prioritization and absence of reserved capacity. This is the provider chatbot's stated explanation; it has not been independently established as the cause of the specific request rejection by a human technical specialist.
+- The earlier heartbeat predates the merge of the Mistral-specific diagnostic-header fix in PR [#57](https://github.com/ACROWN-System/NOVA/pull/57). Its empty `diagnostic_headers` therefore did not establish that no Mistral-specific headers were returned.
+
+### Decision and requalification boundary
+
+The decision is a reversible supplier-risk measure based on repeated failures, the reported negligible usage, the provider's Free-mode explanation, and the accumulated operational cost of continuing to debug it. It is **not** a finding that the individual error cause is proven, that Mistral acted deceptively, or that Mistral's paid API is unsuitable.
+
+Do not include Mistral Free API in available free capacity, scheduled health checks, or automated failover while this decision is in force. Preserve historical observations and offline diagnostic regression tests. Reconsider only after an explicit user decision to requalify it and evidence demonstrates adequate availability, response quality, reliability, terms, and economic suitability.
+
+Historical diagnostic record: [Mistral 429 diagnostics and investigation loop](research/2026.10.09-IMPLEMENTED-mistral-429-diagnostics-investigation-loop.md).
 
 ## GPU credential injection boundary
 
@@ -99,7 +109,6 @@ Obtain and configure at least:
 
 - GROQ_API_KEY_01
 - GEMINI_API_KEY_01
-- MISTRAL_API_KEY_01
 - CLOUDFLARE_API_KEY_01
 - CLOUDFLARE_ACCOUNT_ID
 
