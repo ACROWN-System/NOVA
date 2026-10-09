@@ -128,17 +128,65 @@ def extract_rate_limit_snapshot(
     provider_name = provider.lower()
 
     generic_mapping = {
-        "requests": ("x-ratelimit-limit-requests", "x-ratelimit-remaining-requests", "x-ratelimit-reset-requests"),
-        "tokens": ("x-ratelimit-limit-tokens", "x-ratelimit-remaining-tokens", "x-ratelimit-reset-tokens"),
-    }
-    provider_mapping = {
-        "groq": generic_mapping,
+        "requests": (
+            "x-ratelimit-limit-requests",
+            "x-ratelimit-remaining-requests",
+            "x-ratelimit-reset-requests",
+            "requests",
+            None,
+        ),
+        "tokens": (
+            "x-ratelimit-limit-tokens",
+            "x-ratelimit-remaining-tokens",
+            "x-ratelimit-reset-tokens",
+            "tokens",
+            None,
+        ),
     }
 
     metrics: dict[str, Any] = {}
     call_allowances: dict[str, Any] = {}
-    mapping = provider_mapping.get(provider_name, generic_mapping)
-    for metric, (limit_key, remaining_key, reset_key) in mapping.items():
+
+    if provider_name == "mistral":
+        # Mistral uses window-qualified names; keep minute, short-window, and
+        # monthly allowances separate instead of collapsing them into one quota.
+        mappings = {
+            "requests_per_minute": (
+                "x-ratelimit-limit-req-minute",
+                "x-ratelimit-remaining-req-minute",
+                "x-ratelimit-reset-req-minute",
+                "requests",
+                60,
+            ),
+            "requests_per_10_seconds": (
+                "x-ratelimit-limit-req-10-second",
+                "x-ratelimit-remaining-req-10-second",
+                "x-ratelimit-reset-req-10-second",
+                "requests",
+                10,
+            ),
+            "tokens_per_minute": (
+                "x-ratelimit-limit-tokens-minute",
+                "x-ratelimit-remaining-tokens-minute",
+                "x-ratelimit-reset-tokens-minute",
+                "tokens",
+                60,
+            ),
+            "tokens_per_month": (
+                "x-ratelimit-limit-tokens-month",
+                "x-ratelimit-remaining-tokens-month",
+                "x-ratelimit-reset-tokens-month",
+                "tokens",
+                None,
+            ),
+        }
+    else:
+        mappings = {
+            metric: (*keys, None)
+            for metric, keys in generic_mapping.items()
+        }
+
+    for metric, (limit_key, remaining_key, reset_key, unit, window_seconds) in mappings.items():
         present = any(k in normalized for k in (limit_key, remaining_key, reset_key))
         if not present:
             continue
@@ -146,6 +194,8 @@ def extract_rate_limit_snapshot(
             "limit": _number(normalized.get(limit_key)),
             "remaining": _number(normalized.get(remaining_key)),
             "reset_after_seconds": _seconds(normalized.get(reset_key)),
+            "window_seconds": window_seconds,
+            "unit": unit,
             "source": "http_response_headers",
             "measurement_type": "CALL_ALLOWANCE",
         }
@@ -154,9 +204,19 @@ def extract_rate_limit_snapshot(
             name=metric,
             limit=normalized.get(limit_key),
             remaining=normalized.get(remaining_key),
+            window_seconds=window_seconds,
             reset_after_seconds=normalized.get(reset_key),
-            unit=metric,
+            unit=unit,
         )
+
+    query_cost = _number(normalized.get("x-ratelimit-tokens-query-cost"))
+    if query_cost is not None:
+        metrics["tokens_query_cost"] = {
+            "value": query_cost,
+            "unit": "tokens",
+            "source": "http_response_headers",
+            "measurement_type": "REQUEST_USAGE",
+        }
 
     retry_after = _seconds(normalized.get("retry-after"))
     if retry_after is not None:
