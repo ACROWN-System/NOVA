@@ -248,7 +248,7 @@ class RouterRotationTests(unittest.TestCase):
         self.assertNotIn("test-key", repr(probes))
 
 class DeferredProviderRosterTests(unittest.TestCase):
-    def test_mistral_is_deferred_and_not_in_live_heartbeat_environment(self):
+    def test_mistral_is_deferred_and_not_in_live_health_workflows(self):
         repository_root = Path(__file__).resolve().parents[2]
         nova_root = Path(__file__).resolve().parents[1]
 
@@ -262,10 +262,14 @@ class DeferredProviderRosterTests(unittest.TestCase):
         }
         self.assertEqual(deferred["mistral"]["status"], "DEFERRED")
 
-        workflow = (
-            repository_root / ".github" / "workflows" / "nova_heartbeat.yml"
-        ).read_text(encoding="utf-8")
-        self.assertNotIn("MISTRAL_API_KEY_01", workflow)
+        for workflow_name in (
+            "nova_heartbeat.yml",
+            "nova_probe_scheduler.yml",
+        ):
+            workflow = (
+                repository_root / ".github" / "workflows" / workflow_name
+            ).read_text(encoding="utf-8")
+            self.assertNotIn("MISTRAL_API_KEY_01", workflow, workflow_name)
 
         # A previously persisted queue may still mention Mistral. Scheduler
         # normalization must rebuild it from the current active provider roster.
