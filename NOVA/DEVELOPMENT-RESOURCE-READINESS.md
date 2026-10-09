@@ -27,7 +27,7 @@ NOVA must not assume that a quota belongs to an individual API key. Providers ma
 
 **Current decision (2026-10-10): DEFERRED — excluded from active free-tier capacity and live health/failover checks by user decision.**
 
-Mistral is no longer listed as a minimum free-development provider, is absent from the active `NOVA/roster.json` provider list, and its secret is no longer injected into the scheduled AI heartbeat/reasoning workflow. The credential name is retained only in the deferred-provider record and the historical evidence below. No secret was deleted or rotated.
+Mistral is no longer listed as a minimum free-development provider, is absent from the active `NOVA/roster.json` provider list, and its secret is no longer injected into the scheduled AI heartbeat/reasoning workflow or the opportunistic probe scheduler. The credential name is retained only in the deferred-provider record and the historical evidence below. No secret was deleted or rotated.
 
 ### Historical evidence preserved
 
