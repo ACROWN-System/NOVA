@@ -156,7 +156,7 @@ Credential slot: HF_ZEROGPU_TOKEN_01 when authentication is required by the sele
 
 ### Mistral Free API — DEFERRED (decision: 2026-10-10)
 
-Mistral Free API has been removed from NOVA's active runtime roster and scheduled LLM heartbeat/failover environment by user decision after repeated HTTP 429 / code 1300 failures under negligible reported successful usage and the provider chatbot's explanation of best-effort Free-mode capacity prioritization.
+Mistral Free API has been removed from NOVA's active runtime roster and both scheduled and opportunistic LLM heartbeat/failover environments by user decision after repeated HTTP 429 / code 1300 failures under negligible reported successful usage and the provider chatbot's explanation of best-effort Free-mode capacity prioritization.
 
 - Active model previously configured: `mistral-small-latest`.
 - Historical credential slot: `MISTRAL_API_KEY_01`; it is not injected into the scheduled heartbeat workflow and no secret was deleted or rotated.
