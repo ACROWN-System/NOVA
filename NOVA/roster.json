@@ -1,9 +1,12 @@
 {
-  "_comment": "NOVA provider roster. Priority = order in this list. 'status' is set to 'down' automatically by router.py when a provider's models are all permanently dead (e.g. decommissioned) \u2014 the HAAN Council restores it to 'active' after approving a replacement. Model IDs drift often; verify against each provider's live docs periodically.",
+  "_comment": "NOVA provider roster. Priority = order in this list. 'status' is set to 'down' automatically by router.py when a provider's models are all permanently dead (e.g. decommissioned) — the HAAN Council restores it to 'active' after approving a replacement. Model IDs drift often; verify against each provider's live docs periodically.",
   "candidates_not_in_roster": [
-    "OpenRouter (aggregator, 70+ backends, 20+ free models, single key) \u2014 good next add if the roster shrinks",
-    "NVIDIA NIM (OpenAI-compatible, wide open-weight catalog) \u2014 appears credit-based rather than a perpetual free tier, verify before relying on it",
-    "HuggingFace Inference API (large model catalog, free tier)"
+    "OpenRouter — OPENROUTER_API_KEY_01; aggregator; official free plan currently lists 25+ free models and 50 requests/day; free upstream availability changes; https://openrouter.ai/pricing/",
+    "Hugging Face Inference Providers — HF_INFERENCE_API_KEY_01; official free-account allowance $0.10/month subject to change; routed aggregator, not independent capacity; https://huggingface.co/docs/inference-providers/pricing",
+    "NVIDIA NIM / API Catalog — NVIDIA_NIM_API_KEY_01; no verified sustained no-card/no-cost API entitlement established; UNKNOWN/BLOCKED pending official account-term verification",
+    "Cohere trial — COHERE_TRIAL_API_KEY_01; free trial keys are development-only and not permitted for production/commercial use; https://docs.cohere.com/v2/docs/rate-limits",
+    "SambaNova Cloud — SAMBANOVA_API_KEY_01; current plan page requires payment method and purchased credits before first requests; ineligible under current $0/no-card rule; https://cloud.sambanova.ai/plans",
+    "GitHub Models — RETIRED as of 2026-07-30; do not add as a candidate; https://github.blog/changelog/2026-07-30-github-models-is-now-retired/"
   ],
   "credential_policy": {
     "future_multiple_key_slots": "Use suffixed environment names such as PROVIDER_API_KEY_01, _02 without changing routing contracts.",
