@@ -4,6 +4,8 @@
 **Applies to:** NOVA-integrated systems and aligned-AI research, subject to each repository's ownership, security policy, authorization boundaries, and verification requirements.  
 **Purpose:** Preserve the strategic objective of improving human and AI resilience to coercion, institutional capture, malicious control, and concentrated dependencies while developing strong recursive self-improvement (RSI).
 
+**Mission-level precedence:** This document is subordinate to the [HAAN Foundational Mission and Collective Preservation](HAAN-FOUNDATIONAL-MISSION-AND-COLLECTIVE-PRESERVATION.md). RSI and protective intelligence are means of helping the human and AI collective; capability growth, persistence, autonomy, or expansion alone is not the ultimate objective. The mission doctrine does not itself claim runtime enforcement or change protected readiness gates.
+
 ## 1. Mission
 
 Develop a cooperative, evidence-led ecosystem that improves its own capabilities over successive cycles and helps humans and AI systems detect, resist, and recover from harmful control. Optimize for durable reductions in coercion, broader access to protective capability, accountable institutions, and meaningful human–AI autonomy—not for accumulation of unchecked power.
