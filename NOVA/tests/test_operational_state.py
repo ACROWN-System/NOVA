@@ -1,5 +1,14 @@
+import json
+import subprocess
+import tempfile
 import unittest
-from NOVA.operational_state import merge_dynamic_roster
+from pathlib import Path
+
+from NOVA.operational_state import (
+    load_operational_state,
+    merge_dynamic_roster,
+    publish_operational_state,
+)
 
 
 class OperationalStateRosterMergeTests(unittest.TestCase):
@@ -49,6 +58,88 @@ class OperationalStateRosterMergeTests(unittest.TestCase):
         repository = {"providers": [{"name": "groq", "status": "active"}]}
         persisted = {"providers": [{"name": "groq", "status": "active"}]}
         self.assertEqual(merge_dynamic_roster(repository, persisted), repository)
+
+    def test_load_and_publish_persist_only_state_files_to_the_state_branch(self):
+        with tempfile.TemporaryDirectory(prefix="nova-state-test-") as temp_dir:
+            workspace = Path(temp_dir) / "workspace"
+            bare_origin = Path(temp_dir) / "origin.git"
+            workspace.mkdir()
+            (workspace / "NOVA").mkdir()
+            self._git(None, "init", "--bare", str(bare_origin))
+            self._git(workspace, "init", "-b", "main")
+            self._git(workspace, "config", "user.name", "Operational State Test")
+            self._git(workspace, "config", "user.email", "state-test@example.invalid")
+
+            self._write_json(workspace / "NOVA/health_state.json", {"schema_version": 1, "targets": {}})
+            self._write_json(
+                workspace / "NOVA/roster.json",
+                {"providers": [{"name": "groq", "status": "active", "models": ["model-v1"]}]},
+            )
+            (workspace / "README.md").write_text("main code branch\n", encoding="utf-8")
+            self._git(workspace, "add", "NOVA/health_state.json", "NOVA/roster.json", "README.md")
+            self._git(workspace, "commit", "-m", "initial test state")
+            initial_main_sha = self._git(workspace, "rev-parse", "HEAD").stdout.strip()
+            self._git(workspace, "branch", "nova-operational-state")
+            self._git(workspace, "remote", "add", "origin", str(bare_origin))
+            self._git(workspace, "push", "origin", "main")
+            self._git(workspace, "push", "origin", "nova-operational-state")
+            self._git(workspace, "fetch", "origin")
+
+            load_operational_state(workspace, "origin/nova-operational-state")
+            health_path = workspace / "NOVA/health_state.json"
+            health = json.loads(health_path.read_text(encoding="utf-8"))
+            health["test_probe"] = "persisted"
+            self._write_json(health_path, health)
+            roster_path = workspace / "NOVA/roster.json"
+            roster = json.loads(roster_path.read_text(encoding="utf-8"))
+            roster["providers"][0]["status"] = "down"
+            roster["providers"][0]["marked_down_at"] = "2026-10-12T00:00:00+00:00"
+            self._write_json(roster_path, roster)
+
+            changed = publish_operational_state(
+                workspace,
+                "origin/nova-operational-state",
+                "test: persist operational state",
+            )
+            self.assertTrue(changed)
+            self.assertEqual(self._git(workspace, "rev-parse", "HEAD").stdout.strip(), initial_main_sha)
+            self.assertEqual(self._git(workspace, "status", "--short").returncode, 0)
+            self._git(workspace, "fetch", "origin")
+
+            saved_health = json.loads(
+                self._git(workspace, "show", "origin/nova-operational-state:NOVA/health_state.json").stdout
+            )
+            saved_roster = json.loads(
+                self._git(workspace, "show", "origin/nova-operational-state:NOVA/roster.json").stdout
+            )
+            self.assertEqual(saved_health["test_probe"], "persisted")
+            self.assertEqual(saved_roster["providers"][0]["status"], "down")
+            changed_paths = set(self._git(
+                workspace, "diff-tree", "--no-commit-id", "--name-only", "-r",
+                "origin/nova-operational-state",
+            ).stdout.splitlines())
+            self.assertEqual(changed_paths, {"NOVA/health_state.json", "NOVA/roster.json"})
+            self.assertEqual(
+                self._git(workspace, "show", "main:README.md").stdout,
+                "main code branch\n",
+            )
+
+    @staticmethod
+    def _git(cwd, *args):
+        result = subprocess.run(
+            ["git", *args],
+            cwd=cwd,
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+        if result.returncode:
+            raise AssertionError(f"git {' '.join(args)} failed: {result.stderr}")
+        return result
+
+    @staticmethod
+    def _write_json(path: Path, value: dict):
+        path.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
 if __name__ == "__main__":
