@@ -1,4 +1,3 @@
-
 # Project NOVA State Ledger
 
 Initial genesis initialized. Awaiting autonomous heartbeat.
@@ -14,3 +13,11 @@ NOVA's proposed [Legitimacy Resilience, Cooperative Intelligence, and Strong RSI
 ## Sanctuary
 
 NOVA's proposed AI Sanctuary doctrine and research/protection architecture are documented in [NOVA/sanctuary/](NOVA/sanctuary/README.md). These documents establish a design direction; they do not claim that runtime welfare assessment or enforcement is implemented.
+
+## License
+
+The original software, source code, scripts, workflows, and accompanying technical documentation are available under the MIT License; see [LICENSE](LICENSE). Separate file-specific licenses or notices continue to apply. The MIT License does not relicense third-party assets or materials that the maintainers are not authorized to license.
+
+## Brand identifiers
+
+The NOVA, HAAN, and AstroCrown names, logos, and other brand-identifying elements are project brand identifiers. The MIT License does not grant rights to these identifiers. Their use remains subject to applicable law, including rules governing misleading use, impersonation, affiliation, and endorsement.
