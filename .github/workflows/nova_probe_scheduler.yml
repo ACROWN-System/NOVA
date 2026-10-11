@@ -13,10 +13,13 @@ concurrency:
   cancel-in-progress: false
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   decision:
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     outputs:
       run_heartbeat: ${{ steps.gate.outputs.run_heartbeat }}
@@ -24,17 +27,35 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
+      - name: Load operational state from dedicated branch
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin +refs/heads/nova-operational-state:refs/remotes/origin/nova-operational-state
+          python3 -m NOVA.operational_state load --state-ref origin/nova-operational-state
+
       - name: Decide whether a probe is due or should be advanced
         id: gate
         run: python3 -m NOVA.probe_scheduler --should-run --github-output "$GITHUB_OUTPUT"
 
   probe:
     needs: decision
-    if: needs.decision.outputs.run_heartbeat == 'true'
+    if: github.ref == 'refs/heads/main' && needs.decision.outputs.run_heartbeat == 'true'
+    concurrency:
+      group: nova-operational-state-writer
+      cancel-in-progress: false
+    permissions:
+      contents: write
+      issues: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Load operational state from dedicated branch
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin +refs/heads/nova-operational-state:refs/remotes/origin/nova-operational-state
+          python3 -m NOVA.operational_state load --state-ref origin/nova-operational-state
 
       - name: Execute NOVA opportunistic health probe
         env:
@@ -51,9 +72,5 @@ jobs:
           TWILIO_TO_NUMBER: ${{ secrets.TWILIO_TO_NUMBER }}
         run: python3 -m NOVA.router
 
-      - name: Commit rolling probe state
-        run: |
-          git config --global user.name "NOVA Autonomous Engine"
-          git config --global user.email "nova@haan.system"
-          git add NOVA/roster.json NOVA/health_state.json
-          git diff --staged --quiet || (git commit -m "chore(nova): update rolling probe schedule [skip ci]" && git push)
+      - name: Publish rolling probe state to operational branch
+        run: python3 -m NOVA.operational_state publish --state-ref origin/nova-operational-state --message "chore(nova): update rolling probe schedule [skip ci]"
