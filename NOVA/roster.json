@@ -61,16 +61,6 @@
       "status": "active"
     },
     {
-      "api_key_env": "CEREBRAS_API_KEY_01",
-      "base_url": "https://api.cerebras.ai/v1/chat/completions",
-      "kind": "openai_compatible",
-      "models": [
-        "gpt-oss-120b"
-      ],
-      "name": "cerebras",
-      "status": "active"
-    },
-    {
       "account_id_env": "CLOUDFLARE_ACCOUNT_ID",
       "api_key_env": "CLOUDFLARE_API_KEY_01",
       "base_url": "https://api.cloudflare.com/client/v4/accounts/{CF_ACCOUNT_ID}/ai/v1/chat/completions",
@@ -93,6 +83,17 @@
       "decision_date": "2026-10-10",
       "reason": "User decision to pause Mistral Free API after repeated HTTP 429/code 1300 failures under negligible reported usage and the provider chatbot's Free-mode capacity-prioritization explanation. The exact cause of the individual rejection and any broader intent remain unverified.",
       "requalification_gate": "Do not restore to active providers or live health/failover probes unless the user explicitly requests requalification and objective availability, quality, and reliability criteria are satisfied."
+    },
+    {
+      "name": "cerebras",
+      "status": "DEFERRED",
+      "models": [
+        "gpt-oss-120b"
+      ],
+      "credential_env": "CEREBRAS_API_KEY_01",
+      "decision_date": "2026-10-12",
+      "reason": "Current NOVA $0/no-payment-method policy excludes the Cerebras Developer promotional offer: official pricing requires a valid payment method for the one-time $5 credit, the credit expires after 30 days, and API access pauses when it expires or is exhausted unless PayGo credits are purchased. No continuing no-payment-method entitlement meeting the project rule has been verified. Source checked 2026-10-12: https://www.cerebras.ai/pricing.",
+      "requalification_gate": "Do not restore to the active roster or live health/failover workflows until current official terms and account evidence demonstrate API access under the $0/no-payment-method rule, and the requalification is reviewed and tested. Do not delete or rotate the stored secret solely because the provider is deferred."
     }
   ]
 }
