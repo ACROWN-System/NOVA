@@ -103,7 +103,13 @@ class OperationalStateRosterMergeTests(unittest.TestCase):
             )
             self.assertTrue(changed)
             self.assertEqual(self._git(workspace, "rev-parse", "HEAD").stdout.strip(), initial_main_sha)
-            self.assertEqual(self._git(workspace, "status", "--short").returncode, 0)
+            dirty_paths = {
+                line[3:] for line in self._git(workspace, "status", "--short").stdout.splitlines()
+            }
+            self.assertEqual(
+                dirty_paths,
+                {"NOVA/health_state.json", "NOVA/roster.json"},
+            )
             self._git(workspace, "fetch", "origin")
 
             saved_health = json.loads(
