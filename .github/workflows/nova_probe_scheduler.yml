@@ -42,7 +42,6 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
           GROQ_API_KEY_01: ${{ secrets.GROQ_API_KEY_01 }}
           GEMINI_API_KEY_01: ${{ secrets.GEMINI_API_KEY_01 }}
-          CEREBRAS_API_KEY_01: ${{ secrets.CEREBRAS_API_KEY_01 }}
           CLOUDFLARE_API_KEY_01: ${{ secrets.CLOUDFLARE_API_KEY_01 }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           NOVA_ADVANCE_PROVIDER_ROTATION: 'true'
