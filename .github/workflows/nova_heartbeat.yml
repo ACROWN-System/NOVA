@@ -10,11 +10,17 @@ concurrency:
   cancel-in-progress: false
 
 permissions:
-  contents: write
-  issues: write
+  contents: read
 
 jobs:
   heartbeat:
+    if: github.ref == 'refs/heads/main'
+    concurrency:
+      group: nova-operational-state-writer
+      cancel-in-progress: false
+    permissions:
+      contents: write
+      issues: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -27,6 +33,12 @@ jobs:
 
       - name: Test NOVA health and observer primitives
         run: python -m unittest discover -s NOVA/tests -p 'test_*.py' -v
+
+      - name: Load operational state from dedicated branch
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin +refs/heads/nova-operational-state:refs/remotes/origin/nova-operational-state
+          python -m NOVA.operational_state load --state-ref origin/nova-operational-state
 
       - name: Observe external operational annotations
         run: python NOVA/operational_observer.py
@@ -57,9 +69,5 @@ jobs:
           NOVA_REASONING_PROVIDER_ROTATION_INDEX: ${{ github.run_number }}
         run: python NOVA/reasoning.py --pending
 
-      - name: Commit NOVA structured state
-        run: |
-          git config --global user.name "NOVA Autonomous Engine"
-          git config --global user.email "nova@haan.system"
-          git add NOVA/roster.json NOVA/health_state.json
-          git diff --staged --quiet || (git commit -m "chore(nova): update AI heart health state [skip ci]" && git push)
+      - name: Publish NOVA structured state to operational branch
+        run: python -m NOVA.operational_state publish --state-ref origin/nova-operational-state --message "chore(nova): update AI heart health state [skip ci]"
