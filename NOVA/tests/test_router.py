@@ -247,6 +247,60 @@ class RouterRotationTests(unittest.TestCase):
         self.assertEqual(sent["response_format"]["type"], "json_schema")
         self.assertNotIn("test-key", repr(probes))
 
+    def test_cloudflare_glm_disables_reasoning_and_uses_completion_token_budget(self):
+        response_payload = {
+            "model": "@cf/zai-org/glm-4.7-flash",
+            "choices": [{
+                "finish_reason": "stop",
+                "message": {
+                    "content": json.dumps({
+                        "nova_health": "OK",
+                        "ack": "NOVA_HEALTH_PROBE",
+                    })
+                }
+            }],
+        }
+        response = MagicMock()
+        response.__enter__.return_value = response
+        response.status = 200
+        response.headers = Message()
+        response.read.return_value = json.dumps(response_payload).encode("utf-8")
+        cloudflare = {
+            "name": "cloudflare",
+            "api_key_env": "TEST_CLOUDFLARE_KEY",
+            "account_id_env": "TEST_CLOUDFLARE_ACCOUNT_ID",
+            "base_url": (
+                "https://api.cloudflare.com/client/v4/accounts/"
+                "{CF_ACCOUNT_ID}/ai/v1/chat/completions"
+            ),
+            "models": ["@cf/zai-org/glm-4.7-flash"],
+        }
+
+        with patch.dict(os.environ, {
+            "TEST_CLOUDFLARE_KEY": "test-key",
+            "TEST_CLOUDFLARE_ACCOUNT_ID": "account-123",
+        }):
+            with patch(
+                "NOVA.router.urllib.request.urlopen", return_value=response
+            ) as urlopen:
+                content, signal, probes = call_openai_compatible(
+                    cloudflare, 'Return only the expected NOVA health JSON.'
+                )
+
+        request = urlopen.call_args.args[0]
+        sent = json.loads(request.data.decode("utf-8"))
+        self.assertEqual(signal, "success")
+        self.assertEqual(probes[0]["api_status"], 200)
+        self.assertIsNotNone(content)
+        self.assertEqual(sent["model"], "@cf/zai-org/glm-4.7-flash")
+        self.assertEqual(sent["max_completion_tokens"], 256)
+        self.assertNotIn("max_tokens", sent)
+        self.assertIsNone(sent["reasoning_effort"])
+        self.assertEqual(sent["chat_template_kwargs"], {"enable_thinking": False})
+        self.assertNotIn("test-key", repr(probes))
+        self.assertNotIn("account-123", request.full_url)
+
+
 class DeferredProviderRosterTests(unittest.TestCase):
     def test_mistral_is_deferred_and_not_in_live_health_workflows(self):
         repository_root = Path(__file__).resolve().parents[2]
