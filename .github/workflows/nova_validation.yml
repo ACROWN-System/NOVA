@@ -13,6 +13,7 @@ on:
       - 'NOVA/tests/test_provider_qualification.py'
       - '.github/workflows/nova-provider-qualification.yml'
       - '.github/workflows/nova_validation.yml'
+      - '.github/workflows/nova-weak-rsi.yml'
   workflow_dispatch:
 
 concurrency:
