@@ -113,6 +113,21 @@ class GPUCredentialHeartbeatTests(unittest.TestCase):
         opener.assert_not_called()
         self.assertEqual(result["auth_probe_status"], "BLOCKED_UNSAFE_OR_UNSUPPORTED_ENDPOINT")
 
+    def test_heartbeat_workflows_run_on_narrow_health_code_changes_and_six_hour_schedule(self):
+        root = Path(__file__).resolve().parents[2]
+        llm = (root / ".github/workflows/nova_heartbeat.yml").read_text(encoding="utf-8")
+        gpu = (root / ".github/workflows/nova_GPU_heartbeat.yml").read_text(encoding="utf-8")
+        self.assertIn("cron: '0 */6 * * *'", llm)
+        self.assertIn("cron: '0 */6 * * *'", gpu)
+        self.assertIn("NOVA/provider_qualification.py", llm)
+        self.assertIn("NOVA/roster.json", llm)
+        self.assertIn("NOVA/gpu_heartbeat.py", gpu)
+        self.assertIn("NOVA/gpu_roster.json", gpu)
+        self.assertIn("branches: [main]", llm)
+        self.assertIn("branches: [main]", gpu)
+        self.assertNotIn("CEREBRAS_API_KEY_01", llm)
+        self.assertNotIn("GitHub_Token", llm)
+
     def test_empty_gpu_heartbeat_persists_candidate_health_without_activating_provider(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
