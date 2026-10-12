@@ -175,7 +175,7 @@ def main():
     rows.append(probe("github_api", "repository_management_not_inference", "GitHub_Token", github,
         "https://api.github.com/user", "GET",
         {"Authorization": "Bearer " + github, "X-GitHub-Api-Version": "2022-11-28"},
-        None, lambda payload: "valid" if isinstance(payload.get("login"), str) and payload.get("login") else ""))
+        None, lambda payload: MARKER if isinstance(payload.get("login"), str) and payload.get("login") else ""))
 
     if cf and cf_id:
         rows.append(probe("cloudflare", "llm_inference", "CLOUDFLARE_API_KEY_01", cf,
