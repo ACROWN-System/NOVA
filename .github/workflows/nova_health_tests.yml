@@ -6,6 +6,7 @@ on:
       - 'NOVA/**'
       - '.github/workflows/nova_*heartbeat.yml'
       - '.github/workflows/nova_health_tests.yml'
+      - '.github/workflows/nova-weak-rsi.yml'
   # Run on every PR so this remains a reliable required check, even for workflow/docs changes.
   pull_request:
 
