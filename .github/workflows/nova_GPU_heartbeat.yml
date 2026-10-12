@@ -1,6 +1,13 @@
 name: NOVA GPU Heartbeat
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'NOVA/gpu_heartbeat.py'
+      - 'NOVA/gpu_roster.json'
+      - 'NOVA/health.py'
+      - '.github/workflows/nova_GPU_heartbeat.yml'
   schedule:
     - cron: '0 */6 * * *'
   workflow_dispatch:
