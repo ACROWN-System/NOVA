@@ -73,4 +73,5 @@ jobs:
         run: python3 -m NOVA.router
 
       - name: Publish rolling probe state to operational branch
-        run: python3 -m NOVA.operational_state publish --state-ref origin/nova-operational-state --message "chore(nova): update rolling probe schedule [skip ci]"
+        run: |
+          python3 -m NOVA.operational_state publish --state-ref origin/nova-operational-state --message "chore(nova): update rolling probe schedule [skip ci]"
