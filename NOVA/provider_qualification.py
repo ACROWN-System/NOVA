@@ -196,26 +196,45 @@ def build_report(environ=None):
 
     report = {"observed_at": datetime.now(timezone.utc).isoformat(), "diagnostic_only": True,
         "production_roster_mutated": False, "secret_values_exposed": False, "results": rows}
-    print(json.dumps(report, indent=2, sort_keys=True))
-    summary_path = env.get("GITHUB_STEP_SUMMARY", "").strip()
-    if summary_path:
-        with open(summary_path, "a", encoding="utf-8") as out:
-            out.write("# NOVA provider qualification\n\n")
-            out.write("One fixed non-sensitive request per configured endpoint. No secret values, response text, or raw error bodies are logged. This does not prove quota remaining, $0 eligibility, commercial rights, or production capacity.\n\n")
-            out.write("| Provider | Type | Credential slot | Configured | Result | HTTP | Latency ms | Usage |\n|---|---|---|---|---|---:|---:|---|\n")
-            for row in rows:
-                usage = ", ".join("{}={}".format(k, v) for k, v in sorted(row.get("usage", {}).items())) or "unavailable"
-                out.write("| {provider} | {provider_type} | {credential_env} | {configured} | {status} | {http} | {latency} | {usage} |\n".format(
-                    provider=row["provider"], provider_type=row["provider_type"],
-                    credential_env=row["credential_env"],
-                    configured="yes" if row.get("credential_configured") else "no",
-                    status=row["status"], http=row["http_status"] or "—",
-                    latency=row["latency_ms"] if row["latency_ms"] is not None else "—",
-                    usage=usage))
-            out.write("\nMistral is requalified for diagnostic purposes only and remains DEFERRED. GitHub API authentication is not model inference.\n")
-
     return report
 
 
-if __name__ == "__main__":
+def render_markdown(report):
+    lines = [
+        "# NOVA provider qualification",
+        "",
+        "One fixed non-sensitive request per configured endpoint. No credential values, response text, or raw error bodies are logged.",
+        "A pass does not prove remaining quota, $0 eligibility, commercial rights, or production capacity.",
+        "",
+        "| Provider | Type | Credential slot | Configured | Result | HTTP | Latency ms | Usage |",
+        "|---|---|---|---|---|---:|---:|---|",
+    ]
+    for row in report.get("results", []):
+        usage = ", ".join("{}={}".format(k, v) for k, v in sorted(row.get("usage", {}).items())) or "unavailable"
+        lines.append("| {provider} | {provider_type} | {credential_env} | {configured} | {status} | {http} | {latency} | {usage} |".format(
+            provider=row["provider"], provider_type=row["provider_type"],
+            credential_env=row["credential_env"],
+            configured="yes" if row.get("credential_configured") else "no",
+            status=row["status"], http=row["http_status"] if row["http_status"] is not None else "—",
+            latency=row["latency_ms"] if row["latency_ms"] is not None else "—",
+            usage=usage))
+    lines.extend([
+        "",
+        "Mistral is requalified for diagnostic purposes only and remains DEFERRED.",
+        "GitHub API authentication is repository-management capacity, not LLM inference capacity.",
+        "The diagnostic does not mutate provider roster, persisted health state, routing or billing settings.",
+    ])
+    return "\\n".join(lines) + "\\n"
+
+
+def main():
     report = build_report()
+    print(json.dumps(report, indent=2, sort_keys=True))
+    summary_path = os.environ.get("GITHUB_STEP_SUMMARY", "").strip()
+    if summary_path:
+        with open(summary_path, "a", encoding="utf-8") as out:
+            out.write(render_markdown(report))
+
+
+if __name__ == "__main__":
+    main()
