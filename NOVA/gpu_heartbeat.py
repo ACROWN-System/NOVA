@@ -14,16 +14,20 @@ from __future__ import annotations
 import argparse
 import json
 import os
-import json
 import time
 import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
 
-import alerts
-from health import atomic_write_json, load_health_state, load_json, record_probe, utc_now
-from capacity import annotate_probe
+try:
+    from . import alerts
+    from .health import atomic_write_json, load_health_state, load_json, record_probe, utc_now
+    from .capacity import annotate_probe
+except ImportError:  # Direct script execution
+    import alerts
+    from health import atomic_write_json, load_health_state, load_json, record_probe, utc_now
+    from capacity import annotate_probe
 
 
 def request_health(provider: dict) -> tuple[int | None, str, float | None, str | None, dict]:
