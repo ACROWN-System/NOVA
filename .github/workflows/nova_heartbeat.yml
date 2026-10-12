@@ -70,4 +70,5 @@ jobs:
         run: python NOVA/reasoning.py --pending
 
       - name: Publish NOVA structured state to operational branch
-        run: python -m NOVA.operational_state publish --state-ref origin/nova-operational-state --message "chore(nova): update AI heart health state [skip ci]"
+        run: |
+          python -m NOVA.operational_state publish --state-ref origin/nova-operational-state --message "chore(nova): update AI heart health state [skip ci]"
