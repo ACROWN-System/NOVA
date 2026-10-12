@@ -24,3 +24,8 @@ The NOVA Validation workflow reports presence for the active LLM slots (Groq, Ge
 The LLM and GPU heartbeat workflows run on their six-hour schedule and may also run once when their own health/adapter code, relevant roster, shared health primitives, or heartbeat workflow file changes on main. The push paths are deliberately narrow; unrelated website/docs changes do not trigger live API calls.
 
 The LLM heartbeat records sanitized provider/API outcomes in the operational-state branch under credential health, separate from provider-routing targets. It checks Mistral only in the dedicated diagnostic step and does not reactivate it. The GPU heartbeat records candidate credential states and may perform provider-specific read-only credential checks, but leaves GPU capacity UNVERIFIED until an allocation/workload measurement exists. If a key is absent, the record indicates that no request was made.
+
+
+### Nosana candidate probe correction — 2026-10-12
+
+The credential check uses the documented read-only `GET https://api.nosana.com/credits/balance` path listed in the official Nosana API reference: https://api.nosana.com/api/docs. The heartbeat records only response/authentication status and latency; it does not parse account identity, job details, or undocumented credit fields. A successful balance-endpoint authentication is not evidence of zero-cost quota or GPU capacity.
