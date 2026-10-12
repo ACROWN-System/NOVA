@@ -144,8 +144,8 @@ def chat_body(model, token_field="max_tokens"):
         separators=(",", ":")).encode("utf-8")
 
 
-def main():
-    env = os.environ
+def build_report(environ=None):
+    env = os.environ if environ is None else environ
     rows = []
     groq = env.get("GROQ_API_KEY_01", "").strip()
     gemini = env.get("GEMINI_API_KEY_01", "").strip()
@@ -214,6 +214,8 @@ def main():
                     usage=usage))
             out.write("\nMistral is requalified for diagnostic purposes only and remains DEFERRED. GitHub API authentication is not model inference.\n")
 
+    return report
+
 
 if __name__ == "__main__":
-    main()
+    report = build_report()
