@@ -17,3 +17,10 @@ The NOVA Validation workflow reports presence for the active LLM slots (Groq, Ge
 - No GPU candidate is placed into providers merely because a token exists.
 - Credential presence does not establish $0 eligibility, no-card access, commercial rights, free-tier persistence, or available GPU minutes. Those require their own evidence and runtime checks.
 - RSI in AstroCrown-Web uses a separate repository's Actions secrets/variables; the NOVA report cannot see or infer their values.
+
+
+## Live heartbeat behavior
+
+The LLM and GPU heartbeat workflows run on their six-hour schedule and may also run once when their own health/adapter code, relevant roster, shared health primitives, or heartbeat workflow file changes on main. The push paths are deliberately narrow; unrelated website/docs changes do not trigger live API calls.
+
+The LLM heartbeat records sanitized provider/API outcomes in the operational-state branch under credential health, separate from provider-routing targets. It checks Mistral only in the dedicated diagnostic step and does not reactivate it. The GPU heartbeat records candidate credential states and may perform provider-specific read-only credential checks, but leaves GPU capacity UNVERIFIED until an allocation/workload measurement exists. If a key is absent, the record indicates that no request was made.
