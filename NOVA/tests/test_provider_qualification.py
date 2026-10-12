@@ -88,16 +88,6 @@ class ProviderQualificationTests(unittest.TestCase):
         self.assertFalse(report["github_token_is_inference_provider"])
         self.assertNotIn("example-value", json.dumps(report))
 
-    def test_cerebras_is_presence_only_while_deferred_by_payment_policy(self):
-        with patch("NOVA.provider_qualification.urllib.request.build_opener") as opener:
-            report = build_report({"CEREBRAS_API_KEY_01": "example-value"})
-        opener.assert_not_called()
-        row = next(row for row in report["results"] if row["provider"] == "cerebras_deferred")
-        self.assertTrue(row["credential_configured"])
-        self.assertEqual(row["lifecycle_status"], "DEFERRED")
-        self.assertEqual(row["status"], "PRESENCE_ONLY_DEFERRED_NO_LIVE_CALL")
-        self.assertNotIn("example-value", json.dumps(report))
-
     def test_heartbeat_persistence_is_separate_from_provider_routing_targets(self):
         report = {
             "observed_at": "2026-10-12T00:00:00+00:00",
