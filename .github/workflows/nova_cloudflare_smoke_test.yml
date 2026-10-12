@@ -1,0 +1,182 @@
+name: NOVA Cloudflare API Smoke Test
+
+on:
+  workflow_dispatch:
+
+# This test needs no GitHub API permissions and never modifies repository or
+# operational state. It is intentionally separate from the full AI heartbeat.
+permissions: {}
+
+concurrency:
+  group: nova-cloudflare-smoke-test
+  cancel-in-progress: false
+
+jobs:
+  cloudflare-smoke-test:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    permissions: {}
+    env:
+      CLOUDFLARE_API_KEY_01: ${{ secrets.CLOUDFLARE_API_KEY_01 }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - name: Verify Cloudflare token and NOVA inference endpoint
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import re
+          import sys
+          import urllib.error
+          import urllib.request
+
+          token = os.environ.get("CLOUDFLARE_API_KEY_01", "").strip()
+          account_id = os.environ.get("CLOUDFLARE_ACCOUNT_ID", "").strip()
+
+          missing = []
+          if not token:
+              missing.append("CLOUDFLARE_API_KEY_01")
+          if not account_id:
+              missing.append("CLOUDFLARE_ACCOUNT_ID")
+          if missing:
+              print("CONFIGURATION=FAIL_MISSING_SECRET")
+              for name in missing:
+                  print(f"MISSING_SECRET={name}")
+              sys.exit(1)
+
+          def safe_text(value):
+              text = str(value)
+              for secret in (token, account_id):
+                  if secret:
+                      text = text.replace(secret, "[REDACTED]")
+              text = re.sub(r"(?i)Bearer\s+\S+", "Bearer [REDACTED]", text)
+              text = re.sub(r"cfut_[A-Za-z0-9_-]+", "cfut_[REDACTED]", text)
+              return text[:300]
+
+          def describe_cloudflare_error(raw):
+              try:
+                  payload = json.loads(raw.decode("utf-8", errors="replace"))
+              except (ValueError, AttributeError):
+                  print("CLOUDFLARE_ERROR_DETAILS=NON_JSON_OR_UNAVAILABLE")
+                  return
+
+              errors = payload.get("errors", [])
+              if not isinstance(errors, list):
+                  errors = []
+              if payload.get("error"):
+                  errors = errors + [payload["error"]]
+
+              printed = False
+              for error in errors[:3]:
+                  if isinstance(error, dict):
+                      code = error.get("code")
+                      message = error.get("message") or error.get("error")
+                      if code is not None:
+                          print(f"CLOUDFLARE_ERROR_CODE={safe_text(code)}")
+                      if message:
+                          print(f"CLOUDFLARE_ERROR_MESSAGE={safe_text(message)}")
+                      printed = printed or code is not None or bool(message)
+                  elif error:
+                      print(f"CLOUDFLARE_ERROR_MESSAGE={safe_text(error)}")
+                      printed = True
+
+              if not printed:
+                  print("CLOUDFLARE_ERROR_DETAILS=NOT_PROVIDED")
+
+          def send(url, payload=None):
+              headers = {
+                  "Authorization": f"Bearer {token}",
+                  "Accept": "application/json",
+                  "User-Agent": "NOVA-Cloudflare-Smoke-Test/1.0",
+              }
+              data = None
+              if payload is not None:
+                  headers["Content-Type"] = "application/json"
+                  data = json.dumps(payload).encode("utf-8")
+              request = urllib.request.Request(url, data=data, headers=headers)
+              try:
+                  with urllib.request.urlopen(request, timeout=25) as response:
+                      return response.status, response.read()
+              except urllib.error.HTTPError as error:
+                  return error.code, error.read()
+
+          # Stage 1: token validity. This endpoint does not consume inference quota.
+          try:
+              status, raw = send(
+                  "https://api.cloudflare.com/client/v4/user/tokens/verify"
+              )
+          except (urllib.error.URLError, TimeoutError, OSError) as error:
+              print("TOKEN_VERIFY=NETWORK_ERROR")
+              print(f"ERROR_TYPE={type(error).__name__}")
+              sys.exit(1)
+
+          print(f"TOKEN_VERIFY_HTTP_STATUS={status}")
+          try:
+              verification = json.loads(raw.decode("utf-8"))
+          except (ValueError, UnicodeDecodeError):
+              print("TOKEN_VERIFY=INVALID_RESPONSE")
+              sys.exit(1)
+
+          if (
+              not 200 <= status < 300
+              or verification.get("success") is not True
+              or str(verification.get("result", {}).get("status", "")).lower() != "active"
+          ):
+              print("TOKEN_VERIFY=FAIL")
+              describe_cloudflare_error(raw)
+              sys.exit(1)
+
+          print("TOKEN_VERIFY=PASS")
+
+          # Stage 2: exercise the exact OpenAI-compatible endpoint and model
+          # configured in NOVA/roster.json, not a separate /ai/run/ example.
+          inference_url = (
+              "https://api.cloudflare.com/client/v4/accounts/"
+              + account_id
+              + "/ai/v1/chat/completions"
+          )
+          prompt = (
+              'NOVA live health probe. Respond with ONLY this JSON object, '
+              'with no markdown: '
+              '{"nova_health":"OK","ack":"NOVA_HEALTH_PROBE"}'
+          )
+          payload = {
+              "model": "@cf/zai-org/glm-4.7-flash",
+              "messages": [{"role": "user", "content": prompt}],
+              "temperature": 0,
+              "max_tokens": 64,
+          }
+
+          try:
+              status, raw = send(inference_url, payload)
+          except (urllib.error.URLError, TimeoutError, OSError) as error:
+              print("WORKERS_AI_INFERENCE=NETWORK_ERROR")
+              print(f"ERROR_TYPE={type(error).__name__}")
+              sys.exit(1)
+
+          print(f"WORKERS_AI_HTTP_STATUS={status}")
+          if not 200 <= status < 300:
+              print("WORKERS_AI_INFERENCE=FAIL")
+              describe_cloudflare_error(raw)
+              sys.exit(1)
+
+          try:
+              result = json.loads(raw.decode("utf-8"))
+              content = result["choices"][0]["message"]["content"]
+              marker = json.loads(content)
+          except (ValueError, UnicodeDecodeError, KeyError, IndexError, TypeError):
+              print("WORKERS_AI_INFERENCE=FAIL")
+              print("RESPONSE_CONTRACT=INVALID_JSON_OR_MISSING_CONTENT")
+              sys.exit(1)
+
+          if marker.get("nova_health") != "OK" or marker.get("ack") != "NOVA_HEALTH_PROBE":
+              print("WORKERS_AI_INFERENCE=FAIL")
+              print("RESPONSE_CONTRACT=HEALTH_MARKER_MISMATCH")
+              sys.exit(1)
+
+          print("WORKERS_AI_INFERENCE=PASS")
+          print("MODEL=@cf/zai-org/glm-4.7-flash")
+          print("RESPONSE_CONTRACT=PASS")
+          PY
