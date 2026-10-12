@@ -78,7 +78,7 @@ class GPUCredentialHeartbeatTests(unittest.TestCase):
             "name": "nosana",
             "api_key_env": "NOSANA_GPU_API_KEY_01",
             "credential_check": {
-                "url": "https://api.nosana.com/api/credits/balance",
+                "url": "https://api.nosana.com/credits/balance",
                 "method": "GET",
                 "auth": "bearer",
                 "expected_hosts": ["api.nosana.com"],
