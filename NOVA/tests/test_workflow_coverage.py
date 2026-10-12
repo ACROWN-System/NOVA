@@ -1,3 +1,4 @@
+import fnmatch
 import unittest
 from pathlib import Path
 
@@ -22,18 +23,14 @@ class WorkflowCoverageTests(unittest.TestCase):
         ).read_text(encoding="utf-8")
         push = workflow.split("push:", 1)[1].split("pull_request:", 1)[0]
         filters = [
-            line.strip().strip("'").strip('"')
+            line.strip()[2:].strip().strip("'").strip('"')
             for line in push.splitlines()
             if line.strip().startswith("- ")
         ]
 
         smoke_workflow = ".github/workflows/nova_cloudflare_smoke_test.yml"
         self.assertTrue(
-            any(
-                smoke_workflow.startswith(pattern.removesuffix("**").rstrip("/"))
-                or pattern == ".github/workflows/**"
-                for pattern in filters
-            ),
+            any(fnmatch.fnmatchcase(smoke_workflow, pattern) for pattern in filters),
             f"Health tests do not cover {smoke_workflow}",
         )
 
