@@ -156,14 +156,9 @@ def check_candidate_credential(provider: dict) -> dict:
             return base
 
         base["auth_probe_status"] = "CREDENTIAL_AUTHENTICATED_READ_ONLY"
-        # Record only the arithmetic available-credit result from Nosana, never
-        # account identity, job metadata, token material, or the raw response.
-        if name == "nosana":
-            fields = ("assignedCredits", "reservedCredits", "settledCredits")
-            values = [payload.get(field) for field in fields]
-            if all(isinstance(value, (int, float)) and not isinstance(value, bool) and value >= 0
-                   for value in values):
-                base["available_credits"] = max(0, values[0] - values[1] - values[2])
+        # The endpoint is used only to test credential/scope acceptance.
+        # Do not infer available credits from fields that are not part of our
+        # verified adapter contract, and do not retain account billing data.
         if name == "huggingface_zerogpu":
             base["auth_probe_status"] = "TOKEN_AUTHENTICATED_GPU_QUOTA_UNVERIFIED"
         return base
