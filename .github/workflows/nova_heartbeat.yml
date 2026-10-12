@@ -1,6 +1,14 @@
 name: NOVA Autonomous Heartbeat
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'NOVA/provider_qualification.py'
+      - 'NOVA/health.py'
+      - 'NOVA/roster.json'
+      - '.github/workflows/nova_heartbeat.yml'
+      - '.github/workflows/nova-provider-qualification.yml'
   schedule:
     - cron: '0 */6 * * *'
   workflow_dispatch:
