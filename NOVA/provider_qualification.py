@@ -136,10 +136,11 @@ def probe(name, kind, env_name, credential, url, method, headers, body, validato
         return base
 
 
-def chat_body(model):
-    return json.dumps({"model": model, "messages": [{"role": "user",
+def chat_body(model, token_field="max_tokens"):
+    body = {"model": model, "messages": [{"role": "user",
         "content": "Reply exactly with this marker and nothing else: " + MARKER}],
-        "max_tokens": 16, "temperature": 0, "stream": False},
+        token_field: 32, "temperature": 0, "stream": False}
+    return json.dumps(body,
         separators=(",", ":")).encode("utf-8")
 
 
@@ -155,13 +156,13 @@ def main():
 
     for name, key_env, key, url, model in [
         ("groq", "GROQ_API_KEY_01", groq,
-         "https://api.groq.com/openai/v1/chat/completions", "openai/gpt-oss-20b"),
+         "https://api.groq.com/openai/v1/chat/completions", "openai/gpt-oss-20b", "max_completion_tokens"),
         ("mistral_requalification", "MISTRAL_API_KEY_01", mistral,
-         "https://api.mistral.ai/v1/chat/completions", "mistral-small-latest"),
+         "https://api.mistral.ai/v1/chat/completions", "mistral-small-latest", "max_tokens"),
     ]:
         rows.append(probe(name, "llm_inference", key_env, key, url, "POST",
             {"Authorization": "Bearer " + key, "Content-Type": "application/json"},
-            chat_body(model), openai_text))
+            chat_body(model, token_field), openai_text))
 
     gemini_body = json.dumps({"contents": [{"parts": [{"text":
         "Reply exactly with this marker and nothing else: " + MARKER}]}],
@@ -181,7 +182,7 @@ def main():
         rows.append(probe("cloudflare", "llm_inference", "CLOUDFLARE_API_KEY_01", cf,
             "https://api.cloudflare.com/client/v4/accounts/" + cf_id + "/ai/v1/chat/completions",
             "POST", {"Authorization": "Bearer " + cf, "Content-Type": "application/json"},
-            chat_body("@cf/zai-org/glm-4.7-flash"), openai_text))
+            chat_body("@cf/zai-org/glm-4.7-flash", "max_tokens"), openai_text))
     else:
         missing = []
         if not cf:
