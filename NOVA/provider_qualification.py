@@ -15,7 +15,13 @@ HEADERS_OK = {"retry-after", "ratelimit-limit", "ratelimit-remaining",
               "ratelimit-reset", "x-ratelimit-limit", "x-ratelimit-remaining",
               "x-ratelimit-reset", "x-ratelimit-limit-requests",
               "x-ratelimit-remaining-requests", "x-ratelimit-limit-tokens",
-              "x-ratelimit-remaining-tokens"}
+              "x-ratelimit-remaining-tokens", "x-ratelimit-limit-req-minute",
+              "x-ratelimit-remaining-req-minute", "x-ratelimit-reset-req-minute",
+              "x-ratelimit-limit-req-10-second", "x-ratelimit-remaining-req-10-second",
+              "x-ratelimit-reset-req-10-second", "x-ratelimit-limit-tokens-minute",
+              "x-ratelimit-remaining-tokens-minute", "x-ratelimit-reset-tokens-minute",
+              "x-ratelimit-limit-tokens-month", "x-ratelimit-remaining-tokens-month",
+              "x-ratelimit-reset-tokens-month"}
 
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -57,20 +63,21 @@ def openai_text(payload):
     try:
         return payload["choices"][0]["message"]["content"]
     except (KeyError, IndexError, TypeError):
-        return ""
+        return None
 
 
 def gemini_text(payload):
     try:
         return "".join(part.get("text", "") for part in payload["candidates"][0]["content"]["parts"])
     except (KeyError, IndexError, TypeError, AttributeError):
-        return ""
+        return None
 
 
 def probe(name, kind, env_name, credential, url, method, headers, body, validator):
     base = {"provider": name, "provider_type": kind, "credential_env": env_name,
             "credential_configured": bool(credential), "http_status": None,
-            "latency_ms": None, "rate_limit_headers": {}, "usage": {}}
+            "latency_ms": None, "rate_limit_headers": {}, "usage": {},
+            "response_shape_valid": None, "probe_marker_present": None}
     if not credential:
         base["status"] = "SKIPPED_MISSING_CREDENTIAL"
         return base
@@ -100,7 +107,14 @@ def probe(name, kind, env_name, credential, url, method, headers, body, validato
             base["status"] = "INVALID_RESPONSE_SHAPE"
             return base
         text = validator(payload)
-        base["status"] = "PASS" if isinstance(text, str) and MARKER in text else "PROBE_RESPONSE_INVALID"
+        base["response_shape_valid"] = isinstance(text, str)
+        base["probe_marker_present"] = bool(isinstance(text, str) and MARKER in text)
+        if not isinstance(text, str):
+            base["status"] = "INVALID_RESPONSE_SHAPE"
+        elif base["probe_marker_present"]:
+            base["status"] = "PASS"
+        else:
+            base["status"] = "RESPONSE_VALID_MARKER_MISSING"
         usage = payload.get("usage") or payload.get("usageMetadata") or {}
         if isinstance(usage, dict):
             for out_key, possible_keys in {
@@ -136,10 +150,12 @@ def probe(name, kind, env_name, credential, url, method, headers, body, validato
         return base
 
 
-def chat_body(model, token_field="max_tokens"):
+def chat_body(model, token_field="max_tokens", reasoning_effort=None):
     body = {"model": model, "messages": [{"role": "user",
         "content": "Reply exactly with this marker and nothing else: " + MARKER}],
-        token_field: 32, "temperature": 0, "stream": False}
+        token_field: 64 if reasoning_effort else 32, "temperature": 0, "stream": False}
+    if reasoning_effort:
+        body["reasoning_effort"] = reasoning_effort
     return json.dumps(body,
         separators=(",", ":")).encode("utf-8")
 
@@ -154,15 +170,15 @@ def build_report(environ=None):
     cf = env.get("CLOUDFLARE_API_KEY_01", "").strip()
     cf_id = env.get("CLOUDFLARE_ACCOUNT_ID", "").strip()
 
-    for name, key_env, key, url, model, token_field in [
+    for name, key_env, key, url, model, token_field, reasoning_effort in [
         ("groq", "GROQ_API_KEY_01", groq,
-         "https://api.groq.com/openai/v1/chat/completions", "openai/gpt-oss-20b", "max_completion_tokens"),
+         "https://api.groq.com/openai/v1/chat/completions", "openai/gpt-oss-20b", "max_completion_tokens", "low"),
         ("mistral_requalification", "MISTRAL_API_KEY_01", mistral,
-         "https://api.mistral.ai/v1/chat/completions", "mistral-small-latest", "max_tokens"),
+         "https://api.mistral.ai/v1/chat/completions", "mistral-small-latest", "max_tokens", None),
     ]:
         rows.append(probe(name, "llm_inference", key_env, key, url, "POST",
             {"Authorization": "Bearer " + key, "Content-Type": "application/json"},
-            chat_body(model, token_field), openai_text))
+            chat_body(model, token_field, reasoning_effort), openai_text))
 
     gemini_body = json.dumps({"contents": [{"parts": [{"text":
         "Reply exactly with this marker and nothing else: " + MARKER}]}],
@@ -176,7 +192,7 @@ def build_report(environ=None):
     rows.append(probe("github_api", "repository_management_not_inference", "GitHub_Token", github,
         "https://api.github.com/user", "GET",
         {"Authorization": "Bearer " + github, "X-GitHub-Api-Version": "2022-11-28"},
-        None, lambda payload: MARKER if isinstance(payload.get("login"), str) and payload.get("login") else ""))
+        None, lambda payload: MARKER if isinstance(payload.get("login"), str) and payload.get("login") else None))
 
     if cf and cf_id:
         rows.append(probe("cloudflare", "llm_inference", "CLOUDFLARE_API_KEY_01", cf,
