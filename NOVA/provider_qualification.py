@@ -154,7 +154,7 @@ def main():
     cf = env.get("CLOUDFLARE_API_KEY_01", "").strip()
     cf_id = env.get("CLOUDFLARE_ACCOUNT_ID", "").strip()
 
-    for name, key_env, key, url, model in [
+    for name, key_env, key, url, model, token_field in [
         ("groq", "GROQ_API_KEY_01", groq,
          "https://api.groq.com/openai/v1/chat/completions", "openai/gpt-oss-20b", "max_completion_tokens"),
         ("mistral_requalification", "MISTRAL_API_KEY_01", mistral,
