@@ -222,16 +222,17 @@ def render_markdown(report):
         "One fixed non-sensitive request per configured endpoint. No credential values, response text, or raw error bodies are logged.",
         "A pass does not prove remaining quota, $0 eligibility, commercial rights, or production capacity.",
         "",
-        "| Provider | Type | Credential slot | Configured | Result | HTTP | Latency ms | Usage |",
-        "|---|---|---|---|---|---:|---:|---|",
+        "| Provider | Type | Credential slot | Configured | Result | HTTP | Shape valid | Marker | Latency ms | Usage |",
+        "|---|---|---|---|---|---:|---|---|---:|---|",
     ]
     for row in report.get("results", []):
         usage = ", ".join("{}={}".format(k, v) for k, v in sorted(row.get("usage", {}).items())) or "unavailable"
-        lines.append("| {provider} | {provider_type} | {credential_env} | {configured} | {status} | {http} | {latency} | {usage} |".format(
+        lines.append("| {provider} | {provider_type} | {credential_env} | {configured} | {status} | {http} | {shape} | {marker} | {latency} | {usage} |".format(
             provider=row["provider"], provider_type=row["provider_type"],
             credential_env=row["credential_env"],
             configured="yes" if row.get("credential_configured") else "no",
             status=row["status"], http=row["http_status"] if row["http_status"] is not None else "—",
+            shape=row.get("response_shape_valid"), marker=row.get("probe_marker_present"),
             latency=row["latency_ms"] if row["latency_ms"] is not None else "—",
             usage=usage))
     lines.extend([
