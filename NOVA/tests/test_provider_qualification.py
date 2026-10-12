@@ -3,7 +3,7 @@ import unittest
 from email.message import Message
 from unittest.mock import patch
 
-from NOVA.provider_qualification import classify, safe_headers, build_report
+from NOVA.provider_qualification import classify, safe_headers, build_report, probe, openai_text
 
 
 class ProviderQualificationTests(unittest.TestCase):
@@ -24,13 +24,47 @@ class ProviderQualificationTests(unittest.TestCase):
     def test_only_allowlisted_rate_limit_headers_are_reported(self):
         headers = Message()
         headers["x-ratelimit-remaining"] = "15"
+        headers["x-ratelimit-remaining-req-minute"] = "0"
         headers["retry-after"] = "2"
         headers["set-cookie"] = "not-for-report"
         headers["x-debug-info"] = "not-for-report"
         self.assertEqual(safe_headers(headers), {
             "x-ratelimit-remaining": "15",
+            "x-ratelimit-remaining-req-minute": "0",
             "retry-after": "2",
         })
+
+
+    def test_successful_http_with_missing_marker_is_not_mislabelled_as_auth_failure(self):
+        class FakeResponse:
+            status = 200
+            headers = {"x-ratelimit-remaining": "7"}
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, exc_type, exc, tb):
+                return False
+
+            def read(self, size):
+                return json.dumps({
+                    "choices": [{"message": {"content": "ordinary response"}}],
+                    "usage": {"prompt_tokens": 3, "completion_tokens": 4, "total_tokens": 7},
+                }).encode("utf-8")
+
+        with patch("NOVA.provider_qualification.urllib.request.build_opener") as opener:
+            opener.return_value.open.return_value = FakeResponse()
+            result = probe(
+                "fixture", "llm_inference", "FIXTURE_KEY", "configured-value",
+                "https://provider.invalid/v1/chat/completions", "POST",
+                {"Authorization": "Bearer configured-value"}, b"{}", openai_text,
+            )
+        self.assertEqual(result["http_status"], 200)
+        self.assertEqual(result["status"], "RESPONSE_VALID_MARKER_MISSING")
+        self.assertTrue(result["response_shape_valid"])
+        self.assertFalse(result["probe_marker_present"])
+        self.assertNotIn("ordinary response", json.dumps(result))
+        self.assertEqual(result["usage"]["total_tokens"], 7)
 
     def test_empty_configuration_skips_all_endpoints(self):
         with patch("NOVA.provider_qualification.urllib.request.build_opener") as opener:
