@@ -4,9 +4,9 @@ on:
   push:
     paths:
       - 'NOVA/**'
-      - '.github/workflows/nova_*heartbeat.yml'
-      - '.github/workflows/nova_health_tests.yml'
-      - '.github/workflows/nova-weak-rsi.yml'
+      # Any workflow change must run offline compile and unit tests, including
+      # manually dispatched integration-test workflow changes.
+      - '.github/workflows/**'
   # Run on every PR so this remains a reliable required check, even for workflow/docs changes.
   pull_request:
 
