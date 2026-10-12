@@ -166,7 +166,7 @@ def build_report(environ=None):
     groq = env.get("GROQ_API_KEY_01", "").strip()
     gemini = env.get("GEMINI_API_KEY_01", "").strip()
     mistral = env.get("MISTRAL_API_KEY_01", "").strip()
-    github = env.get("GitHub_Token", "").strip()
+    cerebras = env.get("CEREBRAS_API_KEY_01", "").strip()
     cf = env.get("CLOUDFLARE_API_KEY_01", "").strip()
     cf_id = env.get("CLOUDFLARE_ACCOUNT_ID", "").strip()
 
@@ -189,11 +189,6 @@ def build_report(environ=None):
         "POST", {"x-goog-api-key": gemini, "Content-Type": "application/json"},
         gemini_body, gemini_text))
 
-    rows.append(probe("github_api", "repository_management_not_inference", "GitHub_Token", github,
-        "https://api.github.com/user", "GET",
-        {"Authorization": "Bearer " + github, "X-GitHub-Api-Version": "2022-11-28"},
-        None, lambda payload: MARKER if isinstance(payload.get("login"), str) and payload.get("login") else None))
-
     if cf and cf_id:
         rows.append(probe("cloudflare", "llm_inference", "CLOUDFLARE_API_KEY_01", cf,
             "https://api.cloudflare.com/client/v4/accounts/" + cf_id + "/ai/v1/chat/completions",
@@ -210,9 +205,77 @@ def build_report(environ=None):
             "status": "SKIPPED_MISSING_CREDENTIAL_OR_ACCOUNT", "http_status": None,
             "latency_ms": None, "rate_limit_headers": {}, "usage": {}})
 
+    rows.append({
+        "provider": "cerebras_deferred",
+        "provider_type": "llm_inference_deferred_policy_presence_only",
+        "credential_env": "CEREBRAS_API_KEY_01",
+        "credential_configured": bool(cerebras),
+        "lifecycle_status": "DEFERRED",
+        "status": (
+            "PRESENCE_ONLY_DEFERRED_NO_LIVE_CALL"
+            if cerebras else "SKIPPED_MISSING_CREDENTIAL_DEFERRED"
+        ),
+        "http_status": None,
+        "latency_ms": None,
+        "rate_limit_headers": {},
+        "usage": {},
+        "response_shape_valid": None,
+        "probe_marker_present": None,
+    })
+
+    lifecycle = {
+        "groq": "ACTIVE",
+        "gemini": "ACTIVE",
+        "cloudflare": "ACTIVE",
+        "mistral_requalification": "DEFERRED_DIAGNOSTIC_ONLY",
+        "cerebras_deferred": "DEFERRED_PRESENCE_ONLY",
+    }
+    for row in rows:
+        row.setdefault("lifecycle_status", lifecycle.get(row["provider"], "UNKNOWN"))
+
     report = {"observed_at": datetime.now(timezone.utc).isoformat(), "diagnostic_only": True,
-        "production_roster_mutated": False, "secret_values_exposed": False, "results": rows}
+        "production_roster_mutated": False, "secret_values_exposed": False,
+        "github_token_is_inference_provider": False, "results": rows}
     return report
+
+
+def persist_heartbeat_report(report, path):
+    """Persist sanitized credential health separately from the live routing namespace."""
+    from NOVA.health import atomic_write_json, load_health_state
+
+    state = load_health_state(Path(path))
+    diagnostic_map = state.get("credential_health")
+    if not isinstance(diagnostic_map, dict):
+        diagnostic_map = {}
+
+    allowed_fields = (
+        "provider", "provider_type", "credential_env", "credential_configured",
+        "lifecycle_status", "status", "http_status", "latency_ms",
+        "rate_limit_headers", "usage", "response_shape_valid", "probe_marker_present",
+    )
+    safe_results = {}
+    for row in report.get("results", []):
+        if not isinstance(row, dict) or not isinstance(row.get("provider"), str):
+            continue
+        safe = {key: row[key] for key in allowed_fields if key in row}
+        safe["observed_at"] = report.get("observed_at")
+        previous = diagnostic_map.get(row["provider"], {})
+        history = previous.get("history", []) if isinstance(previous, dict) else []
+        if not isinstance(history, list):
+            history = []
+        history.append(safe)
+        diagnostic_map[row["provider"]] = {"latest": safe, "history": history[-12:]}
+        safe_results[row["provider"]] = safe
+
+    state["credential_health"] = diagnostic_map
+    state["last_llm_key_heartbeat"] = {
+        "observed_at": report.get("observed_at"),
+        "diagnostic_only": True,
+        "production_roster_mutated": False,
+        "results": safe_results,
+    }
+    state["updated_at"] = report.get("observed_at")
+    atomic_write_json(Path(path), state)
 
 
 def render_markdown(report):
@@ -222,13 +285,14 @@ def render_markdown(report):
         "One fixed non-sensitive request per configured endpoint. No credential values, response text, or raw error bodies are logged.",
         "A pass does not prove remaining quota, $0 eligibility, commercial rights, or production capacity.",
         "",
-        "| Provider | Type | Credential slot | Configured | Result | HTTP | Shape valid | Marker | Latency ms | Usage |",
-        "|---|---|---|---|---|---:|---|---|---:|---|",
+        "| Provider | Type | Lifecycle | Credential slot | Configured | Result | HTTP | Shape valid | Marker | Latency ms | Usage |",
+        "|---|---|---|---|---|---|---:|---|---|---:|---|",
     ]
     for row in report.get("results", []):
         usage = ", ".join("{}={}".format(k, v) for k, v in sorted(row.get("usage", {}).items())) or "unavailable"
-        lines.append("| {provider} | {provider_type} | {credential_env} | {configured} | {status} | {http} | {shape} | {marker} | {latency} | {usage} |".format(
+        lines.append("| {provider} | {provider_type} | {lifecycle} | {credential_env} | {configured} | {status} | {http} | {shape} | {marker} | {latency} | {usage} |".format(
             provider=row["provider"], provider_type=row["provider_type"],
+            lifecycle=row.get("lifecycle_status", "UNKNOWN"),
             credential_env=row["credential_env"],
             configured="yes" if row.get("credential_configured") else "no",
             status=row["status"], http=row["http_status"] if row["http_status"] is not None else "—",
@@ -237,15 +301,19 @@ def render_markdown(report):
             usage=usage))
     lines.extend([
         "",
-        "Mistral is requalified for diagnostic purposes only and remains DEFERRED.",
-        "GitHub API authentication is repository-management capacity, not LLM inference capacity.",
-        "The diagnostic does not mutate provider roster, persisted health state, routing or billing settings.",
+        "Mistral is tested for key/API health only and remains DEFERRED; no result automatically activates it.",
+        "Cerebras is presence-only because its current offer fails the no-payment-method rule; no live call is made.",
+        "GitHub-managed authentication is not treated as an AI-provider key. GitHub Actions uses a separate short-lived GITHUB_TOKEN; Codex integration is tested through its own authorized path.",
+        "The diagnostic never changes provider roster, persisted down markers, routing or billing settings. When called from the heartbeat, a sanitized diagnostic snapshot is stored outside provider-routing targets.",
     ])
     return "\n".join(lines) + "\n"
 
 
 def main():
     report = build_report()
+    if os.environ.get("NOVA_PERSIST_HEALTH_STATE", "").strip().lower() == "true":
+        state_path = os.environ.get("NOVA_HEALTH_STATE_PATH", "NOVA/health_state.json")
+        persist_heartbeat_report(report, state_path)
     print(json.dumps(report, indent=2, sort_keys=True))
     summary_path = os.environ.get("GITHUB_STEP_SUMMARY", "").strip()
     if summary_path:
