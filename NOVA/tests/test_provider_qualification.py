@@ -45,7 +45,20 @@ class ProviderQualificationTests(unittest.TestCase):
         self.assertFalse(report["secret_values_exposed"])
 
     def test_github_credential_is_not_labelled_as_inference_capacity(self):
-        with patch("NOVA.provider_qualification.urllib.request.build_opener"):
+        def fake_probe(name, kind, env_name, credential, *args):
+            return {
+                "provider": name,
+                "provider_type": kind,
+                "credential_env": env_name,
+                "credential_configured": bool(credential),
+                "status": "SKIPPED_MISSING_CREDENTIAL" if not credential else "PASS",
+                "http_status": None,
+                "latency_ms": None,
+                "rate_limit_headers": {},
+                "usage": {},
+            }
+
+        with patch("NOVA.provider_qualification.probe", side_effect=fake_probe):
             report = build_report({"GitHub_Token": "example-value"})
         github = next(row for row in report["results"] if row["provider"] == "github_api")
         self.assertEqual(github["provider_type"], "repository_management_not_inference")
