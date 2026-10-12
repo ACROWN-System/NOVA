@@ -52,4 +52,4 @@ Not applicable because: <!-- Explain briefly, if the external-contract section d
 
 ## Review rule
 
-A checklist is evidence navigation, not a substitute for review. Do not mark a box merely because the code contains an implementation or test. Reviewers should verify high-risk external claims against authoritative evidence. The proposed shared rules are tracked in [AstroCrown-Web quality-gate review](https://github.com/ACROWN-System/AstroCrown-Web/pull/116).
+A checklist is evidence navigation, not a substitute for review. Do not mark a box merely because the code contains an implementation or test. Reviewers should verify high-risk external claims against authoritative evidence. The shared rule is documented in the [Development & Audit Convention — External API, SDK, Platform, and AI-Model Contract Gate](https://github.com/ACROWN-System/AstroCrown-Web/blob/main/development/DEVELOPMENT-AND-AUDIT-CONVENTION.md#external-api-sdk-platform-and-ai-model-contract-gate), currently proposed in [AstroCrown-Web PR #116](https://github.com/ACROWN-System/AstroCrown-Web/pull/116) and pending merge.
