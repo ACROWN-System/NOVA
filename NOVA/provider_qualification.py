@@ -205,30 +205,11 @@ def build_report(environ=None):
             "status": "SKIPPED_MISSING_CREDENTIAL_OR_ACCOUNT", "http_status": None,
             "latency_ms": None, "rate_limit_headers": {}, "usage": {}})
 
-    rows.append({
-        "provider": "cerebras_deferred",
-        "provider_type": "llm_inference_deferred_policy_presence_only",
-        "credential_env": "CEREBRAS_API_KEY_01",
-        "credential_configured": bool(cerebras),
-        "lifecycle_status": "DEFERRED",
-        "status": (
-            "PRESENCE_ONLY_DEFERRED_NO_LIVE_CALL"
-            if cerebras else "SKIPPED_MISSING_CREDENTIAL_DEFERRED"
-        ),
-        "http_status": None,
-        "latency_ms": None,
-        "rate_limit_headers": {},
-        "usage": {},
-        "response_shape_valid": None,
-        "probe_marker_present": None,
-    })
-
     lifecycle = {
         "groq": "ACTIVE",
         "gemini": "ACTIVE",
         "cloudflare": "ACTIVE",
         "mistral_requalification": "DEFERRED_DIAGNOSTIC_ONLY",
-        "cerebras_deferred": "DEFERRED_PRESENCE_ONLY",
     }
     for row in rows:
         row.setdefault("lifecycle_status", lifecycle.get(row["provider"], "UNKNOWN"))
@@ -302,7 +283,6 @@ def render_markdown(report):
     lines.extend([
         "",
         "Mistral is tested for key/API health only and remains DEFERRED; no result automatically activates it.",
-        "Cerebras remains excluded under the current no-payment-method policy and is not injected into a live heartbeat.",
         "GitHub-managed authentication is not treated as an AI-provider key. GitHub Actions uses a separate short-lived GITHUB_TOKEN; Codex integration is tested through its own authorized path.",
         "The diagnostic never changes provider roster, persisted down markers, routing or billing settings. When called from the heartbeat, a sanitized diagnostic snapshot is stored outside provider-routing targets.",
     ])
