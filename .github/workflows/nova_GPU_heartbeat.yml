@@ -50,4 +50,5 @@ jobs:
         run: python NOVA/gpu_heartbeat.py
 
       - name: Publish NOVA GPU heart state to operational branch
-        run: python -m NOVA.operational_state publish --state-ref origin/nova-operational-state --message "chore(nova): update GPU heart health state [skip ci]"
+        run: |
+          python -m NOVA.operational_state publish --state-ref origin/nova-operational-state --message "chore(nova): update GPU heart health state [skip ci]"
