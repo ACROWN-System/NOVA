@@ -1,9 +1,11 @@
 import json
+import tempfile
 import unittest
+from pathlib import Path
 from email.message import Message
 from unittest.mock import patch
 
-from NOVA.provider_qualification import classify, safe_headers, build_report, probe, openai_text
+from NOVA.provider_qualification import classify, safe_headers, build_report, probe, openai_text, persist_heartbeat_report
 
 
 class ProviderQualificationTests(unittest.TestCase):
@@ -78,25 +80,54 @@ class ProviderQualificationTests(unittest.TestCase):
         self.assertFalse(report["production_roster_mutated"])
         self.assertFalse(report["secret_values_exposed"])
 
-    def test_github_credential_is_not_labelled_as_inference_capacity(self):
-        def fake_probe(name, kind, env_name, credential, *args):
-            return {
-                "provider": name,
-                "provider_type": kind,
-                "credential_env": env_name,
-                "credential_configured": bool(credential),
-                "status": "SKIPPED_MISSING_CREDENTIAL" if not credential else "PASS",
-                "http_status": None,
-                "latency_ms": None,
-                "rate_limit_headers": {},
-                "usage": {},
-            }
-
-        with patch("NOVA.provider_qualification.probe", side_effect=fake_probe):
+    def test_github_token_is_not_probed_or_counted_as_inference_capacity(self):
+        with patch("NOVA.provider_qualification.urllib.request.build_opener") as opener:
             report = build_report({"GitHub_Token": "example-value"})
-        github = next(row for row in report["results"] if row["provider"] == "github_api")
-        self.assertEqual(github["provider_type"], "repository_management_not_inference")
+        opener.assert_not_called()
+        self.assertFalse(any(row["provider"] == "github_api" for row in report["results"]))
+        self.assertFalse(report["github_token_is_inference_provider"])
         self.assertNotIn("example-value", json.dumps(report))
+
+    def test_cerebras_is_presence_only_while_deferred_by_payment_policy(self):
+        with patch("NOVA.provider_qualification.urllib.request.build_opener") as opener:
+            report = build_report({"CEREBRAS_API_KEY_01": "example-value"})
+        opener.assert_not_called()
+        row = next(row for row in report["results"] if row["provider"] == "cerebras_deferred")
+        self.assertTrue(row["credential_configured"])
+        self.assertEqual(row["lifecycle_status"], "DEFERRED")
+        self.assertEqual(row["status"], "PRESENCE_ONLY_DEFERRED_NO_LIVE_CALL")
+        self.assertNotIn("example-value", json.dumps(report))
+
+    def test_heartbeat_persistence_is_separate_from_provider_routing_targets(self):
+        report = {
+            "observed_at": "2026-10-12T00:00:00+00:00",
+            "results": [{
+                "provider": "mistral_requalification",
+                "provider_type": "llm_inference",
+                "credential_env": "MISTRAL_API_KEY_01",
+                "credential_configured": True,
+                "lifecycle_status": "DEFERRED_DIAGNOSTIC_ONLY",
+                "status": "RATE_LIMITED_OR_QUOTA_EXHAUSTED",
+                "http_status": 429,
+                "latency_ms": 50,
+                "rate_limit_headers": {"x-ratelimit-remaining-req-minute": "0"},
+                "usage": {},
+                "response_shape_valid": None,
+                "probe_marker_present": None,
+            }]
+        }
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / "health_state.json"
+            persist_heartbeat_report(report, str(path))
+            saved = json.loads(path.read_text(encoding="utf-8"))
+        self.assertIn("mistral_requalification", saved["credential_health"])
+        self.assertEqual(
+            saved["credential_health"]["mistral_requalification"]["latest"]["status"],
+            "RATE_LIMITED_OR_QUOTA_EXHAUSTED",
+        )
+        self.assertEqual(saved["targets"], {})
+        self.assertNotIn("MISTRAL_API_KEY_01_VALUE", json.dumps(saved))
+
 
 
 if __name__ == "__main__":
