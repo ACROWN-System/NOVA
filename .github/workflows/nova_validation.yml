@@ -8,6 +8,10 @@ on:
       - 'NOVA/roster.json'
       - 'NOVA/gpu_roster.json'
       - 'NOVA/tests/test_credential_readiness.py'
+      - 'NOVA/provider_qualification.py'
+      - 'NOVA/PROVIDER-QUALIFICATION.md'
+      - 'NOVA/tests/test_provider_qualification.py'
+      - '.github/workflows/nova-provider-qualification.yml'
       - '.github/workflows/nova_validation.yml'
   workflow_dispatch:
 
