@@ -230,6 +230,15 @@ def call_openai_compatible(provider: dict[str, Any], prompt: str, validator=vali
                     }
                 }
             }
+        elif provider["name"] == "cloudflare":
+            # Cloudflare's GLM-4.7-Flash supports reasoning controls. A health
+            # probe needs no reasoning, and Cloudflare's provider guidance marks
+            # max_tokens deprecated in favor of max_completion_tokens.
+            # Source: https://github.com/cloudflare/ai/blob/main/packages/workers-ai-provider/README.md
+            data.pop("max_tokens", None)
+            data["max_completion_tokens"] = 256
+            data["reasoning_effort"] = None
+            data["chat_template_kwargs"] = {"enable_thinking": False}
         req = urllib.request.Request(
             base_url,
             data=json.dumps(data).encode("utf-8"),
