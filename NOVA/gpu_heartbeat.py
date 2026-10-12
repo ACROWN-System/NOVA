@@ -14,8 +14,10 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import json
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 from pathlib import Path
 
@@ -50,7 +52,7 @@ def request_health(provider: dict) -> tuple[int | None, str, float | None, str |
     request = urllib.request.Request(url, headers=headers, method=method)
     started = time.perf_counter()
     try:
-        with urllib.request.urlopen(request, timeout=30) as response:
+        with urllib.request.build_opener(_NoRedirectHandler()).open(request, timeout=30) as response:
             response.read(65536)
             latency_ms = (time.perf_counter() - started) * 1000
             return response.status, "PASS", latency_ms, None, dict(response.headers)
@@ -60,7 +62,147 @@ def request_health(provider: dict) -> tuple[int | None, str, float | None, str |
         return exc.code, "FAIL", latency_ms, signal, dict(exc.headers or {})
     except Exception as exc:
         latency_ms = (time.perf_counter() - started) * 1000
-        return None, "FAIL", latency_ms, str(exc), {}
+        return None, "FAIL", latency_ms, type(exc).__name__, {}
+
+
+class _NoRedirectHandler(urllib.request.HTTPRedirectHandler):
+    """Block redirects so a credential cannot be forwarded to another host."""
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
+
+
+SAFE_CREDENTIAL_CHECK_HOSTS = {"api.nosana.com", "huggingface.co"}
+
+
+def check_candidate_credential(provider: dict) -> dict:
+    """Check only a documented, read-only provider credential endpoint."""
+    name = str(provider.get("name", "unknown"))
+    credential_env = str(provider.get("api_key_env", ""))
+    credential = os.environ.get(credential_env, "").strip() if credential_env else ""
+    base = {
+        "provider": name,
+        "credential_env": credential_env,
+        "candidate_status": "CANDIDATE_NOT_ACTIVATED",
+        "credential_configured": bool(credential),
+        "auth_probe_status": "NOT_TESTED",
+        "api_status": None,
+        "latency_ms": None,
+        "gpu_capacity_status": "UNVERIFIED",
+        "available_credits": None,
+        "observed_at": utc_now(),
+    }
+    if not credential:
+        base["auth_probe_status"] = "REQUIRED_NOT_CONFIGURED"
+        return base
+
+    check = provider.get("credential_check")
+    if not isinstance(check, dict):
+        base["auth_probe_status"] = "BLOCKED_NO_PROVIDER_SPECIFIC_AUTH_ENDPOINT"
+        return base
+
+    url = check.get("url")
+    method = str(check.get("method", "GET")).upper()
+    auth_mode = check.get("auth")
+    parsed = urllib.parse.urlsplit(url if isinstance(url, str) else "")
+    allowed_hosts = set(check.get("expected_hosts", []))
+    if (
+        parsed.scheme != "https"
+        or parsed.hostname not in SAFE_CREDENTIAL_CHECK_HOSTS
+        or parsed.hostname not in allowed_hosts
+        or parsed.username is not None
+        or parsed.password is not None
+        or parsed.query
+        or parsed.fragment
+        or method != "GET"
+        or auth_mode != "bearer"
+    ):
+        base["auth_probe_status"] = "BLOCKED_UNSAFE_OR_UNSUPPORTED_ENDPOINT"
+        return base
+
+    request = urllib.request.Request(
+        url,
+        headers={
+            "Authorization": f"Bearer {credential}",
+            "Accept": "application/json",
+            "User-Agent": "NOVA-GPU-Credential-Heartbeat/1.0",
+        },
+        method="GET",
+    )
+    started = time.perf_counter()
+    try:
+        with urllib.request.build_opener(_NoRedirectHandler()).open(request, timeout=15) as response:
+            status = int(response.status)
+            raw = response.read(65537)
+        base["api_status"] = status
+        base["latency_ms"] = round((time.perf_counter() - started) * 1000, 3)
+        if len(raw) > 65536:
+            base["auth_probe_status"] = "RESPONSE_TOO_LARGE"
+            return base
+        try:
+            payload = json.loads(raw.decode("utf-8"))
+        except (UnicodeDecodeError, json.JSONDecodeError):
+            base["auth_probe_status"] = "AUTHENTICATED_RESPONSE_NOT_JSON"
+            return base
+        if not isinstance(payload, dict):
+            base["auth_probe_status"] = "AUTHENTICATED_RESPONSE_SHAPE_UNKNOWN"
+            return base
+        if not (200 <= status < 300):
+            base["auth_probe_status"] = "HTTP_ERROR"
+            return base
+
+        base["auth_probe_status"] = "CREDENTIAL_AUTHENTICATED_READ_ONLY"
+        # Record only the arithmetic available-credit result from Nosana, never
+        # account identity, job metadata, token material, or the raw response.
+        if name == "nosana":
+            fields = ("assignedCredits", "reservedCredits", "settledCredits")
+            values = [payload.get(field) for field in fields]
+            if all(isinstance(value, (int, float)) and not isinstance(value, bool) and value >= 0
+                   for value in values):
+                base["available_credits"] = max(0, values[0] - values[1] - values[2])
+        if name == "huggingface_zerogpu":
+            base["auth_probe_status"] = "TOKEN_AUTHENTICATED_GPU_QUOTA_UNVERIFIED"
+        return base
+    except urllib.error.HTTPError as exc:
+        base["api_status"] = int(exc.code)
+        base["latency_ms"] = round((time.perf_counter() - started) * 1000, 3)
+        if exc.code == 401:
+            base["auth_probe_status"] = "AUTH_REJECTED"
+        elif exc.code == 402:
+            base["auth_probe_status"] = "PAYMENT_REQUIRED_OR_CREDITS_EXHAUSTED"
+        elif exc.code == 403:
+            base["auth_probe_status"] = "SCOPE_OR_POLICY_DENIED"
+        elif exc.code == 429:
+            base["auth_probe_status"] = "RATE_LIMITED"
+        elif 300 <= exc.code < 400:
+            base["auth_probe_status"] = "REDIRECT_BLOCKED"
+        else:
+            base["auth_probe_status"] = "HTTP_ERROR"
+        exc.close()
+        return base
+    except (TimeoutError, urllib.error.URLError, OSError) as exc:
+        base["latency_ms"] = round((time.perf_counter() - started) * 1000, 3)
+        base["auth_probe_status"] = "NETWORK_OR_TIMEOUT_" + type(exc).__name__
+        return base
+
+
+def remember_candidate_credentials(state: dict, reports: list[dict]) -> None:
+    history_by_provider = state.get("gpu_candidate_credential_health")
+    if not isinstance(history_by_provider, dict):
+        history_by_provider = {}
+    safe_fields = (
+        "provider", "credential_env", "candidate_status", "credential_configured",
+        "auth_probe_status", "api_status", "latency_ms", "gpu_capacity_status",
+        "available_credits", "observed_at",
+    )
+    for report in reports:
+        safe = {key: report[key] for key in safe_fields if key in report}
+        name = str(safe.get("provider", "unknown"))
+        previous = history_by_provider.get(name, [])
+        if not isinstance(previous, list):
+            previous = []
+        history_by_provider[name] = (previous + [safe])[-12:]
+    state["gpu_candidate_credential_health"] = history_by_provider
 
 
 def run(root: Path) -> int:
