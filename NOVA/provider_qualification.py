@@ -224,7 +224,7 @@ def render_markdown(report):
         "GitHub API authentication is repository-management capacity, not LLM inference capacity.",
         "The diagnostic does not mutate provider roster, persisted health state, routing or billing settings.",
     ])
-    return "\\n".join(lines) + "\\n"
+    return "\n".join(lines) + "\n"
 
 
 def main():
