@@ -56,7 +56,7 @@ class GPUCredentialHeartbeatTests(unittest.TestCase):
         self.assertNotIn("token-secret", json.dumps(result))
         self.assertEqual(result["gpu_capacity_status"], "UNVERIFIED")
 
-    def test_nosana_credits_probe_reports_only_available_credit_arithmetic(self):
+    def test_nosana_read_only_auth_probe_does_not_infer_credit_balance(self):
         class FakeResponse:
             status = 200
 
@@ -91,7 +91,7 @@ class GPUCredentialHeartbeatTests(unittest.TestCase):
             result = check_candidate_credential(provider)
 
         self.assertEqual(result["auth_probe_status"], "CREDENTIAL_AUTHENTICATED_READ_ONLY")
-        self.assertEqual(result["available_credits"], 40)
+        self.assertIsNone(result["available_credits"])
         self.assertNotIn("private@example.invalid", json.dumps(result))
         self.assertNotIn("nosana-secret", json.dumps(result))
         self.assertEqual(result["gpu_capacity_status"], "UNVERIFIED")
