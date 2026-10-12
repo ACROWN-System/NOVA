@@ -216,14 +216,24 @@ def run(root: Path) -> int:
         if p.get("status", "active") != "disabled"
     ]
 
+    # Candidate key checks are read-only and do not activate a GPU provider.
+    # Each adapter must be explicitly declared and host-allowlisted in the roster.
+    candidate_credentials = [
+        check_candidate_credential(p)
+        for p in roster.get("candidates", [])
+        if isinstance(p, dict)
+    ]
+    remember_candidate_credentials(state, candidate_credentials)
+
     if not providers:
         state["last_gpu_heartbeat"] = {
             "observed_at": utc_now(),
             "status": "UNCONFIGURED",
-            "message": "No GPU providers are configured yet; add verified providers and credentials later.",
+            "message": "No GPU providers are activated. Candidate credentials are monitored separately; authentication does not prove GPU allocation or remaining GPU quota.",
+            "candidate_credentials": candidate_credentials,
         }
         atomic_write_json(state_path, state)
-        print(json.dumps(state["last_gpu_heartbeat"], indent=2))
+        print(json.dumps(state["last_gpu_heartbeat"], indent=2, sort_keys=True))
         return 0
 
     rotation_raw = os.environ.get("NOVA_GPU_PROVIDER_ROTATION_INDEX", "0") or "0"
@@ -299,6 +309,7 @@ def run(root: Path) -> int:
         "first_provider": ordered[0].get("name"),
         "attempts": len(results),
         "results": results,
+        "candidate_credentials": candidate_credentials,
     }
     atomic_write_json(state_path, state)
 
