@@ -178,13 +178,69 @@
     }
   },
   "events": {},
+  "gpu_candidate_credential_health": {
+    "huggingface_zerogpu": [
+      {
+        "api_status": null,
+        "auth_probe_status": "REQUIRED_NOT_CONFIGURED",
+        "available_credits": null,
+        "candidate_status": "CANDIDATE_NOT_ACTIVATED",
+        "credential_configured": false,
+        "credential_env": "HF_ZEROGPU_TOKEN_01",
+        "gpu_capacity_status": "UNVERIFIED",
+        "latency_ms": null,
+        "observed_at": "2026-10-12T20:42:05.928416+00:00",
+        "provider": "huggingface_zerogpu"
+      }
+    ],
+    "nosana": [
+      {
+        "api_status": null,
+        "auth_probe_status": "REQUIRED_NOT_CONFIGURED",
+        "available_credits": null,
+        "candidate_status": "CANDIDATE_NOT_ACTIVATED",
+        "credential_configured": false,
+        "credential_env": "NOSANA_GPU_API_KEY_01",
+        "gpu_capacity_status": "UNVERIFIED",
+        "latency_ms": null,
+        "observed_at": "2026-10-12T20:42:05.928397+00:00",
+        "provider": "nosana"
+      }
+    ]
+  },
   "last_annotation_scan": {
     "observed_at": "2026-10-12T20:35:28.899731+00:00",
     "results": []
   },
   "last_gpu_heartbeat": {
-    "message": "No GPU providers are configured yet; add verified providers and credentials later.",
-    "observed_at": "2026-10-11T16:53:16.411373+00:00",
+    "candidate_credentials": [
+      {
+        "api_status": null,
+        "auth_probe_status": "REQUIRED_NOT_CONFIGURED",
+        "available_credits": null,
+        "candidate_status": "CANDIDATE_NOT_ACTIVATED",
+        "credential_configured": false,
+        "credential_env": "NOSANA_GPU_API_KEY_01",
+        "gpu_capacity_status": "UNVERIFIED",
+        "latency_ms": null,
+        "observed_at": "2026-10-12T20:42:05.928397+00:00",
+        "provider": "nosana"
+      },
+      {
+        "api_status": null,
+        "auth_probe_status": "REQUIRED_NOT_CONFIGURED",
+        "available_credits": null,
+        "candidate_status": "CANDIDATE_NOT_ACTIVATED",
+        "credential_configured": false,
+        "credential_env": "HF_ZEROGPU_TOKEN_01",
+        "gpu_capacity_status": "UNVERIFIED",
+        "latency_ms": null,
+        "observed_at": "2026-10-12T20:42:05.928416+00:00",
+        "provider": "huggingface_zerogpu"
+      }
+    ],
+    "message": "No GPU providers are activated. Candidate credentials are monitored separately; authentication does not prove GPU allocation or remaining GPU quota.",
+    "observed_at": "2026-10-12T20:42:05.928425+00:00",
     "status": "UNCONFIGURED"
   },
   "last_llm_key_heartbeat": {
