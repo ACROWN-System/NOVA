@@ -26,7 +26,7 @@ jobs:
       GROQ_API_KEY_01: ${{ secrets.GROQ_API_KEY_01 }}
       GEMINI_API_KEY_01: ${{ secrets.GEMINI_API_KEY_01 }}
       MISTRAL_API_KEY_01: ${{ secrets.MISTRAL_API_KEY_01 }}
-      GitHub_Token: ${{ secrets.GitHub_Token }}
+      CEREBRAS_API_KEY_01: ${{ secrets.CEREBRAS_API_KEY_01 }}
       CLOUDFLARE_API_KEY_01: ${{ secrets.CLOUDFLARE_API_KEY_01 }}
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
     steps:
