@@ -7,6 +7,7 @@ import time
 import urllib.error
 import urllib.request
 from datetime import datetime, timezone
+from pathlib import Path
 
 MARKER = "NOVA_PROBE_OK"
 MAX_BYTES = 65536
@@ -166,7 +167,6 @@ def build_report(environ=None):
     groq = env.get("GROQ_API_KEY_01", "").strip()
     gemini = env.get("GEMINI_API_KEY_01", "").strip()
     mistral = env.get("MISTRAL_API_KEY_01", "").strip()
-    cerebras = env.get("CEREBRAS_API_KEY_01", "").strip()
     cf = env.get("CLOUDFLARE_API_KEY_01", "").strip()
     cf_id = env.get("CLOUDFLARE_ACCOUNT_ID", "").strip()
 
@@ -302,7 +302,7 @@ def render_markdown(report):
     lines.extend([
         "",
         "Mistral is tested for key/API health only and remains DEFERRED; no result automatically activates it.",
-        "Cerebras is presence-only because its current offer fails the no-payment-method rule; no live call is made.",
+        "Cerebras remains excluded under the current no-payment-method policy and is not injected into a live heartbeat.",
         "GitHub-managed authentication is not treated as an AI-provider key. GitHub Actions uses a separate short-lived GITHUB_TOKEN; Codex integration is tested through its own authorized path.",
         "The diagnostic never changes provider roster, persisted down markers, routing or billing settings. When called from the heartbeat, a sanitized diagnostic snapshot is stored outside provider-routing targets.",
     ])
