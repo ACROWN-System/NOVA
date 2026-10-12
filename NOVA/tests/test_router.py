@@ -262,14 +262,27 @@ class DeferredProviderRosterTests(unittest.TestCase):
         }
         self.assertEqual(deferred["mistral"]["status"], "DEFERRED")
 
-        for workflow_name in (
-            "nova_heartbeat.yml",
-            "nova_probe_scheduler.yml",
-        ):
-            workflow = (
-                repository_root / ".github" / "workflows" / workflow_name
-            ).read_text(encoding="utf-8")
-            self.assertNotIn("MISTRAL_API_KEY_01", workflow, workflow_name)
+        heartbeat_workflow = (
+            repository_root / ".github" / "workflows" / "nova_heartbeat.yml"
+        ).read_text(encoding="utf-8")
+        qualifier_start = heartbeat_workflow.index(
+            "- name: Qualify configured LLM credentials and persist sanitized health"
+        )
+        publisher_start = heartbeat_workflow.index(
+            "- name: Publish NOVA structured state to operational branch",
+            qualifier_start,
+        )
+        routing_and_reasoning = heartbeat_workflow[:qualifier_start]
+        qualifier_step = heartbeat_workflow[qualifier_start:publisher_start]
+        mistral_env = "MISTRAL_API_KEY_01"
+        self.assertNotIn(mistral_env, routing_and_reasoning)
+        self.assertIn(mistral_env, qualifier_step)
+        self.assertIn("NOVA_PERSIST_HEALTH_STATE: 'true'", qualifier_step)
+
+        scheduler = (
+            repository_root / ".github" / "workflows" / "nova_probe_scheduler.yml"
+        ).read_text(encoding="utf-8")
+        self.assertNotIn(mistral_env, scheduler)
 
         # A previously persisted queue may still mention Mistral. Scheduler
         # normalization must rebuild it from the current active provider roster.
