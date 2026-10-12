@@ -298,7 +298,7 @@ class RouterRotationTests(unittest.TestCase):
         self.assertIsNone(sent["reasoning_effort"])
         self.assertEqual(sent["chat_template_kwargs"], {"enable_thinking": False})
         self.assertNotIn("test-key", repr(probes))
-        self.assertNotIn("account-123", request.full_url)
+        self.assertIn("/accounts/account-123/", request.full_url)
 
 
 class DeferredProviderRosterTests(unittest.TestCase):
