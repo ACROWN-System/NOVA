@@ -475,6 +475,18 @@
         "latency_ms": null,
         "observed_at": "2026-10-13T06:10:44.876626+00:00",
         "provider": "huggingface_zerogpu"
+      },
+      {
+        "api_status": null,
+        "auth_probe_status": "REQUIRED_NOT_CONFIGURED",
+        "available_credits": null,
+        "candidate_status": "CANDIDATE_NOT_ACTIVATED",
+        "credential_configured": false,
+        "credential_env": "HF_ZEROGPU_TOKEN_01",
+        "gpu_capacity_status": "UNVERIFIED",
+        "latency_ms": null,
+        "observed_at": "2026-10-13T06:31:31.466149+00:00",
+        "provider": "huggingface_zerogpu"
       }
     ],
     "nosana": [
@@ -537,6 +549,18 @@
         "latency_ms": null,
         "observed_at": "2026-10-13T06:10:44.876619+00:00",
         "provider": "nosana"
+      },
+      {
+        "api_status": null,
+        "auth_probe_status": "REQUIRED_NOT_CONFIGURED",
+        "available_credits": null,
+        "candidate_status": "CANDIDATE_NOT_ACTIVATED",
+        "credential_configured": false,
+        "credential_env": "NOSANA_GPU_API_KEY_01",
+        "gpu_capacity_status": "UNVERIFIED",
+        "latency_ms": null,
+        "observed_at": "2026-10-13T06:31:31.466145+00:00",
+        "provider": "nosana"
       }
     ]
   },
@@ -555,8 +579,9 @@
         "Unknown, stale, malformed, expired or unmetered values remain unknown and never become a zero-usage claim.",
         "GPU-minute means one GPU allocated for one minute; simultaneous GPUs contribute one GPU-minute per GPU per minute."
       ],
+      "intended_use_mode": "noncommercial_research_and_development",
       "known_advertised_gpu_minutes_per_30_day_month_not_counted": 150,
-      "observed_at": "2026-10-13T06:10:44.876248+00:00",
+      "observed_at": "2026-10-13T06:31:31.465906+00:00",
       "operational_capacity_status": "TARGET_NOT_MET_BY_VERIFIED_CAPACITY",
       "operational_provider_count": 0,
       "provider_evidence_count": 7,
@@ -565,6 +590,7 @@
           "active_in_gpu_roster": false,
           "advertised_monthly_gpu_minutes_not_counted": 150,
           "allocation_type": "shared_queued",
+          "current_intended_use_mode": "noncommercial_research_and_development",
           "display_name": "Hugging Face ZeroGPU \u2014 approved Space path only",
           "official_sources": [
             "https://huggingface.co/docs/hub/main/en/spaces-zerogpu"
@@ -577,9 +603,9 @@
               "automated_access_not_verified",
               "capacity_evidence_sources_missing_or_invalid",
               "capacity_observation_timestamp_missing_or_invalid",
-              "commercial_use_not_verified",
               "data_handling_approved_not_verified",
               "free_without_payment_method_not_verified",
+              "intended_use_terms_compatible_not_verified",
               "one_time_capacity_expires_at_missing_or_invalid",
               "one_time_capacity_minutes_missing_or_not_positive",
               "one_time_capacity_not_verified",
@@ -592,11 +618,12 @@
             "account_eligibility": "UNKNOWN",
             "allocation_test": "NOT_RUN",
             "automated_access": "PARTIAL",
-            "commercial_use": "UNKNOWN",
             "data_handling_approved": "UNKNOWN",
             "free_without_payment_method": "UNKNOWN",
+            "intended_use_terms_compatible": "UNKNOWN",
             "workload_compatibility": "PARTIAL"
           },
+          "qualification_use_mode": "noncommercial_research_and_development",
           "recurring_capacity": {
             "gpu_minutes": null,
             "reason_codes": [
@@ -605,9 +632,9 @@
               "automated_access_not_verified",
               "capacity_evidence_sources_missing_or_invalid",
               "capacity_observation_timestamp_missing_or_invalid",
-              "commercial_use_not_verified",
               "data_handling_approved_not_verified",
               "free_without_payment_method_not_verified",
+              "intended_use_terms_compatible_not_verified",
               "recurring_capacity_minutes_missing_or_not_positive",
               "recurring_capacity_not_verified",
               "recurring_capacity_valid_until_missing_or_invalid",
@@ -621,6 +648,7 @@
           "active_in_gpu_roster": false,
           "advertised_monthly_gpu_minutes_not_counted": null,
           "allocation_type": "marketplace_job",
+          "current_intended_use_mode": "noncommercial_research_and_development",
           "display_name": "Nosana GPU marketplace",
           "official_sources": [
             "https://learn.nosana.com/api/credits.html",
@@ -634,9 +662,9 @@
               "automated_access_not_verified",
               "capacity_evidence_sources_missing_or_invalid",
               "capacity_observation_timestamp_missing_or_invalid",
-              "commercial_use_not_verified",
               "data_handling_approved_not_verified",
               "free_without_payment_method_not_verified",
+              "intended_use_terms_compatible_not_verified",
               "one_time_capacity_expires_at_missing_or_invalid",
               "one_time_capacity_minutes_missing_or_not_positive",
               "one_time_capacity_not_verified",
@@ -649,11 +677,12 @@
             "account_eligibility": "UNKNOWN",
             "allocation_test": "NOT_RUN",
             "automated_access": "PARTIAL",
-            "commercial_use": "UNKNOWN",
             "data_handling_approved": "UNKNOWN",
             "free_without_payment_method": "UNKNOWN",
+            "intended_use_terms_compatible": "UNKNOWN",
             "workload_compatibility": "UNKNOWN"
           },
+          "qualification_use_mode": "noncommercial_research_and_development",
           "recurring_capacity": {
             "gpu_minutes": null,
             "reason_codes": [
@@ -662,9 +691,9 @@
               "automated_access_not_verified",
               "capacity_evidence_sources_missing_or_invalid",
               "capacity_observation_timestamp_missing_or_invalid",
-              "commercial_use_not_verified",
               "data_handling_approved_not_verified",
               "free_without_payment_method_not_verified",
+              "intended_use_terms_compatible_not_verified",
               "recurring_capacity_minutes_missing_or_not_positive",
               "recurring_capacity_not_verified",
               "recurring_capacity_valid_until_missing_or_invalid",
@@ -678,9 +707,11 @@
           "active_in_gpu_roster": false,
           "advertised_monthly_gpu_minutes_not_counted": null,
           "allocation_type": "credit_backed_interruptible_or_session",
+          "current_intended_use_mode": "noncommercial_research_and_development",
           "display_name": "Lightning AI \u2014 one-time GPU-credit candidate",
           "official_sources": [
-            "https://lightning.ai/pricing"
+            "https://lightning.ai/pricing",
+            "https://lightning.ai/docs/overview/ai-studio/"
           ],
           "one_time_capacity": {
             "gpu_minutes": null,
@@ -690,8 +721,8 @@
               "automated_access_not_verified",
               "capacity_evidence_sources_missing_or_invalid",
               "capacity_observation_timestamp_missing_or_invalid",
-              "commercial_use_not_verified",
               "data_handling_approved_not_verified",
+              "intended_use_terms_compatible_not_verified",
               "one_time_capacity_expires_at_missing_or_invalid",
               "one_time_capacity_minutes_missing_or_not_positive",
               "one_time_capacity_not_verified",
@@ -704,11 +735,12 @@
             "account_eligibility": "UNKNOWN",
             "allocation_test": "NOT_RUN",
             "automated_access": "PARTIAL",
-            "commercial_use": "UNKNOWN",
             "data_handling_approved": "UNKNOWN",
             "free_without_payment_method": "VERIFIED",
+            "intended_use_terms_compatible": "UNKNOWN",
             "workload_compatibility": "UNKNOWN"
           },
+          "qualification_use_mode": "noncommercial_research_and_development",
           "recurring_capacity": {
             "gpu_minutes": null,
             "reason_codes": [
@@ -717,8 +749,8 @@
               "automated_access_not_verified",
               "capacity_evidence_sources_missing_or_invalid",
               "capacity_observation_timestamp_missing_or_invalid",
-              "commercial_use_not_verified",
               "data_handling_approved_not_verified",
+              "intended_use_terms_compatible_not_verified",
               "recurring_capacity_minutes_missing_or_not_positive",
               "recurring_capacity_not_verified",
               "recurring_capacity_valid_until_missing_or_invalid",
@@ -732,6 +764,7 @@
           "active_in_gpu_roster": false,
           "advertised_monthly_gpu_minutes_not_counted": null,
           "allocation_type": "serverless_gpu_compute",
+          "current_intended_use_mode": "noncommercial_research_and_development",
           "display_name": "Modal Starter \u2014 recurring compute-credit candidate",
           "official_sources": [
             "https://modal.com/pricing",
@@ -745,9 +778,9 @@
               "automated_access_not_verified",
               "capacity_evidence_sources_missing_or_invalid",
               "capacity_observation_timestamp_missing_or_invalid",
-              "commercial_use_not_verified",
               "data_handling_approved_not_verified",
               "free_without_payment_method_not_verified",
+              "intended_use_terms_compatible_not_verified",
               "one_time_capacity_expires_at_missing_or_invalid",
               "one_time_capacity_minutes_missing_or_not_positive",
               "one_time_capacity_not_verified",
@@ -760,11 +793,12 @@
             "account_eligibility": "UNKNOWN",
             "allocation_test": "NOT_RUN",
             "automated_access": "PARTIAL",
-            "commercial_use": "UNKNOWN",
             "data_handling_approved": "UNKNOWN",
             "free_without_payment_method": "UNKNOWN",
+            "intended_use_terms_compatible": "UNKNOWN",
             "workload_compatibility": "UNKNOWN"
           },
+          "qualification_use_mode": "noncommercial_research_and_development",
           "recurring_capacity": {
             "gpu_minutes": null,
             "reason_codes": [
@@ -773,9 +807,9 @@
               "automated_access_not_verified",
               "capacity_evidence_sources_missing_or_invalid",
               "capacity_observation_timestamp_missing_or_invalid",
-              "commercial_use_not_verified",
               "data_handling_approved_not_verified",
               "free_without_payment_method_not_verified",
+              "intended_use_terms_compatible_not_verified",
               "recurring_capacity_minutes_missing_or_not_positive",
               "recurring_capacity_not_verified",
               "recurring_capacity_valid_until_missing_or_invalid",
@@ -789,6 +823,7 @@
           "active_in_gpu_roster": false,
           "advertised_monthly_gpu_minutes_not_counted": null,
           "allocation_type": "ephemeral_shared_session",
+          "current_intended_use_mode": "noncommercial_research_and_development",
           "display_name": "Google Colab free GPU runtime",
           "official_sources": [
             "https://research.google.com/colaboratory/faq.html"
@@ -796,33 +831,57 @@
           "one_time_capacity": {
             "gpu_minutes": null,
             "reason_codes": [
-              "automated_access_disallowed"
+              "account_eligibility_not_verified",
+              "allocation_test_not_verified",
+              "automated_access_not_verified",
+              "capacity_evidence_sources_missing_or_invalid",
+              "capacity_observation_timestamp_missing_or_invalid",
+              "data_handling_approved_not_verified",
+              "free_without_payment_method_not_verified",
+              "intended_use_terms_compatible_not_verified",
+              "one_time_capacity_expires_at_missing_or_invalid",
+              "one_time_capacity_minutes_missing_or_not_positive",
+              "one_time_capacity_not_verified",
+              "workload_compatibility_not_verified"
             ],
-            "status": "EXCLUDED"
+            "status": "BLOCKED"
           },
           "provider": "google_colab_free",
           "qualification": {
             "account_eligibility": "UNKNOWN",
             "allocation_test": "NOT_RUN",
-            "automated_access": "DISALLOWED",
-            "commercial_use": "UNKNOWN",
+            "automated_access": "UNKNOWN",
             "data_handling_approved": "UNKNOWN",
             "free_without_payment_method": "UNKNOWN",
+            "intended_use_terms_compatible": "UNKNOWN",
             "workload_compatibility": "PARTIAL"
           },
+          "qualification_use_mode": "noncommercial_research_and_development",
           "recurring_capacity": {
             "gpu_minutes": null,
             "reason_codes": [
-              "automated_access_disallowed"
+              "account_eligibility_not_verified",
+              "allocation_test_not_verified",
+              "automated_access_not_verified",
+              "capacity_evidence_sources_missing_or_invalid",
+              "capacity_observation_timestamp_missing_or_invalid",
+              "data_handling_approved_not_verified",
+              "free_without_payment_method_not_verified",
+              "intended_use_terms_compatible_not_verified",
+              "recurring_capacity_minutes_missing_or_not_positive",
+              "recurring_capacity_not_verified",
+              "recurring_capacity_valid_until_missing_or_invalid",
+              "workload_compatibility_not_verified"
             ],
-            "status": "EXCLUDED"
+            "status": "BLOCKED"
           },
-          "status": "EXCLUDED"
+          "status": "BLOCKED"
         },
         {
           "active_in_gpu_roster": false,
           "advertised_monthly_gpu_minutes_not_counted": null,
           "allocation_type": "ephemeral_notebook",
+          "current_intended_use_mode": "noncommercial_research_and_development",
           "display_name": "Kaggle hosted notebooks",
           "official_sources": [
             "https://www.kaggle.com/terms"
@@ -830,33 +889,57 @@
           "one_time_capacity": {
             "gpu_minutes": null,
             "reason_codes": [
-              "commercial_use_disallowed"
+              "account_eligibility_not_verified",
+              "allocation_test_not_verified",
+              "automated_access_not_verified",
+              "capacity_evidence_sources_missing_or_invalid",
+              "capacity_observation_timestamp_missing_or_invalid",
+              "data_handling_approved_not_verified",
+              "free_without_payment_method_not_verified",
+              "intended_use_terms_compatible_not_verified",
+              "one_time_capacity_expires_at_missing_or_invalid",
+              "one_time_capacity_minutes_missing_or_not_positive",
+              "one_time_capacity_not_verified",
+              "workload_compatibility_not_verified"
             ],
-            "status": "EXCLUDED"
+            "status": "BLOCKED"
           },
           "provider": "kaggle",
           "qualification": {
             "account_eligibility": "UNKNOWN",
             "allocation_test": "NOT_RUN",
             "automated_access": "UNKNOWN",
-            "commercial_use": "DISALLOWED",
             "data_handling_approved": "UNKNOWN",
             "free_without_payment_method": "UNKNOWN",
+            "intended_use_terms_compatible": "UNKNOWN",
             "workload_compatibility": "UNKNOWN"
           },
+          "qualification_use_mode": "noncommercial_research_and_development",
           "recurring_capacity": {
             "gpu_minutes": null,
             "reason_codes": [
-              "commercial_use_disallowed"
+              "account_eligibility_not_verified",
+              "allocation_test_not_verified",
+              "automated_access_not_verified",
+              "capacity_evidence_sources_missing_or_invalid",
+              "capacity_observation_timestamp_missing_or_invalid",
+              "data_handling_approved_not_verified",
+              "free_without_payment_method_not_verified",
+              "intended_use_terms_compatible_not_verified",
+              "recurring_capacity_minutes_missing_or_not_positive",
+              "recurring_capacity_not_verified",
+              "recurring_capacity_valid_until_missing_or_invalid",
+              "workload_compatibility_not_verified"
             ],
-            "status": "EXCLUDED"
+            "status": "BLOCKED"
           },
-          "status": "EXCLUDED"
+          "status": "BLOCKED"
         },
         {
           "active_in_gpu_roster": false,
           "advertised_monthly_gpu_minutes_not_counted": null,
           "allocation_type": "gpu_marketplace",
+          "current_intended_use_mode": "noncommercial_research_and_development",
           "display_name": "Vast.ai",
           "official_sources": [
             "https://console.vast.ai/faq/"
@@ -873,11 +956,12 @@
             "account_eligibility": "UNKNOWN",
             "allocation_test": "NOT_RUN",
             "automated_access": "UNKNOWN",
-            "commercial_use": "UNKNOWN",
             "data_handling_approved": "UNKNOWN",
             "free_without_payment_method": "PAYMENT_METHOD_REQUIRED",
+            "intended_use_terms_compatible": "UNKNOWN",
             "workload_compatibility": "UNKNOWN"
           },
+          "qualification_use_mode": "noncommercial_research_and_development",
           "recurring_capacity": {
             "gpu_minutes": null,
             "reason_codes": [
@@ -925,7 +1009,7 @@
         "credential_env": "NOSANA_GPU_API_KEY_01",
         "gpu_capacity_status": "UNVERIFIED",
         "latency_ms": null,
-        "observed_at": "2026-10-13T06:10:44.876619+00:00",
+        "observed_at": "2026-10-13T06:31:31.466145+00:00",
         "provider": "nosana"
       },
       {
@@ -937,12 +1021,12 @@
         "credential_env": "HF_ZEROGPU_TOKEN_01",
         "gpu_capacity_status": "UNVERIFIED",
         "latency_ms": null,
-        "observed_at": "2026-10-13T06:10:44.876626+00:00",
+        "observed_at": "2026-10-13T06:31:31.466149+00:00",
         "provider": "huggingface_zerogpu"
       }
     ],
     "message": "No GPU providers are activated. Candidate credentials are monitored separately; authentication does not prove GPU allocation or remaining GPU quota.",
-    "observed_at": "2026-10-13T06:10:44.876636+00:00",
+    "observed_at": "2026-10-13T06:31:31.466156+00:00",
     "status": "UNCONFIGURED"
   },
   "last_llm_key_heartbeat": {
@@ -6800,5 +6884,5 @@
       "requested_model": "mistral-small-latest"
     }
   },
-  "updated_at": "2026-10-13T06:10:44.876636+00:00"
+  "updated_at": "2026-10-13T06:31:31.466156+00:00"
 }
