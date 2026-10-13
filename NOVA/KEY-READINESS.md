@@ -13,7 +13,7 @@ The NOVA Validation workflow reports presence for the active LLM slots (Groq, Ge
 ## Known separations
 
 - An LLM API key and a GPU allocation key are not interchangeable. Nosana LLM inference and Nosana GPU job/market APIs are separate operational paths, even if the vendor account may issue related credentials.
-- Current NOVA LLM providers have health checks but each provider's key and account slots still require runtime presence/authentication evidence.
+- The qualification diagnostic actively probes Groq and Gemini only. Mistral remains deferred and is excluded from the health-test environment. Cloudflare inference qualification is BLOCKED without another live request until the exact model/API response contract is verified; credential presence and ordinary routing are separate evidence.
 - No GPU candidate is placed into providers merely because a token exists.
 - Credential presence does not establish $0 eligibility, no-card access, commercial rights, free-tier persistence, or available GPU minutes. Those require their own evidence and runtime checks.
 - RSI in AstroCrown-Web uses a separate repository's Actions secrets/variables; the NOVA report cannot see or infer their values.
