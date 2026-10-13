@@ -17,6 +17,20 @@ class WorkflowCoverageTests(unittest.TestCase):
         self.assertIn("'.github/workflows/**'", push)
         self.assertIn("pull_request:", workflow)
 
+    def test_manual_cloudflare_smoke_uses_documented_json_mode_candidate(self):
+        workflow = (
+            ROOT / ".github/workflows/nova_cloudflare_smoke_test.yml"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("workflow_dispatch:", workflow)
+        self.assertNotIn("  push:", workflow)
+        self.assertIn("@cf/meta/llama-3.1-8b-instruct-fast", workflow)
+        self.assertNotIn("@cf/zai-org/glm-4.7-flash", workflow)
+        self.assertIn('"type": "json_schema"', workflow)
+        self.assertIn('"additionalProperties": False', workflow)
+        self.assertIn('health.get("nova_health") != "OK"', workflow)
+        self.assertIn('health.get("ack") != "NOVA_HEALTH_PROBE"', workflow)
+
     def test_cloudflare_smoke_workflow_is_covered_by_the_health_suite(self):
         workflow = (
             ROOT / ".github/workflows/nova_health_tests.yml"
