@@ -127,14 +127,14 @@ class RootCauseClosureGateTests(unittest.TestCase):
             "prevention_control": "Require verified capability metadata before request execution.",
             "regression_test": "Assert unsupported model makes no HTTP request.",
             "verification_result": "PASS",
-            "verified_candidate_sha": self.SHA,
+            "verified_candidate_sha": "abcdef1234567890abcdef1234567890abcdef12",
             "verified_at": "2026-10-13T02:00:00+00:00",
         }
         blocked = close_failure_case(state, case["case_id"], evidence)
         self.assertFalse(blocked["allowed"])
         self.assertEqual(case["state"], CASE_OPEN_STATE)
 
-        evidence["observed_result"] = "EMPTY_RESPONSE"
+        evidence["verified_candidate_sha"] = self.SHA
         closed = close_failure_case(state, case["case_id"], evidence)
         self.assertTrue(closed["allowed"])
         self.assertEqual(case["state"], CASE_CLOSED_STATE)
