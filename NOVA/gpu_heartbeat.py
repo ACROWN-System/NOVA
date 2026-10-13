@@ -24,10 +24,12 @@ try:
     from . import alerts
     from .health import atomic_write_json, load_health_state, load_json, record_probe, utc_now
     from .capacity import annotate_probe
+    from .gpu_capacity import TARGET_GPU_MINUTES_PER_MONTH, build_capacity_report, load_capacity_evidence
 except ImportError:  # Direct script execution
     import alerts
     from health import atomic_write_json, load_health_state, load_json, record_probe, utc_now
     from capacity import annotate_probe
+    from gpu_capacity import TARGET_GPU_MINUTES_PER_MONTH, build_capacity_report, load_capacity_evidence
 
 
 def request_health(provider: dict) -> tuple[int | None, str, float | None, str | None, dict]:
@@ -214,6 +216,30 @@ def run(root: Path) -> int:
         if p.get("status", "active") != "disabled"
     ]
 
+    # Capacity accounting is offline and evidence-gated; it never allocates a GPU.
+    evidence_path = root / "NOVA/gpu_capacity_evidence.json"
+    if evidence_path.is_file():
+        capacity_evidence = load_capacity_evidence(evidence_path)
+        missing_capacity_evidence = False
+    else:
+        capacity_evidence = {
+            "schema_version": 1,
+            "target_gpu_minutes_per_month": TARGET_GPU_MINUTES_PER_MONTH,
+            "providers": [],
+        }
+        missing_capacity_evidence = True
+    active_provider_names = {
+        str(provider.get("name", "")).strip()
+        for provider in providers
+        if isinstance(provider, dict) and str(provider.get("name", "")).strip()
+    }
+    capacity_summary = build_capacity_report(
+        capacity_evidence,
+        active_provider_names=active_provider_names,
+    )
+    if missing_capacity_evidence:
+        capacity_summary["warnings"].append("GPU capacity evidence register is missing; no capacity can be qualified.")
+
     # Candidate key checks are read-only and do not activate a GPU provider.
     # Each adapter must be explicitly declared and host-allowlisted in the roster.
     candidate_credentials = [
@@ -229,6 +255,8 @@ def run(root: Path) -> int:
             "status": "UNCONFIGURED",
             "message": "No GPU providers are activated. Candidate credentials are monitored separately; authentication does not prove GPU allocation or remaining GPU quota.",
             "candidate_credentials": candidate_credentials,
+
+            "aggregate_capacity": capacity_summary,
         }
         atomic_write_json(state_path, state)
         print(json.dumps(state["last_gpu_heartbeat"], indent=2, sort_keys=True))
@@ -308,6 +336,8 @@ def run(root: Path) -> int:
         "attempts": len(results),
         "results": results,
         "candidate_credentials": candidate_credentials,
+
+        "aggregate_capacity": capacity_summary,
     }
     atomic_write_json(state_path, state)
 
