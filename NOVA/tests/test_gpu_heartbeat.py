@@ -166,6 +166,10 @@ class GPUCredentialHeartbeatTests(unittest.TestCase):
 
         self.assertEqual(state["last_gpu_heartbeat"]["status"], "UNCONFIGURED")
         self.assertEqual(
+            state["updated_at"],
+            state["last_gpu_heartbeat"]["observed_at"],
+        )
+        self.assertEqual(
             state["last_gpu_heartbeat"]["aggregate_capacity"]["target_gpu_minutes_per_month"],
             86400,
         )
