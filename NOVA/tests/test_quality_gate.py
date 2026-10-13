@@ -109,6 +109,49 @@ class RootCauseClosureGateTests(unittest.TestCase):
         self.assertFalse(decision["allowed"])
         self.assertIn("did not pass", decision["reason"])
 
+    def test_closure_rejects_naive_timestamps_and_unapproved_fields(self):
+        base = {
+            "expected_result": "Valid structured output",
+            "observed_result": "JSON markers match",
+            "direct_cause": "Model response didn't honor response contract.",
+            "systemic_cause": "Missing model-specific capability gate.",
+            "missed_control": "No capability preflight check.",
+            "prevention_control": "Block all unverified structured-output models.",
+            "regression_test": "Test no request for BLOCKED model.",
+            "verification_result": "PASS",
+            "candidate_sha": self.SHA,
+            "verified_candidate_sha": self.SHA,
+            "verified_at": "2026-10-13T02:00:00",
+        }
+        decision = closure_decision(base)
+        self.assertFalse(decision["allowed"])
+        self.assertIn("timezone-aware", decision["reason"])
+
+        state = {}
+        case = record_failure_case(
+            state,
+            source="provider:model",
+            failure_class="response_contract",
+            expected_result="Valid structured output",
+            observed_result="EMPTY_RESPONSE",
+            candidate_sha=self.SHA,
+        )
+        evidence = {
+            "direct_cause": "Invalid content.",
+            "systemic_cause": "No model-specific capability gate.",
+            "missed_control": "No preflight.",
+            "prevention_control": "Add verified capability metadata.",
+            "regression_test": "Test unsupported models make no request.",
+            "verification_result": "PASS",
+            "verified_candidate_sha": self.SHA,
+            "verified_at": "2026-10-13T02:00:00+00:00",
+            "source": "tampered-source",
+        }
+        decision = close_failure_case(state, case["case_id"], evidence)
+        self.assertFalse(decision["allowed"])
+        self.assertEqual(case["state"], CASE_OPEN_STATE)
+        self.assertEqual(case["source"], "provider:model")
+
     def test_only_complete_exact_commit_pass_can_close_and_recurrence_reopens(self):
         state = {}
         case = record_failure_case(
@@ -150,6 +193,7 @@ class RootCauseClosureGateTests(unittest.TestCase):
         )
         self.assertEqual(reopened["state"], CASE_OPEN_STATE)
         self.assertEqual(reopened["reopened_count"], 1)
+        self.assertEqual(reopened["expected_result"], "Valid structured output")
         self.assertIn("last_verified_closure", reopened)
 
 
