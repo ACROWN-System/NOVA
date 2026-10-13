@@ -5,7 +5,7 @@ from pathlib import Path
 from email.message import Message
 from unittest.mock import patch
 
-from NOVA.provider_qualification import classify, safe_headers, build_report, probe, openai_text, persist_heartbeat_report
+from NOVA.provider_qualification import classify, safe_headers, build_report, probe, openai_text, persist_heartbeat_report, render_markdown
 
 
 class ProviderQualificationTests(unittest.TestCase):
@@ -83,6 +83,14 @@ class ProviderQualificationTests(unittest.TestCase):
         self.assertTrue(report["diagnostic_only"])
         self.assertFalse(report["production_roster_mutated"])
         self.assertFalse(report["secret_values_exposed"])
+
+    def test_cloudflare_markdown_shows_skip_and_linked_qualification_evidence(self):
+        report = build_report({})
+        markdown = render_markdown(report)
+        self.assertIn("SKIPPED_ALREADY_QUALIFIED", markdown)
+        self.assertIn("https://github.com/ACROWN-System/NOVA/actions/runs/38350563789", markdown)
+        self.assertIn("@cf/meta/llama-3.1-8b-instruct-fast", markdown)
+        self.assertNotIn("Cloudflare inference is blocked until", markdown)
 
     def test_mistral_is_not_probed_even_if_deferred_secret_is_present(self):
         # The value is a synthetic placeholder, never a real credential.
