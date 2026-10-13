@@ -1,6 +1,13 @@
 name: NOVA Autonomous Heartbeat
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'NOVA/provider_qualification.py'
+      - 'NOVA/health.py'
+      - 'NOVA/roster.json'
+  # Intentionally omit this workflow file to avoid an incidental live LLM run on merge.
   schedule:
     - cron: '0 */6 * * *'
   workflow_dispatch:
