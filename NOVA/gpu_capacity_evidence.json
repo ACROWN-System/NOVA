@@ -56,7 +56,9 @@
         "A real Space test must use an AstroCrown-owned workload.",
         "The user has not authorized prompts to community-operated volunteer GPUs; do not substitute community Spaces for an approved deployment."
       ],
-      "qualification_use_mode": "noncommercial_research_and_development"
+      "qualification_use_mode": "noncommercial_research_and_development",
+      "r_and_d_role": "small_owned_space_smoke_tests",
+      "next_decision": "Consider only a very small, non-sensitive test in an AstroCrown-owned Space after account and workload conditions are verified; do not treat the daily allowance as a general pool."
     },
     {
       "name": "nosana",
@@ -115,7 +117,9 @@
         "Existing NOVA status remains candidate and inactive.",
         "Read-only credential validation must not trigger a deployment or a credit request."
       ],
-      "qualification_use_mode": "noncommercial_research_and_development"
+      "qualification_use_mode": "noncommercial_research_and_development",
+      "r_and_d_role": "candidate_automated_or_batch_compute",
+      "next_decision": "Verify actual eligible free credits and no-card access read-only before any credit request or job allocation."
     },
     {
       "name": "lightning_ai",
@@ -176,10 +180,12 @@
         "Potential starting GPU capacity worth testing for R&D, subject to phone verification, account eligibility, selected GPU pricing and current allowance.",
         "The public pricing page and AI Studio guide conflict on whether the advertised GPU hours and free credits recur monthly, and the no-card allocation; keep the actual allowance unresolved until the account dashboard is checked.",
         "Do not assume the 80-hour headline is available without a card: the pricing FAQ says 5 credits are granted at registration and 25 more require adding a card.",
-        "This is not yet a verified recurring contribution to the provisional provisional 86,400 GPU-minute/month reference planning reference.",
+        "This is not yet a verified recurring contribution to the provisional 86,400 GPU-minute/month planning reference.",
         "The free CPU Studio's four-hour restart behavior does not itself establish GPU availability or reliability."
       ],
-      "qualification_use_mode": "noncommercial_research_and_development"
+      "qualification_use_mode": "noncommercial_research_and_development",
+      "r_and_d_role": "interactive_workspace_and_bounded_gpu_trial",
+      "next_decision": "CPU preparation may be useful; before a GPU test, resolve the account-specific no-card GPU credit balance, terms and actual allocation."
     },
     {
       "name": "modal",
@@ -239,7 +245,9 @@
         "No capacity is counted until account/payment-method conditions, terms and workload are verified.",
         "Included dollar balances are not GPU-minutes or a fixed GPU-time entitlement."
       ],
-      "qualification_use_mode": "noncommercial_research_and_development"
+      "qualification_use_mode": "noncommercial_research_and_development",
+      "r_and_d_role": "candidate_serverless_gpu_jobs",
+      "next_decision": "Resolve no-card eligibility and selected-GPU plus accompanying-resource pricing before considering a bounded job."
     },
     {
       "name": "google_colab_free",
@@ -293,7 +301,9 @@
         "Not counted until terms and automation fit are checked against the intended job path.",
         "Dynamic free GPU limits and session termination make it unsuitable to assume guaranteed always-on capacity."
       ],
-      "qualification_use_mode": "noncommercial_research_and_development"
+      "qualification_use_mode": "noncommercial_research_and_development",
+      "r_and_d_role": "manual_interactive_gpu_studies",
+      "next_decision": "First candidate for opportunistic, manually run, restartable, non-sensitive notebook studies when a free GPU session is available; never assume continuous access."
     },
     {
       "name": "kaggle",
@@ -348,7 +358,9 @@
         "Kaggle terms are not automatically deemed compatible: verify the personal/internal-use and no-third-party-benefit conditions against the intended project activity before using it.",
         "Capacity remains blocked until provider terms, account eligibility, GPU allocation and data/workload suitability are verified."
       ],
-      "qualification_use_mode": "noncommercial_research_and_development"
+      "qualification_use_mode": "noncommercial_research_and_development",
+      "r_and_d_role": "manual_notebook_candidate_blocked_pending_terms_fit",
+      "next_decision": "Do not rely on it for this project until the personal/internal-use and no-third-party-benefit clauses are compatible with the concrete activity."
     },
     {
       "name": "vast_ai",
@@ -401,12 +413,30 @@
       "notes": [
         "Do not proceed to an account or compute test that requires a card or paid credit under the current policy."
       ],
-      "qualification_use_mode": "noncommercial_research_and_development"
+      "qualification_use_mode": "noncommercial_research_and_development",
+      "r_and_d_role": "excluded_under_current_no_payment_method_policy",
+      "next_decision": "Do not spend further discovery effort while usable access requires a payment method or paid credits."
     }
   ],
   "intended_use_mode": "noncommercial_research_and_development",
   "planning_reference_gpu_minutes_per_month": 86400,
   "planning_reference_status": "PROVISIONAL_UNVALIDATED",
   "planning_reference_is_requirement": false,
-  "reference_feasibility_status": "NOT_ESTABLISHED"
+  "reference_feasibility_status": "NOT_ESTABLISHED",
+  "r_and_d_continuity_strategy": {
+    "objective": "Keep R&D and diverse studies moving with the smallest practical set of usable routes; exhaustive provider discovery is not a prerequisite.",
+    "discovery_mode": "progressive_need_driven",
+    "provisional_reference_is_requirement": false,
+    "core_rule": "Route by actual workload; continue CPU-capable work while GPU access is uncertain; test the lowest-friction eligible no-cost path in a bounded, restartable experiment; add alternatives when they resolve real blockers or provide useful independent fallback.",
+    "no_card_policy": "No card, no payment method, and no paid credits for the current R&D paths. Resolve provider-specific ambiguity before allocation or credit requests.",
+    "study_execution": [
+      "cpu_capable_work_in_existing_development_environment",
+      "manual_interactive_gpu_notebooks_for_opportunistic_short_studies",
+      "free_cpu_workspace_for_preparation_and_debugging",
+      "small_owned_hosted_space_smoke_tests",
+      "automated_batch_compute_after_provider_qualification"
+    ],
+    "qualification_rule": "Manual exploratory use may assist R&D but must not be counted as verified recurring or automated capacity unless the relevant capacity gates pass.",
+    "retry_rule": "Log the concrete cause of each failed attempt; do not repeat an identical failed test without a new hypothesis or changed condition."
+  }
 }
