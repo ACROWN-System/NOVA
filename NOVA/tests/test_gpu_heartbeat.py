@@ -129,6 +129,8 @@ class GPUCredentialHeartbeatTests(unittest.TestCase):
         self.assertNotIn(".github/workflows/nova_heartbeat.yml", llm)
         self.assertIn("NOVA/gpu_heartbeat.py", gpu)
         self.assertIn("NOVA/gpu_roster.json", gpu)
+        self.assertIn("NOVA/gpu_capacity.py", gpu)
+        self.assertIn("NOVA/gpu_capacity_evidence.json", gpu)
         self.assertIn("NOVA/health.py", gpu)
         self.assertIn(".github/workflows/nova_GPU_heartbeat.yml", gpu)
         self.assertIn("branches: [main]", llm)
@@ -163,6 +165,14 @@ class GPUCredentialHeartbeatTests(unittest.TestCase):
             state = json.loads((root / "NOVA/health_state.json").read_text(encoding="utf-8"))
 
         self.assertEqual(state["last_gpu_heartbeat"]["status"], "UNCONFIGURED")
+        self.assertEqual(
+            state["last_gpu_heartbeat"]["aggregate_capacity"]["target_gpu_minutes_per_month"],
+            86400,
+        )
+        self.assertEqual(
+            state["last_gpu_heartbeat"]["aggregate_capacity"]["verified_active_recurring_gpu_minutes_per_month"],
+            0,
+        )
         self.assertEqual(
             state["last_gpu_heartbeat"]["candidate_credentials"][0]["auth_probe_status"],
             "REQUIRED_NOT_CONFIGURED",
