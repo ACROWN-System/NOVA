@@ -24,12 +24,12 @@ try:
     from . import alerts
     from .health import atomic_write_json, load_health_state, load_json, record_probe, utc_now
     from .capacity import annotate_probe
-    from .gpu_capacity import TARGET_GPU_MINUTES_PER_MONTH, build_capacity_report, load_capacity_evidence
+    from .gpu_capacity import DEFAULT_PLANNING_REFERENCE_GPU_MINUTES_PER_MONTH, build_capacity_report, load_capacity_evidence
 except ImportError:  # Direct script execution
     import alerts
     from health import atomic_write_json, load_health_state, load_json, record_probe, utc_now
     from capacity import annotate_probe
-    from gpu_capacity import TARGET_GPU_MINUTES_PER_MONTH, build_capacity_report, load_capacity_evidence
+    from gpu_capacity import DEFAULT_PLANNING_REFERENCE_GPU_MINUTES_PER_MONTH, build_capacity_report, load_capacity_evidence
 
 
 def request_health(provider: dict) -> tuple[int | None, str, float | None, str | None, dict]:
@@ -224,7 +224,7 @@ def run(root: Path) -> int:
     else:
         capacity_evidence = {
             "schema_version": 1,
-            "target_gpu_minutes_per_month": TARGET_GPU_MINUTES_PER_MONTH,
+            "planning_reference_gpu_minutes_per_month": DEFAULT_PLANNING_REFERENCE_GPU_MINUTES_PER_MONTH,
             "providers": [],
         }
         missing_capacity_evidence = True
