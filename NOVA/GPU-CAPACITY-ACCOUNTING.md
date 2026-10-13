@@ -49,6 +49,36 @@ The current phase is research and development in GitHub and related development 
 
 This does not permit bypassing provider terms. If a term's application to AstroCrown R&D is ambiguous, mark the candidate BLOCKED until clarified. When the intended use changes to commercial production, every provider must be requalified. The accounting engine compares each provider's `qualification_use_mode` against the code policy's current intended-use mode; old R&D evidence cannot qualify a provider for commercial production without a new assessment.
 
+## Fluid R&D continuity: make useful progress before completing discovery
+
+**Operating objective:** keep AstroCrown/NOVA R&D and diverse studies moving with the smallest practical set of usable paths. Exhaustive provider discovery is not a prerequisite for starting useful work. Provider discovery is progressive and driven by an actual study, blocker or need for resilience.
+
+The 86,400 GPU-minute figure remains only a provisional comparison reference. We do not need to reach it, prove the entire ecosystem first, or find every candidate before R&D can continue.
+
+### Route work by what it actually needs
+
+| R&D activity | First path to consider | Fallback / boundary |
+|---|---|---|
+| Design, literature review, data preparation, Python/CPU tests, documentation, small preprocessing and pipeline validation | Continue immediately in the existing GitHub/local development environment; do not wait for a GPU | Defer only the GPU-dependent segment and keep its inputs, acceptance criteria and expected outputs ready |
+| Short, interactive GPU experiments and notebook-based studies | Google Colab's free notebook runtime when a suitable GPU is available; treat it as a manual, opportunistic session | Runtime availability and limits change and sessions may terminate; save work incrementally and keep experiments restartable. [Official Colab FAQ](https://research.google.com/colaboratory/faq.html) |
+| Development workspace, dependency setup and code debugging | Lightning AI's free CPU Studio is a possible workspace path; prepare on CPU before any GPU allocation | Its GPU free-credit terms are unresolved in the evidence register. Use GPU only after the account confirms the actual no-card allowance and applicable terms. [Pricing](https://lightning.ai/pricing) · [AI Studio guide](https://lightning.ai/docs/overview/ai-studio/) |
+| Very small hosted inference / integration smoke test | An AstroCrown-owned Hugging Face ZeroGPU Space, if the account and intended deployment qualify | The official free-account quota is 5 GPU-minutes/day with shared queueing; this is a narrow test path, not a general compute pool. Do not send sensitive prompts to community-operated Spaces. [Official ZeroGPU guide](https://huggingface.co/docs/hub/main/spaces-zerogpu) |
+| Automated jobs or repeated batch studies | Keep Nosana and Modal as candidates to qualify against the actual workload | Verify account eligibility, no-card access, terms, workload fit and measured resource price before credit requests, deployment or activation |
+| Kaggle notebook work | Do not rely on it yet for project work | Remain blocked until Kaggle's personal/internal-use and no-third-party-benefit terms are reconciled with the specific intended activity. [Terms](https://www.kaggle.com/terms) |
+
+These are **candidate routes, not declarations of account access or provider approval**. A manually started notebook or free CPU workspace can be useful to R&D without being counted as verified recurring or automated GPU capacity. The operational capacity report measures a narrower question: what capacity has passed the relevant gates and can safely be relied upon for the intended operating mode.
+
+### Progressive qualification loop
+
+1. Choose the next concrete study and write down its compute, VRAM, data, runtime and output requirements.
+2. Split CPU-capable preparation and validation from genuinely GPU-dependent work; continue the former immediately.
+3. Try the lowest-friction eligible no-cost path for one bounded, replaceable, non-sensitive experiment.
+4. Record the observed hardware, setup/queue time where available, runtime, interruption, result, and any eligibility/terms limit. Never infer recurring capacity from a single run.
+5. If the path is unavailable or unsuitable, record the specific cause and move to the next plausible route. Do not repeat the same failed attempt without a new hypothesis or changed condition.
+6. Add more providers when they remove a demonstrated study bottleneck, provide a useful independent fallback, or broaden supported workload types. Stop searching for its own sake once the current studies have workable routes; resume discovery when evidence identifies a gap.
+
+**Continuity rule:** aim for a usable primary route and a practical alternate for each important recurring study when feasible, but never block all R&D on achieving redundancy or finishing a complete provider inventory. Preserve checkpointing, reproducible inputs and restartable jobs to reduce the cost of intermittent free resources.
+
 ## Initial provider assessment — official-source review on 13 October 2026
 
 | Candidate | Evidence found | Accounting treatment now |
