@@ -89,6 +89,20 @@
       "api_key_env": "CLOUDFLARE_API_KEY_01",
       "base_url": "https://api.cloudflare.com/client/v4/accounts/{CF_ACCOUNT_ID}/ai/v1/chat/completions",
       "kind": "openai_compatible",
+      "model_contracts": {
+        "@cf/meta/llama-3.1-8b-instruct-fast": {
+          "checked_on": "2026-10-13",
+          "eligibility_note": "Listed by Cloudflare as supporting JSON Mode. Still requires a bounded live NOVA response-contract qualification before promotion to VERIFIED.",
+          "source_url": "https://developers.cloudflare.com/workers-ai/features/json-mode/",
+          "structured_json": "CANDIDATE"
+        },
+        "@cf/zai-org/glm-4.7-flash": {
+          "checked_on": "2026-10-13",
+          "reason": "The official JSON Mode supported-model list does not include this model; do not use it for NOVA's mandatory structured JSON contract without further evidence.",
+          "source_url": "https://developers.cloudflare.com/workers-ai/features/json-mode/",
+          "structured_json": "BLOCKED_UNVERIFIED"
+        }
+      },
       "models": [
         "@cf/zai-org/glm-4.7-flash"
       ],
