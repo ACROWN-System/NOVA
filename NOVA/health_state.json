@@ -499,6 +499,18 @@
         "latency_ms": null,
         "observed_at": "2026-10-13T06:45:59.287927+00:00",
         "provider": "huggingface_zerogpu"
+      },
+      {
+        "api_status": null,
+        "auth_probe_status": "REQUIRED_NOT_CONFIGURED",
+        "available_credits": null,
+        "candidate_status": "CANDIDATE_NOT_ACTIVATED",
+        "credential_configured": false,
+        "credential_env": "HF_ZEROGPU_TOKEN_01",
+        "gpu_capacity_status": "UNVERIFIED",
+        "latency_ms": null,
+        "observed_at": "2026-10-13T06:48:24.454508+00:00",
+        "provider": "huggingface_zerogpu"
       }
     ],
     "nosana": [
@@ -585,6 +597,18 @@
         "latency_ms": null,
         "observed_at": "2026-10-13T06:45:59.287918+00:00",
         "provider": "nosana"
+      },
+      {
+        "api_status": null,
+        "auth_probe_status": "REQUIRED_NOT_CONFIGURED",
+        "available_credits": null,
+        "candidate_status": "CANDIDATE_NOT_ACTIVATED",
+        "credential_configured": false,
+        "credential_env": "NOSANA_GPU_API_KEY_01",
+        "gpu_capacity_status": "UNVERIFIED",
+        "latency_ms": null,
+        "observed_at": "2026-10-13T06:48:24.454502+00:00",
+        "provider": "nosana"
       }
     ]
   },
@@ -605,7 +629,7 @@
       ],
       "intended_use_mode": "noncommercial_research_and_development",
       "known_advertised_gpu_minutes_per_30_day_month_not_counted": 150,
-      "observed_at": "2026-10-13T06:45:59.287546+00:00",
+      "observed_at": "2026-10-13T06:48:24.454101+00:00",
       "operational_capacity_status": "TARGET_NOT_MET_BY_VERIFIED_CAPACITY",
       "operational_provider_count": 0,
       "provider_evidence_count": 7,
@@ -1033,7 +1057,7 @@
         "credential_env": "NOSANA_GPU_API_KEY_01",
         "gpu_capacity_status": "UNVERIFIED",
         "latency_ms": null,
-        "observed_at": "2026-10-13T06:45:59.287918+00:00",
+        "observed_at": "2026-10-13T06:48:24.454502+00:00",
         "provider": "nosana"
       },
       {
@@ -1045,12 +1069,12 @@
         "credential_env": "HF_ZEROGPU_TOKEN_01",
         "gpu_capacity_status": "UNVERIFIED",
         "latency_ms": null,
-        "observed_at": "2026-10-13T06:45:59.287927+00:00",
+        "observed_at": "2026-10-13T06:48:24.454508+00:00",
         "provider": "huggingface_zerogpu"
       }
     ],
     "message": "No GPU providers are activated. Candidate credentials are monitored separately; authentication does not prove GPU allocation or remaining GPU quota.",
-    "observed_at": "2026-10-13T06:45:59.287938+00:00",
+    "observed_at": "2026-10-13T06:48:24.454521+00:00",
     "status": "UNCONFIGURED"
   },
   "last_llm_key_heartbeat": {
@@ -6908,5 +6932,5 @@
       "requested_model": "mistral-small-latest"
     }
   },
-  "updated_at": "2026-10-13T06:45:59.287938+00:00"
+  "updated_at": "2026-10-13T06:48:24.454521+00:00"
 }
