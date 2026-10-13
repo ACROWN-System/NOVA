@@ -256,11 +256,11 @@ def render_markdown(report):
     lines = [
         "# NOVA provider qualification",
         "",
-        "One fixed non-sensitive request is sent only to eligible configured endpoints. Cloudflare inference is blocked until its exact model/API contract is verified. No credential values, response text, or raw error bodies are logged.",
+        "Bounded non-sensitive diagnostic requests are sent only to eligible configured endpoints. Cloudflare's selected model has already passed a bounded live JSON-contract smoke test; this diagnostic deliberately skips a duplicate Cloudflare inference request. No credential values, response text, or raw error bodies are logged.",
         "A pass does not prove remaining quota, $0 eligibility, commercial rights, or production capacity.",
         "",
         "| Provider | Type | Model | Lifecycle | Credential slot | Configured | Result | HTTP | Shape valid | Marker | Latency ms | Usage | Evidence |",
-        "|---|---|---|---|---|---|---:|---|---|---:|---|",
+        "|---|---|---|---|---|---|---|---:|---|---|---:|---|---|",
     ]
     for row in report.get("results", []):
         usage = ", ".join("{}={}".format(k, v) for k, v in sorted(row.get("usage", {}).items())) or "unavailable"
