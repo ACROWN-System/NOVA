@@ -5,6 +5,9 @@ on:
     branches: [main]
     paths:
       - 'NOVA/provider_qualification.py'
+      - 'NOVA/router.py'
+      - 'NOVA/quality_gate.py'
+      - 'NOVA/reasoning.py'
       - 'NOVA/health.py'
       - 'NOVA/roster.json'
   # Intentionally omit this workflow file to avoid an incidental live LLM run on merge.
