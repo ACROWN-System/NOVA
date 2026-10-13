@@ -3,13 +3,14 @@
 **Status:** Initial evidence register and deterministic accounting implementation  
 **Last reviewed:** 2026-10-13  
 **Current intended use:** **Non-commercial research and development in the GitHub development environment**  
-**Monthly target:** **86,400 GPU-minutes across all eligible providers combined**
+**Provisional planning reference (unvalidated):** **86,400 GPU-minutes/month across the combined provider ecosystem**  
+**Requirement status:** **Not established; not a dogmatic or binding requirement**
 
 ## Objective and accounting unit
 
-One GPU-minute means one GPU allocated for one minute. Two GPUs allocated concurrently for one minute contribute two GPU-minutes. Under this convention, 86,400 GPU-minutes over a 30-day period equal two continuously allocated GPU equivalents. The target is aggregate; no single provider must supply it alone.
+One GPU-minute means one GPU allocated for one minute. Two GPUs allocated concurrently for one minute contribute two GPU-minutes. Under this convention, 86,400 GPU-minutes over a 30-day period would equal two continuously allocated GPU equivalents. This arithmetic explains the scale of the provisional reference; it does not establish that this volume is realistic, needed, or available. The reference is aggregate only for comparison across providers; it is not an obligation for one provider or the ecosystem to meet.
 
-The evidence register is **NOVA/gpu_capacity_evidence.json**. The deterministic report engine is **NOVA/gpu_capacity.py**. The GPU heartbeat adds the report to **last_gpu_heartbeat.aggregate_capacity**. The capacity code performs no provider requests and cannot activate an account or spend credits.
+The evidence register is **NOVA/gpu_capacity_evidence.json**. The deterministic report engine is **NOVA/gpu_capacity.py**. The GPU heartbeat adds the report to **last_gpu_heartbeat.aggregate_capacity**. The capacity code performs no provider requests and cannot activate an account or spend credits. The 86,400 figure is a provisional comparison baseline only: neither its realism nor the availability of that much eligible free capacity has been established. It can be revised or abandoned as evidence accumulates.
 
 ## What counts
 
@@ -31,9 +32,9 @@ A missing field, unknown state, stale timestamp, invalid number, or unsupported 
 
 | Quantity | Meaning | Counts toward recurring monthly target? |
 |---|---|---:|
-| Advertised monthly GPU allowance | Public quota or normalized estimate | No |
+| Advertised monthly GPU allowance | Public quota or normalized estimate | No; tracked separately from verified capacity |
 | Verified eligible recurring GPU-minutes/month | Current account-level recurring allocation passing every gate | Not until active in the GPU roster |
-| Verified active recurring GPU-minutes/month | Eligible recurring allocation integrated and active | Yes |
+| Verified active recurring GPU-minutes/month | Eligible recurring allocation integrated and active | Measured supply; compare with the provisional reference |
 | Verified one-time GPU-minutes available | Current unused credits translated into measured GPU-minutes with evidence and expiry | Only for the current period; tracked separately from recurring capacity |
 | Reserved GPU-minutes | Capacity reserved for running or scheduled work, according to explicit metering | Tracked separately |
 | Idle allocated GPU-minutes | GPU time allocated but not completing useful work | Tracked separately |
@@ -62,9 +63,9 @@ This does not permit bypassing provider terms. If a term's application to AstroC
 
 This is an ecosystem shortlist, not a claim that every candidate is eligible for the current R&D use or currently available. Account-specific observations are still required.
 
-## Current verified result
+## Current verified result and planning-reference status
 
-At the latest checked operational-state observation, no GPU provider was active in **NOVA/gpu_roster.json**; Nosana and Hugging Face credentials were unconfigured. Consequently, the verified operational contribution is **0 GPU-minutes/month** and the target gap **after verified active capacity** remains 86,400. This is a verified-evidence accounting result, **not a claim that no other GPU capacity could exist**. See the [dedicated operational-state record](https://github.com/ACROWN-System/NOVA/blob/nova-operational-state/NOVA/health_state.json).
+At the latest checked operational-state observation, no GPU provider was active in **NOVA/gpu_roster.json**; Nosana and Hugging Face credentials were unconfigured. Consequently, verified active recurring capacity is **0 GPU-minutes/month** in that observation. The arithmetic difference from the provisional reference is 86,400 minutes, but it is not a target shortfall or evidence that 86,400 minutes are available or required. This is a verified-evidence accounting result, **not a claim that no other GPU capacity could exist**. See the [dedicated operational-state record](https://github.com/ACROWN-System/NOVA/blob/nova-operational-state/NOVA/health_state.json).
 
 The actual useful GPU work completed month-to-date remains **UNKNOWN / NOT METERED**. It is not reported as zero, because no complete usage-metering source has yet been connected.
 
@@ -72,7 +73,7 @@ The actual useful GPU work completed month-to-date remains **UNKNOWN / NOT METER
 
 ### Discoveries
 
-- The aggregate target requires contributions from multiple eligible providers.
+- The provisional reference can be compared against the combined contributions of eligible providers; the achievable aggregate remains unknown.
 - Hugging Face ZeroGPU's free tier has a useful but small documented daily allowance; shared/queued behavior prevents treating its theoretical allowance as reserved minutes.
 - Nosana's credits API exposes a balance shape and separate eligibility path; neither establishes this account's available credits by itself.
 - Lightning AI's current pricing page and its AI Studio guide conflict: the pricing FAQ says 5 credits at registration and 25 additional credits only with a card, while the guide says 80 GPU hours and 15 credits each month after phone verification. Keep monthly recurrence and the no-card allowance unresolved; do not count the headline.
@@ -81,7 +82,7 @@ The actual useful GPU work completed month-to-date remains **UNKNOWN / NOT METER
 
 ### Decisions
 
-- Retain a fixed target of 86,400 GPU-minutes/month across the combined eligible ecosystem.
+- Retain 86,400 GPU-minutes/month only as an initial provisional planning reference; permit scenario changes, revision or abandonment based on measured demand, eligible supply, cost and reliability.
 - Keep advertised allowances, verified recurring capacity, one-time credit capacity, reserved/idle time and completed useful work separate.
 - Never promote candidate credentials, an HTTP 200, an advertised quota, account credits or an unmeasured GPU price into verified usable GPU-minutes.
 - Keep providers inactive until the external contract for the current R&D use, account eligibility, free/no-card condition, data boundary, workload path and allocation evidence pass.
@@ -96,7 +97,7 @@ The actual useful GPU work completed month-to-date remains **UNKNOWN / NOT METER
 - Lightning account eligibility and the no-card GPU-credit balance; official pricing and AI Studio documentation conflict on 5 versus 15 free credits and starter-only versus monthly 80 GPU hours. Also unresolved: selected GPU price conversion, intended-use terms, data handling, automation qualification and real allocation.
 - Modal's no-card eligibility for this account, current selected-GPU costs and tested monthly capacity.
 - An approved instrumented route for completed/idle/reserved GPU-minute measurements.
-- The required navigation protocol/template are unavailable in the active repository tree; this limitation must not be replaced by a claim that the canonical plan workflow was followed.
+- The required navigation protocol/template are unavailable in the active repository tree; this limitation must not be replaced by a claim that the canonical plan workflow was followed. The 86,400-minute reference is likewise not a validated requirement; feasibility and need remain open research questions.
 
 ## Next actions
 
@@ -111,8 +112,14 @@ The actual useful GPU work completed month-to-date remains **UNKNOWN / NOT METER
 
 **IF merged:** NOVA can present a consistent, auditable total over the combined provider portfolio while preventing advertised, unknown, expired, card-dependent, terms-incompatible or untested allocations from inflating the target.
 
-**IF not merged:** Capacity will remain scattered across provider-specific observations, making it easier to confuse public allowances, credentials, dollar credits and actual usable GPU time; the 86,400-minute target will have no deterministic aggregate evidence report.
+**IF not merged:** Capacity will remain scattered across provider-specific observations, making it easier to confuse public allowances, credentials, dollar credits and actual usable GPU time; there will be no deterministic way to compare measured provider capacity against an explicitly provisional planning reference.
 
 ## Reliability measurement boundary
 
 The accounting report measures evidence-qualified capacity; it does not yet calculate an empirical long-term provider reliability score. To select the most stable combination, NOVA still needs time-series measurements for API/allocator availability, successful and failed GPU allocations, queue wait, runtime interruptions, GPU type/VRAM, and workload completion. Do not claim high reliability based only on an advertised quota or a single successful allocation.
+
+## Planning reference versus proven feasibility
+
+The report's `planning_reference_gpu_minutes_per_month` defaults to 86,400 only to make early comparisons consistent. Its status is `PROVISIONAL_UNVALIDATED`, `planning_reference_is_requirement` is `false`, and `reference_feasibility_status` is `NOT_ESTABLISHED`. The value may be changed in the evidence register for scenario analysis without a policy-mismatch warning. Reports show a comparison against verified active capacity, not a claim that a mandatory target has failed.
+
+Neither a reported difference nor the present lack of active providers demonstrates that the reference is achievable or unachievable. Establish feasibility only from account-eligible capacity, actual GPU allocation and workload throughput observations collected over an appropriate period. Revise or abandon the planning reference if measured demand, provider access, cost, reliability or workload needs do not support it.
