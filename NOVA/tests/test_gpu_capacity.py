@@ -332,6 +332,16 @@ class AggregateGpuCapacityTests(unittest.TestCase):
             report["providers"][0]["recurring_capacity"]["reason_codes"],
         )
 
+    def test_counting_rules_use_current_intended_use_not_commercial_rights(self):
+        report = build_capacity_report(
+            evidence(qualified_record()),
+            active_provider_names=set(),
+            now=NOW,
+        )
+        rules = " ".join(report["counting_rules"]).lower()
+        self.assertIn("current intended-use mode", rules)
+        self.assertNotIn("commercial-use-approved", rules)
+
     def test_evidence_cannot_silently_change_the_fixed_target(self):
         source = evidence(qualified_record())
         source["target_gpu_minutes_per_month"] = 100
