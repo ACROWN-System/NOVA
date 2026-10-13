@@ -170,8 +170,19 @@ class GPUCredentialHeartbeatTests(unittest.TestCase):
             state["last_gpu_heartbeat"]["observed_at"],
         )
         self.assertEqual(
-            state["last_gpu_heartbeat"]["aggregate_capacity"]["target_gpu_minutes_per_month"],
+            state["last_gpu_heartbeat"]["aggregate_capacity"]["planning_reference_gpu_minutes_per_month"],
             86400,
+        )
+        self.assertEqual(
+            state["last_gpu_heartbeat"]["aggregate_capacity"]["planning_reference_status"],
+            "PROVISIONAL_UNVALIDATED",
+        )
+        self.assertFalse(
+            state["last_gpu_heartbeat"]["aggregate_capacity"]["planning_reference_is_requirement"]
+        )
+        self.assertEqual(
+            state["last_gpu_heartbeat"]["aggregate_capacity"]["reference_feasibility_status"],
+            "NOT_ESTABLISHED",
         )
         self.assertEqual(
             state["last_gpu_heartbeat"]["aggregate_capacity"]["verified_active_recurring_gpu_minutes_per_month"],

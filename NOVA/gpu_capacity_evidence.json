@@ -1,9 +1,8 @@
 {
   "schema_version": 1,
-  "target_gpu_minutes_per_month": 86400,
   "accounting_unit": "one GPU allocated for one minute",
   "evidence_review_date": "2026-10-13",
-  "policy_note": "Current mode is non-commercial research and development in the GitHub development environment, not a commercial production service. Provider terms must permit this specific current use. Commercial-use rights are not a qualification requirement now. Free/no-card eligibility, automation, workload compatibility, data handling, actual allocation, fresh capacity, and reliability still require evidence. Switching to commercial production requires requalification. Sensitive or private prompts must not be sent to unapproved community-operated providers.",
+  "policy_note": "Current mode is non-commercial research and development in the GitHub development environment, not a commercial production service. Provider terms must permit this specific current use. Commercial-use rights are not a qualification requirement now. The 86,400 GPU-minute/month figure is only a provisional planning reference, not a validated requirement or proven available amount; its feasibility must be determined empirically and the reference may be revised or abandoned. Free/no-card eligibility, automation, workload compatibility, data handling, actual allocation, fresh capacity and reliability still require evidence. Switching to commercial production requires requalification. Sensitive or private prompts must not be sent to unapproved community-operated providers.",
   "providers": [
     {
       "name": "huggingface_zerogpu",
@@ -177,7 +176,7 @@
         "Potential starting GPU capacity worth testing for R&D, subject to phone verification, account eligibility, selected GPU pricing and current allowance.",
         "The public pricing page and AI Studio guide conflict on whether the advertised GPU hours and free credits recur monthly, and the no-card allocation; keep the actual allowance unresolved until the account dashboard is checked.",
         "Do not assume the 80-hour headline is available without a card: the pricing FAQ says 5 credits are granted at registration and 25 more require adding a card.",
-        "This is not yet a verified recurring contribution to the 86,400 GPU-minute/month target.",
+        "This is not yet a verified recurring contribution to the provisional provisional 86,400 GPU-minute/month reference planning reference.",
         "The free CPU Studio's four-hour restart behavior does not itself establish GPU availability or reliability."
       ],
       "qualification_use_mode": "noncommercial_research_and_development"
@@ -405,5 +404,9 @@
       "qualification_use_mode": "noncommercial_research_and_development"
     }
   ],
-  "intended_use_mode": "noncommercial_research_and_development"
+  "intended_use_mode": "noncommercial_research_and_development",
+  "planning_reference_gpu_minutes_per_month": 86400,
+  "planning_reference_status": "PROVISIONAL_UNVALIDATED",
+  "planning_reference_is_requirement": false,
+  "reference_feasibility_status": "NOT_ESTABLISHED"
 }

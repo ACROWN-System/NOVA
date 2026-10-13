@@ -19,7 +19,7 @@ from typing import Any, Mapping
 from urllib.parse import urlsplit
 
 
-TARGET_GPU_MINUTES_PER_MONTH = 86_400
+DEFAULT_PLANNING_REFERENCE_GPU_MINUTES_PER_MONTH = 86_400
 ACCOUNTING_UNIT = "one GPU allocated for one minute"
 CURRENT_INTENDED_USE_MODE = "noncommercial_research_and_development"
 SUPPORTED_USE_MODES = {
@@ -372,7 +372,9 @@ def build_capacity_report(
     A later change from non-commercial R&D to commercial production must use
     a distinct intended_use_mode; qualifications made for the prior mode then
     become blocked until each provider is deliberately requalified.
-    Recurring capacity must exclude one-time credits to prevent double counting.
+    The planning reference is a configurable, provisional comparison baseline. Its
+    realism and availability are not assumed; recurring capacity must exclude
+    one-time credits to prevent double counting.
     """
     if intended_use_mode not in SUPPORTED_USE_MODES:
         raise ValueError("Unsupported intended GPU provider use mode")
@@ -441,30 +443,59 @@ def build_capacity_report(
     current_period_minutes = active_recurring_minutes + active_one_time_minutes
     usage = _aggregate_usage(providers, active_names=active_names, now=current)
 
-    target_mismatch = (
-        source.get("target_gpu_minutes_per_month", TARGET_GPU_MINUTES_PER_MONTH)
-        != TARGET_GPU_MINUTES_PER_MONTH
-    )
+    reference_field = "planning_reference_gpu_minutes_per_month"
+    reference_source = "default"
+    reference_configuration_status = "DEFAULT_REFERENCE_USED"
+    if reference_field in source:
+        raw_reference = source.get(reference_field)
+        reference_source = "evidence_register"
+        reference_configuration_status = "VALID"
+    elif "target_gpu_minutes_per_month" in source:
+        # Temporary migration support: older evidence records treated this as a target.
+        # It is interpreted only as a provisional planning reference, never as a requirement.
+        raw_reference = source.get("target_gpu_minutes_per_month")
+        reference_source = "legacy_target_field"
+        reference_configuration_status = "LEGACY_FIELD"
+    else:
+        raw_reference = DEFAULT_PLANNING_REFERENCE_GPU_MINUTES_PER_MONTH
+
+    parsed_reference = _nonnegative_number(raw_reference)
+    if parsed_reference is None or parsed_reference <= 0:
+        planning_reference = DEFAULT_PLANNING_REFERENCE_GPU_MINUTES_PER_MONTH
+        reference_configuration_status = "INVALID_DEFAULT_REFERENCE_USED"
+    else:
+        planning_reference = parsed_reference
+
     declared_use_mode = source.get("intended_use_mode", CURRENT_INTENDED_USE_MODE)
     use_mode_mismatch = declared_use_mode != intended_use_mode
     warnings = []
-    if target_mismatch:
-        warnings.append("Evidence file target differs from the fixed 86,400 GPU-minute monthly policy; the code policy remains authoritative.")
+    if reference_configuration_status == "INVALID_DEFAULT_REFERENCE_USED":
+        warnings.append(
+            "Planning reference is missing a valid positive finite number; the provisional code default is shown for comparison only."
+        )
+    if reference_configuration_status == "LEGACY_FIELD":
+        warnings.append(
+            "Legacy target_gpu_minutes_per_month field is treated as a provisional planning reference; migrate to planning_reference_gpu_minutes_per_month."
+        )
     if use_mode_mismatch:
         warnings.append("Evidence register intended_use_mode differs from the code's current intended-use policy.")
     return {
         "schema_version": 1,
         "observed_at": current.isoformat(),
         "intended_use_mode": intended_use_mode,
-        "target_gpu_minutes_per_month": TARGET_GPU_MINUTES_PER_MONTH,
-        "target_configuration_matches_policy": not target_mismatch,
+        "planning_reference_gpu_minutes_per_month": planning_reference,
+        "planning_reference_status": "PROVISIONAL_UNVALIDATED",
+        "planning_reference_is_requirement": False,
+        "reference_feasibility_status": "NOT_ESTABLISHED",
+        "planning_reference_source": reference_source,
+        "planning_reference_configuration_status": reference_configuration_status,
         "accounting_unit": ACCOUNTING_UNIT,
         "provider_evidence_count": len(assessments),
         "operational_provider_count": len(active_names),
-        "operational_capacity_status": (
-            "TARGET_MET_BY_VERIFIED_CAPACITY"
-            if active_recurring_minutes >= TARGET_GPU_MINUTES_PER_MONTH
-            else "TARGET_NOT_MET_BY_VERIFIED_CAPACITY"
+        "reference_comparison_status": (
+            "REFERENCE_REACHED_BY_VERIFIED_ACTIVE_RECURRING_CAPACITY"
+            if active_recurring_minutes >= planning_reference
+            else "REFERENCE_NOT_REACHED_BY_VERIFIED_ACTIVE_RECURRING_CAPACITY"
         ),
         "known_advertised_gpu_minutes_per_30_day_month_not_counted": sum(advertised_values),
         "providers_with_no_comparable_advertised_monthly_gpu_minutes": providers_with_unknown_advertised,
@@ -473,17 +504,18 @@ def build_capacity_report(
         "verified_eligible_one_time_gpu_minutes_available": eligible_one_time_minutes,
         "verified_active_one_time_gpu_minutes_available": active_one_time_minutes,
         "verified_active_capacity_available_for_current_month_gpu_minutes": current_period_minutes,
-        "unfilled_target_after_verified_active_recurring_capacity_gpu_minutes_per_month": max(
-            0, TARGET_GPU_MINUTES_PER_MONTH - active_recurring_minutes
+        "difference_to_reference_after_verified_active_recurring_capacity_gpu_minutes_per_month": max(
+            0, planning_reference - active_recurring_minutes
         ),
-        "unfilled_target_after_verified_active_current_month_capacity_gpu_minutes": max(
-            0, TARGET_GPU_MINUTES_PER_MONTH - current_period_minutes
+        "difference_to_reference_after_verified_active_current_month_capacity_gpu_minutes": max(
+            0, planning_reference - current_period_minutes
         ),
         "useful_work_and_allocation_usage_month_to_date": usage,
         "counting_rules": [
             "Only fresh, source-backed capacity with verified account eligibility, no-payment-method access, terms compatible with the current intended-use mode, automated access, workload compatibility, approved data handling and a passed allocation test can qualify.",
             "Only capacity activated in the current NOVA GPU roster counts as operationally available.",
-            "Advertised allowances are displayed separately and never count toward the target.",
+            "Advertised allowances are displayed separately and never count as verified usable capacity.",
+            "The planning reference is provisional and unvalidated; it is a comparison baseline, not a provider-availability claim or a mandatory requirement.",
             "One-time credit-backed GPU-minutes are reported separately and do not count as recurring monthly capacity.",
             "Unknown, stale, malformed, expired or unmetered values remain unknown and never become a zero-usage claim.",
             "GPU-minute means one GPU allocated for one minute; simultaneous GPUs contribute one GPU-minute per GPU per minute.",
