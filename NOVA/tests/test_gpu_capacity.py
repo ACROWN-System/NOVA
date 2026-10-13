@@ -2,6 +2,7 @@ import unittest
 from datetime import datetime, timedelta, timezone
 
 from NOVA.gpu_capacity import (
+    CURRENT_INTENDED_USE_MODE,
     TARGET_GPU_MINUTES_PER_MONTH,
     build_capacity_report,
 )
@@ -18,12 +19,13 @@ def qualified_record(name="provider-a", minutes=12_000):
         "name": name,
         "display_name": name,
         "allocation_type": "dedicated",
+        "qualification_use_mode": CURRENT_INTENDED_USE_MODE,
         "official_sources": [{"url": EVIDENCE_URL}],
         "advertised": {"status": "DOCUMENTED_THEORETICAL", "normalized_monthly_gpu_minutes": None},
         "qualification": {
             "account_eligibility": "VERIFIED",
             "free_without_payment_method": "VERIFIED",
-            "commercial_use": "VERIFIED",
+            "intended_use_terms_compatible": "VERIFIED",
             "automated_access": "VERIFIED",
             "workload_compatibility": "VERIFIED",
             "data_handling_approved": "VERIFIED",
@@ -57,6 +59,7 @@ def evidence(*providers):
     return {
         "schema_version": 1,
         "target_gpu_minutes_per_month": TARGET_GPU_MINUTES_PER_MONTH,
+        "intended_use_mode": CURRENT_INTENDED_USE_MODE,
         "providers": list(providers),
     }
 
@@ -115,7 +118,7 @@ class AggregateGpuCapacityTests(unittest.TestCase):
         for gate in (
             "account_eligibility",
             "free_without_payment_method",
-            "commercial_use",
+            "intended_use_terms_compatible",
             "automated_access",
             "workload_compatibility",
             "data_handling_approved",
@@ -132,9 +135,26 @@ class AggregateGpuCapacityTests(unittest.TestCase):
                 self.assertEqual(report["verified_active_recurring_gpu_minutes_per_month"], 0)
                 self.assertEqual(report["providers"][0]["recurring_capacity"]["status"], "BLOCKED")
 
-    def test_explicitly_disallowed_commercial_use_excludes_provider(self):
+    def test_explicitly_disallowed_intended_use_excludes_provider(self):
+        candidate = qualified_record("provider-a")
+        candidate["qualification"]["intended_use_terms_compatible"] = "DISALLOWED"
+
+        report = build_capacity_report(
+            evidence(candidate),
+            active_provider_names={"provider-a"},
+            now=NOW,
+        )
+
+        self.assertEqual(report["providers"][0]["status"], "EXCLUDED")
+        self.assertEqual(report["verified_active_recurring_gpu_minutes_per_month"], 0)
+        self.assertIn(
+            "intended_use_terms_compatible_disallowed",
+            report["providers"][0]["recurring_capacity"]["reason_codes"],
+        )
+
+    def test_terms_unverified_for_noncommercial_rnd_block_without_assuming_disallowed(self):
         candidate = qualified_record("kaggle")
-        candidate["qualification"]["commercial_use"] = "DISALLOWED"
+        candidate["qualification"]["intended_use_terms_compatible"] = "UNKNOWN"
 
         report = build_capacity_report(
             evidence(candidate),
@@ -142,9 +162,24 @@ class AggregateGpuCapacityTests(unittest.TestCase):
             now=NOW,
         )
 
-        self.assertEqual(report["providers"][0]["status"], "EXCLUDED")
+        self.assertEqual(report["providers"][0]["status"], "BLOCKED")
+        self.assertNotEqual(report["providers"][0]["status"], "EXCLUDED")
         self.assertEqual(report["verified_active_recurring_gpu_minutes_per_month"], 0)
-        self.assertIn("commercial_use_disallowed", report["providers"][0]["recurring_capacity"]["reason_codes"])
+
+    def test_change_to_commercial_mode_requires_requalification(self):
+        candidate = qualified_record()
+        report = build_capacity_report(
+            evidence(candidate),
+            active_provider_names={"provider-a"},
+            now=NOW,
+            intended_use_mode="commercial_production",
+        )
+
+        self.assertEqual(report["verified_active_recurring_gpu_minutes_per_month"], 0)
+        self.assertIn(
+            "provider_terms_not_qualified_for_current_use_mode",
+            report["providers"][0]["recurring_capacity"]["reason_codes"],
+        )
 
     def test_stale_capacity_evidence_is_not_counted(self):
         candidate = qualified_record()
