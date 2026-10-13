@@ -17,3 +17,10 @@ The NOVA Validation workflow reports presence for the active LLM slots (Groq, Ge
 - No GPU candidate is placed into providers merely because a token exists.
 - Credential presence does not establish $0 eligibility, no-card access, commercial rights, free-tier persistence, or available GPU minutes. Those require their own evidence and runtime checks.
 - RSI in AstroCrown-Web uses a separate repository's Actions secrets/variables; the NOVA report cannot see or infer their values.
+
+## Live heartbeat behavior
+
+The LLM heartbeat runs on its six-hour schedule and may also run after relevant changes to `NOVA/provider_qualification.py`, `NOVA/health.py`, or `NOVA/roster.json` on `main`. Its own workflow file is deliberately excluded from the push paths so merging a trigger change does not itself cause an incidental live LLM run. The qualification step probes Groq and Gemini only; Mistral is excluded, and Cloudflare inference qualification remains `BLOCKED_CONTRACT_UNVERIFIED` pending evidence for the exact model/API response contract.
+
+The GPU heartbeat keeps its six-hour schedule and manual dispatch, and can additionally run after changes to its adapter, candidate roster, shared health primitives, or own workflow. Candidate checks use allowlisted, read-only endpoints; they do not create GPU jobs or infer available credits or GPU capacity from undocumented fields. The official Nosana endpoint is `GET https://api.nosana.com/credits/balance` (official API reference: https://api.nosana.com/api/docs). A successful credential check is not evidence of zero-cost eligibility or available compute.
+
