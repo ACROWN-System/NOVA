@@ -127,6 +127,11 @@
           "url": "https://lightning.ai/pricing",
           "checked_on": "2026-10-13",
           "supports": "The official pricing page advertises up to 80 free GPU hours to start with no credit card; the actual GPU hours vary by selected GPU pricing. The free tier advertises up to 30 credits. Phone verification is required to receive the free GPU-hour allocation according to the official AI Studio guide. The free CPU Studio needs restart every four hours and is not a continuously hot GPU service."
+        },
+        {
+          "url": "https://lightning.ai/docs/overview/ai-studio/",
+          "checked_on": "2026-10-13",
+          "supports": "The AI Studio guide says phone verification is required to receive up to 80 free GPU hours, and says the service may be unavailable in some countries."
         }
       ],
       "advertised": {
