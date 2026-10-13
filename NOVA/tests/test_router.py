@@ -357,5 +357,19 @@ class DeferredProviderRosterTests(unittest.TestCase):
         self.assertNotIn("mistral", rotation["probe_queue"])
 
 
+    def test_standalone_qualification_workflow_injects_only_eligible_provider_secrets(self):
+        repository_root = Path(__file__).resolve().parents[2]
+        workflow = (
+            repository_root / ".github" / "workflows" / "nova-provider-qualification.yml"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("python -m NOVA.provider_qualification", workflow)
+        self.assertIn("GROQ_API_KEY_01: ${{ secrets.GROQ_API_KEY_01 }}", workflow)
+        self.assertIn("GEMINI_API_KEY_01: ${{ secrets.GEMINI_API_KEY_01 }}", workflow)
+        self.assertNotIn("MISTRAL_API_KEY_01", workflow)
+        self.assertNotIn("CLOUDFLARE_API_KEY_01", workflow)
+        self.assertNotIn("CLOUDFLARE_ACCOUNT_ID", workflow)
+
+
 if __name__ == "__main__":
     unittest.main()
