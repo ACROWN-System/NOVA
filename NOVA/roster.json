@@ -68,6 +68,20 @@
       "models": [
         "@cf/zai-org/glm-4.7-flash"
       ],
+      "model_contracts": {
+        "@cf/zai-org/glm-4.7-flash": {
+          "structured_json": "BLOCKED_UNVERIFIED",
+          "checked_on": "2026-10-13",
+          "source_url": "https://developers.cloudflare.com/workers-ai/features/json-mode/",
+          "reason": "The official JSON Mode supported-model list does not include this model; do not use it for NOVA's mandatory structured JSON contract without further evidence."
+        },
+        "@cf/meta/llama-3.1-8b-instruct-fast": {
+          "structured_json": "CANDIDATE",
+          "checked_on": "2026-10-13",
+          "source_url": "https://developers.cloudflare.com/workers-ai/features/json-mode/",
+          "eligibility_note": "Listed by Cloudflare as supporting JSON Mode. Still requires a bounded live NOVA response-contract qualification before promotion to VERIFIED."
+        }
+      },
       "name": "cloudflare",
       "status": "active"
     }
