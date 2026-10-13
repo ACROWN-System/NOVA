@@ -78,7 +78,8 @@ class ProviderQualificationTests(unittest.TestCase):
             for row in report["results"]
         ))
         cloudflare = next(row for row in report["results"] if row["provider"] == "cloudflare")
-        self.assertEqual(cloudflare["status"], "BLOCKED_CONTRACT_UNVERIFIED")
+        self.assertEqual(cloudflare["status"], "SKIPPED_ALREADY_QUALIFIED")
+        self.assertEqual(cloudflare["lifecycle_status"], "ACTIVE")
         self.assertIsNone(cloudflare["http_status"])
         self.assertTrue(report["diagnostic_only"])
         self.assertFalse(report["production_roster_mutated"])
