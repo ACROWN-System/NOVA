@@ -21,10 +21,15 @@ from urllib.parse import urlsplit
 
 TARGET_GPU_MINUTES_PER_MONTH = 86_400
 ACCOUNTING_UNIT = "one GPU allocated for one minute"
+CURRENT_INTENDED_USE_MODE = "noncommercial_research_and_development"
+SUPPORTED_USE_MODES = {
+    "noncommercial_research_and_development",
+    "commercial_production",
+}
 REQUIRED_GATE_STATES = {
     "account_eligibility": "VERIFIED",
     "free_without_payment_method": "VERIFIED",
-    "commercial_use": "VERIFIED",
+    "intended_use_terms_compatible": "VERIFIED",
     "automated_access": "VERIFIED",
     "workload_compatibility": "VERIFIED",
     "data_handling_approved": "VERIFIED",
@@ -33,7 +38,7 @@ REQUIRED_GATE_STATES = {
 EXCLUDED_GATE_STATES = {
     "account_eligibility": {"INELIGIBLE", "REJECTED", "DISALLOWED"},
     "free_without_payment_method": {"PAYMENT_METHOD_REQUIRED", "DISALLOWED"},
-    "commercial_use": {"DISALLOWED", "REJECTED"},
+    "intended_use_terms_compatible": {"DISALLOWED", "REJECTED"},
     "automated_access": {"DISALLOWED", "REJECTED"},
     "workload_compatibility": {"DISALLOWED", "REJECTED"},
     "data_handling_approved": {"DISALLOWED", "REJECTED"},
@@ -186,10 +191,14 @@ def _assess_provider(
     *,
     active_names: set[str],
     now: datetime,
+    intended_use_mode: str,
 ) -> dict[str, Any]:
     name = str(provider.get("name", "")).strip()
     qualification = provider.get("qualification", {})
     unresolved_gates, excluded_gates = _gate_results(qualification)
+    qualification_use_mode = provider.get("qualification_use_mode")
+    if qualification_use_mode != intended_use_mode:
+        unresolved_gates.append("provider_terms_not_qualified_for_current_use_mode")
     is_active = bool(name and name in active_names)
     sources = _https_urls(provider.get("official_sources", []))
 
@@ -251,6 +260,8 @@ def _assess_provider(
         "provider": name or "UNKNOWN_PROVIDER",
         "display_name": str(provider.get("display_name", name or "Unknown provider")),
         "allocation_type": str(provider.get("allocation_type", "UNKNOWN")),
+        "qualification_use_mode": qualification_use_mode,
+        "current_intended_use_mode": intended_use_mode,
         "active_in_gpu_roster": is_active,
         "status": overall_status,
         "advertised_monthly_gpu_minutes_not_counted": advertised_minutes,
@@ -354,11 +365,17 @@ def build_capacity_report(
     *,
     active_provider_names: set[str] | list[str] | tuple[str, ...] = (),
     now: datetime | None = None,
+    intended_use_mode: str = CURRENT_INTENDED_USE_MODE,
 ) -> dict[str, Any]:
-    """Build a report; the active provider names must come from the current GPU roster.
+    """Build a report; active providers must come from the roster.
 
+    A later change from non-commercial R&D to commercial production must use
+    a distinct intended_use_mode; qualifications made for the prior mode then
+    become blocked until each provider is deliberately requalified.
     Recurring capacity must exclude one-time credits to prevent double counting.
     """
+    if intended_use_mode not in SUPPORTED_USE_MODES:
+        raise ValueError("Unsupported intended GPU provider use mode")
     current = now or datetime.now(timezone.utc)
     if current.tzinfo is None:
         current = current.replace(tzinfo=timezone.utc)
@@ -371,7 +388,12 @@ def build_capacity_report(
         records = []
     providers = [record for record in records if isinstance(record, Mapping)]
     assessments = [
-        _assess_provider(record, active_names=active_names, now=current)
+        _assess_provider(
+            record,
+            active_names=active_names,
+            now=current,
+            intended_use_mode=intended_use_mode,
+        )
         for record in providers
     ]
 
@@ -423,9 +445,17 @@ def build_capacity_report(
         source.get("target_gpu_minutes_per_month", TARGET_GPU_MINUTES_PER_MONTH)
         != TARGET_GPU_MINUTES_PER_MONTH
     )
+    declared_use_mode = source.get("intended_use_mode", CURRENT_INTENDED_USE_MODE)
+    use_mode_mismatch = declared_use_mode != intended_use_mode
+    warnings = []
+    if target_mismatch:
+        warnings.append("Evidence file target differs from the fixed 86,400 GPU-minute monthly policy; the code policy remains authoritative.")
+    if use_mode_mismatch:
+        warnings.append("Evidence register intended_use_mode differs from the code's current intended-use policy.")
     return {
         "schema_version": 1,
         "observed_at": current.isoformat(),
+        "intended_use_mode": intended_use_mode,
         "target_gpu_minutes_per_month": TARGET_GPU_MINUTES_PER_MONTH,
         "target_configuration_matches_policy": not target_mismatch,
         "accounting_unit": ACCOUNTING_UNIT,
@@ -459,10 +489,7 @@ def build_capacity_report(
             "GPU-minute means one GPU allocated for one minute; simultaneous GPUs contribute one GPU-minute per GPU per minute.",
         ],
         "providers": assessments,
-        "warnings": (
-            ["Evidence file target differs from the fixed 86,400 GPU-minute monthly policy; the code policy remains authoritative."]
-            if target_mismatch else []
-        ),
+        "warnings": warnings,
     }
 
 
