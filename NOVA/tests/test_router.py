@@ -247,9 +247,41 @@ class RouterRotationTests(unittest.TestCase):
         self.assertEqual(sent["response_format"]["type"], "json_schema")
         self.assertNotIn("test-key", repr(probes))
 
-    def test_cloudflare_glm_disables_reasoning_and_uses_completion_token_budget(self):
+    def test_cloudflare_glm_is_blocked_before_network_without_verified_json_contract(self):
+        cloudflare = {
+            "name": "cloudflare",
+            "api_key_env": "TEST_CLOUDFLARE_KEY",
+            "account_id_env": "TEST_CLOUDFLARE_ACCOUNT_ID",
+            "base_url": (
+                "https://api.cloudflare.com/client/v4/accounts/"
+                "{CF_ACCOUNT_ID}/ai/v1/chat/completions"
+            ),
+            "models": ["@cf/zai-org/glm-4.7-flash"],
+            "model_contracts": {
+                "@cf/zai-org/glm-4.7-flash": {
+                    "structured_json": "BLOCKED_UNVERIFIED"
+                }
+            },
+        }
+        with patch.dict(os.environ, {
+            "TEST_CLOUDFLARE_KEY": "test-key",
+            "TEST_CLOUDFLARE_ACCOUNT_ID": "account-123",
+        }):
+            with patch("NOVA.router.urllib.request.urlopen") as urlopen:
+                content, signal, probes = call_openai_compatible(
+                    cloudflare, 'Return only the expected NOVA health JSON.'
+                )
+
+        urlopen.assert_not_called()
+        self.assertIsNone(content)
+        self.assertEqual(signal, "blocked")
+        self.assertEqual(probes[0]["error_class"], "contract_gate")
+        self.assertEqual(probes[0]["quality_status"], "BLOCKED_CONTRACT_UNVERIFIED")
+        self.assertEqual(probes[0]["authentication"], "NOT_ATTEMPTED")
+
+    def test_cloudflare_verified_json_mode_model_uses_documented_schema(self):
         response_payload = {
-            "model": "@cf/zai-org/glm-4.7-flash",
+            "model": "@cf/meta/llama-3.1-8b-instruct-fast",
             "choices": [{
                 "finish_reason": "stop",
                 "message": {
@@ -273,7 +305,12 @@ class RouterRotationTests(unittest.TestCase):
                 "https://api.cloudflare.com/client/v4/accounts/"
                 "{CF_ACCOUNT_ID}/ai/v1/chat/completions"
             ),
-            "models": ["@cf/zai-org/glm-4.7-flash"],
+            "models": ["@cf/meta/llama-3.1-8b-instruct-fast"],
+            "model_contracts": {
+                "@cf/meta/llama-3.1-8b-instruct-fast": {
+                    "structured_json": "VERIFIED"
+                }
+            },
         }
 
         with patch.dict(os.environ, {
@@ -284,7 +321,7 @@ class RouterRotationTests(unittest.TestCase):
                 "NOVA.router.urllib.request.urlopen", return_value=response
             ) as urlopen:
                 content, signal, probes = call_openai_compatible(
-                    cloudflare, 'Return only the expected NOVA health JSON.'
+                    cloudflare, 'Return exactly the expected NOVA health JSON.'
                 )
 
         request = urlopen.call_args.args[0]
@@ -292,11 +329,14 @@ class RouterRotationTests(unittest.TestCase):
         self.assertEqual(signal, "success")
         self.assertEqual(probes[0]["api_status"], 200)
         self.assertIsNotNone(content)
-        self.assertEqual(sent["model"], "@cf/zai-org/glm-4.7-flash")
-        self.assertEqual(sent["max_completion_tokens"], 256)
-        self.assertNotIn("max_tokens", sent)
-        self.assertIsNone(sent["reasoning_effort"])
-        self.assertEqual(sent["chat_template_kwargs"], {"enable_thinking": False})
+        self.assertEqual(sent["model"], "@cf/meta/llama-3.1-8b-instruct-fast")
+        self.assertEqual(sent["max_tokens"], 64)
+        self.assertNotIn("max_completion_tokens", sent)
+        self.assertEqual(sent["response_format"]["type"], "json_schema")
+        self.assertEqual(
+            sent["response_format"]["json_schema"]["properties"]["ack"]["enum"],
+            ["NOVA_HEALTH_PROBE"],
+        )
         self.assertNotIn("test-key", repr(probes))
         self.assertIn("/accounts/account-123/", request.full_url)
 
