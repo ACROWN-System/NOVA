@@ -27,6 +27,7 @@ try:
         provider_health_status,
         record_probe,
     )
+    from .quality_gate import model_capability_decision, record_failure_case
     from .capacity import annotate_probe, provider_capacity_opportunity
     from .probe_scheduler import select_probe_candidate, reschedule_after_probes
 except ImportError:  # direct script execution
@@ -38,6 +39,7 @@ except ImportError:  # direct script execution
         provider_health_status,
         record_probe,
     )
+    from quality_gate import model_capability_decision, record_failure_case
     from capacity import annotate_probe, provider_capacity_opportunity
     from probe_scheduler import select_probe_candidate, reschedule_after_probes
 ROOT = Path(__file__).resolve().parent
@@ -199,6 +201,23 @@ def call_openai_compatible(provider: dict[str, Any], prompt: str, validator=vali
     probes: list[dict[str, Any]] = []
 
     for model in provider["models"]:
+        decision = model_capability_decision(provider, model, "structured_json")
+        if not decision["allowed"]:
+            probes.append({
+                "provider": provider["name"],
+                "credential_env": provider["api_key_env"],
+                "requested_model": model,
+                "actual_model": None,
+                "api_status": None,
+                "authentication": "NOT_ATTEMPTED",
+                "response_valid": False,
+                "quality_status": decision["status"],
+                "latency_ms": None,
+                "error_class": "contract_gate",
+                "error_detail": decision["reason"],
+            })
+            continue
+
         data = {
             "model": model,
             "messages": [{"role": "user", "content": prompt}],
@@ -231,14 +250,22 @@ def call_openai_compatible(provider: dict[str, Any], prompt: str, validator=vali
                 }
             }
         elif provider["name"] == "cloudflare":
-            # Cloudflare's GLM-4.7-Flash supports reasoning controls. A health
-            # probe needs no reasoning, and Cloudflare's provider guidance marks
-            # max_tokens deprecated in favor of max_completion_tokens.
-            # Source: https://github.com/cloudflare/ai/blob/main/packages/workers-ai-provider/README.md
-            data.pop("max_tokens", None)
-            data["max_completion_tokens"] = 256
-            data["reasoning_effort"] = None
-            data["chat_template_kwargs"] = {"enable_thinking": False}
+            # Use Cloudflare's documented JSON Mode schema only after the
+            # model-specific capability gate above has been satisfied.
+            # Source: https://developers.cloudflare.com/workers-ai/features/json-mode/
+            data["max_tokens"] = 64
+            data["response_format"] = {
+                "type": "json_schema",
+                "json_schema": {
+                    "type": "object",
+                    "properties": {
+                        "nova_health": {"type": "string", "enum": ["OK"]},
+                        "ack": {"type": "string", "enum": ["NOVA_HEALTH_PROBE"]},
+                    },
+                    "required": ["nova_health", "ack"],
+                    "additionalProperties": False,
+                },
+            }
         req = urllib.request.Request(
             base_url,
             data=json.dumps(data).encode("utf-8"),
@@ -330,6 +357,8 @@ def call_openai_compatible(provider: dict[str, Any], prompt: str, validator=vali
 
     if not probes:
         return None, "transient", []
+    if all(probe.get("error_class") == "contract_gate" for probe in probes):
+        return None, "blocked", probes
     if any(probe["error_class"] == "permanent" for probe in probes):
         return None, "permanent", probes
     return None, "quality_or_transient", probes
@@ -605,6 +634,38 @@ def advance_scheduled_probe_rotation(
     )
 
 
+def _record_root_cause_case(
+    state: dict[str, Any],
+    provider: dict[str, Any],
+    probe: dict[str, Any],
+) -> dict[str, Any] | None:
+    """Record an actual provider failure without retaining raw response content."""
+    excluded = {
+        None,
+        "contract_gate",
+        "credential_not_configured",
+        "account_id_not_configured",
+        "health_url_not_configured",
+        "unsupported_auth_type",
+    }
+    error_class = probe.get("error_class")
+    if probe.get("response_valid") or error_class in excluded:
+        return None
+
+    provider_name = str(probe.get("provider") or provider.get("name") or "unknown-provider")
+    model = str(probe.get("requested_model") or "unknown-model")
+    failure_class = str(error_class or probe.get("quality_status") or "UNKNOWN")
+    quality = str(probe.get("quality_status") or "no_quality_status")
+    return record_failure_case(
+        state,
+        source=f"{provider_name}:{model}",
+        failure_class=failure_class,
+        expected_result="Provider response satisfies NOVA's required structured response contract.",
+        observed_result=f"{failure_class}:{quality}",
+        candidate_sha=os.environ.get("GITHUB_SHA"),
+    )
+
+
 def intelligent_router(prompt: str) -> tuple[str, dict[str, Any]]:
     print(f"[{datetime.now(timezone.utc).isoformat()}] NOVA AI Heart Pulse Initiated...")
     roster = load_roster()
@@ -630,10 +691,14 @@ def intelligent_router(prompt: str) -> tuple[str, dict[str, Any]]:
     for provider in active:
         print(f"Trying provider: {provider['name']}")
         text, signal, probes = call_provider(provider, prompt)
-        if probes and provider["name"] not in probed_provider_names:
+        if any(probe.get("error_class") != "contract_gate" for probe in probes) and provider["name"] not in probed_provider_names:
             probed_provider_names.append(provider["name"])
 
         for probe in probes:
+            if probe.get("error_class") == "contract_gate":
+                all_probes.append({**probe, "health_status": "BLOCKED"})
+                continue
+
             probe_role = (
                 "scheduled_probe"
                 if scheduled_provider and provider["name"] == scheduled_provider["name"]
@@ -666,6 +731,7 @@ def intelligent_router(prompt: str) -> tuple[str, dict[str, Any]]:
                 unacceptable_failure_streak=int(failure_policy.get("unacceptable_consecutive_failures", 3)),
             )
             all_probes.append(observation)
+            _record_root_cause_case(state, provider, probe)
             if observation["health_status"] == "UNACCEPTABLE":
                 alerts.send_all_alerts(
                     title=f"NOVA AI heart: {provider['name']} health is unacceptable",

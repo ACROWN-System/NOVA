@@ -16,6 +16,7 @@ from NOVA.router import (
     diagnostic_http_headers,
     health_order_providers,
     scheduled_probe_provider_order,
+    _record_root_cause_case,
 )
 
 
@@ -247,9 +248,41 @@ class RouterRotationTests(unittest.TestCase):
         self.assertEqual(sent["response_format"]["type"], "json_schema")
         self.assertNotIn("test-key", repr(probes))
 
-    def test_cloudflare_glm_disables_reasoning_and_uses_completion_token_budget(self):
+    def test_cloudflare_glm_is_blocked_before_network_without_verified_json_contract(self):
+        cloudflare = {
+            "name": "cloudflare",
+            "api_key_env": "TEST_CLOUDFLARE_KEY",
+            "account_id_env": "TEST_CLOUDFLARE_ACCOUNT_ID",
+            "base_url": (
+                "https://api.cloudflare.com/client/v4/accounts/"
+                "{CF_ACCOUNT_ID}/ai/v1/chat/completions"
+            ),
+            "models": ["@cf/zai-org/glm-4.7-flash"],
+            "model_contracts": {
+                "@cf/zai-org/glm-4.7-flash": {
+                    "structured_json": "BLOCKED_UNVERIFIED"
+                }
+            },
+        }
+        with patch.dict(os.environ, {
+            "TEST_CLOUDFLARE_KEY": "test-key",
+            "TEST_CLOUDFLARE_ACCOUNT_ID": "account-123",
+        }):
+            with patch("NOVA.router.urllib.request.urlopen") as urlopen:
+                content, signal, probes = call_openai_compatible(
+                    cloudflare, 'Return only the expected NOVA health JSON.'
+                )
+
+        urlopen.assert_not_called()
+        self.assertIsNone(content)
+        self.assertEqual(signal, "blocked")
+        self.assertEqual(probes[0]["error_class"], "contract_gate")
+        self.assertEqual(probes[0]["quality_status"], "BLOCKED_CONTRACT_UNVERIFIED")
+        self.assertEqual(probes[0]["authentication"], "NOT_ATTEMPTED")
+
+    def test_cloudflare_verified_json_mode_model_uses_documented_schema(self):
         response_payload = {
-            "model": "@cf/zai-org/glm-4.7-flash",
+            "model": "@cf/meta/llama-3.1-8b-instruct-fast",
             "choices": [{
                 "finish_reason": "stop",
                 "message": {
@@ -273,7 +306,12 @@ class RouterRotationTests(unittest.TestCase):
                 "https://api.cloudflare.com/client/v4/accounts/"
                 "{CF_ACCOUNT_ID}/ai/v1/chat/completions"
             ),
-            "models": ["@cf/zai-org/glm-4.7-flash"],
+            "models": ["@cf/meta/llama-3.1-8b-instruct-fast"],
+            "model_contracts": {
+                "@cf/meta/llama-3.1-8b-instruct-fast": {
+                    "structured_json": "VERIFIED"
+                }
+            },
         }
 
         with patch.dict(os.environ, {
@@ -284,7 +322,7 @@ class RouterRotationTests(unittest.TestCase):
                 "NOVA.router.urllib.request.urlopen", return_value=response
             ) as urlopen:
                 content, signal, probes = call_openai_compatible(
-                    cloudflare, 'Return only the expected NOVA health JSON.'
+                    cloudflare, 'Return exactly the expected NOVA health JSON.'
                 )
 
         request = urlopen.call_args.args[0]
@@ -292,13 +330,66 @@ class RouterRotationTests(unittest.TestCase):
         self.assertEqual(signal, "success")
         self.assertEqual(probes[0]["api_status"], 200)
         self.assertIsNotNone(content)
-        self.assertEqual(sent["model"], "@cf/zai-org/glm-4.7-flash")
-        self.assertEqual(sent["max_completion_tokens"], 256)
-        self.assertNotIn("max_tokens", sent)
-        self.assertIsNone(sent["reasoning_effort"])
-        self.assertEqual(sent["chat_template_kwargs"], {"enable_thinking": False})
+        self.assertEqual(sent["model"], "@cf/meta/llama-3.1-8b-instruct-fast")
+        self.assertEqual(sent["max_tokens"], 64)
+        self.assertNotIn("max_completion_tokens", sent)
+        self.assertEqual(sent["response_format"]["type"], "json_schema")
+        self.assertEqual(
+            sent["response_format"]["json_schema"]["properties"]["ack"]["enum"],
+            ["NOVA_HEALTH_PROBE"],
+        )
         self.assertNotIn("test-key", repr(probes))
         self.assertIn("/accounts/account-123/", request.full_url)
+
+
+class RootCauseRouterIntegrationTests(unittest.TestCase):
+    SHA = "1234567890abcdef1234567890abcdef12345678"
+
+    def test_failed_provider_response_opens_sanitized_root_cause_case(self):
+        state = {}
+        probe = {
+            "provider": "cloudflare",
+            "requested_model": "@cf/zai-org/glm-4.7-flash",
+            "response_valid": False,
+            "error_class": "response_contract",
+            "quality_status": "EMPTY_RESPONSE",
+            "error_detail": "raw provider body must not be persisted",
+        }
+        case = _record_root_cause_case(
+            state,
+            {"name": "cloudflare"},
+            probe,
+        )
+
+        self.assertIsNotNone(case)
+        self.assertEqual(case["state"], "INVESTIGATION_REQUIRED")
+        self.assertEqual(case["source"], "cloudflare:@cf/zai-org/glm-4.7-flash")
+        self.assertEqual(case["failure_class"], "response_contract")
+        self.assertNotIn("raw provider body must not be persisted", json.dumps(state))
+        self.assertNotIn("error_detail", case)
+
+    def test_intentional_contract_block_does_not_create_false_incident(self):
+        state = {}
+        probe = {
+            "provider": "cloudflare",
+            "requested_model": "@cf/zai-org/glm-4.7-flash",
+            "response_valid": False,
+            "error_class": "contract_gate",
+            "quality_status": "BLOCKED_CONTRACT_UNVERIFIED",
+        }
+        self.assertIsNone(_record_root_cause_case(state, {"name": "cloudflare"}, probe))
+        self.assertNotIn("quality_cases", state)
+
+    def test_missing_credentials_do_not_create_root_cause_incidents(self):
+        state = {}
+        probe = {
+            "provider": "groq",
+            "response_valid": False,
+            "error_class": "credential_not_configured",
+            "quality_status": "NOT_APPLICABLE",
+        }
+        self.assertIsNone(_record_root_cause_case(state, {"name": "groq"}, probe))
+        self.assertNotIn("quality_cases", state)
 
 
 class DeferredProviderRosterTests(unittest.TestCase):

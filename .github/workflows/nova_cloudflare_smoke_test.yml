@@ -68,18 +68,28 @@ jobs:
               sys.exit(1)
           print("TOKEN_VERIFY=PASS")
 
-          # Cloudflare's documented OpenAI-compatible endpoint. GLM-4.7-Flash
-          # is reasoning-capable; disable thinking for this tiny JSON health probe.
+          # Candidate smoke test uses the exact model and schema documented by
+          # Cloudflare's JSON Mode supported-model list. The workflow is manual-only.
           payload = {
-              "model": "@cf/zai-org/glm-4.7-flash",
+              "model": "@cf/meta/llama-3.1-8b-instruct-fast",
               "messages": [{
                   "role": "user",
-                  "content": 'Return only this JSON object: {"nova_health":"OK","ack":"NOVA_HEALTH_PROBE"}',
+                  "content": 'Return exactly this JSON object with no additional keys: {"nova_health":"OK","ack":"NOVA_HEALTH_PROBE"}',
               }],
               "temperature": 0,
-              "max_completion_tokens": 256,
-              "reasoning_effort": None,
-              "chat_template_kwargs": {"enable_thinking": False},
+              "max_tokens": 64,
+              "response_format": {
+                  "type": "json_schema",
+                  "json_schema": {
+                      "type": "object",
+                      "properties": {
+                          "nova_health": {"type": "string", "enum": ["OK"]},
+                          "ack": {"type": "string", "enum": ["NOVA_HEALTH_PROBE"]},
+                      },
+                      "required": ["nova_health", "ack"],
+                      "additionalProperties": False,
+                  },
+              },
           }
           url = (
               "https://api.cloudflare.com/client/v4/accounts/"
@@ -129,5 +139,5 @@ jobs:
 
           print("WORKERS_AI_INFERENCE=PASS")
           print("RESPONSE_CONTRACT=PASS")
-          print("MODEL=@cf/zai-org/glm-4.7-flash")
+          print("MODEL=@cf/meta/llama-3.1-8b-instruct-fast")
           PY
