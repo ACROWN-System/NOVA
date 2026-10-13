@@ -81,17 +81,19 @@ The actual useful GPU work completed month-to-date remains **UNKNOWN / NOT METER
 
 ### Decisions
 
-- Retain a fixed target of 86,400 GPU-minutes/month.
+- Retain a fixed target of 86,400 GPU-minutes/month across the combined eligible ecosystem.
 - Keep advertised allowances, verified recurring capacity, one-time credit capacity, reserved/idle time and completed useful work separate.
 - Never promote candidate credentials, an HTTP 200, an advertised quota, account credits or an unmeasured GPU price into verified usable GPU-minutes.
 - Keep providers inactive until the external contract for the current R&D use, account eligibility, free/no-card condition, data boundary, workload path and allocation evidence pass.
+- Do not require commercial-use rights during the current R&D phase; requalify providers if the intended use changes to commercial production.
 - Do not send sensitive or private prompts to unapproved community-operated providers.
+- Optimize for reliability through eligible provider diversity, bounded allocation tests, observed success/failure rates, queue/runtime evidence and preserved fallbacks; advertised quota alone is not a reliability signal.
 
 ### Unresolved / blocked
 
 - Nosana's account credits, no-card eligibility, current GPU-minute cost and usable recurring allocation.
-- Hugging Face account eligibility, commercial/data terms for the proposed Space, the actual app's compatibility, and tested daily/monthly usable allocation.
-- Lightning account credit balance and GPU conversion for a chosen model, plus commercial/data and automation qualification.
+- Hugging Face account eligibility, current R&D terms/data fit for the proposed Space, the actual app's compatibility, and tested daily/monthly usable allocation.
+- Lightning account eligibility and current starter GPU allowance, GPU type/price conversion, intended-use terms, data handling, and automation qualification.
 - Modal's no-card eligibility for this account, current selected-GPU costs and tested monthly capacity.
 - An approved instrumented route for completed/idle/reserved GPU-minute measurements.
 - The required navigation protocol/template are unavailable in the active repository tree; this limitation must not be replaced by a claim that the canonical plan workflow was followed.
@@ -107,9 +109,10 @@ The actual useful GPU work completed month-to-date remains **UNKNOWN / NOT METER
 
 ## Impact Analysis
 
-**IF merged:** NOVA can present a consistent, auditable total over the combined provider portfolio while preventing advertised, unknown, expired, card-dependent, non-commercial or untested allocations from inflating the target.
+**IF merged:** NOVA can present a consistent, auditable total over the combined provider portfolio while preventing advertised, unknown, expired, card-dependent, terms-incompatible or untested allocations from inflating the target.
 
 **IF not merged:** Capacity will remain scattered across provider-specific observations, making it easier to confuse public allowances, credentials, dollar credits and actual usable GPU time; the 86,400-minute target will have no deterministic aggregate evidence report.
 
-- Do not require commercial-use rights during the current R&D phase; requalify providers if the intended use changes to commercial production.
-- Optimize for reliability through eligible provider diversity, bounded allocation tests, observed success/failure rates, queue/runtime evidence and preserved fallbacks; advertised quota alone is not a reliability signal.
+## Reliability measurement boundary
+
+The accounting report measures evidence-qualified capacity; it does not yet calculate an empirical long-term provider reliability score. To select the most stable combination, NOVA still needs time-series measurements for API/allocator availability, successful and failed GPU allocations, queue wait, runtime interruptions, GPU type/VRAM, and workload completion. Do not claim high reliability based only on an advertised quota or a single successful allocation.
