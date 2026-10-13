@@ -25,9 +25,6 @@ jobs:
     env:
       GROQ_API_KEY_01: ${{ secrets.GROQ_API_KEY_01 }}
       GEMINI_API_KEY_01: ${{ secrets.GEMINI_API_KEY_01 }}
-      MISTRAL_API_KEY_01: ${{ secrets.MISTRAL_API_KEY_01 }}
-      CLOUDFLARE_API_KEY_01: ${{ secrets.CLOUDFLARE_API_KEY_01 }}
-      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
     steps:
       - name: Checkout protected main
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
