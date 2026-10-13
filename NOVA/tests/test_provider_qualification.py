@@ -5,7 +5,7 @@ from pathlib import Path
 from email.message import Message
 from unittest.mock import patch
 
-from NOVA.provider_qualification import classify, safe_headers, build_report, probe, openai_text, persist_heartbeat_report
+from NOVA.provider_qualification import classify, safe_headers, build_report, probe, openai_text, persist_heartbeat_report, render_markdown
 
 
 class ProviderQualificationTests(unittest.TestCase):
@@ -78,11 +78,20 @@ class ProviderQualificationTests(unittest.TestCase):
             for row in report["results"]
         ))
         cloudflare = next(row for row in report["results"] if row["provider"] == "cloudflare")
-        self.assertEqual(cloudflare["status"], "BLOCKED_CONTRACT_UNVERIFIED")
+        self.assertEqual(cloudflare["status"], "SKIPPED_ALREADY_QUALIFIED")
+        self.assertEqual(cloudflare["lifecycle_status"], "ACTIVE")
         self.assertIsNone(cloudflare["http_status"])
         self.assertTrue(report["diagnostic_only"])
         self.assertFalse(report["production_roster_mutated"])
         self.assertFalse(report["secret_values_exposed"])
+
+    def test_cloudflare_markdown_shows_skip_and_linked_qualification_evidence(self):
+        report = build_report({})
+        markdown = render_markdown(report)
+        self.assertIn("SKIPPED_ALREADY_QUALIFIED", markdown)
+        self.assertIn("https://github.com/ACROWN-System/NOVA/actions/runs/38350563789", markdown)
+        self.assertIn("@cf/meta/llama-3.1-8b-instruct-fast", markdown)
+        self.assertNotIn("Cloudflare inference is blocked until", markdown)
 
     def test_mistral_is_not_probed_even_if_deferred_secret_is_present(self):
         # The value is a synthetic placeholder, never a real credential.
@@ -93,7 +102,7 @@ class ProviderQualificationTests(unittest.TestCase):
         self.assertNotIn("MISTRAL_API_KEY_01", json.dumps(report))
         self.assertNotIn("placeholder-only", json.dumps(report))
 
-    def test_cloudflare_qualification_is_blocked_without_a_live_request(self):
+    def test_cloudflare_qualification_uses_recorded_smoke_evidence_without_duplicate_request(self):
         env = {
             "CLOUDFLARE_API_KEY_01": "synthetic-token-placeholder",
             "CLOUDFLARE_ACCOUNT_ID": "synthetic-account-placeholder",
@@ -102,8 +111,10 @@ class ProviderQualificationTests(unittest.TestCase):
             report = build_report(env)
         opener.assert_not_called()
         row = next(row for row in report["results"] if row["provider"] == "cloudflare")
-        self.assertEqual(row["status"], "BLOCKED_CONTRACT_UNVERIFIED")
-        self.assertEqual(row["lifecycle_status"], "BLOCKED_CONTRACT_UNVERIFIED")
+        self.assertEqual(row["status"], "SKIPPED_ALREADY_QUALIFIED")
+        self.assertEqual(row["lifecycle_status"], "ACTIVE")
+        self.assertEqual(row["model"], "@cf/meta/llama-3.1-8b-instruct-fast")
+        self.assertEqual(row["qualification_evidence_url"], "https://github.com/ACROWN-System/NOVA/actions/runs/38350563789")
         self.assertIsNone(row["http_status"])
         self.assertNotIn("synthetic-token-placeholder", json.dumps(report))
         self.assertNotIn("synthetic-account-placeholder", json.dumps(report))

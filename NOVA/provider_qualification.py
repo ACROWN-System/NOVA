@@ -184,8 +184,9 @@ def build_report(environ=None):
         "POST", {"x-goog-api-key": gemini, "Content-Type": "application/json"},
         gemini_body, gemini_text))
 
-    # Cloudflare's current model/request contract is not verified for this qualification
-    # requirement. Preserve explicit BLOCKED evidence but do not issue another live probe.
+    # A separate bounded, manual smoke test verified the model's exact structured
+    # JSON response contract. Do not duplicate that live request from this diagnostic;
+    # the source evidence is recorded in NOVA/roster.json.
     rows.append({
         "provider": "cloudflare", "provider_type": "llm_inference",
         "credential_env": "CLOUDFLARE_API_KEY_01+CLOUDFLARE_ACCOUNT_ID",
@@ -193,10 +194,12 @@ def build_report(environ=None):
             env.get("CLOUDFLARE_API_KEY_01", "").strip()
             and env.get("CLOUDFLARE_ACCOUNT_ID", "").strip()
         ),
-        "status": "BLOCKED_CONTRACT_UNVERIFIED", "http_status": None,
+        "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+        "status": "SKIPPED_ALREADY_QUALIFIED", "http_status": None,
         "latency_ms": None, "rate_limit_headers": {}, "usage": {},
         "response_shape_valid": None, "probe_marker_present": None,
-        "lifecycle_status": "BLOCKED_CONTRACT_UNVERIFIED",
+        "lifecycle_status": "ACTIVE",
+        "qualification_evidence_url": "https://github.com/ACROWN-System/NOVA/actions/runs/38350563789",
     })
 
     lifecycle = {"groq": "ACTIVE", "gemini": "ACTIVE"}
@@ -220,8 +223,9 @@ def persist_heartbeat_report(report, path):
 
     allowed_fields = (
         "provider", "provider_type", "credential_env", "credential_configured",
-        "lifecycle_status", "status", "http_status", "latency_ms",
-        "rate_limit_headers", "usage", "response_shape_valid", "probe_marker_present",
+        "model", "qualification_evidence_url", "lifecycle_status", "status",
+        "http_status", "latency_ms", "rate_limit_headers", "usage",
+        "response_shape_valid", "probe_marker_present",
     )
     safe_results = {}
     for row in report.get("results", []):
@@ -252,27 +256,29 @@ def render_markdown(report):
     lines = [
         "# NOVA provider qualification",
         "",
-        "One fixed non-sensitive request is sent only to eligible configured endpoints. Cloudflare inference is blocked until its exact model/API contract is verified. No credential values, response text, or raw error bodies are logged.",
+        "Bounded non-sensitive diagnostic requests are sent only to eligible configured endpoints. Cloudflare's selected model has already passed a bounded live JSON-contract smoke test; this diagnostic deliberately skips a duplicate Cloudflare inference request. No credential values, response text, or raw error bodies are logged.",
         "A pass does not prove remaining quota, $0 eligibility, commercial rights, or production capacity.",
         "",
-        "| Provider | Type | Lifecycle | Credential slot | Configured | Result | HTTP | Shape valid | Marker | Latency ms | Usage |",
-        "|---|---|---|---|---|---|---:|---|---|---:|---|",
+        "| Provider | Type | Model | Lifecycle | Credential slot | Configured | Result | HTTP | Shape valid | Marker | Latency ms | Usage | Evidence |",
+        "|---|---|---|---|---|---|---|---:|---|---|---:|---|---|",
     ]
     for row in report.get("results", []):
         usage = ", ".join("{}={}".format(k, v) for k, v in sorted(row.get("usage", {}).items())) or "unavailable"
-        lines.append("| {provider} | {provider_type} | {lifecycle} | {credential_env} | {configured} | {status} | {http} | {shape} | {marker} | {latency} | {usage} |".format(
+        evidence = "[live smoke run]({})".format(row["qualification_evidence_url"]) if row.get("qualification_evidence_url") else "—"
+        lines.append("| {provider} | {provider_type} | {model} | {lifecycle} | {credential_env} | {configured} | {status} | {http} | {shape} | {marker} | {latency} | {usage} | {evidence} |".format(
             provider=row["provider"], provider_type=row["provider_type"],
+            model=row.get("model", "—"),
             lifecycle=row.get("lifecycle_status", "UNKNOWN"),
             credential_env=row["credential_env"],
             configured="yes" if row.get("credential_configured") else "no",
             status=row["status"], http=row["http_status"] if row["http_status"] is not None else "—",
             shape=row.get("response_shape_valid"), marker=row.get("probe_marker_present"),
             latency=row["latency_ms"] if row["latency_ms"] is not None else "—",
-            usage=usage))
+            usage=usage, evidence=evidence))
     lines.extend([
         "",
         "Mistral is excluded from the provider qualification environment by the current operator decision.",
-        "Cloudflare inference qualification is BLOCKED until the exact model/API response contract is verified; this diagnostic makes no Cloudflare inference request.",
+        "Cloudflare's @cf/meta/llama-3.1-8b-instruct-fast structured JSON contract was verified by the bounded manual smoke run linked in its row. This diagnostic deliberately skips a duplicate live request.",
         "GitHub-managed authentication is not treated as an AI-provider key. GitHub Actions uses a separate short-lived GITHUB_TOKEN; Codex integration is tested through its own authorized path.",
         "The diagnostic never changes provider roster, persisted down markers, routing or billing settings. When called from the heartbeat, a sanitized diagnostic snapshot is stored outside provider-routing targets.",
     ])

@@ -1,4 +1,5 @@
 import fnmatch
+import json
 import unittest
 from pathlib import Path
 
@@ -30,6 +31,23 @@ class WorkflowCoverageTests(unittest.TestCase):
         self.assertIn('"additionalProperties": False', workflow)
         self.assertIn('health.get("nova_health") != "OK"', workflow)
         self.assertIn('health.get("ack") != "NOVA_HEALTH_PROBE"', workflow)
+
+
+    def test_cloudflare_roster_uses_only_live_verified_json_model(self):
+        roster = json.loads((ROOT / "NOVA/roster.json").read_text(encoding="utf-8"))
+        cloudflare = next(p for p in roster["providers"] if p["name"] == "cloudflare")
+        model = "@cf/meta/llama-3.1-8b-instruct-fast"
+
+        self.assertEqual(cloudflare["models"], [model])
+        self.assertEqual(cloudflare["model_contracts"][model]["structured_json"], "VERIFIED")
+        self.assertEqual(
+            cloudflare["model_contracts"][model]["qualification_evidence"]["run_id"],
+            38350563789,
+        )
+        self.assertEqual(
+            cloudflare["model_contracts"]["@cf/zai-org/glm-4.7-flash"]["structured_json"],
+            "BLOCKED_UNVERIFIED",
+        )
 
     def test_cloudflare_smoke_workflow_is_covered_by_the_health_suite(self):
         workflow = (
