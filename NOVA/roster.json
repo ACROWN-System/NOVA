@@ -66,7 +66,7 @@
       "base_url": "https://api.cloudflare.com/client/v4/accounts/{CF_ACCOUNT_ID}/ai/v1/chat/completions",
       "kind": "openai_compatible",
       "models": [
-        "@cf/zai-org/glm-4.7-flash"
+        "@cf/meta/llama-3.1-8b-instruct-fast"
       ],
       "model_contracts": {
         "@cf/zai-org/glm-4.7-flash": {
@@ -76,10 +76,25 @@
           "reason": "The official JSON Mode supported-model list does not include this model; do not use it for NOVA's mandatory structured JSON contract without further evidence."
         },
         "@cf/meta/llama-3.1-8b-instruct-fast": {
-          "structured_json": "CANDIDATE",
+          "structured_json": "VERIFIED",
           "checked_on": "2026-10-13",
           "source_url": "https://developers.cloudflare.com/workers-ai/features/json-mode/",
-          "eligibility_note": "Listed by Cloudflare as supporting JSON Mode. Still requires a bounded live NOVA response-contract qualification before promotion to VERIFIED."
+          "eligibility_note": "Officially listed by Cloudflare for JSON Mode; bounded live smoke test verified a non-empty chat-completion message and the exact required NOVA JSON health markers.",
+          "qualification_evidence": {
+            "method": "manual_bounded_smoke_test",
+            "run_id": 38350563789,
+            "run_url": "https://github.com/ACROWN-System/NOVA/actions/runs/38350563789",
+            "verified_commit": "4a5e1cd4e4e89c5d363caa7e3330bbe9593e8b19",
+            "verified_at": "2026-10-13T05:16:40Z",
+            "checks": {
+              "token_verify_http_status": 200,
+              "workers_ai_http_status": 200,
+              "message_content_present": true,
+              "finish_reason": "stop",
+              "completion_tokens": 15,
+              "response_contract": "PASS"
+            }
+          }
         }
       },
       "name": "cloudflare",
