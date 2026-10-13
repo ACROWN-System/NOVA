@@ -56,7 +56,7 @@ class GPUCredentialHeartbeatTests(unittest.TestCase):
         self.assertNotIn("token-secret", json.dumps(result))
         self.assertEqual(result["gpu_capacity_status"], "UNVERIFIED")
 
-    def test_nosana_credits_probe_reports_only_available_credit_arithmetic(self):
+    def test_nosana_read_only_auth_probe_does_not_infer_credit_balance(self):
         class FakeResponse:
             status = 200
 
@@ -78,7 +78,7 @@ class GPUCredentialHeartbeatTests(unittest.TestCase):
             "name": "nosana",
             "api_key_env": "NOSANA_GPU_API_KEY_01",
             "credential_check": {
-                "url": "https://api.nosana.com/api/credits/balance",
+                "url": "https://api.nosana.com/credits/balance",
                 "method": "GET",
                 "auth": "bearer",
                 "expected_hosts": ["api.nosana.com"],
@@ -91,7 +91,7 @@ class GPUCredentialHeartbeatTests(unittest.TestCase):
             result = check_candidate_credential(provider)
 
         self.assertEqual(result["auth_probe_status"], "CREDENTIAL_AUTHENTICATED_READ_ONLY")
-        self.assertEqual(result["available_credits"], 40)
+        self.assertIsNone(result["available_credits"])
         self.assertNotIn("private@example.invalid", json.dumps(result))
         self.assertNotIn("nosana-secret", json.dumps(result))
         self.assertEqual(result["gpu_capacity_status"], "UNVERIFIED")
@@ -112,6 +112,28 @@ class GPUCredentialHeartbeatTests(unittest.TestCase):
             result = check_candidate_credential(provider)
         opener.assert_not_called()
         self.assertEqual(result["auth_probe_status"], "BLOCKED_UNSAFE_OR_UNSUPPORTED_ENDPOINT")
+
+    def test_heartbeat_workflows_run_on_narrow_health_code_changes_and_six_hour_schedule(self):
+        root = Path(__file__).resolve().parents[2]
+        llm = (root / ".github/workflows/nova_heartbeat.yml").read_text(encoding="utf-8")
+        gpu = (root / ".github/workflows/nova_GPU_heartbeat.yml").read_text(encoding="utf-8")
+
+        self.assertIn("cron: '0 */6 * * *'", llm)
+        self.assertIn("cron: '0 */6 * * *'", gpu)
+        self.assertIn("NOVA/provider_qualification.py", llm)
+        self.assertIn("NOVA/health.py", llm)
+        self.assertIn("NOVA/roster.json", llm)
+        self.assertNotIn(".github/workflows/nova_heartbeat.yml", llm)
+        self.assertIn("NOVA/gpu_heartbeat.py", gpu)
+        self.assertIn("NOVA/gpu_roster.json", gpu)
+        self.assertIn("NOVA/health.py", gpu)
+        self.assertIn(".github/workflows/nova_GPU_heartbeat.yml", gpu)
+        self.assertIn("branches: [main]", llm)
+        self.assertIn("branches: [main]", gpu)
+        self.assertNotIn("MISTRAL_API_KEY_01", llm)
+        self.assertNotIn("CEREBRAS_API_KEY_01", llm)
+        self.assertNotIn("GitHub_Token", llm)
+
 
     def test_empty_gpu_heartbeat_persists_candidate_health_without_activating_provider(self):
         with tempfile.TemporaryDirectory() as temp:
