@@ -634,6 +634,38 @@ def advance_scheduled_probe_rotation(
     )
 
 
+def _record_root_cause_case(
+    state: dict[str, Any],
+    provider: dict[str, Any],
+    probe: dict[str, Any],
+) -> dict[str, Any] | None:
+    """Record an actual provider failure without retaining raw response content."""
+    excluded = {
+        None,
+        "contract_gate",
+        "credential_not_configured",
+        "account_id_not_configured",
+        "health_url_not_configured",
+        "unsupported_auth_type",
+    }
+    error_class = probe.get("error_class")
+    if probe.get("response_valid") or error_class in excluded:
+        return None
+
+    provider_name = str(probe.get("provider") or provider.get("name") or "unknown-provider")
+    model = str(probe.get("requested_model") or "unknown-model")
+    failure_class = str(error_class or probe.get("quality_status") or "UNKNOWN")
+    quality = str(probe.get("quality_status") or "no_quality_status")
+    return record_failure_case(
+        state,
+        source=f"{provider_name}:{model}",
+        failure_class=failure_class,
+        expected_result="Provider response satisfies NOVA's required structured response contract.",
+        observed_result=f"{failure_class}:{quality}",
+        candidate_sha=os.environ.get("GITHUB_SHA"),
+    )
+
+
 def intelligent_router(prompt: str) -> tuple[str, dict[str, Any]]:
     print(f"[{datetime.now(timezone.utc).isoformat()}] NOVA AI Heart Pulse Initiated...")
     roster = load_roster()
@@ -699,31 +731,7 @@ def intelligent_router(prompt: str) -> tuple[str, dict[str, Any]]:
                 unacceptable_failure_streak=int(failure_policy.get("unacceptable_consecutive_failures", 3)),
             )
             all_probes.append(observation)
-            if (
-                not probe.get("response_valid")
-                and probe.get("error_class") not in {
-                    None,
-                    "contract_gate",
-                    "credential_not_configured",
-                    "account_id_not_configured",
-                    "health_url_not_configured",
-                    "unsupported_auth_type",
-                }
-            ):
-                record_failure_case(
-                    state,
-                    source="{}:{}".format(
-                        probe.get("provider") or provider["name"],
-                        probe.get("requested_model") or "unknown-model",
-                    ),
-                    failure_class=str(probe.get("error_class") or probe.get("quality_status") or "UNKNOWN"),
-                    expected_result="Provider response satisfies NOVA's required structured response contract.",
-                    observed_result="{}:{}".format(
-                        probe.get("error_class") or "no_error_class",
-                        probe.get("quality_status") or "no_quality_status",
-                    ),
-                    candidate_sha=os.environ.get("GITHUB_SHA"),
-                )
+            _record_root_cause_case(state, provider, probe)
             if observation["health_status"] == "UNACCEPTABLE":
                 alerts.send_all_alerts(
                     title=f"NOVA AI heart: {provider['name']} health is unacceptable",
