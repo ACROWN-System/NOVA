@@ -190,10 +190,10 @@ def build_report(environ=None):
     rows.append({
         "provider": "cloudflare", "provider_type": "llm_inference",
         "credential_env": "CLOUDFLARE_API_KEY_01+CLOUDFLARE_ACCOUNT_ID",
-        "credential_configured": bool(
-            env.get("CLOUDFLARE_API_KEY_01", "").strip()
-            and env.get("CLOUDFLARE_ACCOUNT_ID", "").strip()
-        ),
+        # This diagnostic intentionally does not receive Cloudflare secrets. None
+        # means "not checked here", not "missing" (the production heartbeat verifies separately).
+        "credential_configured": None,
+        "credential_configuration_status": "NOT_EXPOSED_TO_DIAGNOSTIC_BY_POLICY",
         "model": "@cf/meta/llama-3.1-8b-instruct-fast",
         "status": "SKIPPED_ALREADY_QUALIFIED", "http_status": None,
         "latency_ms": None, "rate_limit_headers": {}, "usage": {},
@@ -223,8 +223,9 @@ def persist_heartbeat_report(report, path):
 
     allowed_fields = (
         "provider", "provider_type", "credential_env", "credential_configured",
-        "model", "qualification_evidence_url", "lifecycle_status", "status",
-        "http_status", "latency_ms", "rate_limit_headers", "usage",
+        "model", "qualification_evidence_url", "credential_configuration_status",
+        "lifecycle_status", "status", "http_status", "latency_ms",
+        "rate_limit_headers", "usage",
         "response_shape_valid", "probe_marker_present",
     )
     safe_results = {}
@@ -270,7 +271,9 @@ def render_markdown(report):
             model=row.get("model", "—"),
             lifecycle=row.get("lifecycle_status", "UNKNOWN"),
             credential_env=row["credential_env"],
-            configured="yes" if row.get("credential_configured") else "no",
+            configured=("yes" if row.get("credential_configured") is True
+                        else "no" if row.get("credential_configured") is False
+                        else "not checked"),
             status=row["status"], http=row["http_status"] if row["http_status"] is not None else "—",
             shape=row.get("response_shape_valid"), marker=row.get("probe_marker_present"),
             latency=row["latency_ms"] if row["latency_ms"] is not None else "—",
