@@ -93,7 +93,7 @@ class ProviderQualificationTests(unittest.TestCase):
         self.assertNotIn("MISTRAL_API_KEY_01", json.dumps(report))
         self.assertNotIn("placeholder-only", json.dumps(report))
 
-    def test_cloudflare_qualification_is_blocked_without_a_live_request(self):
+    def test_cloudflare_qualification_uses_recorded_smoke_evidence_without_duplicate_request(self):
         env = {
             "CLOUDFLARE_API_KEY_01": "synthetic-token-placeholder",
             "CLOUDFLARE_ACCOUNT_ID": "synthetic-account-placeholder",
@@ -102,8 +102,10 @@ class ProviderQualificationTests(unittest.TestCase):
             report = build_report(env)
         opener.assert_not_called()
         row = next(row for row in report["results"] if row["provider"] == "cloudflare")
-        self.assertEqual(row["status"], "BLOCKED_CONTRACT_UNVERIFIED")
-        self.assertEqual(row["lifecycle_status"], "BLOCKED_CONTRACT_UNVERIFIED")
+        self.assertEqual(row["status"], "SKIPPED_ALREADY_QUALIFIED")
+        self.assertEqual(row["lifecycle_status"], "ACTIVE")
+        self.assertEqual(row["model"], "@cf/meta/llama-3.1-8b-instruct-fast")
+        self.assertEqual(row["qualification_evidence_url"], "https://github.com/ACROWN-System/NOVA/actions/runs/38350563789")
         self.assertIsNone(row["http_status"])
         self.assertNotIn("synthetic-token-placeholder", json.dumps(report))
         self.assertNotIn("synthetic-account-placeholder", json.dumps(report))
