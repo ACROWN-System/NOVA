@@ -126,20 +126,20 @@
         {
           "url": "https://lightning.ai/pricing",
           "checked_on": "2026-10-13",
-          "supports": "The official pricing page advertises up to 80 free GPU hours to start with no credit card; the actual GPU hours vary by selected GPU pricing. The free tier advertises up to 30 credits. Phone verification is required to receive the free GPU-hour allocation according to the official AI Studio guide. The free CPU Studio needs restart every four hours and is not a continuously hot GPU service."
+          "supports": "Current pricing page: up to 30 free credits can provide about 80 GPU hours to start, depending on GPU pricing; the FAQ says 5 credits are granted at registration and 25 additional credits require adding a card. It also advertises one free CPU Studio with a restart every four hours."
         },
         {
           "url": "https://lightning.ai/docs/overview/ai-studio/",
           "checked_on": "2026-10-13",
-          "supports": "The AI Studio guide says phone verification is required to receive up to 80 free GPU hours, and says the service may be unavailable in some countries."
+          "supports": "The AI Studio guide conflicts with the pricing page: it says phone verification unlocks 80 free GPU hours and 15 free credits each month; availability can vary by country."
         }
       ],
       "advertised": {
-        "status": "STARTER_GPU_ALLOWANCE_NOT_ACCOUNT_VERIFIED",
+        "status": "DOCUMENTATION_CONFLICT_NOT_COUNTED",
         "gpu_minutes_per_day": null,
         "normalization_days": 30,
         "normalized_monthly_gpu_minutes": null,
-        "notes": "The public headline is up to 80 free GPU hours to start, with GPU-specific values varying by price and phone verification required. It is not an account-observed balance or a guaranteed recurring monthly GPU-minute allowance; no GPU-minute value is counted until account details and a real allocation are verified.",
+        "notes": "The official pricing page says up to 30 starter credits can yield about 80 GPU hours to start, but its FAQ says only 5 credits are granted on registration and adding a card unlocks 25 more. The separate official AI Studio guide instead claims 80 GPU hours and 15 free credits each month after phone verification. These public sources conflict on recurrence and the no-card allowance. Do not infer that 80 GPU hours are available without a card, convert the headline into monthly GPU-minutes, or count recurring capacity until current account-specific balance, selected GPU pricing, terms and an actual allocation are verified.",
         "starter_gpu_hours_up_to": 80,
         "monthly_compute_credits_usd": null
       },
@@ -174,7 +174,9 @@
         "reserved_gpu_minutes": null
       },
       "notes": [
-        "Potential starting GPU capacity worth testing for R&D, subject to phone verification, account conditions, selected GPU pricing and current allowance.",
+        "Potential starting GPU capacity worth testing for R&D, subject to phone verification, account eligibility, selected GPU pricing and current allowance.",
+        "The public pricing page and AI Studio guide conflict on whether the advertised GPU hours and free credits recur monthly, and the no-card allocation; keep the actual allowance unresolved until the account dashboard is checked.",
+        "Do not assume the 80-hour headline is available without a card: the pricing FAQ says 5 credits are granted at registration and 25 more require adding a card.",
         "This is not yet a verified recurring contribution to the 86,400 GPU-minute/month target.",
         "The free CPU Studio's four-hour restart behavior does not itself establish GPU availability or reliability."
       ],
