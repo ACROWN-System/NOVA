@@ -148,6 +148,9 @@ def record_failure_case(
 
     existing["last_seen"] = stamp
     existing["occurrences"] = int(existing.get("occurrences", 0)) + 1
+    # Restoring the expected result is essential after recurrence reopens a
+    # previously closed case and clears its former closure evidence.
+    existing["expected_result"] = expected_result[:240]
     existing["observed_result"] = observed_result[:240]
     if candidate_sha:
         existing["candidate_sha"] = candidate_sha
@@ -193,12 +196,14 @@ def closure_decision(case: dict[str, Any]) -> dict[str, Any]:
             "missing_fields": [],
         }
     try:
-        datetime.fromisoformat(str(case["verified_at"]).replace("Z", "+00:00"))
+        verified_at = datetime.fromisoformat(str(case["verified_at"]).replace("Z", "+00:00"))
+        if verified_at.tzinfo is None or verified_at.utcoffset() is None:
+            raise ValueError("timestamp must include a timezone")
     except ValueError:
         return {
             "allowed": False,
             "state": "BLOCKED",
-            "reason": "Verification timestamp is invalid.",
+            "reason": "Verification timestamp must be a valid timezone-aware ISO-8601 value.",
             "missing_fields": [],
         }
 
@@ -223,6 +228,15 @@ def close_failure_case(
             "allowed": False,
             "state": "BLOCKED",
             "reason": "The root-cause case does not exist.",
+            "missing_fields": [],
+        }
+
+    unexpected = sorted(set(evidence) - set(CLOSURE_FIELDS))
+    if unexpected:
+        return {
+            "allowed": False,
+            "state": "BLOCKED",
+            "reason": "Closure evidence contains fields outside the approved evidence schema.",
             "missing_fields": [],
         }
 
