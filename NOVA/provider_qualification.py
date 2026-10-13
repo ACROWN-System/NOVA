@@ -166,15 +166,10 @@ def build_report(environ=None):
     rows = []
     groq = env.get("GROQ_API_KEY_01", "").strip()
     gemini = env.get("GEMINI_API_KEY_01", "").strip()
-    mistral = env.get("MISTRAL_API_KEY_01", "").strip()
-    cf = env.get("CLOUDFLARE_API_KEY_01", "").strip()
-    cf_id = env.get("CLOUDFLARE_ACCOUNT_ID", "").strip()
 
     for name, key_env, key, url, model, token_field, reasoning_effort in [
         ("groq", "GROQ_API_KEY_01", groq,
          "https://api.groq.com/openai/v1/chat/completions", "openai/gpt-oss-20b", "max_completion_tokens", "low"),
-        ("mistral_requalification", "MISTRAL_API_KEY_01", mistral,
-         "https://api.mistral.ai/v1/chat/completions", "mistral-small-latest", "max_tokens", None),
     ]:
         rows.append(probe(name, "llm_inference", key_env, key, url, "POST",
             {"Authorization": "Bearer " + key, "Content-Type": "application/json"},
@@ -189,28 +184,22 @@ def build_report(environ=None):
         "POST", {"x-goog-api-key": gemini, "Content-Type": "application/json"},
         gemini_body, gemini_text))
 
-    if cf and cf_id:
-        rows.append(probe("cloudflare", "llm_inference", "CLOUDFLARE_API_KEY_01", cf,
-            "https://api.cloudflare.com/client/v4/accounts/" + cf_id + "/ai/v1/chat/completions",
-            "POST", {"Authorization": "Bearer " + cf, "Content-Type": "application/json"},
-            chat_body("@cf/zai-org/glm-4.7-flash", "max_tokens"), openai_text))
-    else:
-        missing = []
-        if not cf:
-            missing.append("CLOUDFLARE_API_KEY_01")
-        if not cf_id:
-            missing.append("CLOUDFLARE_ACCOUNT_ID")
-        rows.append({"provider": "cloudflare", "provider_type": "llm_inference",
-            "credential_env": "+".join(missing), "credential_configured": False,
-            "status": "SKIPPED_MISSING_CREDENTIAL_OR_ACCOUNT", "http_status": None,
-            "latency_ms": None, "rate_limit_headers": {}, "usage": {}})
+    # Cloudflare's current model/request contract is not verified for this qualification
+    # requirement. Preserve explicit BLOCKED evidence but do not issue another live probe.
+    rows.append({
+        "provider": "cloudflare", "provider_type": "llm_inference",
+        "credential_env": "CLOUDFLARE_API_KEY_01+CLOUDFLARE_ACCOUNT_ID",
+        "credential_configured": bool(
+            env.get("CLOUDFLARE_API_KEY_01", "").strip()
+            and env.get("CLOUDFLARE_ACCOUNT_ID", "").strip()
+        ),
+        "status": "BLOCKED_CONTRACT_UNVERIFIED", "http_status": None,
+        "latency_ms": None, "rate_limit_headers": {}, "usage": {},
+        "response_shape_valid": None, "probe_marker_present": None,
+        "lifecycle_status": "BLOCKED_CONTRACT_UNVERIFIED",
+    })
 
-    lifecycle = {
-        "groq": "ACTIVE",
-        "gemini": "ACTIVE",
-        "cloudflare": "ACTIVE",
-        "mistral_requalification": "DEFERRED_DIAGNOSTIC_ONLY",
-    }
+    lifecycle = {"groq": "ACTIVE", "gemini": "ACTIVE"}
     for row in rows:
         row.setdefault("lifecycle_status", lifecycle.get(row["provider"], "UNKNOWN"))
 
@@ -263,7 +252,7 @@ def render_markdown(report):
     lines = [
         "# NOVA provider qualification",
         "",
-        "One fixed non-sensitive request per configured endpoint. No credential values, response text, or raw error bodies are logged.",
+        "One fixed non-sensitive request is sent only to eligible configured endpoints. Cloudflare inference is blocked until its exact model/API contract is verified. No credential values, response text, or raw error bodies are logged.",
         "A pass does not prove remaining quota, $0 eligibility, commercial rights, or production capacity.",
         "",
         "| Provider | Type | Lifecycle | Credential slot | Configured | Result | HTTP | Shape valid | Marker | Latency ms | Usage |",
@@ -282,7 +271,8 @@ def render_markdown(report):
             usage=usage))
     lines.extend([
         "",
-        "Mistral is tested for key/API health only and remains DEFERRED; no result automatically activates it.",
+        "Mistral is excluded from the provider qualification environment by the current operator decision.",
+        "Cloudflare inference qualification is BLOCKED until the exact model/API response contract is verified; this diagnostic makes no Cloudflare inference request.",
         "GitHub-managed authentication is not treated as an AI-provider key. GitHub Actions uses a separate short-lived GITHUB_TOKEN; Codex integration is tested through its own authorized path.",
         "The diagnostic never changes provider roster, persisted down markers, routing or billing settings. When called from the heartbeat, a sanitized diagnostic snapshot is stored outside provider-routing targets.",
     ])

@@ -74,11 +74,39 @@ class ProviderQualificationTests(unittest.TestCase):
         opener.assert_not_called()
         self.assertTrue(all(
             row["status"].startswith("SKIPPED")
+            or row["status"] == "BLOCKED_CONTRACT_UNVERIFIED"
             for row in report["results"]
         ))
+        cloudflare = next(row for row in report["results"] if row["provider"] == "cloudflare")
+        self.assertEqual(cloudflare["status"], "BLOCKED_CONTRACT_UNVERIFIED")
+        self.assertIsNone(cloudflare["http_status"])
         self.assertTrue(report["diagnostic_only"])
         self.assertFalse(report["production_roster_mutated"])
         self.assertFalse(report["secret_values_exposed"])
+
+    def test_mistral_is_not_probed_even_if_deferred_secret_is_present(self):
+        # The value is a synthetic placeholder, never a real credential.
+        with patch("NOVA.provider_qualification.urllib.request.build_opener") as opener:
+            report = build_report({"MISTRAL_API_KEY_01": "placeholder-only"})
+        opener.assert_not_called()
+        self.assertFalse(any("mistral" in row["provider"].lower() for row in report["results"]))
+        self.assertNotIn("MISTRAL_API_KEY_01", json.dumps(report))
+        self.assertNotIn("placeholder-only", json.dumps(report))
+
+    def test_cloudflare_qualification_is_blocked_without_a_live_request(self):
+        env = {
+            "CLOUDFLARE_API_KEY_01": "synthetic-token-placeholder",
+            "CLOUDFLARE_ACCOUNT_ID": "synthetic-account-placeholder",
+        }
+        with patch("NOVA.provider_qualification.urllib.request.build_opener") as opener:
+            report = build_report(env)
+        opener.assert_not_called()
+        row = next(row for row in report["results"] if row["provider"] == "cloudflare")
+        self.assertEqual(row["status"], "BLOCKED_CONTRACT_UNVERIFIED")
+        self.assertEqual(row["lifecycle_status"], "BLOCKED_CONTRACT_UNVERIFIED")
+        self.assertIsNone(row["http_status"])
+        self.assertNotIn("synthetic-token-placeholder", json.dumps(report))
+        self.assertNotIn("synthetic-account-placeholder", json.dumps(report))
 
     def test_github_token_is_not_probed_or_counted_as_inference_capacity(self):
         with patch("NOVA.provider_qualification.urllib.request.build_opener") as opener:
@@ -92,11 +120,11 @@ class ProviderQualificationTests(unittest.TestCase):
         report = {
             "observed_at": "2026-10-12T00:00:00+00:00",
             "results": [{
-                "provider": "mistral_requalification",
+                "provider": "groq",
                 "provider_type": "llm_inference",
-                "credential_env": "MISTRAL_API_KEY_01",
+                "credential_env": "GROQ_API_KEY_01",
                 "credential_configured": True,
-                "lifecycle_status": "DEFERRED_DIAGNOSTIC_ONLY",
+                "lifecycle_status": "ACTIVE",
                 "status": "RATE_LIMITED_OR_QUOTA_EXHAUSTED",
                 "http_status": 429,
                 "latency_ms": 50,
@@ -110,13 +138,13 @@ class ProviderQualificationTests(unittest.TestCase):
             path = Path(temp) / "health_state.json"
             persist_heartbeat_report(report, str(path))
             saved = json.loads(path.read_text(encoding="utf-8"))
-        self.assertIn("mistral_requalification", saved["credential_health"])
+        self.assertIn("groq", saved["credential_health"])
         self.assertEqual(
-            saved["credential_health"]["mistral_requalification"]["latest"]["status"],
+            saved["credential_health"]["groq"]["latest"]["status"],
             "RATE_LIMITED_OR_QUOTA_EXHAUSTED",
         )
         self.assertEqual(saved["targets"], {})
-        self.assertNotIn("MISTRAL_API_KEY_01_VALUE", json.dumps(saved))
+        self.assertNotIn("GROQ_API_KEY_01_VALUE", json.dumps(saved))
 
 
 

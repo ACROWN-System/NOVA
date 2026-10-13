@@ -330,8 +330,14 @@ class DeferredProviderRosterTests(unittest.TestCase):
         qualifier_step = heartbeat_workflow[qualifier_start:publisher_start]
         mistral_env = "MISTRAL_API_KEY_01"
         self.assertNotIn(mistral_env, routing_and_reasoning)
-        self.assertIn(mistral_env, qualifier_step)
+        self.assertNotIn(mistral_env, qualifier_step)
         self.assertIn("NOVA_PERSIST_HEALTH_STATE: 'true'", qualifier_step)
+
+        qualification_code = (
+            nova_root / "provider_qualification.py"
+        ).read_text(encoding="utf-8")
+        self.assertNotIn("mistral_requalification", qualification_code)
+        self.assertNotIn('env.get("MISTRAL_API_KEY_01"', qualification_code)
 
         scheduler = (
             repository_root / ".github" / "workflows" / "nova_probe_scheduler.yml"
