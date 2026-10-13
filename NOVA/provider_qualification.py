@@ -252,7 +252,7 @@ def render_markdown(report):
     lines = [
         "# NOVA provider qualification",
         "",
-        "One fixed non-sensitive request per configured endpoint. No credential values, response text, or raw error bodies are logged.",
+        "One fixed non-sensitive request is sent only to eligible configured endpoints. Cloudflare inference is blocked until its exact model/API contract is verified. No credential values, response text, or raw error bodies are logged.",
         "A pass does not prove remaining quota, $0 eligibility, commercial rights, or production capacity.",
         "",
         "| Provider | Type | Lifecycle | Credential slot | Configured | Result | HTTP | Shape valid | Marker | Latency ms | Usage |",
