@@ -12,10 +12,10 @@
       "activation_requirement": "Verify current account credits, API contract, supported workload path, and zero-cost credit policy before activation.",
       "source": "https://www.nosana.com/blog/the-new-nosana-experience-is-now-live/",
       "credential_check": {
-        "url": "https://api.nosana.com/api/credits/balance",
+        "url": "https://api.nosana.com/credits/balance",
         "method": "GET",
         "auth": "bearer",
-        "purpose": "Read-only credential/scope check via account credit balance. No jobs are created or extended. Available credits are not proof of free credits or GPU capacity.",
+        "purpose": "Read-only credential/scope check against the official credits-balance endpoint. No jobs are created or extended. The heartbeat records authentication status only; GPU capacity and free-credit eligibility remain unverified.",
         "expected_hosts": [
           "api.nosana.com"
         ]
