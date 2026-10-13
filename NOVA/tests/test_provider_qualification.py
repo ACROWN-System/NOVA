@@ -92,6 +92,8 @@ class ProviderQualificationTests(unittest.TestCase):
         self.assertIn("https://github.com/ACROWN-System/NOVA/actions/runs/38350563789", markdown)
         self.assertIn("@cf/meta/llama-3.1-8b-instruct-fast", markdown)
         self.assertNotIn("Cloudflare inference is blocked until", markdown)
+        cloudflare_line = next(line for line in markdown.splitlines() if "| cloudflare |" in line)
+        self.assertIn("| not checked |", cloudflare_line)
 
     def test_mistral_is_not_probed_even_if_deferred_secret_is_present(self):
         # The value is a synthetic placeholder, never a real credential.
@@ -113,6 +115,11 @@ class ProviderQualificationTests(unittest.TestCase):
         row = next(row for row in report["results"] if row["provider"] == "cloudflare")
         self.assertEqual(row["status"], "SKIPPED_ALREADY_QUALIFIED")
         self.assertEqual(row["lifecycle_status"], "ACTIVE")
+        self.assertIsNone(row["credential_configured"])
+        self.assertEqual(
+            row["credential_configuration_status"],
+            "NOT_EXPOSED_TO_DIAGNOSTIC_BY_POLICY",
+        )
         self.assertEqual(row["model"], "@cf/meta/llama-3.1-8b-instruct-fast")
         self.assertEqual(row["qualification_evidence_url"], "https://github.com/ACROWN-System/NOVA/actions/runs/38350563789")
         self.assertIsNone(row["http_status"])
