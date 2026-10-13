@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "target_gpu_minutes_per_month": 86400,
+  "accounting_unit": "one GPU allocated for one minute",
+  "evidence_review_date": "2026-10-13",
+  "policy_note": "This register records evidence and does not activate providers. Unknown account eligibility, payment method, commercial permissions, data handling, workload compatibility, allocation or quota remain unknown. Sensitive or commercial prompts must not be sent to community-operated volunteer GPUs without explicit authorization.",
+  "providers": [
+    {
+      "name": "huggingface_zerogpu",
+      "display_name": "Hugging Face ZeroGPU — approved Space path only",
+      "allocation_type": "shared_queued",
+      "official_sources": [
+        {
+          "url": "https://huggingface.co/docs/hub/main/en/spaces-zerogpu",
+          "checked_on": "2026-10-13",
+          "supports": "Free personal accounts in good standing, with verified email and account age over 30 days, can host up to two ZeroGPU Spaces. The documented free quota is 5 GPU-minutes per account per day and resets 24 hours after first usage. Access is shared and Space/Gradio-oriented."
+        }
+      ],
+      "advertised": {
+        "status": "DOCUMENTED_THEORETICAL_NOT_RESERVED",
+        "gpu_minutes_per_day": 5,
+        "normalization_days": 30,
+        "normalized_monthly_gpu_minutes": 150,
+        "notes": "150 is 5 minutes/day multiplied by a 30-day normalization; it is not account-confirmed or queue-adjusted usable capacity and is never counted toward the target."
+      },
+      "qualification": {
+        "account_eligibility": "UNKNOWN",
+        "free_without_payment_method": "UNKNOWN",
+        "commercial_use": "UNKNOWN",
+        "automated_access": "PARTIAL",
+        "workload_compatibility": "PARTIAL",
+        "data_handling_approved": "UNKNOWN",
+        "allocation_test": "NOT_RUN"
+      },
+      "recurring_capacity": {"status": "UNVERIFIED", "usable_gpu_minutes_per_month": null, "observed_at": null, "valid_until": null, "evidence_urls": []},
+      "one_time_capacity": {"status": "UNVERIFIED", "gpu_minutes_available": null, "observed_at": null, "expires_at": null, "evidence_urls": []},
+      "usage_month_to_date": {"month": "2026-10", "status": "NOT_METERED", "completed_useful_gpu_minutes": null, "idle_gpu_minutes": null, "reserved_gpu_minutes": null},
+      "notes": ["A real Space test must use an AstroCrown-owned workload.", "The user has not authorized prompts to community-operated volunteer GPUs; do not substitute community Spaces for an approved deployment."]
+    },
+    {
+      "name": "nosana",
+      "display_name": "Nosana GPU marketplace",
+      "allocation_type": "marketplace_job",
+      "official_sources": [
+        {"url": "https://learn.nosana.com/api/credits.html", "checked_on": "2026-10-13", "supports": "The API exposes assigned, reserved and settled credit balances and documents free-credit eligibility/request endpoints; credit requests are subject to eligibility."},
+        {"url": "https://www.nosana.com/terms-and-conditions/", "checked_on": "2026-10-13", "supports": "Account-specific eligibility, payment-method rules, GPU-minute conversion, commercial-use fit and a qualifying workload allocation remain to be verified."}
+      ],
+      "advertised": {"status": "NO_COMPARABLE_GPU_MINUTE_ALLOWANCE_VERIFIED", "gpu_minutes_per_day": null, "normalization_days": 30, "normalized_monthly_gpu_minutes": null, "notes": "Credit eligibility and authenticated balance access do not reveal GPU-minutes before usable account credits, current GPU pricing and a qualifying allocation are verified."},
+      "qualification": {"account_eligibility": "UNKNOWN", "free_without_payment_method": "UNKNOWN", "commercial_use": "UNKNOWN", "automated_access": "PARTIAL", "workload_compatibility": "UNKNOWN", "data_handling_approved": "UNKNOWN", "allocation_test": "NOT_RUN"},
+      "recurring_capacity": {"status": "UNVERIFIED", "usable_gpu_minutes_per_month": null, "observed_at": null, "valid_until": null, "evidence_urls": []},
+      "one_time_capacity": {"status": "UNVERIFIED", "gpu_minutes_available": null, "observed_at": null, "expires_at": null, "evidence_urls": []},
+      "usage_month_to_date": {"month": "2026-10", "status": "NOT_METERED", "completed_useful_gpu_minutes": null, "idle_gpu_minutes": null, "reserved_gpu_minutes": null},
+      "notes": ["Existing NOVA status remains candidate and inactive.", "Read-only credential validation must not trigger a deployment or a credit request."]
+    },
+    {
+      "name": "lightning_ai",
+      "display_name": "Lightning AI — one-time GPU-credit candidate",
+      "allocation_type": "credit_backed_interruptible_or_session",
+      "official_sources": [
+        {"url": "https://lightning.ai/pricing", "checked_on": "2026-10-13", "supports": "The free tier says no credit card and one free CPU Studio; 5 Lightning credits are granted on registration, additional credits require a card, unused credits expire after 12 months, and GPU-hour estimates vary by GPU and price."}
+      ],
+      "advertised": {"status": "ONE_TIME_CREDITS_NOT_GPU_MINUTES", "gpu_minutes_per_day": null, "normalization_days": 30, "normalized_monthly_gpu_minutes": null, "one_time_native_credit_amount": 5, "one_time_native_credit_unit": "Lightning credits", "notes": "Advertised initial credits are not an account-observed balance. Do not convert native credits into GPU-minutes without confirming remaining credits, selected GPU pricing and a qualifying allocation."},
+      "qualification": {"account_eligibility": "UNKNOWN", "free_without_payment_method": "VERIFIED", "commercial_use": "UNKNOWN", "automated_access": "PARTIAL", "workload_compatibility": "UNKNOWN", "data_handling_approved": "UNKNOWN", "allocation_test": "NOT_RUN"},
+      "recurring_capacity": {"status": "UNVERIFIED", "usable_gpu_minutes_per_month": null, "observed_at": null, "valid_until": null, "evidence_urls": []},
+      "one_time_capacity": {"status": "UNVERIFIED", "gpu_minutes_available": null, "observed_at": null, "expires_at": null, "evidence_urls": []},
+      "usage_month_to_date": {"month": "2026-10", "status": "NOT_METERED", "completed_useful_gpu_minutes": null, "idle_gpu_minutes": null, "reserved_gpu_minutes": null},
+      "notes": ["Potential one-time contribution only after account and workload verification, not recurring capacity.", "The free CPU Studio is not GPU capacity and has a four-hour restart constraint."]
+    },
+    {
+      "name": "modal",
+      "display_name": "Modal Starter — recurring compute-credit candidate",
+      "allocation_type": "serverless_gpu_compute",
+      "official_sources": [
+        {"url": "https://modal.com/pricing", "checked_on": "2026-10-13", "supports": "The Starter plan has no monthly subscription fee and includes $30 of compute per month; GPU-minute conversion depends on selected GPU and accompanying resources."},
+        {"url": "https://frontend.modal.com/startups", "checked_on": "2026-10-13", "supports": "The official startup page has a payment-method FAQ, but the retrieved public page does not settle this account's no-card eligibility for the normal Starter allowance."}
+      ],
+      "advertised": {"status": "MONTHLY_CREDIT_NOT_CONVERTED_TO_GPU_MINUTES", "monthly_compute_credits_usd": 30, "gpu_minutes_per_day": null, "normalization_days": 30, "normalized_monthly_gpu_minutes": null, "notes": "Monthly dollar credits are not GPU-minutes. Confirm no-card eligibility, terms and actual GPU/resource pricing before converting or counting an amount."},
+      "qualification": {"account_eligibility": "UNKNOWN", "free_without_payment_method": "UNKNOWN", "commercial_use": "UNKNOWN", "automated_access": "PARTIAL", "workload_compatibility": "UNKNOWN", "data_handling_approved": "UNKNOWN", "allocation_test": "NOT_RUN"},
+      "recurring_capacity": {"status": "UNVERIFIED", "usable_gpu_minutes_per_month": null, "observed_at": null, "valid_until": null, "evidence_urls": []},
+      "one_time_capacity": {"status": "UNVERIFIED", "gpu_minutes_available": null, "observed_at": null, "expires_at": null, "evidence_urls": []},
+      "usage_month_to_date": {"month": "2026-10", "status": "NOT_METERED", "completed_useful_gpu_minutes": null, "idle_gpu_minutes": null, "reserved_gpu_minutes": null},
+      "notes": ["No capacity is counted until account/payment-method conditions, commercial use and workload are verified.", "Included dollar balances are not unlimited compute or a fixed GPU-time entitlement."]
+    },
+    {
+      "name": "google_colab_free",
+      "display_name": "Google Colab free GPU runtime",
+      "allocation_type": "ephemeral_shared_session",
+      "official_sources": [
+        {"url": "https://research.google.com/colaboratory/faq.html", "checked_on": "2026-10-13", "supports": "Free GPU access has dynamic, unpublished usage limits and changing availability; managed runtimes can be terminated and use is constrained by notebook-service rules."}
+      ],
+      "advertised": {"status": "NO_GUARANTEED_MONTHLY_GPU_MINUTES", "gpu_minutes_per_day": null, "normalization_days": 30, "normalized_monthly_gpu_minutes": null, "notes": "May be useful as a manual development environment, not a guaranteed unattended GPU service."},
+      "qualification": {"account_eligibility": "UNKNOWN", "free_without_payment_method": "UNKNOWN", "commercial_use": "UNKNOWN", "automated_access": "DISALLOWED", "workload_compatibility": "PARTIAL", "data_handling_approved": "UNKNOWN", "allocation_test": "NOT_RUN"},
+      "recurring_capacity": {"status": "UNVERIFIED", "usable_gpu_minutes_per_month": null, "observed_at": null, "valid_until": null, "evidence_urls": []},
+      "one_time_capacity": {"status": "UNVERIFIED", "gpu_minutes_available": null, "observed_at": null, "expires_at": null, "evidence_urls": []},
+      "usage_month_to_date": {"month": "2026-10", "status": "NOT_METERED", "completed_useful_gpu_minutes": null, "idle_gpu_minutes": null, "reserved_gpu_minutes": null},
+      "notes": ["Excluded from unattended production capacity accounting; a human-run development experiment remains possible."]
+    },
+    {
+      "name": "kaggle",
+      "display_name": "Kaggle hosted notebooks",
+      "allocation_type": "ephemeral_notebook",
+      "official_sources": [
+        {"url": "https://www.kaggle.com/terms", "checked_on": "2026-10-13", "supports": "Terms restrict use to personal, internal, non-commercial use and prohibit use on behalf of or for the benefit of a third party."}
+      ],
+      "advertised": {"status": "NOT_ELIGIBLE_FOR_ASTROCROWN_COMMERCIAL_WORKLOADS", "gpu_minutes_per_day": null, "normalization_days": 30, "normalized_monthly_gpu_minutes": null, "notes": "Do not count this service toward AstroCrown's commercial production GPU target."},
+      "qualification": {"account_eligibility": "UNKNOWN", "free_without_payment_method": "UNKNOWN", "commercial_use": "DISALLOWED", "automated_access": "UNKNOWN", "workload_compatibility": "UNKNOWN", "data_handling_approved": "UNKNOWN", "allocation_test": "NOT_RUN"},
+      "recurring_capacity": {"status": "UNVERIFIED", "usable_gpu_minutes_per_month": null, "observed_at": null, "valid_until": null, "evidence_urls": []},
+      "one_time_capacity": {"status": "UNVERIFIED", "gpu_minutes_available": null, "observed_at": null, "expires_at": null, "evidence_urls": []},
+      "usage_month_to_date": {"month": "2026-10", "status": "NOT_METERED", "completed_useful_gpu_minutes": null, "idle_gpu_minutes": null, "reserved_gpu_minutes": null},
+      "notes": ["Excluded because published terms conflict with commercial workloads."]
+    },
+    {
+      "name": "vast_ai",
+      "display_name": "Vast.ai",
+      "allocation_type": "gpu_marketplace",
+      "official_sources": [
+        {"url": "https://console.vast.ai/faq/", "checked_on": "2026-10-13", "supports": "The official FAQ states a verified credit card is required to receive test credit."}
+      ],
+      "advertised": {"status": "NO_VERIFIED_NO_CARD_FREE_ALLOWANCE", "gpu_minutes_per_day": null, "normalization_days": 30, "normalized_monthly_gpu_minutes": null, "notes": "Exclude under the current no-payment-method rule unless qualifying no-card access is independently evidenced."},
+      "qualification": {"account_eligibility": "UNKNOWN", "free_without_payment_method": "PAYMENT_METHOD_REQUIRED", "commercial_use": "UNKNOWN", "automated_access": "UNKNOWN", "workload_compatibility": "UNKNOWN", "data_handling_approved": "UNKNOWN", "allocation_test": "NOT_RUN"},
+      "recurring_capacity": {"status": "UNVERIFIED", "usable_gpu_minutes_per_month": null, "observed_at": null, "valid_until": null, "evidence_urls": []},
+      "one_time_capacity": {"status": "UNVERIFIED", "gpu_minutes_available": null, "observed_at": null, "expires_at": null, "evidence_urls": []},
+      "usage_month_to_date": {"month": "2026-10", "status": "NOT_METERED", "completed_useful_gpu_minutes": null, "idle_gpu_minutes": null, "reserved_gpu_minutes": null},
+      "notes": ["Do not proceed to an account or compute test that requires a card or paid credit under the current policy."]
+    }
+  ]
+}
