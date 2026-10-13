@@ -250,8 +250,10 @@ def run(root: Path) -> int:
     remember_candidate_credentials(state, candidate_credentials)
 
     if not providers:
+        observed_at = utc_now()
+        state["updated_at"] = observed_at
         state["last_gpu_heartbeat"] = {
-            "observed_at": utc_now(),
+            "observed_at": observed_at,
             "status": "UNCONFIGURED",
             "message": "No GPU providers are activated. Candidate credentials are monitored separately; authentication does not prove GPU allocation or remaining GPU quota.",
             "candidate_credentials": candidate_credentials,
