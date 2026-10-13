@@ -3,7 +3,7 @@ from datetime import datetime, timedelta, timezone
 
 from NOVA.gpu_capacity import (
     CURRENT_INTENDED_USE_MODE,
-    TARGET_GPU_MINUTES_PER_MONTH,
+    DEFAULT_PLANNING_REFERENCE_GPU_MINUTES_PER_MONTH,
     build_capacity_report,
 )
 
@@ -58,7 +58,7 @@ def qualified_record(name="provider-a", minutes=12_000):
 def evidence(*providers):
     return {
         "schema_version": 1,
-        "target_gpu_minutes_per_month": TARGET_GPU_MINUTES_PER_MONTH,
+        "planning_reference_gpu_minutes_per_month": DEFAULT_PLANNING_REFERENCE_GPU_MINUTES_PER_MONTH,
         "intended_use_mode": CURRENT_INTENDED_USE_MODE,
         "providers": list(providers),
     }
@@ -83,8 +83,8 @@ class AggregateGpuCapacityTests(unittest.TestCase):
         self.assertEqual(report["known_advertised_gpu_minutes_per_30_day_month_not_counted"], 150)
         self.assertEqual(report["verified_active_recurring_gpu_minutes_per_month"], 0)
         self.assertEqual(
-            report["unfilled_target_after_verified_active_recurring_capacity_gpu_minutes_per_month"],
-            TARGET_GPU_MINUTES_PER_MONTH,
+            report["difference_to_reference_after_verified_active_recurring_capacity_gpu_minutes_per_month"],
+            DEFAULT_PLANNING_REFERENCE_GPU_MINUTES_PER_MONTH,
         )
         self.assertEqual(report["useful_work_and_allocation_usage_month_to_date"]["status"], "NO_ACTIVE_PROVIDERS")
 
@@ -98,7 +98,7 @@ class AggregateGpuCapacityTests(unittest.TestCase):
         self.assertEqual(report["verified_eligible_recurring_gpu_minutes_per_month"], 24_000)
         self.assertEqual(report["verified_active_recurring_gpu_minutes_per_month"], 24_000)
         self.assertEqual(
-            report["unfilled_target_after_verified_active_recurring_capacity_gpu_minutes_per_month"],
+            report["difference_to_reference_after_verified_active_recurring_capacity_gpu_minutes_per_month"],
             62_400,
         )
         self.assertEqual(report["providers"][0]["status"], "OPERATIONAL_CAPACITY_VERIFIED")
@@ -248,12 +248,12 @@ class AggregateGpuCapacityTests(unittest.TestCase):
         self.assertEqual(report["verified_active_one_time_gpu_minutes_available"], 330)
         self.assertEqual(report["verified_active_capacity_available_for_current_month_gpu_minutes"], 330)
         self.assertEqual(
-            report["unfilled_target_after_verified_active_recurring_capacity_gpu_minutes_per_month"],
-            TARGET_GPU_MINUTES_PER_MONTH,
+            report["difference_to_reference_after_verified_active_recurring_capacity_gpu_minutes_per_month"],
+            DEFAULT_PLANNING_REFERENCE_GPU_MINUTES_PER_MONTH,
         )
         self.assertEqual(
-            report["unfilled_target_after_verified_active_current_month_capacity_gpu_minutes"],
-            TARGET_GPU_MINUTES_PER_MONTH - 330,
+            report["difference_to_reference_after_verified_active_current_month_capacity_gpu_minutes"],
+            DEFAULT_PLANNING_REFERENCE_GPU_MINUTES_PER_MONTH - 330,
         )
 
     def test_expired_one_time_credit_is_not_counted(self):
@@ -342,15 +342,57 @@ class AggregateGpuCapacityTests(unittest.TestCase):
         self.assertIn("current intended-use mode", rules)
         self.assertNotIn("commercial-use-approved", rules)
 
-    def test_evidence_cannot_silently_change_the_fixed_target(self):
+    def test_planning_reference_is_provisional_and_feasibility_is_unvalidated(self):
+        report = build_capacity_report(
+            evidence(qualified_record()),
+            active_provider_names=set(),
+            now=NOW,
+        )
+
+        self.assertEqual(
+            report["planning_reference_gpu_minutes_per_month"],
+            DEFAULT_PLANNING_REFERENCE_GPU_MINUTES_PER_MONTH,
+        )
+        self.assertEqual(report["planning_reference_status"], "PROVISIONAL_UNVALIDATED")
+        self.assertFalse(report["planning_reference_is_requirement"])
+        self.assertEqual(report["reference_feasibility_status"], "NOT_ESTABLISHED")
+        self.assertEqual(
+            report["reference_comparison_status"],
+            "REFERENCE_NOT_REACHED_BY_VERIFIED_ACTIVE_RECURRING_CAPACITY",
+        )
+
+    def test_planning_reference_can_be_changed_for_scenario_analysis(self):
+        source = evidence(qualified_record("provider-a", minutes=120))
+        source["planning_reference_gpu_minutes_per_month"] = 100
+
+        report = build_capacity_report(
+            source,
+            active_provider_names={"provider-a"},
+            now=NOW,
+        )
+
+        self.assertEqual(report["planning_reference_gpu_minutes_per_month"], 100)
+        self.assertEqual(report["planning_reference_configuration_status"], "VALID")
+        self.assertEqual(
+            report["reference_comparison_status"],
+            "REFERENCE_REACHED_BY_VERIFIED_ACTIVE_RECURRING_CAPACITY",
+        )
+        self.assertEqual(
+            report["difference_to_reference_after_verified_active_recurring_capacity_gpu_minutes_per_month"],
+            0,
+        )
+
+    def test_legacy_target_field_is_accepted_only_as_a_provisional_reference(self):
         source = evidence(qualified_record())
         source["target_gpu_minutes_per_month"] = 100
+        source.pop("planning_reference_gpu_minutes_per_month")
 
-        report = build_capacity_report(source, active_provider_names={"provider-a"}, now=NOW)
+        report = build_capacity_report(source, active_provider_names=set(), now=NOW)
 
-        self.assertEqual(report["target_gpu_minutes_per_month"], TARGET_GPU_MINUTES_PER_MONTH)
-        self.assertFalse(report["target_configuration_matches_policy"])
-        self.assertTrue(report["warnings"])
+        self.assertEqual(report["planning_reference_gpu_minutes_per_month"], 100)
+        self.assertEqual(report["planning_reference_status"], "PROVISIONAL_UNVALIDATED")
+        self.assertEqual(report["planning_reference_source"], "legacy_target_field")
+        self.assertTrue(any("Legacy target_gpu_minutes_per_month" in item for item in report["warnings"]))
 
 
 if __name__ == "__main__":
