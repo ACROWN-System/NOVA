@@ -481,7 +481,7 @@ def build_capacity_report(
         ),
         "useful_work_and_allocation_usage_month_to_date": usage,
         "counting_rules": [
-            "Only fresh, source-backed, account-eligible, no-payment-method, commercial-use-approved, automated, workload-compatible and data-approved capacity that passed an allocation test can qualify.",
+            "Only fresh, source-backed capacity with verified account eligibility, no-payment-method access, terms compatible with the current intended-use mode, automated access, workload compatibility, approved data handling and a passed allocation test can qualify.",
             "Only capacity activated in the current NOVA GPU roster counts as operationally available.",
             "Advertised allowances are displayed separately and never count toward the target.",
             "One-time credit-backed GPU-minutes are reported separately and do not count as recurring monthly capacity.",
