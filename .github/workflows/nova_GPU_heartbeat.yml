@@ -6,6 +6,8 @@ on:
     paths:
       - 'NOVA/gpu_heartbeat.py'
       - 'NOVA/gpu_roster.json'
+      - 'NOVA/gpu_capacity.py'
+      - 'NOVA/gpu_capacity_evidence.json'
       - 'NOVA/health.py'
       - '.github/workflows/nova_GPU_heartbeat.yml'
   schedule:
