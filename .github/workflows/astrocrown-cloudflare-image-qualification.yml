@@ -46,13 +46,15 @@ jobs:
     permissions:
       contents: read
     steps:
-      - name: Checkout reviewed AstroCrown image adapter revision
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          repository: ACROWN-System/AstroCrown-Web
-          ref: d211dc5460941d60b9f1729791079cb9974d554a
-          path: astro-crown-web
-          persist-credentials: false
+      - name: Fetch reviewed public AstroCrown image adapter revision without a repository token
+        shell: bash
+        run: |
+          set -euo pipefail
+          git init --quiet astro-crown-web
+          git -C astro-crown-web remote add origin https://github.com/ACROWN-System/AstroCrown-Web.git
+          git -C astro-crown-web fetch --quiet --no-tags --depth=1 origin d211dc5460941d60b9f1729791079cb9974d554a
+          git -C astro-crown-web checkout --quiet --detach FETCH_HEAD
+          test "$(git -C astro-crown-web rev-parse HEAD)" = "d211dc5460941d60b9f1729791079cb9974d554a"
 
       - name: Set up Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
