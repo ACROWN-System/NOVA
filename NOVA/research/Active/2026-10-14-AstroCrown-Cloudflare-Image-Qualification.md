@@ -118,7 +118,7 @@ The existing NOVA secrets and the adapter's stable internal variable contract re
 - Visual result: a starfield with strong violet/magenta nebula clouds and a prominent planet left-of-center. No obvious text or watermark. It did not satisfy the intended small planet near the lower-right edge or the restrained/subtle cloud direction. **Prompt fidelity: PARTIAL.** Keep the result as an internal reference, not a selected/promoted homepage asset.
 - JPEG is RGB and does not preserve alpha transparency. Do not use this output as a transparent compositing layer.
 - Sidecar rights status remains NOT_YET_QUALIFIED_FOR_COMMERCIAL_PROMOTION. Successful execution does not establish licensing, commercial-use permission, account entitlement stability, or ongoing no-cost usage.
-- AstroCrown-Web follow-up PR #122 corrects the sidecar's remaining JPEG alpha-status wording; it is metadata-only and must pass CI before merge. This does not require another live image call.
+- AstroCrown-Web PR #122 was merged as `a73b96863eb37d33c2d9cee43cc7c83e2dccade6`; its offline tests and CodeQL checks passed. It corrects JPEG alpha-status metadata without requiring another live image call. This NOVA follow-up updates the immutable adapter pin so a future manual run includes that correction.
 
 ## Cost/usage evidence boundary
 
@@ -134,4 +134,4 @@ The image adapter is now **functionally demonstrated for a single live generatio
 
 ## Next decision gate
 
-Do not dispatch another live request just to validate the metadata correction. Merge and verify PR #122 first. Then decide whether the next manually authorized image request should target stronger prompt adherence (small planet placed deliberately at lower-right) or whether the current result should be kept solely as a rough background candidate. Any further public/commercial promotion remains behind independent license, usage, visual-quality and alpha/transparency gates.
+Do not dispatch another live request just to validate the metadata correction. The AstroCrown-Web correction is merged; this NOVA PR pins that immutable revision for any future dispatch. Then decide whether the next manually authorized image request should target stronger prompt adherence (small planet placed deliberately at lower-right) or whether the current result should be kept solely as a rough background candidate. Any further public/commercial promotion remains behind independent license, usage, visual-quality and alpha/transparency gates.
