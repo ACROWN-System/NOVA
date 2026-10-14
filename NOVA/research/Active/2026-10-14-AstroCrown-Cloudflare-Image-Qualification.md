@@ -101,3 +101,37 @@ The existing NOVA secrets and the adapter's stable internal variable contract re
 **IF modified:** NOVA retains the sole secret/execution boundary, the adapter is pinned to the reviewed post-remediation revision, both supported file outcomes can be retained with truthful provenance, and the first integration failure becomes evidence for preventing the same assumption-driven defect in future provider work.
 
 **IF not modified:** a valid JPEG response may continue to fail PNG-only validation; alternatively, if the adapter is updated without the NOVA artifact paths, a generated JPEG would fail at artifact upload. Future provider integrations would remain vulnerable to tests that encode an unverified interpretation of a conflicting external schema.
+
+
+## First successful live image — 2026-10-14 — run #38577103848
+
+**Result:** REQUEST AND ARTIFACT DELIVERY PASS; JPEG/MIME MISMATCH CONFIRMED; PROMPT FIDELITY PARTIAL; COMMERCIAL/ALPHA QUALIFICATION BLOCKED.
+
+- Run: https://github.com/ACROWN-System/NOVA/actions/runs/38577103848
+- Job log: https://github.com/ACROWN-System/NOVA/actions/runs/38577103848/job/115897000012
+- The job fetched and verified AstroCrown-Web merge SHA 72a7eaa70231653fb5baee5b6993464cca3c0656, checked existing secret presence without printing values, executed one image request, and uploaded the artifact successfully.
+- Artifact: astrocrown-cloudflare-image-38577103848, artifact ID 11901575526, expiration 2026-10-21T14:03:32Z. The archived ZIP is 72,164 bytes; SHA-256 8e2184d464b345567d1270c81e2f60561f0fc9b4e4f2c1b4deab10463aa889fa.
+- Files included: astrocrown-first-image.jpg (72,727 bytes) and astrocrown-first-image.jpg.metadata.json.
+- Independent post-download inspection successfully opened and fully decoded the JPEG: 1024×1024 pixels, RGB mode, SHA-256 639221c57e74e2289e72946b158464474c837e1921767ce089dbf6b718f206ae.
+- **Provider response contract confirmed:** the response declared Content-Type: image/png, but the payload was a valid, fully decodable JPEG. Sidecar records the mismatch and that the known Cloudflare PNG/JPEG inconsistency was tolerated. This is direct evidence on this successful run; the earlier failed run remains inconclusive because its response body was not preserved.
+- Timing: adapter wall-clock measurement 3556 ms; includes network request, validation and local file writes, and is not provider-only latency. This single observation is insufficient to establish an ongoing service-level target.
+- Visual result: a starfield with strong violet/magenta nebula clouds and a prominent planet left-of-center. No obvious text or watermark. It did not satisfy the intended small planet near the lower-right edge or the restrained/subtle cloud direction. **Prompt fidelity: PARTIAL.** Keep the result as an internal reference, not a selected/promoted homepage asset.
+- JPEG is RGB and does not preserve alpha transparency. Do not use this output as a transparent compositing layer.
+- Sidecar rights status remains NOT_YET_QUALIFIED_FOR_COMMERCIAL_PROMOTION. Successful execution does not establish licensing, commercial-use permission, account entitlement stability, or ongoing no-cost usage.
+- AstroCrown-Web follow-up PR #122 corrects the sidecar's remaining JPEG alpha-status wording; it is metadata-only and must pass CI before merge. This does not require another live image call.
+
+## Cost/usage evidence boundary
+
+The user explicitly confirmed the current no-payment configuration before dispatch. The current model page displays SDXL-Lightning at $0.00 per step (https://developers.cloudflare.com/workers-ai/models/stable-diffusion-xl-lightning/). The general Workers AI pricing page separately documents a 10,000-Neuron/day Workers Free allocation and overage billing under Workers Paid (https://developers.cloudflare.com/workers-ai/platform/pricing/). Neither the successful job log nor the artifact proves dashboard consumption, subscription/billing state, remaining daily allocation, or invoice status. Before another request or batch, inspect account usage/billing evidence if the no-payment boundary is uncertain; do not infer a billing amount from a successful response.
+
+## Updated operational conclusion and Impact Analysis
+
+The image adapter is now **functionally demonstrated for a single live generation request**, including its ability to accept the model's JPEG bytes despite the image/png declaration. The wider provider remains **partially qualified only**: prompt fidelity is partial; alpha transparency is unsupported by this JPEG; commercial rights and sustainable account/usage eligibility remain unverified.
+
+**IF updated:** both NOVA and AstroCrown audit records reflect the actual successful run, preserve the artifact checksum and response contract evidence, prevent overclaiming visual/license/alpha readiness, and document the next bounded checks.
+
+**IF not updated:** the earlier failure would remain the latest documented outcome; operators could overlook the confirmed JPEG/MIME discrepancy, misuse an RGB JPEG for transparency layers, or mistake one successful request for evidence of rights, sustainable capacity or known billing status.
+
+## Next decision gate
+
+Do not dispatch another live request just to validate the metadata correction. Merge and verify PR #122 first. Then decide whether the next manually authorized image request should target stronger prompt adherence (small planet placed deliberately at lower-right) or whether the current result should be kept solely as a rough background candidate. Any further public/commercial promotion remains behind independent license, usage, visual-quality and alpha/transparency gates.
