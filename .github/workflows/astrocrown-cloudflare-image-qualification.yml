@@ -1,0 +1,107 @@
+name: AstroCrown Image Qualification — Manual Cloudflare
+
+on:
+  workflow_dispatch:
+    inputs:
+      no_payment_confirmed:
+        description: "Confirm the Cloudflare account remains on its current no-payment configuration. Choose no if unsure."
+        type: choice
+        options:
+          - "no"
+          - "yes"
+        default: "no"
+        required: true
+      prompt:
+        description: "Non-sensitive prompt for one test image. Do not enter private or secret information."
+        type: string
+        required: true
+      width:
+        description: "Image width (256–2048)"
+        type: number
+        default: 1024
+        required: true
+      height:
+        description: "Image height (256–2048)"
+        type: number
+        default: 1024
+        required: true
+      steps:
+        description: "Generation steps (1–20)"
+        type: number
+        default: 4
+        required: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: astrocrown-image-qualification
+  cancel-in-progress: false
+
+jobs:
+  qualify-cloudflare-image:
+    if: github.ref == 'refs/heads/main' && inputs.no_payment_confirmed == 'yes'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout reviewed AstroCrown image adapter revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: ACROWN-System/AstroCrown-Web
+          ref: d211dc5460941d60b9f1729791079cb9974d554a
+          path: astro-crown-web
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+
+      - name: Verify required NOVA secrets are configured
+        env:
+          CLOUDFLARE_API_KEY_01: ${{ secrets.CLOUDFLARE_API_KEY_01 }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "${CLOUDFLARE_API_KEY_01}" || -z "${CLOUDFLARE_ACCOUNT_ID}" ]]; then
+            echo "::error::Configure CLOUDFLARE_API_KEY_01 and CLOUDFLARE_ACCOUNT_ID as NOVA repository Actions secrets. Do not paste secret values into logs or prompts."
+            exit 2
+          fi
+          echo "Required NOVA secret names are present; secret values were not printed."
+
+      - name: Generate and validate one image
+        env:
+          ASTROCROWN_CLOUDFLARE_AI_TOKEN: ${{ secrets.CLOUDFLARE_API_KEY_01 }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          MEDIA_PROMPT: ${{ inputs.prompt }}
+          IMAGE_WIDTH: ${{ inputs.width }}
+          IMAGE_HEIGHT: ${{ inputs.height }}
+          IMAGE_STEPS: ${{ inputs.steps }}
+          RUNNER_TEMP: ${{ runner.temp }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          started_ms="$(date +%s%3N)"
+          python astro-crown-web/development/ai-media-generator/cloudflare_image.py \
+            --prompt-env MEDIA_PROMPT \
+            --output "$RUNNER_TEMP/astrocrown-first-image.png" \
+            --width "$IMAGE_WIDTH" \
+            --height "$IMAGE_HEIGHT" \
+            --steps "$IMAGE_STEPS"
+          finished_ms="$(date +%s%3N)"
+          elapsed_ms="$((finished_ms - started_ms))"
+          printf 'CLIENT_TOTAL_ELAPSED_MS=%s\n' "$elapsed_ms"
+          printf 'MEASUREMENT_NOTE=Client wall-clock duration includes request, validation, and local artifact writing; it is not provider-only latency.\n'
+
+      - name: Upload image and provenance for review
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: astrocrown-cloudflare-image-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/astrocrown-first-image.png
+            ${{ runner.temp }}/astrocrown-first-image.png.metadata.json
+          if-no-files-found: error
+          retention-days: 7
