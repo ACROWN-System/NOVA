@@ -135,3 +135,30 @@ The image adapter is now **functionally demonstrated for a single live generatio
 ## Next decision gate
 
 Do not dispatch another live request just to validate the metadata correction. The AstroCrown-Web correction is merged; this NOVA PR pins that immutable revision for any future dispatch. Then decide whether the next manually authorized image request should target stronger prompt adherence (small planet placed deliberately at lower-right) or whether the current result should be kept solely as a rough background candidate. Any further public/commercial promotion remains behind independent license, usage, visual-quality and alpha/transparency gates.
+
+## Second successful live image request — 2026-10-15 — run #38714064899
+
+**Result:** LIVE REQUEST / IMAGE-CONTAINER VALIDATION / ARTIFACT DELIVERY PASS; DESIRED LOW-DISTRACTION VISUAL STYLE NOT MET BY THIS SAMPLE; COST/RIGHTS/ALPHA STILL UNQUALIFIED.
+
+- Run: https://github.com/ACROWN-System/NOVA/actions/runs/38714064899
+- Workflow commit: https://github.com/ACROWN-System/NOVA/commit/9c3cf01cdda53336c465050aafd0552f79160443
+- The manual workflow completed successfully in 21 seconds. Its generation/validation step recorded `CLIENT_TOTAL_ELAPSED_MS=8392`; this covers request, validation, and local artifact writing rather than provider-only latency.
+- Request: `@cf/bytedance/stable-diffusion-xl-lightning`, 1024×1024, four steps. The positive prompt explicitly requested nearly black/deep navy, sparse tiny dim stars, a subtle desaturated blue-violet nebula and no bright flares, text, logos or UI. No seed was supplied, so sampling was stochastic.
+- Artifact: `astrocrown-cloudflare-image-38714064899` (ID `11961394496`, 7-day retention). It contains `astrocrown-first-image.jpg` and `astrocrown-first-image.jpg.metadata.json`; image file length 61,018 bytes. SHA-256: `d3c05c8c5949dca27f1dad609fd8a0a220076aa647afd386b58022cb67bc67ed`.
+- The sidecar confirms Cloudflare declared `image/png` while the validated payload was JPEG. The adapter wrote the truthful `.jpg` extension and recorded the declared/detected mismatch. Request ID was not exposed.
+- Preliminary visual inspection: the sample has a useful dark central region, but its nebula remains intensely magenta/violet, multiple stars have prominent bright flares, and distracting streak-like marks appear. It therefore does **not** pass the desired restrained homepage-background style check. This is a review of this specific sample, not proof that all stochastic outputs from the model will fail.
+- JPEG does not preserve alpha transparency. Do not use this as a transparent layer or promote it as a selected homepage asset. The artifact is diagnostic evidence only.
+- The workflow ran only after its operator-selected `no_payment_confirmed=yes` gate was satisfied. That is an operator assertion, not billing telemetry. The run and artifact provide no provider billing-meter data, quota-burn amount, invoice evidence, or remaining free allocation; cost and quota remain **NOT MEASURED**.
+- The `actions/upload-artifact` Node.js 20 deprecation warning did not fail this run. Track action-runtime modernization separately rather than misclassifying it as an inference failure.
+
+## Recurrence-prevention update — negative-prompt traceability
+
+The sample exposed one actionable workflow limitation: the AstroCrown adapter already supported Cloudflare's documented `negative_prompt` request parameter, but the NOVA manual workflow did not expose or pass that parameter. Further, the adapter previously did not copy a supplied negative prompt into the provenance sidecar. A prompt-refinement experiment would therefore have been less controlled and less auditable than necessary.
+
+- AstroCrown-Web PR #127 was merged as [`cdde2a8a3a008da91b88111b3fa6fac1b5ae4937`](https://github.com/ACROWN-System/AstroCrown-Web/commit/cdde2a8a3a008da91b88111b3fa6fac1b5ae4937). It records negative prompts in sidecar metadata and adds an offline test confirming the value reaches both the request payload and metadata. Its AI Media Generator Offline Tests, External Review Pipeline CI, NOVA RSI Engine CI and NOVA RSI CodeQL checks all passed before merge.
+- This NOVA branch adds an optional `negative_prompt` input (pre-filled to suppress neon/magenta saturation, bright starbursts, lens flares, overexposed highlights, streaks, oversized stars and baked-in text/UI), forwards it through the environment to the adapter CLI without shell interpolation, and pins the reviewed AstroCrown-Web merge SHA above. It does not trigger generation.
+- The repository's recursive tree at main commit `9c3cf01cdda53336c465050aafd0552f79160443` contains the existing active plan but no `NAVIGATION-PROTOCOL.md` or `NAVIGATION-PLAN-TEMPLATE.md`. This existing active record is being continued transparently rather than claiming those absent files were reviewed.
+
+## Updated next decision gate — second prompt-quality sample
+
+After this NOVA workflow change passes review and merges, manually dispatch one more request using the same positive prompt, 1024×1024 dimensions and four steps as run #38714064899, leaving the new negative-prompt default unchanged. This makes the negative-prompt input the only deliberate request-setting change; because the previous request did not specify a seed, do not claim deterministic A/B equivalence. Inspect the new image and its sidecar before any follow-up request. If the visual direction still fails, research a materially different model/route or a bounded deterministic post-processing/composition approach instead of repeating near-identical requests. Continue to keep the result blocked for commercial promotion, genuine alpha, and verified cost/account eligibility until independent evidence passes those gates.

@@ -15,6 +15,11 @@ on:
         description: "Non-sensitive prompt for one test image. Do not enter private or secret information."
         type: string
         required: true
+      negative_prompt:
+        description: "Optional non-sensitive description of elements to avoid in the generated image."
+        type: string
+        default: "neon magenta, hot pink, oversaturated purple, intense violet glow, bright starbursts, lens flare, overexposed highlights, visible streaks, glowing hotspots, oversized stars, text, logos, UI elements, borders"
+        required: false
       width:
         description: "Image width (256–2048)"
         type: number
@@ -52,9 +57,9 @@ jobs:
           set -euo pipefail
           git init --quiet astro-crown-web
           git -C astro-crown-web remote add origin https://github.com/ACROWN-System/AstroCrown-Web.git
-          git -C astro-crown-web fetch --quiet --no-tags --depth=1 origin a73b96863eb37d33c2d9cee43cc7c83e2dccade6
+          git -C astro-crown-web fetch --quiet --no-tags --depth=1 origin cdde2a8a3a008da91b88111b3fa6fac1b5ae4937
           git -C astro-crown-web checkout --quiet --detach FETCH_HEAD
-          test "$(git -C astro-crown-web rev-parse HEAD)" = "a73b96863eb37d33c2d9cee43cc7c83e2dccade6"
+          test "$(git -C astro-crown-web rev-parse HEAD)" = "cdde2a8a3a008da91b88111b3fa6fac1b5ae4937"
 
       - name: Set up Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
@@ -79,6 +84,7 @@ jobs:
           ASTROCROWN_CLOUDFLARE_AI_TOKEN: ${{ secrets.CLOUDFLARE_API_KEY_01 }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           MEDIA_PROMPT: ${{ inputs.prompt }}
+          IMAGE_NEGATIVE_PROMPT: ${{ inputs.negative_prompt }}
           IMAGE_WIDTH: ${{ inputs.width }}
           IMAGE_HEIGHT: ${{ inputs.height }}
           IMAGE_STEPS: ${{ inputs.steps }}
@@ -92,7 +98,8 @@ jobs:
             --output "$RUNNER_TEMP/astrocrown-first-image.png" \
             --width "$IMAGE_WIDTH" \
             --height "$IMAGE_HEIGHT" \
-            --steps "$IMAGE_STEPS"
+            --steps "$IMAGE_STEPS" \
+            --negative-prompt "$IMAGE_NEGATIVE_PROMPT"
           finished_ms="$(date +%s%3N)"
           elapsed_ms="$((finished_ms - started_ms))"
           printf 'CLIENT_TOTAL_ELAPSED_MS=%s\n' "$elapsed_ms"
