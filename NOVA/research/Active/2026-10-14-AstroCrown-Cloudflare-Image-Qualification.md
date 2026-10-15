@@ -182,3 +182,34 @@ After this NOVA workflow change passes review and merges, manually dispatch one 
 ## Updated next decision gate after run #38733638612
 
 The controlled negative-prompt attempt produced a technically valid image and useful provenance, but not a homepage-ready visual. **Do not spend another hosted inference request repeating near-identical settings.** Next, use already captured samples for a zero-provider-call evaluation of deterministic post-processing/composition (e.g. controlled desaturation, luminance reduction, soft dark gradient/vignette and layout negative-space checks) and/or investigate a materially different candidate route. These are alternative investigations, not approval to alter or promote generated source assets. Any later candidate must still pass visual review, exact model/component rights review, genuine alpha requirements where applicable, and account usage/no-payment evidence before promotion.
+
+
+## Next controlled experiment — background-only financial UI plate — 2026-10-15
+
+**Decision:** Use the user's revised background-only direction for the next sample. Do not make another live request until the workflow change is merged and the user manually dispatches it on `main` with the current no-payment condition confirmed.
+
+**Positive prompt default:**
+
+> Minimal deep-space background plate for a financial website UI. Nearly uniform near-black deep navy across the frame. Only a few tiny, faint, low-luminosity stars. One small, soft, diffuse, desaturated blue-violet space cloud confined to a small area near an outer edge. Keep most of the frame dark, visually quiet and uninterrupted, with no focal point. Very low contrast, restrained saturation, subtle texture only. Background only; it must sit behind numbers, charts and controls without distracting or reducing text readability. No predominant elements.
+
+**Negative prompt default:**
+
+> large nebula, dominant cloud, wide cloud, bright or numerous stars, dense starfield, starbursts, lens flares, light streaks, glowing hotspots, saturated purple, magenta, hot pink, vivid blue, bright center, high contrast, high luminosity, planets, moons, galaxies, spacecraft, objects, text, letters, logos, charts, UI, borders, clutter
+
+**Low-cost diagnostic parameters:**
+
+- Dimensions: `512 × 288` pixels, a 16:9 frame suitable for a desktop background *composition/style preview*. This is 147,456 pixels versus 1,048,576 at 1024×1024—about 86% fewer pixels. It is not the final production resolution and may reduce visual fidelity; upscale/re-render only after the composition passes the style gate.
+- Steps: `4`, retained for SDXL-Lightning. Do not cut steps in this test because that adds another variable and may degrade the result.
+- Seed: `20261015`, recorded in the sidecar to make a same-route repeat better controlled; exact reproducibility across model/runtime changes is not guaranteed.
+- Model remains `@cf/bytedance/stable-diffusion-xl-lightning`; no other provider/model change is included.
+
+Cloudflare's current model documentation lists width and height in the range 256–2048, a seed parameter, and a displayed unit price of $0.00 per step ([official model page](https://developers.cloudflare.com/workers-ai/models/stable-diffusion-xl-lightning/)). Its general pricing page says the Workers Free plan includes 10,000 Neurons/day, with operations stopping when a limit is exceeded unless on a Paid plan ([official pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/)). The smaller dimensions lower the pixel workload/file size, but the public per-step price does **not** prove a proportional reduction in billed units, measured free-quota consumption, or no-payment-method eligibility. Check dashboard usage/billing separately; do not activate paid billing or use a paid fallback.
+
+**Acceptance criteria for this sample:** most pixels remain nearly uniform dark navy; the faint stars are sparse; the desaturated cloud is small and confined to an outer edge; no prominent focal element, bright purple/magenta bloom, bright starbursts, streaks, text or UI are present; text/chart readability remains the primary design goal. Inspect the actual downloaded pixels, not just workflow success. The result remains diagnostic and cannot be promoted until the visual review, rights, account cost/access, and any relevant transparency requirements pass.
+
+**Impact Analysis**
+
+- **IF modified:** the next manual request explicitly encodes a calm UI background, a low-resolution 16:9 preview, a bounded four-step configuration and a fixed seed; metadata supports review without repeating earlier 1024×1024 square prompts.
+- **IF not modified:** repeated manual runs can continue to use a square 1024×1024 prompt geared too broadly toward cinematic deep space, producing oversized nebulae and wasting resolution on a composition experiment.
+
+No provider request was triggered by this documentation or workflow change.

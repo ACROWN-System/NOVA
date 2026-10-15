@@ -12,28 +12,34 @@ on:
         default: "no"
         required: true
       prompt:
-        description: "Non-sensitive prompt for one test image. Do not enter private or secret information."
+        description: "Default is a quiet 16:9 financial-UI background. Non-sensitive prompt only."
         type: string
+        default: "Minimal deep-space background plate for a financial website UI. Nearly uniform near-black deep navy across the frame. Only a few tiny, faint, low-luminosity stars. One small, soft, diffuse, desaturated blue-violet space cloud confined to a small area near an outer edge. Keep most of the frame dark, visually quiet and uninterrupted, with no focal point. Very low contrast, restrained saturation, subtle texture only. Background only; it must sit behind numbers, charts and controls without distracting or reducing text readability. No predominant elements."
         required: true
       negative_prompt:
         description: "Optional non-sensitive description of elements to avoid in the generated image."
         type: string
-        default: "neon magenta, hot pink, oversaturated purple, intense violet glow, bright starbursts, lens flare, overexposed highlights, visible streaks, glowing hotspots, oversized stars, text, logos, UI elements, borders"
+        default: "large nebula, dominant cloud, wide cloud, bright or numerous stars, dense starfield, starbursts, lens flares, light streaks, glowing hotspots, saturated purple, magenta, hot pink, vivid blue, bright center, high contrast, high luminosity, planets, moons, galaxies, spacecraft, objects, text, letters, logos, charts, UI, borders, clutter"
         required: false
       width:
-        description: "Image width (256–2048)"
+        description: "Image width in pixels (256–2048); 512 gives a small preview."
         type: number
-        default: 1024
+        default: 512
         required: true
       height:
-        description: "Image height (256–2048)"
+        description: "Image height in pixels (256–2048); 288 keeps a 16:9 frame at low resolution."
         type: number
-        default: 1024
+        default: 288
         required: true
       steps:
-        description: "Generation steps (1–20)"
+        description: "Generation steps (1–20); retain four for this SDXL-Lightning test."
         type: number
         default: 4
+        required: true
+      seed:
+        description: "Fixed non-negative seed for more controlled repeat tests; cross-version identity is not guaranteed."
+        type: number
+        default: 20261015
         required: true
 
 permissions:
@@ -88,6 +94,7 @@ jobs:
           IMAGE_WIDTH: ${{ inputs.width }}
           IMAGE_HEIGHT: ${{ inputs.height }}
           IMAGE_STEPS: ${{ inputs.steps }}
+          IMAGE_SEED: ${{ inputs.seed }}
           RUNNER_TEMP: ${{ runner.temp }}
         shell: bash
         run: |
@@ -99,7 +106,8 @@ jobs:
             --width "$IMAGE_WIDTH" \
             --height "$IMAGE_HEIGHT" \
             --steps "$IMAGE_STEPS" \
-            --negative-prompt "$IMAGE_NEGATIVE_PROMPT"
+            --negative-prompt "$IMAGE_NEGATIVE_PROMPT" \
+            --seed "$IMAGE_SEED"
           finished_ms="$(date +%s%3N)"
           elapsed_ms="$((finished_ms - started_ms))"
           printf 'CLIENT_TOTAL_ELAPSED_MS=%s\n' "$elapsed_ms"
