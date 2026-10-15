@@ -213,3 +213,26 @@ Cloudflare's current model documentation lists width and height in the range 256
 - **IF not modified:** repeated manual runs can continue to use a square 1024×1024 prompt geared too broadly toward cinematic deep space, producing oversized nebulae and wasting resolution on a composition experiment.
 
 No provider request was triggered by this documentation or workflow change.
+
+
+## Third prompt iteration — low-resolution financial background test — 2026-10-15 — run #38738606528
+
+**Result:** REQUEST / DIMENSION / CONTAINER VALIDATION / ARTIFACT DELIVERY PASS; VISUAL ACCEPTANCE FAIL; COST/QUOTA/RIGHTS/ALPHA STILL UNQUALIFIED.
+
+- Run: https://github.com/ACROWN-System/NOVA/actions/runs/38738606528
+- Workflow commit: [`03c743acf16fe15c994741f02c2cbbaa760ff289`](https://github.com/ACROWN-System/NOVA/commit/03c743acf16fe15c994741f02c2cbbaa760ff289)
+- Job: `qualify-cloudflare-image`, job ID `116434191726`; all generation, validation and upload steps completed successfully.
+- Artifact: [`astrocrown-cloudflare-image-38738606528`](https://github.com/ACROWN-System/NOVA/actions/runs/38738606528/artifacts/11973519757), ID `11973519757`, ZIP 21,465 bytes; retention ends 2026-10-22T12:57:05Z. Artifact SHA-256: `ac92fd8935a05cb37f010e7433ae4813676c4250ed3af1cdd463a0cdfac9f1fd`.
+- Request model remained `@cf/bytedance/stable-diffusion-xl-lightning`. Parameters: 512×288, four steps, fixed seed 20261015. Client wall-clock measurement: 3,335 ms, including network request, validation and local artifact writing—not provider-only inference time. No provider request ID was exposed.
+- The exact positive and negative prompts are preserved in the sidecar. The provider again declared `image/png` while returning JPEG; the adapter correctly detected JPEG and saved the output with a `.jpg` extension.
+- Image: `astrocrown-first-image.jpg`, 512×288, RGB JPEG, 21,160 bytes; SHA-256 `df6441ffe682d7099e0ce3952bf47ed27e338a25feece67b5c69c45f63eb0a63`. It has no alpha channel.
+- Visual inspection: the image has large pale/white panels, dark rectangular blocks, strong artificial geometry and vivid blue details. It does not resemble the requested quiet dark space field; there are no useful sparse stars and no suitably restrained small cloud. The output visually resembles an abstract geometric structure or display wall and would compete with interface data. **Visual acceptance: FAIL.** The successful workflow confirms technical execution and output-container handling only.
+- It is not possible to identify a single causal reason from one stochastic sample. The explicit phrase “financial website UI” may have encouraged literal/interface-like associations; the non-native 512×288 preview dimensions may also have affected composition quality. Those are hypotheses, not proven root causes. A fixed seed provides future comparability but does not guarantee pixel-identical output across execution changes.
+- The workflow's `no_payment_confirmed=yes` input is an operator gate, not billing telemetry. Run logs/artifact do not expose provider usage-meter evidence, exact quota consumption, remaining free allocation or invoice state. Cost/quota remains **NOT MEASURED**; do not claim independent proof of zero-cost usage. Commercial-use rights remain unqualified.
+- The Node.js 20 deprecation warning on `actions/upload-artifact` was non-blocking.
+
+## Decision after low-resolution UI-background test
+
+**Do not send another near-identical SDXL-Lightning request merely by adding more prompt adjectives.** Three recent prompt iterations on this hosted candidate have not produced an acceptable intended background. Preserve the samples and use them as evidence of this model/parameter path's present prompt-adherence limitations, not as approved assets.
+
+The next low-risk direction is to build and review a deterministic, provider-independent dark background prototype using a near-black navy base, a very soft desaturated edge haze and a sparse controlled star field. This can serve as a reliable background fallback without an inference call, while model research continues separately for truly generative assets. Keep original samples immutable; do not overwrite/promote them. Any later AI candidate should be a materially different experiment with a reasoned choice of model-native composition dimensions, a prompt that describes abstract space rather than a UI/financial scene, actual visual inspection, and independent account-use/licensing checks before promotion.
