@@ -23,33 +23,35 @@ This internal standard is designed around those published subject areas and esta
 
 The accurate current description is:
 
-> The project is establishing an internal terminology-governance system designed for alignment with the published scope of ISO 704:2022. Full clause-level conformity assessment is pending, and an appropriate independent certification route is being investigated.
+> The project is constructing a controlled terminology-governance and audit-evidence package intended to support a future assessment against ISO 704:2022. Full clause-level assessment and readiness have not yet been established.
 
-Before making a formal clause-level conformity claim, obtain lawful access to the complete standard, build a controlled requirements/evidence matrix using the exact edition, record gaps and non-applicable requirements, remediate gaps and complete an independent review. Do not copy or distribute the standard's copyrighted text in project documentation. ISO itself does not issue certificates; external bodies perform certification. Current public-source research has not verified an ISO 704-specific certification offering for this project. This is an evidence gap, not proof that no suitable provider exists.
+Before making any clause-level conformity claim, obtain lawful access to the complete standard, build a controlled clause/topic-to-evidence matrix using the exact edition, record applicability decisions and gaps, implement controls, retain objective evidence of actual operation, complete an internal audit, address findings, and record a human management readiness decision. Do not copy or distribute copyrighted standard text in project documentation. Provider and accreditation discovery is deliberately deferred until the readiness gate in [the Audit-Readiness Dossier](research/Active/2026-10-17-ISO-704-Audit-Readiness-Dossier.md) has passed. No conclusion is currently made about whether a suitable ISO 704:2022-specific certificate is available.
 
-### 2.1 Certification feasibility and pursuit pathway
+### 2.1 Readiness-first sequence for possible independent certification
 
-Certification feasibility is a **required research workstream**, not a guarantee of certification and not a reason to defer internal implementation. The project intends to investigate and pursue a credible independent certificate if an appropriate provider will certify this scope.
+Certification remains a strategic objective to evaluate and pursue where a credible route exists, but **provider discovery, accreditation checks, enquiries and applications are DEFERRED until the internal readiness gate passes**. The immediate work is to build and verify the evidence package in [NOVA's ISO 704:2022 Audit-Readiness Dossier](research/Active/2026-10-17-ISO-704-Audit-Readiness-Dossier.md).
 
-The following route must be completed before stating that such a certificate is available:
+Complete these stages in order:
 
-1. **Find candidate assessors:** identify independent certification bodies or other competent conformity-assessment providers with demonstrable terminology, language-service, information-quality or relevant standards expertise.
-2. **Ask the decisive question in writing:** will the provider issue a certificate specifically attesting conformity to ISO 704:2022, and under what named scheme, defined scope, criteria and assessment method? If it offers only consulting, training, a maturity review, an internal-audit service or an audit report, record that accurately; do not call it certification.
-3. **Verify accreditation and recognition:** establish whether the issuer is accredited for the exact certification activity/scope, by which accreditation body, and whether that body's published scope supports the claim. Do not infer accreditation from the word “certification body” or from unrelated accredited schemes.
-4. **Establish the criteria:** obtain the provider's written requirements and confirm that it assesses the actual ISO 704:2022 edition rather than an unrelated proprietary checklist, a general quality-management certificate or a provider's training course.
-5. **Build readiness evidence:** obtain lawful access to the complete ISO edition, map applicable clauses to internal controls and objective evidence, assess gaps, implement corrective actions, and complete a documented internal audit and management review.
-6. **Independent pre-assessment:** where the provider offers it, use a clearly labelled gap assessment before formal application. A readiness assessment is not a certificate and must not be represented as one.
-7. **Decision and public wording:** retain the provider's proposal, scheme details, assessment report, accreditation evidence, certificate scope/number/validity and any use-of-mark rules. Publish a certification claim only after a valid certificate has actually been issued and checked.
+1. **Freeze scope and governance:** document the entity/project scope, domains, activity types, repositories and paths, languages, period, exclusions, human approval authority and audit independence.
+2. **Establish the controlled standard baseline:** obtain lawful access to the complete ISO 704:2022 edition through a separately authorized route; record edition, source and access conditions. No purchase or subscription is authorized by this document.
+3. **Build the clause/topic evidence matrix:** account for every section/clause in the controlled edition; paraphrase rather than reproduce protected text; record the actual force of each statement, applicability, project control, objective evidence, result, gap and rationale. Do not infer unknown clauses from the public abstract.
+4. **Implement and document the process:** review the canonical register, create concept-system maps, validate definitions and designations, preserve approval/provenance records, complete the active-path sweep and audit public use in the declared scope.
+5. **Demonstrate operation:** retain evidence from real controlled terminology proposals, approvals, updates, conflict resolution, publication checks and retests. A written procedure alone is not evidence that it operates.
+6. **Audit and correct:** complete a documented internal audit, record all findings and limitations, implement corrective actions, and retain objective retest evidence.
+7. **Management readiness decision:** review the matrix, coverage, actual-use audit, open findings, exclusions and final package manifest. Record GO or NO-GO with a named human approver and date.
+8. **Only after GO:** start provider/scheme discovery. Determine what the candidate body would actually assess and issue, its scope and criteria, and whether its accreditation (if claimed) explicitly covers the relevant activity. A certificate, non-accredited conformity statement, readiness assessment and audit report are different outputs.
 
-Use these research statuses:
-- **CANDIDATE:** a potential provider or route has been identified but not confirmed.
-- **BLOCKED:** no written evidence establishes that a provider offers a suitable ISO 704:2022 certificate, or a prerequisite needed to assess conformity is unavailable.
-- **VERIFIED AVAILABLE:** a competent provider confirms in writing the exact certificate, scheme and scope it can issue; accreditation status is separately documented.
-- **APPLIED / ASSESSED / CERTIFIED:** separate statuses requiring evidence of each actual event. Do not skip steps.
+ISO itself does not accredit certification bodies or issue certificates. Do not describe any provider as “ISO-approved” unless a specifically supported formal relationship exists; instead verify the actual accreditation body and scope. Do not claim a certificate is available before written confirmation establishes the precise offer. Even a complete internal evidence package cannot guarantee an external conformity decision.
 
-A non-accredited certificate, independent audit opinion and accredited certification are different outputs. If an accredited certification scheme is unavailable, the project may still seek an independent audit/conformity statement and may investigate whether a qualified provider can establish a defensible scheme. Such an alternative must be described precisely and must not be advertised as accredited certification without evidence.
+The workstream statuses are:
+- **READINESS BUILD IN PROGRESS:** evidence items being created or reviewed.
+- **BLOCKED:** a prerequisite such as the controlled full standard, matrix row, objective evidence or required review is absent.
+- **INTERNAL GO:** every readiness gate is supported by evidence and a human decision approves provider discussion.
+- **PROVIDER ROUTE VERIFIED:** after GO only, written details of the exact offering are documented; accreditation is verified separately.
+- **APPLIED / ASSESSED / CERTIFIED:** separate statuses requiring evidence of each actual event.
 
-The current status is **CANDIDATE / FEASIBILITY NOT YET VERIFIED**. The absence of a confirmed route in initial public searches is not a conclusion that certification is impossible. No fee, standards purchase, application or paid tool is authorized by this policy; the initial search should prioritize official directories and written inquiries that do not create financial commitments.
+No certification provider search, enquiry, application, standards purchase, fee or paid tool is authorized before the readiness gate passes and any financial commitment is separately approved.
 
 Normative source references:
 - ISO 704:2022 — https://www.iso.org/standard/79077.html
