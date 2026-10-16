@@ -3748,7 +3748,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Active/2026-10-10-Capacity-Aware-AI-Media-Rollout.md",
+            "blob_sha": "b0b05801569152ab35b58e59f8a0490e68b2e532",
+            "size_bytes": 5241,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 5235,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 4,
+              "astroCrown": 7,
+              "acrown": 6,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Active/2026-10-10-Cloudflare-Image-Model-Candidate-Evaluation-Plan.md",
@@ -3764,7 +3791,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Active/2026-10-10-Cloudflare-Image-Model-Candidate-Evaluation-Plan.md",
+            "blob_sha": "bd814b6bf366ae0fe2897092c03e2184ac1ee4d2",
+            "size_bytes": 4718,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 4714,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 7,
+              "acrown": 6,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Active/2026-10-10-Cloudflare-Image-Model-Candidate-Evaluation.md",
@@ -3780,7 +3834,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Active/2026-10-10-Cloudflare-Image-Model-Candidate-Evaluation.md",
+            "blob_sha": "92bbc0e97d77be72f1162deaa470a5cc2d91cd08",
+            "size_bytes": 10847,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 10823,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 5,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Active/2026-10-10-Image-Video-Component-Candidate-Register.md",
@@ -3796,7 +3877,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Active/2026-10-10-Image-Video-Component-Candidate-Register.md",
+            "blob_sha": "b9dc6a9f0e3d7580eddc2ac67a68bd7d62112a09",
+            "size_bytes": 3971,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 3963,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 1,
+              "astroCrown": 5,
+              "acrown": 5,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Active/2026-10-10-Open-Source-Multi-Model-Media-Strategy.md",
@@ -3812,7 +3920,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Active/2026-10-10-Open-Source-Multi-Model-Media-Strategy.md",
+            "blob_sha": "0c6483607adc0877a80f35c79e09af77c09b11d7",
+            "size_bytes": 3766,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 3762,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 2,
+              "astroCrown": 7,
+              "acrown": 6,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Active/2026-10-11-Context-Packing-Benchmark-Workload.md",
@@ -3828,7 +3963,43 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Active/2026-10-11-Context-Packing-Benchmark-Workload.md",
+            "blob_sha": "1c9a246caf54ea122028a483790aef55307c8a17",
+            "size_bytes": 7014,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 7010,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 11,
+              "astroCrown": 10,
+              "acrown": 11,
+              "hsiAn": 0,
+              "haan": 2,
+              "superIntelligence": 0,
+              "rsi": 16,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 12,
+                "text": "**Canonical mission:** https://github.com/ACROWN-System/NOVA/blob/main/NOVA/HAAN-FOUNDATIONAL-MISSION-AND-COLLECTIVE-PRESERVATION.md  "
+              },
+              {
+                "line": 48,
+                "text": "- https://github.com/ACROWN-System/NOVA/blob/main/NOVA/HAAN-FOUNDATIONAL-MISSION-AND-COLLECTIVE-PRESERVATION.md"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Active/2026-10-11-External-Security-Validation-and-Conversion-Model.md",
@@ -3844,7 +4015,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Active/2026-10-11-External-Security-Validation-and-Conversion-Model.md",
+            "blob_sha": "070a2232bb63d6243b6d938343a617e5aedd9f80",
+            "size_bytes": 16304,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 16290,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 6,
+              "astroCrown": 31,
+              "acrown": 28,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 16,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Active/2026-10-11-HAAN-Foundational-Mission-Integration.md",
@@ -3860,7 +4058,51 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Active/2026-10-11-HAAN-Foundational-Mission-Integration.md",
+            "blob_sha": "5d23db12ff506bca6b8a15b8a130e8879596f880",
+            "size_bytes": 5086,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 5082,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 18,
+              "astroCrown": 8,
+              "acrown": 10,
+              "hsiAn": 0,
+              "haan": 7,
+              "superIntelligence": 0,
+              "rsi": 16,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 1,
+                "text": "# Completed Plan Mirror — HAAN Foundational Mission Integration"
+              },
+              {
+                "line": 5,
+                "text": "**Canonical completed record:** [HAAN Foundational Mission Integration](../Completed/2026-10-11-HAAN-Foundational-Mission-Integration.md)  "
+              },
+              {
+                "line": 6,
+                "text": "**Objective:** Make the HAAN foundational mission explicit in the AstroCrown-Web RSI architecture so RSI remains subordinate to the collective mission and preserves both foundational contributions without assuming a universal oper"
+              },
+              {
+                "line": 12,
+                "text": "**Canonical cross-repository dependency:** https://github.com/ACROWN-System/NOVA/blob/main/NOVA/HAAN-FOUNDATIONAL-MISSION-AND-COLLECTIVE-PRESERVATION.md  "
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Active/2026-10-11-RSI-Candidate-Tree-Binding.md",
