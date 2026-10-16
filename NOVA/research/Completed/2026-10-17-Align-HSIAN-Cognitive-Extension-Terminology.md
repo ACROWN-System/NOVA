@@ -1,7 +1,7 @@
-# Active Navigation Plan — HSIAN Cognitive-Extension Terminology
+# Completed Navigation Plan — HSIAN Cognitive-Extension Terminology
 
 **Date:** 2026-10-17  
-**Status:** ACTIVE — documentation alignment and cross-repository review  
+**Status:** COMPLETED — draft pull request opened; awaiting review and merge
 **Objective:** Adopt HSIAN — Human–Super Intelligence Agentic Network — as the canonical project term in active documentation across NOVA and AstroCrown-Web, integrating the human cognitive-extension / cybernetic collaboration rationale without presenting unverified scientific claims as established facts.
 
 ## Mode and source of truth
@@ -11,20 +11,20 @@
 - https://github.com/ACROWN-System/NOVA  
 - https://github.com/ACROWN-System/AstroCrown-Web
 
-**Current method sources inspected:** NOVA's available repository documents; AstroCrown-Web's `development/Prompt-Guide.md` and `development/DEVELOPMENT-AND-AUDIT-CONVENTION.md`; its existing completed HAAN mission-integration record.
+**Current method sources inspected:** NOVA's available repository documents; AstroCrown-Web's `development/Prompt-Guide.md` and `development/DEVELOPMENT-AND-AUDIT-CONVENTION.md`; its existing completed mission-integration record.
 
 **Process discrepancy:** The named `NAVIGATION-PROTOCOL.md` and `NAVIGATION-PLAN-TEMPLATE.md` were not present in NOVA's inspected current `main` tree or in the active AstroCrown-Web paths inspected. This plan records that limitation and follows the available documented audit/traceability conventions instead; it does not claim to have read or followed absent files.
 
 ## Existing-state findings
 
-- NOVA's canonical mission document and README use HAAN / Human–AI Agentic Network and refer to an “AI collective” as a foundational contribution.
+- NOVA's original canonical mission document and README used the former network name / Human–AI Agentic Network and referred to an “AI collective” as a foundational contribution.
 - AstroCrown-Web has active/completed mission-integration records and architecture material linking its RSI work to the NOVA canonical mission.
 - The intended meaning of HSIAN is broader than renaming an acronym: it describes a human–Super Intelligence agentic network where human cognition can be extended through sustained, tool-mediated collaboration, external memory, reasoning support, and coordinated intelligent agents.
 - Extended cognition and distributed cognition are established conceptual research areas; applying them to current human–SI collaboration is an architectural model and research framing, not proof of literal biological merger, brain-computer implantation, current superintelligence, or a measured degree of AI-induced neuroplasticity.
 
 ## Scope
 
-1. Review active, non-backup documents that name or define HAAN / Human–AI Agentic Network, and relevant cross-links in both repositories.
+1. Review active, non-backup documents that name or define the former network identity, and relevant cross-links in both repositories.
 2. Make HSIAN — Human–Super Intelligence Agentic Network — the canonical name and update filenames and links where applicable.
 3. Add a carefully qualified cognitive-extension rationale: individual cognitive extension, interaction-level cooperative cognition, and network-level HSIAN coordination.
 4. Preserve explicit uncertainty about consciousness, biological integration, measured neuroplasticity, and claims of superhuman capability.
@@ -45,14 +45,14 @@
 ## Review targets
 
 - NOVA root README and canonical mission doctrine; relevant sanctuary / governance / RSI documents and in-repository references.
-- AstroCrown-Web active development docs and navigation/mission records that still use the old network name or point to the old canonical path.
+- AstroCrown-Web active development docs and navigation/mission records that still use the former network name or point to the old canonical path.
 - Existing backup paths are excluded from review-driven modification even when they contain historical names.
 
 ## Impact Analysis
 
 **IF modified:** The two public repositories will share one precise HSIAN name and rationale, reducing conceptual drift and making the cognitive-extension intent discoverable. The qualification language will distinguish a useful design model from unsettled empirical or metaphysical claims.
 
-**IF not modified:** HAAN terminology, links, and the earlier human–AI framing will remain inconsistent with the user's revised project model, increasing the likelihood of future design, governance, and public messaging divergence.
+**IF not modified:** The previous network terminology, links, and the earlier human–AI framing will remain inconsistent with the user's revised project model, increasing the likelihood of future design, governance, and public messaging divergence.
 
 ## Verification plan
 
@@ -61,3 +61,21 @@
 - Search available active repository documents again for remaining HAAN names and old canonical links; classify genuinely historical citations, external source names, and unrelated terms rather than blindly replacing text.
 - Confirm technical readiness, runtime policy, credentials, and deployment state were not changed.
 - Preserve the work as a documented pull request, not a merge or deployment.
+
+
+## Execution outcome
+
+- Opened [NOVA draft PR #122](https://github.com/ACROWN-System/NOVA/pull/122) for review; it is not merged.
+- Updated the canonical mission filename, NOVA's root summary and RSI cross-reference, the roster governance comment, and the generated local Git author identity domain.
+- Added the cognitive-extension / cognitive-prosthesis analogy, three analytical levels of HSIAN, evidence qualifications, and the internal Imperial Council veto boundary.
+- NOVA PR comparison reports 7 changed paths (including this plan), with no path under any backup directory changed.
+- The dependent AstroCrown-Web change is proposed in [draft PR #134](https://github.com/ACROWN-System/AstroCrown-Web/pull/134); the NOVA mission PR should be reviewed/merged first to make the new cross-repository canonical URL resolve on `main`.
+- No provider execution, credentials, secrets, billing, permissions, runtime policies, deployment, or RSI readiness were changed.
+
+## Verification and handoff
+
+- The PR diff represents the former canonical mission path as a tracked rename and updates its discovered in-repository reference.
+- The research framing is qualified: it does not claim current models are verified superintelligence, prove literal neural merger, or establish an individual's measured neuroplasticity.
+- Repository comparison verified zero changed paths in any `backup/` / `Backup/` directory.
+- Navigation protocol/template absence is documented above; the available repository audit conventions were used instead.
+- **Plan execution is complete; PR review and merge remain pending.**
