@@ -5,7 +5,8 @@
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL FINDINGS — lexical screening only; not a completed conformity audit  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
-**Tracker:** [File-by-File Content Sweep Tracker](2026-10-17-ISO-704-Content-Sweep-Tracker.json)
+**Tracker:** [File-by-File Content Sweep Tracker](2026-10-17-ISO-704-Content-Sweep-Tracker.json)  
+**Targeted reviews:** [Certification-Context Review](2026-10-17-ISO-704-Certification-Context-Review.md); [Canonical Register Quality Review](2026-10-17-ISO-704-Register-Quality-Review.md)
 
 ## Method and limitations
 
@@ -87,6 +88,14 @@ No backup/archive paths were scanned as active targets or modified. Historical/b
 2. Complete the semantic/section-level review of SWEEP-F-0002 across its full contents; its lexical screen is already complete.
 3. Continue the tracker sequentially across the remaining active text files, then assets/configuration formats; do not mark extension-based exclusions as N/A without rationale.
 4. Review all certification-claim controls in live/public and technical surfaces and record evidence.
-5. Build and validate the concept-system maps and cross-repository relationship register.
-6. Do not claim the first lexical batch is an exhaustive audit or a successful audit.
+5. Apply the [register quality review](2026-10-17-ISO-704-Register-Quality-Review.md) to the 15 starter entries; add typed relations and evidence-backed fields without guessing.
+6. Verify the [certification-context review](2026-10-17-ISO-704-Certification-Context-Review.md) with a human reviewer and audit actual public surfaces.
+7. Build and validate the concept-system maps and cross-repository relationship register.
+8. Do not claim the lexical screen or either targeted context review is a completed or successful ISO 704 audit.
 
+
+
+## Targeted follow-up reviews
+
+- The [certification-context review](2026-10-17-ISO-704-Certification-Context-Review.md) examined all 21 files matching the `certif*` pattern (45 matches). The seven hits in `NOVA/README.md` are TLS certificate references; the other contexts are primarily disclaimers or generic external-assurance planning. Two areas require human verification: the `Evidence state: VERIFIED` semantics in the entity registry and broad future wording such as “ISO certification” in the feasibility registry. No ISO 704-specific certification claim was observed in those contexts, but broader public-surface review is still required.
+- The [canonical register quality review](2026-10-17-ISO-704-Register-Quality-Review.md) identifies missing per-entry sources/decision records, typed relations, review dates/owners and inconsistent variant/example fields across the 15 starter concepts. It is preliminary and requires authorized human domain review.
