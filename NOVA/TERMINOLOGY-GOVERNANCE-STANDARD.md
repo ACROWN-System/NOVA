@@ -19,11 +19,37 @@ The canonical register is maintained in [CANONICAL-TERMINOLOGY-REGISTER.md](CANO
 
 ISO's public description of ISO 704:2022 says it establishes principles and methods for preparing and compiling terminology; describes relations between objects, concepts, definitions and designations; and addresses formation of terms/proper names and writing definitions. It applies across technical, scientific, industrial, legal, administrative and other fields. ISO 1087:2019 provides terminology-work vocabulary.
 
-This internal standard is designed around those published subject areas and established terminology-management principles. Because the complete licensed text of ISO 704:2022 has not been adopted as an available project audit baseline, a clause-by-clause conformity claim is **BLOCKED**. Do not state “ISO 704:2022 compliant,” “certified,” or “certifiable” as a verified fact based only on this document. The accurate current description is:
+This internal standard is designed around those published subject areas and established terminology-management principles. Because the complete licensed text of ISO 704:2022 has not been adopted as an available project audit baseline, a clause-by-clause conformity claim is **BLOCKED**. Do not state “ISO 704:2022 compliant,” “certified,” or “certifiable” as an already verified fact based only on this document. At the same time, do not present certification as impossible or remove it from consideration: **pursuing a credible route to independent certification is an explicit strategic objective, subject to confirming that an appropriate provider offers it and that the project satisfies its criteria.**
 
-> The project is establishing an internal terminology-governance system designed for alignment with the published scope of ISO 704:2022; full clause-level assessment remains pending.
+The accurate current description is:
 
-Before making a formal clause-level claim, obtain lawful access to the full standard, build a controlled requirements/evidence matrix using the exact edition, record gaps and non-applicable requirements, remediate the gaps, and complete an independent review. Do not copy or distribute the standard's copyrighted text in project documentation. ISO itself does not issue certificates; certification, where an applicable scheme exists, is performed by external bodies. No ISO 704-specific certification route has been established for this project.
+> The project is establishing an internal terminology-governance system designed for alignment with the published scope of ISO 704:2022. Full clause-level conformity assessment is pending, and an appropriate independent certification route is being investigated.
+
+Before making a formal clause-level conformity claim, obtain lawful access to the complete standard, build a controlled requirements/evidence matrix using the exact edition, record gaps and non-applicable requirements, remediate gaps and complete an independent review. Do not copy or distribute the standard's copyrighted text in project documentation. ISO itself does not issue certificates; external bodies perform certification. Current public-source research has not verified an ISO 704-specific certification offering for this project. This is an evidence gap, not proof that no suitable provider exists.
+
+### 2.1 Certification feasibility and pursuit pathway
+
+Certification feasibility is a **required research workstream**, not a guarantee of certification and not a reason to defer internal implementation. The project intends to investigate and pursue a credible independent certificate if an appropriate provider will certify this scope.
+
+The following route must be completed before stating that such a certificate is available:
+
+1. **Find candidate assessors:** identify independent certification bodies or other competent conformity-assessment providers with demonstrable terminology, language-service, information-quality or relevant standards expertise.
+2. **Ask the decisive question in writing:** will the provider issue a certificate specifically attesting conformity to ISO 704:2022, and under what named scheme, defined scope, criteria and assessment method? If it offers only consulting, training, a maturity review, an internal-audit service or an audit report, record that accurately; do not call it certification.
+3. **Verify accreditation and recognition:** establish whether the issuer is accredited for the exact certification activity/scope, by which accreditation body, and whether that body's published scope supports the claim. Do not infer accreditation from the word “certification body” or from unrelated accredited schemes.
+4. **Establish the criteria:** obtain the provider's written requirements and confirm that it assesses the actual ISO 704:2022 edition rather than an unrelated proprietary checklist, a general quality-management certificate or a provider's training course.
+5. **Build readiness evidence:** obtain lawful access to the complete ISO edition, map applicable clauses to internal controls and objective evidence, assess gaps, implement corrective actions, and complete a documented internal audit and management review.
+6. **Independent pre-assessment:** where the provider offers it, use a clearly labelled gap assessment before formal application. A readiness assessment is not a certificate and must not be represented as one.
+7. **Decision and public wording:** retain the provider's proposal, scheme details, assessment report, accreditation evidence, certificate scope/number/validity and any use-of-mark rules. Publish a certification claim only after a valid certificate has actually been issued and checked.
+
+Use these research statuses:
+- **CANDIDATE:** a potential provider or route has been identified but not confirmed.
+- **BLOCKED:** no written evidence establishes that a provider offers a suitable ISO 704:2022 certificate, or a prerequisite needed to assess conformity is unavailable.
+- **VERIFIED AVAILABLE:** a competent provider confirms in writing the exact certificate, scheme and scope it can issue; accreditation status is separately documented.
+- **APPLIED / ASSESSED / CERTIFIED:** separate statuses requiring evidence of each actual event. Do not skip steps.
+
+A non-accredited certificate, independent audit opinion and accredited certification are different outputs. If an accredited certification scheme is unavailable, the project may still seek an independent audit/conformity statement and may investigate whether a qualified provider can establish a defensible scheme. Such an alternative must be described precisely and must not be advertised as accredited certification without evidence.
+
+The current status is **CANDIDATE / FEASIBILITY NOT YET VERIFIED**. The absence of a confirmed route in initial public searches is not a conclusion that certification is impossible. No fee, standards purchase, application or paid tool is authorized by this policy; the initial search should prioritize official directories and written inquiries that do not create financial commitments.
 
 Normative source references:
 - ISO 704:2022 — https://www.iso.org/standard/79077.html
