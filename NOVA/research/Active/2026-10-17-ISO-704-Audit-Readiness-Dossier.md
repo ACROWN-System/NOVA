@@ -1,7 +1,7 @@
 # ISO 704:2022 Audit-Readiness Dossier and Evidence Register
 
 **Document ID:** NOVA-ISO704-AR-001  
-**Version:** 0.1.2  
+**Version:** 0.1.3  
 **Date opened:** 2026-10-17  
 **Status:** ACTIVE — readiness package construction; NOT READY FOR AN ISO 704 AUDIT  
 **Owner:** Designated human maintainer  
@@ -9,7 +9,7 @@
 **Related application:** AstroCrown-Web terminology / brand-language governance  
 **Provider outreach:** DEFERRED until the evidence-package readiness gate passes  
 **Paid activity:** Not authorized by this dossier  
-**Backup boundary:** No file under `backup/`, `Backup/`, or any case variant may be read-modified as part of this work; no backup/archive path is to be changed.
+**Backup boundary:** Any file beneath a backup/archive directory is immutable: do not create, update, rename, move or delete it, regardless of capitalization or naming (including dated system mirrors and `index-archive/`). The active path inventory excludes these locations; no backup/archive path is changed.
 
 ## 1. Purpose and decision
 
@@ -43,7 +43,7 @@ ISO does not itself certify or issue certificates. Certification and accreditati
 
 ## 3. Scope to freeze before detailed assessment
 
-The scope statement must identify:
+The current proposed repository coverage and baseline tree SHAs are recorded in [Scope Proposal and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md) and its [machine-readable active-path inventory](2026-10-17-ISO-704-Active-Path-Inventory.json). These establish an initial path baseline only; human scope approval and content review remain open. The scope statement must identify:
 
 - The organizational/project entity whose terminology work is being assessed, without implying a separate legal entity unless established.
 - The repositories, projects, technical domains, governance terms, service/product material and public communication included.
@@ -75,7 +75,7 @@ Status meanings: **EXISTS—DRAFT** = an artifact exists but has not been accept
 
 | Evidence ID | Evidence package component | What acceptable evidence must demonstrate | Current status | Next action |
 |---|---|---|---|---|
-| AR-E01 | Scope and boundaries | Approved scope statement; included domains, repos/paths, activity, languages, period, exclusions and rationale | NOT STARTED | Freeze and approve scope before claiming coverage |
+| AR-E01 | Scope and boundaries | Approved scope statement; included domains, repos/paths, activity, languages, period, exclusions and rationale | DRAFT / NOT APPROVED | Review the [scope proposal and repository inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md); approve the six-repository scope, languages, assessment period and exclusions, or document changes before claiming coverage |
 | AR-E02 | Controlled standard baseline and lifecycle freeze | Lawful access to the complete ISO 704:2022 edition; edition/version, source, access/licence record, controlled-copy identifier, lifecycle/revision status checked at baseline date | BLOCKED | Investigate lawful no-cost routes first (BIS standards/library services, an existing institutional/consortium library or an already licensed copy); verify exact edition and permitted use. Also check the ISO record/lifecycle for newer published editions or active revision work; these are separate checks. Routes are leads, not confirmed availability. No purchase or paid subscription without separate authorization |
 | AR-E03 | Clause/topic-to-evidence matrix | Every applicable section/clause captured from the controlled edition; statement force, project interpretation, applicability, control, evidence, result, gaps and rationale | BLOCKED — template available | Use the [controlled matrix template](2026-10-17-ISO-704-Clause-Evidence-Matrix.md) only after AR-E02; no guessed or invented clause mappings |
 | AR-E04 | Terminology governance procedure | Approved roles, workflow, criteria, decision gates, status lifecycle and audit controls | EXISTS—DRAFT | Review, approve and establish an effective date |
@@ -85,7 +85,7 @@ Status meanings: **EXISTS—DRAFT** = an artifact exists but has not been accept
 | AR-E08 | Designation and naming decisions | Evidence for preferred terms, acronyms, variants, spelling/form, rationale, ambiguity/collision review, deprecated names and decision authority | PARTIAL / NOT VERIFIED | Build decision log and link each in-scope entry to its approval/evidence |
 | AR-E09 | Source and provenance index | Sources, project decisions, supporting evidence, versions and dates traceable to entries; clear separation of project definitions and external facts | PARTIAL / NOT VERIFIED | Add source IDs and provenance to the register; assess every entry |
 | AR-E10 | Governance/approval records | Who approved the scope, standard, register entries and material changes; decisions, dates, rationale and review trail | PARTIAL / NOT VERIFIED | Capture explicit approvals; draft status is not equivalent to adoption |
-| AR-E11 | Active repository terminology sweep | Reproducible inventory of every included active path; search terms, path list, tooling/method, timestamp/ref, exceptions, conflicts and resolution status | NOT STARTED | Define included path set; sweep active paths only; report coverage and limitations |
+| AR-E11 | Active repository terminology sweep | Reproducible inventory of every included active path; search terms, path list, tooling/method, timestamp/ref, exceptions, conflicts and resolution status | PATH BASELINE CREATED; CONTENT SWEEP NOT STARTED | Use the [active-path inventory](2026-10-17-ISO-704-Active-Path-Inventory.json); classify all listed files, update the scope at the intended assessment refs, then perform and evidence the content sweep |
 | AR-E12 | Actual public-use audit | Representative or full audit of pages, UI labels, README/docs, announcements, metadata/accessibility strings in declared scope against canonical terms | NOT STARTED | Freeze scope and sample; record exact paths/URLs and results |
 | AR-E13 | Localization decision and evidence | Explicit language scope; for any included locale, term records, equivalence decisions, reviewer and unresolved translations | NOT STARTED | Approve English-only first-audit scope or create real locale evidence; do not imply translations were tested |
 | AR-E14 | Change control and record integrity | PR/commit trails, review approvals, versioning, impact analysis, deprecation/successor handling and protected backup boundary | EXISTS—DRAFT / PARTIAL | Inspect actual history and sample completed changes; verify backup/archive paths were not changed |
@@ -203,3 +203,4 @@ Next actions, in sequence:
 - **2026-10-17 / v0.1.0:** Initial controlled evidence register and staged readiness gate created. Provider outreach deferred until the package is internally complete. No provider availability claim is made.
 - **2026-10-17 / v0.1.1:** Added a controlled clause/topic matrix template, clarified that no clause mapping may be guessed, prioritized lawful no-cost access routes, and corrected the sequential work plan. Full-standard access and all audit-readiness evidence remain open.
 - **2026-10-17 / v0.1.2:** Added a standard-lifecycle freshness check so the baseline records any newer published edition or active revision work rather than assuming the 2022 edition will remain the relevant target indefinitely.
+- **2026-10-17 / v0.1.3:** Added an initial inventory of six accessible repositories and 318 active file paths, with 843 backup/archive files excluded from the active path list. Scope approval and all content-level checks remain pending.
