@@ -10056,7 +10056,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/nova-recursive-self-improvement/tests/test_preflight.py",
+            "blob_sha": "64c52ab1b3ab2fca74a15eaade6c10fb55a38f3f",
+            "size_bytes": 4928,
+            "extension": ".py",
+            "source_ref": "main",
+            "content_chars": 4928,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 1,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/nova-recursive-self-improvement/tests/test_provider_client.py",
@@ -10072,7 +10099,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/nova-recursive-self-improvement/tests/test_provider_client.py",
+            "blob_sha": "549d9e3f6556cbf7ad568621699e781d8ddc2872",
+            "size_bytes": 6139,
+            "extension": ".py",
+            "source_ref": "main",
+            "content_chars": 6139,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/nova-recursive-self-improvement/tests/test_rsi_engine.py",
@@ -10088,7 +10142,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/nova-recursive-self-improvement/tests/test_rsi_engine.py",
+            "blob_sha": "c50985507ef0d0881d8073227560e6eef3f67f75",
+            "size_bytes": 22856,
+            "extension": ".py",
+            "source_ref": "main",
+            "content_chars": 22856,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 16,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 15,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/nova-recursive-self-improvement/tests/test_sandbox_runtime.py",
@@ -10104,7 +10185,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/nova-recursive-self-improvement/tests/test_sandbox_runtime.py",
+            "blob_sha": "bdf3d87f01e64544c549a680d2b06a965e9cfa17",
+            "size_bytes": 15357,
+            "extension": ".py",
+            "source_ref": "main",
+            "content_chars": 15357,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 6,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 6,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/nova-recursive-self-improvement/tests/test_weak_rsi_report.py",
@@ -10120,7 +10228,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/nova-recursive-self-improvement/tests/test_weak_rsi_report.py",
+            "blob_sha": "a6b4e3440554701b3d47f00e8356c3f78306e898",
+            "size_bytes": 3809,
+            "extension": ".py",
+            "source_ref": "main",
+            "content_chars": 3809,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/nova-recursive-self-improvement/weak_rsi_report.py",
@@ -10136,7 +10271,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/nova-recursive-self-improvement/weak_rsi_report.py",
+            "blob_sha": "c12ad3eb29ac1f6dd52b493bb8b559f1fce232ae",
+            "size_bytes": 11672,
+            "extension": ".py",
+            "source_ref": "main",
+            "content_chars": 11664,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 6,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 9,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/Prompt-Guide.md",
@@ -10152,7 +10314,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/Prompt-Guide.md",
+            "blob_sha": "18a8d42e5f238b8b570f5fb9b63d82c86df63c08",
+            "size_bytes": 29217,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 28917,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 9,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/public-relations/ASTROCROWN-SPACE-EMPIRE-STRATEGIC-TARGET-UNIVERSE-2026-10-03.md",
@@ -10168,7 +10357,43 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/public-relations/ASTROCROWN-SPACE-EMPIRE-STRATEGIC-TARGET-UNIVERSE-2026-10-03.md",
+            "blob_sha": "2bf11d03acd3da78ae565586d877ebb9bae3f336",
+            "size_bytes": 27166,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 27049,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 6,
+              "astroCrown": 16,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 2,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 289,
+                "text": "| Chainalysis | TBD | institutional partnerships | CANDIDATE | compliance / analytics |"
+              },
+              {
+                "line": 290,
+                "text": "| TRM Labs | TBD | partnerships / investigations | CANDIDATE | compliance |"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/public-relations/README.md",
