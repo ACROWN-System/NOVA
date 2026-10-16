@@ -6,7 +6,7 @@
 **Status:** INITIAL FINDINGS — lexical screening only; not a completed conformity audit  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
 **Tracker:** [File-by-File Content Sweep Tracker](2026-10-17-ISO-704-Content-Sweep-Tracker.json)  
-**Targeted reviews:** [Certification-Context Review](2026-10-17-ISO-704-Certification-Context-Review.md); [Canonical Register Quality Review](2026-10-17-ISO-704-Register-Quality-Review.md)
+**Targeted reviews:** [Certification-Context Review](2026-10-17-ISO-704-Certification-Context-Review.md); [Canonical Register Quality Review](2026-10-17-ISO-704-Register-Quality-Review.md); [Candidate Concept-Relation Map](2026-10-17-ISO-704-Concept-Relation-Map-Draft.md); [HSIAN Pilot Entry Review](2026-10-17-ISO-704-Pilot-Entry-Review-HSIAN.md)
 
 ## Method and limitations
 
@@ -99,3 +99,9 @@ No backup/archive paths were scanned as active targets or modified. Historical/b
 
 - The [certification-context review](2026-10-17-ISO-704-Certification-Context-Review.md) examined all 21 files matching the `certif*` pattern (45 matches). The seven hits in `NOVA/README.md` are TLS certificate references; the other contexts are primarily disclaimers or generic external-assurance planning. Two areas require human verification: the `Evidence state: VERIFIED` semantics in the entity registry and broad future wording such as “ISO certification” in the feasibility registry. No ISO 704-specific certification claim was observed in those contexts, but broader public-surface review is still required.
 - The [canonical register quality review](2026-10-17-ISO-704-Register-Quality-Review.md) identifies missing per-entry sources/decision records, typed relations, review dates/owners and inconsistent variant/example fields across the 15 starter concepts. It is preliminary and requires authorized human domain review.
+
+
+## Additional entry and relation work
+
+- The [candidate concept-relation map](2026-10-17-ISO-704-Concept-Relation-Map-Draft.md) records proposed types/directions for relations among the 15 starter concepts and leaves charter-dependent or architecture-dependent relations blocked. It is not approved and needs domain validation and sources.
+- The [HSIAN pilot entry review](2026-10-17-ISO-704-Pilot-Entry-Review-HSIAN.md) follows one naming gap through the draft checklist. It remains blocked pending PR #122/#134 and human approval; it tests the review form but is not a complete operational workflow cycle.
