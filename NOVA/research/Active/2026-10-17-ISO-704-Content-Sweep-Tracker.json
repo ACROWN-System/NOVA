@@ -5250,7 +5250,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Active/2026-10-13-Image-First-Commercial-Brand-Quality-Architecture.md",
+            "blob_sha": "5f0085c158912eaebc10ff0d9df7242f480c84bc",
+            "size_bytes": 8083,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 8075,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 6,
+              "astroCrown": 4,
+              "acrown": 1,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 4,
+                "text": "**Status:** ACTIVE — documentation alignment, duplication reduction, and first-slice definition  "
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Active/2026-10-14-Cloudflare-Image-MVP-Implementation.md",
@@ -5266,7 +5298,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Active/2026-10-14-Cloudflare-Image-MVP-Implementation.md",
+            "blob_sha": "271360e261c954a2b7f71bdd4b0e237a18dd9ce8",
+            "size_bytes": 17963,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 17945,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 18,
+              "astroCrown": 15,
+              "acrown": 4,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Active/2026-10-14-Defensible-Research-Evidence-Records.md",
@@ -5282,7 +5341,43 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Active/2026-10-14-Defensible-Research-Evidence-Records.md",
+            "blob_sha": "4ee723462bfe7c220da724a23f8a02767bb1314d",
+            "size_bytes": 7362,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 7358,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 2,
+              "astroCrown": 2,
+              "acrown": 2,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 2,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 1,
+              "compliance": 1,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 42,
+                "text": "- Cover fair technical comparisons, claims about capabilities/licenses/capacity/compliance, competitor references, citations, correction and dispute escalation."
+              },
+              {
+                "line": 51,
+                "text": "- Submit a draft PR; do not represent it as legal advice, certification, or counsel-approved policy."
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Active/2026-10-14-Provider-Neutral-Image-Runtime-Qualification.md",
@@ -5298,7 +5393,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Active/2026-10-14-Provider-Neutral-Image-Runtime-Qualification.md",
+            "blob_sha": "67752c57327bc9e8ef4e649b894b7021520d4b4b",
+            "size_bytes": 48415,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 48370,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 10,
+              "astroCrown": 18,
+              "acrown": 10,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 1,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 77,
+                "text": "- **Google Colab:** its official FAQ states that free resources are not guaranteed and explicitly restricts non-interactive web-service/media-serving use; it notes content-generation web-UI use on free managed runtimes commonly le"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Completed/2026-10-09-AI-Sanctuary-Cross-Repository-Integration.md",
@@ -5314,7 +5441,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Completed/2026-10-09-AI-Sanctuary-Cross-Repository-Integration.md",
+            "blob_sha": "02f8e7485084d8edf2ff8376180120b4478b4385",
+            "size_bytes": 9057,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 9045,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 28,
+              "astroCrown": 18,
+              "acrown": 11,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 106,
+                "text": "- [x] Review links, terminology, status classifications, and non-claims."
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Completed/2026-10-10-Strong-RSI-Collective-Protective-Intelligence.md",
@@ -5330,7 +5489,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Completed/2026-10-10-Strong-RSI-Collective-Protective-Intelligence.md",
+            "blob_sha": "3000e1bba1e04e72c0394023df29ac3799dcc5c2",
+            "size_bytes": 6790,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 6780,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 19,
+              "astroCrown": 10,
+              "acrown": 12,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 18,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Completed/2026-10-11-Brand-Identifier-Notice.md",
@@ -5346,7 +5532,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Completed/2026-10-11-Brand-Identifier-Notice.md",
+            "blob_sha": "34dc6bf65b88e8c1b75aa084792c82fa33052ff6",
+            "size_bytes": 2267,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 2263,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 5,
+              "acrown": 2,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Completed/2026-10-11-Context-Packing-Benchmark-Workload.md",
@@ -5362,7 +5575,43 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Completed/2026-10-11-Context-Packing-Benchmark-Workload.md",
+            "blob_sha": "e67c8849b3c062bba8aec5061642d521e7d0e8e6",
+            "size_bytes": 6851,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 6847,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 11,
+              "astroCrown": 10,
+              "acrown": 11,
+              "hsiAn": 0,
+              "haan": 2,
+              "superIntelligence": 0,
+              "rsi": 16,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 11,
+                "text": "**Canonical mission:** https://github.com/ACROWN-System/NOVA/blob/main/NOVA/HAAN-FOUNDATIONAL-MISSION-AND-COLLECTIVE-PRESERVATION.md  "
+              },
+              {
+                "line": 47,
+                "text": "- https://github.com/ACROWN-System/NOVA/blob/main/NOVA/HAAN-FOUNDATIONAL-MISSION-AND-COLLECTIVE-PRESERVATION.md"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Completed/2026-10-11-HAAN-Foundational-Mission-Integration.md",
