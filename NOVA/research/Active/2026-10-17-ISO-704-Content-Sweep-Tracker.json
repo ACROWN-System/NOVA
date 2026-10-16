@@ -6773,7 +6773,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/external-review/README.md",
+            "blob_sha": "ac4c4405172facee10736537cd9d6a24f56970d6",
+            "size_bytes": 19266,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 19232,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 2,
+              "astroCrown": 9,
+              "acrown": 7,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 14,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/audit/external-review/tests/test_pipeline.py",
@@ -6789,7 +6816,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/external-review/tests/test_pipeline.py",
+            "blob_sha": "fbfeb6e8aae7221756f4a361d8989814d6f73ce8",
+            "size_bytes": 6334,
+            "extension": ".py",
+            "source_ref": "main",
+            "content_chars": 6334,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/audit/FACT-OBSERVATION-AND-EVIDENCE-GOVERNANCE.md",
@@ -6805,7 +6859,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/FACT-OBSERVATION-AND-EVIDENCE-GOVERNANCE.md",
+            "blob_sha": "4726c0a0ed4c626ba7f522550cda1a58953b1d55",
+            "size_bytes": 14919,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 14879,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 1,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 1,
+              "compliance": 1,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 130,
+                "text": "This document establishes a proposed documentation and engineering governance convention. It does not certify compliance, establish ownership of any model or artifact, authorize an otherwise restricted use, or replace le"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/audit/PUBLIC-CLAIMS-AND-LEGAL-COMMUNICATIONS.md",
@@ -6821,7 +6907,47 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/PUBLIC-CLAIMS-AND-LEGAL-COMMUNICATIONS.md",
+            "blob_sha": "7bc015ef84e202940356943b17af428b99fd5841",
+            "size_bytes": 20466,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 20384,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 3,
+              "astroCrown": 5,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 1,
+              "compliance": 4,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 21,
+                "text": "- **LEGAL ASSESSMENT:** interpretation of law, rights or compliance; identify jurisdiction, scope, assumptions, review status and limits. Do not describe an internal view as a court ruling or formal legal opinion."
+              },
+              {
+                "line": 39,
+                "text": "Do not use statements such as “fully legally compliant,” “copyright-free,” “patent-free,” “100% open source,” “commercially cleared,” “zero risk,” “secure,” “best,” “fully autonomous,” “unlimited free GPU,” or “productio"
+              },
+              {
+                "line": 43,
+                "text": "- A successful hosted API call proves only the observed interaction; it does not establish a sustainable quota, independent GPU execution, commercial-use rights, transparency support, general quality, or compliance."
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/audit/README.md",
@@ -6837,7 +6963,43 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/README.md",
+            "blob_sha": "973c70d6a894d9dc9a8eca1e0928f7d2c9fa44a9",
+            "size_bytes": 2211,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 2201,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 1,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 1,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 8,
+                "text": "- `tests/` — reusable verification/test definitions."
+              },
+              {
+                "line": 29,
+                "text": "Use [Public Claims and Legal Communications](PUBLIC-CLAIMS-AND-LEGAL-COMMUNICATIONS.md) before publishing material capability, quality, performance, capacity, pricing, rights, compliance, marketing, comparative or compet"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/audit/records/AUDIT-2026.09.20-001.md",
@@ -6853,7 +7015,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/records/AUDIT-2026.09.20-001.md",
+            "blob_sha": "35733a415d5f7ed2dade977158bd48583d26404c",
+            "size_bytes": 4950,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 4950,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 1,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/audit/records/SECURITY-AUDIT-2026.09.20-001.md",
@@ -6869,7 +7058,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/records/SECURITY-AUDIT-2026.09.20-001.md",
+            "blob_sha": "afe53b149d5f4b716c6fe31f3d0ca3ce33c6ca49",
+            "size_bytes": 3199,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 3197,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 1,
+              "acrown": 1,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 30,
+                "text": "| SEC-014 Logging/Evidence | PASS | Audit records and test definitions exist in `development/audit/`. |"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/audit/templates/AUDIT-RECORD.md",
@@ -6885,7 +7106,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/templates/AUDIT-RECORD.md",
+            "blob_sha": "325fb75a8bc75600b86f3727a18650837fb3c7a4",
+            "size_bytes": 708,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 708,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/audit/templates/CANDIDATE-EVALUATION.md",
