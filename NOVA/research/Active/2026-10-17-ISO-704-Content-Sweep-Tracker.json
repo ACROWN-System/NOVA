@@ -947,7 +947,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/capacity.py",
+            "blob_sha": "aea6e6f36f62b1b3862f01777f2d117b232b8da8",
+            "size_bytes": 26378,
+            "extension": ".py",
+            "source_ref": "main",
+            "content_chars": 26378,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 1,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/credential_readiness.py",
@@ -963,7 +990,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/credential_readiness.py",
+            "blob_sha": "b0c1e7489e9089d07aebb99254be7214d7848552",
+            "size_bytes": 6069,
+            "extension": ".py",
+            "source_ref": "main",
+            "content_chars": 6069,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 3,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/development_test_budget.json",
@@ -979,7 +1033,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/development_test_budget.json",
+            "blob_sha": "9fe5dbfbdb27dc54d95af83358fedfd901dd10bc",
+            "size_bytes": 2909,
+            "extension": ".json",
+            "source_ref": "main",
+            "content_chars": 2909,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 2,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/DEVELOPMENT-RESOURCE-READINESS.md",
@@ -1034,7 +1115,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/economic_policy.json",
+            "blob_sha": "0a42783f6d9da248feb1256ff349609b38553e60",
+            "size_bytes": 1357,
+            "extension": ".json",
+            "source_ref": "main",
+            "content_chars": 1357,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/economic_state.json",
@@ -1050,7 +1158,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/economic_state.json",
+            "blob_sha": "5c22065c2f7d7b0d5901261d7c843b52b1bf260f",
+            "size_bytes": 658,
+            "extension": ".json",
+            "source_ref": "main",
+            "content_chars": 658,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/economics.py",
@@ -1066,7 +1201,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/economics.py",
+            "blob_sha": "098fb18e90ddbc488407554a5a7bc38a38135b60",
+            "size_bytes": 6776,
+            "extension": ".py",
+            "source_ref": "main",
+            "content_chars": 6776,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 1,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/gpu_capacity_evidence.json",
@@ -1082,7 +1244,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/gpu_capacity_evidence.json",
+            "blob_sha": "2bdc37d79b4ed5ee84b2b4cec4289f86d7c854ee",
+            "size_bytes": 21589,
+            "extension": ".json",
+            "source_ref": "main",
+            "content_chars": 21583,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 1,
+              "astroCrown": 2,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/gpu_capacity.py",
@@ -1098,7 +1287,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/gpu_capacity.py",
+            "blob_sha": "b6a6dc8c33a9b808cc2e7e8c83fac4a24ecb4853",
+            "size_bytes": 22615,
+            "extension": ".py",
+            "source_ref": "main",
+            "content_chars": 22615,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 3,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/gpu_heartbeat.py",
