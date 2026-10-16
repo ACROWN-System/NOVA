@@ -60,7 +60,32 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": ".github/pull_request_template.md",
+            "blob_sha": "312460bbdc6bbee0b59f45416c8916043daa1f44",
+            "size_bytes": 4211,
+            "content_chars": 4209,
+            "source_tree_sha": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "terms": {
+              "nova": 4,
+              "astroCrown": 1,
+              "acrown": 2,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": ".github/workflows/astrocrown-cloudflare-image-qualification.yml",
@@ -76,7 +101,32 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": ".github/workflows/astrocrown-cloudflare-image-qualification.yml",
+            "blob_sha": "bb1acd59abd5192dd6b2e0b086bbad92273f6129",
+            "size_bytes": 5981,
+            "content_chars": 5973,
+            "source_tree_sha": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "terms": {
+              "nova": 3,
+              "astroCrown": 10,
+              "acrown": 1,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": ".github/workflows/nova_cloudflare_smoke_test.yml",
@@ -92,7 +142,32 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": ".github/workflows/nova_cloudflare_smoke_test.yml",
+            "blob_sha": "c9e3dbf5509cd4dcbebee39a4bf97382e07cb4f1",
+            "size_bytes": 5919,
+            "content_chars": 5919,
+            "source_tree_sha": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "terms": {
+              "nova": 3,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": ".github/workflows/nova_GPU_heartbeat.yml",
@@ -108,7 +183,32 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": ".github/workflows/nova_GPU_heartbeat.yml",
+            "blob_sha": "8bfd9292d823c9833a28911a191a4a793d163ca7",
+            "size_bytes": 2038,
+            "content_chars": 2038,
+            "source_tree_sha": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "terms": {
+              "nova": 20,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": ".github/workflows/nova_health_tests.yml",
@@ -124,7 +224,32 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": ".github/workflows/nova_health_tests.yml",
+            "blob_sha": "2f2fbfed66e4de0b719c000fd888cc874e3ab46c",
+            "size_bytes": 906,
+            "content_chars": 906,
+            "source_tree_sha": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "terms": {
+              "nova": 6,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": ".github/workflows/nova_heartbeat.yml",
