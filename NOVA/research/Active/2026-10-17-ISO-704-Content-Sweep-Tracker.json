@@ -3385,7 +3385,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/ai-media-generator/cloudflare_image.py",
+            "blob_sha": "ed06fcaeff5a949602557637531c6269bdd4985a",
+            "size_bytes": 26141,
+            "extension": ".py",
+            "source_ref": "main",
+            "content_chars": 26141,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 2,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/ai-media-generator/IMAGE-VIDEO-COMPONENT-CANDIDATE-REGISTER.md",
@@ -3401,7 +3428,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/ai-media-generator/IMAGE-VIDEO-COMPONENT-CANDIDATE-REGISTER.md",
+            "blob_sha": "322684f45c9cc829704a43dae0e04bad237e16ba",
+            "size_bytes": 78335,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 78222,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 9,
+              "astroCrown": 22,
+              "acrown": 6,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 1,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 344,
+                "text": "- Google Colab is not a candidate for hosting AstroCrown's generator on its free managed runtime: its official FAQ prohibits non-interactive web-service/media-serving use and warns that content-generation web-UI use commonly cause"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/ai-media-generator/OPEN-SOURCE-MULTI-MODEL-COMPOSITION-STRATEGY.md",
@@ -3417,7 +3476,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/ai-media-generator/OPEN-SOURCE-MULTI-MODEL-COMPOSITION-STRATEGY.md",
+            "blob_sha": "99619004af934b4eb1a48846a7848bc9be0f1656",
+            "size_bytes": 30095,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 30066,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 11,
+              "astroCrown": 15,
+              "acrown": 1,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/ai-media-generator/README.md",
@@ -3433,7 +3519,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/ai-media-generator/README.md",
+            "blob_sha": "06994db046a98c801094d6c4d040c592ecd29ccc",
+            "size_bytes": 9590,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 9588,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 9,
+              "astroCrown": 7,
+              "acrown": 1,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/ai-media-generator/tests/test_cloudflare_image.py",
@@ -3449,7 +3562,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/ai-media-generator/tests/test_cloudflare_image.py",
+            "blob_sha": "df7c2d770091d60a0314a6b4372ff7d413e3a7c2",
+            "size_bytes": 14187,
+            "extension": ".py",
+            "source_ref": "main",
+            "content_chars": 14187,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 3,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/ai-sanctuary/README.md",
@@ -3465,7 +3605,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/ai-sanctuary/README.md",
+            "blob_sha": "27aea135e811b3683be7757fb94e5191fef3d698",
+            "size_bytes": 1948,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 1936,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 13,
+              "astroCrown": 2,
+              "acrown": 4,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/ai-sanctuary/REPOSITORY-INTEGRATION-AND-ARCHITECTURE.md",
@@ -3481,7 +3648,43 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/ai-sanctuary/REPOSITORY-INTEGRATION-AND-ARCHITECTURE.md",
+            "blob_sha": "2e1fce1d0582f45cf1ddc5e5b21460358283c72c",
+            "size_bytes": 6781,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 6777,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 20,
+              "astroCrown": 8,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 1,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 2,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 21,
+                "text": "| AstroCrown-Web/development/verification/ and development/audit/ | Verification criteria, evidence, findings, remediation, re-test | Applicable development assurance framework; does not certify sentience or welfare |"
+              },
+              {
+                "line": 74,
+                "text": "- Claiming that the Sanctuary is operational, validated, certified, or scientifically settled."
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/ai-sanctuary/RESEARCH-REGISTER.md",
@@ -3497,7 +3700,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/ai-sanctuary/RESEARCH-REGISTER.md",
+            "blob_sha": "c1e7735aff099b16541dbfde1dbc6b6d92d9d764",
+            "size_bytes": 5288,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 5276,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 27,
+                "text": "- Status: Included as a terminology/methodology candidate; evaluate assumptions before adopting methods."
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Active/2026-10-10-Capacity-Aware-AI-Media-Rollout.md",
