@@ -11202,7 +11202,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/verification/15-GAP-ANALYSIS.md",
+            "blob_sha": "e84aa6252ba8726822ccf5e82f5af8bc4b973ff9",
+            "size_bytes": 1763,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 1763,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 19,
+                "text": "## Terminology correction"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/verification/16-INVESTIGATION-BACKLOG.md",
@@ -11218,7 +11250,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/verification/16-INVESTIGATION-BACKLOG.md",
+            "blob_sha": "a97a04c6f37b2ae0f6e53e17b2dd043234aff343",
+            "size_bytes": 2126,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 2116,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 2,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 1,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 9,
+                "text": "- current WazirX listing procedure and legal/compliance status;"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/verification/17-US-FEDERAL-SI-TERMINOLOGY-AND-AUDIT-CONTEXT.md",
@@ -11234,7 +11298,47 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/verification/17-US-FEDERAL-SI-TERMINOLOGY-AND-AUDIT-CONTEXT.md",
+            "blob_sha": "9c2a3f16ece7190ed91d317471d61a780be98d6b",
+            "size_bytes": 3793,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 3792,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 5,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 9,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 4,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 1,
+                "text": "# U.S. Federal Super Intelligence (SI) Terminology and Audit Context"
+              },
+              {
+                "line": 7,
+                "text": "Primary source: White House Executive Order, \"Inaugurating the Era of Super Intelligence,\" September 29, 2026."
+              },
+              {
+                "line": 11,
+                "text": "The Executive Order directs executive departments and agencies, to the maximum extent permitted by law, to use the terms **\"Super Intelligence\"** and **\"SI\"** in place of **\"Artificial Intelligence\"** and **\"AI\"** in off"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/verification/assessments/README.md",
@@ -11250,7 +11354,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/verification/assessments/README.md",
+            "blob_sha": "3e0fbc2f4929152a00cdec3779bc32bbaaba16f3",
+            "size_bytes": 493,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 493,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 4,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 1,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 13,
+                "text": "Do not turn an assessment into a claim that an external authority has certified, approved, listed, reviewed or endorsed AstroCrown unless that external outcome actually occurred and is evidenced."
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/verification/benchmarks/README.md",
@@ -11266,7 +11402,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/verification/benchmarks/README.md",
+            "blob_sha": "c804efe018b3c7c5550ecbcd15207ca4ccf556a0",
+            "size_bytes": 474,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 474,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/verification/evidence/extracts/README.md",
@@ -11282,7 +11445,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/verification/evidence/extracts/README.md",
+            "blob_sha": "da02ddb68de5e6e92c462caa6707c65fdc3428b2",
+            "size_bytes": 231,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 231,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/verification/evidence/README.md",
@@ -11298,7 +11488,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/verification/evidence/README.md",
+            "blob_sha": "7605cbbc73a9008620c11b2cd27a773f6e65d389",
+            "size_bytes": 585,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 579,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/verification/evidence/snapshots/README.md",
@@ -11314,7 +11531,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/verification/evidence/snapshots/README.md",
+            "blob_sha": "c22cf38def0b63b54c9caca5f6f31b5ca4a987dd",
+            "size_bytes": 219,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 219,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/verification/evidence/sources/EXTERNAL-SOURCE-INDEX-2026-10-02.md",
