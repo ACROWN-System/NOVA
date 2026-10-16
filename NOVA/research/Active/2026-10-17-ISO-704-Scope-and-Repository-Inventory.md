@@ -5,7 +5,7 @@
 **Snapshot date:** 2026-10-17  
 **Status:** PROPOSED SCOPE / INITIAL PATH INVENTORY — human approval and detailed content review pending  
 **Related dossier:** [ISO 704:2022 Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
-**Machine-readable evidence:** [Active Path Inventory JSON](2026-10-17-ISO-704-Active-Path-Inventory.json)
+**Machine-readable evidence:** [Active Path Inventory JSON](2026-10-17-ISO-704-Active-Path-Inventory.json); [File-by-File Content Sweep Tracker](2026-10-17-ISO-704-Content-Sweep-Tracker.json)
 
 ## 1. Proposed audit scope
 
@@ -54,7 +54,8 @@ Languages: English is the initial authored language in the current draft framewo
 2. Confirm whether any additional repositories, deployments, published websites, social/public communication channels or externally maintained term systems are within the target scope; the six repositories above are the currently accessible organization inventory, not automatic proof that every external use is covered.
 3. Decide and record the language/locale boundary for the first assessment.
 4. Classify each active path in the machine-readable inventory and perform the full content sweep within the approved scope.
-5. Refresh the path inventory at the frozen assessment commit before completing the audit package.
+5. Use the [file-by-file content sweep tracker](2026-10-17-ISO-704-Content-Sweep-Tracker.json) to record content reviews. Its extension/path hints are not audit findings; inspect actual content and preserve objective evidence.
+6. Refresh the path inventory at the frozen assessment commit before completing the audit package.
 
 ## 6. Current disposition
 
