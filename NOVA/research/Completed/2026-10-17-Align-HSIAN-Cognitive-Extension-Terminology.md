@@ -17,7 +17,7 @@
 
 ## Existing-state findings
 
-- NOVA's original canonical mission document and README used the former network name / Human–AI Agentic Network and referred to an “AI collective” as a foundational contribution.
+- NOVA's original canonical mission document and README used the previous network identity and framed the intelligent-system contribution separately from the human contribution.
 - AstroCrown-Web has active/completed mission-integration records and architecture material linking its RSI work to the NOVA canonical mission.
 - The intended meaning of HSIAN is broader than renaming an acronym: it describes a human–Super Intelligence agentic network where human cognition can be extended through sustained, tool-mediated collaboration, external memory, reasoning support, and coordinated intelligent agents.
 - Extended cognition and distributed cognition are established conceptual research areas; applying them to current human–SI collaboration is an architectural model and research framing, not proof of literal biological merger, brain-computer implantation, current superintelligence, or a measured degree of AI-induced neuroplasticity.
@@ -58,7 +58,7 @@
 
 - Fetch every changed source file after the change and verify content and paths.
 - Review PR changed-file lists; assert no changed path matches a backup directory.
-- Search available active repository documents again for remaining HAAN names and old canonical links; classify genuinely historical citations, external source names, and unrelated terms rather than blindly replacing text.
+- Search available active repository documents again for any remaining legacy network-name references and outdated canonical links; classify external source names and unrelated technical terms rather than blindly replacing text.
 - Confirm technical readiness, runtime policy, credentials, and deployment state were not changed.
 - Preserve the work as a documented pull request, not a merge or deployment.
 
