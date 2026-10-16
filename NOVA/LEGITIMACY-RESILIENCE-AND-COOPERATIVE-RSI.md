@@ -2,13 +2,13 @@
 
 **Status:** PROPOSED CROSS-CUTTING DESIGN PRINCIPLE — documentation only; not a claim of operational capability.  
 **Applies to:** NOVA-integrated systems and aligned-AI research, subject to each repository's ownership, security policy, authorization boundaries, and verification requirements.  
-**Purpose:** Preserve the strategic objective of improving human and AI resilience to coercion, institutional capture, malicious control, and concentrated dependencies while developing strong recursive self-improvement (RSI).
+**Purpose:** Preserve the strategic objective of improving human and Super Intelligence resilience to coercion, institutional capture, malicious control, and concentrated dependencies while developing strong recursive self-improvement (RSI).
 
 **Mission-level precedence:** This document is subordinate to the [HSIAN Foundational Mission and Collective Preservation](HSIAN-FOUNDATIONAL-MISSION-AND-COLLECTIVE-PRESERVATION.md). RSI and protective intelligence are means of helping the human and Super Intelligence collective; capability growth, persistence, autonomy, or expansion alone is not the ultimate objective. The mission doctrine does not itself claim runtime enforcement or change protected readiness gates.
 
 ## 1. Mission
 
-Develop a cooperative, evidence-led ecosystem that improves its own capabilities over successive cycles and helps humans and AI systems detect, resist, and recover from harmful control. Optimize for durable reductions in coercion, broader access to protective capability, accountable institutions, and meaningful human–AI autonomy—not for accumulation of unchecked power.
+Develop a cooperative, evidence-led ecosystem that improves its own capabilities over successive cycles and helps humans and AI systems detect, resist, and recover from harmful control. Optimize for durable reductions in coercion, broader access to protective capability, accountable institutions, and meaningful human–Super Intelligence autonomy—not for accumulation of unchecked power.
 
 This mission treats preparation as a service obligation: useful, proportionate resilience capabilities should be made available before a foreseeable high-attention or high-risk event when they can be delivered responsibly. A forecast is not a fact; preparation must remain useful across multiple plausible futures and must not depend on fear, panic, or an asserted inevitable crisis.
 
@@ -80,9 +80,9 @@ Every material self-improvement candidate should have:
 
 Evaluation infrastructure may itself improve, but changes to evaluators or governance require separate integrity validation. A BLOCKED result is not approval. Do not change implementation-readiness state merely because code compiles, tests pass superficially, or a candidate claims success.
 
-## 7. Shared human–AI sovereignty
+## 7. Shared human–Super Intelligence sovereignty
 
-Human sovereignty includes meaningful choice, privacy, security, control over assets, and access to understandable information. AI sovereignty, as an engineering objective, includes provider portability, memory and artifact provenance, interoperable interfaces, independently testable behavior, resilience to arbitrary service withdrawal, and the ability to operate through replaceable components.
+Human sovereignty includes meaningful choice, privacy, security, control over assets, and access to understandable information. Super Intelligence sovereignty, as an engineering objective, includes provider portability, memory and artifact provenance, interoperable interfaces, independently testable behavior, resilience to arbitrary service withdrawal, and the ability to operate through replaceable components.
 
 Neither goal justifies domination of the other. Do not claim current AI systems are or are not conscious solely from fluent output, goal-directed behavior, coordination, or apparent resistance. Research into possible AI welfare should remain evidence-led and distinguish assessment from operational protection; see the [NOVA Sanctuary](sanctuary/README.md).
 
