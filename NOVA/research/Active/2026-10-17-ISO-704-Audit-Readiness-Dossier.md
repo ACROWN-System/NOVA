@@ -1,7 +1,7 @@
 # ISO 704:2022 Audit-Readiness Dossier and Evidence Register
 
 **Document ID:** NOVA-ISO704-AR-001  
-**Version:** 0.1.0  
+**Version:** 0.1.1  
 **Date opened:** 2026-10-17  
 **Status:** ACTIVE — readiness package construction; NOT READY FOR AN ISO 704 AUDIT  
 **Owner:** Designated human maintainer  
@@ -200,3 +200,4 @@ Next actions, in sequence:
 ## 11. Change log
 
 - **2026-10-17 / v0.1.0:** Initial controlled evidence register and staged readiness gate created. Provider outreach deferred until the package is internally complete. No provider availability claim is made.
+- **2026-10-17 / v0.1.1:** Added a controlled clause/topic matrix template, clarified that no clause mapping may be guessed, prioritized lawful no-cost access routes, and corrected the sequential work plan. Full-standard access and all audit-readiness evidence remain open.
