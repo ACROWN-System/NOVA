@@ -5,7 +5,7 @@
 **Snapshot date:** 2026-10-17  
 **Status:** PROPOSED SCOPE / INITIAL PATH INVENTORY — human approval and detailed content review pending  
 **Related dossier:** [ISO 704:2022 Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
-**Machine-readable evidence:** [Active Path Inventory JSON](2026-10-17-ISO-704-Active-Path-Inventory.json); [File-by-File Content Sweep Tracker](2026-10-17-ISO-704-Content-Sweep-Tracker.json)
+**Machine-readable evidence:** [Active Path Inventory JSON](2026-10-17-ISO-704-Active-Path-Inventory.json); [File-by-File Content Sweep Tracker](2026-10-17-ISO-704-Content-Sweep-Tracker.json); [Initial Sweep Findings](2026-10-17-ISO-704-Initial-Sweep-Findings.md)
 
 ## 1. Proposed audit scope
 
@@ -40,7 +40,7 @@ The following default-branch tree snapshots were retrieved from GitHub's Git dat
 
 ## 4. Coverage limits and exclusions to resolve
 
-This is only a snapshot of active file paths at the recorded Git tree SHAs. It does **not** establish that all text has been read, that all terms have been located, or that the repositories' terminology is consistent.
+This is only a snapshot of active file paths at the recorded Git tree SHAs. The first lexical screen has fetched 15 selected files and recorded candidate findings, including the unresolved active HAAN/HSIAN naming transition. It does **not** establish that all text has been read, that all terms have been located, or that the repositories' terminology is consistent. See the [initial sweep findings](2026-10-17-ISO-704-Initial-Sweep-Findings.md).
 
 The inventory includes all non-archive blobs regardless of file extension so that file types are not excluded merely because their content format is unfamiliar. During the audit, classify each file as applicable text/content, non-text asset, generated artefact, secret-bearing/restricted material or justified exclusion; record the reason and reviewer. Do not treat a file as non-applicable solely from its extension.
 
