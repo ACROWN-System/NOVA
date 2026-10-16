@@ -182,13 +182,12 @@ The governance standard, initial register, and AstroCrown-Web application guide 
 Next actions, in sequence:
 
 1. Freeze the practical assessment scope and language boundaries (AR-E01).
-2. Resolve lawful access to the complete edition before populating the [matrix template](2026-10-17-ISO-704-Clause-Evidence-Matrix.md); no clause-level mapping is valid before that prerequisite.
-3. Review and approve the internal terminology procedure and register-entry controls.
 2. Review and approve the internal terminology procedure and register-entry controls.
-3. Resolve lawful access to the complete ISO 704:2022 edition without assuming or making any purchase.
-4. Build the clause/topic matrix only from that controlled edition.
+3. Resolve lawful access to the complete ISO 704:2022 edition through a separately authorized route; no purchase is authorized by this dossier.
+4. Populate the [matrix template](2026-10-17-ISO-704-Clause-Evidence-Matrix.md) only from that controlled edition; no clause-level mapping is valid before that prerequisite.
 5. Produce, inspect and test each remaining evidence item through documented changes and reviews.
-6. Keep certification-provider discovery deferred until the readiness gate is fully passed.
+6. Complete internal audit, corrective-action closure/retesting, management review and the final package manifest.
+7. Keep certification-provider discovery deferred until the readiness gate is fully passed.
 
 ## 10. Impact Analysis
 
