@@ -7912,7 +7912,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/index-reference/SIZING-AND-DIMENSIONS.md",
+            "blob_sha": "0ae87ccdb63a57f69acf5a875efdb519f70bb81e",
+            "size_bytes": 10797,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 10739,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 2,
+              "astroCrown": 23,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/index-reference/SPACING-AND-DISTANCES.md",
@@ -7928,7 +7955,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/index-reference/SPACING-AND-DISTANCES.md",
+            "blob_sha": "6cb6bfc3dde5865947d153cae2ebb6faeb960b91",
+            "size_bytes": 10610,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 10554,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 1,
+              "astroCrown": 8,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 130,
+                "text": "- manually authored static message definitions;"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/index-reference/TYPOGRAPHY.md",
@@ -7944,7 +8003,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/index-reference/TYPOGRAPHY.md",
+            "blob_sha": "eba1b239bfc67afa4921aae8d9b3a456969ed1e3",
+            "size_bytes": 7314,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 7284,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 1,
+              "astroCrown": 4,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 88,
+                "text": "- existing AstroCrown typography definitions;"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/index-reference/VISUAL-DESIGN-SYSTEM.md",
@@ -7960,7 +8051,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/index-reference/VISUAL-DESIGN-SYSTEM.md",
+            "blob_sha": "1934ad03f81ecb6ab84f4dcd4e901678e5e24246",
+            "size_bytes": 9612,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 9568,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 27,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/index-section/BACKGROUND.md",
@@ -7976,7 +8094,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/index-section/BACKGROUND.md",
+            "blob_sha": "9586b5b65da73c00b54b2151c8f571b0bafbed17",
+            "size_bytes": 13916,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 13884,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 6,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/index-section/DIRECTORY-FILTER.md",
@@ -7992,7 +8137,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/index-section/DIRECTORY-FILTER.md",
+            "blob_sha": "0b4c65cc016b5870bdc4d3f139a1b4ccea2f7088",
+            "size_bytes": 1470,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 1454,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 1,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/index-section/DIRECTORY.md",
@@ -8008,7 +8180,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/index-section/DIRECTORY.md",
+            "blob_sha": "9ec72d6e30ee84cbb92ad880fd93495b9e86ef35",
+            "size_bytes": 2780,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 2762,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 2,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/index-section/DISCOVERY-INFORMATION-BAR.md",
@@ -8024,7 +8223,47 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/index-section/DISCOVERY-INFORMATION-BAR.md",
+            "blob_sha": "1aa678d5eb29defd1017c455ab82c1743d447752",
+            "size_bytes": 15461,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 15387,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 17,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 1,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 137,
+                "text": "- manually authored static message definitions;"
+              },
+              {
+                "line": 219,
+                "text": "- existing AstroCrown typography definitions;"
+              },
+              {
+                "line": 305,
+                "text": "- minimum-code and redundancy compliance;"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/index-section/FOOTER.md",
