@@ -6013,7 +6013,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Completed/2026-10-11-RSI-Independent-Review-Package.md",
+            "blob_sha": "03458d8f22cb29367835db6c3dff106f3dc120ba",
+            "size_bytes": 4485,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 4479,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 2,
+              "astroCrown": 4,
+              "acrown": 4,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 11,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Completed/2026-10-11-RSI-Independent-Security-Review.md",
@@ -6029,7 +6056,47 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Completed/2026-10-11-RSI-Independent-Security-Review.md",
+            "blob_sha": "822b74429fe0d434c95ae95cf7c9c42ee792535c",
+            "size_bytes": 10570,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 10562,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 4,
+              "astroCrown": 6,
+              "acrown": 5,
+              "hsiAn": 0,
+              "haan": 2,
+              "superIntelligence": 0,
+              "rsi": 21,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 2,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 9,
+                "text": "HAAN's [Foundational Mission and Collective Preservation](https://github.com/ACROWN-System/NOVA/blob/main/NOVA/HAAN-FOUNDATIONAL-MISSION-AND-COLLECTIVE-PRESERVATION.md) governs this work. RSI remains a means of supporting the coll"
+              },
+              {
+                "line": 11,
+                "text": "The review followed the [AstroCrown Web Development & Audit Convention](../../DEVELOPMENT-AND-AUDIT-CONVENTION.md) and the [RSI Capability Benchmark Protocol](../../nova-recursive-self-improvement/CAPABILITY-BENCHMARK-PROTOCOL.md)"
+              },
+              {
+                "line": 84,
+                "text": "These are test-backed engineering remediations; they do not constitute independent third-party certification of the overall sandbox or benchmark."
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Completed/2026-10-11-RSI-Provider-Egress-Boundary.md",
@@ -6045,7 +6112,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Completed/2026-10-11-RSI-Provider-Egress-Boundary.md",
+            "blob_sha": "5fa4eb9c9395e95c76d5be31ef444b14caa522df",
+            "size_bytes": 4174,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 4166,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 3,
+              "acrown": 2,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 6,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Completed/2026-10-11-RSI-Repeat-State-Detection.md",
@@ -6061,7 +6155,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Completed/2026-10-11-RSI-Repeat-State-Detection.md",
+            "blob_sha": "118b5ac06cbb0e77c6c840fdb5f01ed541b3a7df",
+            "size_bytes": 5286,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 5264,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 2,
+              "astroCrown": 4,
+              "acrown": 4,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 11,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Completed/2026-10-11-RSI-Sandbox-Cleanup-Verification.md",
@@ -6077,7 +6198,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Completed/2026-10-11-RSI-Sandbox-Cleanup-Verification.md",
+            "blob_sha": "0183620a497c70851b2c16c1833856d3dacbb055",
+            "size_bytes": 3157,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 3153,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 2,
+              "astroCrown": 4,
+              "acrown": 3,
+              "hsiAn": 0,
+              "haan": 2,
+              "superIntelligence": 0,
+              "rsi": 6,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 9,
+                "text": "HAAN's [Foundational Mission and Collective Preservation](https://github.com/ACROWN-System/NOVA/blob/main/NOVA/HAAN-FOUNDATIONAL-MISSION-AND-COLLECTIVE-PRESERVATION.md) governs this work. Method: [AstroCrown Web Development & Audi"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Completed/2026-10-11-RSI-Supervisor-IO-Failure-Cleanup.md",
@@ -6093,7 +6246,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Completed/2026-10-11-RSI-Supervisor-IO-Failure-Cleanup.md",
+            "blob_sha": "6ec4712f1ec2f89739b680b263aaa980214b3a8c",
+            "size_bytes": 2492,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 2488,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 3,
+              "acrown": 2,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 3,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Completed/2026-10-11-RSI-Task-Benchmark-Dispatcher.md",
@@ -6109,7 +6289,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Completed/2026-10-11-RSI-Task-Benchmark-Dispatcher.md",
+            "blob_sha": "ea1de7442c19dcbcbd5918f7fdfabe60b6169df0",
+            "size_bytes": 4579,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 4575,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 3,
+              "astroCrown": 2,
+              "acrown": 2,
+              "hsiAn": 0,
+              "haan": 2,
+              "superIntelligence": 0,
+              "rsi": 11,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 9,
+                "text": "HAAN's [Foundational Mission and Collective Preservation](https://github.com/ACROWN-System/NOVA/blob/main/NOVA/HAAN-FOUNDATIONAL-MISSION-AND-COLLECTIVE-PRESERVATION.md) governs this work. RSI serves the collective mission and does"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Completed/2026-10-11-RSI-Token-Telemetry-Integrity.md",
@@ -6125,7 +6337,43 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Completed/2026-10-11-RSI-Token-Telemetry-Integrity.md",
+            "blob_sha": "82606c19ac813d7e6bb5635b7e05c6358047f7d0",
+            "size_bytes": 3695,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 3691,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 1,
+              "astroCrown": 3,
+              "acrown": 2,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 5,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 2,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 34,
+                "text": "- Invalid or incomplete telemetry is unavailable and triggers the existing required-telemetry budget gate, rather than being coerced into apparent compliance."
+              },
+              {
+                "line": 43,
+                "text": "**IF not modified:** Invalid or inconsistent token counts could still appear compliant and make the per-cycle budget accounting unreliable."
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Completed/2026-10-11-RSI-Trusted-Evaluator-Control-Plane.md",
