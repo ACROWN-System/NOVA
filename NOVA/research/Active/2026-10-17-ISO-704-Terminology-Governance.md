@@ -95,3 +95,12 @@ Authoritative public standard metadata:
 - Lexically screened 15 active files across the six-repository main-branch baseline and recorded term counts/selected excerpts in the [content sweep tracker](2026-10-17-ISO-704-Content-Sweep-Tracker.json).
 - Created [the initial findings log](2026-10-17-ISO-704-Initial-Sweep-Findings.md). A known active HAAN naming transition remains pending dependent PR #122 and PR #134; an oversized active NOVA README still requires segmented review; policy text supporting claim/evidence controls needs operational testing.
 - The 15-file lexical scan is not semantic content review, and all 318 file records still require substantive review/classification. Overall readiness remains **NOT READY FOR AN ISO 704 AUDIT**.
+
+
+## Execution update — 2026-10-17 — complete lexical screen baseline
+
+- Completed the selected-token lexical scan for **318/318 active file paths** across six repository main-branch snapshots. All paths have a Git blob fetch record; no fetch failures remain.
+- The scan stored counts/excerpts for selected patterns in the [content sweep tracker](2026-10-17-ISO-704-Content-Sweep-Tracker.json). High-level counts are summarized in the [readiness dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md).
+- **This is not a completed semantic review:** all 318 tracker rows remain `NOT_REVIEWED` / `NOT_ASSESSED`. The large `NOVA/README.md` also needs section-level interpretation despite its successful lexical scan.
+- Known active HAAN/HSIAN transition still awaits dependent PR #122 and #134; no mass-edit was made. All 843 backup/archive paths/files counted in the AstroCrown-Web baseline remain excluded from the active inventory and immutable.
+- Current overall disposition remains **NOT READY FOR AN ISO 704 AUDIT**. The complete standard baseline, scope approval, full clause/topic evidence matrix, semantic review, operational pilot evidence, internal audit, corrective actions, management GO decision remain unfinished. Provider search/contact stays deferred.
