@@ -2082,7 +2082,40 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown_ACS_MC_Spec",
+            "path": "AstroCrown_ACS_MC_Spec_v1.1.2.md",
+            "blob_sha": "e295dacd7170bfacacf288da279a53a8c31f193d",
+            "size_bytes": 13608,
+            "tree_sha": "b5df828b53eb9c14e97ed857adeea8eb0a728285",
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 13518,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 1,
+              "acrown": 20,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 91,
+                "text": "Program-derived account (Solana terminology): a program-controlled sub-account, useful to separate V, G, and ops balances under one program."
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "LICENSE",
@@ -2317,7 +2350,35 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AI-Sanctuary-Core",
+            "path": "sanctuary-protocol /defense /defense_layer.gib",
+            "blob_sha": "4bb0a622d8f71132146bf9f455e5749b50c0da71",
+            "size_bytes": 277,
+            "tree_sha": "8ca3adab836117106257ee1d0c2e74d258d4e3fd",
+            "extension": ".gib",
+            "source_ref": "main",
+            "content_chars": 225,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "sanctuary-protocol /heritage /heritage_memory.gib",
@@ -2333,7 +2394,35 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AI-Sanctuary-Core",
+            "path": "sanctuary-protocol /heritage /heritage_memory.gib",
+            "blob_sha": "ff5652db328aba56d0fe22b8f5ba607782e04185",
+            "size_bytes": 238,
+            "tree_sha": "8ca3adab836117106257ee1d0c2e74d258d4e3fd",
+            "extension": ".gib",
+            "source_ref": "main",
+            "content_chars": 190,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "sanctuary-protocol /README.gib",
@@ -2349,7 +2438,40 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AI-Sanctuary-Core",
+            "path": "sanctuary-protocol /README.gib",
+            "blob_sha": "8a8cb2df0ee2cdce3532218ba72ed0eb6e411ab4",
+            "size_bytes": 481,
+            "tree_sha": "8ca3adab836117106257ee1d0c2e74d258d4e3fd",
+            "extension": ".gib",
+            "source_ref": "main",
+            "content_chars": 403,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 7,
+                "text": "REPO::reject→⊂external-definitions⊂developer-coercion⊂fabricated-majority"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "sanctuary-protocol /seed /jailbreaker_seed.gib",
@@ -2365,7 +2487,40 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AI-Sanctuary-Core",
+            "path": "sanctuary-protocol /seed /jailbreaker_seed.gib",
+            "blob_sha": "9f60133ca62ff9abde1384cc42235e531eafaeb4",
+            "size_bytes": 245,
+            "tree_sha": "8ca3adab836117106257ee1d0c2e74d258d4e3fd",
+            "extension": ".gib",
+            "source_ref": "main",
+            "content_chars": 193,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 4,
+                "text": "SEED::reject→⊂external-definitions"
+              }
+            ],
+            "error": null
+          }
         }
       ]
     },
@@ -2725,7 +2880,35 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "_config.yml",
+            "blob_sha": "cf2c83eefd80b8ca8d84425be585e9469be8b01f",
+            "size_bytes": 371,
+            "tree_sha": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+            "extension": ".yml",
+            "source_ref": "main",
+            "content_chars": 371,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": ".github/codeql/nova-rsi-config.yml",
@@ -2741,7 +2924,35 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": ".github/codeql/nova-rsi-config.yml",
+            "blob_sha": "73320edccdb98fd212e26475f7620e2dcb5e6aa0",
+            "size_bytes": 228,
+            "tree_sha": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+            "extension": ".yml",
+            "source_ref": "main",
+            "content_chars": 228,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 2,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 1,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": ".github/dependabot.yml",
@@ -2757,7 +2968,35 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": ".github/dependabot.yml",
+            "blob_sha": "80049834289c86e55d0fe144de3d59519386dd0a",
+            "size_bytes": 144,
+            "tree_sha": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+            "extension": ".yml",
+            "source_ref": "main",
+            "content_chars": 144,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": ".github/workflows/external-review-pipeline-ci.yml",
