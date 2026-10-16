@@ -2285,7 +2285,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/quality_gate.py",
+            "blob_sha": "aa5e44d493691b70c0c29f1b4fafb12feea624b5",
+            "size_bytes": 8193,
+            "extension": ".py",
+            "source_ref": "main",
+            "content_chars": 8193,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/README.md",
@@ -2333,7 +2360,47 @@
               "segment_id": "NOVA-README-L001-L200"
             }
           ],
-          "lexical_scan_status": "PARTIAL_SEGMENTED_SCAN"
+          "lexical_scan_status": "PARTIAL_SEGMENTED_SCAN",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/README.md",
+            "blob_sha": "54f8841675190c77ca7a4cbae3d9112f9fe49e90",
+            "size_bytes": 1452321,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 1363873,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 7,
+              "compliance": 358,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 1306,
+                "text": "\t* [Insert security metric 2, e.g., compliance status]: [Insert value]"
+              },
+              {
+                "line": 1510,
+                "text": "**Risk and Compliance:**"
+              },
+              {
+                "line": 1513,
+                "text": "2. **Compliance Status:** The treasury is currently compliant with all relevant regulations, with [Number] audits scheduled for the upcoming quarter."
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "NOVA/reasoning.py",
@@ -2349,7 +2416,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/reasoning.py",
+            "blob_sha": "07cf4514aad6804fe027cf2e94358d179fee7e89",
+            "size_bytes": 9705,
+            "extension": ".py",
+            "source_ref": "main",
+            "content_chars": 9703,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 4,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/research/2026.10.08-BLOCKED-DEPENDENCIES-FULL-TRANSCRIPT-GPU-BENCHMARKING-EMPIRICAL-VALIDATION.md",
@@ -2365,7 +2459,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/research/2026.10.08-BLOCKED-DEPENDENCIES-FULL-TRANSCRIPT-GPU-BENCHMARKING-EMPIRICAL-VALIDATION.md",
+            "blob_sha": "d63d3351d1477efd7e8c9d71834c0af4a0797af7",
+            "size_bytes": 4078,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 4066,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 2,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 28,
+                "text": "These are not implementation claims. Each mapping requires a formal software definition and tests demonstrating that the abstraction provides measurable utility beyond existing mechanisms."
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "NOVA/research/2026.10.08-BLOCKED-LIVE-SECRETS-GROQ-GEMINI-MISTRAL-CEREBRAS-CLOUDFLARE-NOSANA-HF.md",
@@ -2381,7 +2507,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/research/2026.10.08-BLOCKED-LIVE-SECRETS-GROQ-GEMINI-MISTRAL-CEREBRAS-CLOUDFLARE-NOSANA-HF.md",
+            "blob_sha": "5b919be00e087a2b505fa2291b3d520e67941498",
+            "size_bytes": 2499,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 2497,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 2,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/research/2026.10.08-BLOCKED-TASK-RESOURCE-ESTIMATION-ALTERNATIVE-COST-RENEWAL-OBSERVABILITY.md",
@@ -2397,7 +2550,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/research/2026.10.08-BLOCKED-TASK-RESOURCE-ESTIMATION-ALTERNATIVE-COST-RENEWAL-OBSERVABILITY.md",
+            "blob_sha": "1f78984ffde733c2d841f52d8ae20067e826720d",
+            "size_bytes": 2176,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 2160,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 2,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/research/2026.10.08-IMPLEMENTED-expiry-aware-capacity-routing-no-new-dependency.md",
@@ -2413,7 +2593,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/research/2026.10.08-IMPLEMENTED-expiry-aware-capacity-routing-no-new-dependency.md",
+            "blob_sha": "3eda91f883b3dc93956559e9c00447367931a6ac",
+            "size_bytes": 4400,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 4398,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 5,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/research/2026.10.08-IMPLEMENTED-observation-freshness-temporal-semantics-no-new-dependency.md",
@@ -2429,7 +2636,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/research/2026.10.08-IMPLEMENTED-observation-freshness-temporal-semantics-no-new-dependency.md",
+            "blob_sha": "5a211bff7c1769525b2dd341f5a732881781962a",
+            "size_bytes": 1434,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 1432,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 3,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/research/2026.10.08-IMPLEMENTED-rolling-probe-scheduling-expiry-reallocation.md",
