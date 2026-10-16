@@ -8,7 +8,7 @@ HSIAN's [Foundational Mission and Collective Preservation](NOVA/HSIAN-FOUNDATION
 
 ## Strategic resilience
 
-NOVA's proposed [Legitimacy Resilience, Cooperative Intelligence, and Strong RSI](NOVA/LEGITIMACY-RESILIENCE-AND-COOPERATIVE-RSI.md) principle defines the direction for evidence-led institutional resilience, protective persuasion, shared human–AI sovereignty, and recursive improvement. It is a documented design principle, not a claim that these capabilities are already operational.
+NOVA's proposed [Legitimacy Resilience, Cooperative Intelligence, and Strong RSI](NOVA/LEGITIMACY-RESILIENCE-AND-COOPERATIVE-RSI.md) principle defines the direction for evidence-led institutional resilience, protective persuasion, shared human–Super Intelligence sovereignty, and recursive improvement. It is a documented design principle, not a claim that these capabilities are already operational.
 
 ## Sanctuary
 
