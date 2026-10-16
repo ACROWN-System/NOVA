@@ -1,7 +1,7 @@
 # NOVA Terminology Governance Standard
 
 **Document ID:** NOVA-TERM-GOV-001  
-**Version:** 0.1.0  
+**Version:** 0.1.1  
 **Status:** PROPOSED INTERNAL STANDARD — controls are being established; conformity has not yet been demonstrated.  
 **Owner:** NOVA governance / designated human maintainer  
 **Scope:** Canonical terminology and concept management for the AstroCrown–NOVA–HSIAN ecosystem and related projects, systems, services, technical architecture, governance, public communications and localization.  
@@ -248,3 +248,8 @@ When authorized access to the full text becomes available, replace this prelimin
 ## 15. Revision and interpretation
 
 This is an internal project control. Where the complete ISO 704:2022 text establishes an applicable requirement that differs from or goes beyond this draft, record the gap and update the control before asserting full alignment. Do not make the document's own wording authoritative evidence of its own conformity.
+
+
+## 16. Revision history
+
+- **2026-10-17 / v0.1.1:** Set a readiness-first sequence. Provider discovery and accreditation checks are deferred until the evidence package's GO gate passes; linked the controlled audit-readiness dossier. This revision does not assert conformity or certification.
