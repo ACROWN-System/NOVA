@@ -10848,7 +10848,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/verification/07-VISIBILITY-REGISTRY.md",
+            "blob_sha": "08c6a5d7f24488f36483d973077e9ff234575257",
+            "size_bytes": 807,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 807,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/verification/08-CREDIBILITY-REGISTRY.md",
@@ -10864,7 +10891,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/verification/08-CREDIBILITY-REGISTRY.md",
+            "blob_sha": "838860c1b04895a82d61e9340b893b1a3aee167b",
+            "size_bytes": 789,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 789,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 1,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 15,
+                "text": "No single mechanism answers every trust question. Preserve the distinction among certification, attestation, audit, benchmark, regulatory status, listing, publication, reputation and community evidence."
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/verification/09-ADOPTION-REGISTRY.md",
@@ -10880,7 +10939,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/verification/09-ADOPTION-REGISTRY.md",
+            "blob_sha": "2be563e078728e6b2c9d9b45007e0f43fcff10d4",
+            "size_bytes": 851,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 851,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/verification/10-NOVA-REPLICATION-REGISTRY.md",
@@ -10896,7 +10982,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/verification/10-NOVA-REPLICATION-REGISTRY.md",
+            "blob_sha": "245001b081ae3c925e6a95bc0f9f35ce740cf15f",
+            "size_bytes": 2341,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 2341,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 5,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 1,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 5,
+                "text": "| Standards mapping (NIST/OWASP/WCAG/CIS) | FULL | control matrices, checklists, evidence collection, coverage analysis | external certification/accreditation |"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/verification/11-COMPETITOR-VERIFICATION-BENCHMARK.md",
@@ -10912,7 +11030,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/verification/11-COMPETITOR-VERIFICATION-BENCHMARK.md",
+            "blob_sha": "d2d45176df0df5d548285919802145441316db35",
+            "size_bytes": 1910,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 1906,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 1,
+              "acrown": 1,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/verification/12-VERIFICATION-ARCHITECTURE.md",
@@ -10928,7 +11073,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/verification/12-VERIFICATION-ARCHITECTURE.md",
+            "blob_sha": "e73392460b71cf61b3d00f5d47baab5ef1e06ee9",
+            "size_bytes": 2074,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 2054,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 1,
+              "astroCrown": 2,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/verification/13-VERIFICATION-TRACKING-SYSTEM.md",
@@ -10944,7 +11116,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/verification/13-VERIFICATION-TRACKING-SYSTEM.md",
+            "blob_sha": "39002d284b6c5e6c662c2208f2fc41fc52d8e5e0",
+            "size_bytes": 1875,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 1847,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 2,
+              "astroCrown": 2,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/verification/14-STRATEGIC-PRIORITIZATION.md",
@@ -10960,7 +11159,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/verification/14-STRATEGIC-PRIORITIZATION.md",
+            "blob_sha": "9d734a446f4dcaa6cc6b0065e9323bc763eac60f",
+            "size_bytes": 3165,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 3165,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/verification/15-GAP-ANALYSIS.md",
