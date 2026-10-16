@@ -37,6 +37,8 @@ ISO does not itself certify or issue certificates. Certification and accreditati
 - ISO 704:2022 record: https://www.iso.org/standard/79077.html
 - ISO 1087:2019 terminology-work vocabulary reference: https://www.iso.org/standard/62330.html
 - ISO explanation of certification/accreditation: https://www.iso.org/certification.html
+- Bureau of Indian Standards (BIS) Know Your Standard: https://www.bis.gov.in/know-your-standard/?lang=en (potential access lead only; specific ISO 704:2022 availability is unverified)
+- BIS standards portal instructions: https://standards.bis.gov.in/website/how-to-use (potential access lead only; not proof of free access to this ISO edition)
 
 ## 3. Scope to freeze before detailed assessment
 
@@ -73,7 +75,7 @@ Status meanings: **EXISTS—DRAFT** = an artifact exists but has not been accept
 | Evidence ID | Evidence package component | What acceptable evidence must demonstrate | Current status | Next action |
 |---|---|---|---|---|
 | AR-E01 | Scope and boundaries | Approved scope statement; included domains, repos/paths, activity, languages, period, exclusions and rationale | NOT STARTED | Freeze and approve scope before claiming coverage |
-| AR-E02 | Controlled standard baseline | Lawful access to the complete ISO 704:2022 edition; edition/version, source, access/licence record, controlled-copy identifier | BLOCKED | Determine lawful access route; no purchase or paid subscription without separate authorization |
+| AR-E02 | Controlled standard baseline | Lawful access to the complete ISO 704:2022 edition; edition/version, source, access/licence record, controlled-copy identifier | BLOCKED | Investigate lawful no-cost routes first (BIS standards/library services, an existing institutional/consortium library or an already licensed copy); verify the exact edition and permitted use. These routes are leads, not confirmed availability. No purchase or paid subscription without separate authorization |
 | AR-E03 | Clause/topic-to-evidence matrix | Every applicable section/clause captured from the controlled edition; statement force, project interpretation, applicability, control, evidence, result, gaps and rationale | BLOCKED — template available | Use the [controlled matrix template](2026-10-17-ISO-704-Clause-Evidence-Matrix.md) only after AR-E02; no guessed or invented clause mappings |
 | AR-E04 | Terminology governance procedure | Approved roles, workflow, criteria, decision gates, status lifecycle and audit controls | EXISTS—DRAFT | Review, approve and establish an effective date |
 | AR-E05 | Canonical terminology register | Versioned concept entries with stable IDs, domain/context, preferred designations, definitions, characteristics, relations, variants, sources, owner, status and history where applicable | EXISTS—DRAFT | Review each entry; record unresolved fields as candidate/blocked; approve a controlled snapshot |
@@ -183,7 +185,7 @@ Next actions, in sequence:
 
 1. Freeze the practical assessment scope and language boundaries (AR-E01).
 2. Review and approve the internal terminology procedure and register-entry controls.
-3. Resolve lawful access to the complete ISO 704:2022 edition through a separately authorized route; no purchase is authorized by this dossier.
+3. Investigate lawful no-cost access via official BIS standards/library services, existing institutional/consortium access or an already licensed copy; verify the exact edition and usage rights. If no lawful no-cost route is confirmed, pause for a separate human decision. No purchase is authorized by this dossier.
 4. Populate the [matrix template](2026-10-17-ISO-704-Clause-Evidence-Matrix.md) only from that controlled edition; no clause-level mapping is valid before that prerequisite.
 5. Produce, inspect and test each remaining evidence item through documented changes and reviews.
 6. Complete internal audit, corrective-action closure/retesting, management review and the final package manifest.
