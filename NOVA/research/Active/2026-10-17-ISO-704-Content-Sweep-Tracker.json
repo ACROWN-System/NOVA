@@ -925,7 +925,32 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/KEY-READINESS.md",
+            "source_ref": "main",
+            "source_lines": null,
+            "content_chars": 3072,
+            "fetch_sha": "f47b2bf22dabefc07681a27c10a534a9a1319d01",
+            "terms": {
+              "nova": 6,
+              "astroCrown": 1,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 1,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "candidate_excerpts": [],
+            "complete_file_scanned": true
+          }
         },
         {
           "path": "NOVA/LEGITIMACY-RESILIENCE-AND-COOPERATIVE-RSI.md",
@@ -941,7 +966,37 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/LEGITIMACY-RESILIENCE-AND-COOPERATIVE-RSI.md",
+            "source_ref": "main",
+            "source_lines": null,
+            "content_chars": 10391,
+            "fetch_sha": "d9364d3b4e13b54c6bc8f0d2566445282c85eba3",
+            "terms": {
+              "nova": 7,
+              "astroCrown": 1,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 2,
+              "superIntelligence": 0,
+              "rsi": 7,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "candidate_excerpts": [
+              {
+                "line": 7,
+                "text": "**Mission-level precedence:** This document is subordinate to the [HAAN Foundational Mission and Collective Preservation](HAAN-FOUNDATIONAL-MISSION-AND-COLLECTIVE-PRESERVATION.md). RSI and protective intelligence are means of helping the hu"
+              }
+            ],
+            "complete_file_scanned": true
+          }
         },
         {
           "path": "NOVA/NOVA/README.md",
@@ -1005,7 +1060,32 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/OPERATIONAL-STATE.md",
+            "source_ref": "main",
+            "source_lines": null,
+            "content_chars": 3214,
+            "fetch_sha": "897780186d896ba60eefa372dc791c75bcf88f6b",
+            "terms": {
+              "nova": 10,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "candidate_excerpts": [],
+            "complete_file_scanned": true
+          }
         },
         {
           "path": "NOVA/payments.py",
@@ -1133,7 +1213,32 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/PROVIDER-QUALIFICATION.md",
+            "source_ref": "main",
+            "source_lines": null,
+            "content_chars": 2504,
+            "fetch_sha": "18a46b9d4ad19d306124cfc9520d5a42c60cede3",
+            "terms": {
+              "nova": 4,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "candidate_excerpts": [],
+            "complete_file_scanned": true
+          }
         },
         {
           "path": "NOVA/quality_gate.py",
@@ -1165,7 +1270,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan_segments": [
+            {
+              "repo": "NOVA",
+              "path": "NOVA/README.md",
+              "source_ref": "main",
+              "source_lines": {
+                "start": 1,
+                "end": 200
+              },
+              "content_chars": 0,
+              "fetch_sha": "54f8841675190c77ca7a4cbae3d9112f9fe49e90",
+              "terms": {
+                "nova": 0,
+                "astroCrown": 0,
+                "acrown": 0,
+                "hsiAn": 0,
+                "haan": 0,
+                "superIntelligence": 0,
+                "rsi": 0,
+                "cognitiveExtension": 0,
+                "iso704": 0,
+                "certification": 0,
+                "compliance": 0,
+                "imperialCouncil": 0
+              },
+              "status": "SEGMENT_FETCHED_AND_LEXICALLY_SCANNED",
+              "candidate_excerpts": [],
+              "complete_file_scanned": false,
+              "segment_id": "NOVA-README-L001-L200"
+            }
+          ],
+          "lexical_scan_status": "PARTIAL_SEGMENTED_SCAN"
         },
         {
           "path": "NOVA/reasoning.py",
