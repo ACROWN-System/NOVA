@@ -1,7 +1,7 @@
 # ISO 704:2022 Audit-Readiness Dossier and Evidence Register
 
 **Document ID:** NOVA-ISO704-AR-001  
-**Version:** 0.1.1  
+**Version:** 0.1.2  
 **Date opened:** 2026-10-17  
 **Status:** ACTIVE — readiness package construction; NOT READY FOR AN ISO 704 AUDIT  
 **Owner:** Designated human maintainer  
@@ -27,14 +27,15 @@ Do not say “ISO 704 certified,” “ISO 704 compliant,” “passed an ISO 70
 
 ## 2. Important standards boundary
 
-The public ISO description identifies ISO 704:2022 as a standard on terminology-work principles and methods. It covers relationships among objects, concepts, definitions and designations, terminology preparation/compilation, term and proper-name formation, and definition writing. This public abstract is useful for scoping, but it is not a substitute for the complete edition.
+The public ISO record identifies ISO 704:2022 as Edition 4, published in July 2022, and describes terminology-work principles and methods: relations among objects, concepts, definitions and designations; terminology preparation/compilation; term and proper-name formation; and definition writing. This public description is useful for scoping but is not a substitute for the complete edition. At the controlled-baseline freeze, re-check the official ISO record for status and any newer published edition or formally active revision project. A preliminary work item or proposal is not itself a replacement published edition and must not silently change the planned assessment baseline.
 
 A lawful, controlled copy of the complete edition is required before claiming a complete clause-by-clause assessment. The project must not reproduce copyrighted standard text in its repository. The controlled matrix should capture clause identifiers, a concise project-authored paraphrase, the statement's force (for example: requirement, principle, recommendation, description or definition), applicability, internal control, objective evidence, result and finding reference.
 
 ISO does not itself certify or issue certificates. Certification and accreditation are distinct: an accreditation body may accredit a conformity-assessment provider for a defined scope; the word “ISO” does not mean ISO approved that provider. Provider and scheme discovery is intentionally outside the current phase and must not begin until the readiness gate passes.
 
 **Public references**
-- ISO 704:2022 record: https://www.iso.org/standard/79077.html
+- ISO 704:2022 record and lifecycle: https://www.iso.org/standard/79077.html
+- Preliminary lifecycle lead surfaced from a national standards-body project listing; verify against primary ISO project information at baseline freeze: https://dps.gov.al/en/project/show/iso%3Aproj%3A94618
 - ISO 1087:2019 terminology-work vocabulary reference: https://www.iso.org/standard/62330.html
 - ISO explanation of certification/accreditation: https://www.iso.org/certification.html
 - Bureau of Indian Standards (BIS) Know Your Standard: https://www.bis.gov.in/know-your-standard/?lang=en (potential access lead only; specific ISO 704:2022 availability is unverified)
@@ -75,7 +76,7 @@ Status meanings: **EXISTS—DRAFT** = an artifact exists but has not been accept
 | Evidence ID | Evidence package component | What acceptable evidence must demonstrate | Current status | Next action |
 |---|---|---|---|---|
 | AR-E01 | Scope and boundaries | Approved scope statement; included domains, repos/paths, activity, languages, period, exclusions and rationale | NOT STARTED | Freeze and approve scope before claiming coverage |
-| AR-E02 | Controlled standard baseline | Lawful access to the complete ISO 704:2022 edition; edition/version, source, access/licence record, controlled-copy identifier | BLOCKED | Investigate lawful no-cost routes first (BIS standards/library services, an existing institutional/consortium library or an already licensed copy); verify the exact edition and permitted use. These routes are leads, not confirmed availability. No purchase or paid subscription without separate authorization |
+| AR-E02 | Controlled standard baseline and lifecycle freeze | Lawful access to the complete ISO 704:2022 edition; edition/version, source, access/licence record, controlled-copy identifier, lifecycle/revision status checked at baseline date | BLOCKED | Investigate lawful no-cost routes first (BIS standards/library services, an existing institutional/consortium library or an already licensed copy); verify exact edition and permitted use. Also check the ISO record/lifecycle for newer published editions or active revision work; these are separate checks. Routes are leads, not confirmed availability. No purchase or paid subscription without separate authorization |
 | AR-E03 | Clause/topic-to-evidence matrix | Every applicable section/clause captured from the controlled edition; statement force, project interpretation, applicability, control, evidence, result, gaps and rationale | BLOCKED — template available | Use the [controlled matrix template](2026-10-17-ISO-704-Clause-Evidence-Matrix.md) only after AR-E02; no guessed or invented clause mappings |
 | AR-E04 | Terminology governance procedure | Approved roles, workflow, criteria, decision gates, status lifecycle and audit controls | EXISTS—DRAFT | Review, approve and establish an effective date |
 | AR-E05 | Canonical terminology register | Versioned concept entries with stable IDs, domain/context, preferred designations, definitions, characteristics, relations, variants, sources, owner, status and history where applicable | EXISTS—DRAFT | Review each entry; record unresolved fields as candidate/blocked; approve a controlled snapshot |
@@ -201,3 +202,4 @@ Next actions, in sequence:
 
 - **2026-10-17 / v0.1.0:** Initial controlled evidence register and staged readiness gate created. Provider outreach deferred until the package is internally complete. No provider availability claim is made.
 - **2026-10-17 / v0.1.1:** Added a controlled clause/topic matrix template, clarified that no clause mapping may be guessed, prioritized lawful no-cost access routes, and corrected the sequential work plan. Full-standard access and all audit-readiness evidence remain open.
+- **2026-10-17 / v0.1.2:** Added a standard-lifecycle freshness check so the baseline records any newer published edition or active revision work rather than assuming the 2022 edition will remain the relevant target indefinitely.
