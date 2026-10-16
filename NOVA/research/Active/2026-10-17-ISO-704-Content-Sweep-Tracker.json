@@ -4878,7 +4878,43 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Active/2026-10-11-RSI-Token-Telemetry-Integrity.md",
+            "blob_sha": "7db7feb572a3055d85fdf6253e2adde6fb2af854",
+            "size_bytes": 3784,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 3780,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 1,
+              "astroCrown": 3,
+              "acrown": 2,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 6,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 2,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 35,
+                "text": "- Invalid or incomplete telemetry is unavailable and triggers the existing required-telemetry budget gate, rather than being coerced into apparent compliance."
+              },
+              {
+                "line": 44,
+                "text": "**IF not modified:** Invalid or inconsistent token counts could still appear compliant and make the per-cycle budget accounting unreliable."
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Active/2026-10-11-RSI-Trusted-Evaluator-Control-Plane.md",
@@ -4894,7 +4930,43 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Active/2026-10-11-RSI-Trusted-Evaluator-Control-Plane.md",
+            "blob_sha": "e6cabd1f2484081e47967b0a1b5df30262f0f2d3",
+            "size_bytes": 5637,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 5629,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 3,
+              "acrown": 2,
+              "hsiAn": 0,
+              "haan": 1,
+              "superIntelligence": 0,
+              "rsi": 11,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 1,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 10,
+                "text": "HAAN's foundational mission remains governing context. RSI is a means; it must not gain the ability to redefine its own acceptance boundary."
+              },
+              {
+                "line": 62,
+                "text": "This is not a third-party security certification. Docker daemon/kernel risks, GitHub Actions supply-chain risk, and broader evaluator integration still need independent review."
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Active/2026-10-11-RSI-Workflow-Cleanup-Finalizer.md",
@@ -4910,7 +4982,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Active/2026-10-11-RSI-Workflow-Cleanup-Finalizer.md",
+            "blob_sha": "7fd473bbf0617a815fd62c34977534efb8b3c01e",
+            "size_bytes": 4183,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 4179,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 2,
+              "astroCrown": 4,
+              "acrown": 3,
+              "hsiAn": 0,
+              "haan": 2,
+              "superIntelligence": 0,
+              "rsi": 10,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 11,
+                "text": "HAAN's [Foundational Mission and Collective Preservation](https://github.com/ACROWN-System/NOVA/blob/main/NOVA/HAAN-FOUNDATIONAL-MISSION-AND-COLLECTIVE-PRESERVATION.md) governs this work. If the workflow loses certainty about resi"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Active/2026-10-12-Free-Provider-Pool-Evidence-Matrix.md",
@@ -4926,7 +5030,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Active/2026-10-12-Free-Provider-Pool-Evidence-Matrix.md",
+            "blob_sha": "5fdba84272bcb4c7df97998b6b0d2ae5d086575b",
+            "size_bytes": 13041,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 12983,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 1,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Active/2026-10-12-Free-Provider-Pool-Qualification.md",
@@ -4942,7 +5073,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Active/2026-10-12-Free-Provider-Pool-Qualification.md",
+            "blob_sha": "742c7f51205eda8c16df1235b4603e6d20fb0874",
+            "size_bytes": 13855,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 13829,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 28,
+              "astroCrown": 6,
+              "acrown": 19,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 1,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Active/2026-10-12-Systemic-Engineering-Quality-Investigation-Plan.md",
@@ -4958,7 +5116,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Active/2026-10-12-Systemic-Engineering-Quality-Investigation-Plan.md",
+            "blob_sha": "c0d6a5f1fad53a75f6cbc9fc6564ae4004f246c0",
+            "size_bytes": 6547,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 6543,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 6,
+              "astroCrown": 4,
+              "acrown": 2,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 1,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 22,
+                "text": "**Protocol limitation:** The canonical `NAVIGATION-PROTOCOL.md` and `NAVIGATION-PLAN-TEMPLATE.md` are not present in the current active AstroCrown-Web file tree; the prior cross-repository audit also recorded that they could not b"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Active/2026-10-12-Systemic-Engineering-Quality-Postmortem.md",
@@ -4974,7 +5164,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Active/2026-10-12-Systemic-Engineering-Quality-Postmortem.md",
+            "blob_sha": "50556f6341aaaa374e1b594380cfb0010d5ac876",
+            "size_bytes": 22118,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 22070,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 36,
+              "astroCrown": 5,
+              "acrown": 9,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Active/2026-10-12-Systemic-Engineering-Quality-Remediation-Status.md",
@@ -4990,7 +5207,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Active/2026-10-12-Systemic-Engineering-Quality-Remediation-Status.md",
+            "blob_sha": "9a0e50a718f7680bd55bb31819cc3923aa3a31c8",
+            "size_bytes": 3840,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 3834,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 11,
+              "astroCrown": 1,
+              "acrown": 5,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Active/2026-10-13-Image-First-Commercial-Brand-Quality-Architecture.md",
