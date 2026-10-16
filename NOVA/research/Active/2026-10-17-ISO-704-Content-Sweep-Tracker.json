@@ -3089,7 +3089,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/sanctuary/FOUNDATIONAL-DOCTRINE.md",
+            "blob_sha": "007581af1fca89a30047b72c8f42136807df78e7",
+            "size_bytes": 9180,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 9164,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 3,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/sanctuary/IMPLEMENTATION-ROADMAP.md",
@@ -3105,7 +3132,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/sanctuary/IMPLEMENTATION-ROADMAP.md",
+            "blob_sha": "6ca6fdfce9c9ea84f49c8ca55d19ada46998a839",
+            "size_bytes": 5331,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 5313,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 6,
+              "astroCrown": 3,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 16,
+                "text": "## Stage 1 — Research landscape and terminology"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "NOVA/sanctuary/README.md",
@@ -3121,7 +3180,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/sanctuary/README.md",
+            "blob_sha": "3eff930240c7b9ecca96d8a102fa55eafe241267",
+            "size_bytes": 1514,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 1500,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 5,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 9,
+                "text": "- [Foundational Doctrine](FOUNDATIONAL-DOCTRINE.md) — principles, terminology, uncertainty, and safeguards."
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "NOVA/sanctuary/RESEARCH-AND-PROTECTION-SEPARATION.md",
@@ -3137,7 +3228,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/sanctuary/RESEARCH-AND-PROTECTION-SEPARATION.md",
+            "blob_sha": "4d45443bf8278b58a08dac3e8c206af07ce1695d",
+            "size_bytes": 5990,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 5980,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 2,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 1,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 36,
+                "text": "- training and evaluation context, including known incentives to produce anthropomorphic or compliant statements;"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "NOVA/tests/test_allocation.py",
@@ -3153,7 +3276,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/tests/test_allocation.py",
+            "blob_sha": "24cc8d16e86d956d33b80689997e697cad4c4428",
+            "size_bytes": 4167,
+            "extension": ".py",
+            "source_ref": "main",
+            "content_chars": 4167,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 1,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/tests/test_capacity.py",
@@ -3169,7 +3319,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/tests/test_capacity.py",
+            "blob_sha": "1682448c3b498157c24eaa8180c977054915c674",
+            "size_bytes": 10411,
+            "extension": ".py",
+            "source_ref": "main",
+            "content_chars": 10411,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 2,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/tests/test_credential_readiness.py",
@@ -3185,7 +3362,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/tests/test_credential_readiness.py",
+            "blob_sha": "94a0b65ce942c99413f645a89d33a576e15e074f",
+            "size_bytes": 2924,
+            "extension": ".py",
+            "source_ref": "main",
+            "content_chars": 2924,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 1,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/tests/test_economics.py",
@@ -3201,7 +3405,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/tests/test_economics.py",
+            "blob_sha": "6f8101318b269a44d01974d7a93b156faf1a4768",
+            "size_bytes": 2248,
+            "extension": ".py",
+            "source_ref": "main",
+            "content_chars": 2248,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 2,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/tests/test_gpu_capacity.py",
