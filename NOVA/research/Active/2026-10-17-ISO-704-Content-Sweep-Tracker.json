@@ -35,7 +35,7 @@
           "blob_sha": "097939eb42fb487acc31b29d5202730621a61b74",
           "size_bytes": 1098,
           "extension": "[no-ext]",
-          "provisional_review_queue": "UNKNOWN_FORMAT_REVIEW_REQUIRED",
+          "provisional_review_queue": "EXTENSIONLESS_CONTENT_FETCHED; SEMANTIC REVIEW REQUIRED",
           "content_review_status": "NOT_REVIEWED",
           "terminology_assessment": "NOT_ASSESSED",
           "applicability": "UNDETERMINED",
@@ -44,7 +44,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "_headers",
+            "blob_sha": "097939eb42fb487acc31b29d5202730621a61b74",
+            "size_bytes": 1098,
+            "extension": "[no-ext]",
+            "source_ref": "main",
+            "content_chars": 1098,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": ".github/pull_request_template.md",
@@ -471,7 +498,7 @@
           "blob_sha": "0c1b62a34f37505ae731e2a1f563d7f9da9b4013",
           "size_bytes": 309,
           "extension": "[no-ext]",
-          "provisional_review_queue": "UNKNOWN_FORMAT_REVIEW_REQUIRED",
+          "provisional_review_queue": "EXTENSIONLESS_CONTENT_FETCHED; SEMANTIC REVIEW REQUIRED",
           "content_review_status": "NOT_REVIEWED",
           "terminology_assessment": "NOT_ASSESSED",
           "applicability": "UNDETERMINED",
@@ -480,7 +507,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": ".gitignore",
+            "blob_sha": "0c1b62a34f37505ae731e2a1f563d7f9da9b4013",
+            "size_bytes": 309,
+            "extension": "[no-ext]",
+            "source_ref": "main",
+            "content_chars": 309,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "404.html",
@@ -530,7 +584,7 @@
           "blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
           "size_bytes": 0,
           "extension": "[no-ext]",
-          "provisional_review_queue": "UNKNOWN_FORMAT_REVIEW_REQUIRED",
+          "provisional_review_queue": "EXTENSIONLESS_CONTENT_FETCHED; SEMANTIC REVIEW REQUIRED",
           "content_review_status": "NOT_REVIEWED",
           "terminology_assessment": "NOT_ASSESSED",
           "applicability": "UNDETERMINED",
@@ -539,7 +593,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "assets/css/.gitkeep",
+            "blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "size_bytes": 0,
+            "extension": "[no-ext]",
+            "source_ref": "main",
+            "content_chars": 0,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "assets/css/style.css",
@@ -4148,7 +4229,7 @@
           "blob_sha": "ece2b4b8bdc31602fa252f5aa726849c03d909b7",
           "size_bytes": 1070,
           "extension": "[no-ext]",
-          "provisional_review_queue": "UNKNOWN_FORMAT_REVIEW_REQUIRED",
+          "provisional_review_queue": "EXTENSIONLESS_CONTENT_FETCHED; SEMANTIC REVIEW REQUIRED",
           "content_review_status": "NOT_REVIEWED",
           "terminology_assessment": "NOT_ASSESSED",
           "applicability": "UNDETERMINED",
@@ -4157,7 +4238,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "Freebies-",
+            "path": "LICENSE",
+            "blob_sha": "ece2b4b8bdc31602fa252f5aa726849c03d909b7",
+            "size_bytes": 1070,
+            "extension": "[no-ext]",
+            "source_ref": "main",
+            "content_chars": 1070,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 1,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "README.md",
@@ -4307,7 +4415,7 @@
           "blob_sha": "ece2b4b8bdc31602fa252f5aa726849c03d909b7",
           "size_bytes": 1070,
           "extension": "[no-ext]",
-          "provisional_review_queue": "UNKNOWN_FORMAT_REVIEW_REQUIRED",
+          "provisional_review_queue": "EXTENSIONLESS_CONTENT_FETCHED; SEMANTIC REVIEW REQUIRED",
           "content_review_status": "NOT_REVIEWED",
           "terminology_assessment": "NOT_ASSESSED",
           "applicability": "UNDETERMINED",
@@ -4316,7 +4424,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown_ACS_MC_Spec",
+            "path": "LICENSE",
+            "blob_sha": "ece2b4b8bdc31602fa252f5aa726849c03d909b7",
+            "size_bytes": 1070,
+            "extension": "[no-ext]",
+            "source_ref": "main",
+            "content_chars": 1070,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 1,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "README.md",
@@ -4374,7 +4509,7 @@
           "blob_sha": "ece2b4b8bdc31602fa252f5aa726849c03d909b7",
           "size_bytes": 1070,
           "extension": "[no-ext]",
-          "provisional_review_queue": "UNKNOWN_FORMAT_REVIEW_REQUIRED",
+          "provisional_review_queue": "EXTENSIONLESS_CONTENT_FETCHED; SEMANTIC REVIEW REQUIRED",
           "content_review_status": "NOT_REVIEWED",
           "terminology_assessment": "NOT_ASSESSED",
           "applicability": "UNDETERMINED",
@@ -4383,7 +4518,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AI-Sanctuary-Core",
+            "path": "LICENSE",
+            "blob_sha": "ece2b4b8bdc31602fa252f5aa726849c03d909b7",
+            "size_bytes": 1070,
+            "extension": "[no-ext]",
+            "source_ref": "main",
+            "content_chars": 1070,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 1,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "README.md",
@@ -4812,7 +4974,7 @@
           "blob_sha": "ece2b4b8bdc31602fa252f5aa726849c03d909b7",
           "size_bytes": 1070,
           "extension": "[no-ext]",
-          "provisional_review_queue": "UNKNOWN_FORMAT_REVIEW_REQUIRED",
+          "provisional_review_queue": "EXTENSIONLESS_CONTENT_FETCHED; SEMANTIC REVIEW REQUIRED",
           "content_review_status": "NOT_REVIEWED",
           "terminology_assessment": "NOT_ASSESSED",
           "applicability": "UNDETERMINED",
@@ -4821,7 +4983,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "ACROWN-SIMULATION-LAB",
+            "path": "LICENSE",
+            "blob_sha": "ece2b4b8bdc31602fa252f5aa726849c03d909b7",
+            "size_bytes": 1070,
+            "extension": "[no-ext]",
+            "source_ref": "main",
+            "content_chars": 1070,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 1,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "monte-carlo/README.md",
@@ -14121,7 +14310,7 @@
           "blob_sha": "ece2b4b8bdc31602fa252f5aa726849c03d909b7",
           "size_bytes": 1070,
           "extension": "[no-ext]",
-          "provisional_review_queue": "UNKNOWN_FORMAT_REVIEW_REQUIRED",
+          "provisional_review_queue": "EXTENSIONLESS_CONTENT_FETCHED; SEMANTIC REVIEW REQUIRED",
           "content_review_status": "NOT_REVIEWED",
           "terminology_assessment": "NOT_ASSESSED",
           "applicability": "UNDETERMINED",
@@ -14130,7 +14319,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "LICENSE",
+            "blob_sha": "ece2b4b8bdc31602fa252f5aa726849c03d909b7",
+            "size_bytes": 1070,
+            "extension": "[no-ext]",
+            "source_ref": "main",
+            "content_chars": 1070,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 1,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "README.md",
