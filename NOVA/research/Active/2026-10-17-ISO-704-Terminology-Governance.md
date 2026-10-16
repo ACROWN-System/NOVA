@@ -52,7 +52,7 @@ Authoritative public standard metadata:
 
 - Canonical governance standard and initial register drafted on this branch.
 - AstroCrown-Web application guide and audit record are in progress on the corresponding branch.
-- No PR is merged, no external certification is claimed, certification feasibility remains unverified and is explicitly retained as an objective, no paid standards/software purchase is authorized, and no backup folder is modified.
+- No PR is merged or deployed; no external certification is claimed; provider discovery and accreditation checks are deferred until the complete evidence package passes the readiness gate; no paid standards/software purchase is authorized; and no backup folder is modified.
 
 
 ## Execution update — 2026-10-17
@@ -63,3 +63,12 @@ Authoritative public standard metadata:
 - Repository comparisons show no changed paths under backup/, Backup/ or any case variant.
 - The full ISO 704:2022 clause-level review remains BLOCKED; the HSIAN active-name rollout and full-repository terminology sweep remain incomplete.
 - The PRs are draft and unmerged. Review the HSIAN canonical mission PR #122 and then NOVA terminology PR #124 before merging dependent AstroCrown-Web PR #135.
+
+
+## Execution update — 2026-10-17 — readiness-first sequencing
+
+- Added [the ISO 704:2022 Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md), which defines 20 evidence components, scope and evidence-handling rules, operational proof, internal audit, corrective-action retesting, management review, a final manifest and a mandatory GO/NO-GO gate.
+- Added [the controlled clause/topic-to-evidence matrix template](2026-10-17-ISO-704-Clause-Evidence-Matrix.md). It is deliberately empty at clause level; populating it is BLOCKED until lawful controlled access to the complete ISO 704:2022 edition is established.
+- Provider discovery, accreditation checks, enquiries and applications are DEFERRED until all readiness gates pass. This sequencing does not conclude whether a suitable scheme exists.
+- Updated [NOVA draft PR #124](https://github.com/ACROWN-System/NOVA/pull/124) to disclose the current sequence and limitations. It now contains five active paths, all under `NOVA/`; the branch comparison has no changed paths under `backup/`, `Backup/` or any case variant.
+- Current status: **NOT READY FOR AN ISO 704 AUDIT**. The dossier is a work plan/evidence register, not proof that the evidence has all been produced. No paid access, application or other financial commitment is authorized.
