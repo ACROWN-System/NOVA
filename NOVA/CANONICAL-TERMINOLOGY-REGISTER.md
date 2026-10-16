@@ -171,7 +171,7 @@ This grouping is a first model, not a complete formal concept diagram. Whole/par
 ## Open issues and audit notes
 
 1. The HSIAN name and cognitive-extension rationale are documented in draft [NOVA PR #122](https://github.com/ACROWN-System/NOVA/pull/122) and dependent [AstroCrown-Web PR #134](https://github.com/ACROWN-System/AstroCrown-Web/pull/134); active rollout remains pending.
-2. The full text of ISO 704:2022 has not yet been adopted as a controlled project audit baseline. Do not state full conformity; clause-level mapping remains BLOCKED.
+2. The full text of ISO 704:2022 has not yet been adopted as a controlled project audit baseline. Do not state full conformity; clause-level mapping remains BLOCKED. Independent certification feasibility is an explicit objective to investigate and pursue if a competent provider offers a suitable scheme. Initial public-source research has not verified availability; that is not proof certification is impossible. Obtain written confirmation of certificate type, scope, criteria and accreditation status before making any availability claim.
 3. The internal Imperial Council charter needs a definitive source for membership, veto scope, procedure and review.
 4. The full legal/product description of ACROWN must follow the current token specification and qualified, jurisdiction-specific review.
 5. Active multilingual/localization scope has not yet been declared; entries are initially maintained in English. Translation equivalence is not yet claimed.
