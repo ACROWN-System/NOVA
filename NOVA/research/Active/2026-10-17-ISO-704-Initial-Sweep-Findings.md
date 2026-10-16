@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.0  
+**Version:** 0.1.1  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL FINDINGS — lexical screening only; not a completed conformity audit  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -9,9 +9,9 @@
 
 ## Method and limitations
 
-This record captures the first lexical/content-fetch pass over selected active text files on their default `main` branches. Exact file content was retrieved and checked for selected canonical labels, old/new naming variants, certification and compliance language, and certain concept phrases. The scan is a discovery aid only. It does **not** decide ISO 704 conformity and does not substitute for semantic term-by-term human review, the full-standard matrix, or independent audit.
+This record captures an automated exact-pattern lexical screen of all 318 inventoried active file paths on the six repositories' recorded default-branch `main` tree snapshots. Exact content was retrieved by the file/blob interface and checked for selected canonical labels, old/new naming variants, certification/compliance language and selected concept phrases. The scan is a discovery aid only. It does **not** decide whether each occurrence is semantically correct or current, does not complete the semantic term-by-term human review, does not replace the full-standard matrix, and is not an independent audit.
 
-The six-repository inventory contains 318 active file paths. Fifteen files have so far been fetched and lexically screened in the tracker. Every tracker row remains `content_review_status: NOT_REVIEWED` and `terminology_assessment: NOT_ASSESSED` until a substantive entry-level content review and reviewer decision are recorded. The current lexical scan results do not change that.
+The six-repository inventory contains 318 active file paths. All 318 now have a lexical-screen record in the tracker and no Git-blob fetch failed. Every tracker row remains `content_review_status: NOT_REVIEWED` and `terminology_assessment: NOT_ASSESSED` until a substantive entry-level content review and reviewer decision are recorded. The lexical scan does not constitute that review.
 
 No backup/archive paths were scanned as active targets or modified. Historical/backup files remain immutable and outside the active sweep.
 
@@ -28,15 +28,15 @@ No backup/archive paths were scanned as active targets or modified. Historical/b
 - **Required action:** review and resolve PR #122 and PR #134 in their intended dependency order; afterward refresh the active-path inventory and re-scan all affected paths for stale current-use labels. Retain historical references where legitimately needed and never edit backup/archive paths.
 - **Closure evidence:** reviewed/merged change history plus a post-merge path and usage scan documenting all remaining occurrences and whether each is historical, deprecated, or current.
 
-### SWEEP-F-0002 — Oversized active NOVA README is not yet content-screened
+### SWEEP-F-0002 — Oversized active NOVA README requires semantic/section-level review
 
-- **Status:** BLOCKED — segmented review required
-- **Severity for readiness:** Blocking to complete active-path coverage
+- **Status:** LEXICAL SCREEN COMPLETE; SEMANTIC/SECTION REVIEW BLOCKED
+- **Severity for readiness:** Blocking to complete semantic coverage
 - **Evidence source:** `ACROWN-System/NOVA`, `NOVA/README.md`, baseline blob SHA `54f8841675190c77ca7a4cbae3d9112f9fe49e90`, recorded size 1,452,321 bytes.
-- **Observed result:** the file exceeds the present single-fetch size used in the initial sweep and has not been included among the 15 completed lexical fetches.
-- **Interpretation:** absence of scan results is not evidence that terminology is consistent.
-- **Required action:** inspect the file in bounded, sequential line ranges or another lawful text-processing method, record exact range/coverage, and identify embedded/duplicated sections or links that need normalization. If it contains composite snapshots, classify the segments rather than assuming the entire file is one coherent current source.
-- **Closure evidence:** range manifest covering the entire active file, lexical results, recorded conflicts/duplicates and reviewer approval of the disposition.
+- **Observed result:** the ordinary line-range fetch returned no content for this large file, but a full Git blob fetch subsequently succeeded and the lexical scan has been completed. The tracker includes its term counts (including a high number of compliance/conformance-stem matches).
+- **Interpretation:** lexical-screen completion does not establish what individual historical or embedded sections mean, whether claims are current, or whether repetitive/composite material should be segmented for the terminology register.
+- **Required action:** perform a segmented semantic/section review using the full blob, record segment boundaries and review coverage, identify embedded/duplicated snapshots, current versus historical statements, inconsistent terms and unsupported claims. Do not treat the file as one coherent current source merely because it is a single path.
+- **Closure evidence:** a range/section review manifest covering the entire file, contextual assessment of lexical findings, recorded conflicts/duplicates and claims, disposition decisions, reviewer and retests.
 
 ### SWEEP-F-0003 — Certification wording control exists in current AstroCrown audit convention, but operation is not yet demonstrated
 
@@ -65,20 +65,26 @@ No backup/archive paths were scanned as active targets or modified. Historical/b
 - **Required action:** review all cross-links, shared names and governance/economic references across AI-Sanctuary-Core and NOVA/AstroCrown; record whether each relation is explicit, non-authoritative reference, dependency or N/A.
 - **Closure evidence:** reviewed cross-domain relationship map and a path-level record of conflicts or non-applicability.
 
-## Initial scan coverage
+## Baseline lexical-screen coverage (2026-10-17)
 
-- Initial repository path inventory: **318 active files** across six repositories.
-- Files fetched and lexically screened in first pass: **15**.
-- Files left without content review: **all 318** at the semantic reviewer-status level, because lexical screening does not satisfy content review.
-- Oversized active file explicitly identified for segmented review: `NOVA/README.md`.
+- Initial repository/path inventory: **318 active files** across six repositories; 843 files within immutable backup/archive directories are excluded.
+- Lexical-screen records: **318/318 complete**; Git blob fetch failures: **0**.
+- Substantive semantic reviews: **0/318 complete**. All tracker rows remain `NOT_REVIEWED` / `NOT_ASSESSED` until actual content review, context classification and reviewer evidence are supplied.
+- Selected patterns: `HAAN` appears 88 times across 35 files; `HSIAN` 0 times on these main snapshots while PR #122/#134 remain unmerged; `ISO 704` 0 exact-pattern hits on these main snapshots; the certification stem occurs 45 times across 21 files; compliance/conformance stems occur 402 times across 27 files. These are scanner counts, not conformity decisions; exact patterns do not cover all synonyms or languages.
+- Oversized active file `NOVA/README.md` has been lexically screened from its full Git blob; semantic/section-level review remains open.
 - Full ISO 704 clause/topic matrix: **BLOCKED** pending lawful controlled access to the complete edition and the baseline lifecycle check.
 - Internal audit, corrective-action closure, management review and readiness GO decision: **NOT COMPLETED**.
 - Provider discovery/accreditation checks: **DEFERRED until the complete readiness gate passes**.
 
+## Revision history
+
+- **2026-10-17 / v0.1.0:** Initial selected-file lexical screen findings recorded.
+- **2026-10-17 / v0.1.1:** Updated to reflect lexical-screen coverage of all 318 active baseline paths; explicitly separates that automated screen from semantic review, which remains incomplete.
+
 ## Next work queue
 
 1. Close or formally disposition SWEEP-F-0001 after the dependent HSIAN naming changes are decided and validated.
-2. Complete segmented review of SWEEP-F-0002 across all lines.
+2. Complete the semantic/section-level review of SWEEP-F-0002 across its full contents; its lexical screen is already complete.
 3. Continue the tracker sequentially across the remaining active text files, then assets/configuration formats; do not mark extension-based exclusions as N/A without rationale.
 4. Review all certification-claim controls in live/public and technical surfaces and record evidence.
 5. Build and validate the concept-system maps and cross-repository relationship register.
