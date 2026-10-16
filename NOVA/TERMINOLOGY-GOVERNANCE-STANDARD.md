@@ -1,7 +1,7 @@
 # NOVA Terminology Governance Standard
 
 **Document ID:** NOVA-TERM-GOV-001  
-**Version:** 0.1.1  
+**Version:** 0.1.2  
 **Status:** PROPOSED INTERNAL STANDARD — controls are being established; conformity has not yet been demonstrated.  
 **Owner:** NOVA governance / designated human maintainer  
 **Scope:** Canonical terminology and concept management for the AstroCrown–NOVA–HSIAN ecosystem and related projects, systems, services, technical architecture, governance, public communications and localization.  
@@ -164,7 +164,7 @@ Terminology approval never independently authorizes product behavior, asset righ
 - Any collaborator or model may propose an entry, critique or revision. No model may approve its own proposed term or silently overwrite an approved definition.
 - Material changes require written rationale, impact analysis, affected concept/link list, evidence review and an explicit reviewable repository change.
 - Search dependent references across affected active repositories. Update active references and public summaries where needed. Preserve historical/audit records and immutable backups.
-- Do not modify anything under backup/ or Backup/ directory paths, including case variants and archived mirrors, during routine terminology updates. A historical term in an immutable record is not a defect to correct.
+- Any backup/archive directory is immutable regardless of capitalization, including dated system mirrors and names such as `index-archive/`. Never create, update, rename, move or delete anything below these paths during terminology work. A historical term in an immutable record is not a defect to correct.
 - Keep the current record, prior revisions, decision source, reviewer and relevant audit evidence.
 - Review terminology when a product, legal context, technical capability, project decision, localization or important external evidence changes, and periodically for high-impact terms.
 - Do not create a second competing canonical glossary in a dependent repository. The dependent repository may add audience-specific usage notes and cross-links, but shared concepts resolve to the canonical register.
@@ -253,3 +253,9 @@ This is an internal project control. Where the complete ISO 704:2022 text establ
 ## 16. Revision history
 
 - **2026-10-17 / v0.1.1:** Set a readiness-first sequence. Provider discovery and accreditation checks are deferred until the evidence package's GO gate passes; linked the controlled audit-readiness dossier. This revision does not assert conformity or certification.
+
+
+## 17. Revision history
+
+- **2026-10-17 / v0.1.1:** Set a readiness-first sequence. Provider discovery and accreditation checks are deferred until the evidence package's GO gate passes; linked the controlled audit-readiness dossier. This revision does not assert conformity or certification.
+- **2026-10-17 / v0.1.2:** Explicitly made backup/archive paths immutable regardless of capitalization and clarified that dated mirrors and archive-named directories must not be modified.
