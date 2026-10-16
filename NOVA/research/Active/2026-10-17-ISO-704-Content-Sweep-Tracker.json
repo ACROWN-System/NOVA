@@ -7559,7 +7559,43 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/index-reference/CARDS-CONVENTIONS.md",
+            "blob_sha": "3fbb34e4e5e50bec6fadfa1b586a82582f47e95d",
+            "size_bytes": 17230,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 17124,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 1,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 139,
+                "text": "These inputs are candidates, not automatic definitions. Capital Activity must not silently become TVL growth; influence must not silently become causation or correlation."
+              },
+              {
+                "line": 335,
+                "text": "Individual tokens may appear when they are the appropriate evidence-bearing entity, but prominent-token selection alone must not become the definition of market influence."
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/index-reference/COLORS.md",
@@ -7575,7 +7611,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/index-reference/COLORS.md",
+            "blob_sha": "e64d8e3093ac7c09d266dc116f0781edb1f15b57",
+            "size_bytes": 8997,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 8933,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 36,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/index-reference/DATA-DISPLAY-CONVENTIONS.md",
@@ -7591,7 +7654,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/index-reference/DATA-DISPLAY-CONVENTIONS.md",
+            "blob_sha": "e300be472be18f4cf3c15a3600195a1262f7e0e2",
+            "size_bytes": 43799,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 43589,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 4,
+              "astroCrown": 15,
+              "acrown": 1,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/index-reference/ICONS-AND-INDICATORS.md",
@@ -7607,7 +7697,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/index-reference/ICONS-AND-INDICATORS.md",
+            "blob_sha": "bea00c7a613298649805f8e33d734f826bc8c250",
+            "size_bytes": 5484,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 5420,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 1,
+              "astroCrown": 9,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/index-reference/INTERACTION-CONVENTIONS.md",
@@ -7623,7 +7740,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/index-reference/INTERACTION-CONVENTIONS.md",
+            "blob_sha": "6dcd98ac8ca19f55a2171bc0ff2984537481db93",
+            "size_bytes": 17725,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 17629,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 2,
+              "astroCrown": 9,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/index-reference/LAYOUT-AND-ALIGNMENT.md",
@@ -7639,7 +7783,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/index-reference/LAYOUT-AND-ALIGNMENT.md",
+            "blob_sha": "d06850c148208a34a4d2999e1aa5a39cb3a05936",
+            "size_bytes": 28409,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 28239,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 3,
+              "astroCrown": 42,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/index-reference/README.md",
@@ -7655,7 +7826,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/index-reference/README.md",
+            "blob_sha": "2cf350b722ed5a13b1093242341c8487cc3f90ee",
+            "size_bytes": 735,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 735,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/index-reference/RESPONSIVE-CONVENTIONS.md",
@@ -7671,7 +7869,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/index-reference/RESPONSIVE-CONVENTIONS.md",
+            "blob_sha": "765e0052a331a22c8c99d6c38476481f217ee70b",
+            "size_bytes": 8955,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 8903,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 2,
+              "astroCrown": 1,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/index-reference/SIZING-AND-DIMENSIONS.md",
