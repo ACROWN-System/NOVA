@@ -111,3 +111,10 @@ Authoritative public standard metadata:
 - Added [a preliminary certification-context review](2026-10-17-ISO-704-Certification-Context-Review.md) covering 21 files and 45 `certif*` lexical matches. The seven matches in the very large NOVA README are TLS-certificate operational references, not standards certification. Most other contexts are disclaimers; generic future “ISO certification” language and the entity-registry evidence-state column require human verification. This review found no ISO 704-specific certificate claim in those 21 contexts, which does not close the broader public-claims audit.
 - Added [a 15-entry canonical-register quality review](2026-10-17-ISO-704-Register-Quality-Review.md). It records missing per-entry provenance/approval data, untyped relations, and other fields requiring evidence-backed completion and human review.
 - These are preliminary targeted reviews. All 318 active path tracker rows remain semantically `NOT_REVIEWED` / `NOT_ASSESSED` at whole-file level; the overall package is **NOT READY FOR AN ISO 704 AUDIT**.
+
+
+## Execution update — 2026-10-17 — relation and entry pilot artefacts
+
+- Added [a candidate typed concept-relation map](2026-10-17-ISO-704-Concept-Relation-Map-Draft.md) for the 15 starter concepts. It distinguishes hierarchy/association from governance relations and leaves uncertain links blocked; no map relation is approved by this draft.
+- Added [a one-entry HSIAN review pilot](2026-10-17-ISO-704-Pilot-Entry-Review-HSIAN.md) anchored to the current-main discrepancy and dependent PRs #122/#134. It is blocked pending rollout and human approval and does not count as operational-use evidence.
+- These artefacts improve traceability, but AR-E05/AR-E06 remain open pending domain review and evidence; AR-E15 remains open until an authorized actual workflow cycle is recorded.
