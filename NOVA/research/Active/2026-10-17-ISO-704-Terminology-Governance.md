@@ -118,3 +118,11 @@ Authoritative public standard metadata:
 - Added [a candidate typed concept-relation map](2026-10-17-ISO-704-Concept-Relation-Map-Draft.md) for the 15 starter concepts. It distinguishes hierarchy/association from governance relations and leaves uncertain links blocked; no map relation is approved by this draft.
 - Added [a one-entry HSIAN review pilot](2026-10-17-ISO-704-Pilot-Entry-Review-HSIAN.md) anchored to the current-main discrepancy and dependent PRs #122/#134. It is blocked pending rollout and human approval and does not count as operational-use evidence.
 - These artefacts improve traceability, but AR-E05/AR-E06 remain open pending domain review and evidence; AR-E15 remains open until an authorized actual workflow cycle is recorded.
+
+
+## Execution update — 2026-10-17 — branch-integrity incident and recovery
+
+- Recorded [the branch-integrity incident](2026-10-17-ISO-704-Branch-Integrity-Incident.md): a generic file-creation action placed four supplementary review documents on `main` rather than the intended branch, despite a requested branch target.
+- Recovery copied those four documents into PR #124 using an explicit tree/commit/ref update parented to the then-current PR head, then removed only those four paths from `main`. Current tree verification confirms they are present on the draft branch and absent on current `main`.
+- The accidental add/remove commits remain in shared `main` history; no force-push/history rewrite was performed. All immutable backup/archive paths remain untouched.
+- Prevention rule: for new files on non-default branches, use the explicit tree → commit → ref-update path and then verify the exact target ref, blob content, PR changed-file list and immutable-path boundary. A successful action response alone is insufficient.
