@@ -3012,7 +3012,35 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": ".github/workflows/external-review-pipeline-ci.yml",
+            "blob_sha": "c128ae13c3d49c909d39c212d75688b16b38830c",
+            "size_bytes": 1658,
+            "tree_sha": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+            "extension": ".yml",
+            "source_ref": "main",
+            "content_chars": 1658,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": ".github/workflows/media-generator-tests.yml",
@@ -3028,7 +3056,35 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": ".github/workflows/media-generator-tests.yml",
+            "blob_sha": "c4de1f9bc507b3326a5739a3f21f947b3114a5e9",
+            "size_bytes": 1218,
+            "tree_sha": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+            "extension": ".yml",
+            "source_ref": "main",
+            "content_chars": 1218,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": ".github/workflows/nova-credential-readiness.yml",
@@ -3044,7 +3100,35 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": ".github/workflows/nova-credential-readiness.yml",
+            "blob_sha": "76165a0d286bd15e69828c7a349909b7322ba639",
+            "size_bytes": 5164,
+            "tree_sha": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+            "extension": ".yml",
+            "source_ref": "main",
+            "content_chars": 5164,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 7,
+              "astroCrown": 3,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 7,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": ".github/workflows/nova-rsi-ci.yml",
@@ -3060,7 +3144,35 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": ".github/workflows/nova-rsi-ci.yml",
+            "blob_sha": "69ca805ef19c16885f5c10a130c2169ea67e0465",
+            "size_bytes": 1710,
+            "tree_sha": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+            "extension": ".yml",
+            "source_ref": "main",
+            "content_chars": 1710,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 8,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 6,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": ".github/workflows/nova-rsi-codeql.yml",
@@ -3076,7 +3188,35 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": ".github/workflows/nova-rsi-codeql.yml",
+            "blob_sha": "ff9ff5d3fd73bb4db28745af9786bafc6c4d693f",
+            "size_bytes": 1538,
+            "tree_sha": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+            "extension": ".yml",
+            "source_ref": "main",
+            "content_chars": 1538,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 6,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 5,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": ".github/workflows/ossf-scorecard.yml",
@@ -3092,7 +3232,35 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": ".github/workflows/ossf-scorecard.yml",
+            "blob_sha": "b26c7cae8c9d0ce263bf04ab68b19c084c237eee",
+            "size_bytes": 863,
+            "tree_sha": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+            "extension": ".yml",
+            "source_ref": "main",
+            "content_chars": 863,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/account-continuity/ACCOUNT-CONTINUITY-AND-PRIVACY-PRESERVING-ACCESS-ROADMAP.md",
@@ -3108,7 +3276,56 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/account-continuity/ACCOUNT-CONTINUITY-AND-PRIVACY-PRESERVING-ACCESS-ROADMAP.md",
+            "blob_sha": "79126d8941597a683941f447ee651c0c811cdb91",
+            "size_bytes": 52467,
+            "tree_sha": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 52373,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 9,
+              "astroCrown": 6,
+              "acrown": 2,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 2,
+              "compliance": 2,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 8,
+                "text": "> This document preserves architecture intent, decisions, candidates and unresolved questions. It is not a security certification, legal opinion, financial forecast, implementation specification for any single provider, or evidenc"
+              },
+              {
+                "line": 244,
+                "text": "- actual monetary payouts and their compliance obligations."
+              },
+              {
+                "line": 370,
+                "text": "| Digital identity / lifecycle | [NIST SP 800-63-4 Digital Identity Guidelines](https://csrc.nist.gov/pubs/sp/800/63/4/final) | Reference for identity proofing, authentication, enrollment, authenticator lifecycle and recovery requ"
+              },
+              {
+                "line": 375,
+                "text": "| Web application verification | [OWASP ASVS 5.0.0](https://owasp.org/projects/asvs) | Versioned application-security requirements and test planning. This reference is not a certification. |"
+              },
+              {
+                "line": 566,
+                "text": "1. **Membership definition:** what exactly counts as one person for which feature, and what alternative is available to people who cannot pass the selected verifier?"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/ai-media-generator/CAPACITY-AWARE-ROLLOUT-PROPOSAL.md",
@@ -3124,7 +3341,35 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/ai-media-generator/CAPACITY-AWARE-ROLLOUT-PROPOSAL.md",
+            "blob_sha": "64f973d020cad66231a76db6c4aab52eeb01bb85",
+            "size_bytes": 17714,
+            "tree_sha": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 17692,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 14,
+              "astroCrown": 7,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/ai-media-generator/cloudflare_image.py",
