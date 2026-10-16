@@ -1,7 +1,7 @@
 # ISO 704:2022 Audit-Readiness Dossier and Evidence Register
 
 **Document ID:** NOVA-ISO704-AR-001  
-**Version:** 0.1.8  
+**Version:** 0.1.9  
 **Date opened:** 2026-10-17  
 **Status:** ACTIVE — readiness package construction; NOT READY FOR AN ISO 704 AUDIT  
 **Owner:** Designated human maintainer  
@@ -43,7 +43,7 @@ ISO does not itself certify or issue certificates. Certification and accreditati
 
 ## 3. Scope to freeze before detailed assessment
 
-The current proposed repository coverage and baseline tree SHAs are recorded in [Scope Proposal and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md), its [machine-readable active-path inventory](2026-10-17-ISO-704-Active-Path-Inventory.json), the [file-by-file content sweep tracker](2026-10-17-ISO-704-Content-Sweep-Tracker.json), and [initial sweep findings](2026-10-17-ISO-704-Initial-Sweep-Findings.md). The inventory and tracker establish paths and a review queue only; human scope approval and content review remain open. The scope statement must identify:
+The current proposed repository coverage and baseline tree SHAs are recorded in [Scope Proposal and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md), its [machine-readable active-path inventory](2026-10-17-ISO-704-Active-Path-Inventory.json), the [file-by-file content sweep tracker](2026-10-17-ISO-704-Content-Sweep-Tracker.json), [initial sweep findings](2026-10-17-ISO-704-Initial-Sweep-Findings.md), and [branch-integrity incident/recovery](2026-10-17-ISO-704-Branch-Integrity-Incident.md). The inventory and tracker establish paths and a review queue only; human scope approval and content review remain open. The scope statement must identify:
 
 - The organizational/project entity whose terminology work is being assessed, without implying a separate legal entity unless established.
 - The repositories, projects, technical domains, governance terms, service/product material and public communication included.
@@ -233,4 +233,5 @@ Next actions, in sequence:
 - **2026-10-17 / v0.1.5:** Recorded the initial lexical screen and linked the findings log.
 - **2026-10-17 / v0.1.6:** Completed exact-pattern lexical screening for 318/318 active baseline paths and explicitly kept all 318 items semantically unreviewed.
 - **2026-10-17 / v0.1.7:** Added a 15-entry register quality review and targeted certification-context review. The former records entry-completeness/typed-relation/provenance gaps; the latter is preliminary and needs human verification.
-- **2026-10-17 / v0.1.8:** Added a candidate concept-relation map and single-entry HSIAN pilot review. Both remain unapproved; the pilot is not evidence of a full operational cycle. Complete semantic review, full-standard matrix, operational evidence, internal audit, corrective actions, management GO decision and scope approval remain open.
+- **2026-10-17 / v0.1.8:** Added a candidate concept-relation map and single-entry HSIAN pilot review. Both remain unapproved; the pilot is not evidence of a full operational cycle.
+- **2026-10-17 / v0.1.9:** Added a branch-integrity incident/recovery record and a mandatory write-verification safeguard after a file-creation action targeted the default branch unexpectedly. All four affected paths are now present on PR #124 and absent from current `main`; no backup/archive paths were changed. This process incident does not change the ISO 704 readiness status.
