@@ -72,3 +72,12 @@ Authoritative public standard metadata:
 - Provider discovery, accreditation checks, enquiries and applications are DEFERRED until all readiness gates pass. This sequencing does not conclude whether a suitable scheme exists.
 - Updated [NOVA draft PR #124](https://github.com/ACROWN-System/NOVA/pull/124) to disclose the current sequence and limitations. It now contains five active paths, all under `NOVA/`; the branch comparison has no changed paths under `backup/`, `Backup/` or any case variant.
 - Current status: **NOT READY FOR AN ISO 704 AUDIT**. The dossier is a work plan/evidence register, not proof that the evidence has all been produced. No paid access, application or other financial commitment is authorized.
+
+
+## Execution update — 2026-10-17 — scope baseline
+
+- Created [the proposed scope and repository inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md) plus [the machine-readable active-path inventory](2026-10-17-ISO-704-Active-Path-Inventory.json).
+- Git tree metadata snapshots were retrieved for the six currently accessible active repositories: NOVA, Freebies-, AstroCrown_ACS_MC_Spec, AI-Sanctuary-Core, ACROWN-SIMULATION-LAB and AstroCrown-Web.
+- The baseline enumerates 318 active files and excludes 843 files under immutable backup/archive paths from the active path list. This is only a path inventory; every included file remains NOT_CONTENT_REVIEWED.
+- The six-repository scope is proposed, not human-approved. AI-Sanctuary-Core remains a separately scoped domain, preserving its stated separation from AstroCrown tokenomics and Space Empire governance.
+- Provider/scheme discovery remains deferred until the complete evidence package passes the readiness gate. No standards purchase or paid activity is authorized.
