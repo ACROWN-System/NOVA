@@ -53,3 +53,13 @@ Authoritative public standard metadata:
 - Canonical governance standard and initial register drafted on this branch.
 - AstroCrown-Web application guide and audit record are in progress on the corresponding branch.
 - No PR is merged, no external certification is claimed, no paid standards/software purchase is authorized, and no backup folder is modified.
+
+
+## Execution update — 2026-10-17
+
+- Draft canonical standard and initial register are committed on this branch.
+- Opened [NOVA draft PR #124](https://github.com/ACROWN-System/NOVA/pull/124); it contains the standard, register and this plan (3 added paths).
+- Cross-repository application guide is in [AstroCrown-Web draft PR #135](https://github.com/ACROWN-System/AstroCrown-Web/pull/135).
+- Repository comparisons show no changed paths under backup/, Backup/ or any case variant.
+- The full ISO 704:2022 clause-level review remains BLOCKED; the HSIAN active-name rollout and full-repository terminology sweep remain incomplete.
+- The PRs are draft and unmerged. Review the HSIAN canonical mission PR #122 and then NOVA terminology PR #124 before merging dependent AstroCrown-Web PR #135.
