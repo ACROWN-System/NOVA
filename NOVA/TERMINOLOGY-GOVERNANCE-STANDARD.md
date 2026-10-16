@@ -253,9 +253,4 @@ This is an internal project control. Where the complete ISO 704:2022 text establ
 ## 16. Revision history
 
 - **2026-10-17 / v0.1.1:** Set a readiness-first sequence. Provider discovery and accreditation checks are deferred until the evidence package's GO gate passes; linked the controlled audit-readiness dossier. This revision does not assert conformity or certification.
-
-
-## 17. Revision history
-
-- **2026-10-17 / v0.1.1:** Set a readiness-first sequence. Provider discovery and accreditation checks are deferred until the evidence package's GO gate passes; linked the controlled audit-readiness dossier. This revision does not assert conformity or certification.
 - **2026-10-17 / v0.1.2:** Explicitly made backup/archive paths immutable regardless of capitalization and clarified that dated mirrors and archive-named directories must not be modified.
