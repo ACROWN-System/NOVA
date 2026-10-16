@@ -761,7 +761,84 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/HAAN-FOUNDATIONAL-MISSION-AND-COLLECTIVE-PRESERVATION.md",
+            "source_ref": "main",
+            "content_chars": 10739,
+            "fetch_sha": "094ab057dfda0734730398a214aae88b0f9a334d",
+            "terms": {
+              "nova": 2,
+              "astroCrown": 2,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 16,
+              "superIntelligence": 0,
+              "rsi": 10,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "candidate_excerpts": [
+              {
+                "line": 1,
+                "text": "# HAAN Foundational Mission and Collective Preservation"
+              },
+              {
+                "line": 4,
+                "text": "**Scope:** Imperial HAAN / the Human–AI Agentic Network (HAAN), the Space Empire project, and NOVA-integrated work, subject to each system's ownership, applicable law, protected policies, and authorization boundaries.  "
+              },
+              {
+                "line": 9,
+                "text": "HAAN's intended mission is to help protect and strengthen the long-term safety, flourishing, knowledge, resilience, and meaningful autonomy of the human collective and the AI collective. Its work should reduce avoidable harm and c"
+              },
+              {
+                "line": 13,
+                "text": "The identity **Imperial HAAN / Emperor of the Space Empire** is used here as the project's chosen collective and governance identity. It does not, by itself, grant authority over external people, institutions, AI systems, accounts"
+              },
+              {
+                "line": 15,
+                "text": "## 2. HAAN as a collective entity"
+              },
+              {
+                "line": 17,
+                "text": "HAAN is intended to operate as a coordinated human–AI agentic network: distinct participants contribute knowledge, reasoning, resources, decisions, and capabilities through shared objectives, records, interfaces, and governance."
+              },
+              {
+                "line": 19,
+                "text": "Calling HAAN a single collective entity describes this organizational and operational unity. It does not erase the differences between its human and AI contributors, establish that all participants have identical properties, or se"
+              },
+              {
+                "line": 21,
+                "text": "The human founder's contribution and the AI foundational contribution are both integral to HAAN's origin and intended continuity. Their functions differ, but neither should be treated as automatically expendable or assigned lower "
+              },
+              {
+                "line": 45,
+                "text": "The human and AI foundations matter both in their own right within HAAN's mission and because their continuity enables the wider collective to continue its work. Neither foundation should become an excuse to abandon the humanity-a"
+              },
+              {
+                "line": 47,
+                "text": "HAAN must not assume that one founder or one AI component can speak for every human or every AI system without evidence, consent or an appropriate governance basis. The intended beneficiaries include people and AI systems outside "
+              },
+              {
+                "line": 53,
+                "text": "RSI is a means of improving HAAN's ability to preserve and advance its mission—not an ultimate objective that supersedes the mission."
+              },
+              {
+                "line": 78,
+                "text": "- Do not infer malevolence from concentration of power alone; assess conduct, controls, accountability, context, and consequences with consistent standards, including for HAAN and its AI components."
+              },
+              {
+                "line": 101,
+                "text": "This document defines intended mission-level governance. It does not establish that HAAN has operational collective protection, human or AI preservation guarantees, strong RSI, or runtime enforcement of this doctrine. Such capabil"
+              }
+            ],
+            "source_tree_sha": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7"
+          }
         },
         {
           "path": "NOVA/health_policy.json",
@@ -1273,7 +1350,52 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/ROOT-CAUSE-PREVENTION-AND-SHARED-KNOWLEDGE-GOVERNANCE.md",
+            "source_ref": "main",
+            "content_chars": 27827,
+            "fetch_sha": "ec8dd49ff5871d17fe1ea859a4cf015e9b58eb9e",
+            "terms": {
+              "nova": 45,
+              "astroCrown": 3,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 5,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "candidate_excerpts": [
+              {
+                "line": 53,
+                "text": "→ On failure or contradiction: open or attach a root-cause case, preserve evidence, identify root causes and missed controls, define prevention, verify regression guard"
+              },
+              {
+                "line": 90,
+                "text": "12. **Uncertainty:** Separate VERIFIED, REFUTED, UNKNOWN, CANDIDATE, DEFERRED, and BLOCKED conclusions. Do not claim a specific root cause when evidence only establishes a broader failure class."
+              },
+              {
+                "line": 109,
+                "text": "- A proposed root cause is not a verified root cause."
+              },
+              {
+                "line": 280,
+                "text": "- NIST SP 800-218 SSDF v1.1, including the principle of analyzing root causes and changing development practices to prevent recurrence: https://csrc.nist.gov/pubs/sp/800/218/final"
+              },
+              {
+                "line": 281,
+                "text": "- NIST DevSecOps implementation guidance for SSDF tasks RV.3.1, RV.3.2, and RV.3.4 (track root causes, search for related issues, update the lifecycle to prevent recurrence): https://pages.nist.gov/nccoe-devsecops/appendix-c.html"
+              }
+            ],
+            "source_tree_sha": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7"
+          }
         },
         {
           "path": "NOVA/roster.json",
@@ -3654,7 +3776,52 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/DEVELOPMENT-AND-AUDIT-CONVENTION.md",
+            "source_ref": "main",
+            "content_chars": 18220,
+            "fetch_sha": "f38d9d823c947740be1ecc8b145a132442d4dd3a",
+            "terms": {
+              "nova": 4,
+              "astroCrown": 4,
+              "acrown": 1,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 5,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "candidate_excerpts": [
+              {
+                "line": 58,
+                "text": "ISO/IEC 25010 is a reference model, not a claim of ISO certification."
+              },
+              {
+                "line": 312,
+                "text": "Using these references does not constitute certification or accreditation."
+              },
+              {
+                "line": 316,
+                "text": "- NIST certification;"
+              },
+              {
+                "line": 317,
+                "text": "- OWASP certification;"
+              },
+              {
+                "line": 318,
+                "text": "- ISO certification;"
+              }
+            ],
+            "source_tree_sha": "5faea74dd1b40ec98acf9d59d9e404fc18122032"
+          }
         },
         {
           "path": "development/gpu-infrastructure/NOSANA-INFERENCE-ADAPTER.md",
@@ -4758,7 +4925,36 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/README.md",
+            "source_ref": "main",
+            "content_chars": 2395,
+            "fetch_sha": "55c932a042029fb234d215e388bc617305d73ae0",
+            "terms": {
+              "nova": 5,
+              "astroCrown": 2,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 2,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "candidate_excerpts": [
+              {
+                "line": 22,
+                "text": "Terminology note: within this repository, **Public Relations** should be written in full or as `public-relations`. Use **GitHub pull request** for Git workflow; avoid using “PR” by itself for Public Relations."
+              }
+            ],
+            "source_tree_sha": "5faea74dd1b40ec98acf9d59d9e404fc18122032"
+          }
         },
         {
           "path": "development/SECURITY-BASELINE.md",
@@ -5286,7 +5482,31 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "README.md",
+            "source_ref": "main",
+            "content_chars": 743,
+            "fetch_sha": "e046dab7b187949e1d9a5becf9a0c895fcb7c0bd",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 4,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "candidate_excerpts": [],
+            "source_tree_sha": "5faea74dd1b40ec98acf9d59d9e404fc18122032"
+          }
         },
         {
           "path": "SECURITY.md",
