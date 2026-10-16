@@ -10409,7 +10409,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/public-relations/README.md",
+            "blob_sha": "d3adb9c9ba88683ec958d5d23f258eb6a1394726",
+            "size_bytes": 3673,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 3631,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 1,
+              "astroCrown": 6,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 11,
+                "text": "## Terminology rule: Public Relations vs GitHub pull request"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/README.md",
@@ -10470,7 +10502,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/SECURITY-BASELINE.md",
+            "blob_sha": "ede2ddc44012f901c8b4c4de056d948d6ef50db7",
+            "size_bytes": 1434,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 1434,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 1,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/verification/01-VERIFICATION-ECOSYSTEM-MAP.md",
@@ -10486,7 +10545,43 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/verification/01-VERIFICATION-ECOSYSTEM-MAP.md",
+            "blob_sha": "1894534f47a35d114ade60c2e08b70920cfc118a",
+            "size_bytes": 3694,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 3694,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 1,
+              "compliance": 1,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 61,
+                "text": "## A3. Regulatory / legal / compliance pathway"
+              },
+              {
+                "line": 123,
+                "text": "Media coverage is a discovery/reputation mechanism, not independent security or financial certification."
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/verification/02-ENTITY-REGISTRY.md",
@@ -10502,7 +10597,47 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/verification/02-ENTITY-REGISTRY.md",
+            "blob_sha": "356a39485404f2fa3d4e97c23bf1591c43636116",
+            "size_bytes": 17971,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 17961,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 1,
+              "astroCrown": 2,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 6,
+              "compliance": 7,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 9,
+                "text": "| V-003 | OWASP ASVS 5.0.0 | Web application security verification requirements | conformance evidence / audit baseline | Free reference | Partial-to-Full pre-audit | High | Critical | Critical | Strongly Recommended | F"
+              },
+              {
+                "line": 11,
+                "text": "| V-005 | ISO/IEC 27001:2022 | Information-security management system | accredited certification / audit evidence | Paid | Partial | Extreme | Critical | Future High | Situational | Feasible With Preparation | Medium | E"
+              },
+              {
+                "line": 12,
+                "text": "| V-006 | ISO/IEC 27701:2025 | Privacy information management | certification / assurance evidence | Paid | Partial | Extreme | High | Future Medium/High | Situational | Future Feasible | Low | High | Medium | High | VER"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/verification/03-STANDARDS-REGISTRY.md",
@@ -10518,7 +10653,43 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/verification/03-STANDARDS-REGISTRY.md",
+            "blob_sha": "7bdc2556a443ab89bae6ed3da44d65cc82412ce1",
+            "size_bytes": 1501,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 1483,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 1,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 2,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 8,
+                "text": "- ISO/IEC 27001:2022 — information-security management-system certification framework."
+              },
+              {
+                "line": 33,
+                "text": "A standard is not automatically a certification. A framework can provide the criteria used to prepare or verify a system without conferring external authority. Record exact version/date and never silently replace a basel"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/verification/04-NECESSITY-REGISTRY.md",
@@ -10534,7 +10705,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/verification/04-NECESSITY-REGISTRY.md",
+            "blob_sha": "b43e2599fa1ca9e27147840cff3f02d7e0e629ee",
+            "size_bytes": 1538,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 1538,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 1,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/verification/05-FEASIBILITY-REGISTRY.md",
@@ -10550,7 +10748,43 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/verification/05-FEASIBILITY-REGISTRY.md",
+            "blob_sha": "19ab772f594bf6e9acb38d66cf01d8c3f1452a1d",
+            "size_bytes": 1059,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 1059,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 1,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 2,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 21,
+                "text": "- SOC 2 / ISO certification."
+              },
+              {
+                "line": 27,
+                "text": "- independent certification."
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/verification/06-OPPORTUNITY-READINESS.md",
@@ -10566,7 +10800,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/verification/06-OPPORTUNITY-READINESS.md",
+            "blob_sha": "f7c4f804fac71de3e1574c91fd22ca7bc373a569",
+            "size_bytes": 2507,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 2501,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 1,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 10,
+                "text": "| Exchange listing | Once listing-ready asset exists | Whenever opportunity appears | Post-listing for additional venues | Yes | legal/compliance, tokenomics, contracts, security, market/community data | master exchange "
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/verification/07-VISIBILITY-REGISTRY.md",
