@@ -88,3 +88,10 @@ Authoritative public standard metadata:
 - Added [the 318-record file-by-file content sweep tracker](2026-10-17-ISO-704-Content-Sweep-Tracker.json), carrying repository, path, blob SHA, provisional review queue, evidence IDs, findings and reviewer/result fields.
 - Every item is explicitly marked NOT_REVIEWED / NOT_ASSESSED. Queue categories use extension and path hints only; they do not establish applicability, content review or conformance.
 - The next work is a human-/tool-supported review of actual file content, with exact baseline refs and findings. Backup/archive contents remain excluded from the active review and immutable.
+
+
+## Execution update — 2026-10-17 — initial content screen
+
+- Lexically screened 15 active files across the six-repository main-branch baseline and recorded term counts/selected excerpts in the [content sweep tracker](2026-10-17-ISO-704-Content-Sweep-Tracker.json).
+- Created [the initial findings log](2026-10-17-ISO-704-Initial-Sweep-Findings.md). A known active HAAN naming transition remains pending dependent PR #122 and PR #134; an oversized active NOVA README still requires segmented review; policy text supporting claim/evidence controls needs operational testing.
+- The 15-file lexical scan is not semantic content review, and all 318 file records still require substantive review/classification. Overall readiness remains **NOT READY FOR AN ISO 704 AUDIT**.
