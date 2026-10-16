@@ -4505,7 +4505,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Active/2026-10-11-RSI-GitHub-Action-SHA-Pinning.md",
+            "blob_sha": "dc53b6dcb0302cda535b147b3cb8185c94253537",
+            "size_bytes": 3978,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 3966,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 2,
+              "astroCrown": 3,
+              "acrown": 2,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 10,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Active/2026-10-11-RSI-Independent-Security-Review.md",
@@ -4521,7 +4548,43 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Active/2026-10-11-RSI-Independent-Security-Review.md",
+            "blob_sha": "d8d351a0e0a864c03554ed144d02786bc6f217dc",
+            "size_bytes": 7092,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 7082,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 4,
+              "astroCrown": 4,
+              "acrown": 3,
+              "hsiAn": 0,
+              "haan": 2,
+              "superIntelligence": 0,
+              "rsi": 15,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 1,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 11,
+                "text": "HAAN's [Foundational Mission and Collective Preservation](https://github.com/ACROWN-System/NOVA/blob/main/NOVA/HAAN-FOUNDATIONAL-MISSION-AND-COLLECTIVE-PRESERVATION.md) governs this work. RSI remains a means of supporting the coll"
+              },
+              {
+                "line": 13,
+                "text": "The review followed the [AstroCrown Web Development & Audit Convention](../../DEVELOPMENT-AND-AUDIT-CONVENTION.md) and the [RSI Capability Benchmark Protocol](../../nova-recursive-self-improvement/CAPABILITY-BENCHMARK-PROTOCOL.md)"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Active/2026-10-11-RSI-Provider-Egress-Boundary.md",
@@ -4537,7 +4600,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Active/2026-10-11-RSI-Provider-Egress-Boundary.md",
+            "blob_sha": "79109d2ad13d15451ad933dfdb5fd8af7f688307",
+            "size_bytes": 4249,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 4241,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 3,
+              "acrown": 2,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 7,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Active/2026-10-11-RSI-Retention-Baseline-Binding.md",
@@ -4553,7 +4643,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Active/2026-10-11-RSI-Retention-Baseline-Binding.md",
+            "blob_sha": "fe84a74b2ae33202c7e1af7c323576dab2a69c5c",
+            "size_bytes": 1719,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 1717,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 3,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Active/2026-10-11-RSI-Sandbox-Cleanup-Verification.md",
@@ -4569,7 +4686,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Active/2026-10-11-RSI-Sandbox-Cleanup-Verification.md",
+            "blob_sha": "969ba74fd4e73e56e58a2725dc17923ce36f8306",
+            "size_bytes": 3549,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 3545,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 2,
+              "astroCrown": 4,
+              "acrown": 3,
+              "hsiAn": 0,
+              "haan": 2,
+              "superIntelligence": 0,
+              "rsi": 7,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 11,
+                "text": "HAAN's [Foundational Mission and Collective Preservation](https://github.com/ACROWN-System/NOVA/blob/main/NOVA/HAAN-FOUNDATIONAL-MISSION-AND-COLLECTIVE-PRESERVATION.md) governs this work. Secure experimentation is a means serving "
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Active/2026-10-11-RSI-Strict-Schema-Type-Validation.md",
@@ -4585,7 +4734,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Active/2026-10-11-RSI-Strict-Schema-Type-Validation.md",
+            "blob_sha": "832f54229666a9cf544a4f64b84de6bb23c06703",
+            "size_bytes": 2044,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 2040,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 2,
+              "astroCrown": 1,
+              "acrown": 1,
+              "hsiAn": 0,
+              "haan": 2,
+              "superIntelligence": 0,
+              "rsi": 3,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 9,
+                "text": "HAAN's [Foundational Mission and Collective Preservation](https://github.com/ACROWN-System/NOVA/blob/main/NOVA/HAAN-FOUNDATIONAL-MISSION-AND-COLLECTIVE-PRESERVATION.md) governs this work. Protected control-plane and evidence forma"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Active/2026-10-11-RSI-Supervisor-IO-Failure-Cleanup.md",
@@ -4601,7 +4782,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Active/2026-10-11-RSI-Supervisor-IO-Failure-Cleanup.md",
+            "blob_sha": "00089275037435f2664339f23d577cb80ea43ea5",
+            "size_bytes": 3247,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 3243,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 2,
+              "astroCrown": 4,
+              "acrown": 3,
+              "hsiAn": 0,
+              "haan": 2,
+              "superIntelligence": 0,
+              "rsi": 7,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 11,
+                "text": "HAAN's [Foundational Mission and Collective Preservation](https://github.com/ACROWN-System/NOVA/blob/main/NOVA/HAAN-FOUNDATIONAL-MISSION-AND-COLLECTIVE-PRESERVATION.md) governs this work. If the trusted evaluator cannot be monitor"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Active/2026-10-11-RSI-Task-Benchmark-Dispatcher.md",
@@ -4617,7 +4830,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown-Web",
+            "path": "development/audit/Active/2026-10-11-RSI-Task-Benchmark-Dispatcher.md",
+            "blob_sha": "4ea5f370ecdbda86583e999fe2da4d4d8f858ca0",
+            "size_bytes": 4751,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 4747,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 3,
+              "astroCrown": 2,
+              "acrown": 2,
+              "hsiAn": 0,
+              "haan": 2,
+              "superIntelligence": 0,
+              "rsi": 12,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 10,
+                "text": "HAAN's [Foundational Mission and Collective Preservation](https://github.com/ACROWN-System/NOVA/blob/main/NOVA/HAAN-FOUNDATIONAL-MISSION-AND-COLLECTIVE-PRESERVATION.md) governs this work. RSI serves the collective mission and does"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "development/audit/Active/2026-10-11-RSI-Token-Telemetry-Integrity.md",
