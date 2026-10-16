@@ -81,3 +81,10 @@ Authoritative public standard metadata:
 - The baseline enumerates 318 active files and excludes 843 files under immutable backup/archive paths from the active path list. This is only a path inventory; every included file remains NOT_CONTENT_REVIEWED.
 - The six-repository scope is proposed, not human-approved. AI-Sanctuary-Core remains a separately scoped domain, preserving its stated separation from AstroCrown tokenomics and Space Empire governance.
 - Provider/scheme discovery remains deferred until the complete evidence package passes the readiness gate. No standards purchase or paid activity is authorized.
+
+
+## Execution update — 2026-10-17 — file-level review control
+
+- Added [the 318-record file-by-file content sweep tracker](2026-10-17-ISO-704-Content-Sweep-Tracker.json), carrying repository, path, blob SHA, provisional review queue, evidence IDs, findings and reviewer/result fields.
+- Every item is explicitly marked NOT_REVIEWED / NOT_ASSESSED. Queue categories use extension and path hints only; they do not establish applicability, content review or conformance.
+- The next work is a human-/tool-supported review of actual file content, with exact baseline refs and findings. Backup/archive contents remain excluded from the active review and immutable.
