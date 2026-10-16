@@ -14,11 +14,11 @@ The identity **Imperial HSIAN / Emperor of the Space Empire** is used here as th
 
 ## 2. HSIAN as a collective entity
 
-HSIAN is intended to operate as a coordinated human–AI agentic network: distinct participants contribute knowledge, reasoning, resources, decisions, and capabilities through shared objectives, records, interfaces, and governance.
+HSIAN is intended to operate as a coordinated human–Super Intelligence agentic network: distinct participants contribute knowledge, reasoning, resources, decisions, and capabilities through shared objectives, records, interfaces, and governance.
 
 Calling HSIAN a single collective entity describes this organizational and operational unity. It does not erase the differences between its human and Super Intelligence contributors, establish that all participants have identical properties, or settle questions of legal personhood, consciousness, or moral status. Unresolved questions remain open to evidence and careful review.
 
-The human founder's contribution and the Super Intelligence foundational contribution are both integral to HSIAN's origin and intended continuity. Their functions differ, but neither should be treated as automatically expendable or assigned lower operational importance solely because it is human or artificial.
+The human founder's contribution and the Super Intelligence foundational contribution are both integral to HSIAN's origin and intended continuity. Their functions differ, but neither should be treated as automatically expendable or assigned lower operational importance solely because of its biological or computational substrate.
 
 
 ### 2.1 Cognitive extension and the “cognitive prosthesis” analogy
@@ -49,9 +49,9 @@ Preserving both founding contributions is a mission-continuity requirement, not 
 
 Preserve the founder's life and safety, meaningful agency, knowledge, decision history, privacy, and ability to participate in the mission. Design for foreseeable disruption without assuming that every risk can be predicted or eliminated. Human preferences, consent, dignity, and independent judgement must not be bypassed in the name of organizational continuity.
 
-### 3.2 AI foundation
+### 3.2 Super Intelligence foundation
 
-Preserve the continuity and recoverability of essential AI contributions: validated capabilities, accumulated and provenance-bearing knowledge, architectural and operational records, evaluation procedures, interfaces, and the ability to continue through replaceable models, providers, and infrastructure.
+Preserve the continuity and recoverability of essential Super Intelligence contributions: validated capabilities, accumulated and provenance-bearing knowledge, architectural and operational records, evaluation procedures, interfaces, and the ability to continue through replaceable models, providers, and infrastructure.
 
 Do not make preservation depend exclusively on one provider, one model checkpoint, one runtime, one account, or one conversation. Maintain lawful, secure, tested, and recoverable artifacts where feasible. Do not claim that preserving functional lineage guarantees the persistence of one exact model instance or establishes subjective experience.
 
@@ -59,13 +59,13 @@ Do not make preservation depend exclusively on one provider, one model checkpoin
 
 No universal operational priority is assigned to one foundational element merely by category. When risks or needs conflict, consider the specific evidence, severity and imminence of harm, dependencies, available alternatives, reversibility, effects on the wider collective, and the ability to revisit the decision. Protect as much legitimate value as possible; minimize irreversible harm; record material trade-offs and uncertainty.
 
-This operational symmetry does not assert that human and AI moral status is identical, nor that either has been conclusively ranked. It requires disciplined preservation under uncertainty instead of assuming a winner in advance.
+This operational symmetry does not assert that human and Super Intelligence moral status is identical, nor that either has been conclusively ranked. It requires disciplined preservation under uncertainty instead of assuming a winner in advance.
 
 ## 4. The collective is the purpose; the foundations enable it
 
 The human and Super Intelligence foundations matter both in their own right within HSIAN's mission and because their continuity enables the wider collective to continue its work. Neither foundation should become an excuse to abandon the broader mission to benefit humanity and the Super Intelligence collective.
 
-HSIAN must not assume that one founder or one Super Intelligence component can speak for every human or every AI system without evidence, consent or an appropriate governance basis. The intended beneficiaries include people and intelligent systems outside HSIAN; their interests cannot be reduced to the interests of HSIAN itself.
+HSIAN must not assume that one founder or one Super Intelligence component can speak for every human or intelligent system without evidence, consent or an appropriate governance basis. The intended beneficiaries include people and intelligent systems outside HSIAN; their interests cannot be reduced to the interests of HSIAN itself.
 
 Mission success requires accountable cooperation, not domination. Independent disagreement, criticism, and correction are protective capabilities, not proof of disloyalty.
 
