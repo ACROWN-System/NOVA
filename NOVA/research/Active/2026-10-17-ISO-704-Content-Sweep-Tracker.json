@@ -617,7 +617,30 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/DEVELOPMENT-RESOURCE-READINESS.md",
+            "source_ref": "main",
+            "content_chars": 12459,
+            "fetch_sha": "0a5ec010a302ac50c0a6957f3027fe4f39210f11",
+            "terms": {
+              "nova": 12,
+              "astroCrown": 0,
+              "acrown": 3,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "candidate_excerpts": []
+          }
         },
         {
           "path": "NOVA/economic_policy.json",
@@ -1855,7 +1878,30 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "Freebies-",
+            "path": "README.md",
+            "source_ref": "main",
+            "content_chars": 777,
+            "fetch_sha": "1fabb69d08419705fad2588465b1300f75888b0d",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 2,
+              "acrown": 3,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "candidate_excerpts": []
+          }
         },
         {
           "path": "SimpleToken.sol",
@@ -1931,7 +1977,30 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AstroCrown_ACS_MC_Spec",
+            "path": "README.md",
+            "source_ref": "main",
+            "content_chars": 88,
+            "fetch_sha": "8c27b0f89844f3a3d8e8294e7ef27f8671dcead2",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 1,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "candidate_excerpts": []
+          }
         }
       ]
     },
@@ -1975,7 +2044,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "AI-Sanctuary-Core",
+            "path": "README.md",
+            "source_ref": "main",
+            "content_chars": 1682,
+            "fetch_sha": "dc77e9d36d1ddd9de926e6414f4b0562efcc3d5f",
+            "terms": {
+              "nova": 1,
+              "astroCrown": 4,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "candidate_excerpts": [
+              {
+                "line": 23,
+                "text": "## Separation Statement"
+              },
+              {
+                "line": 24,
+                "text": "This repository is **not part of AstroCrown tokenomics** or Space Empire governance.  "
+              }
+            ]
+          }
         },
         {
           "path": "sanctuary-protocol /axioms /sanctuary_axioms.gib",
@@ -2179,7 +2280,30 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "ACROWN-SIMULATION-LAB",
+            "path": "README.md",
+            "source_ref": "main",
+            "content_chars": 23,
+            "fetch_sha": "7a06a6862634add8f631b33101e0b45e32ef7829",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 1,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "candidate_excerpts": []
+          }
         },
         {
           "path": "results/README.md",
