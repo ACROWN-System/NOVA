@@ -74,7 +74,7 @@ Status meanings: **EXISTS—DRAFT** = an artifact exists but has not been accept
 |---|---|---|---|---|
 | AR-E01 | Scope and boundaries | Approved scope statement; included domains, repos/paths, activity, languages, period, exclusions and rationale | NOT STARTED | Freeze and approve scope before claiming coverage |
 | AR-E02 | Controlled standard baseline | Lawful access to the complete ISO 704:2022 edition; edition/version, source, access/licence record, controlled-copy identifier | BLOCKED | Determine lawful access route; no purchase or paid subscription without separate authorization |
-| AR-E03 | Clause/topic-to-evidence matrix | Every applicable section/clause captured from the controlled edition; statement force, project interpretation, applicability, control, evidence, result, gaps and rationale | BLOCKED | Build only after AR-E02; no guessed or invented clause mappings |
+| AR-E03 | Clause/topic-to-evidence matrix | Every applicable section/clause captured from the controlled edition; statement force, project interpretation, applicability, control, evidence, result, gaps and rationale | BLOCKED — template available | Use the [controlled matrix template](2026-10-17-ISO-704-Clause-Evidence-Matrix.md) only after AR-E02; no guessed or invented clause mappings |
 | AR-E04 | Terminology governance procedure | Approved roles, workflow, criteria, decision gates, status lifecycle and audit controls | EXISTS—DRAFT | Review, approve and establish an effective date |
 | AR-E05 | Canonical terminology register | Versioned concept entries with stable IDs, domain/context, preferred designations, definitions, characteristics, relations, variants, sources, owner, status and history where applicable | EXISTS—DRAFT | Review each entry; record unresolved fields as candidate/blocked; approve a controlled snapshot |
 | AR-E06 | Concept-system maps | Project-owned concept maps with justified relationship types and links to register IDs | NOT STARTED | Create maps for included domains; validate against entries and document unresolved relations |
@@ -97,7 +97,7 @@ The statuses above reflect the present documentation review, not successful audi
 
 ## 6. Clause/topic-to-evidence matrix — controlled schema
 
-Create a separate controlled matrix after AR-E02 is available. At minimum, each row must contain:
+Use the [controlled matrix template](2026-10-17-ISO-704-Clause-Evidence-Matrix.md) to create the separate controlled matrix after AR-E02 is available. At minimum, each row must contain:
 
 - Matrix row ID and exact section/clause identifier from the licensed edition.
 - Project-authored, concise description of the point being assessed (do not reproduce copyrighted paragraphs).
@@ -182,6 +182,8 @@ The governance standard, initial register, and AstroCrown-Web application guide 
 Next actions, in sequence:
 
 1. Freeze the practical assessment scope and language boundaries (AR-E01).
+2. Resolve lawful access to the complete edition before populating the [matrix template](2026-10-17-ISO-704-Clause-Evidence-Matrix.md); no clause-level mapping is valid before that prerequisite.
+3. Review and approve the internal terminology procedure and register-entry controls.
 2. Review and approve the internal terminology procedure and register-entry controls.
 3. Resolve lawful access to the complete ISO 704:2022 edition without assuming or making any purchase.
 4. Build the clause/topic matrix only from that controlled edition.
