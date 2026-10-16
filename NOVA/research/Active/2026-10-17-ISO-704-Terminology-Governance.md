@@ -20,7 +20,7 @@ Authoritative public standard metadata:
 - A brand book alone is insufficient; the project needs concept-level records distinguishing referents, concepts, definitions, designations, domains and typed relationships.
 - The canonical standard and register belong in NOVA to reduce competing definitions across projects; AstroCrown-Web provides public-facing application guidance and links to the canonical record.
 - ISO 704:2022's public description supports terminology work, concept relations, term/proper-name formation and definitions. The full licensed standard has not been made available as a controlled audit baseline.
-- No ISO 704-specific certification route has been established. Do not promise a certificate. Target documented internal controls, clause-level review readiness and an independent evidence-based audit when access to the full standard becomes available.
+- Certification feasibility is an explicit workstream to investigate and pursue, not assume impossible and not guarantee. Initial public-source research has not verified an ISO 704-specific offering; this is not proof none exists. Obtain written confirmation from a competent independent provider of the exact certificate, scheme, criteria, scope, and accreditation status before stating it is available. Target documented internal controls and clause-level readiness while that research proceeds.
 - Initial canonical entries include NOVA, HSIAN, Super Intelligence, AstroCrown, ACROWN token, Space Empire, RSI, Strong RSI, Imperial HSIAN, Imperial Council, cognitive extension/enhancement/prosthesis analogy, canonical terminology register and terminology governance standard. These are a starting set, not an exhaustive inventory.
 
 ## Scope
@@ -30,7 +30,7 @@ Authoritative public standard metadata:
 3. Add AstroCrown-Web public-facing terminology/brand language application guidance linked to the canonical NOVA source.
 4. Maintain reviewable branch/PR workflow and explicit cross-repository merge order.
 5. Preserve a strict immutable backup boundary: do not add, update, rename, move or delete any path beneath backup/, Backup/ or any case variant.
-6. Mark full clause-level ISO 704 conformity BLOCKED until lawful access to the exact full edition, clause mapping and evidence audit.
+6. Mark full clause-level ISO 704 conformity BLOCKED until lawful access to the exact full edition, clause mapping and evidence audit. Investigate and pursue a credible independent certification route through a separately tracked provider-feasibility workstream; do not make financial commitments or claim availability without written confirmation.
 7. Do not change runtime code, provider operation, access controls, payment, deployment or RSI readiness.
 
 ## Impact Analysis
@@ -52,7 +52,7 @@ Authoritative public standard metadata:
 
 - Canonical governance standard and initial register drafted on this branch.
 - AstroCrown-Web application guide and audit record are in progress on the corresponding branch.
-- No PR is merged, no external certification is claimed, no paid standards/software purchase is authorized, and no backup folder is modified.
+- No PR is merged, no external certification is claimed, certification feasibility remains unverified and is explicitly retained as an objective, no paid standards/software purchase is authorized, and no backup folder is modified.
 
 
 ## Execution update — 2026-10-17
