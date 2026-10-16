@@ -1,7 +1,7 @@
 # ISO 704:2022 Audit-Readiness Dossier and Evidence Register
 
 **Document ID:** NOVA-ISO704-AR-001  
-**Version:** 0.1.5  
+**Version:** 0.1.6  
 **Date opened:** 2026-10-17  
 **Status:** ACTIVE — readiness package construction; NOT READY FOR AN ISO 704 AUDIT  
 **Owner:** Designated human maintainer  
@@ -85,7 +85,7 @@ Status meanings: **EXISTS—DRAFT** = an artifact exists but has not been accept
 | AR-E08 | Designation and naming decisions | Evidence for preferred terms, acronyms, variants, spelling/form, rationale, ambiguity/collision review, deprecated names and decision authority | PARTIAL / NOT VERIFIED | Build decision log and link each in-scope entry to its approval/evidence |
 | AR-E09 | Source and provenance index | Sources, project decisions, supporting evidence, versions and dates traceable to entries; clear separation of project definitions and external facts | PARTIAL / NOT VERIFIED | Add source IDs and provenance to the register; assess every entry |
 | AR-E10 | Governance/approval records | Who approved the scope, standard, register entries and material changes; decisions, dates, rationale and review trail | PARTIAL / NOT VERIFIED | Capture explicit approvals; draft status is not equivalent to adoption |
-| AR-E11 | Active repository terminology sweep | Reproducible inventory of every included active path; search terms, path list, tooling/method, timestamp/ref, exceptions, conflicts and resolution status | PATH BASELINE CREATED; INITIAL LEXICAL SCREEN OF 15/318 FILES; SEMANTIC CONTENT REVIEW INCOMPLETE | Continue the [content sweep tracker](2026-10-17-ISO-704-Content-Sweep-Tracker.json), use the [initial findings log](2026-10-17-ISO-704-Initial-Sweep-Findings.md) for known gaps, classify actual file content, refresh intended assessment refs, then record findings and retests |
+| AR-E11 | Active repository terminology sweep | Reproducible inventory of every included active path; search terms, path list, tooling/method, timestamp/ref, exceptions, conflicts and resolution status | PATH BASELINE COMPLETE; LEXICAL SCREEN 318/318; SEMANTIC CONTENT REVIEW NOT YET COMPLETED | Use the [318-file content sweep tracker](2026-10-17-ISO-704-Content-Sweep-Tracker.json) and [initial findings log](2026-10-17-ISO-704-Initial-Sweep-Findings.md) to perform actual semantic review, classify each occurrence by context/status, review public claims and evidence, close findings with retests, and refresh against the approved assessment refs |
 | AR-E12 | Actual public-use audit | Representative or full audit of pages, UI labels, README/docs, announcements, metadata/accessibility strings in declared scope against canonical terms | NOT STARTED | Freeze scope and sample; record exact paths/URLs and results |
 | AR-E13 | Localization decision and evidence | Explicit language scope; for any included locale, term records, equivalence decisions, reviewer and unresolved translations | NOT STARTED | Approve English-only first-audit scope or create real locale evidence; do not imply translations were tested |
 | AR-E14 | Change control and record integrity | PR/commit trails, review approvals, versioning, impact analysis, deprecation/successor handling and protected backup boundary | EXISTS—DRAFT / PARTIAL | Inspect actual history and sample completed changes; verify backup/archive paths were not changed |
@@ -97,6 +97,30 @@ Status meanings: **EXISTS—DRAFT** = an artifact exists but has not been accept
 | AR-E20 | Provider outreach / scheme confirmation | Only after readiness gate: written statement of exact offering, criteria, assessment method, certificate scope and issuer; independent accreditation-scope verification where claimed | DEFERRED BY DESIGN | Do not start until all readiness gates pass; this is not required to construct the internal evidence pack |
 
 The statuses above reflect the present documentation review, not successful audit testing. Do not convert “exists” into “pass” without review and objective evidence.
+
+### Initial lexical screen — completed baseline only (2026-10-17)
+
+The active-path tracker now contains lexical-screen results for **318/318 active paths across six repository main-branch tree snapshots**. The scan completed without fetch failures; each record preserves the baseline path/blob SHA, selected-token hit counts and limited candidate excerpts where found. **This completes the lexical screen only. All 318 entries remain `content_review_status: NOT_REVIEWED` and `terminology_assessment: NOT_ASSESSED`.** Regex counts do not establish whether a use is correct, historical, misleading, applicable, or conformant.
+
+Selected exact-pattern aggregates from the recorded baseline (useful for triage, not a score):
+
+| Pattern | Files with hits | Total hits | Caution |
+|---|---:|---:|---|
+| NOVA | 205 | 1,312 | Case-insensitive exact token scan |
+| AstroCrown | 146 | 868 | Case-insensitive exact token scan |
+| ACROWN | 102 | 403 | Case-insensitive exact token scan |
+| HSIAN | 0 | 0 | Current main snapshots predate the unmerged HSIAN PRs |
+| HAAN | 35 | 88 | Context classification and post-rename rescan required |
+| Super Intelligence | 2 | 11 | Exact phrase pattern only |
+| RSI | 93 | 908 | Acronym may be unrelated in some contexts; review surrounding text |
+| cognitive extension | 0 | 0 | Exact phrase pattern only; not a synonym/concept-completeness test |
+| ISO 704 | 0 | 0 | Main snapshot only; current draft ISO 704 documentation is on a branch |
+| certification stem | 21 | 45 | Includes explicit statements that references are not certification; semantic review required |
+| compliance/conformance stems | 27 | 402 | High count is concentrated in a large composite NOVA README; claims and historical segments need context |
+| Imperial Council | 0 | 0 | Exact phrase pattern only |
+
+The initial lexical screen reports no exact `ISO 704` pattern in the 318 active baseline paths; this is **not** proof that no standards-related claim exists in other branches, deployed pages, public channels or unindexed material. It is not a certification conclusion. Review the whole occurrences and actual deployment claims independently before closure.
+
 
 ## 6. Clause/topic-to-evidence matrix — controlled schema
 
@@ -206,4 +230,5 @@ Next actions, in sequence:
 - **2026-10-17 / v0.1.2:** Added a standard-lifecycle freshness check so the baseline records any newer published edition or active revision work rather than assuming the 2022 edition will remain the relevant target indefinitely.
 - **2026-10-17 / v0.1.3:** Added an initial inventory of six accessible repositories and 318 active file paths, with 843 backup/archive files excluded from the active path list. Scope approval and all content-level checks remain pending.
 - **2026-10-17 / v0.1.4:** Added a 318-record content sweep tracker linked to the path inventory. All items begin NOT_REVIEWED; extension-based queue labels are triage hints only, not evidence of applicability or conformity.
-- **2026-10-17 / v0.1.5:** Recorded the initial lexical screen of 15 files and linked the findings log; semantic review of all inventoried files, scope approval and the full-standard matrix remain incomplete.
+- **2026-10-17 / v0.1.5:** Recorded the initial lexical screen and linked the findings log.
+- **2026-10-17 / v0.1.6:** Completed exact-pattern lexical screening for 318/318 active baseline paths, updated the tracker counts and triage aggregates, and explicitly kept all 318 items semantically unreviewed. Scope approval, lawful full-standard access, clause matrix, operational evidence, internal audit and management GO decision remain open.
