@@ -2679,7 +2679,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/research/2026.10.08-IMPLEMENTED-rolling-probe-scheduling-expiry-reallocation.md",
+            "blob_sha": "132c6662d8db4d43950e59f6ece13fbb1acf9bfd",
+            "size_bytes": 3366,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 3364,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 6,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/research/2026.10.09-IMPLEMENTED-mistral-429-diagnostics-investigation-loop.md",
@@ -2695,7 +2722,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/research/2026.10.09-IMPLEMENTED-mistral-429-diagnostics-investigation-loop.md",
+            "blob_sha": "3c179ee01f84d59ea8bfb4d25c5b934e0bb542d5",
+            "size_bytes": 6140,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 6120,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 2,
+              "astroCrown": 0,
+              "acrown": 1,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/research/2026.10.09-Provider-Error-Evidence-and-Credential-Gap-Review.md",
@@ -2711,7 +2765,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/research/2026.10.09-Provider-Error-Evidence-and-Credential-Gap-Review.md",
+            "blob_sha": "f36cf163c801cf1648d350134b48ba2309237c2b",
+            "size_bytes": 19758,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 19726,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 14,
+              "astroCrown": 0,
+              "acrown": 2,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/research/Active/2026-10-14-AstroCrown-Cloudflare-Image-Qualification.md",
@@ -2727,7 +2808,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/research/Active/2026-10-14-AstroCrown-Cloudflare-Image-Qualification.md",
+            "blob_sha": "d051e179525d496242c68071d2571ca2d8539c01",
+            "size_bytes": 34513,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 34455,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 38,
+              "astroCrown": 39,
+              "acrown": 15,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 2,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/research/Completed/2026-10-09-Provider-Diagnostics-and-Credential-Gaps.md",
@@ -2743,7 +2851,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/research/Completed/2026-10-09-Provider-Diagnostics-and-Credential-Gaps.md",
+            "blob_sha": "b70e3801db7f465f23009d34f039ef899443a6b0",
+            "size_bytes": 5387,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 5385,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 8,
+              "astroCrown": 0,
+              "acrown": 3,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/research/Completed/2026-10-10-Defer-Mistral-Free-Health-Probes.md",
@@ -2759,7 +2894,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/research/Completed/2026-10-10-Defer-Mistral-Free-Health-Probes.md",
+            "blob_sha": "a0222fe1555d8ef722f8b131794d6adbd0b78e06",
+            "size_bytes": 5339,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 5337,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 11,
+              "astroCrown": 0,
+              "acrown": 2,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/ROOT-CAUSE-PREVENTION-AND-SHARED-KNOWLEDGE-GOVERNANCE.md",
@@ -2836,7 +2998,39 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/roster.json",
+            "blob_sha": "8cf9bac1c6a8d47568c5183177818b5a53ab1987",
+            "size_bytes": 11113,
+            "extension": ".json",
+            "source_ref": "main",
+            "content_chars": 11053,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 5,
+              "astroCrown": 0,
+              "acrown": 1,
+              "hsiAn": 0,
+              "haan": 1,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 2,
+                "text": "  \"_comment\": \"NOVA provider roster. Priority = order in this list. 'status' is set to 'down' automatically by router.py when a provider's models are all permanently dead (e.g. decommissioned) — the HAAN Council restores"
+              }
+            ],
+            "error": null
+          }
         },
         {
           "path": "NOVA/router.py",
@@ -2852,7 +3046,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/router.py",
+            "blob_sha": "9846d49b4ad812f8bf1228604f489c95eac84440",
+            "size_bytes": 32720,
+            "extension": ".py",
+            "source_ref": "main",
+            "content_chars": 32718,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 10,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/sanctuary/FOUNDATIONAL-DOCTRINE.md",
