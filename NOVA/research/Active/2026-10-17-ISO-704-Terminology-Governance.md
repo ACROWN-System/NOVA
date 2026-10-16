@@ -104,3 +104,10 @@ Authoritative public standard metadata:
 - **This is not a completed semantic review:** all 318 tracker rows remain `NOT_REVIEWED` / `NOT_ASSESSED`. The large `NOVA/README.md` also needs section-level interpretation despite its successful lexical scan.
 - Known active HAAN/HSIAN transition still awaits dependent PR #122 and #134; no mass-edit was made. All 843 backup/archive paths/files counted in the AstroCrown-Web baseline remain excluded from the active inventory and immutable.
 - Current overall disposition remains **NOT READY FOR AN ISO 704 AUDIT**. The complete standard baseline, scope approval, full clause/topic evidence matrix, semantic review, operational pilot evidence, internal audit, corrective actions, management GO decision remain unfinished. Provider search/contact stays deferred.
+
+
+## Execution update — 2026-10-17 — targeted semantic-context reviews
+
+- Added [a preliminary certification-context review](2026-10-17-ISO-704-Certification-Context-Review.md) covering 21 files and 45 `certif*` lexical matches. The seven matches in the very large NOVA README are TLS-certificate operational references, not standards certification. Most other contexts are disclaimers; generic future “ISO certification” language and the entity-registry evidence-state column require human verification. This review found no ISO 704-specific certificate claim in those 21 contexts, which does not close the broader public-claims audit.
+- Added [a 15-entry canonical-register quality review](2026-10-17-ISO-704-Register-Quality-Review.md). It records missing per-entry provenance/approval data, untyped relations, and other fields requiring evidence-backed completion and human review.
+- These are preliminary targeted reviews. All 318 active path tracker rows remain semantically `NOT_REVIEWED` / `NOT_ASSESSED` at whole-file level; the overall package is **NOT READY FOR AN ISO 704 AUDIT**.
