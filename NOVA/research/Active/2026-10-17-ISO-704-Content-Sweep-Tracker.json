@@ -3792,7 +3792,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/tests/test_provider_qualification.py",
+            "blob_sha": "ca636fb85dcb30892a37e800f191ecf969460cdc",
+            "size_bytes": 8036,
+            "extension": ".py",
+            "source_ref": "main",
+            "content_chars": 8036,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 8,
+              "astroCrown": 0,
+              "acrown": 2,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/tests/test_quality_gate.py",
@@ -3808,7 +3835,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/tests/test_quality_gate.py",
+            "blob_sha": "c947e4e8e342b0e4000346c01ed0addee8109711",
+            "size_bytes": 8657,
+            "extension": ".py",
+            "source_ref": "main",
+            "content_chars": 8657,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 3,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/tests/test_reasoning.py",
@@ -3824,7 +3878,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/tests/test_reasoning.py",
+            "blob_sha": "97d2ab717d6085133d261dd30a95527e8ad0d016",
+            "size_bytes": 975,
+            "extension": ".py",
+            "source_ref": "main",
+            "content_chars": 975,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 1,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/tests/test_router.py",
@@ -3840,7 +3921,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/tests/test_router.py",
+            "blob_sha": "e0e2967c78d161d1e2b57019dc73690597e48a54",
+            "size_bytes": 19345,
+            "extension": ".py",
+            "source_ref": "main",
+            "content_chars": 19345,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 12,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/tests/test_weak_rsi_workflow.py",
@@ -3856,7 +3964,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/tests/test_weak_rsi_workflow.py",
+            "blob_sha": "9d991fc907d70bdd76f4240bd4c95f0d17cdcb25",
+            "size_bytes": 2175,
+            "extension": ".py",
+            "source_ref": "main",
+            "content_chars": 2175,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 3,
+              "astroCrown": 1,
+              "acrown": 1,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 7,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/tests/test_workflow_coverage.py",
@@ -3872,7 +4007,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/tests/test_workflow_coverage.py",
+            "blob_sha": "2d14d46bdf8b13538c6266fb4c2b1f632fb16086",
+            "size_bytes": 2797,
+            "extension": ".py",
+            "source_ref": "main",
+            "content_chars": 2797,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 2,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "NOVA/watchlist.json",
@@ -3888,7 +4050,34 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "NOVA/watchlist.json",
+            "blob_sha": "84154eb180e92a300b4f7056d866dcead17c0d64",
+            "size_bytes": 207,
+            "extension": ".json",
+            "source_ref": "main",
+            "content_chars": 207,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 0,
+              "astroCrown": 0,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 0,
+              "superIntelligence": 0,
+              "rsi": 0,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [],
+            "error": null
+          }
         },
         {
           "path": "README.md",
@@ -3904,7 +4093,43 @@
           "reviewer": null,
           "review_date": null,
           "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification."
+          "note": "Extension/path hint only; inspect actual content before classification.",
+          "lexical_scan": {
+            "repo": "NOVA",
+            "path": "README.md",
+            "blob_sha": "09b016d29ad0502163006ca55836a439474fcb26",
+            "size_bytes": 1852,
+            "extension": ".md",
+            "source_ref": "main",
+            "content_chars": 1850,
+            "status": "FETCHED_AND_LEXICALLY_SCANNED",
+            "scan_method": "full Git blob text; selected-term regex scan",
+            "terms": {
+              "nova": 8,
+              "astroCrown": 1,
+              "acrown": 0,
+              "hsiAn": 0,
+              "haan": 3,
+              "superIntelligence": 0,
+              "rsi": 3,
+              "cognitiveExtension": 0,
+              "iso704": 0,
+              "certification": 0,
+              "compliance": 0,
+              "imperialCouncil": 0
+            },
+            "candidate_excerpts": [
+              {
+                "line": 7,
+                "text": "HAAN's [Foundational Mission and Collective Preservation](NOVA/HAAN-FOUNDATIONAL-MISSION-AND-COLLECTIVE-PRESERVATION.md) defines the mission-level purpose for preserving both foundational contributions, strengthening the"
+              },
+              {
+                "line": 23,
+                "text": "The NOVA, HAAN, and AstroCrown names, logos, and other brand-identifying elements are project brand identifiers. The MIT License does not grant rights to these identifiers. Their use remains subject to applicable law, in"
+              }
+            ],
+            "error": null
+          }
         }
       ]
     },
