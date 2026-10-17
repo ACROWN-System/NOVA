@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.26  
+**Version:** 0.1.27  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL SWEEP FINDINGS — lexical screening plus preliminary content reviews; human validation and formal clause assessment pending  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -801,3 +801,19 @@ See [Semantic Review Batch 061 — AstroCrown Research and Completed-Record Sema
 - **Safety boundary:** No AstroCrown-Web source or audit-plan file was modified; no provider, workflow, test, secret, billing, repository setting or backup/archive path was touched.
 
 **Row-derived counts after Batch 061:** 318 lexical scans; 221 preliminary full-file reviews; 5 partial targeted screens; 92 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. Scope remains proposed and not human-approved.
+
+### SWEEP-F-0034 — Completed Docker isolation record labels pre-change behavior as current
+
+- **Status:** OPEN — preliminary; human validation required.
+- **Affected path:** `AstroCrown-Web/development/audit/Completed/2026-10-11-RSI-Docker-Isolation.md`.
+- **Observed issue:** The `Current findings` section states that the evaluator executes candidate-controlled commands as host subprocesses, while the same completed record later says the Docker isolation implementation was merged and that those commands use the fail-closed adapter. The record does not explicitly label that section's observations as the pre-change baseline.
+- **Interpretation:** This is a potential temporal/status wording ambiguity. It is not evidence that the current source regressed or that the recorded implementation/CI results are false.
+- **Required action:** A human maintainer should label the section as a pre-change finding or bind it to the relevant pre-change revision/date, preserving the original finding for audit traceability and the separate residual-risk/independent-review blocker.
+- **Closure evidence:** Reviewed wording with an explicit baseline reference and confirmation that top-level status, execution outcome, residual risks, and current readiness limitations remain distinguishable.
+- **Safety boundary:** No AstroCrown-Web source, runtime, workflow, test, credential, provider configuration, billing, repository setting or backup/archive path was changed. No test/workflow was executed.
+
+## Batch 062 — AstroCrown completed RSI security records
+
+See [Semantic Review Batch 062 — AstroCrown Completed RSI Security Records](2026-10-17-ISO-704-Semantic-Review-Batch-062-AstroCrown-Completed-RSI-Security-Records.md). Five AstroCrown-Web completed audit records were reviewed at exact blob SHAs from main-baseline commit `5faea74dd1b40ec98acf9d59d9e404fc18122032`. Opened SWEEP-F-0034 for the Docker isolation record's `Current findings` heading, which describes pre-change host execution while its own later execution outcome records the merged fail-closed Docker adapter. This is a temporal-label clarity issue, not proof of implementation regression. The licensing plan's brand/third-party scope, evidence-retention controls, immutable Action refs, and independent-review package preserve relevant scope and readiness caveats; no further unique finding was opened.
+
+**Row-derived counts after Batch 062:** 318 lexical scans; 226 preliminary full-file reviews; 5 partial targeted screens; 87 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. No backup/archive path or AstroCrown-Web source/runtime file was changed.
