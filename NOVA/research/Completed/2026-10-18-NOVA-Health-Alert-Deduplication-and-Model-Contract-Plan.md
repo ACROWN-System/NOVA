@@ -1,7 +1,7 @@
 # Active Plan — NOVA Health-Alert Deduplication and Model-Specific Contract Gating
 
 **Date:** 2026-10-18  
-**Status:** ACTIVE — implementation and regression verification  
+**Status:** COMPLETED — merged, tested, and alert-history reconciliation verified  
 **Repository:** ACROWN-System/NOVA  
 **Branch:** fix/nova-health-alert-root-cause-2026-10-18  
 **Objective:** Stop repeated invalid health-probe configurations from consuming quota and opening dozens of duplicate issues; preserve valid fallback models; keep automated alerting within the $0-only policy.
@@ -58,3 +58,36 @@
 - After each file write, fetch the exact path using that branch and confirm the returned content matches.
 - Do not touch paths under any backup/archive directory, regardless of capitalization.
 - Do not merge the code change until tests pass and the proposed workflow-trigger behavior and cost boundary are recorded.
+
+
+## Completion record — 2026-10-18
+
+### Implementation and verification
+
+- Merged [NOVA PR #128](https://github.com/ACROWN-System/NOVA/pull/128) via squash merge. Merge commit: `653e51ae0154e8b77b5d8a29c3ba8a47642c8f54`. The PR's pull-request and push health-test workflows both passed on the exact reviewed head `22365074ea946b86b3f2e6419bccd3bb69af981f` before merge.
+- The post-merge [NOVA Health Tests workflow](https://github.com/ACROWN-System/NOVA/actions/runs/39072706306) and [Autonomous Heartbeat workflow](https://github.com/ACROWN-System/NOVA/actions/runs/39072706287) both completed successfully.
+- Re-fetch verification confirmed the current main branch contains model-specific structured-JSON response contract states: Groq `openai/gpt-oss-120b` and Gemini `gemini-3.8-flash` are `BLOCKED_UNVERIFIED` pending controlled requalification; Groq `openai/gpt-oss-20b` and Gemini `gemini-3.1-flash-lite` retain separate evidence of the exact health JSON contract passing. This is not a general availability/quality claim about either provider or model. Gemini Lite remains separately latency-degraded; Groq 20B's last PASS observation is stale under the six-hour freshness rule and must be refreshed by the scheduled health flow.
+- Automated health alerts are transition-based and model-specific, and reuse an existing same-title open issue by commenting rather than creating duplicate issues. Routine automated health notifications use GitHub `notice` severity, not Twilio SMS/voice; no paid external-channel call was made in the verification/closure process.
+
+### Historical alert disposition
+
+All 63 NOVA automated health-alert issues were closed with comments; original issue bodies were preserved and no issues were deleted:
+
+- 4 Mistral alerts: `not_planned`, recording the already approved Mistral Free API deferral and $0/no-payment-method policy—not a provider recovery claim.
+- 26 Groq `openai/gpt-oss-120b` alerts: `not_planned`, recording the model-specific contract block after repeated HTTP 400 `tool_use_failed` errors, pending controlled requalification—not a claim that Groq is unavailable or the model is permanently defective.
+- 22 Gemini `gemini-3.8-flash` alerts: `not_planned`, recording the model-specific contract block after repeated invalid JSON/transient service failures, pending requalification—not a claim that Gemini as a provider is unavailable.
+- 11 older Groq `openai/gpt-oss-20b` alerts: `completed` based on a later exact-contract HTTP 200/PASS observation at `2026-10-17T14:38:52.408300Z`. Each comment explicitly warns that this observation is stale under the six-hour freshness policy and does not establish current availability.
+
+After these actions, the GitHub issue search for open issues in the ACROWN-System organization returned **zero open issues**. The disposition is not “all providers healthy”; it is a corrected, model-specific health policy with stale or unsupported model configurations blocked pending requalification.
+
+### Preservation and boundaries
+
+- No backup/archive path was modified.
+- No provider credential, repository secret, billing setting, live external-provider request, paid Twilio call or voice/SMS was used in the change/closure procedure.
+- The roster preserves the different models as separate records; successful fallback eligibility was not removed when a different model was blocked.
+
+### Impact Analysis
+
+**IF implemented and verified:** the alert stream becomes actionable, provider/model failures are not conflated, quota is not repeatedly consumed by models whose required response contract is unverified, and the $0-only boundary is respected by automated alerting.
+
+**IF not implemented:** persistent model-contract failures can cause duplicate issue floods, unnecessary requests, confused provider-level conclusions and potentially billable SMS/voice calls.

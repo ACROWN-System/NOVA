@@ -1,9 +1,9 @@
 # Active Plan — Open Pull Request and Issue Reconciliation
 
 **Date:** 2026-10-18  
-**Status:** ACTIVE — reconciliation in progress  
+**Status:** COMPLETED — all mergeable/reviewable PRs processed; one draft retained for visual acceptance  
 **Repository:** ACROWN-System/NOVA  
-**Branch:** docs/terminology-governance-iso704-2026-10-17  
+**Plan branch at creation:** docs/terminology-governance-iso704-2026-10-17  
 **Scope:** Open pull requests and issues across the six user-approved planning repositories.  
 **Objective:** Merge correct, verified changes in dependency order; correct materially stale or unsafe documentation/code; keep valid but unreviewable work explicitly pending; preserve issue history; close only with a truthful disposition.
 
@@ -46,3 +46,40 @@ The named NAVIGATION-PROTOCOL.md and NAVIGATION-PLAN-TEMPLATE.md were not locate
 
 **IF not completed:** stale PR references or outdated certification-goal wording could mislead future agents/reviewers; automated issues could again flood the backlog or use an external cost channel; dependent docs might be promoted before their canonical sources are available.
 
+
+
+## Completion record — 2026-10-18
+
+### Final pull-request dispositions
+
+| PR | Repository | Disposition | Evidence / limitation |
+|---|---|---|---|
+| [#128 — Stop NOVA health-alert floods and gate failing model contracts](https://github.com/ACROWN-System/NOVA/pull/128) | NOVA | **MERGED** | Merge commit `653e51ae0154e8b77b5d8a29c3ba8a47642c8f54`. Exact-head PR tests passed; post-merge health tests and autonomous heartbeat passed. The change blocks unverified model/JSON response contracts before provider calls, deduplicates same-title alerts, emits on transition into UNACCEPTABLE, and keeps routine alerts on GitHub (no potentially billable SMS/voice). |
+| [#122 — Adopt HSIAN canonical mission/name](https://github.com/ACROWN-System/NOVA/pull/122) | NOVA | **MERGED** | Merge commit `61c0f4c2a22677d1349ecabad2a1b00035810a6f`. Exact-head PR and push health-test runs passed. The branch roster was reconciled before merge so model-specific contract gates from #128 were preserved. |
+| [#124 — Establish terminology governance aligned with ISO 704:2022](https://github.com/ACROWN-System/NOVA/pull/124) | NOVA | **MERGED** | Merge commit `c88159dca28e3e4fc7e8d3482cd4eb81bb9a899d`. 97 active governance/research paths, no backup/archive paths. Exact-head NOVA Health Tests passed. The merged documentation labels the content sweep preliminary, preserves missing artifacts/open findings, records zero formal complete-standard clause assessments, separates internal quality/conformance from certification, and carries the quality-preservation/non-regression control. This is not a claim that NOVA conforms fully to ISO 704. |
+| [#134 — Align active documentation with HSIAN cognitive extension](https://github.com/ACROWN-System/AstroCrown-Web/pull/134) | AstroCrown-Web | **MERGED** | Merge commit `035f82c43dcdc5ef0dab3fb72c4cc15bbbee8b10`. Merged after NOVA #122 and after verifying the canonical HSIAN mission path exists on NOVA main. Three exact-head AstroCrown-Web CI workflows passed. The explanation on the completed-plan mirror was preserved; no backup/archive path was changed. |
+| [#135 — Define AstroCrown brand language and terminology governance](https://github.com/ACROWN-System/AstroCrown-Web/pull/135) | AstroCrown-Web | **MERGED** | Merge commit `a7a3bd68f1fe65d7c5a545bb32a504122c97dd6a`. Three exact-head CI workflows passed. NOVA #124's canonical standard/register paths were fetched from main before merge. The guide states quality-first internal alignment and treats certification/provider discovery as outside current scope unless separately authorized. |
+| [#133 — Build desktop-first homepage visual review prototype](https://github.com/ACROWN-System/AstroCrown-Web/pull/133) | AstroCrown-Web | **RETAIN OPEN / DRAFT** | Exact-head CI passed: NOVA RSI Engine, External Review Pipeline and CodeQL at `d4a4acc506c28cb4bbcbaa35048e2a67924d4874`. The current PR description's preview links now use that candidate SHA. The preview is development-only, with `_config.yml` explicitly excluding `development/` from the public Pages output. Real-browser visual appearance, responsive layout and full keyboard interaction have not been inspected here or accepted; keep the PR open until a human reviews the current preview and decides whether the design should be retained/promoted. This is the only remaining open PR, deliberately not closed just to reach zero. |
+
+### Final issue disposition
+
+An organization-wide GitHub search returned **0 open issues** across ACROWN-System. The 63 NOVA automated health-alert issues were closed with comments; the original issue bodies were retained and not deleted:
+
+- 4 Mistral: `not_planned` under the already documented provider deferral; not a recovery claim.
+- 26 Groq `openai/gpt-oss-120b`: `not_planned` for a reversible model-specific structured-JSON contract block pending requalification; not a provider-level outage or permanent-quality claim.
+- 22 Gemini `gemini-3.8-flash`: `not_planned` for a reversible model-specific contract block pending requalification; not a provider-level outage claim.
+- 11 historical Groq `openai/gpt-oss-20b`: `completed` because a later exact-contract PASS resolved those past episodes. Closure comments explicitly note that the PASS is stale under the six-hour health-freshness policy and does not guarantee present availability.
+
+### Verification and preservation
+
+- Re-fetched the merged PR metadata and current PR bodies; all five processed PRs are merged and verified by GitHub, while #133 remains open/draft.
+- The cross-repository open-PR search returns the one justified draft above; the open-issue search returns zero results.
+- No backup/archive paths were touched. The #124 change list had 97 paths and no backup/archive paths; the #133 change set is limited to development prototype and its preservation record.
+- Routine alert correction and issue closure did not use paid channels or initiate external-provider requests. No paid service or certification-provider activity was undertaken.
+- The repository checklist has not independently reviewed every source line in every PR in the same manner as an external audit; each merged PR's scope and own test/review evidence are recorded above. #133 remains unresolved for its specific visual acceptance gate.
+
+### Impact Analysis
+
+**IF this reconciliation is retained:** mergeable, evidence-backed changes are integrated in dependency order, the automated alert storm is addressed at root cause, canonical sources are corrected, issue history remains auditable, and the only open item has a concrete acceptance blocker.
+
+**IF this reconciliation is not retained:** future work may repeat already-merged changes, depend on stale branch snapshots, close issues without cause, or treat a draft visual prototype as accepted solely because CI passed.
