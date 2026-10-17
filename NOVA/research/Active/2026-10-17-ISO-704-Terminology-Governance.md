@@ -278,3 +278,22 @@ The earlier sequencing statement that full clause-level conformity work must rem
 - The $0-only policy remains binding. No purchase, paid subscription/membership, billable enquiry, hired adviser/provider or other cost is authorized.
 
 **Impact Analysis — IF this correction is followed:** accessible text can drive real improvements while full coverage remains transparently unresolved and payment/certification are not mistaken for conformance prerequisites. **IF not followed:** the process may unnecessarily suspend useful improvement, or conversely overstate coverage based on partial source visibility.
+
+
+## Quality-preservation rule — ISO 704 as a means, not a destructive checklist (2026-10-18)
+
+The purpose of applying ISO 704 is to **increase the quality, precision, coherence, retrieval and operability of terminology** across NOVA and its scoped project domains. The standard must not be applied mechanically in a way that weakens those qualities, discards essential context, flattens domain boundaries, or forces unrelated architecture and workflow documentation into terminology-entry shapes.
+
+Apply the [Quality Preservation and Non-Regression Plan](2026-10-18-ISO-704-Quality-Preservation-and-Non-Regression-Plan.md) to material changes:
+
+- Establish the real problem, existing intent and supporting evidence before changing a concept or document.
+- Compare the proposed state with the current state, including benefits and possible losses to meaning, nuance, usability, navigation, automation, retrieval, maintainability, security boundaries, compatibility and domain integrity.
+- Prefer additive clarification (separate definition, scope note, example, relation, synonym/alias or cross-reference) over destructive simplification when both solve the problem.
+- Preserve useful explanatory material even when a more concise canonical definition is introduced. A definition, an explanatory account and an operational procedure have different purposes and should not be collapsed into one artifact.
+- Record alternatives, including no change, and use ACCEPT / ADAPT / REJECT / DEFER with rationale. Use the required Impact Analysis: **IF modified** and **IF not modified**.
+- Do not alter runtime or business meaning merely to satisfy a preferred label or make a matrix easier to complete. Changes affecting a schema, API, workflow, permission, security boundary or public commitment need the appropriate separate change process.
+- When the project's sound domain requirements and a proposed interpretation appear to conflict, do not hide the conflict or claim automatic conformity. Investigate the actual source, assess alternatives and document the decision and any residual non-conformity/uncertainty honestly.
+
+This is a project quality control, not permission to misrepresent an actual ISO provision. The full applicable text is not yet available for every provision; any conflict with a genuinely mandatory requirement must be assessed once it can be read. Unseen provisions remain NOT ASSESSED.
+
+**Impact Analysis — IF applied:** ISO 704 techniques help correct real terminology weaknesses while preserving the project's conceptual richness and operation. **IF not applied:** cargo-cult standardization can flatten useful distinctions, add needless bureaucracy, damage navigation or create paper compliance without operational improvement.
