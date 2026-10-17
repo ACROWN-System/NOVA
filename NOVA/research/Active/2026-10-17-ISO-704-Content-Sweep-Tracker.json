@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 156/318; PARTIAL TARGETED SCREENS 5; 157 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 161/318; PARTIAL TARGETED SCREENS 5; 152 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 156,
-    "content_review_pending": 157,
-    "human_validation_pending": 156,
+    "preliminary_content_reviewed": 161,
+    "content_review_pending": 152,
+    "human_validation_pending": 161,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 5
   },
@@ -2628,15 +2628,19 @@
           "size_bytes": 2504,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_049",
+          "terminology_assessment": "PRELIMINARY_REVIEW_PROVIDER_DIAGNOSTIC_GUIDE_CONTRADICTS_IMPLEMENTATION",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B049:B049-01"
+          ],
+          "findings": [
+            "SWEEP-F-0027"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDING_SWEEP-F-0027",
+          "note": "Batch 049: this guide says Mistral is probed diagnostic-only and Cloudflare is probed when its key/account ID are present. At the same main baseline, NOVA/provider_qualification.py states Mistral is excluded from the provider-qualification environment by current operator decision and says the diagnostic skips duplicate Cloudflare inference because its secrets are not exposed to that diagnostic by policy. Update the guide to match the implementation and record the intended operational boundary; no credentials were inspected and no diagnostic was run.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/PROVIDER-QUALIFICATION.md",
@@ -2661,7 +2665,9 @@
             "status": "FETCHED_AND_LEXICALLY_SCANNED",
             "candidate_excerpts": [],
             "complete_file_scanned": true
-          }
+          },
+          "reviewed_source_commit": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+          "reviewed_blob_sha": "18a46b9d4ad19d306124cfc9520d5a42c60cede3"
         },
         {
           "path": "NOVA/quality_gate.py",
@@ -2855,15 +2861,17 @@
           "size_bytes": 4078,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_049",
+          "terminology_assessment": "PRELIMINARY_REVIEW_RESEARCH_HYPOTHESES_AND_DEPENDENCIES_BOUNDED",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B049:B049-02"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 049: the note is explicitly BLOCKED / RESEARCH-READY, identifies absent transcript and benchmark dependencies, and distinguishes physics-inspired candidate mappings from implemented capability. It rejects a prematurely chosen architecture and requires reproducible baselines/metrics. No unique terminology finding from this file alone; evidence and future empirical claims remain pending.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/research/2026.10.08-BLOCKED-DEPENDENCIES-FULL-TRANSCRIPT-GPU-BENCHMARKING-EMPIRICAL-VALIDATION.md",
@@ -2895,7 +2903,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+          "reviewed_blob_sha": "d63d3351d1477efd7e8c9d71834c0af4a0797af7"
         },
         {
           "path": "NOVA/research/2026.10.08-BLOCKED-LIVE-SECRETS-GROQ-GEMINI-MISTRAL-CEREBRAS-CLOUDFLARE-NOSANA-HF.md",
@@ -2903,15 +2913,19 @@
           "size_bytes": 2499,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_049",
+          "terminology_assessment": "PRELIMINARY_REVIEW_STALE_MISTRAL_REQUALIFICATION_ITEM_IN_ACTIVE_BLOCKED_LIST",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B049:B049-03"
+          ],
+          "findings": [
+            "SWEEP-F-0028"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDING_SWEEP-F-0028",
+          "note": "Batch 049: the dated 2026-10-08 blocked-work list still presents MISTRAL_API_KEY_01 and its account/free-tier/usage checks as pending live work. Subsequent operator decisions and current provider qualification source defer Mistral and exclude it from the active qualification environment. Although this file is date-stamped, it remains in the active research path and does not label this item as superseded or link the later deferral record, so readers could treat it as actionable current work.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/research/2026.10.08-BLOCKED-LIVE-SECRETS-GROQ-GEMINI-MISTRAL-CEREBRAS-CLOUDFLARE-NOSANA-HF.md",
@@ -2938,7 +2952,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+          "reviewed_blob_sha": "5b919be00e087a2b505fa2291b3d520e67941498"
         },
         {
           "path": "NOVA/research/2026.10.08-BLOCKED-TASK-RESOURCE-ESTIMATION-ALTERNATIVE-COST-RENEWAL-OBSERVABILITY.md",
@@ -2946,15 +2962,17 @@
           "size_bytes": 2176,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_049",
+          "terminology_assessment": "PRELIMINARY_REVIEW_TASK_RESOURCE_DEPENDENCIES_AND_ECONOMIC_GUARDS_EXPLICIT",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B049:B049-04"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 049: accurately separates blocked task benefit/resource estimates, alternative-resource cost forecasts, renewal observability and negative-effect modeling. It refuses to invent a universal formula, discourages work generated just to consume expiring capacity, and treats missing prices/renewal data as unknown. No unique finding from this file alone.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/research/2026.10.08-BLOCKED-TASK-RESOURCE-ESTIMATION-ALTERNATIVE-COST-RENEWAL-OBSERVABILITY.md",
@@ -2981,7 +2999,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+          "reviewed_blob_sha": "1f78984ffde733c2d841f52d8ae20067e826720d"
         },
         {
           "path": "NOVA/research/2026.10.08-IMPLEMENTED-expiry-aware-capacity-routing-no-new-dependency.md",
@@ -2989,15 +3009,17 @@
           "size_bytes": 4400,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_049",
+          "terminology_assessment": "PRELIMINARY_REVIEW_IMPLEMENTED_CAPACITY_CLAIMS_ALIGN_WITH_SOURCE_AND_TEST_DESIGN",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B049:B049-05"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 049: the stated urgency window, protected reserve, freshness handling, separation of total resources from call allowances, unknown-economics guard and Pareto-frontier selection align with the baseline capacity.py/allocation.py implementation; existing unit-test source asserts key reserve, negative-economics, dimension-separation and Pareto behaviors. Tests were inspected as source only and were not executed; operational outcomes and provider-supplied capacity remain distinct from implementation claims.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/research/2026.10.08-IMPLEMENTED-expiry-aware-capacity-routing-no-new-dependency.md",
@@ -3024,7 +3046,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+          "reviewed_blob_sha": "3eda91f883b3dc93956559e9c00447367931a6ac"
         },
         {
           "path": "NOVA/research/2026.10.08-IMPLEMENTED-observation-freshness-temporal-semantics-no-new-dependency.md",
@@ -15117,5 +15141,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 048 reviewed five active NOVA files at main baseline commit 2a1f5c496474aa099703432e99b3d3dfddfd3fd7, verifying their recorded blob SHAs. Findings SWEEP-F-0023 through SWEEP-F-0026 cover wallet account access labelled as authentication, observer error-body persistence, silent content truncation, and an ambiguous heartbeat lifecycle statement. The empty index.html file was verified as reviewed. Counts: 156 preliminary full-file reviews + 5 partial screens + 157 not reviewed = 318. Human validation pending; formal ISO 704 clause assessment remains zero."
+  "last_update_note": "Batch 049 reviewed five active NOVA files at main baseline commit 2a1f5c496474aa099703432e99b3d3dfddfd3fd7 and verified the recorded blob SHAs. Findings SWEEP-F-0027 and SWEEP-F-0028 record provider-qualification documentation that contradicts current diagnostic behavior and a stale active-path Mistral live-qualification item superseded by later deferral. Three research/capacity files were reviewed with no unique findings. Counts: 161 preliminary full-file reviews + 5 partial screens + 152 not reviewed = 318. Human validation pending; formal ISO 704 clause assessment remains zero."
 }
