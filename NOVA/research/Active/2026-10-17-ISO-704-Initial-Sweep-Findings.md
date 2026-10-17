@@ -259,3 +259,15 @@ See [Semantic Review Batch 014 — Provider Records and Sanctuary](2026-10-17-IS
 - **Positive control:** the Mistral deferral and provider-diagnostics plans preserve historical uncertainty and explicitly distinguish offline CI from live qualification; the rolling scheduler doc does not equate quota expiry with money or synthetic work.
 
 Tracker after Batch 014: **318 lexical scans; 52 preliminary full-file reviews; one partial targeted screen; 265 not reviewed; human validation pending.** Row-count invariant: 52 + 1 + 265 = 318.
+
+
+## Semantic review update — Batch 015 probe, validation and image-qualification workflows
+
+See [Semantic Review Batch 015 — Workflows](2026-10-17-ISO-704-Semantic-Review-Batch-015-Workflows.md).
+
+- **Positive control:** the opportunistic probe scheduler separates a read-only decision job from the provider probe/persistence job. The file's claims about rolling cadence and concurrency still need code/test/runtime evidence.
+- **Positive control:** the NOVA validation workflow calls `credential_readiness` for slot presence only; do not conflate it with provider authentication or qualification.
+- **B015-F03:** the Cloudflare image workflow's `no_payment_confirmed=yes` is an operator declaration, not account billing telemetry or proof of zero future charges. Keep provider usage/terms evidence separate.
+- **B015-F04:** candidate artifact paths for PNG/JPEG are not proof the adapter produces a truthful file+sidecar pair on any given run. Verify adapter tests and run-specific artifacts separately.
+
+Tracker after Batch 015: **318 lexical scans; 55 preliminary full-file reviews; one partial targeted screen; 262 not reviewed; human validation pending.** Invariant: 55 + 1 + 262 = 318.
