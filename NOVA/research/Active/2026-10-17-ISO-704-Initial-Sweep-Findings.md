@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.10  
+**Version:** 0.1.11  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL FINDINGS — lexical screening only; not a completed conformity audit  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -543,3 +543,40 @@ Existing tests cover the current INCOMPLETE policy and static suspended state, b
 The engine test file defines the same workflow-cleanup test name twice. The second definition replaces the first in the class body; unique timeout and job/cycle assertions in the first definition are not discovered. Rename/split tests, verify discovery output, and collect passing CI evidence.
 
 **Row-derived counts after Batch 045:** 318 lexical scans; 141 preliminary full-file reviews; 5 partial targeted screens; 172 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments.
+
+
+## Batch 046 — NOVA repository controls and security language
+
+See [Semantic Review Batch 046 — NOVA Controls and Security Language](2026-10-17-ISO-704-Semantic-Review-Batch-046-NOVA-Controls-and-Security-Language.md). Five inventoried NOVA files were reviewed against exact blob SHAs at baseline commit `2a1f5c496474aa099703432e99b3d3dfddfd3fd7`. This was an AI-assisted full-file content review; human validation remains pending.
+
+### SWEEP-F-0017 — Security-control descriptions overstate effective header protections
+- **Status:** OPEN.
+- **Affected path:** `_headers`.
+- **Observed issue:** comments imply `no-referrer` prevents all URL-history leakage to sites/ISPs and describe HSTS as “end-to-end HTTPS encryption.” The CSP's `'unsafe-inline'` allowances and broad source expressions mean the comment “block unauthorized scripts & tracking pixels” is not an absolute guarantee.
+- **Required action:** bound comments to actual control behavior and limitations. Any header-policy strengthening requires a separate security review and compatibility verification.
+- **Closure evidence:** reviewed wording; official references and, if deployed effectiveness is claimed, observed response headers and targeted deployment tests. No live headers were tested here.
+
+### SWEEP-F-0018 — Cloudflare smoke-test result and model/schema source are insufficiently bounded
+- **Status:** OPEN.
+- **Affected path:** `.github/workflows/nova_cloudflare_smoke_test.yml`.
+- **Observed issue:** the workflow comments claim the exact model/schema is documented by Cloudflare's JSON Mode list without recording that source URL and check date at point of use. Local assertions check two output values but do not themselves reject extra JSON keys or verify the full expected response shape.
+- **Required action:** record a dated official model/endpoint/response-format source; align assertions and PASS labels with the actual response contract claimed.
+- **Closure evidence:** separate reviewed code/test change, official source traceability, negative tests for missing/wrong-type/extra-key responses as applicable, and an output showing exactly what the result labels verify. No workflow executed here.
+
+### SWEEP-F-0019 — Workflow trigger is described as a required merge check without verified ruleset evidence
+- **Status:** OPEN / ACTUAL SETTINGS UNKNOWN.
+- **Affected path:** `.github/workflows/nova_health_tests.yml`.
+- **Observed issue:** a comment suggests the PR trigger makes the workflow a “reliable required check.” The workflow source establishes triggers and job execution, not that the repository's main-branch rules require the check.
+- **Required action:** describe it as a PR-triggered workflow intended to be required; independently inspect the actual protection/ruleset configuration before asserting enforcement.
+- **Closure evidence:** corrected comment plus a dated, authorized record of branch rule scope, required status-check name and relevant bypass settings. The live settings endpoint was not available through this review connection; no settings were changed.
+
+### SWEEP-F-0020 — `.gitignore` headings imply broader secret/privacy protection than ignore patterns provide
+- **Status:** OPEN.
+- **Affected path:** `.gitignore`.
+- **Observed issue:** headings “Security & Secret Shield” and “Operating System & Metadata Scrubbing (Anti-Fingerprinting)” may imply complete protection. Git ignore rules affect intentionally untracked files and do not remove already tracked items or substitute for secret scanning.
+- **Required action:** use accurately scoped labels or add explicit limitations; treat secret scanning, tracked-file checks and remediation as separate controls.
+- **Closure evidence:** reviewed wording and separate evidence for any claimed scanning/history-remediation controls. No credential contents were examined.
+
+**Positive control — B046-02:** the pull request template strongly distinguishes source-backed external contracts, test types, unknowns, cost/permission checks and review evidence. This is a useful designed control, but its existence does not prove the template is followed or that repository rules enforce every check.
+
+**Row-derived counts after Batch 046:** 318 lexical scans; 146 preliminary full-file reviews; 5 partial targeted screens; 167 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. No backup/archive path or runtime file was changed.
