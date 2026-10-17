@@ -4247,15 +4247,19 @@
           "size_bytes": 1852,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_001",
+          "terminology_assessment": "FINDINGS_OPEN_HUMAN_REVIEW_REQUIRED",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B001:[object Object]"
+          ],
+          "findings": [
+            "B001-F01"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human review required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_ONLY_NOT_ISO_CONFORMITY_RESULT",
+          "note": "Preliminary README semantic review recorded in Semantic Review Batch 001. Active HAAN naming conflict remains; human review/rollout required.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "README.md",
@@ -4354,15 +4358,19 @@
           "size_bytes": 792,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_001",
+          "terminology_assessment": "FINDINGS_OPEN_HUMAN_REVIEW_REQUIRED",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B001:[object Object]"
+          ],
+          "findings": [
+            "B001-F02"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human review required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_ONLY_NOT_ISO_CONFORMITY_RESULT",
+          "note": "Preliminary README semantic review recorded in Semantic Review Batch 001. Open-source/free-forever and deployment-time claims require scope/evidence.",
           "lexical_scan": {
             "repo": "Freebies-",
             "path": "README.md",
@@ -4540,15 +4548,19 @@
           "size_bytes": 88,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_001",
+          "terminology_assessment": "FINDINGS_OPEN_HUMAN_REVIEW_REQUIRED",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B001:[object Object]"
+          ],
+          "findings": [
+            "B001-F03"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human review required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_ONLY_NOT_ISO_CONFORMITY_RESULT",
+          "note": "Preliminary README semantic review recorded in Semantic Review Batch 001. Description is insufficient to establish terminology scope or authoritative version.",
           "lexical_scan": {
             "repo": "AstroCrown_ACS_MC_Spec",
             "path": "README.md",
@@ -4634,15 +4646,19 @@
           "size_bytes": 1688,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_001",
+          "terminology_assessment": "FINDINGS_OPEN_HUMAN_REVIEW_REQUIRED",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B001:[object Object]"
+          ],
+          "findings": [
+            "B001-F04"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human review required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_ONLY_NOT_ISO_CONFORMITY_RESULT",
+          "note": "Preliminary README semantic review recorded in Semantic Review Batch 001. Declared outside AstroCrown audits conflicts with proposed umbrella scope; human decision required.",
           "lexical_scan": {
             "repo": "AI-Sanctuary-Core",
             "path": "README.md",
@@ -5187,15 +5203,19 @@
           "size_bytes": 23,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_001",
+          "terminology_assessment": "FINDINGS_OPEN_HUMAN_REVIEW_REQUIRED",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B001:[object Object]"
+          ],
+          "findings": [
+            "B001-F05"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human review required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_ONLY_NOT_ISO_CONFORMITY_RESULT",
+          "note": "Preliminary README semantic review recorded in Semantic Review Batch 001. README is title-only; inspect remaining active paths before scope/applicability decision.",
           "lexical_scan": {
             "repo": "ACROWN-SIMULATION-LAB",
             "path": "README.md",
@@ -14435,15 +14455,19 @@
           "size_bytes": 743,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_001",
+          "terminology_assessment": "FINDINGS_OPEN_HUMAN_REVIEW_REQUIRED",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B001:[object Object]"
+          ],
+          "findings": [
+            "B001-F06"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human review required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_ONLY_NOT_ISO_CONFORMITY_RESULT",
+          "note": "Preliminary README semantic review recorded in Semantic Review Batch 001. Licence/brand separation is useful; active public UI/content audit remains open.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "README.md",
@@ -14514,5 +14538,7 @@
         }
       ]
     }
-  ]
+  ],
+  "last_updated": "2026-10-17",
+  "last_update_note": "Batch 001 reviewed the six repository README files against exact baseline blob SHAs. This is a preliminary content review only; human scope approval and human validation remain required. The other 312 active file rows remain NOT_REVIEWED / NOT_ASSESSED."
 }
