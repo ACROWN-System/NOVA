@@ -1,9 +1,9 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.25  
+**Version:** 0.1.26  
 **Snapshot date:** 2026-10-17  
-**Status:** INITIAL FINDINGS — lexical screening only; not a completed conformity audit  
+**Status:** INITIAL SWEEP FINDINGS — lexical screening plus preliminary content reviews; human validation and formal clause assessment pending  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
 **Tracker:** [File-by-File Content Sweep Tracker](2026-10-17-ISO-704-Content-Sweep-Tracker.json)  
 **Targeted reviews:** [Certification-Context Review](2026-10-17-ISO-704-Certification-Context-Review.md); [Canonical Register Quality Review](2026-10-17-ISO-704-Register-Quality-Review.md); [Candidate Concept-Relation Map](2026-10-17-ISO-704-Concept-Relation-Map-Draft.md); [HSIAN Pilot Entry Review](2026-10-17-ISO-704-Pilot-Entry-Review-HSIAN.md)
@@ -784,3 +784,20 @@ See [Semantic Review Batch 059 — AstroCrown RSI and Free Provider Pool](2026-1
 See [Semantic Review Batch 060 — AstroCrown Engineering Quality and Image MVP](2026-10-17-ISO-704-Semantic-Review-Batch-060-AstroCrown-Quality-and-Image-MVP.md). Five AstroCrown-Web records were reviewed at exact main-baseline blob SHAs. Extended SWEEP-F-0031 for the image-first architecture plan included in merged PR #117. Opened SWEEP-F-0032 for the status file's unreconciled PR #116/#83/#84 lifecycle text, while noting the day-only update date means we cannot tell whether it was inaccurate at authorship; human maintainer should clarify whether it is a historical snapshot or refresh it. Cross-referenced Cloudflare image request-ID evidence with SWEEP-F-0030. No live provider request or tests were run.
 
 **Row-derived counts after Batch 060:** 318 lexical scans; 216 preliminary full-file reviews; 5 partial targeted screens; 97 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. No AstroCrown-Web source, backup/archive path, runtime file, credential, provider configuration or repository setting was changed.
+
+## Batch 061 — AstroCrown research and completed-record semantics
+
+See [Semantic Review Batch 061 — AstroCrown Research and Completed-Record Semantics](2026-10-17-ISO-704-Semantic-Review-Batch-061-AstroCrown-Research-and-Completed-Record-Semantics.md). Five AstroCrown-Web paths were reviewed against exact blob SHAs at recorded main-baseline commit `5faea74dd1b40ec98acf9d59d9e404fc18122032`. Opened SWEEP-F-0033 for stale lifecycle labels: the defensible-evidence plan still calls merged PR #123 a Draft PR, while its ACTIVE status remains supportable because jurisdiction-specific counsel review is still open; and the completed Sanctuary integration record retains an Active-plan title despite its Completed path/status. The provider-neutral image qualification record preserved dated-evidence and blocked-readiness distinctions; the brand identifier and mission-integration records had no unique findings.
+
+### SWEEP-F-0033 — Navigation-plan lifecycle labels conflict with current repository or PR state
+
+- **Status:** OPEN — preliminary; human validation required.
+- **Affected paths:**
+  - `AstroCrown-Web/development/audit/Active/2026-10-14-Defensible-Research-Evidence-Records.md` — its implementation section labels AstroCrown-Web PR #123 as a Draft PR, although live GitHub metadata shows it merged on 2026-10-14 at 17:40:20 UTC. The plan may remain ACTIVE because its own closure condition still requires jurisdiction-specific counsel review before the policy is treated as approved.
+  - `AstroCrown-Web/development/audit/Completed/2026-10-09-AI-Sanctuary-Cross-Repository-Integration.md` — the file is in `Completed/` and says COMPLETED, but its heading still begins `Active Navigation Plan` despite completed PRs and lifecycle state.
+- **Observed issue:** Current lifecycle metadata is not consistently reflected in the plan title/PR-state label. Readers could confuse an already merged change with unfinished PR review, or misread a completed record as still active.
+- **Required action:** A human maintainer should reconcile the PR label and completed-record title using the approved documentation process. Keep the legal-policy record ACTIVE until its counsel-review gate is actually satisfied; do not infer legal approval, runtime readiness, or completion of unrelated work from a PR merge.
+- **Closure evidence:** Current PR #123 state referenced accurately; reviewed lifecycle wording; explicit note that appropriate counsel review remains required; completed record title aligned with its location/status or explicitly retained as historical title by human decision.
+- **Safety boundary:** No AstroCrown-Web source or audit-plan file was modified; no provider, workflow, test, secret, billing, repository setting or backup/archive path was touched.
+
+**Row-derived counts after Batch 061:** 318 lexical scans; 221 preliminary full-file reviews; 5 partial targeted screens; 92 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. Scope remains proposed and not human-approved.
