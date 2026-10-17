@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 37/318; PARTIAL TARGETED SCREEN 1; 280 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 41/318; PARTIAL TARGETED SCREEN 1; 276 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 37,
-    "content_review_pending": 280,
-    "human_validation_pending": 37,
+    "preliminary_content_reviewed": 41,
+    "content_review_pending": 276,
+    "human_validation_pending": 41,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 1
   },
@@ -207,15 +207,17 @@
           "size_bytes": 2038,
           "extension": ".yml",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_011",
+          "terminology_assessment": "PRELIMINARY_REVIEW_WORKFLOW_LABELS_AND_PERMISSIONS",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B011:B011-02"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_WORKFLOW_LABELS_AND_PERMISSIONS",
+          "note": "Batch 011: scheduled GPU heartbeat and candidate credential environment labels reviewed only from source. No workflow execution/security validation in this batch.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": ".github/workflows/nova_GPU_heartbeat.yml",
@@ -465,15 +467,19 @@
           "size_bytes": 2997,
           "extension": ".yml",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_011",
+          "terminology_assessment": "PRELIMINARY_REVIEW_HUMAN_ATTESTATION_NOT_INDEPENDENT_POLICY_PROOF",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B011:B011-03"
+          ],
+          "findings": [
+            "B011-F01"
+          ],
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_HUMAN_ATTESTATION_NOT_INDEPENDENT_POLICY_PROOF",
+          "note": "Batch 011: manual-only/read-only Weak RSI report is clear and defaults data-use eligibility to NOT_APPROVED; PASS_AFTER_REVIEW is an operator attestation unless linked to independent terms evidence.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": ".github/workflows/nova-weak-rsi.yml",
@@ -3708,15 +3714,17 @@
           "size_bytes": 8676,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_011",
+          "terminology_assessment": "PRELIMINARY_REVIEW_OFFLINE_MOCK_TESTS_NOT_LIVE_EVIDENCE",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B011:B011-01"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_OFFLINE_MOCK_TESTS_NOT_LIVE_EVIDENCE",
+          "note": "Batch 011: mocked tests distinguish credential authentication, candidate lifecycle and GPU capacity. They do not validate a live token, quota or provider allocation.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/tests/test_gpu_heartbeat.py",
@@ -4185,15 +4193,19 @@
           "size_bytes": 2175,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_011",
+          "terminology_assessment": "PRELIMINARY_REVIEW_STATIC_WORKFLOW_TESTS_NOT_RUNTIME_EVIDENCE",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B011:B011-04"
+          ],
+          "findings": [
+            "B011-F03"
+          ],
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_STATIC_WORKFLOW_TESTS_NOT_RUNTIME_EVIDENCE",
+          "note": "Batch 011: tests inspect YAML structure and assertions for manual/read-only behavior; they do not dispatch workflow or independently verify actual provider data-use eligibility.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/tests/test_weak_rsi_workflow.py",
@@ -14673,5 +14685,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 010 reviewed three NOVA incident/operational-state/key-readiness documents. Reconciled tracker row counts: 37 preliminary full-file reviews + 1 partial screen + 280 NOT_REVIEWED = 318 inventoried active files. Human scope approval, human validation and full-standard clause mapping remain open."
+  "last_update_note": "Batch 011 reviewed GPU heartbeat tests/workflow and manual Weak RSI workflow/tests. Tracker invariant checked: 41 preliminary full reviews + 1 partial targeted screen + 276 NOT_REVIEWED = 318 active rows. Mock/static tests remain distinct from live/account eligibility evidence."
 }
