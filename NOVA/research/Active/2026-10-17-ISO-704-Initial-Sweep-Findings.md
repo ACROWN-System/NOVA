@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.27  
+**Version:** 0.1.28  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL SWEEP FINDINGS — lexical screening plus preliminary content reviews; human validation and formal clause assessment pending  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -795,12 +795,13 @@ See [Semantic Review Batch 061 — AstroCrown Research and Completed-Record Sema
 - **Affected paths:**
   - `AstroCrown-Web/development/audit/Active/2026-10-14-Defensible-Research-Evidence-Records.md` — its implementation section labels AstroCrown-Web PR #123 as a Draft PR, although live GitHub metadata shows it merged on 2026-10-14 at 17:40:20 UTC. The plan may remain ACTIVE because its own closure condition still requires jurisdiction-specific counsel review before the policy is treated as approved.
   - `AstroCrown-Web/development/audit/Completed/2026-10-09-AI-Sanctuary-Cross-Repository-Integration.md` — the file is in `Completed/` and says COMPLETED, but its heading still begins `Active Navigation Plan` despite completed PRs and lifecycle state.
-- **Observed issue:** Current lifecycle metadata is not consistently reflected in the plan title/PR-state label. Readers could confuse an already merged change with unfinished PR review, or misread a completed record as still active.
-- **Required action:** A human maintainer should reconcile the PR label and completed-record title using the approved documentation process. Keep the legal-policy record ACTIVE until its counsel-review gate is actually satisfied; do not infer legal approval, runtime readiness, or completion of unrelated work from a PR merge.
-- **Closure evidence:** Current PR #123 state referenced accurately; reviewed lifecycle wording; explicit note that appropriate counsel review remains required; completed record title aligned with its location/status or explicitly retained as historical title by human decision.
+  - `AstroCrown-Web/development/audit/Completed/2026-10-16-Account-Continuity-and-Privacy-Preserving-Access-Foundation.md` — the document is correctly filed as a completed documentation record, but its completion section says “Pull request will remain unmerged pending review.” Live GitHub metadata confirms PR #132 merged on 2026-10-16 at 11:31:29 UTC as commit `5faea74dd1b40ec98acf9d59d9e404fc18122032`.
+- **Observed issue:** Lifecycle metadata is not consistently reflected in a PR-state sentence or the title/status of completed records. Readers could confuse an already merged change with unfinished PR review, or misread a completed record as still active.
+- **Required action:** A human maintainer should reconcile the stale PR-state sentence and completed-record title using the approved documentation process. Keep the defensible-evidence plan ACTIVE until its counsel-review gate is actually satisfied. The account-continuity merge completes a documentation PR only; it does not mean account creation, authentication, recovery, biometrics, financial benefits, or production features have been implemented or approved.
+- **Closure evidence:** Current PR #123 and #132 states referenced accurately; reviewed lifecycle wording; explicit note that appropriate counsel review remains required; Completed record title aligned with its location/status or explicitly retained as a historical title by human decision.
 - **Safety boundary:** No AstroCrown-Web source or audit-plan file was modified; no provider, workflow, test, secret, billing, repository setting or backup/archive path was touched.
 
-**Row-derived counts after Batch 061:** 318 lexical scans; 221 preliminary full-file reviews; 5 partial targeted screens; 92 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. Scope remains proposed and not human-approved.
+**Historical counts after Batch 061:** 318 lexical scans; 221 preliminary full-file reviews; 5 partial targeted screens; 92 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. Scope remained proposed and not human-approved.
 
 ### SWEEP-F-0034 — Completed Docker isolation record labels pre-change behavior as current
 
@@ -817,3 +818,19 @@ See [Semantic Review Batch 061 — AstroCrown Research and Completed-Record Sema
 See [Semantic Review Batch 062 — AstroCrown Completed RSI Security Records](2026-10-17-ISO-704-Semantic-Review-Batch-062-AstroCrown-Completed-RSI-Security-Records.md). Five AstroCrown-Web completed audit records were reviewed at exact blob SHAs from main-baseline commit `5faea74dd1b40ec98acf9d59d9e404fc18122032`. Opened SWEEP-F-0034 for the Docker isolation record's `Current findings` heading, which describes pre-change host execution while its own later execution outcome records the merged fail-closed Docker adapter. This is a temporal-label clarity issue, not proof of implementation regression. The licensing plan's brand/third-party scope, evidence-retention controls, immutable Action refs, and independent-review package preserve relevant scope and readiness caveats; no further unique finding was opened.
 
 **Row-derived counts after Batch 062:** 318 lexical scans; 226 preliminary full-file reviews; 5 partial targeted screens; 87 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. No backup/archive path or AstroCrown-Web source/runtime file was changed.
+
+### SWEEP-F-0035 — Repeat-state handoff references a workflow path absent from current main
+
+- **Status:** OPEN — preliminary; human validation required.
+- **Affected path:** `AstroCrown-Web/development/audit/Completed/2026-10-11-RSI-Repeat-State-Detection.md`.
+- **Observed issue:** The remaining handoff says the first subsequent scheduled/manual protected `.github/workflows/nova-rsi.yml` run on `main` will exercise the diagnostic. A read-only listing of the current `main` workflow directory does not contain that path; the relevant listed RSI workflows include `nova-rsi-ci.yml` and `nova-rsi-codeql.yml`. The `development/nova-recursive-self-improvement/cycle_detector.py` source remains present, but its operational integration into a current protected workflow is not established by the script's presence.
+- **Interpretation:** The handoff target appears obsolete or displaced. This does not prove the repeat-state detector is defective or that an equivalent authorized path cannot exist elsewhere.
+- **Required action:** A human maintainer should mark the old handoff superseded/deferred or trace and verify an approved successor workflow and its authority. Do not recreate or dispatch the old protected workflow merely to satisfy this audit record; preserve all readiness and benchmark gates.
+- **Closure evidence:** Reviewed current workflow path and trigger/authorization; accurate handoff against an approved successor or explicit deferral; confirmation that `implementation_readiness.status` remains `INCOMPLETE` and `promotion.allow_main` remains `false`.
+- **Safety boundary:** No workflow, test, source, credential, provider call, runtime state, repository setting, billing, or backup/archive path was changed or executed.
+
+## Batch 063 — AstroCrown RSI handoff and account-continuity roadmap
+
+See [Semantic Review Batch 063 — AstroCrown RSI Handoff and Access Roadmap](2026-10-17-ISO-704-Semantic-Review-Batch-063-AstroCrown-RSI-Handoff-and-Access-Roadmap.md). Five AstroCrown-Web files were reviewed at exact recorded main-baseline blob SHAs. Extended SWEEP-F-0033 because the Completed account-continuity record still says PR #132 will remain unmerged, although live GitHub confirms the documentation PR merged on 2026-10-16. Opened SWEEP-F-0035 because the repeat-state diagnostic's documented handoff points to `.github/workflows/nova-rsi.yml`, which is absent from the current main workflow listing; the detector source remains, and no equivalent protected operational integration is inferred. The task-specific dispatcher, telemetry-validation record, and dated cross-repository reconciliation had no unique findings.
+
+**Row-derived counts after Batch 063:** 318 lexical scans; 231 preliminary full-file reviews; 5 partial targeted screens; 82 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. Scope remains proposed and not human-approved. No AstroCrown-Web source/runtime files, backup/archive paths, provider settings, credentials, workflows, tests, billing or repository settings were changed.
