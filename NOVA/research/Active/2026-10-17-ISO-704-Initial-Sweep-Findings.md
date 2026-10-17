@@ -271,3 +271,14 @@ See [Semantic Review Batch 015 — Workflows](2026-10-17-ISO-704-Semantic-Review
 - **B015-F04:** candidate artifact paths for PNG/JPEG are not proof the adapter produces a truthful file+sidecar pair on any given run. Verify adapter tests and run-specific artifacts separately.
 
 Tracker after Batch 015: **318 lexical scans; 55 preliminary full-file reviews; one partial targeted screen; 262 not reviewed; human validation pending.** Invariant: 55 + 1 + 262 = 318.
+
+
+## Semantic review update — Batch 016 router, health and capacity state models
+
+See [Semantic Review Batch 016 — Router, Health and Capacity](2026-10-17-ISO-704-Semantic-Review-Batch-016-Router-Health-Capacity.md).
+
+- **B016-F01:** the router classifies any HTTP 404, and text markers including `model_not_found`, as `permanent`; if any probed model has that class, the outer router can mark the provider itself DOWN. Review whether model-/endpoint-specific failures should remain model-scoped unless provider-wide failure is independently evidenced. No code changed in this review.
+- **B016-F02:** provider HTTP error bodies are truncated to 400 characters, but the body snippet is persisted as `error_detail` in health history. Truncation alone is not sanitization. Review/redact before durable persistence and add negative tests for secret/PII markers; don't claim an actual leak without evidence.
+- **Positive controls:** health freshness terms distinguish UNKNOWN/stale/future/invalid timestamps; structured response markers distinguish HTTP success from NOVA contract success; total resource observations remain separate from call allowances, with unknown economics not treated as zero-cost and expiry not creating synthetic work.
+
+Tracker after Batch 016: **318 lexical scans; 59 preliminary full-file reviews; one partial targeted screen; 258 not reviewed; human validation pending.** Row-count invariant: 59 + 1 + 258 = 318.
