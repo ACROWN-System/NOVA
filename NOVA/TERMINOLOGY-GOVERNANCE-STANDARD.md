@@ -1,7 +1,7 @@
 # NOVA Terminology Governance Standard
 
 **Document ID:** NOVA-TERM-GOV-001  
-**Version:** 0.1.2  
+**Version:** 0.1.3  
 **Status:** PROPOSED INTERNAL STANDARD — controls are being established; conformity has not yet been demonstrated.  
 **Owner:** NOVA governance / designated human maintainer  
 **Scope:** Canonical terminology and concept management for the AstroCrown–NOVA–HSIAN ecosystem and related projects, systems, services, technical architecture, governance, public communications and localization.  
@@ -19,17 +19,17 @@ The canonical register is maintained in [CANONICAL-TERMINOLOGY-REGISTER.md](CANO
 
 ISO's public description of ISO 704:2022 says it establishes principles and methods for preparing and compiling terminology; describes relations between objects, concepts, definitions and designations; and addresses formation of terms/proper names and writing definitions. It applies across technical, scientific, industrial, legal, administrative and other fields. ISO 1087:2019 provides terminology-work vocabulary.
 
-This internal standard is designed around those published subject areas and established terminology-management principles. Because the complete licensed text of ISO 704:2022 has not been adopted as an available project audit baseline, a clause-by-clause conformity claim is **BLOCKED**. Do not state “ISO 704:2022 compliant,” “certified,” or “certifiable” as an already verified fact based only on this document. At the same time, do not present certification as impossible or remove it from consideration: **pursuing a credible route to independent certification is an explicit strategic objective, subject to confirming that an appropriate provider offers it and that the project satisfies its criteria.**
+This internal standard is designed around those published subject areas and established terminology-management principles. Because the complete licensed text of ISO 704:2022 has not been adopted as an available project audit baseline, a clause-by-clause conformity claim is **BLOCKED**. Do not state “ISO 704:2022 compliant,” “certified,” or “certifiable” as an already verified fact based only on this document. The objective is **evidence-based internal quality and operability improvement through terminology practices informed by ISO 704**, with an honest record of alignment, open gaps and decisions. The work should be robust enough to support a rigorous assessment against applicable criteria if one is ever separately authorized, but obtaining a certificate is not an objective or a prerequisite. Do not initiate certification-provider discovery, accreditation checks, quotations, enquiries or applications unless the human maintainer explicitly changes the scope.
 
 The accurate current description is:
 
 > The project is constructing a controlled terminology-governance and audit-evidence package intended to support a future assessment against ISO 704:2022. Full clause-level assessment and readiness have not yet been established.
 
-Before making any clause-level conformity claim, obtain lawful access to the complete standard, build a controlled clause/topic-to-evidence matrix using the exact edition, record applicability decisions and gaps, implement controls, retain objective evidence of actual operation, complete an internal audit, address findings, and record a human management readiness decision. Do not copy or distribute copyrighted standard text in project documentation. Provider and accreditation discovery is deliberately deferred until the readiness gate in [the Audit-Readiness Dossier](research/Active/2026-10-17-ISO-704-Audit-Readiness-Dossier.md) has passed. No conclusion is currently made about whether a suitable ISO 704:2022-specific certificate is available.
+Before claiming complete clause-level alignment, establish the applicable baseline, account for the relevant standard text, record applicability and gaps, implement useful controls, retain objective evidence of operation, complete internal review, address findings and record a human management decision. Do not copy or distribute copyrighted standard text in project documentation. The [Audit-Readiness Dossier](research/Active/2026-10-17-ISO-704-Audit-Readiness-Dossier.md) is an internal evidence/readiness tool; passing its internal gates does not authorize external provider outreach or imply that a certificate is needed or available.
 
-### 2.1 Readiness-first sequence for possible independent certification
+### 2.1 Evidence-backed internal assessment sequence
 
-Certification remains a strategic objective to evaluate and pursue where a credible route exists, but **provider discovery, accreditation checks, enquiries and applications are DEFERRED until the internal readiness gate passes**. The immediate work is to build and verify the evidence package in [NOVA's ISO 704:2022 Audit-Readiness Dossier](research/Active/2026-10-17-ISO-704-Audit-Readiness-Dossier.md).
+The following sequence exists to improve and assess the project's own terminology practices, preserve semantic and operational quality, and identify honestly where alignment is demonstrated or unresolved. It is not a certification application plan. The immediate work is to build and verify the internal evidence package in [NOVA's ISO 704:2022 Audit-Readiness Dossier](research/Active/2026-10-17-ISO-704-Audit-Readiness-Dossier.md).
 
 Complete these stages in order:
 
@@ -40,18 +40,18 @@ Complete these stages in order:
 5. **Demonstrate operation:** retain evidence from real controlled terminology proposals, approvals, updates, conflict resolution, publication checks and retests. A written procedure alone is not evidence that it operates.
 6. **Audit and correct:** complete a documented internal audit, record all findings and limitations, implement corrective actions, and retain objective retest evidence.
 7. **Management readiness decision:** review the matrix, coverage, actual-use audit, open findings, exclusions and final package manifest. Record GO or NO-GO with a named human approver and date.
-8. **Only after GO:** start provider/scheme discovery. Determine what the candidate body would actually assess and issue, its scope and criteria, and whether its accreditation (if claimed) explicitly covers the relevant activity. A certificate, non-accredited conformity statement, readiness assessment and audit report are different outputs.
+8. **Record internal disposition and limitations:** publish the human-approved outcome, outstanding gaps, evidence coverage and conditions for re-review. An internal GO means only that the designated internal evidence/readiness gate passed. It does not automatically authorize provider discovery or an external application; such work requires a separately approved scope change and separate cost authorization.
 
 ISO itself does not accredit certification bodies or issue certificates. Do not describe any provider as “ISO-approved” unless a specifically supported formal relationship exists; instead verify the actual accreditation body and scope. Do not claim a certificate is available before written confirmation establishes the precise offer. Even a complete internal evidence package cannot guarantee an external conformity decision.
 
 The workstream statuses are:
 - **READINESS BUILD IN PROGRESS:** evidence items being created or reviewed.
 - **BLOCKED:** a prerequisite such as the controlled full standard, matrix row, objective evidence or required review is absent.
-- **INTERNAL GO:** every readiness gate is supported by evidence and a human decision approves provider discussion.
-- **PROVIDER ROUTE VERIFIED:** after GO only, written details of the exact offering are documented; accreditation is verified separately.
+- **INTERNAL GO:** the declared internal assessment scope is supported by evidence and a human decision accepts the disposition and remaining risks; this is not external certification authorization.
+- **EXTERNAL ROUTE VERIFIED:** an optional later status only if a separate scope change is approved and a specific route is independently verified; this is not a current project objective.
 - **APPLIED / ASSESSED / CERTIFIED:** separate statuses requiring evidence of each actual event.
 
-No certification provider search, enquiry, application, standards purchase, fee or paid tool is authorized before the readiness gate passes and any financial commitment is separately approved.
+No certification-provider search, enquiry, application, standards purchase, fee or paid tool is authorized by this standard. Any future scope change involving external services or spending requires separate explicit human authorization; internal readiness does not imply or trigger it.
 
 Normative source references:
 - ISO 704:2022 — https://www.iso.org/standard/79077.html
@@ -254,3 +254,4 @@ This is an internal project control. Where the complete ISO 704:2022 text establ
 
 - **2026-10-17 / v0.1.1:** Set a readiness-first sequence. Provider discovery and accreditation checks are deferred until the evidence package's GO gate passes; linked the controlled audit-readiness dossier. This revision does not assert conformity or certification.
 - **2026-10-17 / v0.1.2:** Explicitly made backup/archive paths immutable regardless of capitalization and clarified that dated mirrors and archive-named directories must not be modified.
+- **2026-10-18 / v0.1.3:** Clarified that the objective is evidence-based terminology quality/operability and honest internal alignment; external certification/provider discovery is not a project goal or prerequisite. Added a non-regression boundary to the internal assessment sequence.
