@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 59/318; PARTIAL TARGETED SCREEN 1; 258 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 63/318; PARTIAL TARGETED SCREEN 1; 254 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 59,
-    "content_review_pending": 258,
-    "human_validation_pending": 59,
+    "preliminary_content_reviewed": 63,
+    "content_review_pending": 254,
+    "human_validation_pending": 63,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 1
   },
@@ -1479,15 +1479,19 @@
           "size_bytes": 22615,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_017",
+          "terminology_assessment": "PRELIMINARY_REVIEW_STRICT_EVIDENCE_GATES_UPSTREAM_SCOPE_OPEN",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B017:B017-01"
+          ],
+          "findings": [
+            "B013-F03"
+          ],
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_STRICT_EVIDENCE_GATES_UPSTREAM_SCOPE_OPEN",
+          "note": "Batch 017: exact status/evidence gate prevents advertised allowances from becoming active capacity, separates recurring/one-time and intended-use mode. But ambiguous upstream free_without_payment_method evidence in B013-F03 must be split; code cannot repair a semantically ambiguous source field by itself.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/gpu_capacity.py",
@@ -2294,15 +2298,19 @@
           "size_bytes": 14914,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_017",
+          "terminology_assessment": "PRELIMINARY_REVIEW_ROLLING_EXPIRY_PREEMPTION_GATES",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B017:B017-04"
+          ],
+          "findings": [
+            "B017-F01"
+          ],
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_ROLLING_EXPIRY_PREEMPTION_GATES",
+          "note": "Batch 017: schedule is rebuilt from current active roster, only observed expiry windows can preempt normal queue, and only already-required work is allowed. CLI/main in gpu_capacity.py uses empty default active-provider set unless the workflow supplies names; manual report context should be explicit.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/probe_scheduler.py",
@@ -3591,15 +3599,17 @@
           "size_bytes": 10411,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_017",
+          "terminology_assessment": "PRELIMINARY_REVIEW_ECONOMIC_COMPARABILITY_AND_REQUIRED_WORK",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B017:B017-03"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_ECONOMIC_COMPARABILITY_AND_REQUIRED_WORK",
+          "note": "Batch 017: tests distinguish call allowances from total resources, require comparable economic units, prevent unknown economics from boosting priority, and limit free-expiry use to already-required work; tests not executed here.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/tests/test_capacity.py",
@@ -3720,15 +3730,17 @@
           "size_bytes": 16413,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_017",
+          "terminology_assessment": "PRELIMINARY_REVIEW_OFFLINE_TESTS_COVER_STALE_AND_UNKNOWN",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B017:B017-02"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_OFFLINE_TESTS_COVER_STALE_AND_UNKNOWN",
+          "note": "Batch 017: tests cover freshness, source URL and gate failures, recurring/one-time separation, unmetered usage as unknown, and provisional planning reference; test file read only, not executed.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/tests/test_gpu_capacity.py",
@@ -14740,5 +14752,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 016 reviewed router, router tests, shared health telemetry and capacity semantics. Potential follow-ups distinguish model-scoped from provider-wide permanent failure and durable error-body truncation from redaction. Counts derived from row states: 59 preliminary full reviews + 1 partial screen + 258 NOT_REVIEWED = 318."
+  "last_update_note": "Batch 017 reviewed GPU capacity qualification, GPU capacity tests, generic capacity tests and rolling probe scheduler. Counts derived from tracker rows: 63 preliminary full reviews + 1 partial screen + 254 NOT_REVIEWED = 318."
 }
