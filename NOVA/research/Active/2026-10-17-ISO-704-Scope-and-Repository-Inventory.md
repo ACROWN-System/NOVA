@@ -1,7 +1,7 @@
 # ISO 704:2022 Scope Proposal and Repository Inventory
 
 **Document ID:** NOVA-ISO704-SCOPE-001  
-**Version:** 0.1.46  
+**Version:** 0.1.47  
 **Snapshot date:** 2026-10-17  
 **Status:** PROPOSED SCOPE / INITIAL PATH INVENTORY — human approval and detailed content review pending  
 **Related dossier:** [ISO 704:2022 Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
@@ -288,4 +288,8 @@ Tracker states were re-counted directly: 96 preliminary full reviews, 5 partial 
 ## 51. Revision history
 
 - **2026-10-17 / v0.1.46:** Added Batch 048 preliminary full-file review of five NOVA wallet/observer/state/license paths. Counts: 156 preliminary full reviews + 5 partial screens + 157 not reviewed = 318. Added SWEEP-F-0023 for account access labelled as authentication, SWEEP-F-0024 for HTTP error bodies potentially overwriting observations, SWEEP-F-0025 for silent response truncation, and SWEEP-F-0026 for ambiguous heartbeat lifecycle wording. Empty index.html confirmed and recorded as reviewed. Human validation pending; formal ISO clause assessment remains zero. No backup/archive or runtime paths changed.
+
+## 52. Revision history
+
+- **2026-10-17 / v0.1.47:** Added Batch 049 preliminary full-file review of five NOVA provider/capacity research records. Counts: 161 preliminary full reviews + 5 partial screens + 152 not reviewed = 318. Added SWEEP-F-0027 for provider-qualification guide/source inconsistency and SWEEP-F-0028 for a stale Mistral live-qualification checklist. The nonlinear-research, task-resource-dependency and expiry-aware-capacity records were reviewed with no unique findings. Human validation pending; formal ISO clause assessment remains zero. No backup/archive or runtime paths changed.
 
