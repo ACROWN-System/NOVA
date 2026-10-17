@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.24  
+**Version:** 0.1.25  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL FINDINGS — lexical screening only; not a completed conformity audit  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -720,19 +720,35 @@ The Cloudflare adapter test file cross-references SWEEP-F-0030: two `request_ima
   - `development/audit/Active/2026-10-10-Open-Source-Multi-Model-Media-Strategy.md` — documentation PR #50 merged 2026-10-10; its changed-file list includes the plan, strategy and media README.
   - `development/audit/Active/2026-10-11-RSI-Retention-Baseline-Binding.md` — PR #70 merged 2026-10-10; its changed-file list includes the plan, retention workflow, verifier, engine and tests; associated CI run #38091173406 recorded successful.
   - `development/audit/Active/2026-10-11-RSI-Strict-Schema-Type-Validation.md` — PR #74 merged 2026-10-10; its changed-file list includes the plan, benchmark dispatcher, verifier and tests; associated CI run #38094165089 recorded successful.
-  - `development/audit/Active/2026-10-11-RSI-Finalizer-CLI-Smoke.md` — PR #79 merged 2026-10-10; its changed-file list includes the plan and implementation/tests, and associated CI run #38095122426 recorded successful.
-  - `development/audit/Active/2026-10-11-RSI-Evidence-Commit-Binding.md` — PR #81 merged 2026-10-10; its changed-file list includes the plan and evaluator/verifier/tests, and associated CI run #38095491875 recorded successful.
-- **Observed issue:** The capacity-aware rollout plan retains “proposal documentation submitted for review” and instructs moving to Completed after merge; the multi-model strategy plan says to leave its PR open for review. The four RSI plans still display ACTIVE/under-verification status even though each was included in its own merged implementation PR with associated CI runs recorded successful.
-- **Interpretation:** These records exhibit a potential documentation-task closeout/lifecycle mismatch. A merged implementation PR and successful CI are corroborating evidence for the documented work, but do not themselves decide the canonical Completed destination or closure metadata. The finding concerns documentation-task lifecycle only. Media rollout and multi-model generator architecture remain proposals; RSI readiness remains `INCOMPLETE`, promotion remains disabled, and benchmark/profile approval remains separate.
-- **Required action:** Have a human confirm canonical Completed destinations and any required closure metadata, then close out or classify these navigation records through the approved process. Preserve all independent product/provider and RSI readiness gates.
-- **Closure evidence:** Verified file/status text, each related PR's changed-file list, associated CI status and step summaries, and a human-approved lifecycle decision. Do not infer runtime implementation or readiness solely from a merge.
+  - `development/audit/Active/2026-10-11-RSI-Finalizer-CLI-Smoke.md` — PR #79 merged 2026-10-10; its changed-file list includes the plan and implementation/tests; associated CI run #38095122426 recorded successful.
+  - `development/audit/Active/2026-10-11-RSI-Evidence-Commit-Binding.md` — PR #81 merged 2026-10-10; its changed-file list includes the plan and evaluator/verifier/tests; associated CI run #38095491875 recorded successful.
+  - `development/audit/Active/2026-10-13-Image-First-Commercial-Brand-Quality-Architecture.md` — PR #117 merged 2026-10-14; its changed-file list includes this plan and the architecture-alignment deliverables. The plan itself says to keep it Active until the documentation change is reviewed and merged.
+- **Observed issue:** Several navigation plans retain Active/under-verification status after the specific documentation or implementation PR that included the plan merged. The image-first architecture plan has an explicit closeout condition tied to the documentation PR that is now merged.
+- **Interpretation:** These records exhibit a potential documentation-task closeout/lifecycle mismatch. A merged PR and successful CI are supporting evidence for the specified work but do not determine the canonical Completed destination or satisfy unrelated product/provider gates. This finding concerns navigation-plan task lifecycle only. Media and RSI proposals/readiness remain distinct from documentation completion.
+- **Required action:** Have a human confirm canonical Completed destinations and closure metadata, then close out or classify these navigation records through the approved process. Preserve separate provider, production, rights, alpha and RSI readiness gates.
+- **Closure evidence:** Verified file/status text, relevant PR changed-file lists, associated CI status and step summaries, plus a human-approved lifecycle decision. Do not infer runtime implementation or readiness solely from a merge.
 - **Safety boundary:** No AstroCrown-Web source file, plan, provider configuration, credential, workflow or runtime code was modified by this sweep. Only NOVA assessment records were updated.
 
-**Batch 056 corroboration:** The open-source strategy navigation plan remains Active after PR #50 merged. PR #84's canonical-candidate-path validation plan remains explicitly Active/under verification because its full listed acceptance set was not independently established in that source review; merge alone was not treated as sufficient evidence.
+**Batch 056 corroboration:** The open-source strategy navigation plan remains Active after PR #50 merged. PR #84's canonical-candidate-path validation plan remains explicitly Active/under verification because its full listed acceptance set was not independently established in that review; merge alone was not treated as sufficient evidence.
 
-**Batch 057 corroboration:** The RSI evidence-commit-binding plan (PR #81) and finalizer-CLI smoke plan (PR #79) were also left Active after their own PRs merged. Associated CI runs were recorded successful for the relevant verification steps; human lifecycle confirmation remains required.
+**Batch 057 corroboration:** The RSI evidence-commit-binding plan (PR #81) and finalizer-CLI smoke plan (PR #79) remained Active after their own PRs merged. Associated CI runs were recorded successful; human lifecycle confirmation remains required.
 
-**Batch 058 corroboration:** The retention baseline-binding plan (PR #70) and strict schema-type-validation plan (PR #74) remain Active despite being included in merged implementation PRs with recorded successful CI runs. These are candidates for human lifecycle closure confirmation and do not imply readiness/promotion changes.
+**Batch 058 corroboration:** The retention baseline-binding plan (PR #70) and strict schema-type-validation plan (PR #74) remain Active despite being included in merged implementation PRs with recorded successful CI runs.
+
+**Batch 060 corroboration:** The image-first commercial brand-quality architecture plan says it stays Active until its documentation change merges. PR #117 included this plan and architecture-alignment deliverables and merged on 2026-10-14. Human confirmation of the canonical Completed destination remains required; image quality/rights/alpha gates remain separate.
+
+### SWEEP-F-0032 — Systemic engineering-quality remediation status is not reconciled with merged PRs
+
+- **Status:** OPEN — preliminary; human confirmation of snapshot intent required.
+- **Affected paths:**
+  - `development/audit/Active/2026-10-12-Systemic-Engineering-Quality-Remediation-Status.md`
+  - Related progress statement in `development/audit/Active/2026-10-12-Systemic-Engineering-Quality-Investigation-Plan.md`.
+- **Observed issue:** The remediation status lists AstroCrown-Web PR #116 as open/unmerged and says its outstanding controls include review/merge of three open PRs. Current GitHub metadata shows AstroCrown-Web PR #116 merged on 2026-10-12 22:32:23 UTC, and NOVA PRs #83/#84 merged at 22:31:44/49 UTC. The status's `Updated: 2026-10-12` field contains no time, so it does not establish whether the text was wrong when authored.
+- **Interpretation:** The Active status record has not been reconciled with the presently merged PR state, or clearly labelled as an intentionally historical snapshot. This may mislead future operators if read as a current remediation dashboard. It does not mean all systemic remediation is complete.
+- **Required action:** A human maintainer should update the status to distinguish completed actions from residual blockers, or explicitly label/retain it as a dated historical snapshot using the approved process. Preserve unresolved main-branch/ruleset verification and Cloudflare model/health-contract gates; do not close the broader remediation solely because the three PRs merged.
+- **Closure evidence:** Explicit maintainer decision, refreshed timestamp or historical-snapshot label, accurate PR states and a current list of residual controls requiring independent evidence.
+- **Safety boundary:** No remediation-status or source files in AstroCrown-Web were modified; only NOVA assessment records were updated.
+
 
 
 ## Batch 056 — AstroCrown media and RSI plan lifecycle
@@ -761,3 +777,10 @@ See [Semantic Review Batch 058 — AstroCrown RSI Egress, Baseline and Cleanup](
 See [Semantic Review Batch 059 — AstroCrown RSI and Free Provider Pool](2026-10-17-ISO-704-Semantic-Review-Batch-059-AstroCrown-RSI-and-Free-Provider-Pool.md). Five AstroCrown-Web records were reviewed at exact recorded main-baseline blob SHAs. Cross-referenced three completed archival mirrors (token telemetry, trusted evaluator control plane, workflow cleanup finalizer) to SWEEP-F-0012. Extended SWEEP-F-0028 for the active provider-pool plan's dated, request-specific Mistral requalification instruction; the plan remains a research/qualification navigation record with other open gates, and no live probe was authorized or run. The dated provider-pool evidence matrix had no new unique finding because it distinguishes uncertain/cardless eligibility, quota, privacy/licensing and production capacity correctly.
 
 **Row-derived counts after Batch 059:** 318 lexical scans; 211 preliminary full-file reviews; 5 partial targeted screens; 102 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. No AstroCrown-Web source, backup/archive path, runtime file, credential, provider configuration or repository setting was changed.
+
+
+## Batch 060 — AstroCrown engineering quality and image MVP
+
+See [Semantic Review Batch 060 — AstroCrown Engineering Quality and Image MVP](2026-10-17-ISO-704-Semantic-Review-Batch-060-AstroCrown-Quality-and-Image-MVP.md). Five AstroCrown-Web records were reviewed at exact main-baseline blob SHAs. Extended SWEEP-F-0031 for the image-first architecture plan included in merged PR #117. Opened SWEEP-F-0032 for the status file's unreconciled PR #116/#83/#84 lifecycle text, while noting the day-only update date means we cannot tell whether it was inaccurate at authorship; human maintainer should clarify whether it is a historical snapshot or refresh it. Cross-referenced Cloudflare image request-ID evidence with SWEEP-F-0030. No live provider request or tests were run.
+
+**Row-derived counts after Batch 060:** 318 lexical scans; 216 preliminary full-file reviews; 5 partial targeted screens; 97 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. No AstroCrown-Web source, backup/archive path, runtime file, credential, provider configuration or repository setting was changed.
