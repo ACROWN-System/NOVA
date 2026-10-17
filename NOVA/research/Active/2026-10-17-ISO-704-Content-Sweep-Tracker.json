@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 48/318; PARTIAL TARGETED SCREEN 1; 269 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 52/318; PARTIAL TARGETED SCREEN 1; 265 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 48,
-    "content_review_pending": 269,
-    "human_validation_pending": 48,
+    "preliminary_content_reviewed": 52,
+    "content_review_pending": 265,
+    "human_validation_pending": 52,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 1
   },
@@ -2904,15 +2904,17 @@
           "size_bytes": 3366,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_014",
+          "terminology_assessment": "PRELIMINARY_REVIEW_SCHEDULING_AND_ECONOMIC_DISTINCTIONS_CLEAR",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B014:B014-03"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_SCHEDULING_AND_ECONOMIC_DISTINCTIONS_CLEAR",
+          "note": "Batch 014: rolling interval, already-required work, stale evidence and economic saving are distinct; no dollar savings inferred without comparable economic evidence. Implementation itself not functionally validated here.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/research/2026.10.08-IMPLEMENTED-rolling-probe-scheduling-expiry-reallocation.md",
@@ -3085,15 +3087,17 @@
           "size_bytes": 5387,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_014",
+          "terminology_assessment": "PRELIMINARY_REVIEW_OFFLINE_VS_LIVE_EVIDENCE_CLEAR",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B014:B014-02"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_OFFLINE_VS_LIVE_EVIDENCE_CLEAR",
+          "note": "Batch 014: historical provider diagnostics distinguish offline CI from unresolved/deferred live outcomes; dated candidate/provider claims must not be treated as current entitlements.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/research/Completed/2026-10-09-Provider-Diagnostics-and-Credential-Gaps.md",
@@ -3128,15 +3132,17 @@
           "size_bytes": 5339,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_014",
+          "terminology_assessment": "PRELIMINARY_REVIEW_HISTORICAL_DEFERRAL_BOUNDARY_CLEAR",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B014:B014-01"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_HISTORICAL_DEFERRAL_BOUNDARY_CLEAR",
+          "note": "Batch 014: dated Mistral deferral clearly preserves historical evidence, says cause is unproven and requires explicit requalification authorization. Completion record is historical, not current health evidence.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/research/Completed/2026-10-10-Defer-Mistral-Free-Health-Probes.md",
@@ -3375,15 +3381,20 @@
           "size_bytes": 5331,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_014",
+          "terminology_assessment": "PRELIMINARY_REVIEW_CROSS_REPO_PATH_AND_SCOPE_BLOCKED",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B014:B014-04"
+          ],
+          "findings": [
+            "B014-F01",
+            "B014-F02"
+          ],
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_CROSS_REPO_PATH_AND_SCOPE_BLOCKED",
+          "note": "Batch 014: roadmap cross-reference NOVA/NOVA/sanctuary/ appears inconsistent with actual path NOVA/sanctuary/; verify tree before fixing. AI-Sanctuary-Core says outside AstroCrown audits; human must decide umbrella scope. Stages correctly remain planned/deferred, not operational.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/sanctuary/IMPLEMENTATION-ROADMAP.md",
@@ -14707,5 +14718,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 013 reviewed LLM/GPU rosters, health policy and GPU capacity evidence. Found a legacy HAAN Council label, inconsistent free-form candidate provenance, and ambiguous scope of Lightning's no-card status. Tracker invariant: 48 preliminary full reviews + 1 partial screen + 269 not reviewed = 318."
+  "last_update_note": "Batch 014 reviewed four NOVA historical/scheduler/Sanctuary records against exact baseline SHAs. The Sanctuary roadmap cross-repository path and scope remain open. Tracker derived from rows: 52 preliminary full reviews + 1 partial screens + 265 NOT_REVIEWED = 318."
 }
