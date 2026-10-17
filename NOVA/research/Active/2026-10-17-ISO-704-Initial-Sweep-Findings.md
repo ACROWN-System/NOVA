@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.8  
+**Version:** 0.1.9  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL FINDINGS — lexical screening only; not a completed conformity audit  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -515,3 +515,18 @@ See [Semantic Review Batch 043](2026-10-17-ISO-704-Semantic-Review-Batch-043-RSI
 - SWEEP-F-0014 remains relevant: a validly formatted benchmark output and consistent evidence hashes do not fix the runner's missing required-item identity/coverage enforcement.
 
 **Row-derived counts after Batch 043:** 318 lexical scans; 131 preliminary full-file reviews; 5 partial targeted screens; 182 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments.
+
+
+## Batch 044 — RSI engine, sandbox and provider boundary
+
+See [Semantic Review Batch 044](2026-10-17-ISO-704-Semantic-Review-Batch-044-RSI-Engine-Sandbox-and-Provider-Boundary.md).
+
+### SWEEP-F-0015 — Engine and preflight do not independently enforce the Strong RSI suspension state
+- **Status:** OPEN — authorization/lifecycle control gap.
+- **Affected paths:** `rsi_engine.py` and `preflight.py`.
+- **Observed issue:** Both check implementation readiness, but neither explicitly checks `strong_rsi_safety.lifecycle_status` or enforces zero provider calls while SUSPENDED.
+- **Risk:** If readiness were set to READY without an explicit lifecycle release, the source-level guard would not by itself enforce the separate suspension policy. This was not executed; current policy remains INCOMPLETE/SUSPENDED and no provider call occurred during this review.
+- **Action:** Use one trusted fail-closed readiness predicate requiring explicit human release/approved active lifecycle and the protected readiness gates; test READY+SUSPENDED plus unknown/missing lifecycle and suspended call count; inspect every provider entry point.
+- **Closure evidence:** reviewed implementation PR; negative tests show preflight/engine remain blocked with zero provider calls under every suspended state; current policy remains suspended until a separate human decision.
+
+**Row-derived counts after Batch 044:** 318 lexical scans; 136 preliminary full-file reviews; 5 partial targeted screens; 177 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments.
