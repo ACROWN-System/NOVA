@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.32  
+**Version:** 0.1.33  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL SWEEP FINDINGS — lexical screening plus preliminary content reviews; human validation and formal clause assessment pending  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -864,11 +864,13 @@ See [Semantic Review Batch 064 — AstroCrown External Review and Evidence Gover
 ### SWEEP-F-0038 — Homepage requirement source identity and extracted-reference traceability
 
 - **Status:** OPEN — preliminary; human validation required.
-- **Affected paths:** `AstroCrown-Web/development/audit/records/AUDIT-2026.09.20-001.md`; `AstroCrown-Web/development/audit/tests/HOMEPAGE-BASELINE.md`; `AstroCrown-Web/development/index-reference/BORDERS-AND-RADIUS.md`; `AstroCrown-Web/development/index-reference/CARDS-CONVENTIONS.md`; `AstroCrown-Web/development/index-reference/COLORS.md`; cited artifact `development/HOMEPAGE-REQUIREMENTS.md`.
-- **Observed issue:** Fetching the cited active path at reviewed main baseline `5faea74dd1b40ec98acf9d59d9e404fc18122032` returns not found. The historic audit's remediation evidence points to that file; the surviving homepage matrix refers to R-001–R-013 but does not reproduce their definitions or link an immutable baseline. The three design-reference indexes also quote/extract ranges from `HOMEPAGE-REQUIREMENTS.md` but provide only source filename and line ranges, not source commit/blob hash or extraction date.
-- **Interpretation:** The requirement document may have existed at the historical dates, but the current reviewed baseline does not provide a retrievable originating revision against which dependent tests and extracted reference sections can be verified for exact wording, approved status and drift. The 404 does not prove historical non-existence or whether an excluded archive contains a copy.
-- **Required action:** Attach an immutable historical source reference or explicitly identify an approved retained/superseding requirement source and its provenance; ensure test IDs map to controlled requirement concepts and extracted indexes identify their exact source revision. Do not reconstruct requirements by guessing from extracts, silently rewrite historical results, or inspect/change excluded backups as part of this sweep.
-- **Closure evidence:** A retrievable historical or retained requirement reference, provenance/date and source hash/commit, explicit distinction between historic audit snapshot and current requirement state, and verified mappings from test IDs/extracted references to the approved source.
+- **Affected paths:** `AstroCrown-Web/development/audit/records/AUDIT-2026.09.20-001.md`; `AstroCrown-Web/development/audit/tests/HOMEPAGE-BASELINE.md`; `AstroCrown-Web/development/index-reference/BORDERS-AND-RADIUS.md`; `AstroCrown-Web/development/index-reference/CARDS-CONVENTIONS.md`; `AstroCrown-Web/development/index-reference/COLORS.md`; `AstroCrown-Web/development/index-reference/ICONS-AND-INDICATORS.md`; `AstroCrown-Web/development/index-reference/INTERACTION-CONVENTIONS.md`; `AstroCrown-Web/development/index-reference/LAYOUT-AND-ALIGNMENT.md`; `AstroCrown-Web/development/index-reference/README.md`; `AstroCrown-Web/development/index-reference/RESPONSIVE-CONVENTIONS.md`; cited artifact `development/HOMEPAGE-REQUIREMENTS.md`.
+- **Observed issue:** Fetching the cited active path at reviewed main baseline `5faea74dd1b40ec98acf9d59d9e404fc18122032` returns not found. The historic audit's remediation evidence points to that file; the surviving homepage matrix refers to R-001–R-013 but does not reproduce their definitions or link an immutable baseline. The nine cross-section index files quote or extract ranges from `HOMEPAGE-REQUIREMENTS.md` but identify source filename and line ranges without a source commit/blob hash or extraction date.
+- **Interpretation:** The requirement document may have existed historically, but the reviewed baseline does not provide a retrievable originating revision against which dependent test IDs and extracted design references can be verified for exact wording, approved status, and drift. The 404 does not prove historical non-existence or whether an excluded archive contains a copy.
+- **Required action:** Attach an immutable historical source reference or explicitly identify an approved retained/superseding requirement source and its provenance; ensure test IDs map to controlled requirement concepts and each extracted index identifies its exact source revision. Do not reconstruct requirements by guessing from extracts, silently rewrite historical results, or inspect/change excluded backups as part of this sweep.
+- **Closure evidence:** A retrievable historical or retained requirement reference, provenance/date and source hash/commit, explicit distinction between historical audit snapshot and current requirement state, and verified mapping from test IDs/extracted references to the approved source.
+
+
 ### SWEEP-F-0039 — Audit record template does not define Remediated versus Closed
 
 - **Status:** OPEN — preliminary; human validation required.
@@ -933,4 +935,29 @@ See [Semantic Review Batch 066 — AstroCrown Evidence Templates and Verificatio
 See [Semantic Review Batch 067 — AstroCrown Provider and Design-Reference Semantics](2026-10-17-ISO-704-Semantic-Review-Batch-067-AstroCrown-Provider-and-Design-Reference-Semantics.md). Five AstroCrown-Web files were reviewed at exact blob SHAs from main-baseline commit `5faea74dd1b40ec98acf9d59d9e404fc18122032`. Extended SWEEP-F-0009 because the Nosana adapter calls Nosana the current RSI proposer interface while existing same-baseline policy/client evidence selects Groq; the adapter's candidate status does not establish live integration. Extended SWEEP-F-0038 to cover the Borders, Cards and Colors extracted indexes, which identify originating requirement line ranges without a pinned source revision even though `HOMEPAGE-REQUIREMENTS.md` is absent from the reviewed baseline. Opened SWEEP-F-0043 for the reversed relative-lightness relation in the intermediate Space Blue definition. The GPU infrastructure README preserves the subsystem/application boundary; the card index preserves candidate-vs-approved and observed-influence-vs-causation distinctions. No provider calls, tests, workflows or visual color tests were run.
 
 **Row-derived counts after Batch 067:** 318 lexical scans; 251 preliminary full-file reviews; 5 partial targeted screens; 62 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. Scope remains proposed and not human-approved. No AstroCrown-Web source/runtime files, backup/archive paths, workflow, credentials, provider calls, billing or repository settings were changed.
+
+ 
+### SWEEP-F-0044 — Information-bar type taxonomy mixes classification dimensions
+
+- **Status:** OPEN — preliminary; human validation required.
+- **Affected path:** `AstroCrown-Web/development/index-reference/ICONS-AND-INDICATORS.md`, R-020.3 candidate information-type table.
+- **Observed issue:** The `Candidate type` entries combine priority/severity (`High-priority`), sentiment valence (`negative`, `positive`), subject/security domain (`security`, `governance`), and communication class (`general information`, `warning`). These dimensions can overlap and do not form one mutually exclusive category set.
+- **Interpretation:** Without separate axes, maintainers may assign different icons/colors or message wording to the same concept, or treat a topic such as governance as inherently warning-level. The entries are explicitly candidates, so this is a design-stage taxonomy risk, not a claim about released UI behavior.
+- **Required action:** Define the intended dimensions and terms, state whether multiple labels may coexist, and specify a controlled mapping from the resulting classification to icons, colors, and message wording. Preserve candidate status until the definitions and mapping are evaluated.
+- **Closure evidence:** Human-approved definitions and relation model; documented valid combinations; examples covering neutral/positive/negative and differing priorities within the same domain; and traceable mapping rules for icon/color/label choices.
+
+### SWEEP-F-0045 — “H1-style header control” leaves visual style and semantic role ambiguous
+
+- **Status:** OPEN — preliminary; human validation required.
+- **Affected paths:** `AstroCrown-Web/development/index-reference/INTERACTION-CONVENTIONS.md` and `AstroCrown-Web/development/index-reference/LAYOUT-AND-ALIGNMENT.md`, Wallet Control section.
+- **Observed issue:** The extracted requirement calls Wallet an “interactive H1-style header control” without clarifying whether `H1-style` means visual/typographic prominence or requires level-one heading semantics. The wording combines presentation style with an interactive control role.
+- **Interpretation:** HTML heading hierarchy and the behavior/semantics of an interactive control are different concepts. Ambiguous wording may yield different document structure, accessibility behavior, or styling implementations. The originating requirement file is unavailable at this baseline, so its exact intent is not inferred.
+- **Required action:** Specify visual appearance separately from semantic markup and control role; choose the control element according to its actual action and preserve heading hierarchy independently.
+- **Closure evidence:** Human-approved wording in the authoritative requirement and synchronized indexes; explicit separation of visual hierarchy and semantic role; and implementation-independent acceptance criteria for wallet interaction and accessible name/focus/activation.
+
+## Batch 068 — AstroCrown design-reference terminology
+
+See [Semantic Review Batch 068 — AstroCrown Design-Reference Terminology](2026-10-17-ISO-704-Semantic-Review-Batch-068-AstroCrown-Design-Reference-Terminology.md). Five AstroCrown-Web cross-section reference files were reviewed at exact blob SHAs from main-baseline commit `5faea74dd1b40ec98acf9d59d9e404fc18122032`. Opened SWEEP-F-0044 because the candidate information-bar “type” list mixes priority/severity, sentiment valence, subject domain and message purpose in one category column. Opened SWEEP-F-0045 because “H1-style header control” does not distinguish visual typography from HTML heading semantics and an interactive control role. Extended SWEEP-F-0038 to include the icons, interaction, layout, README and responsive indexes, which all cite originating requirement line ranges without immutable source revision; the README's statement that indexes do not replace the source is retained as a positive control. The layout index repeats the reversed Space Blue relation already tracked by F-0043. No source/runtime changes, tests, workflows or backup/archive reads were performed.
+
+**Row-derived counts after Batch 068:** 318 lexical scans; 256 preliminary full-file reviews; 5 partial targeted screens; 57 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. Scope remains proposed and not human-approved. All findings are preliminary and require human validation; the batch makes no formal ISO 704 clause or conformity claim. No AstroCrown-Web source/runtime files, backup/archive paths, workflows, credentials, provider calls, billing or repository settings were changed.
 
