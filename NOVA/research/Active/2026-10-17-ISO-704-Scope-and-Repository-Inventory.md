@@ -1,7 +1,7 @@
 # ISO 704:2022 Scope Proposal and Repository Inventory
 
 **Document ID:** NOVA-ISO704-SCOPE-001  
-**Version:** 0.1.59  
+**Version:** 0.1.60  
 **Snapshot date:** 2026-10-17  
 **Status:** PROPOSED SCOPE / INITIAL PATH INVENTORY — human approval and detailed content review pending  
 **Related dossier:** [ISO 704:2022 Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
@@ -350,3 +350,7 @@ Tracker states were re-counted directly: 96 preliminary full reviews, 5 partial 
 ## 64. Revision history
 
 - **2026-10-17 / v0.1.59:** Added Batch 061 preliminary full-file review of five AstroCrown-Web research/completed-record paths at their exact recorded main-baseline blob SHAs. Opened SWEEP-F-0033 for conflicting lifecycle labels in two records: a merged PR still called Draft in an Active plan that remains open for counsel review, and a Completed record with an obsolete Active-plan title. Counts: 221 preliminary full reviews + 5 partial targeted screens + 92 not reviewed = 318. Human validation remains pending; formal ISO 704 clause assessment remains zero; scope remains proposed/not human-approved. No source/runtime files, backup/archive paths, credentials, provider settings, workflows, tests, billing, or repository settings were changed.
+
+## 65. Revision history
+
+- **2026-10-17 / v0.1.60:** Added Batch 062 preliminary full-file review of five AstroCrown-Web completed RSI security/licensing records at their exact recorded main-baseline blob SHAs. Opened SWEEP-F-0034 for temporal ambiguity in the Docker isolation record's `Current findings` section versus its later merged implementation outcome; this is not evidence of a runtime regression. Counts: 226 preliminary full reviews + 5 partial targeted screens + 87 not reviewed = 318. Human validation remains pending; formal ISO 704 clause assessment remains zero and scope remains proposed/not human-approved. No AstroCrown-Web source/runtime files, backup/archive paths, credentials, provider settings, workflows, tests, billing or repository settings were changed.
