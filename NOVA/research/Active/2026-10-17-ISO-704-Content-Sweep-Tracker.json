@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 84/318; PARTIAL TARGETED SCREEN 1; 233 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 91/318; PARTIAL TARGETED SCREEN 1; 226 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 84,
-    "content_review_pending": 233,
-    "human_validation_pending": 84,
+    "preliminary_content_reviewed": 91,
+    "content_review_pending": 226,
+    "human_validation_pending": 91,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 1
   },
@@ -1007,15 +1007,19 @@
           "size_bytes": 8736,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_023",
+          "terminology_assessment": "PRELIMINARY_REVIEW_UNKNOWN_HARD_RESOURCE_MAY_REMAIN_ELIGIBLE",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B023:B023-01"
+          ],
+          "findings": [
+            "B023-F01"
+          ],
+          "reviewer": "AI-assisted preliminary content/contract review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_UNKNOWN_HARD_RESOURCE_MAY_REMAIN_ELIGIBLE",
+          "note": "Batch 023: positive required request/token/resource allowance with missing remaining measurement appends *_UNKNOWN but leaves fits=True; required hard dimension may not block eligibility. _required_value normalizes missing/malformed/negative to zero. Separate reviewed code fix/tests required; no allocator executed.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/allocation.py",
@@ -1050,15 +1054,19 @@
           "size_bytes": 894,
           "extension": ".json",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_023",
+          "terminology_assessment": "HISTORICAL_PROJECT_LEVEL_LIMIT_OBSERVATION_NOT_CURRENT_QUOTA",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B023:B023-05"
+          ],
+          "findings": [
+            "B023-F03"
+          ],
+          "reviewer": "AI-assisted preliminary content/contract review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "HISTORICAL_PROJECT_LEVEL_LIMIT_OBSERVATION_NOT_CURRENT_QUOTA",
+          "note": "Batch 023: source observation dated 2026-10-08, project scope; peak usage is explicitly not current remaining quota. Retain as historical evidence; refresh before current-state use.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/capacity_observations/gemini_2026-10-08.json",
@@ -1093,15 +1101,19 @@
           "size_bytes": 3770,
           "extension": ".json",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_023",
+          "terminology_assessment": "PRELIMINARY_REVIEW_POLICY_REQUIRES_HARD_FIT_AND_UNKNOWN",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B023:B023-03"
+          ],
+          "findings": [
+            "B023-F01"
+          ],
+          "reviewer": "AI-assisted preliminary content/contract review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_POLICY_REQUIRES_HARD_FIT_AND_UNKNOWN",
+          "note": "Batch 023: policy says missing measurements UNKNOWN, never unlimited/zero cost, and resource/call allowance fit are hard allocation dimensions; compare against allocator eligibility behavior.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/capacity_policy.json",
@@ -1226,15 +1238,19 @@
           "size_bytes": 2909,
           "extension": ".json",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_023",
+          "terminology_assessment": "PRELIMINARY_REVIEW_POLICY_CAPS_AND_HISTORICAL_OBSERVATION_MIXED",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B023:B023-04"
+          ],
+          "findings": [
+            "B023-F02"
+          ],
+          "reviewer": "AI-assisted preliminary content/contract review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_POLICY_CAPS_AND_HISTORICAL_OBSERVATION_MIXED",
+          "note": "Batch 023: model test caps mix operator-configured limits with dated Gemini quota observations and separate Cloudflare/ZeroGPU planning ceilings. Keep cap vs entitlement distinct and maintain source date/scope/recheck.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/development_test_budget.json",
@@ -2390,15 +2406,19 @@
           "size_bytes": 784,
           "extension": ".json",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_023",
+          "terminology_assessment": "HISTORICAL_WORKSPACE_STATE_FOLLOWED_BY_PROJECT_DEFERRAL",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B023:B023-06"
+          ],
+          "findings": [
+            "B023-F03"
+          ],
+          "reviewer": "AI-assisted preliminary content/contract review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "HISTORICAL_WORKSPACE_STATE_FOLLOWED_BY_PROJECT_DEFERRAL",
+          "note": "Batch 023: records a workspace-specific upgrade-required UI on 2026-10-08, not a universal provider rule; later project decision deferred Mistral probes. Preserve as historical and don't generalize.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/provider_observations/mistral_2026-10-08.json",
@@ -3607,15 +3627,19 @@
           "size_bytes": 4167,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_023",
+          "terminology_assessment": "PRELIMINARY_REVIEW_HARD_DIMENSION_NEGATIVE_TEST_GAP",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B023:B023-02"
+          ],
+          "findings": [
+            "B023-F01"
+          ],
+          "reviewer": "AI-assisted preliminary content/contract review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_HARD_DIMENSION_NEGATIVE_TEST_GAP",
+          "note": "Batch 023: tests cover known insufficient requests and unknown economics, but not required resource/call allowance missing or malformed; no test run.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/tests/test_allocation.py",
@@ -3695,15 +3719,17 @@
           "size_bytes": 2924,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_023",
+          "terminology_assessment": "PRELIMINARY_REVIEW_CREDENTIAL_STATES_AND_SECRET_REDACTION_TESTS",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B023:B023-07"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary content/contract review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_CREDENTIAL_STATES_AND_SECRET_REDACTION_TESTS",
+          "note": "Batch 023: tests distinguish missing/configured-not-verified/candidate-not-activated and assert report excludes secret values; not executed in review.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/tests/test_credential_readiness.py",
@@ -14828,5 +14854,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 022 reviewed economic/pricing policy and state, pricing/payments implementations, and payment/provider-policy tests. Core finding: exchange-rate provenance absent from quote object; invalid pricing default/unknown-value semantics from Batch 020 remain open; payment intent lifecycle fields need reconciliation. Counts: 84 full preliminary reviews + 1 partial screen + 233 not reviewed = 318."
+  "last_update_note": "Batch 023 reviewed allocator, allocation tests, capacity policy, development test budget, dated Gemini/Mistral observations, and credential-readiness tests. Main finding: unknown remaining amounts in a task's required hard dimensions may not block eligibility. Historical observations and operator caps remain separate from current quota. Counts 91+1+226=318."
 }
