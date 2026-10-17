@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 166/318; PARTIAL TARGETED SCREENS 5; 147 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 171/318; PARTIAL TARGETED SCREENS 5; 142 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 166,
-    "content_review_pending": 147,
-    "human_validation_pending": 166,
+    "preliminary_content_reviewed": 171,
+    "content_review_pending": 142,
+    "human_validation_pending": 171,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 5
   },
@@ -4071,15 +4071,20 @@
           "size_bytes": 369,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_051",
+          "terminology_assessment": "PRELIMINARY_REVIEW_OBSERVER_TEST_COVERAGE_IS_MINIMAL_RELEVANT_TO_OPEN_FINDINGS",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B051:B051-01"
+          ],
+          "findings": [
+            "SWEEP-F-0024",
+            "SWEEP-F-0025"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_CROSS_REFERENCE_EXISTING_OPEN_FINDINGS",
+          "note": "Batch 051: this test file contains one test for normalize_content stripping script/style/noise; it does not test HTTP 4xx/5xx response handling, preservation of the last good observation after failure, empty/non-empty error bodies, max_bytes truncation, or changed content beyond the limit. This is not a new independent finding: it leaves closure evidence required by SWEEP-F-0024 and SWEEP-F-0025 outstanding. Test source inspected only; not executed.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/tests/test_observer.py",
@@ -4106,7 +4111,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+          "reviewed_blob_sha": "e8cec911b8113dc5d50dfcdfa74b88603adc2709"
         },
         {
           "path": "NOVA/tests/test_operational_state.py",
@@ -4530,15 +4537,20 @@
           "size_bytes": 2797,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_051",
+          "terminology_assessment": "PRELIMINARY_REVIEW_STATIC_WORKFLOW_ASSERTIONS_NOT_OPERATIONAL_OR_ENFORCEMENT_PROOF",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B051:B051-02"
+          ],
+          "findings": [
+            "SWEEP-F-0018",
+            "SWEEP-F-0019"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_CROSS_REFERENCE_EXISTING_OPEN_FINDINGS",
+          "note": "Batch 051: tests assert that workflow/config text contains selected triggers, model identifiers, schema settings and roster evidence identifiers. This is useful static regression coverage, but does not independently establish current external provider compatibility, validate an actual response against the full schema, or prove repository rules require health checks for merge. Those limits align with existing SWEEP-F-0018 and SWEEP-F-0019; no new unique finding opened. Tests not executed.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/tests/test_workflow_coverage.py",
@@ -4565,7 +4577,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+          "reviewed_blob_sha": "2d14d46bdf8b13538c6266fb4c2b1f632fb16086"
         },
         {
           "path": "NOVA/watchlist.json",
@@ -5786,15 +5800,17 @@
           "size_bytes": 371,
           "extension": ".yml",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_051",
+          "terminology_assessment": "PRELIMINARY_REVIEW_PAGES_EXCLUSION_SCOPE_IS_EXPLICIT_NOT_SOURCE_PRIVACY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B051:B051-03"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 051: the comment explicitly defines this as a Pages publication boundary and acknowledges that the source repository remains public. The exclude list names backup, development, .github and several build/dependency paths. It describes intended Jekyll publication exclusions rather than claiming that repository content is private. Actual generated/deployed site output was not built or verified; no unique terminology finding from this file alone.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "_config.yml",
@@ -5822,7 +5838,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "cf2c83eefd80b8ca8d84425be585e9469be8b01f"
         },
         {
           "path": ".github/codeql/nova-rsi-config.yml",
@@ -5830,15 +5848,17 @@
           "size_bytes": 228,
           "extension": ".yml",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_051",
+          "terminology_assessment": "PRELIMINARY_REVIEW_TARGETED_CODEQL_PATH_SCOPE_IS_NAMED",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B051:B051-04"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 051: configuration names its focus as NOVA RSI and external-review pipeline security queries, uses security-extended queries, scopes paths to the two named development directories, and excludes backup/**. Related workflow explicitly configures Python CodeQL and uses this config. Scope is targeted and visible rather than phrased as whole-repository security coverage; actual scan run/results were not inspected in this batch. No unique terminology finding.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": ".github/codeql/nova-rsi-config.yml",
@@ -5866,7 +5886,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "73320edccdb98fd212e26475f7620e2dcb5e6aa0"
         },
         {
           "path": ".github/dependabot.yml",
@@ -5874,15 +5896,17 @@
           "size_bytes": 144,
           "extension": ".yml",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_051",
+          "terminology_assessment": "PRELIMINARY_REVIEW_GITHUB_ACTIONS_UPDATES_SCOPE_EXPLICIT",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B051:B051-05"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 051: Dependabot is configured for the github-actions ecosystem at repository root, weekly, with an open-pull-request limit of five. The file does not claim coverage for other package ecosystems. No root Gemfile or requirements.txt was present at the inspected baseline; this limited review does not establish whether other nested dependency manifests exist or whether Dependabot runs successfully. No unique terminology finding.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": ".github/dependabot.yml",
@@ -5910,7 +5934,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "80049834289c86e55d0fe144de3d59519386dd0a"
         },
         {
           "path": ".github/workflows/external-review-pipeline-ci.yml",
@@ -15163,5 +15189,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 050 reviewed five active NOVA files at main baseline commit 2a1f5c496474aa099703432e99b3d3dfddfd3fd7, verifying their recorded blob SHAs. Finding SWEEP-F-0029 records a validation-status distinction needed in the historical Mistral diagnostics note: later evidence supports successful offline tests, while live/provider-cause validation remains deferred and the 429 cause remains UNKNOWN. The freshness and Sanctuary doctrine documents were reviewed with no unique findings. Counts: 166 preliminary full-file reviews + 5 partial screens + 147 not reviewed = 318. Human validation pending; formal ISO 704 clause assessment remains zero."
+  "last_update_note": "Batch 051 reviewed five active files from NOVA and AstroCrown-Web at their respective recorded main baseline commits, verifying each file blob SHA. No unique finding was opened. NOVA observer tests remain insufficient for the closure tests specified by SWEEP-F-0024/F-0025; workflow coverage tests do not close SWEEP-F-0018/F-0019. AstroCrown-Web publication, CodeQL and Dependabot configuration comments were assessed within their declared scope. Counts: 171 preliminary full-file reviews + 5 partial screens + 142 not reviewed = 318. Human validation pending; formal ISO 704 clause assessment remains zero."
 }
