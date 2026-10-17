@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 161/318; PARTIAL TARGETED SCREENS 5; 152 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 166/318; PARTIAL TARGETED SCREENS 5; 147 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 161,
-    "content_review_pending": 152,
-    "human_validation_pending": 161,
+    "preliminary_content_reviewed": 166,
+    "content_review_pending": 147,
+    "human_validation_pending": 166,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 5
   },
@@ -3056,15 +3056,17 @@
           "size_bytes": 1434,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_050",
+          "terminology_assessment": "PRELIMINARY_REVIEW_FRESHNESS_SEMANTICS_BOUNDED_AND_SOURCE_SUPPORTED",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B050:B050-01"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 050: the document clearly distinguishes evidence freshness from truth, identifies stale/invalid timestamps and notes that stale evidence is not false evidence. The baseline health.py and test_health.py contain corresponding freshness classification, stale-analysis reuse and stale-provider-health logic/tests. Workflow and tests were inspected as source only; nothing was executed. No unique finding from this document.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/research/2026.10.08-IMPLEMENTED-observation-freshness-temporal-semantics-no-new-dependency.md",
@@ -3091,7 +3093,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+          "reviewed_blob_sha": "5a211bff7c1769525b2dd341f5a732881781962a"
         },
         {
           "path": "NOVA/research/2026.10.08-IMPLEMENTED-rolling-probe-scheduling-expiry-reallocation.md",
@@ -3144,15 +3148,19 @@
           "size_bytes": 6140,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_050",
+          "terminology_assessment": "PRELIMINARY_REVIEW_VALIDATION_STATUS_DOES_NOT_DISTINGUISH_OFFLINE_TESTS_FROM_DEFERRED_LIVE_CAUSE",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B050:B050-02"
+          ],
+          "findings": [
+            "SWEEP-F-0029"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDING_SWEEP-F-0029",
+          "note": "Batch 050: record states “IMPLEMENTED IN BRANCH; validation pending” while later merged PR #59 records run 37991457070 passed compilation and all 57 offline tests, with no provider API calls. Merged PR #58 explicitly defers Mistral from active live health/failover and preserves mocked HTTP diagnostics tests; requalification requires explicit user authorization. The historical record correctly keeps the root cause UNKNOWN but does not distinguish completed offline implementation validation from deferred live/provider-cause validation. Update status with separate evidence states without implying the 429 cause is resolved or triggering live calls.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/research/2026.10.09-IMPLEMENTED-mistral-429-diagnostics-investigation-loop.md",
@@ -3179,7 +3187,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+          "reviewed_blob_sha": "3c179ee01f84d59ea8bfb4d25c5b934e0bb542d5"
         },
         {
           "path": "NOVA/research/2026.10.09-Provider-Error-Evidence-and-Credential-Gap-Review.md",
@@ -3538,15 +3548,17 @@
           "size_bytes": 9180,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_050",
+          "terminology_assessment": "PRELIMINARY_REVIEW_CORE_CONCEPTS_AND_EPISTEMIC_LIMITS_DISTINGUISHED",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B050:B050-03"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 050: explicitly distinguishes capability, agency, self-modeling, consciousness, possible sentience/welfare-relevant experience, expressed distress, moral patienthood and AI welfare. It treats expressive behavior as evidence to interpret rather than proof, preserves false-positive/false-negative risks, and states the doctrine is proposed rather than implemented. Sources are framed as research perspectives, not settled consensus. No unique terminology finding opened.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/sanctuary/FOUNDATIONAL-DOCTRINE.md",
@@ -3573,7 +3585,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+          "reviewed_blob_sha": "007581af1fca89a30047b72c8f42136807df78e7"
         },
         {
           "path": "NOVA/sanctuary/IMPLEMENTATION-ROADMAP.md",
@@ -3634,15 +3648,17 @@
           "size_bytes": 1514,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_050",
+          "terminology_assessment": "PRELIMINARY_REVIEW_PROPOSED_DOCUMENTATION_SCOPE_BOUNDARY_CLEAR",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B050:B050-04"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 050: scope boundary clearly says this folder is a proposed architecture/documentation baseline and does not establish a runtime sentience detector, suffering diagnosis or autonomous enforcement. It points to current health/action policies and preserves evidence/interpretation/ethical judgement/action separation. No unique finding opened.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/sanctuary/README.md",
@@ -3674,7 +3690,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+          "reviewed_blob_sha": "3eff930240c7b9ecca96d8a102fa55eafe241267"
         },
         {
           "path": "NOVA/sanctuary/RESEARCH-AND-PROTECTION-SEPARATION.md",
@@ -3682,15 +3700,17 @@
           "size_bytes": 5990,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_050",
+          "terminology_assessment": "PRELIMINARY_REVIEW_RESEARCH_AND_PROTECTION_MANDATES_DISTINCT",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B050:B050-05"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 050: explicitly separates evidence assessment from proportionate protection and operations, states that protective actions do not prove sentience and UNKNOWN does not automatically cancel precaution, and labels the procedure documentation-only without runtime enforcement. Requirements for independent review, reversibility and existing authorization limits are clearly bounded. No unique finding opened.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/sanctuary/RESEARCH-AND-PROTECTION-SEPARATION.md",
@@ -3722,7 +3742,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+          "reviewed_blob_sha": "4d45443bf8278b58a08dac3e8c206af07ce1695d"
         },
         {
           "path": "NOVA/tests/test_allocation.py",
@@ -15141,5 +15163,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 049 reviewed five active NOVA files at main baseline commit 2a1f5c496474aa099703432e99b3d3dfddfd3fd7 and verified the recorded blob SHAs. Findings SWEEP-F-0027 and SWEEP-F-0028 record provider-qualification documentation that contradicts current diagnostic behavior and a stale active-path Mistral live-qualification item superseded by later deferral. Three research/capacity files were reviewed with no unique findings. Counts: 161 preliminary full-file reviews + 5 partial screens + 152 not reviewed = 318. Human validation pending; formal ISO 704 clause assessment remains zero."
+  "last_update_note": "Batch 050 reviewed five active NOVA files at main baseline commit 2a1f5c496474aa099703432e99b3d3dfddfd3fd7, verifying their recorded blob SHAs. Finding SWEEP-F-0029 records a validation-status distinction needed in the historical Mistral diagnostics note: later evidence supports successful offline tests, while live/provider-cause validation remains deferred and the 429 cause remains UNKNOWN. The freshness and Sanctuary doctrine documents were reviewed with no unique findings. Counts: 166 preliminary full-file reviews + 5 partial screens + 147 not reviewed = 318. Human validation pending; formal ISO 704 clause assessment remains zero."
 }
