@@ -226,3 +226,13 @@ See [Semantic Review Batch 011 — GPU and Weak RSI](2026-10-17-ISO-704-Semantic
 - **B011-F03:** mocked unit tests and static YAML assertions are offline implementation evidence, not proof of a live provider, current account terms, or actual workflow dispatch result.
 
 Tracker after Batch 011: **318 lexical scans; 41 preliminary full-file reviews; one partial targeted screen; 276 not reviewed; human validation pending.** Row-count invariant: 41 + 1 + 276 = 318.
+
+
+## Semantic review update — Batch 012 provider qualification state
+
+See [Semantic Review Batch 012 — Provider Qualification](2026-10-17-ISO-704-Semantic-Review-Batch-012-Provider-Qualification.md).
+
+- **B012-F01:** the implementation marks the exact Cloudflare LLM JSON-contract capability `SKIPPED_ALREADY_QUALIFIED` and `ACTIVE` based on a linked prior run, while `KEY-READINESS.md` still says Cloudflare inference remains `BLOCKED_CONTRACT_UNVERIFIED`. Resolve this in a reviewed source change by naming the exact model/endpoint, qualifying evidence scope/date, expiry and current decision. A historical response-contract test is not current provider health, account entitlement, quota, cost or production readiness.
+- **Positive control:** diagnostic status words distinguish HTTP class, valid shape, probe marker, rate-limit headers, lifecycle and resource eligibility; mocks protect secrets and response text. Preserve these distinctions.
+
+Tracker after Batch 012: **318 lexical scans; 44 preliminary full-file reviews; one partial targeted screen; 273 not reviewed; human validation pending.** Row-count invariant: 44 + 1 + 273 = 318.
