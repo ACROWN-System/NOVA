@@ -352,3 +352,15 @@ See [Semantic Review Batch 022 — Payments and Pricing](2026-10-17-ISO-704-Sema
 - **B022-F04:** empty pricing service map and zero/null economic state are valid initial scaffolding, not proof of approved live service tariffs, real-world zero balances or absence of external transactions. Represent uninitialized/unknown distinctly from verified zero.
 
 Tracker after Batch 022: **318 lexical scans; 84 preliminary full-file reviews; one partial targeted screen; 233 not reviewed; human validation pending.** Invariant: 84 + 1 + 233 = 318.
+
+
+## Semantic review update — Batch 023 allocation policy and test-budget evidence
+
+See [Semantic Review Batch 023 — Allocation and Budgets](2026-10-17-ISO-704-Semantic-Review-Batch-023-Allocation-and-Budgets.md).
+
+- **B023-F01 — code/policy consistency risk:** `capacity_policy.json` declares resource and call-allowance fit as hard dimensions, but `allocation.py` may keep a candidate eligible when a positive required remaining request/token/resource measure is unknown. It also normalizes some malformed/negative requirement fields to zero. This should be corrected in a separate reviewed code change and guarded with negative tests; no allocator execution or change occurred in this batch.
+- **B023-F02:** development test-budget caps are partly policy values and partly derived from dated quota observations. Treat caps as operator-imposed limits, not provider entitlements, and keep row-level source/scope/date/recheck rules.
+- **B023-F03:** dated Gemini project limits and Mistral workspace UI status are historical observations; do not turn peak usage into remaining quota or generalize a workspace-specific access screen to every provider plan. Later Mistral project deferral remains a separate decision.
+- **Positive control:** credential readiness tests distinguish slot presence from verification and assert that secret values do not appear in the report; tests were not executed in this review.
+
+Tracker after Batch 023: **318 lexical scans; 91 preliminary full-file reviews; one partial targeted screen; 226 not reviewed; human validation pending.** Invariant: 91 + 1 + 226 = 318.
