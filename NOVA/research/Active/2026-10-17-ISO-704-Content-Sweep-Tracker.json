@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 226/318; PARTIAL TARGETED SCREENS 5; 87 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 231/318; PARTIAL TARGETED SCREENS 5; 82 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 226,
-    "content_review_pending": 87,
-    "human_validation_pending": 226,
+    "preliminary_content_reviewed": 231,
+    "content_review_pending": 82,
+    "human_validation_pending": 231,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 5
   },
@@ -9407,15 +9407,19 @@
           "size_bytes": 5286,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_063",
+          "terminology_assessment": "PRELIMINARY_REVIEW_OPEN_FINDING_STALE_WORKFLOW_HANDOFF",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B063:B063-01"
+          ],
+          "findings": [
+            "SWEEP-F-0035"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDING_SWEEP-F-0035",
+          "note": "Batch 063: recurrence and UNAVAILABLE semantics are appropriately bounded; readiness remains INCOMPLETE and benchmark unapproved. Handoff references .github/workflows/nova-rsi.yml, which is absent from current main workflow directory; cycle_detector.py remains, but successor operational integration is not established. See SWEEP-F-0035.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Completed/2026-10-11-RSI-Repeat-State-Detection.md",
@@ -9442,7 +9446,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "118b5ac06cbb0e77c6c840fdb5f01ed541b3a7df"
         },
         {
           "path": "development/audit/Completed/2026-10-11-RSI-Sandbox-Cleanup-Verification.md",
@@ -9547,15 +9553,17 @@
           "size_bytes": 4579,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_063",
+          "terminology_assessment": "PRELIMINARY_REVIEW_TASK-SPECIFIC-BENCHMARK-BOUNDARY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B063:B063-02"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 063: exact scope/command matching and fail-closed disabled-profile behavior are distinct from RSI approval; context-packing profile stays disabled/unapproved and readiness remains INCOMPLETE.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Completed/2026-10-11-RSI-Task-Benchmark-Dispatcher.md",
@@ -9587,7 +9595,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "ea1de7442c19dcbcbd5918f7fdfabe60b6169df0"
         },
         {
           "path": "development/audit/Completed/2026-10-11-RSI-Token-Telemetry-Integrity.md",
@@ -9595,15 +9605,17 @@
           "size_bytes": 3695,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_063",
+          "terminology_assessment": "PRELIMINARY_REVIEW_TELEMETRY-VALIDATION-AND-EVIDENCE-BOUNDARY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B063:B063-03"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 063: strict integer/integrity validation and BLOCKED behavior for invalid telemetry are clearly described; provider-reported token usage is distinguished from account billing and other consumers. Historical finding is followed by explicit remediation outcome.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Completed/2026-10-11-RSI-Token-Telemetry-Integrity.md",
@@ -9639,7 +9651,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "82606c19ac813d7e6bb5635b7e05c6358047f7d0"
         },
         {
           "path": "development/audit/Completed/2026-10-11-RSI-Trusted-Evaluator-Control-Plane.md",
@@ -9755,15 +9769,17 @@
           "size_bytes": 14522,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_063",
+          "terminology_assessment": "PRELIMINARY_REVIEW_DATED-CROSS-REPOSITORY-AUDIT-BOUNDARY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B063:B063-04"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 063: review date and historical PR/provider observations are explicitly bounded; canonical navigation protocol absence is scoped to inspected locations; open maintainer dependencies and production-homepage scope remain BLOCKED.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Completed/2026-10-12-Cross-Repository-Readiness-and-PR-Reconciliation.md",
@@ -9803,7 +9819,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "8bc39c35631577b5a1324540460aaf3b0820d974"
         },
         {
           "path": "development/audit/Completed/2026-10-12-Suspend-Strong-RSI-until-Ready.md",
@@ -9901,15 +9919,19 @@
           "size_bytes": 8369,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_063",
+          "terminology_assessment": "PRELIMINARY_REVIEW_OPEN_FINDING_STALE_MERGE_STATUS",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B063:B063-05"
+          ],
+          "findings": [
+            "SWEEP-F-0033"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDING_SWEEP-F-0033",
+          "note": "Batch 063: roadmap remains a development-only proposal with account/authentication/recovery/biometric/benefit features unimplemented. Completion record says PR will remain unmerged, but live GitHub confirms PR #132 merged 2026-10-16; extend SWEEP-F-0033 to correct this stale sentence only.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Completed/2026-10-16-Account-Continuity-and-Privacy-Preserving-Access-Foundation.md",
@@ -9949,7 +9971,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "bdc5b6c1279af4c8f66525b8d982fe61542b7b55"
         },
         {
           "path": "development/audit/external-review/ledger.json",
