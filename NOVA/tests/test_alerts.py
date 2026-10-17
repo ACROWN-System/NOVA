@@ -40,7 +40,6 @@ class GitHubAlertDeduplicationTests(unittest.TestCase):
         self.assertIn("/issues?state=open&per_page=100", list_req.full_url)
         self.assertEqual(comment_req.method, "POST")
         self.assertTrue(comment_req.full_url.endswith("/issues/42/comments"))
-        self.assertTrue(comment_req.full_url.endswith("/issues/42/comments"))
         self.assertNotEqual(comment_req.full_url, "https://api.github.com/repos/example/repo/issues")
 
     def test_new_open_issue_created_when_exact_title_is_absent(self):
