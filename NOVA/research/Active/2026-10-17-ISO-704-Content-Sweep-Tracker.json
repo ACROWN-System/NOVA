@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 151/318; PARTIAL TARGETED SCREENS 5; 162 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 156/318; PARTIAL TARGETED SCREENS 5; 157 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 151,
-    "content_review_pending": 162,
-    "human_validation_pending": 151,
+    "preliminary_content_reviewed": 156,
+    "content_review_pending": 157,
+    "human_validation_pending": 156,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 5
   },
@@ -835,15 +835,19 @@
           "size_bytes": 1082,
           "extension": ".js",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_048",
+          "terminology_assessment": "PRELIMINARY_REVIEW_WALLET_ACCESS_LABELLED_AS_AUTHENTICATION; SITEWIDE_ZERO_TRACKING_UNVERIFIED",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B048:B048-01"
+          ],
+          "findings": [
+            "SWEEP-F-0023"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDING_SWEEP-F-0023",
+          "note": "Batch 048: eth_requestAccounts requests wallet account access and returns exposed account address(es); this file does not request a signed challenge, verify a signature, or establish an authenticated session. “Sovereign Authentication” overstates the implemented flow. “Zero-Tracking” is not proven for the whole site by this one JavaScript file. Static review only; no wallet or runtime test.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "assets/js/app.js",
@@ -870,7 +874,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+          "reviewed_blob_sha": "2d528221f68b9044413dfb97b269de4c7a49d928"
         },
         {
           "path": "index.html",
@@ -878,15 +884,17 @@
           "size_bytes": 0,
           "extension": ".html",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_048",
+          "terminology_assessment": "PRELIMINARY_REVIEW_EMPTY_PLACEHOLDER_NO_SUBSTANTIVE_CONTENT",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B048:B048-02"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_EMPTY_PLACEHOLDER_NO_SUBSTANTIVE_CONTENT",
+          "note": "Batch 048: exact baseline blob is zero bytes. The root index.html file contains no markup, terminology, definitions, or public/security claim to assess. The file is recorded as reviewed after confirming its actual content.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "index.html",
@@ -913,7 +921,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+          "reviewed_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
         },
         {
           "path": "LICENSE",
@@ -921,15 +931,17 @@
           "size_bytes": 1070,
           "extension": "[no-ext]",
           "provisional_review_queue": "UNKNOWN_FORMAT_REVIEW_REQUIRED",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_048",
+          "terminology_assessment": "PRELIMINARY_REVIEW_MIT_LICENSE_TEXT_ONLY_SCOPE_AND_OWNERSHIP_NOT_VERIFIED",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B048:B048-03"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_LICENSE_TEXT_ONLY_NO_UNIQUE_TERMINOLOGY_FINDING",
+          "note": "Batch 048: the file contains the standard MIT permission grant and warranty/liability disclaimer with copyright notice “2026 ACROWN-System”. This source-text review does not verify rights-holder identity, provenance, compatibility or whether every repository file is covered by that license; no unique terminology finding is opened from this text alone.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "LICENSE",
@@ -956,7 +968,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+          "reviewed_blob_sha": "ece2b4b8bdc31602fa252f5aa726849c03d909b7"
         },
         {
           "path": "NOVA/action_policy.json",
@@ -2087,15 +2101,19 @@
           "size_bytes": 105,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_048",
+          "terminology_assessment": "PRELIMINARY_REVIEW_UNDATED_OPERATIONAL_STATE_CLAIM_AMBIGUOUS",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B048:B048-04"
+          ],
+          "findings": [
+            "SWEEP-F-0026"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDING_SWEEP-F-0026",
+          "note": "Batch 048: “Initial genesis state initialized. Awaiting autonomous heartbeat execution.” is an unqualified lifecycle/status statement with no timestamp, state reference or run evidence. The repository also contains a scheduled heartbeat workflow and an operational state snapshot, but these do not prove a specific heartbeat execution or which component this README describes. Treat the statement as ambiguous/stale pending human confirmation.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/NOVA/README.md",
@@ -2122,7 +2140,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+          "reviewed_blob_sha": "53c6214f9ccdc14deffc12aa3a02ebf27ddb82a4"
         },
         {
           "path": "NOVA/operational_observer.py",
@@ -2130,15 +2150,20 @@
           "size_bytes": 5755,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_048",
+          "terminology_assessment": "PRELIMINARY_REVIEW_OBSERVATION_PRESERVATION_AND_FINGERPRINT_COMPLETENESS_GAPS",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B048:B048-05"
+          ],
+          "findings": [
+            "SWEEP-F-0024",
+            "SWEEP-F-0025"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDINGS_SWEEP-F-0024_AND_SWEEP-F-0025",
+          "note": "Batch 048: static inspection found two bounded observation-integrity gaps. (1) fetch_text returns HTTPError status/body plus an error string; observe_source only exits early when error and body is empty, so a non-empty error page can be normalized, fingerprinted and stored over the previous observation despite the module docstring saying transient failures do not overwrite it. (2) responses above max_bytes are silently truncated to max_bytes before fingerprinting, without a truncation marker; changed content beyond the prefix can therefore be missed. No code or tests were run; targeted negative tests are required.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/operational_observer.py",
@@ -2165,7 +2190,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+          "reviewed_blob_sha": "a82b1055bf7ee63771ee0c2e941c9ea9a138d01e"
         },
         {
           "path": "NOVA/operational_state.py",
@@ -15090,5 +15117,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 047 reviewed five active NOVA files at main baseline commit 2a1f5c496474aa099703432e99b3d3dfddfd3fd7, verifying each recorded blob SHA. Findings SWEEP-F-0021 and SWEEP-F-0022 opened for unsupported route/security wording and stylesheet privacy/anti-fingerprinting claims; three zero-byte .gitkeep placeholders recorded as reviewed. Counts: 151 preliminary full-file reviews + 5 partial screens + 162 not reviewed = 318. Human validation pending; formal ISO 704 clause assessment remains zero."
+  "last_update_note": "Batch 048 reviewed five active NOVA files at main baseline commit 2a1f5c496474aa099703432e99b3d3dfddfd3fd7, verifying their recorded blob SHAs. Findings SWEEP-F-0023 through SWEEP-F-0026 cover wallet account access labelled as authentication, observer error-body persistence, silent content truncation, and an ambiguous heartbeat lifecycle statement. The empty index.html file was verified as reviewed. Counts: 156 preliminary full-file reviews + 5 partial screens + 157 not reviewed = 318. Human validation pending; formal ISO 704 clause assessment remains zero."
 }
