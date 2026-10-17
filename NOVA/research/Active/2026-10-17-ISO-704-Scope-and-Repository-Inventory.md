@@ -1,7 +1,7 @@
 # ISO 704:2022 Scope Proposal and Repository Inventory
 
 **Document ID:** NOVA-ISO704-SCOPE-001  
-**Version:** 0.1.50  
+**Version:** 0.1.55  
 **Snapshot date:** 2026-10-17  
 **Status:** PROPOSED SCOPE / INITIAL PATH INVENTORY — human approval and detailed content review pending  
 **Related dossier:** [ISO 704:2022 Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
@@ -325,3 +325,8 @@ Tracker states were re-counted directly: 96 preliminary full reviews, 5 partial 
 ## 59. Revision history
 
 - **2026-10-17 / v0.1.54:** Added Batch 056 preliminary full-file review of five AstroCrown-Web audit plans. Counts: 196 preliminary full reviews + 5 partial screens + 117 not reviewed = 318. Extended SWEEP-F-0031 for the multi-model media strategy plan remaining Active after its documentation PR #50 merged; additionally cross-referenced the mission integration, candidate-tree binding and evaluator-supervisor completed mirrors with existing SWEEP-F-0012. The canonical candidate-path validation plan remains Active pending independent confirmation of its full RSI CI acceptance. Human validation pending; formal ISO 704 clause assessment remains zero. No backup/archive or runtime paths changed.
+
+
+## 60. Revision history
+
+- **2026-10-17 / v0.1.55:** Added Batch 057 preliminary full-file review of five AstroCrown-Web RSI evidence/provenance and lifecycle records. Counts: 201 preliminary full reviews + 5 partial screens + 112 not reviewed = 318. Extended SWEEP-F-0031 for two Active navigation plans included in merged PRs #79 and #81 whose associated RSI CI runs were recorded successful; extended SWEEP-F-0012 for three explicitly completed archival mirrors still located under Active. Historical workflow metadata was inspected but CI was not rerun. Human validation pending; formal ISO 704 clause assessment remains zero and scope remains proposed/not human-approved. The frontmatter version had been 0.1.50 while the latest prior history entry was v0.1.54; this update synchronizes the header and revision history to v0.1.55. No backup/archive paths or AstroCrown-Web runtime files changed.
