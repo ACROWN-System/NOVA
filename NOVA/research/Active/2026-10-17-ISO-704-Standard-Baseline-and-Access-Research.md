@@ -3,7 +3,7 @@
 **Record ID:** NOVA-ISO704-ACCESS-001  
 **Date initially checked:** 2026-10-17  
 **Latest public-source recheck:** 2026-10-18
-**Version:** 0.1.4  
+**Version:** 0.1.5  
 **Status:** OPEN — COMPLETE-TEXT LAWFUL ACCESS AT $0 NOT CONFIRMED; INSTITUTIONAL VISIT LEAD UNVERIFIED  
 **Owner:** Designated human maintainer  
 **Linked evidence:** AR-E02 in [Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
@@ -126,7 +126,7 @@ The human maintainer approved and reaffirmed a $0-only access policy. Permitted 
 
 The current official ISO page still lists ISO 704:2022, Edition 4, as Published and displays sample/preview access plus a CHF 204 purchase price. The official BIS library page lists paid annual reference membership at ₹2,000 plus 18% GST; its public “Know Your Standard” description concerns Indian Standards and does not verify a free complete copy of ISO 704:2022. These checks do not establish lawful no-cost access to the full applicable text.
 
-**Disposition:** AR-E02 remains BLOCKED. Under the approved $0-only policy, no purchase, paid subscription/membership, billable inquiry or hired service is authorized. Continue only by checking existing lawful institutional/licensed access or another verified no-cost consultation route. Do not populate the clause/topic-to-evidence matrix until complete-text access, licence/use conditions and the final applicable edition are recorded.
+**Disposition:** AR-E02 remains BLOCKED. Under the approved $0-only policy, no purchase, paid subscription/membership, billable inquiry or hired service is authorized. Continue only by checking existing lawful institutional/licensed access or another verified no-cost consultation route. Do not represent the complete clause/topic-to-evidence matrix as complete until the full applicable edition, relevant clause inventory, source/use conditions and final baseline are recorded. A separate source-bounded partial mapping may proceed for provisions directly visible in identified preview sources, with unseen clauses explicitly marked NOT ASSESSED.
 
 **Impact Analysis — IF followed:** the baseline decision remains honest, legally controlled and cost compliant. **IF not followed:** a sample/abstract or paid institutional lead could be mistaken for complete no-cost access.
 
@@ -136,6 +136,13 @@ The current official ISO page still lists ISO 704:2022, Edition 4, as Published 
 - The official ISO free preview covers selected sections only; a GSO-hosted preview is not accepted as a full-text baseline.
 - ISO 704:2022 remains the latest published edition identified on the official ISO product/committee pages reviewed. The separate `ISO/PWI 704` record is proposal-stage, not a published successor; lifecycle confirmation remains required at baseline freeze.
 - IIT Delhi Central Library provides one unverified no-cost in-person consultation lead. A free inquiry is the next action; no visit/access right has been assumed.
-- AR-E02 remains BLOCKED and the clause matrix stays template-only.
+- AR-E02 remains BLOCKED for complete-baseline freeze and the complete clause matrix stays template-only. This does not stop the separately documented source-bounded preview mapping in [ISO 704:2022 — Public-Preview Partial Mapping](2026-10-18-ISO-704-Public-Preview-Partial-Mapping.md).
 
 **Impact Analysis — IF followed:** the search has been expanded beyond the product page while preserving a lawful access standard and zero cost. **IF not followed:** the project may either stop before a plausible institutional route is checked, or mistakenly treat a preview/unverified upload/proposal as the full current standard.
+
+
+## Decision correction — full-text access is not a universal work-stoppage condition (2026-10-18)
+
+The controlled complete-baseline question remains open, but earlier wording that could be read as prohibiting any clause-level work is superseded. ISO's official help page says selected sections (foreword, introduction, scope, normative references, terms and definitions) can be previewed free of charge. Those directly visible provisions may be assessed in a separate, explicitly partial record with precise source/edition/coverage notes. A public preview, table of contents, abstract, or snippet must not be treated as the complete standard. No purchase or certification is required by this internal work plan, and no paid activity is authorized.
+
+See [Public-Preview Partial Mapping](2026-10-18-ISO-704-Public-Preview-Partial-Mapping.md). Full-matrix completeness and the overall readiness decision remain open until the applicable baseline and all relevant provisions can be accounted for.
