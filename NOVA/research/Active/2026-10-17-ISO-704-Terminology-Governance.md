@@ -265,3 +265,16 @@ One create-file call for the expanded access report omitted its optional branch 
 
 **IF not followed:** the project risks treating a preview or proposal as a controlled standard, incurring an unauthorized cost, or bypassing review-branch change control.
 
+
+
+## Decision correction — source-bounded conformance work without certification (2026-10-18)
+
+The earlier sequencing statement that full clause-level conformity work must remain entirely blocked until complete-text access is confirmed is refined as follows. **Only completion of the controlled baseline, the complete clause inventory/matrix, and the overall readiness conclusion remain blocked by the unresolved full-text gap.** The absence of a purchased copy or external certificate is not a reason to suspend all terminology improvement.
+
+- Continue improvements to NOVA's canonical terminology concepts, definitions, designations, domains and relations using internally evidenced practices and principles directly available from identified public previews.
+- Keep public-preview work in the separate [ISO 704:2022 Public-Preview Partial Mapping](2026-10-18-ISO-704-Public-Preview-Partial-Mapping.md). Use original paraphrase, direct source/edition/location references and scope labels. Mark every unseen clause/annex NOT ASSESSED; never infer PASS, FAIL or N/A from a table of contents, abstract, search snippet or memory.
+- Keep the full clause/evidence matrix as a controlled template until the complete applicable edition and inventory are reconciled. The partial map is not a complete matrix, a full-conformity finding or an audit/certification claim.
+- ISO says it does not itself provide certification or conformity assessment (https://www.iso.org/contact-iso.html). The bounded search found no evidence of a dedicated third-party ISO 704 certification scheme; this is not proof none exists. External certification/provider discovery is not the objective and remains unauthorized unless the human maintainer separately changes scope.
+- The $0-only policy remains binding. No purchase, paid subscription/membership, billable enquiry, hired adviser/provider or other cost is authorized.
+
+**Impact Analysis — IF this correction is followed:** accessible text can drive real improvements while full coverage remains transparently unresolved and payment/certification are not mistaken for conformance prerequisites. **IF not followed:** the process may unnecessarily suspend useful improvement, or conversely overstate coverage based on partial source visibility.
