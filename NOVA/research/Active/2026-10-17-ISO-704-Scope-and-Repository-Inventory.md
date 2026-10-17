@@ -1,7 +1,7 @@
 # ISO 704:2022 Scope Proposal and Repository Inventory
 
 **Document ID:** NOVA-ISO704-SCOPE-001  
-**Version:** 0.1.67  
+**Version:** 0.1.68  
 **Snapshot date:** 2026-10-17  
 **Status:** PROPOSED SCOPE / INITIAL PATH INVENTORY — human approval and detailed content review pending  
 **Related dossier:** [ISO 704:2022 Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
@@ -382,3 +382,8 @@ Tracker states were re-counted directly: 96 preliminary full reviews, 5 partial 
 ## 72. Revision history
 
 - **2026-10-18 / v0.1.67:** Added Batch 069 preliminary full-file review of four design-reference indexes (Sizing, Spacing, Typography, Visual Design System) and the Background subsystem source/migration record at exact recorded main-baseline blob SHAs. Extended SWEEP-F-0038 to these four indexes and the Background file's unpinned migrated source excerpts; cross-referenced SWEEP-F-0043 because two additional indexes repeat the reversed Space Blue relation. Opened SWEEP-F-0046 for wording that states the Moon-forming impact as a historical event without identifying the artistic depiction/leading giant-impact hypothesis distinction, supported by NASA references checked 2026-10-18. Opened SWEEP-F-0047 for “Hawking radiation rays” used as a nebula visual motif without explicit metaphor/scientific-concept distinction, checked against NASA's glossary. The typography index preserved candidate/undefined state, and the Background R-036 alpha/compositing requirements preserved precise transparency terminology. Counts: 261 preliminary full reviews + 5 partial targeted screens + 52 not reviewed = 318. Human validation remains pending; formal ISO 704 clause assessment remains zero; scope remains proposed/not human-approved. No AstroCrown-Web source/runtime files, backup/archive paths, workflows, credentials, provider calls, billing, repository settings or tests were changed/run.
+
+## 73. Revision history
+
+- **2026-10-18 / v0.1.68:** Added Batch 070 preliminary full-file review of the Directory Filter, Working Market Directory, Discovery Information Bar, Footer, and Hero Cards section documents at exact recorded baseline blob SHAs. Extended SWEEP-F-0038 to these five migrated line-range excerpts and SWEEP-F-0044 to the active Discovery Information Bar requirement. Opened SWEEP-F-0048 for candidate filter taxonomy semantics, SWEEP-F-0049 for the undefined reference-device/currency concept and percentage-change basis, and SWEEP-F-0050 for untyped candidate Influence Map dimensions and example relation mappings. Preserved positive controls for candidate state, undefined calculation methods, source-versus-derived data, missing/stale-data handling, established link destinations, and observed influence versus causation. Counts: 266 preliminary full reviews + 5 partial targeted screens + 47 not reviewed = 318. Human validation remains pending; formal ISO 704 clause assessment remains zero; scope remains proposed/not human-approved. No AstroCrown-Web source/runtime files, backup/archive paths, workflows, tests, credentials, provider calls, billing or repository settings were changed or used.
+
