@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.31  
+**Version:** 0.1.32  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL SWEEP FINDINGS — lexical screening plus preliminary content reviews; human validation and formal clause assessment pending  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -428,11 +428,12 @@ See [Semantic Review Batch 038](2026-10-17-ISO-704-Semantic-Review-Batch-038-RSI
 ### SWEEP-F-0009 — Conflicting Groq versus Nosana configuration text in the RSI runbook
 
 - **Status:** OPEN — current documentation consistency finding.
-- **Affected path:** `development/nova-recursive-self-improvement/IMPLEMENTATION.md`.
-- **Evidence:** the runbook's “Required GitHub configuration” section names `GROQ_API_KEY_01` and Groq's endpoint, while later provider-adapter/credential-boundary passages name `NOSANA_LLM_API_KEY_01` and `inference.nosana.com`. The main-branch `rsi_policy.json` and `provider_client.py` checked in Batch 038 use Groq / `GROQ_API_KEY_01`.
-- **Risk:** stale or contradictory operator guidance can cause wrong secret/endpoint configuration and weaken traceability.
-- **Action:** align the runbook to the human-approved current policy or explicitly label historical provider-specific material. Do not change live code or secrets as a shortcut.
-- **Closure evidence:** reviewed doc change and repeat comparison against the policy, client and relevant workflow.
+- **Affected paths:** `AstroCrown-Web/development/nova-recursive-self-improvement/IMPLEMENTATION.md`; `AstroCrown-Web/development/gpu-infrastructure/NOSANA-INFERENCE-ADAPTER.md`.
+- **Evidence:** The runbook's “Required GitHub configuration” section names `GROQ_API_KEY_01` and Groq's endpoint, while later provider-adapter/credential-boundary passages name `NOSANA_LLM_API_KEY_01` and `inference.nosana.com`. The main-branch `rsi_policy.json` and `provider_client.py` checked in Batch 038 use Groq / `GROQ_API_KEY_01`. Batch 067 adds the GPU adapter note, which describes Nosana as the current interface used by the NOVA RSI proposer implementation even while labeling Nosana a candidate. The document gives a rolling provider documentation URL without a documentation-check date and does not establish that a live end-to-end call succeeded.
+- **Risk:** contradictory provider/lifecycle wording can cause wrong secret/endpoint configuration and blur the distinction among documented API interface, configured provider, and integration-verified operation.
+- **Action:** Align all operator and adapter documentation to the human-approved provider/configuration state at one pinned revision, or clearly label historical/candidate material. Record a date-bound authoritative interface source and keep documentation inspection separate from live-integration evidence. Do not change live code, secrets or provider settings as a shortcut.
+- **Closure evidence:** Reviewed documentation change and repeat comparison against the policy, client and relevant workflow at one revision; dated provider-contract source; explicit provider lifecycle and verification state. No live provider request is implied by documentation-only closure.
+
 
 ### SWEEP-F-0010 — Conflicting auto-merge administrative instructions
 
@@ -860,15 +861,14 @@ See [Semantic Review Batch 064 — AstroCrown External Review and Evidence Gover
 - **Required action:** Relabel the list as recorded/completed remediation or separate genuinely outstanding work from historical actions while preserving the record's point-in-time meaning.
 - **Closure evidence:** Human-approved heading/action alignment; any actual open work separated from completed remediation; historic target commit and results preserved.
 
-### SWEEP-F-0038 — Homepage audit references a requirements artifact absent from the reviewed baseline
+### SWEEP-F-0038 — Homepage requirement source identity and extracted-reference traceability
 
 - **Status:** OPEN — preliminary; human validation required.
-- **Affected paths:** `AstroCrown-Web/development/audit/records/AUDIT-2026.09.20-001.md`; `AstroCrown-Web/development/audit/tests/HOMEPAGE-BASELINE.md`; cited artifact `development/HOMEPAGE-REQUIREMENTS.md`.
-- **Observed issue:** Fetching the cited active path at reviewed main baseline `5faea74dd1b40ec98acf9d59d9e404fc18122032` returns not found. The historic audit's remediation evidence for F-001 points to that path. The surviving verification matrix refers to requirement identifiers `R-001` through `R-013`, but does not reproduce their definitions or link to a retrievable immutable requirement baseline.
-- **Interpretation:** The requirement document may have existed at the historic audit date, but the current reviewed baseline does not provide a retrievable requirement concept source against which the test identifiers can be interpreted. The 404 does not prove historical non-existence or whether an excluded archive contains a copy.
-- **Required action:** Attach an immutable historical source reference or explicitly identify the retained/superseding artifact and its provenance; ensure dependent tests can trace each test identifier to its controlled requirement. Do not silently rewrite the historic result, reconstruct requirement wording from test descriptions, or inspect/change excluded backups as part of this sweep.
-- **Closure evidence:** A retrievable historical or retained requirement reference, clear provenance/date, explicit distinction between original audit snapshot and current requirement state, and verified mapping from test IDs to their approved requirements.
-
+- **Affected paths:** `AstroCrown-Web/development/audit/records/AUDIT-2026.09.20-001.md`; `AstroCrown-Web/development/audit/tests/HOMEPAGE-BASELINE.md`; `AstroCrown-Web/development/index-reference/BORDERS-AND-RADIUS.md`; `AstroCrown-Web/development/index-reference/CARDS-CONVENTIONS.md`; `AstroCrown-Web/development/index-reference/COLORS.md`; cited artifact `development/HOMEPAGE-REQUIREMENTS.md`.
+- **Observed issue:** Fetching the cited active path at reviewed main baseline `5faea74dd1b40ec98acf9d59d9e404fc18122032` returns not found. The historic audit's remediation evidence points to that file; the surviving homepage matrix refers to R-001–R-013 but does not reproduce their definitions or link an immutable baseline. The three design-reference indexes also quote/extract ranges from `HOMEPAGE-REQUIREMENTS.md` but provide only source filename and line ranges, not source commit/blob hash or extraction date.
+- **Interpretation:** The requirement document may have existed at the historical dates, but the current reviewed baseline does not provide a retrievable originating revision against which dependent tests and extracted reference sections can be verified for exact wording, approved status and drift. The 404 does not prove historical non-existence or whether an excluded archive contains a copy.
+- **Required action:** Attach an immutable historical source reference or explicitly identify an approved retained/superseding requirement source and its provenance; ensure test IDs map to controlled requirement concepts and extracted indexes identify their exact source revision. Do not reconstruct requirements by guessing from extracts, silently rewrite historical results, or inspect/change excluded backups as part of this sweep.
+- **Closure evidence:** A retrievable historical or retained requirement reference, provenance/date and source hash/commit, explicit distinction between historic audit snapshot and current requirement state, and verified mappings from test IDs/extracted references to the approved source.
 ### SWEEP-F-0039 — Audit record template does not define Remediated versus Closed
 
 - **Status:** OPEN — preliminary; human validation required.
@@ -917,4 +917,20 @@ See [Semantic Review Batch 065 — AstroCrown Audit Records and Templates](2026-
 See [Semantic Review Batch 066 — AstroCrown Evidence Templates and Verification Convention](2026-10-17-ISO-704-Semantic-Review-Batch-066-AstroCrown-Evidence-Templates-and-Verification-Convention.md). Five files were reviewed at exact blob SHAs from AstroCrown-Web main-baseline commit `5faea74dd1b40ec98acf9d59d9e404fc18122032`. Opened SWEEP-F-0041 because the fact-observation template's single-choice primary category conflates epistemic/evidential type, material/method type, confidentiality handling and unknown/blocked state. Extended SWEEP-F-0038 because the homepage verification matrix uses R-001–R-013 identifiers whose requirement definitions are not retrievable from the reviewed baseline. Opened SWEEP-F-0042 because a dated audit marks recovery-after-compromise PASS based on backup-artefact existence without recording restoration/recovery verification. The test-case template and development convention provide useful criterion/method/result/evidence vocabulary and versioned-reference discipline. This review does not assert a formal ISO 704 clause interpretation and did not execute tests or restore actions.
 
 **Row-derived counts after Batch 066:** 318 lexical scans; 246 preliminary full-file reviews; 5 partial targeted screens; 67 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. Scope remains proposed and not human-approved. No AstroCrown-Web source/runtime files, backup/archive paths, workflows, credentials, provider calls, billing, restore actions or repository settings were changed.
+
+ 
+### SWEEP-F-0043 — AstroCrown Space Blue lightness relation is reversed
+
+- **Status:** OPEN — preliminary; human validation required.
+- **Affected path:** `AstroCrown-Web/development/index-reference/COLORS.md`, extracted R-005 “Visual system” hierarchy.
+- **Observed issue:** The text defines `#081426` as Deep Space Blue/darkest and `#16345A` as Light Space Blue/lightest, then requires intermediate Space Blue to be “darker than `#16345A` and lighter than `#081426`.” The two relative-lightness directions are reversed: `#081426` has lower red, green and blue channel values than `#16345A` and is the darker endpoint.
+- **Interpretation:** The relation words place the proposed intermediate outside, rather than between, the stated endpoints. A maintainer could select the wrong relative lightness while believing the R-005 hierarchy was followed.
+- **Required action:** Verify the approved endpoint order; correct the directional relation in the authoritative requirement and dependent extract using the approved documentation process; pin source provenance. Keep Space Blue TBD until separate rendered hierarchy, distinction and accessibility evaluation is documented.
+- **Closure evidence:** Human-approved source revision with correct relation direction; synchronized index extraction; recorded color-model/rendered-state evaluation and applicable contrast evidence. Do not resolve this only by choosing a HEX value without defining and verifying the relationship.
+
+## Batch 067 — AstroCrown provider and design-reference semantics
+
+See [Semantic Review Batch 067 — AstroCrown Provider and Design-Reference Semantics](2026-10-17-ISO-704-Semantic-Review-Batch-067-AstroCrown-Provider-and-Design-Reference-Semantics.md). Five AstroCrown-Web files were reviewed at exact blob SHAs from main-baseline commit `5faea74dd1b40ec98acf9d59d9e404fc18122032`. Extended SWEEP-F-0009 because the Nosana adapter calls Nosana the current RSI proposer interface while existing same-baseline policy/client evidence selects Groq; the adapter's candidate status does not establish live integration. Extended SWEEP-F-0038 to cover the Borders, Cards and Colors extracted indexes, which identify originating requirement line ranges without a pinned source revision even though `HOMEPAGE-REQUIREMENTS.md` is absent from the reviewed baseline. Opened SWEEP-F-0043 for the reversed relative-lightness relation in the intermediate Space Blue definition. The GPU infrastructure README preserves the subsystem/application boundary; the card index preserves candidate-vs-approved and observed-influence-vs-causation distinctions. No provider calls, tests, workflows or visual color tests were run.
+
+**Row-derived counts after Batch 067:** 318 lexical scans; 251 preliminary full-file reviews; 5 partial targeted screens; 62 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. Scope remains proposed and not human-approved. No AstroCrown-Web source/runtime files, backup/archive paths, workflow, credentials, provider calls, billing or repository settings were changed.
 
