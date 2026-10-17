@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 68/318; PARTIAL TARGETED SCREEN 1; 249 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 72/318; PARTIAL TARGETED SCREEN 1; 245 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 68,
-    "content_review_pending": 249,
-    "human_validation_pending": 68,
+    "preliminary_content_reviewed": 72,
+    "content_review_pending": 245,
+    "human_validation_pending": 72,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 1
   },
@@ -1391,15 +1391,19 @@
           "size_bytes": 6776,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_020",
+          "terminology_assessment": "PRELIMINARY_REVIEW_MISSING_PRICE_DATA_DEFAULTS_TO_ZERO",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B020:B020-04"
+          ],
+          "findings": [
+            "B020-F02"
+          ],
+          "reviewer": "AI-assisted preliminary content/contract review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_MISSING_PRICE_DATA_DEFAULTS_TO_ZERO",
+          "note": "Batch 020: money() maps invalid/missing to Decimal(0), and missing provider pricing defaults to per-request zero. Distinguish UNKNOWN/malformed from explicit verified free tariff before claiming zero cost; no historical charge validated.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/economics.py",
@@ -2535,15 +2539,17 @@
           "size_bytes": 8193,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_020",
+          "terminology_assessment": "PRELIMINARY_REVIEW_EVIDENCE_GATED_CLOSURE_WITH_LEGACY_EXCEPTION",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B020:B020-01"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary content/contract review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_EVIDENCE_GATED_CLOSURE_WITH_LEGACY_EXCEPTION",
+          "note": "Batch 020: closure requires all fields, exact matching candidate/verified commit SHA, PASS regression and timezone-aware timestamp; recurrence reopens cases. Providers without model_contracts remain an explicit LEGACY_UNDECLARED compatibility exception.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/quality_gate.py",
@@ -2672,15 +2678,19 @@
           "size_bytes": 9705,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_020",
+          "terminology_assessment": "PRELIMINARY_REVIEW_PAYLOAD_TYPE_AND_HUMAN_GATE_CONSISTENCY_OPEN",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B020:B020-03"
+          ],
+          "findings": [
+            "B020-F01"
+          ],
+          "reviewer": "AI-assisted preliminary content/contract review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_PAYLOAD_TYPE_AND_HUMAN_GATE_CONSISTENCY_OPEN",
+          "note": "Batch 020: validate_reasoning_payload doesn't first require dict; malformed JSON scalar/unhashable values can raise TypeError; bool may pass numeric confidence. requires_human_gate is model-authored and not cross-checked against severity/autonomy/policy in this function.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/reasoning.py",
@@ -4141,15 +4151,17 @@
           "size_bytes": 8657,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_020",
+          "terminology_assessment": "PRELIMINARY_REVIEW_TEST_CONTRACTS_NOT_EXECUTED",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B020:B020-02"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary content/contract review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_TEST_CONTRACTS_NOT_EXECUTED",
+          "note": "Batch 020: tests declare closure gating, exact SHA, timezone validation, rejection of extra fields and recurrence reopening. Not executed in this content review.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/tests/test_quality_gate.py",
@@ -14766,5 +14778,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 019 performed structural/freshness review of the 190,957-byte persisted health state without outputting raw error details. At the review date all 116 history records were outside the six-hour freshness window; record is historical only. Counts 68+1+249=318."
+  "last_update_note": "Batch 020 reviewed quality-gate code/tests, reasoning payload validation and economic accounting. Captured malformed-payload/human-gate consistency and missing price defaults as controlled follow-ups. Counts row-derived: 72 preliminary full reviews + 1 partial screen + 245 not reviewed = 318."
 }
