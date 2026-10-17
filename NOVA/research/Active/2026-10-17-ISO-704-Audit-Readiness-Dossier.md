@@ -1,7 +1,7 @@
 # ISO 704:2022 Audit-Readiness Dossier and Evidence Register
 
 **Document ID:** NOVA-ISO704-AR-001  
-**Version:** 0.1.36  
+**Version:** 0.1.37  
 **Date opened:** 2026-10-17  
 **Status:** ACTIVE — readiness package construction; NOT READY FOR AN ISO 704 AUDIT  
 **Owner:** Designated human maintainer  
@@ -304,3 +304,8 @@ Five AstroCrown audit/readiness documents received selected-line triage and are 
 ## Revision note — Batch 034 NOVA control triage (2026-10-17)
 
 Five NOVA files selected by lexical relevance received partial screens of headings and selected control/status/evidence lines. They remain PARTIAL; lexical hits are only prioritization signals, not failure/conformity results. Tracker-derived counts are 96 full preliminary reviews + 5 partial screens + 217 not reviewed = 318.
+
+
+## Revision note — Batch 035 high-relevance NOVA triage (2026-10-17)
+
+Five pending NOVA files were prioritized by lexical hits and received selected-line screens only; they remain PARTIAL and keyword frequency is not treated as a result. Counts are derived from tracker rows: 96 full preliminary reviews + 5 partial screens + 217 not reviewed = 318. Full normative clause review remains blocked.
