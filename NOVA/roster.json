@@ -66,6 +66,26 @@
       "api_key_env": "GROQ_API_KEY_01",
       "base_url": "https://api.groq.com/openai/v1/chat/completions",
       "kind": "openai_compatible",
+      "model_contracts": {
+        "openai/gpt-oss-120b": {
+          "checked_on": "2026-10-18",
+          "evidence_source": "NOVA/health_state.json on nova-operational-state; last observation 2026-10-17T14:38:51.881853+00:00",
+          "reason": "The required health response contract repeatedly failed with HTTP 400 tool_use_failed (last recorded failure streak 30). This is a model/probe-contract block, not a claim that Groq as a provider is unavailable. Requalify only after a controlled response-contract check passes.",
+          "structured_json": "BLOCKED_UNVERIFIED"
+        },
+        "openai/gpt-oss-20b": {
+          "checked_on": "2026-10-18",
+          "eligibility_note": "Keep eligible for the exact required health-response contract. Continue normal live health and failure-streak monitoring; this record is not a guarantee of future availability.",
+          "evidence_source": "NOVA/health_state.json on nova-operational-state; last observation 2026-10-17T14:38:52.408300+00:00",
+          "qualification_evidence": {
+            "api_status": 200,
+            "method": "NOVA live health probe recorded response_valid=true and quality_status=PASS",
+            "observed_at": "2026-10-17T14:38:52.408300+00:00",
+            "scope": "The exact bounded NOVA health JSON contract only; this is not a general reliability or model-quality certification."
+          },
+          "structured_json": "VERIFIED"
+        }
+      },
       "models": [
         "openai/gpt-oss-120b",
         "openai/gpt-oss-20b"
@@ -77,6 +97,26 @@
       "api_key_env": "GEMINI_API_KEY_01",
       "base_url": "https://generativelanguage.googleapis.com/v1beta/models",
       "kind": "gemini",
+      "model_contracts": {
+        "gemini-3.1-flash-lite": {
+          "checked_on": "2026-10-18",
+          "eligibility_note": "Keep eligible for the exact required health-response contract. The model may still be DEGRADED by latency policy; contract validity and overall health are separate dimensions.",
+          "evidence_source": "NOVA/health_state.json on nova-operational-state; last observation 2026-10-17T09:53:59.170339+00:00",
+          "qualification_evidence": {
+            "api_status": 200,
+            "method": "NOVA live health probe recorded response_valid=true and quality_status=PASS",
+            "observed_at": "2026-10-17T09:53:59.170339+00:00",
+            "scope": "The exact bounded NOVA health JSON contract only; this is not a general reliability or model-quality certification."
+          },
+          "structured_json": "VERIFIED"
+        },
+        "gemini-3.8-flash": {
+          "checked_on": "2026-10-18",
+          "evidence_source": "NOVA/health_state.json on nova-operational-state; last observation 2026-10-17T09:53:58.661058+00:00",
+          "reason": "The required health response repeatedly failed its response contract; the latest HTTP 200 observation was INVALID_JSON and the recorded failure streak was 25. Earlier transient 503 observations also occurred. Keep this model out of routine probes until a controlled requalification passes.",
+          "structured_json": "BLOCKED_UNVERIFIED"
+        }
+      },
       "models": [
         "gemini-3.8-flash",
         "gemini-3.1-flash-lite"
