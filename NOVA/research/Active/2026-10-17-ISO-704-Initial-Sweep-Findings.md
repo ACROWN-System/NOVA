@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.16  
+**Version:** 0.1.17  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL FINDINGS — lexical screening only; not a completed conformity audit  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -683,4 +683,19 @@ See [Semantic Review Batch 051 — NOVA Test Coverage and Web Publication Config
 - CodeQL query paths and Dependabot's GitHub Actions ecosystem scope are explicit in their respective configs; this source review does not establish successful runs or complete whole-repository coverage.
 
 **Row-derived counts after Batch 051:** 318 lexical scans; 171 preliminary full-file reviews; 5 partial targeted screens; 142 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. No implementation, test, workflow, repository setting or backup/archive path was changed.
+
+## Batch 052 — AstroCrown-Web CI workflows
+
+See [Semantic Review Batch 052 — AstroCrown-Web CI Workflows](2026-10-17-ISO-704-Semantic-Review-Batch-052-AstroCrown-Web-CI-Workflows.md). Five workflow files were reviewed at exact AstroCrown-Web main baseline blob SHAs. No new unique finding was opened.
+
+The source review distinguishes:
+- External-review pipeline structure/conversion assertions from a completed CI execution or independently validated conversion outcomes.
+- Offline media adapter/image-container tests from live Cloudflare image generation and provider quota/availability.
+- Presence-only credential output from authentication, commercial-use permission, quota or runtime readiness.
+- RSI compile/unit/sandbox test configuration from protected readiness and suspended Strong RSI lifecycle gates.
+- CodeQL configuration from a completed analysis or a claim of repository-wide vulnerability absence.
+
+The credential-readiness workflow reports a repository variable for auto-merge status and does not query actual branch rules/settings; this is not considered evidence of active merge enforcement. No branch settings were inferred or changed.
+
+**Row-derived counts after Batch 052:** 318 lexical scans; 176 preliminary full-file reviews; 5 partial targeted screens; 137 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. No tests, workflows, security scans, live provider calls or deployments were executed; no backup/archive paths changed.
 
