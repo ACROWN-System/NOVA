@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 216/318; PARTIAL TARGETED SCREENS 5; 97 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 221/318; PARTIAL TARGETED SCREENS 5; 92 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 216,
-    "content_review_pending": 97,
-    "human_validation_pending": 216,
+    "preliminary_content_reviewed": 221,
+    "content_review_pending": 92,
+    "human_validation_pending": 221,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 5
   },
@@ -8521,15 +8521,19 @@
           "size_bytes": 7362,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_061",
+          "terminology_assessment": "PRELIMINARY_REVIEW_OPEN_FINDING_LIFECYCLE_LABEL_CONFLICT",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B061:B061-01"
+          ],
+          "findings": [
+            "SWEEP-F-0033"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDING_SWEEP-F-0033",
+          "note": "Batch 061: legal-evidence distinctions and jurisdiction/counsel caveats are appropriately bounded. PR #123 is merged, but the plan still calls it a Draft PR; the plan remains ACTIVE for outstanding counsel review, so merge is not policy approval. See Batch 061 and SWEEP-F-0033.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Active/2026-10-14-Defensible-Research-Evidence-Records.md",
@@ -8565,7 +8569,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "4ee723462bfe7c220da724a23f8a02767bb1314d"
         },
         {
           "path": "development/audit/Active/2026-10-14-Provider-Neutral-Image-Runtime-Qualification.md",
@@ -8573,15 +8579,17 @@
           "size_bytes": 48415,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_061",
+          "terminology_assessment": "PRELIMINARY_REVIEW_EVIDENCE-BOUNDED-RESEARCH-AND-GATING",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B061:B061-02"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 061: dated provider-neutral image research separates technical output, quality, true alpha, account/quota/billing evidence, commercial rights and sustained GPU capacity. Candidate/blocked states remain qualified; no fresh provider verification or live action was performed.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Active/2026-10-14-Provider-Neutral-Image-Runtime-Qualification.md",
@@ -8613,7 +8621,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "67752c57327bc9e8ef4e649b894b7021520d4b4b"
         },
         {
           "path": "development/audit/Completed/2026-10-09-AI-Sanctuary-Cross-Repository-Integration.md",
@@ -8621,15 +8631,19 @@
           "size_bytes": 9057,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_061",
+          "terminology_assessment": "PRELIMINARY_REVIEW_OPEN_FINDING_TITLE-STATUS-CONFLICT",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B061:B061-03"
+          ],
+          "findings": [
+            "SWEEP-F-0033"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDING_SWEEP-F-0033",
+          "note": "Batch 061: completed record is correctly located under Completed/ and its status says COMPLETED, but the document title still says Active Navigation Plan. Cross-reference SWEEP-F-0033; source file left untouched.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Completed/2026-10-09-AI-Sanctuary-Cross-Repository-Integration.md",
@@ -8661,7 +8675,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "02f8e7485084d8edf2ff8376180120b4478b4385"
         },
         {
           "path": "development/audit/Completed/2026-10-10-Strong-RSI-Collective-Protective-Intelligence.md",
@@ -8716,15 +8732,17 @@
           "size_bytes": 2267,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_061",
+          "terminology_assessment": "PRELIMINARY_REVIEW_BRAND-IDENTIFIER-AND-SOFTWARE-LICENSE-DISTINCTION",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B061:B061-04"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 061: completed plan distinguishes software licensing from rights in brand identifiers and avoids unsupported trademark/permission claims. Title, status, location and recorded PR #103 merge reference are internally consistent in this review.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Completed/2026-10-11-Brand-Identifier-Notice.md",
@@ -8751,7 +8769,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "34dc6bf65b88e8c1b75aa084792c82fa33052ff6"
         },
         {
           "path": "development/audit/Completed/2026-10-11-Context-Packing-Benchmark-Workload.md",
@@ -8815,15 +8835,17 @@
           "size_bytes": 4942,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_061",
+          "terminology_assessment": "PRELIMINARY_REVIEW_MISSION-AND-READINESS-BOUNDARY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B061:B061-05"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 061: historical mission integration keeps RSI subordinate to the foundational mission while retaining INCOMPLETE readiness, allow_main=false and runtime-enforcement caveats. Historical HAAN wording alone is not treated as current naming authorization.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Completed/2026-10-11-HAAN-Foundational-Mission-Integration.md",
@@ -8867,7 +8889,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "e664ca80fc1d4a0a8e6eb52f41c16eb3f276dff1"
         },
         {
           "path": "development/audit/Completed/2026-10-11-Open-Source-Licensing.md",
