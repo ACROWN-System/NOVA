@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 94/318; PARTIAL TARGETED SCREEN 1; 223 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 94/318; PARTIAL TARGETED SCREENS 2; 222 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -18,10 +18,10 @@
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
     "preliminary_content_reviewed": 94,
-    "content_review_pending": 223,
+    "content_review_pending": 222,
     "human_validation_pending": 94,
     "formal_iso_clause_assessment_completed": 0,
-    "partial_targeted_review": 1
+    "partial_targeted_review": 2
   },
   "repositories": [
     {
@@ -10439,15 +10439,19 @@
           "size_bytes": 43799,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "PARTIAL_TARGETED_SCREEN_BATCH_026",
+          "terminology_assessment": "PARTIAL_TARGETED_SCREEN_NOT_FULL_SEMANTIC_REVIEW",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B026"
+          ],
+          "findings": [
+            "B026-F01"
+          ],
+          "reviewer": "AI-assisted targeted text-pattern screen; full human/semantic review required",
+          "review_date": "2026-10-17",
+          "result": "PARTIAL_TARGETED_SCREEN_ONLY",
+          "note": "A 43KB-ish data-display convention file received a scoped pattern screen for source, units/currency, freshness, missing/error states, definitions and claims. Full section-by-section semantics and implementation comparison remain open.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/index-reference/DATA-DISPLAY-CONVENTIONS.md",
@@ -14866,5 +14870,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 025 reviewed the AstroCrown entity registry for distinct status dimensions. Counts derived from rows: 94+1+223=318."
+  "last_update_note": "Batch 026 added a partial targeted pattern screen for AstroCrown data-display conventions; its content remains NOT FULLY REVIEWED. Counts derived from rows: 94 full preliminary reviews + 2 partial screens + 222 not reviewed = 318."
 }
