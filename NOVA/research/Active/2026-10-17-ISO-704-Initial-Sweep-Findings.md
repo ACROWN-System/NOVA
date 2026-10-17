@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.2  
+**Version:** 0.1.3  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL FINDINGS — lexical screening only; not a completed conformity audit  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -419,3 +419,28 @@ See [Semantic Review Batch 037](2026-10-17-ISO-704-Semantic-Review-Batch-037-Ast
 - **SWEEP-F-0008 / B037-F02:** The RSI README's autonomy statement is a target operating model but could be quoted as a current capability despite the same README declaring Strong RSI suspended and readiness incomplete. Label it as target architecture and cross-link current status.
 
 **Row-derived counts after Batch 037:** 318 lexical scans; 101 preliminary full-file reviews; 5 partial targeted screens; 212 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments.
+
+
+## Batch 038 — RSI implementation and governance
+
+See [Semantic Review Batch 038](2026-10-17-ISO-704-Semantic-Review-Batch-038-RSI-Implementation-and-Governance.md).
+
+### SWEEP-F-0009 — Conflicting Groq versus Nosana configuration text in the RSI runbook
+
+- **Status:** OPEN — current documentation consistency finding.
+- **Affected path:** `development/nova-recursive-self-improvement/IMPLEMENTATION.md`.
+- **Evidence:** the runbook's “Required GitHub configuration” section names `GROQ_API_KEY_01` and Groq's endpoint, while later provider-adapter/credential-boundary passages name `NOSANA_LLM_API_KEY_01` and `inference.nosana.com`. The main-branch `rsi_policy.json` and `provider_client.py` checked in Batch 038 use Groq / `GROQ_API_KEY_01`.
+- **Risk:** stale or contradictory operator guidance can cause wrong secret/endpoint configuration and weaken traceability.
+- **Action:** align the runbook to the human-approved current policy or explicitly label historical provider-specific material. Do not change live code or secrets as a shortcut.
+- **Closure evidence:** reviewed doc change and repeat comparison against the policy, client and relevant workflow.
+
+### SWEEP-F-0010 — Conflicting auto-merge administrative instructions
+
+- **Status:** OPEN — authorization/control wording conflict.
+- **Affected path:** `development/nova-recursive-self-improvement/GITHUB-AUTOMATION-SETUP.md`.
+- **Evidence:** section 3 tells a reader to enable GitHub “Allow auto-merge”; the header, sections 1/5 and current policy say automatic merge is disabled and must remain off absent a separate approval.
+- **Risk:** the same guide both invites and prohibits an administrative setting change.
+- **Action:** remove/defer the enablement instruction and consistently state that auto-merge remains disabled until a separately recorded approval.
+- **Closure evidence:** revised text and repeat search confirming no contradictory instruction.
+
+**Row-derived counts after Batch 038:** 318 lexical scans; 106 preliminary full-file reviews; 5 partial targeted screens; 207 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments.
