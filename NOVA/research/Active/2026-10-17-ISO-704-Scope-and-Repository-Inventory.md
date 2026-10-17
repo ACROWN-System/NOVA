@@ -1,7 +1,7 @@
 # ISO 704:2022 Scope Proposal and Repository Inventory
 
 **Document ID:** NOVA-ISO704-SCOPE-001  
-**Version:** 0.1.55  
+**Version:** 0.1.56  
 **Snapshot date:** 2026-10-17  
 **Status:** PROPOSED SCOPE / INITIAL PATH INVENTORY — human approval and detailed content review pending  
 **Related dossier:** [ISO 704:2022 Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
@@ -330,3 +330,8 @@ Tracker states were re-counted directly: 96 preliminary full reviews, 5 partial 
 ## 60. Revision history
 
 - **2026-10-17 / v0.1.55:** Added Batch 057 preliminary full-file review of five AstroCrown-Web RSI evidence/provenance and lifecycle records. Counts: 201 preliminary full reviews + 5 partial screens + 112 not reviewed = 318. Extended SWEEP-F-0031 for two Active navigation plans included in merged PRs #79 and #81 whose associated RSI CI runs were recorded successful; extended SWEEP-F-0012 for three explicitly completed archival mirrors still located under Active. Historical workflow metadata was inspected but CI was not rerun. Human validation pending; formal ISO 704 clause assessment remains zero and scope remains proposed/not human-approved. The frontmatter version had been 0.1.50 while the latest prior history entry was v0.1.54; this update synchronizes the header and revision history to v0.1.55. No backup/archive paths or AstroCrown-Web runtime files changed.
+
+
+## 61. Revision history
+
+- **2026-10-17 / v0.1.56:** Added Batch 058 preliminary full-file review of five AstroCrown-Web RSI provider-egress, retention-baseline, sandbox-cleanup and schema/supervisor records. Counts: 206 preliminary full reviews + 5 partial screens + 107 not reviewed = 318. Extended SWEEP-F-0031 for Active retention-baseline-binding and strict-schema navigation plans included in merged PRs #70 and #74 with recorded successful CI runs; extended SWEEP-F-0012 for three completed archival mirrors still located under Active. Historical workflow metadata was inspected but CI was not rerun. Human validation pending; formal ISO 704 clause assessment remains zero and scope remains proposed/not human-approved. No backup/archive paths or AstroCrown-Web runtime files changed.
