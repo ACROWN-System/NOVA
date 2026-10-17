@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 94/318; PARTIAL TARGETED SCREENS 2; 222 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 96/318; PARTIAL TARGETED SCREENS 2; 220 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 94,
-    "content_review_pending": 222,
-    "human_validation_pending": 94,
+    "preliminary_content_reviewed": 96,
+    "content_review_pending": 220,
+    "human_validation_pending": 96,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 2
   },
@@ -13107,15 +13107,19 @@
           "size_bytes": 29217,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_027",
+          "terminology_assessment": "PRELIMINARY_REVIEW_PROMPT_IS_NOT_OUTPUT_EVIDENCE",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B027:B027-01"
+          ],
+          "findings": [
+            "B027-F01"
+          ],
+          "reviewer": "AI-assisted preliminary documentation review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_PROMPT_IS_NOT_OUTPUT_EVIDENCE",
+          "note": "Prompt guidance directs work but does not prove generated output correctness, approval, testing or standards conformity.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/Prompt-Guide.md",
@@ -13250,15 +13254,19 @@
           "size_bytes": 2421,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_027",
+          "terminology_assessment": "PRELIMINARY_REVIEW_NAVIGATION_NOT_STATUS_AUTHORITY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B027:B027-02"
+          ],
+          "findings": [
+            "B027-F02"
+          ],
+          "reviewer": "AI-assisted preliminary documentation review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NAVIGATION_NOT_STATUS_AUTHORITY",
+          "note": "Navigation/link existence does not prove target path approved/current or feature implemented; links must use assessed ref and canonical dependencies.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/README.md",
@@ -14870,5 +14878,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 026 added a partial targeted pattern screen for AstroCrown data-display conventions; its content remains NOT FULLY REVIEWED. Counts derived from rows: 94 full preliminary reviews + 2 partial screens + 222 not reviewed = 318."
+  "last_update_note": "Batch 027 reviewed AstroCrown prompt guidance and development README. Counts derived from row states: 96+2+220=318."
 }
