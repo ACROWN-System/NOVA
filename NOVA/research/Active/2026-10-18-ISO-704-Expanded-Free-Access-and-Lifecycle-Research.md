@@ -2,8 +2,8 @@
 
 **Record ID:** NOVA-ISO704-ACCESS-002  
 **Date checked:** 2026-10-18  
-**Version:** 0.1.0  
-**Status:** PARTIAL — public online full-text route not verified; one institutional reference-access lead remains to be checked without cost  
+**Version:** 0.1.1  
+**Status:** PARTIAL — complete full-text access at $0 remains unverified; source-bounded preview assessment has begun  
 **Owner:** Designated human maintainer  
 **Policy:** $0-only. No purchase, subscription, paid membership, billable inquiry, hired adviser/provider or other cost is authorized.  
 **Linked evidence:** AR-E02 in the [Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
@@ -103,7 +103,7 @@ IIT Delhi is one verified example of a library that subscribes to ISO standards.
 
 The only outstanding no-cost lead from this public search is the in-person library-access question to IIT Delhi. Pursue it only if it can be asked without any fee/commitment. Record the response, exact edition and permitted access scope.
 
-If the library confirms no lawful no-cost route, stop access hunting unless a materially new source is found; keep AR-E02 **BLOCKED**. The project can continue English-language terminology governance, human validation, the five partial reviews and report-artifact reconciliation using internal, non-normative criteria. It must not populate ISO clause rows from the public preview, search snippets or memory.
+If the library confirms that it cannot offer a no-cost route, stop repetitive access hunting unless a materially new source appears; keep AR-E02 **BLOCKED for the complete controlled baseline and full inventory**. This does not stop terminology-governance work or source-bounded review of text directly visible in identified standards previews. Exact provisions may be paraphrased in the separate [Public-Preview Partial Mapping](2026-10-18-ISO-704-Public-Preview-Partial-Mapping.md), with the source and coverage limits recorded. Do not use an abstract, heading, search snippet, or memory as a substitute for actual clause text; do not treat a partial preview map as a complete matrix or conformity result.
 
 ## 6. Impact Analysis
 
@@ -111,4 +111,11 @@ If the library confirms no lawful no-cost route, stop access hunting unless a ma
 
 **IF not used:** the project could either stop too early and miss an institutional reading route, or commit the opposite error by treating a public preview/unauthorized upload/proposal as a free, current, authoritative full standard.
 
-**Final access status:** BLOCKED — full applicable standard text lawfully accessible at $0 has not yet been confirmed.
+**Complete-text access status:** BLOCKED — complete applicable standard text accessible at $0 has not yet been confirmed. **Assessment-work status:** CONTINUES through the source-bounded preview map; the full matrix and full-baseline freeze remain gated.
+
+
+## 7. Decision clarification — access, conformance and certification are separate (2026-10-18)
+
+The purpose of acquiring/consulting the standard is to ground an evidence-backed implementation and conformance assessment; it is not a requirement to purchase certification. ISO states that it does not itself provide certification or conformity assessment: https://www.iso.org/contact-iso.html. The current public-source check found no evidence of a dedicated third-party certification scheme for ISO 704; this is a bounded search result, not proof that none exists. No certification-provider discovery or contact is authorized.
+
+A complete controlled baseline and complete clause inventory still require more than a preview. However, that limitation is **not** a universal stop condition for terminology improvement. The new partial map records only visible provisions, uses original paraphrases and marks unseen clauses NOT ASSESSED. The full clause/evidence matrix remains template-only until its completeness can be verified. No paid activity is authorized or was undertaken.
