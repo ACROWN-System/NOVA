@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 276,
-    "content_review_pending": 37,
-    "human_validation_pending": 276,
+    "preliminary_content_reviewed": 281,
+    "content_review_pending": 32,
+    "human_validation_pending": 281,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 5
   },
@@ -13384,15 +13384,17 @@
           "size_bytes": 5239,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_073",
+          "terminology_assessment": "PRELIMINARY_REVIEW_SUSPENDED-INCOMPLETE-LIFECYCLE-AND-READINESS",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B073:B073-01"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_TERMINOLOGY_FINDING",
+          "note": "Batch 073: distinct SUSPENDED lifecycle and INCOMPLETE readiness; inactive workflow location and complete reactivation gates are explicit. Credential presence is not readiness, NO_CHANGE is not a candidate patch, and Weak RSI remains separate. No unique finding.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/nova-recursive-self-improvement/STRONG-RSI-STATUS.md",
@@ -13419,7 +13421,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "c22c27a98ed4e1567423e952aedad0aa64d1c5db"
         },
         {
           "path": "development/nova-recursive-self-improvement/suspended/STRONG-RSI-MONTHLY-WORKFLOW.yml",
@@ -13472,15 +13476,17 @@
           "size_bytes": 5555,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_073",
+          "terminology_assessment": "PRELIMINARY_REVIEW_BENCHMARK-PROFILE-DECISION-VOCABULARY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B073:B073-02"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_TERMINOLOGY_FINDING",
+          "note": "Batch 073 static test review: READY/BLOCKED states are bound to explicit profile approval, enabled status, exact scope/command, and schema/identity checks. Test files were not executed; no runtime readiness inferred. No unique finding.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/nova-recursive-self-improvement/tests/test_benchmark_dispatcher.py",
@@ -13507,7 +13513,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "52cc5c05dd1e7099ec0a988523433ed96f67d9db"
         },
         {
           "path": "development/nova-recursive-self-improvement/tests/test_context_packing_benchmark.py",
@@ -13562,15 +13570,19 @@
           "size_bytes": 8086,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_073",
+          "terminology_assessment": "PRELIMINARY_REVIEW_CYCLE-INTERVAL-UNIT-TEST-CONTRACT",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B073:B073-03"
+          ],
+          "findings": [
+            "SWEEP-F-0052"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_EXTENDS_SWEEP-F-0052",
+          "note": "Batch 073: recent-runs test explicitly retains failed scheduled/manual workflow records; therefore interval semantics are record/run count, not necessarily successful RSI passes. Extend SWEEP-F-0052 to this test path; accurately name/define the measured unit. Tests were inspected, not executed.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/nova-recursive-self-improvement/tests/test_cycle_detector.py",
@@ -13597,7 +13609,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "6a7f5bf020284967599747379eba140acff8a70d"
         },
         {
           "path": "development/nova-recursive-self-improvement/tests/test_evaluator.py",
@@ -13605,15 +13619,17 @@
           "size_bytes": 8999,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_073",
+          "terminology_assessment": "PRELIMINARY_REVIEW_EVALUATOR-DECISION-AND-BENCHMARK-EVIDENCE-BOUNDARIES",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B073:B073-04"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_TERMINOLOGY_FINDING",
+          "note": "Batch 073 static test review distinguishes BLOCKED readiness, PASS decisions, strict boolean candidate-better benchmark evidence and exact baseline/candidate identity. A mocked benchmark return establishes integration contract, not independent benchmark validity; other tests target parsing. No tests executed; no unique finding.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/nova-recursive-self-improvement/tests/test_evaluator.py",
@@ -13640,7 +13656,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "893e01fbc918a71fdd0257f1a6f01f55fe659499"
         },
         {
           "path": "development/nova-recursive-self-improvement/tests/test_evidence_verifier.py",
@@ -13880,15 +13898,17 @@
           "size_bytes": 3809,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_073",
+          "terminology_assessment": "PRELIMINARY_REVIEW_WEAK-RSI-ELIGIBILITY-REPORT-ONLY-BOUNDARIES",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B073:B073-05"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_TERMINOLOGY_FINDING",
+          "note": "Batch 073 static test review distinguishes BLOCKED from HUMAN_REVIEW_REQUIRED, data-use approval, selected credential/provider, zero-call behavior, report-only outcome and absence of candidate execution/PR/merge. Explicit allowlist/redaction are positive controls; no tests executed.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/nova-recursive-self-improvement/tests/test_weak_rsi_report.py",
@@ -13915,7 +13935,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "a6b4e3440554701b3d47f00e8356c3f78306e898"
         },
         {
           "path": "development/nova-recursive-self-improvement/weak_rsi_report.py",
@@ -15749,5 +15771,5 @@
     }
   ],
   "last_updated": "2026-10-18",
-  "last_update_note": "Batch 072 reviewed five active AstroCrown-Web AI orchestration, context/memory optimization and RSI files at pinned main-baseline commit 5faea74dd1b40ec98acf9d59d9e404fc18122032 and verified exact blob SHAs. Four files preserved clear candidate/operational boundaries; opened SWEEP-F-0052 on cycle_detector.py because a record-index interval of workflow runs with unconstrained conclusions is labelled `cycle_length_passes`/“RSI pass(es)”. The Python file was reviewed statically only; no code or workflow was executed. Counts: 276 preliminary full reviews + 5 partial screens + 37 pending = 318. Human validation pending; formal clause-level assessments remain zero; scope remains proposed/not human-approved. No source/runtime edits, backup/archive reads, tests/workflows, provider calls, credentials, billing or repository settings were involved."
+  "last_update_note": "Batch 073 reviewed five active AstroCrown-Web Strong RSI/status and test files at pinned main-baseline commit 5faea74dd1b40ec98acf9d59d9e404fc18122032 and verified exact blob SHAs. Extended SWEEP-F-0052 to tests/test_cycle_detector.py: the test explicitly includes failed scheduled/manual workflow records in selected history, confirming that the measured interval is a run-record interval and should not be called successful/completed RSI passes unless the outcome rule is defined. Strong RSI suspension/readiness, dispatcher states, evaluator gates and Weak RSI report-only behavior provide positive controls. Test files were inspected statically only; no tests/workflows/code executed. Counts: 281 preliminary full reviews + 5 partial screens + 32 pending = 318. Human validation pending, formal clause assessment zero, scope proposed/not human-approved. No source/runtime changes or backup/archive reads."
 }
