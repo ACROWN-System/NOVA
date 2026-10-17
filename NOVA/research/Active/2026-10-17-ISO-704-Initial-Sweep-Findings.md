@@ -364,3 +364,13 @@ See [Semantic Review Batch 023 — Allocation and Budgets](2026-10-17-ISO-704-Se
 - **Positive control:** credential readiness tests distinguish slot presence from verification and assert that secret values do not appear in the report; tests were not executed in this review.
 
 Tracker after Batch 023: **318 lexical scans; 91 preliminary full-file reviews; one partial targeted screen; 226 not reviewed; human validation pending.** Invariant: 91 + 1 + 226 = 318.
+
+
+## Semantic review update — Batch 025 AstroCrown entity registry
+
+See [Semantic Review Batch 025 — AstroCrown Entity Registry](2026-10-17-ISO-704-Semantic-Review-Batch-025-AstroCrown-Entity-Registry.md).
+
+- **B025-F01:** the entity registry has distinct dimensions for necessity, feasibility, credibility, adoption and operability. These cannot be flattened into a generic “verified” state. A row status does not by itself mean a concept has canonical terminology approval, a feature is operational, or ISO 704 conformity/certification exists.
+- Keep entity records linked to their exact source and declared scope. Do not copy a verification status into the canonical term register without the underlying evidence and a precise claim.
+
+Tracker after Batch 025: **318 lexical scans; 94 preliminary full-file reviews; one partial targeted screen; 223 not reviewed; human validation pending.** Invariant: 94 + 1 + 223 = 318.
