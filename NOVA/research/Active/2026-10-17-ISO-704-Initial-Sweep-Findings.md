@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.41  
+**Version:** 0.1.42  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL SWEEP FINDINGS — lexical screening plus preliminary content reviews; human validation and formal clause assessment pending  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -1056,11 +1056,38 @@ See [Semantic Review Batch 071 — AstroCrown Market Data, Pagination and Naviga
 ### SWEEP-F-0054 — Security baseline does not define evidence-state to decision-status mapping
 
 - **Status:** OPEN — preliminary; human validation required.
-- **Affected path:** AstroCrown-Web/development/SECURITY-BASELINE.md, Security Verification Matrix and Security Review Rule.
+- **Affected path:** AstroCrown-Web/development/SECURITY-BASELINE.md, Security Verification Matrix and Security Review Rule. The related `development/verification/13-VERIFICATION-TRACKING-SYSTEM.md` explicitly declares evidence state and operational status independent; preserve that field distinction and validate that consumers interpret the same label in its correct dimension.
 - **Observed issue:** All matrix cells use UNVERIFIED in a column titled Result, while a separate rule states “Unknown status = BLOCKED”. The document does not explicitly say whether these labels describe distinct fields or how one maps to the other.
 - **Interpretation:** Evidence verification status and a control/operation decision can legitimately be distinct. Without a stated mapping, however, a reader cannot tell whether UNVERIFIED is itself the decision result, whether BLOCKED is an additional outcome, or whether the matrix is only an evidence-state table.
 - **Required action:** Define the difference and relation between evidence status, control result and decision/gate status. Either separate the fields or state the exact mapping and apply it consistently. Do not change security outcomes without evidence.
 - **Closure evidence:** Approved definitions and mapping, fully populated examples for known/unknown/blocked/pass cases, and a human-reviewed check that the matrix and associated tests use the labels consistently.
+
+### SWEEP-F-0056 — Competitor benchmark observations lack item-level provenance
+
+- **Status:** OPEN — preliminary; human validation required.
+- **Affected path:** AstroCrown-Web/development/verification/11-COMPETITOR-VERIFICATION-BENCHMARK.md.
+- **Observed issue:** The artifact records observations about competitor verification mechanisms without per-item source references, retrieval dates, source version/scope or evidence IDs.
+- **Interpretation:** “Observed layers” cannot be independently reproduced or checked for currentness from this artifact alone; the provenance boundary between observed facts and derived lessons is under-specified.
+- **Required action:** Add item-level source references and access dates, record relevant source/version/scope, and preserve separate fields for source observation, interpretation/derived lesson, uncertainty and claim limits. Do not backfill evidence from memory; use CANDIDATE/UNKNOWN where current support cannot be established.
+- **Closure evidence:** Human-reviewed source-to-claim mapping for each observation, dated evidence snapshots or stable citations where permitted, disposition of unsupported claims, and retest of links and scope.
+
+### SWEEP-F-0057 — Strategic prioritization categories lack explicit decision criteria
+
+- **Status:** OPEN — preliminary; human validation required.
+- **Affected path:** AstroCrown-Web/development/verification/14-STRATEGIC-PRIORITIZATION.md.
+- **Observed issue:** Several qualitative category sets are used in the matrix without definitions, permitted value lists per dimension, inclusion/exclusion criteria or evidence thresholds.
+- **Interpretation:** Independent dimensions are an appropriate alternative to a composite score, but undefined category labels can yield inconsistent classifications across reviewers and time.
+- **Required action:** For each dimension, define the intended concept, allowed values, interpretation/thresholds, required evidence, handling of unknown/not-applicable values and reviewer authority. Keep dimensions independent; do not replace requirement verification with arithmetic scores or tiers.
+- **Closure evidence:** Human-approved per-column vocabulary and examples; criteria applied consistently to a sample of pathways; documented treatment of unknown/conditional cases; and owner approval of the intended use as planning guidance rather than a legal or compliance determination.
+
+### SWEEP-F-0058 — Proposed archive path is not reconciled with the immutable archive boundary
+
+- **Status:** OPEN — preliminary; human validation required.
+- **Affected path:** AstroCrown-Web/development/verification/12-VERIFICATION-ARCHITECTURE.md, proposed tree entry development/verification/archive/ and “Archive” layer definition.
+- **Observed issue:** The architecture proposes an archive directory for dated historical snapshots while current evidence-sweep rules exclude and make immutable all paths beneath archive directories, including a prohibition on creating or modifying their contents. The reviewed architecture does not explain how the proposed directory’s creation, append/retention model, scope inventory and immutability rules fit together.
+- **Interpretation:** “Archive” as a knowledge-management concept and “archive/” as a repository-path classification may overlap but are not automatically synonymous. Without an explicit relation, the path may be excluded from review yet remain an intended operational destination, creating a scope/governance conflict.
+- **Required action:** Have the repository owner define whether this is a permitted immutable snapshot destination, a conceptual layer stored elsewhere, or a different class of active record. Document how any approved path is inventoried, how new snapshots are authorized without rewriting prior ones, and which controls prohibit modification. Do not create, read, or modify anything within excluded archive paths while resolving the question.
+- **Closure evidence:** Human-approved path classification and lifecycle policy; a scope-inventory rule consistent with the immutable boundary; and a reviewed architecture/tree reference. No archive contents need to be accessed to close the terminology/policy ambiguity.
 
 ### SWEEP-F-0055 — NOVA replication-state field combines different classification axes
 
@@ -1097,3 +1124,10 @@ See [Semantic Review Batch 074 — AstroCrown Weak RSI, Public Relations and Ver
 See [Semantic Review Batch 075 — AstroCrown Verification Opportunity, Visibility, Credibility, Adoption and Replication Registries](2026-10-18-ISO-704-Semantic-Review-Batch-075-AstroCrown-Verification-Opportunity-and-Adoption-Registries.md). Five files were reviewed at exact blob SHAs from AstroCrown-Web baseline commit `5faea74dd1b40ec98acf9d59d9e404fc18122032`: Opportunity Readiness, Visibility, Credibility/Trust, Adoption and NOVA Replication registries. Opened SWEEP-F-0055 because the NOVA replication-state column combines replication extent, non-replicability, and a mixed workflow-maturity/trust value, which are different properties and not directly comparable. The first four registries preserve useful boundaries among opportunity timing and evidence, visibility versus credibility, assurance mechanisms, and adoption metrics versus proof of quality or trust. The qualitative “Stage independent?” values remain owner-clarification work before they are used as an automated gate. No code or workflows were executed.
 
 **Row-derived counts after Batch 075:** 318 lexical screens; 291 preliminary full-file reviews; 5 partial targeted screens; 22 not reviewed; human validation pending; formal ISO 704 clause-level assessments completed: 0. Scope remains proposed and not human-approved. Findings remain preliminary; this is not a formal ISO 704 clause or conformity assessment.
+
+
+## Batch 076 — AstroCrown Verification Benchmark, Architecture, Tracking, Prioritization and Gap Analysis
+
+See [Semantic Review Batch 076 — AstroCrown Verification Benchmark, Architecture, Tracking, Prioritization and Gap Analysis](2026-10-18-ISO-704-Semantic-Review-Batch-076-AstroCrown-Verification-Benchmark-Architecture-Tracking-Prioritization-and-Gap-Analysis.md). Five files were reviewed at exact blob SHAs from AstroCrown-Web baseline commit `5faea74dd1b40ec98acf9d59d9e404fc18122032`. Opened SWEEP-F-0056 for missing item-level provenance in the Competitor Verification Benchmark; SWEEP-F-0057 for qualitative Strategic Prioritization values without per-dimension criteria; and SWEEP-F-0058 for the proposed `development/verification/archive/` path not being reconciled with the immutable archive-directory and active-review-exclusion rules. Batch 076 also confirms the Verification Tracking System explicitly separates evidence state from operational status; it cross-references SWEEP-F-0054 so downstream records preserve the field/dimension context. The Gap Analysis preserves NOT CONFIRMED/BLOCKED rather than asserting unavailable evidence is absent, and its Mozilla Observatory/MDN HTTP Observatory distinction matches the official MDN FAQ checked 2026-10-18. No code, tests, workflows, provider calls, settings or immutable archive contents were accessed or changed.
+
+**Row-derived counts after Batch 076:** 318 lexical screens; 296 preliminary full-file reviews; 5 partial targeted screens; 17 not reviewed; human validation pending; formal ISO 704 clause-level assessments completed: 0. Scope remains proposed and not human-approved. All findings remain preliminary; this is not a formal ISO 704 clause or conformity assessment.

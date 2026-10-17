@@ -153,3 +153,22 @@ Authoritative public standard metadata:
 **IF not modified:** the active review record would continue to overstate the number of unreviewed files while leaving the status taxonomy and replication-state ambiguities undisclosed; reviewers could compare unlike values or infer a decision result from an evidence label.
 
 **Verification still required:** inspect the final PR diff and changed-path list; prove no backup/archive paths were added; verify tracker arithmetic and exact source SHAs; conduct designated human validation; reconcile dependent terminology rollouts and approved scope; obtain lawful controlled access to the complete ISO 704:2022 edition before populating its clause-level matrix. Overall status remains **NOT READY FOR AN ISO 704 AUDIT**.
+
+
+## Execution update — 2026-10-18 — semantic review Batch 076
+
+- Reviewed five previously unreviewed active AstroCrown-Web verification documents at exact blob SHAs from baseline commit `5faea74dd1b40ec98acf9d59d9e404fc18122032`: competitor verification benchmark, verification architecture, tracking system, strategic prioritization and gap analysis.
+- Reconciled the row-level tracker with exact source commit/blob, evidence ID, disposition, reviewer/date and findings for all five files. Updated top-level counts to 296 preliminary full-file reviews + 5 partial targeted screens + 17 not reviewed = 318 active paths.
+- Opened preliminary SWEEP-F-0056 for missing item-level source provenance in competitor benchmark observations; SWEEP-F-0057 for undefined qualitative category criteria in strategic prioritization; and SWEEP-F-0058 for the proposed archive subtree’s relationship to the immutable archive-path and active-review-exclusion rules.
+- Extended SWEEP-F-0054's context to the tracking system's explicit distinction between evidence state and operational status. This distinction is a useful positive control; repeated labels must retain their field semantics.
+- Confirmed that the Gap Analysis uses NOT CONFIRMED/BLOCKED rather than asserting unavailable items are absent. Its current MDN HTTP Observatory naming is consistent with the official MDN Observatory FAQ checked 2026-10-18.
+- No runtime code, tests, workflows, external providers, credentials, billing, repository settings or immutable backup/archive contents were accessed, executed or changed.
+- Human validation is pending, formal ISO 704 clause-level assessments completed remain 0, and scope remains proposed/not human-approved. Overall status remains **NOT READY FOR AN ISO 704 AUDIT**.
+
+### Impact Analysis — Batch 076
+
+**IF modified:** benchmark claims can be traced to their sources; priority labels can be applied consistently without collapsing independent dimensions into a score; and the meaning/placement of the archive layer can be reconciled with immutable-path rules before implementation. Tracking records can preserve evidence-state versus operational-status semantics.
+
+**IF not modified:** competitor claims remain difficult to reproduce, independent reviewers may apply qualitative categories differently, and the proposed archive path may conflict with the scope-exclusion/immutability rules. Status values may be interpreted outside their intended field dimension.
+
+**Verification still required:** verify the final PR changed-file list; ensure no backup/archive path is added; confirm tracker arithmetic and exact source SHAs; human-validate all new findings; resolve the source-of-truth and archive classification; acquire lawful controlled access to the complete applicable ISO 704 edition before filling the clause/topic matrix. No audit-readiness claim is authorized.
