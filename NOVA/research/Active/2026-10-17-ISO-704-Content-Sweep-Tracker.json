@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 55/318; PARTIAL TARGETED SCREEN 1; 262 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 59/318; PARTIAL TARGETED SCREEN 1; 258 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 55,
-    "content_review_pending": 262,
-    "human_validation_pending": 55,
+    "preliminary_content_reviewed": 59,
+    "content_review_pending": 258,
+    "human_validation_pending": 59,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 1
   },
@@ -1127,15 +1127,17 @@
           "size_bytes": 26378,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_016",
+          "terminology_assessment": "PRELIMINARY_REVIEW_RESOURCE_AND_CALL_ALLOWANCE_DISTINCT",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B016:B016-04"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_RESOURCE_AND_CALL_ALLOWANCE_DISTINCT",
+          "note": "Batch 016: explicitly distinguishes total-resource measurement from call allowances and UNKNOWN from zero/unlimited; economic comparisons require comparable units and expiry does not create synthetic work.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/capacity.py",
@@ -1840,15 +1842,17 @@
           "size_bytes": 15842,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_016",
+          "terminology_assessment": "PRELIMINARY_REVIEW_HEALTH_AND_FRESHNESS_STATES_EXPLICIT",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B016:B016-03"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_HEALTH_AND_FRESHNESS_STATES_EXPLICIT",
+          "note": "Batch 016: distinguishes observed/fresh/stale/invalid time, API/auth/quality result, health status and resulting action. Freshness exclusion avoids treating stale records as current truth; runtime tests not run.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/health.py",
@@ -3304,15 +3308,20 @@
           "size_bytes": 32720,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_016",
+          "terminology_assessment": "PRELIMINARY_REVIEW_FAILURE_SCOPE_AND_ERROR_RETENTION_OPEN",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B016:B016-01"
+          ],
+          "findings": [
+            "B016-F01",
+            "B016-F02"
+          ],
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_FAILURE_SCOPE_AND_ERROR_RETENTION_OPEN",
+          "note": "Batch 016: HTTP 404/model_not_found may be classified permanent and mark whole provider DOWN even when failure may be model-scoped. HTTP error body truncated at 400 chars may be persisted in probe history; truncation is not redaction.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/router.py",
@@ -4192,15 +4201,19 @@
           "size_bytes": 19345,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_016",
+          "terminology_assessment": "PRELIMINARY_REVIEW_MOCKS_DISTINGUISH_STATES_NOT_LIVE_EVIDENCE",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B016:B016-02"
+          ],
+          "findings": [
+            "B016-F02"
+          ],
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_MOCKS_DISTINGUISH_STATES_NOT_LIVE_EVIDENCE",
+          "note": "Batch 016: mocks cover header allowlisting, structured-response markers, model-contract gate, root-cause sanitization and provider deferral; tests not run in this batch and do not prove live provider behavior. Redaction tests need to cover durable health history separately.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/tests/test_router.py",
@@ -14727,5 +14740,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 015 reviewed three NOVA workflow files. Human attestations remain separate from external proof, and static YAML review is not runtime evidence. Tracker counts derive from row status: 55 preliminary full reviews + 1 partial screens + 262 not reviewed = 318."
+  "last_update_note": "Batch 016 reviewed router, router tests, shared health telemetry and capacity semantics. Potential follow-ups distinguish model-scoped from provider-wide permanent failure and durable error-body truncation from redaction. Counts derived from row states: 59 preliminary full reviews + 1 partial screen + 258 NOT_REVIEWED = 318."
 }
