@@ -1,7 +1,7 @@
 # ISO 704:2022 Scope Proposal and Repository Inventory
 
 **Document ID:** NOVA-ISO704-SCOPE-001  
-**Version:** 0.1.45  
+**Version:** 0.1.46  
 **Snapshot date:** 2026-10-17  
 **Status:** PROPOSED SCOPE / INITIAL PATH INVENTORY — human approval and detailed content review pending  
 **Related dossier:** [ISO 704:2022 Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
@@ -284,4 +284,8 @@ Tracker states were re-counted directly: 96 preliminary full reviews, 5 partial 
 ## 50. Revision history
 
 - **2026-10-17 / v0.1.45:** Added Batch 047 preliminary full-file review of five NOVA route/style/placeholder files. Counts: 151 preliminary full reviews + 5 partial screens + 162 not reviewed = 318. Added SWEEP-F-0021 for unsupported access/security labels on 404.html and SWEEP-F-0022 for overbroad privacy/anti-fingerprinting wording in assets/css/style.css. Three zero-byte .gitkeep files were confirmed and recorded as reviewed. Human validation pending; formal ISO clause assessment remains zero. No backup/archive or runtime paths changed.
+
+## 51. Revision history
+
+- **2026-10-17 / v0.1.46:** Added Batch 048 preliminary full-file review of five NOVA wallet/observer/state/license paths. Counts: 156 preliminary full reviews + 5 partial screens + 157 not reviewed = 318. Added SWEEP-F-0023 for account access labelled as authentication, SWEEP-F-0024 for HTTP error bodies potentially overwriting observations, SWEEP-F-0025 for silent response truncation, and SWEEP-F-0026 for ambiguous heartbeat lifecycle wording. Empty index.html confirmed and recorded as reviewed. Human validation pending; formal ISO clause assessment remains zero. No backup/archive or runtime paths changed.
 
