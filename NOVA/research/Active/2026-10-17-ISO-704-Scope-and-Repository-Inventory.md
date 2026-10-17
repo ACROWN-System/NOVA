@@ -1,7 +1,7 @@
 # ISO 704:2022 Scope Proposal and Repository Inventory
 
 **Document ID:** NOVA-ISO704-SCOPE-001  
-**Version:** 0.1.66  
+**Version:** 0.1.67  
 **Snapshot date:** 2026-10-17  
 **Status:** PROPOSED SCOPE / INITIAL PATH INVENTORY — human approval and detailed content review pending  
 **Related dossier:** [ISO 704:2022 Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
@@ -378,3 +378,7 @@ Tracker states were re-counted directly: 96 preliminary full reviews, 5 partial 
 ## 71. Revision history
 
 - **2026-10-17 / v0.1.66:** Added Batch 068 preliminary full-file review of five AstroCrown-Web cross-section design-reference indexes at exact recorded main-baseline blob SHAs. Opened SWEEP-F-0044 for candidate information-bar types that mix priority/severity, sentiment valence, topic/domain and communication purpose; opened SWEEP-F-0045 because “H1-style header control” does not distinguish visual typography from semantic heading role and interactive control semantics. Extended SWEEP-F-0038 to include icons, interaction, layout, index README and responsive indexes whose extracted source ranges lack immutable origin revisions; the README's source-of-truth hierarchy is preserved as a positive control. The layout index repeats F-0043's Space Blue relation wording. Counts: 256 preliminary full reviews + 5 partial targeted screens + 57 not reviewed = 318. Human validation remains pending; formal ISO 704 clause assessment remains zero; scope remains proposed/not human-approved. No AstroCrown-Web source/runtime files, backup/archive paths, workflows, credentials, provider calls, billing or repository settings were changed; no tests or workflows were run.
+
+## 72. Revision history
+
+- **2026-10-18 / v0.1.67:** Added Batch 069 preliminary full-file review of four design-reference indexes (Sizing, Spacing, Typography, Visual Design System) and the Background subsystem source/migration record at exact recorded main-baseline blob SHAs. Extended SWEEP-F-0038 to these four indexes and the Background file's unpinned migrated source excerpts; cross-referenced SWEEP-F-0043 because two additional indexes repeat the reversed Space Blue relation. Opened SWEEP-F-0046 for wording that states the Moon-forming impact as a historical event without identifying the artistic depiction/leading giant-impact hypothesis distinction, supported by NASA references checked 2026-10-18. Opened SWEEP-F-0047 for “Hawking radiation rays” used as a nebula visual motif without explicit metaphor/scientific-concept distinction, checked against NASA's glossary. The typography index preserved candidate/undefined state, and the Background R-036 alpha/compositing requirements preserved precise transparency terminology. Counts: 261 preliminary full reviews + 5 partial targeted screens + 52 not reviewed = 318. Human validation remains pending; formal ISO 704 clause assessment remains zero; scope remains proposed/not human-approved. No AstroCrown-Web source/runtime files, backup/archive paths, workflows, credentials, provider calls, billing, repository settings or tests were changed/run.
