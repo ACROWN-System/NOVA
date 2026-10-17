@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — BASELINE LEXICAL SCAN COMPLETE; PRELIMINARY SEMANTIC REVIEW 11/318; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 11/318; PARTIAL TARGETED SCREEN 1; 306 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -18,9 +18,10 @@
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
     "preliminary_content_reviewed": 11,
-    "content_review_pending": 307,
+    "content_review_pending": 306,
     "human_validation_pending": 11,
-    "formal_iso_clause_assessment_completed": 0
+    "formal_iso_clause_assessment_completed": 0,
+    "partial_targeted_review": 1
   },
   "repositories": [
     {
@@ -2498,15 +2499,21 @@
           "size_bytes": 1452321,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "PARTIAL_TARGETED_SCREEN_BATCH_003",
+          "terminology_assessment": "TARGET_TERMINOLOGY_SCREENED_PUBLIC_CLAIM_REVIEW_OPEN",
+          "applicability": "PROVISIONALLY_IN_SCOPE_RECORD_TYPE_AND_FULL_SCOPE_DECISION_PENDING",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B003"
+          ],
+          "findings": [
+            "B003-F01",
+            "B003-F02",
+            "B003-F03"
+          ],
+          "reviewer": "AI-assisted targeted terminology screen; human scope decision required",
+          "review_date": "2026-10-17",
+          "result": "PARTIAL_TARGETED_SCREEN_NOT_FULL_CONTENT_AUDIT",
+          "note": "Large 28,490-line operational state ledger. Certification-stem matches are classified as TLS/security certificate references in the separate context review; broad compliance matches require explicit scope/claims disposition. Targeted terminology screen is partial, not a full semantic review.",
           "lexical_scan_segments": [
             {
               "repo": "NOVA",
@@ -14564,5 +14571,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 002 reviewed five NOVA governance/operational paths against exact baseline blob SHAs. Batch 001 + 002 account for 11 preliminary file reviews total; 307 active file rows remain NOT_REVIEWED / NOT_ASSESSED. Human scope approval/validation remains required."
+  "last_update_note": "Batch 003 performed a targeted terminology screen of the large NOVA/README.md state ledger. Its row is explicitly PARTIAL, not counted as a full reviewed file. The ledger's factual/operational compliance statements remain unverified and require a separate scope decision."
 }
