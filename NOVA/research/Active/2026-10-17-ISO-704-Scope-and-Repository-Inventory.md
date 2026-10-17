@@ -1,9 +1,9 @@
 # ISO 704:2022 Scope Proposal and Repository Inventory
 
 **Document ID:** NOVA-ISO704-SCOPE-001  
-**Version:** 0.1.71  
+**Version:** 0.1.72  
 **Snapshot date:** 2026-10-17  
-**Status:** PROPOSED SCOPE / INITIAL PATH INVENTORY — human approval and detailed content review pending  
+**Status:** PLANNING SCOPE APPROVED 2026-10-18 / INITIAL PATH INVENTORY — final assessment baseline freeze and detailed content review pending  
 **Related dossier:** [ISO 704:2022 Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
 **Machine-readable evidence:** [Active Path Inventory JSON](2026-10-17-ISO-704-Active-Path-Inventory.json); [File-by-File Content Sweep Tracker](2026-10-17-ISO-704-Content-Sweep-Tracker.json); [Initial Sweep Findings](2026-10-17-ISO-704-Initial-Sweep-Findings.md)
 
@@ -13,7 +13,7 @@ For planning, the proposed scope is the controlled terminology work and terminol
 
 The proposed cross-repository source of truth is NOVA's canonical register and governance procedure. Each repository remains a distinct domain; inclusion does not mean all repositories share the same economics, governance authority or legal status. In particular, AI-Sanctuary-Core's stated separation from AstroCrown tokenomics and Space Empire governance must remain explicit in concept definitions and domain relations.
 
-This scope is **not yet frozen or approved**. In particular, the AI-Sanctuary-Core README's assertion that it is outside AstroCrown audits conflicts with its provisional inclusion here; the protocol files were reviewed only provisionally, and no inclusion decision is inferred. The designated human maintainer must approve the final entity/scope wording, domains, repository list, paths, activities, languages, period and exclusions before the evidence matrix can be treated as complete.
+The human maintainer approved this proposed six-repository scope for planning on 2026-10-18, with English as the initial assessment language and a $0-only access policy. The approval establishes the planned repository universe and language direction; it does not freeze the final assessment revision, period, exact path manifest, assessor/approver roles or any external-publication channels. Those details must be recorded against refreshed repository refs/commit SHAs before formal evaluation. AI-Sanctuary-Core is included only for terminology-work and terminology-use material within the declared scope. This does not merge its identity/governance with AstroCrown tokenomics or Space Empire governance, and its documented domain separation remains explicit. The immutable backup/archive exclusion remains in force. The clause/evidence matrix cannot be treated as complete until lawful controlled access to the full applicable standard, the final baseline and the remaining readiness gates are established.
 
 ## 2. Repository baseline
 
@@ -46,20 +46,20 @@ The inventory includes all non-archive blobs regardless of file extension so tha
 
 The current inventory is based on each repository's `main` snapshot and does not include the current draft-branch content for NOVA PR #124 or AstroCrown-Web PR #135. Once the documentation changes are reviewed/merged—or a different intended assessment ref is approved—refresh the final inventory and record exact commit SHAs.
 
-Languages: English is the initial authored language in the current draft framework. The scope must state whether the initial assessment is English-only or includes every active locale. Do not claim localization equivalence without reviewed evidence.
+Languages: English is approved as the initial assessment language. Unless the human maintainer records a later scope change, translation/localization and claims of cross-language equivalence are outside the initial assessment. Do not imply that non-English locales were reviewed when they were not.
 
 ## 5. Next scope actions
 
-1. Human approval of the provisional six-repository scope, with domain separation preserved.
+1. Record the human maintainer's 2026-10-18 approval of the proposed six-repository planning scope and preserve the AI-Sanctuary-Core domain boundary.
 2. Confirm whether any additional repositories, deployments, published websites, social/public communication channels or externally maintained term systems are within the target scope; the six repositories above are the currently accessible organization inventory, not automatic proof that every external use is covered.
-3. Decide and record the language/locale boundary for the first assessment.
+3. Record English as the initial assessment language; explicitly keep localization/equivalence claims out of scope unless reviewed and added by an approved scope change.
 4. Classify each active path in the machine-readable inventory and perform the full content sweep within the approved scope.
 5. Use the [file-by-file content sweep tracker](2026-10-17-ISO-704-Content-Sweep-Tracker.json) to record content reviews. Its extension/path hints are not audit findings; inspect actual content and preserve objective evidence.
 6. Refresh the path inventory at the frozen assessment commit before completing the audit package.
 
 ## 6. Current disposition
 
-**AR-E01 — Scope and boundaries: DRAFT / NOT APPROVED.** Repository discovery has produced an initial evidence-backed inventory. Content coverage, scope approval, language boundaries and final assessment refs remain open. No certification provider has been searched for or contacted as part of this readiness-first workstream.
+**AR-E01 — Scope and boundaries: PLANNING SCOPE APPROVED / FINAL BASELINE FREEZE PENDING.** The human maintainer approved the proposed six-repository planning scope and English as the initial assessment language on 2026-10-18. The final assessment period, exact refreshed repository/path refs, role/independence record and any external-publication boundaries still require documented confirmation. Per-file review results remain preliminary; human validation and readiness evidence remain open. No provider discovery or paid activity is authorized.
 
 
 ## 7. Revision history
@@ -399,3 +399,13 @@ Tracker states were re-counted directly: 96 preliminary full reviews, 5 partial 
 
 - **2026-10-18 / v0.1.71:** Added Batch 073 preliminary full-file review of Strong RSI Status, benchmark dispatcher tests, cycle detector tests, evaluator tests, and Weak RSI report tests at exact recorded AstroCrown-Web baseline blob SHAs. Extended SWEEP-F-0052 to the cycle-detector tests, which explicitly retain failed scheduled/manual runs in the selected history; the semantic requirement is to accurately label/define that workflow-run interval, not assume failed runs must be excluded. Preserved positive controls for Strong RSI SUSPENDED versus INCOMPLETE, explicit provider/readiness gates, dispatcher READY/BLOCKED outcomes, exact candidate evidence, and Weak RSI report-only/HUMAN_REVIEW_REQUIRED behavior. Tests and code were inspected statically; no tests/workflows were executed. Counts: 281 preliminary full reviews + 5 partial targeted screens + 32 not reviewed = 318. Human validation remains pending; formal ISO 704 clause assessment remains zero; scope remains proposed/not human-approved. No AstroCrown-Web source/runtime files, backup/archive paths, tests, workflows, credentials, provider calls, billing or repository settings were changed or used.
 
+## 77. Human scope decision — 2026-10-18
+
+- **Decision:** The human maintainer approved the proposed six-repository planning scope and English as the initial assessment language.
+- **Repository set:** NOVA; Freebies-; AstroCrown_ACS_MC_Spec; AI-Sanctuary-Core; ACROWN-SIMULATION-LAB; AstroCrown-Web.
+- **Scope boundary:** Active, non-backup/non-archive terminology-use material within the declared repository set. The AI-Sanctuary-Core domain remains distinct; its inclusion for terminology review is not an assertion that it shares AstroCrown tokenomics or Space Empire governance.
+- **Language:** English is the initial assessment language. No translation/localization equivalence is claimed.
+- **Cost constraint:** $0-only lawful access. No standards purchase, paid subscription/membership, billable inquiry, hired provider or other cost is authorized. If lawful no-cost access to the complete applicable ISO 704 edition cannot be established, AR-E02 remains BLOCKED and clause mapping does not proceed.
+- **Still open:** final assessment period and commit-pinned baseline; exact final path manifest; formal role/approval/independence assignments; completion/validation of preliminary reviews; partial targeted reviews; missing Batches 029–036 report artifacts; controlled full-standard access; clause/evidence matrix; operational evidence; internal audit, corrective-action retest and management GO/NO-GO.
+- **Impact Analysis — IF recorded:** approved scope direction and hard cost constraint become traceable without overstating readiness. **IF not recorded:** the scope could continue to be described as unapproved or be misread as authorization to incur fees.
+- **Verification:** this is a planning-scope approval, not a final baseline freeze, clause-level assessment, audit-readiness decision or conformity claim.
