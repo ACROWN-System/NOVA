@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.47  
+**Version:** 0.1.48  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL SWEEP FINDINGS — lexical screening plus preliminary content reviews; human validation and formal clause assessment pending  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -1187,4 +1187,10 @@ See [Semantic Review Batch 078 — AstroCrown Evidence Sources, Snapshots, Chang
 See [Semantic Review Batch 079 — AstroCrown Verification Status, Paths and Subsystem README](2026-10-18-ISO-704-Semantic-Review-Batch-079-AstroCrown-Verification-Status-Paths-and-Subsystem-README.md). Five files were reviewed at exact blob SHAs from AstroCrown-Web baseline commit `5faea74dd1b40ec98acf9d59d9e404fc18122032`. Opened SWEEP-F-0062 because `CANDIDATE` is an evidence-state value and `Candidate` is also an operational-status value; capitalization alone distinguishes them, so downstream readers or normalization may conflate distinct concepts. The verification tracker’s separation of evidence state and operational status, trigger-driven pathway model, and boundary between verification intelligence and actual audit records are positive controls. The “Entity/pathway” slash construction remains a wording improvement opportunity, not a separate finding. No AstroCrown-Web source files, tests, workflows, provider calls, settings or immutable backup/archive contents were changed or inspected.
 
 **Row-derived counts after Batch 079:** 318 lexical screens; 311 preliminary full-file reviews; 5 partial targeted screens; 2 not reviewed; human validation pending; formal ISO 704 clause-level assessments completed: 0. Scope remains proposed and not human-approved. This is not a formal ISO 704 clause or conformity assessment.
+
+## Batch 080 — AstroCrown license and security policy
+
+See [Semantic Review Batch 080 — AstroCrown License and Security Policy](2026-10-18-ISO-704-Semantic-Review-Batch-080-AstroCrown-License-and-Security-Policy.md). The final two active paths were reviewed at exact blob SHAs from AstroCrown-Web baseline commit `5faea74dd1b40ec98acf9d59d9e404fc18122032`. No unique finding was opened: the MIT license uses its defined term “Software” consistently and distinguishes permission, notice condition, warranty disclaimer and liability limitation; the security policy expands RSI, avoids treating CI/scans as proof of an escape-proof sandbox, keeps private reporting conditional on feature availability, disclaims a response-time promise, and distinguishes automated reports from confirmed vulnerabilities and scan success from human validation/RSI promotion. This completes recorded preliminary per-file disposition coverage for all 318 inventoried active paths. Five files received only partial targeted screens, 313 preliminary full-file reviews remain pending human validation, and formal ISO 704 clause-level assessments remain zero. The earlier missing-report-artifact gap for Batches 029–036 remains open and is not resolved by these counts. No AstroCrown-Web source files, tests, workflows, provider calls, settings or immutable backup/archive contents were changed or inspected.
+
+**Row-derived counts after Batch 080:** 318 lexical screens; 313 preliminary full-file reviews; 5 partial targeted screens; 0 not reviewed; human validation pending; formal ISO 704 clause-level assessments completed: 0. Scope remains proposed and not human-approved. Recorded per-file disposition coverage is complete, but this is not a formal ISO 704 clause or conformity assessment.
 
