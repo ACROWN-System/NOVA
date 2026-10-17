@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 246/318; PARTIAL TARGETED SCREENS 5; 67 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 251/318; PARTIAL TARGETED SCREENS 5; 62 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 246,
-    "content_review_pending": 67,
-    "human_validation_pending": 246,
+    "preliminary_content_reviewed": 251,
+    "content_review_pending": 62,
+    "human_validation_pending": 251,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 5
   },
@@ -10805,15 +10805,19 @@
           "size_bytes": 2326,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_067",
+          "terminology_assessment": "PRELIMINARY_REVIEW_PROVIDER-LIFECYCLE-AND-EXTERNAL-INTERFACE-STATUS",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B067:B067-01"
+          ],
+          "findings": [
+            "SWEEP-F-0009"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_EXTENDS_SWEEP-F-0009",
+          "note": "Batch 067: adapter appropriately labels Nosana a candidate and warns credits are not unlimited/free, but says it is the current RSI proposer interface while F-0009 records same-baseline RSI policy/client select Groq. Extends existing provider-configuration wording conflict; no live call.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/gpu-infrastructure/NOSANA-INFERENCE-ADAPTER.md",
@@ -10840,7 +10844,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "fdcbc82d2e8b3039ed510696a288c34735055c2c"
         },
         {
           "path": "development/gpu-infrastructure/README.md",
@@ -10848,15 +10854,17 @@
           "size_bytes": 2132,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_067",
+          "terminology_assessment": "PRELIMINARY_REVIEW_SUBSYSTEM-APPLICATION-BOUNDARY-AND-CANDIDATE-STATUS",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B067:B067-02"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 067: keeps GPU capability infrastructure separate from AI-media application and labels provider/model/capacity/performance as unapproved until supported by evidence. Positive control.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/gpu-infrastructure/README.md",
@@ -10883,7 +10891,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "1cb4c8b813b94ec90f39be0fa2c19bd819d2f6bc"
         },
         {
           "path": "development/index-reference/BORDERS-AND-RADIUS.md",
@@ -10891,15 +10901,19 @@
           "size_bytes": 7719,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_067",
+          "terminology_assessment": "PRELIMINARY_REVIEW_EXTRACTED-REQUIREMENT-STATUS-AND-SOURCE-PROVENANCE",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B067:B067-03"
+          ],
+          "findings": [
+            "SWEEP-F-0038"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_EXTENDS_SWEEP-F-0038",
+          "note": "Batch 067: index preserves candidate/TBD state and says it is not a replacement for source requirements, but cited HOMEPAGE-REQUIREMENTS.md line ranges have no source revision/hash or extraction date; source absent at reviewed baseline.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/index-reference/BORDERS-AND-RADIUS.md",
@@ -10926,7 +10940,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "ea00e8f99c67318c40471ff1d37fc2af2b4b85fb"
         },
         {
           "path": "development/index-reference/CARDS-CONVENTIONS.md",
@@ -10934,15 +10950,19 @@
           "size_bytes": 17230,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_067",
+          "terminology_assessment": "PRELIMINARY_REVIEW_CONCEPT-BOUNDARIES-AND-EXTRACTED-SOURCE-TRACEABILITY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B067:B067-04"
+          ],
+          "findings": [
+            "SWEEP-F-0038"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_EXTENDS_SWEEP-F-0038",
+          "note": "Batch 067: clearly separates candidate from approved cards, consensus method, influence from causation, and observed values from derived metrics; extracted source ranges lack immutable origin revision.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/index-reference/CARDS-CONVENTIONS.md",
@@ -10978,7 +10998,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "3fbb34e4e5e50bec6fadfa1b586a82582f47e95d"
         },
         {
           "path": "development/index-reference/COLORS.md",
@@ -10986,15 +11008,20 @@
           "size_bytes": 8997,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_067",
+          "terminology_assessment": "PRELIMINARY_REVIEW_COLOR-CONCEPT-HIERARCHY-AND-SOURCE-TRACEABILITY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B067:B067-05"
+          ],
+          "findings": [
+            "SWEEP-F-0038",
+            "SWEEP-F-0043"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDING_SWEEP-F-0043",
+          "note": "Batch 067: R-005 says intermediate Space Blue must be darker than #16345A and lighter than #081426, reversing the stated lightest/darkest endpoints; opens F-0043. Also extends F-0038 because extracted source line ranges lack immutable origin revision.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/index-reference/COLORS.md",
@@ -11021,7 +11048,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "e64d8e3093ac7c09d266dc116f0781edb1f15b57"
         },
         {
           "path": "development/index-reference/DATA-DISPLAY-CONVENTIONS.md",
