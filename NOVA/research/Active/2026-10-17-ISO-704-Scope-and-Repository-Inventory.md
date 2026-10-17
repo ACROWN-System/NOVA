@@ -1,7 +1,7 @@
 # ISO 704:2022 Scope Proposal and Repository Inventory
 
 **Document ID:** NOVA-ISO704-SCOPE-001  
-**Version:** 0.1.64  
+**Version:** 0.1.65  
 **Snapshot date:** 2026-10-17  
 **Status:** PROPOSED SCOPE / INITIAL PATH INVENTORY — human approval and detailed content review pending  
 **Related dossier:** [ISO 704:2022 Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
@@ -370,3 +370,7 @@ Tracker states were re-counted directly: 96 preliminary full reviews, 5 partial 
 ## 69. Revision history
 
 - **2026-10-17 / v0.1.64:** Added Batch 066 preliminary full-file review of five AstroCrown-Web evidence/test templates, homepage verification matrix, security baseline evidence inventory, and development/audit convention at exact recorded main-baseline blob SHAs. Opened SWEEP-F-0041 for a primary-category field mixing non-exclusive classification dimensions; extended SWEEP-F-0038 because R-001–R-013 requirement definitions are not retrievable from the reviewed baseline; and opened SWEEP-F-0042 because recovery-after-compromise PASS evidence shows backup-artifact presence without recorded recovery verification. Counts: 246 preliminary full reviews + 5 partial targeted screens + 67 not reviewed = 318. Human validation remains pending; formal ISO 704 clause assessment remains zero; scope remains proposed/not human-approved. This review focused on concept-boundary, identifier-to-requirement traceability, and evidence-to-claim semantics without asserting clause compliance. No AstroCrown-Web source/runtime files, backup/archive paths, workflows, credentials, provider calls, billing, restore actions or repository settings were changed.
+
+## 70. Revision history
+
+- **2026-10-17 / v0.1.65:** Added Batch 067 preliminary full-file review of the Nosana GPU-inference adapter, GPU subsystem README, and three design-reference indexes at exact recorded main-baseline blob SHAs. Extended SWEEP-F-0009 because the adapter's “current RSI proposer interface” wording conflicts with same-baseline Groq policy/client evidence; extended SWEEP-F-0038 because extracted Borders, Cards and Colors indexes cite line ranges from the homepage requirements without immutable source revision, which is absent at the reviewed baseline; and opened SWEEP-F-0043 for reversed relative-lightness wording in the intermediate Space Blue definition. Counts: 251 preliminary full reviews + 5 partial targeted screens + 62 not reviewed = 318. Human validation remains pending; formal ISO 704 clause assessment remains zero; scope remains proposed/not human-approved. No AstroCrown-Web source/runtime files, backup/archive paths, workflows, credentials, provider calls, billing, repository settings or tests were changed or run. This is preliminary terminology/relation analysis, not a formal clause assessment.
