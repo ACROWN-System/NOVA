@@ -1,7 +1,7 @@
 # ISO 704:2022 Scope Proposal and Repository Inventory
 
 **Document ID:** NOVA-ISO704-SCOPE-001  
-**Version:** 0.1.63  
+**Version:** 0.1.64  
 **Snapshot date:** 2026-10-17  
 **Status:** PROPOSED SCOPE / INITIAL PATH INVENTORY — human approval and detailed content review pending  
 **Related dossier:** [ISO 704:2022 Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
@@ -366,3 +366,7 @@ Tracker states were re-counted directly: 96 preliminary full reviews, 5 partial 
 ## 68. Revision history
 
 - **2026-10-17 / v0.1.63:** Added Batch 065 preliminary full-file review of five AstroCrown-Web audit overview, dated audit/security records and audit/candidate-evaluation templates at exact recorded main-baseline blob SHAs. Opened SWEEP-F-0037 for mismatch between `Required next work` and completed actions; SWEEP-F-0038 for a cited requirement artifact unavailable at the reviewed baseline while explicitly preserving historical uncertainty; SWEEP-F-0039 for undefined `Remediated` versus `Closed` finding statuses; and SWEEP-F-0040 for ambiguous eligibility when a mandatory criterion is N/A. Counts: 241 preliminary full reviews + 5 partial screens + 72 not reviewed = 318. Human validation remains pending; formal ISO 704 clause assessment remains zero; scope remains proposed/not human-approved. No AstroCrown-Web source/runtime files, backup/archive paths, credentials, provider settings, workflows, tests, billing, security controls or repository settings were changed.
+
+## 69. Revision history
+
+- **2026-10-17 / v0.1.64:** Added Batch 066 preliminary full-file review of five AstroCrown-Web evidence/test templates, homepage verification matrix, security baseline evidence inventory, and development/audit convention at exact recorded main-baseline blob SHAs. Opened SWEEP-F-0041 for a primary-category field mixing non-exclusive classification dimensions; extended SWEEP-F-0038 because R-001–R-013 requirement definitions are not retrievable from the reviewed baseline; and opened SWEEP-F-0042 because recovery-after-compromise PASS evidence shows backup-artifact presence without recorded recovery verification. Counts: 246 preliminary full reviews + 5 partial targeted screens + 67 not reviewed = 318. Human validation remains pending; formal ISO 704 clause assessment remains zero; scope remains proposed/not human-approved. This review focused on concept-boundary, identifier-to-requirement traceability, and evidence-to-claim semantics without asserting clause compliance. No AstroCrown-Web source/runtime files, backup/archive paths, workflows, credentials, provider calls, billing, restore actions or repository settings were changed.
