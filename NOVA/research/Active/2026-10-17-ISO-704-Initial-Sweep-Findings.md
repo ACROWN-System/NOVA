@@ -154,3 +154,14 @@ See [Semantic Review Batch 004 — Freebies](2026-10-17-ISO-704-Semantic-Review-
 - **B004-F02:** the `SimpleToken.sol` example uses “Minimal ERC-20 Token (BSC ready)”; standard/chain compatibility, deployment and security remain unverified in this terminology review. Keep it labelled as an example until separate engineering evidence supports stronger claims.
 
 Tracker status after Batch 004: **318/318 lexical scans; 13 preliminary content reviews; 1 partial targeted screen; 304 not reviewed; human validation pending.**
+
+
+## Semantic review update — Batch 005 ACS / Monte Carlo specification
+
+See [Semantic Review Batch 005 — ACS/Monte Carlo Spec](2026-10-17-ISO-704-Semantic-Review-Batch-005-ACS-MC-Spec.md).
+
+- **B005-F01 — blocking source-integrity issue:** `AstroCrown_ACS_MC_Spec_v1.1.2.md` states that sections A–P and an auditor prompt are included, but the exact baseline blob has only sections A–H and ends inside a fee formula. Its stated “sole source of truth” authority must not be used to infer missing rules. Restoration/clarification needs a reviewed, versioned change and exact post-change ref.
+- **Domain terminology note:** the spec contains a useful ACS-specific glossary (ACS, FPRF/V, C, I, F, R, G, Paymaster, T0, LCR, P_ACS/P_EXT and related symbols). The shared terminology register should link to this domain authority for detailed ACS meanings rather than silently duplicate economic rules.
+- The same repository's README and licence were also reviewed in B001/B005; all three current active paths have a preliminary review, but repository scope and human approval remain pending.
+
+Tracker status after Batch 005: **318/318 lexical scans; 15 preliminary content reviews; 1 partial targeted screen; 302 not reviewed; human validation pending.**
