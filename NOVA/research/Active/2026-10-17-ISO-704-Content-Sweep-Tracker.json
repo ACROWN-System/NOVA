@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 11/318; PARTIAL TARGETED SCREEN 1; 306 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 13/318; PARTIAL TARGETED SCREEN 1; 304 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 11,
-    "content_review_pending": 306,
-    "human_validation_pending": 11,
+    "preliminary_content_reviewed": 13,
+    "content_review_pending": 304,
+    "human_validation_pending": 13,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 1
   },
@@ -4346,15 +4346,17 @@
           "size_bytes": 1070,
           "extension": "[no-ext]",
           "provisional_review_queue": "EXTENSIONLESS_CONTENT_FETCHED; SEMANTIC REVIEW REQUIRED",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_004",
+          "terminology_assessment": "PRELIMINARY_REVIEW_NO_SPECIFIC_TERM_FINDING_HUMAN_VALIDATION_REQUIRED",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B004:B004-01"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary content review; designated human review required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_SPECIFIC_TERM_FINDING_HUMAN_VALIDATION_REQUIRED",
+          "note": "MIT licence wording inspected in Semantic Review Batch 004; licence file alone does not prove every asset or future resource is covered. No legal opinion.",
           "lexical_scan": {
             "repo": "Freebies-",
             "path": "LICENSE",
@@ -4432,15 +4434,19 @@
           "size_bytes": 1964,
           "extension": ".sol",
           "provisional_review_queue": "UNKNOWN_FORMAT_REVIEW_REQUIRED",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_004",
+          "terminology_assessment": "PRELIMINARY_REVIEW_PUBLIC_CLAIM_EVIDENCE_OPEN_NO_CODE_AUDIT",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B004:B004-02"
+          ],
+          "findings": [
+            "B004-F02"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human review required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_PUBLIC_CLAIM_EVIDENCE_OPEN_NO_CODE_AUDIT",
+          "note": "Minimal token example inspected in Semantic Review Batch 004. 'ERC-20' / 'BSC ready' labels require separate interface/build/test evidence; no security or conformance testing performed here.",
           "lexical_scan": {
             "repo": "Freebies-",
             "path": "SimpleToken.sol",
@@ -14571,5 +14577,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 003 performed a targeted terminology screen of the large NOVA/README.md state ledger. Its row is explicitly PARTIAL, not counted as a full reviewed file. The ledger's factual/operational compliance statements remain unverified and require a separate scope decision."
+  "last_update_note": "Batch 004 reviewed the remaining two files in Freebies- against exact baseline blob SHAs. Counts: 13 preliminary full-file reviews; one partial targeted screen; 304 active files not reviewed. This does not constitute ISO clause conformity or contract security testing."
 }
