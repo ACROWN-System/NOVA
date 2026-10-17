@@ -1,0 +1,82 @@
+# ISO 704:2022 Clause/Topic-to-Evidence Matrix — Controlled Template
+
+**Document ID:** NOVA-ISO704-MATRIX-001  
+**Version:** 0.1.0  
+**Status:** TEMPLATE ONLY — NOT A COMPLETED MATRIX  
+**Date opened:** 2026-10-17  
+**Owner:** Designated human maintainer  
+**Standard baseline:** ISO 704:2022, Edition 4 — full controlled text not yet established  
+**Readiness status:** BLOCKED until lawful access to the complete edition and full clause/section inventory  
+**Related dossier:** [ISO 704:2022 Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)
+
+## 1. Purpose
+
+Use this controlled template to assess every relevant section/clause of the exact ISO 704:2022 edition against project controls and objective evidence. The current file is only the structure for future work. It contains no clause-level conclusions and must not be presented as a completed conformity matrix.
+
+Do not create rows from memory, search-result snippets, a public abstract or another standard. Populate standard identifiers only after the lawful full edition is available and the document structure has been verified. Do not reproduce protected ISO text; capture a concise project-authored paraphrase and record the actual type of statement being assessed.
+
+## 2. Matrix row schema
+
+Create one row per clause/section or a documented grouping that preserves complete traceability. A grouping is acceptable only when every included clause can still be located and its applicability/result can be verified independently.
+
+For each row, record:
+
+- **Matrix row ID:** stable local identifier, for example `M-0001`.
+- **ISO 704:2022 location:** exact clause/section identifier and heading as verified against the controlled copy.
+- **Statement type/force:** requirement, principle, recommendation, descriptive explanation, definition, example, or other accurately characterized type. Do not call every passage a mandatory requirement.
+- **Project-authored paraphrase:** short summary in original words; do not paste the copyrighted clause.
+- **Applicability:** applicable / partly applicable / not applicable / blocked, with rationale and approved scope reference.
+- **Project control:** procedure, register field, governance control or actual operational practice intended to address the point.
+- **Evidence IDs:** IDs from the readiness dossier's evidence register, plus exact path, URL, version, branch/commit or snapshot.
+- **Verification method:** inspection, record trace, interview, observation, sample review, repeatable search or other justified method.
+- **Test result:** PASS / FAIL / BLOCKED / N/A. No result is assigned without actual verification.
+- **Finding/reference:** link to a finding ID where a gap, conflict or uncertainty is recorded.
+- **Owner and target date:** person accountable for closure, where relevant.
+- **Correction/corrective action:** actions taken or planned to address a finding, with root-cause notes where appropriate.
+- **Closure and retest evidence:** exact record demonstrating the fix and the independent/appropriate re-test.
+- **Reviewer/date:** who assessed the row and when; record conflicts of interest or limitations.
+- **Notes / unresolved interpretation:** questions that require review; do not decide ambiguous points by guessing.
+
+## 3. Empty row template
+
+Duplicate this section for each verified section/clause or documented grouping. The fields intentionally remain unpopulated until the controlled edition is available.
+
+### M-____ — [verified section/clause identifier]
+
+- **ISO 704:2022 location:** BLOCKED — not populated
+- **Statement type/force:** BLOCKED — verify against controlled edition
+- **Project-authored paraphrase:** BLOCKED — write only after review
+- **Applicability and rationale:** BLOCKED
+- **Project control(s):** NOT MAPPED
+- **Evidence IDs and exact source versions:** NOT MAPPED
+- **Verification method:** NOT DEFINED
+- **Result:** BLOCKED
+- **Finding ID / gap:** PENDING
+- **Owner / target date:** PENDING
+- **Correction / corrective action:** PENDING
+- **Closure / retest evidence:** PENDING
+- **Reviewer / date:** PENDING
+- **Open question / notes:** PENDING
+
+## 4. Matrix-completeness controls
+
+Before the matrix can support readiness:
+
+1. Record the exact edition and controlled-copy metadata, lawful access basis and custodian.
+2. Inventory every section/clause, definitions and other relevant material in the complete edition; reconcile the inventory against the document's contents.
+3. Ensure every location is represented directly or through a documented and traceable grouping.
+4. Record statement force accurately and justify all applicability / N/A decisions.
+5. Link each applicable row to a real implemented control and objective evidence; document where evidence shows only design intent.
+6. Assign results only after performing the stated verification method.
+7. Link all FAIL/BLOCKED outcomes to findings and corrective-action records.
+8. Re-test corrections and preserve original finding history.
+9. Have a reviewer other than the row author review matrix completeness and any significant interpretation.
+10. Confirm no copied proprietary clause text or prohibited standard distribution has entered the repository.
+11. Include a manifest/version/commit for the final matrix snapshot.
+12. Reconcile the matrix's row inventory to the full controlled standard before concluding it is complete.
+
+## 5. Current status
+
+**BLOCKED / NOT STARTED AS A CLAUSE-LEVEL ASSESSMENT.** The project has not yet established lawful, controlled access to the complete ISO 704:2022 edition. The next valid step is to resolve that prerequisite through a separately authorized access route. No paid access is authorized by this template.
+
+The readiness dossier defines the wider evidence package, internal audit, corrective-action and management decision gates. Provider discovery remains deferred until the full package passes those gates.
