@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.4  
+**Version:** 0.1.5  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL FINDINGS — lexical screening only; not a completed conformity audit  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -465,3 +465,13 @@ See [Semantic Review Batch 039](2026-10-17-ISO-704-Semantic-Review-Batch-039-RSI
 - **Closure evidence:** human-approved scope mapping and record relationships.
 
 **Row-derived counts after Batch 039:** 318 lexical scans; 111 preliminary full-file reviews; 5 partial targeted screens; 202 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments.
+
+
+## Batch 040 — RSI cleanup and benchmark evidence
+
+See [Semantic Review Batch 040](2026-10-17-ISO-704-Semantic-Review-Batch-040-RSI-Cleanup-and-Benchmark-Evidence.md).
+
+- Five completed engineering records were reviewed against exact main-branch blob SHAs.
+- Their wording consistently distinguishes tested cleanup/provenance properties from remaining Docker/runner risks, benchmark validity and independent security approval.
+- No new unique finding was raised in this batch. Legacy HAAN mission links remain within the existing SWEEP-F-0001 active naming-rollout finding; do not mass-edit or rewrite history ahead of the approved HSIAN rollout.
+- **Row-derived counts after Batch 040:** 318 lexical scans; 116 preliminary full-file reviews; 5 partial targeted screens; 197 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments.

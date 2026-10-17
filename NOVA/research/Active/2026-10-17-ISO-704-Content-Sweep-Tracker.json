@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 111/318; PARTIAL TARGETED SCREENS 5; 202 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 116/318; PARTIAL TARGETED SCREENS 5; 197 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 111,
-    "content_review_pending": 202,
-    "human_validation_pending": 111,
+    "preliminary_content_reviewed": 116,
+    "content_review_pending": 197,
+    "human_validation_pending": 116,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 5
   },
@@ -8374,15 +8374,19 @@
           "size_bytes": 6851,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_040",
+          "terminology_assessment": "PRELIMINARY_REVIEW_NARROW_BENCHMARK_SCOPE_AND_APPROVAL_BOUNDARY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B040:B040-05"
+          ],
+          "findings": [
+            "SWEEP-F-0001"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NARROW_BENCHMARK_SCOPE_AND_APPROVAL_BOUNDARY",
+          "note": "Reviewed full file at exact main blob SHA. It describes one deterministic context-packing workload, states it is narrow/non-general and candidate-only, requires exact baseline/candidate commits and per-case no-regression rules, and keeps RSI readiness INCOMPLETE with the command unconfigured until independent review. Legacy HAAN mission reference is part of known SWEEP-F-0001 rollout. No benchmark was re-run.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Completed/2026-10-11-Context-Packing-Benchmark-Workload.md",
@@ -8582,15 +8586,19 @@
           "size_bytes": 3615,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_040",
+          "terminology_assessment": "PRELIMINARY_REVIEW_OUTER_TIMEOUT_AND_LABELLED_CLEANUP_EVIDENCE",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B040:B040-02"
+          ],
+          "findings": [
+            "SWEEP-F-0001"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_OUTER_TIMEOUT_AND_LABELLED_CLEANUP_EVIDENCE",
+          "note": "Reviewed full file at exact main blob SHA. It describes a separate evaluation ID, process-group termination, bounded waits, label-based Docker cleanup and BLOCKED outcomes when removal cannot be confirmed. It states residual daemon/kernel/host/image-supply-chain risks remain and readiness remains INCOMPLETE. Legacy HAAN reference is under known SWEEP-F-0001; no runtime test was re-run.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Completed/2026-10-11-RSI-Evaluator-Supervisor-Cleanup.md",
@@ -8630,15 +8638,19 @@
           "size_bytes": 4211,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_040",
+          "terminology_assessment": "PRELIMINARY_REVIEW_COMMIT_TREE_PROVENANCE_VS_VALIDITY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B040:B040-04"
+          ],
+          "findings": [
+            "SWEEP-F-0001"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_COMMIT_TREE_PROVENANCE_VS_VALIDITY",
+          "note": "Reviewed full file at exact main blob SHA. It distinguishes binding cycle/evaluator reports to the same commit/tree and matching staged retention tree from validating benchmark correctness or reviewer independence. It explicitly says manifest consistency is not an independent signature and leaves sandbox/benchmark approval blocked. Historical CI runs are identified.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Completed/2026-10-11-RSI-Evidence-Commit-Binding.md",
@@ -8999,15 +9011,19 @@
           "size_bytes": 3157,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_040",
+          "terminology_assessment": "PRELIMINARY_REVIEW_CLEANUP_POSTCONDITION_AND_RESIDUAL_RISK",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B040:B040-01"
+          ],
+          "findings": [
+            "SWEEP-F-0001"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_CLEANUP_POSTCONDITION_AND_RESIDUAL_RISK",
+          "note": "Reviewed full file at exact main blob SHA. It identifies the prior cleanup uncertainty, describes post-cleanup label re-query, fail-closed behavior if Docker inspection fails or a container persists, and explicitly limits assurance to what the configured daemon reports. Historical CI and smoke-test claims are tied to a named run; full independent sandbox approval stays BLOCKED. Legacy HAAN mission reference is part of known SWEEP-F-0001 rollout; no source file changed.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Completed/2026-10-11-RSI-Sandbox-Cleanup-Verification.md",
@@ -9242,15 +9258,19 @@
           "size_bytes": 4111,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_040",
+          "terminology_assessment": "PRELIMINARY_REVIEW_LAST_RESORT_CLEANUP_SCOPE",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B040:B040-03"
+          ],
+          "findings": [
+            "SWEEP-F-0001"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_LAST_RESORT_CLEANUP_SCOPE",
+          "note": "Reviewed full file at exact main blob SHA. It scopes cleanup to an if:always same-job/same-runner finalizer with explicit deadlines, independent label inventory checks and failure if cleanup cannot be confirmed. It openly states it cannot recover a destroyed/unreachable runner and still depends on daemon-reported state. Strong RSI stays inactive; no workflow execution was performed.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Completed/2026-10-11-RSI-Workflow-Cleanup-Finalizer.md",
