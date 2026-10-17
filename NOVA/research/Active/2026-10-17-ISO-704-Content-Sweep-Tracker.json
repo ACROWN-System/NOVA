@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 72/318; PARTIAL TARGETED SCREEN 1; 245 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 77/318; PARTIAL TARGETED SCREEN 1; 240 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 72,
-    "content_review_pending": 245,
-    "human_validation_pending": 72,
+    "preliminary_content_reviewed": 77,
+    "content_review_pending": 240,
+    "human_validation_pending": 77,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 1
   },
@@ -912,15 +912,19 @@
           "size_bytes": 2100,
           "extension": ".json",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_021",
+          "terminology_assessment": "PRELIMINARY_REVIEW_POLICY_BOUNDARIES_CLEAR_PAYMENT_INTENT_UNDEFINED",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B021:B021-01"
+          ],
+          "findings": [
+            "B021-F02"
+          ],
+          "reviewer": "AI-assisted preliminary content/control review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_POLICY_BOUNDARIES_CLEAR_PAYMENT_INTENT_UNDEFINED",
+          "note": "Batch 021: irreversible transfers/public-price changes require human gate; create_payment_intent is autonomous but its exact side effects are not defined here. Clarify non-binding/no-settlement/no-fee semantics.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/action_policy.json",
@@ -955,15 +959,20 @@
           "size_bytes": 6837,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_021",
+          "terminology_assessment": "PRELIMINARY_REVIEW_ALERT_STATE_COLLAPSE_AND_CHANNEL_EVIDENCE",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B021:B021-02"
+          ],
+          "findings": [
+            "B021-F01",
+            "B021-F05"
+          ],
+          "reviewer": "AI-assisted preliminary content/control review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_ALERT_STATE_COLLAPSE_AND_CHANNEL_EVIDENCE",
+          "note": "Batch 021: marker is live only for status active, otherwise labels all statuses DOWN. GitHub issue creation is not proof of email delivery; first-line voice text is interpolated into TwiML without visible XML escaping, a separate security review follow-up.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/alerts.py",
@@ -3707,15 +3716,19 @@
           "size_bytes": 2248,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_021",
+          "terminology_assessment": "PRELIMINARY_REVIEW_MISSING_UNKNOWN_COST_NEGATIVE_TESTS",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B021:B021-03"
+          ],
+          "findings": [
+            "B021-F03"
+          ],
+          "reviewer": "AI-assisted preliminary content/control review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_MISSING_UNKNOWN_COST_NEGATIVE_TESTS",
+          "note": "Batch 021: covers explicit free-resource public-price invariant and continuity warning with valid amounts, but not malformed/missing tariff values, unknown units or negative amount/rate cases. Test not run.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/tests/test_economics.py",
@@ -4196,15 +4209,19 @@
           "size_bytes": 975,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_021",
+          "terminology_assessment": "PRELIMINARY_REVIEW_REASONING_NEGATIVE_COVERAGE_INCOMPLETE",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B021:B021-04"
+          ],
+          "findings": [
+            "B021-F03"
+          ],
+          "reviewer": "AI-assisted preliminary content/control review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_REASONING_NEGATIVE_COVERAGE_INCOMPLETE",
+          "note": "Batch 021: tests one valid payload and empty object; does not cover scalar/null/list JSON, booleans as confidence, unhashable enums or critical-level human-gate inconsistency. Test not run.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/tests/test_reasoning.py",
@@ -4376,15 +4393,19 @@
           "size_bytes": 207,
           "extension": ".json",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_021",
+          "terminology_assessment": "VALID_EMPTY_WATCHLIST_NOT_CONFIGURED",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B021:B021-05"
+          ],
+          "findings": [
+            "B021-F04"
+          ],
+          "reviewer": "AI-assisted preliminary content/control review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "VALID_EMPTY_WATCHLIST_NOT_CONFIGURED",
+          "note": "Batch 021: sources array is empty; this config alone does not establish active external monitoring. Preserve NOT_CONFIGURED rather than implying active feed observation.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/watchlist.json",
@@ -14778,5 +14799,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 020 reviewed quality-gate code/tests, reasoning payload validation and economic accounting. Captured malformed-payload/human-gate consistency and missing price defaults as controlled follow-ups. Counts row-derived: 72 preliminary full reviews + 1 partial screen + 245 not reviewed = 318."
+  "last_update_note": "Batch 021 reviewed action policy, alerts, economics tests, reasoning tests and watchlist. Documented alert state collapse, undefined payment-intent side effects, missing negative test cases, empty external watchlist and TwiML escaping follow-up. Counts: 77 preliminary full + 1 partial + 240 not reviewed = 318."
 }
