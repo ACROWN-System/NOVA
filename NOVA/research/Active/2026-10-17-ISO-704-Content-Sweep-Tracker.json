@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 231/318; PARTIAL TARGETED SCREENS 5; 82 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 236/318; PARTIAL TARGETED SCREENS 5; 77 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 231,
-    "content_review_pending": 82,
-    "human_validation_pending": 231,
+    "preliminary_content_reviewed": 236,
+    "content_review_pending": 77,
+    "human_validation_pending": 236,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 5
   },
@@ -9981,15 +9981,17 @@
           "size_bytes": 1020,
           "extension": ".json",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_064",
+          "terminology_assessment": "PRELIMINARY_REVIEW_OUTREACH-OUTCOME-AND-PLANNING-SCENARIO-BOUNDARY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B064:B064-01"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 064: ledger preserves unknown outreach outcomes and explicitly labels the user-supplied 0.0001% value as an unvalidated sensitivity scenario, not observed data.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/external-review/ledger.json",
@@ -10016,7 +10018,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "4080a310df6b3c4f51db732e85be4baaf90b076e"
         },
         {
           "path": "development/audit/external-review/pipeline.py",
@@ -10024,15 +10028,19 @@
           "size_bytes": 12557,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_064",
+          "terminology_assessment": "PRELIMINARY_REVIEW_OPEN_FINDING_SCHEMA-VERSION-TYPE-VALIDATION",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B064:B064-02"
+          ],
+          "findings": [
+            "SWEEP-F-0036"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDING_SWEEP-F-0036",
+          "note": "Batch 064: score and conversion semantics generally preserve unknowns and distinguish fit from probability. `ledger.get('schema_version') != 1` can accept JSON true and 1.0 due to Python equality; exact int/non-bool validation and negative tests are recommended. Static inspection only; no execution.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/external-review/pipeline.py",
@@ -10059,7 +10067,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "f954990f5f64f803cff8a874f3928eafb04c4036"
         },
         {
           "path": "development/audit/external-review/README.md",
@@ -10067,15 +10077,17 @@
           "size_bytes": 19266,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_064",
+          "terminology_assessment": "PRELIMINARY_REVIEW_EVIDENCE-BOUNDARY-AND-DATED-PROGRAM-STATUS",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B064:B064-03"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 064: README separates reviewer-fit score from acceptance probability, hard gates from prioritization, automated findings from independent human review, and labels program eligibility discussion with its 2026-10-11 snapshot date. Current program eligibility was not freshly verified.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/external-review/README.md",
@@ -10102,7 +10114,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "ac4c4405172facee10736537cd9d6a24f56970d6"
         },
         {
           "path": "development/audit/external-review/tests/test_pipeline.py",
@@ -10110,15 +10124,19 @@
           "size_bytes": 6334,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_064",
+          "terminology_assessment": "PRELIMINARY_REVIEW_TEST-COVERAGE-CORROBORATES-F0036",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B064:B064-04"
+          ],
+          "findings": [
+            "SWEEP-F-0036"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_CORROBORATES_SWEEP-F-0036",
+          "note": "Batch 064: tests cover evidence fit, unknown outcomes, stage denominators, scenario separation, Wilson intervals, ordering and duplicate IDs; no exact `schema_version` type cases were found. Tests inspected only, not executed.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/external-review/tests/test_pipeline.py",
@@ -10145,7 +10163,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "fbfeb6e8aae7221756f4a361d8989814d6f73ce8"
         },
         {
           "path": "development/audit/FACT-OBSERVATION-AND-EVIDENCE-GOVERNANCE.md",
@@ -10153,15 +10173,17 @@
           "size_bytes": 14919,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_064",
+          "terminology_assessment": "PRELIMINARY_REVIEW_FACT-SOURCE-INFERENCE-AND-RIGHTS-BOUNDARY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B064:B064-05"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 064: proposed policy distinguishes observation, source claim, inference, restricted/licensed material and unknown/blocked states; it explicitly disclaims universal legal conclusions and requires jurisdiction-specific advice when appropriate. No legal authority was independently refreshed.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/FACT-OBSERVATION-AND-EVIDENCE-GOVERNANCE.md",
@@ -10193,7 +10215,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "4726c0a0ed4c626ba7f522550cda1a58953b1d55"
         },
         {
           "path": "development/audit/PUBLIC-CLAIMS-AND-LEGAL-COMMUNICATIONS.md",
