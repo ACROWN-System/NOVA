@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.20  
+**Version:** 0.1.21  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL FINDINGS — lexical screening only; not a completed conformity audit  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -459,7 +459,7 @@ See [Semantic Review Batch 039](2026-10-17-ISO-704-Semantic-Review-Batch-039-RSI
 
 ### SWEEP-F-0012 — Completed records labelled archival mirrors are stored under Active/
 - **Status:** OPEN — human scope decision required.
-- **Affected paths:** three RSI audit records for independent security review, Docker isolation and task benchmark dispatcher under `development/audit/Active/`.
+- **Affected paths (initially identified):** three RSI audit records for independent security review, Docker isolation and task benchmark dispatcher under `development/audit/Active/`. **Additional examples recorded in Batch 056:** `development/audit/Active/2026-10-11-HAAN-Foundational-Mission-Integration.md`, `development/audit/Active/2026-10-11-RSI-Candidate-Tree-Binding.md`, and `development/audit/Active/2026-10-11-RSI-Evaluator-Supervisor-Cleanup.md`; each labels itself a completed mirror and links a canonical Completed record.
 - **Observed issue:** Each records COMPLETED and calls itself an archival mirror while its location says Active.
 - **Action:** Determine and document the source-of-truth/lifecycle classification; do not relocate or edit these records until authorized. This finding is not permission to change any backup/archive path.
 - **Closure evidence:** human-approved scope mapping and record relationships.
@@ -727,18 +727,22 @@ The Cloudflare adapter test file cross-references SWEEP-F-0030: two `request_ima
 **Row-derived counts after Batch 054:** 318 lexical scans; 186 preliminary full-file reviews; 5 partial targeted screens; 127 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. No backup/archive path, runtime file, provider config, credential or repository setting was changed.
 
 
-### SWEEP-F-0031 — Capacity-aware rollout navigation plan remains Active after its documentation PR merged
+### SWEEP-F-0031 — Documentation-task navigation plans remain Active after their own PR merges
 
 - **Status:** OPEN — preliminary; human validation required.
-- **Affected path:** `development/audit/Active/2026-10-10-Capacity-Aware-AI-Media-Rollout.md`.
-- **Evidence:** The plan's “Verification and handoff” section says to keep the plan Active until the documentation change is reviewed and merged, then move it to the repository's Completed plan area. AstroCrown-Web PR [#47](https://github.com/ACROWN-System/AstroCrown-Web/pull/47) merged on 2026-10-09 23:13:40 UTC, and its changed-file list includes the plan, `CAPACITY-AWARE-ROLLOUT-PROPOSAL.md`, and the AI Media Generator README. The recorded main baseline still stores the plan under `development/audit/Active/` with status `ACTIVE — proposal documentation submitted for review`.
-- **Interpretation:** The plan's own lifecycle instruction and current location/status are inconsistent after the documented PR merge. This concerns the navigation-plan record only; it does not imply the media rollout or generator is implemented. The separate media candidate and rollout gates remain open.
-- **Required action:** Have a human confirm the canonical Completed plan destination and required closure metadata, then move the completed documentation-task plan out of Active without changing the proposal's unresolved candidate/rollout status.
-- **Closure evidence:** Verified destination path, a completed navigation plan referencing merged PR #47, and no claim that runtime rollout is implemented.
-- **Safety boundary:** No AstroCrown-Web plan, proposal, README, provider configuration, credential, workflow or runtime code was modified in this sweep. Only the NOVA assessment branch records the finding.
+- **Affected paths:** 
+  - `development/audit/Active/2026-10-10-Capacity-Aware-AI-Media-Rollout.md` — documentation PR #47 merged 2026-10-09; its changed-file list includes the plan, rollout proposal and media README.
+  - `development/audit/Active/2026-10-10-Open-Source-Multi-Model-Media-Strategy.md` — documentation PR #50 merged 2026-10-10; its changed-file list includes the plan, strategy and media README.
+- **Observed issue:** The capacity-aware rollout plan still says “proposal documentation submitted for review” and instructs moving to Completed after merge; the multi-model strategy plan still says to leave its PR open for review. Both plans themselves were included in successfully merged PRs and their documented review checks are recorded.
+- **Interpretation:** The navigation/documentation-task closeout status appears stale after the PRs that included the plans merged. This finding concerns only the documentation task records. The media rollout and multi-model generator strategy remain candidate/proposal architecture; their independent operational, licensing, capacity and public-release gates are not closed by these documentation PRs.
+- **Required action:** Have a human confirm the repository's canonical Completed plan destination and any required closure metadata, then update/move these completed navigation plans through the approved process. Do not change the underlying proposal statuses or infer runtime implementation.
+- **Closure evidence:** Verified destination path, documented PR references/closeout state, and content that preserves the still-open product/provider implementation gates.
+- **Safety boundary:** No AstroCrown-Web source file, plan, provider configuration, credential, workflow or runtime code was modified by this sweep. Only the NOVA assessment records were updated.
 
-## Batch 055 — AstroCrown Sanctuary and audit records
+**Batch 056 corroboration:** The open-source strategy navigation plan remains Active after PR #50 merged, while PR #84's canonical-candidate-path validation plan remains explicitly Active/under verification because its listed full RSI CI acceptance was not independently established in this source review. PR #84 is not currently added as a stale-status instance; merge alone is not sufficient evidence that every acceptance condition passed.
 
-See [Semantic Review Batch 055 — AstroCrown Sanctuary and Audit Records](2026-10-17-ISO-704-Semantic-Review-Batch-055-AstroCrown-Sanctuary-and-Audit-Records.md). Five active AstroCrown-Web files were reviewed at exact main baseline blob SHAs. Added SWEEP-F-0031 because the capacity-aware media-rollout navigation plan remains in Active and states “submitted for review” even though AstroCrown-Web PR #47 merged the plan, proposal and README link. This is a plan-lifecycle/status inconsistency only; it does not claim the rollout is implemented. The Sanctuary research register and three Cloudflare/media evaluation records produced no other unique findings. Provider/account gates remain blocked, and no live request or test was made.
+## Batch 056 — AstroCrown media and RSI plan lifecycle
 
-**Row-derived counts after Batch 055:** 318 lexical scans; 191 preliminary full-file reviews; 5 partial targeted screens; 122 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. No runtime, credential, provider configuration or backup/archive path was changed.
+See [Semantic Review Batch 056 — AstroCrown Media and RSI Plan Lifecycle](2026-10-17-ISO-704-Semantic-Review-Batch-056-AstroCrown-Media-and-RSI-Plan-Lifecycle.md). Five AstroCrown-Web audit plans were reviewed at exact recorded main baseline blob SHAs. Extended SWEEP-F-0031 with the multi-model strategy navigation plan: its own documentation PR #50 merged with the plan, strategy and README, but the plan still says the PR should remain open for review and remains Active. Cross-referenced three completed plan mirrors to SWEEP-F-0012; those files remain untouched pending the existing human scope decision. The canonical-candidate-path validation plan remains Active/under verification because this sweep did not establish its full RSI CI acceptance set from the PR merge alone. No new finding ID was opened.
+
+**Row-derived counts after Batch 056:** 318 lexical scans; 196 preliminary full-file reviews; 5 partial targeted screens; 117 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. No backup/archive path, runtime, credential, provider configuration or repository setting was changed.
