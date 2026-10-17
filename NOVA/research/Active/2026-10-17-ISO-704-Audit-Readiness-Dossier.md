@@ -3,17 +3,17 @@
 **Document ID:** NOVA-ISO704-AR-001  
 **Version:** 0.1.50  
 **Date opened:** 2026-10-17  
-**Status:** ACTIVE — readiness package construction; NOT READY FOR AN ISO 704 AUDIT  
+**Status:** ACTIVE — internal evidence/readiness package construction; NOT READY FOR A COMPLETE ISO 704 CONFORMANCE ASSESSMENT  
 **Owner:** Designated human maintainer  
 **Canonical project records:** `NOVA/TERMINOLOGY-GOVERNANCE-STANDARD.md` and `NOVA/CANONICAL-TERMINOLOGY-REGISTER.md`  
 **Related application:** AstroCrown-Web terminology / brand-language governance  
-**Provider outreach:** DEFERRED until the evidence-package readiness gate passes  
+**External certification/provider outreach:** OUT OF CURRENT SCOPE; no search or contact without a separately approved scope change  
 **Paid activity:** Not authorized by this dossier  
 **Backup boundary:** Any file beneath a backup/archive directory is immutable: do not create, update, rename, move or delete it, regardless of capitalization or naming (including dated system mirrors and `index-archive/`). The active path inventory excludes these locations; no backup/archive path is changed.
 
 ## 1. Purpose and decision
 
-Build the complete project-controlled evidence package needed to assess whether the declared terminology-work scope is ready for an independent assessment against ISO 704:2022. Provider discovery and accreditation checks are deliberately sequenced after internal evidence readiness, so a future discussion can be based on an evidence-backed scope rather than promises or assumptions.
+Build a project-controlled evidence package to assess the quality, operational use and evidence-backed alignment of the declared terminology-work practices with ISO 704:2022 where applicable. This is an internal assessment/readiness aid, not a certification project. External certification/provider discovery and accreditation checks are outside the current scope unless the human maintainer separately authorizes a scope change.
 
 This dossier is a controlled work plan and evidence index. It is not itself proof of conformity, a completed internal audit, a certification decision, or proof that an ISO 704:2022-specific certificate is available.
 
@@ -429,7 +429,7 @@ The status **NOT READY FOR A COMPLETE ISO 704 CONFORMANCE ASSESSMENT** continues
 
 - Complete text access remains unconfirmed under the $0-only policy; AR-E02 therefore remains BLOCKED specifically for the complete controlled baseline and full-matrix completeness.
 - A separate [Public-Preview Partial Mapping](2026-10-18-ISO-704-Public-Preview-Partial-Mapping.md) has begun using only provisions directly visible in identifiable public preview sources. Its rows are source-bounded and preliminary; unseen clauses are NOT ASSESSED, not passed or inapplicable.
-- ISO itself says it does not provide certification or conformity assessment: https://www.iso.org/contact-iso.html. No evidence of a dedicated third-party ISO 704 certification scheme was found in the bounded search; this does not prove none exists. No certification provider has been contacted, and provider discovery remains unauthorized/deferred.
+- ISO itself says it does not provide certification or conformity assessment: https://www.iso.org/contact-iso.html. The bounded search found no evidence of a dedicated third-party ISO 704 certification scheme; this does not prove none exists. No certification provider has been contacted. External certification/provider discovery is not part of the current objective and remains unauthorized unless a future scope change is explicitly approved.
 - The full clause/evidence matrix remains a separate template and cannot be represented as complete based on partial previews. Terminology improvement can continue, with the source and applicability limits recorded.
 - No paid access, paid membership/subscription, billable inquiry, hired adviser/provider or other cost is authorized.
 
@@ -445,3 +445,10 @@ The reviewer must consider loss of semantic nuance, domain boundaries, helpful e
 This gate complements rather than replaces any real standard assessment. It must not be used to silently disregard a verified ISO requirement; where a genuine conflict appears, document it transparently, assess the consequences and avoid any unsupported complete-conformity claim. The public-preview map remains partial, and no unseen text is presumed compliant.
 
 **Impact Analysis — IF applied:** corrective actions improve terminology without creating regressions elsewhere. **IF not applied:** the project may reduce useful knowledge and operability while increasing superficial uniformity.
+
+
+## Current objective clarification — internal quality, not certification (2026-10-18)
+
+This dossier supports internal evidence-backed improvement and assessment of terminology practices. The goal is for the project's concepts, definitions, designations, relations, governance and operational use to be precise, useful and defensible against applicable ISO 704 principles. The goal is not to obtain an external certificate. A future internal GO decision only authorizes the declared internal disposition; it does not trigger provider discovery, external audit outreach, paid services or certification applications.
+
+Complete-baseline access and the full clause inventory remain prerequisites to claiming complete assessment coverage, but they are not prerequisites for all useful work. Continue source-bounded and independently justified terminology improvements; mark invisible provisions NOT ASSESSED. The $0-only policy remains binding.
