@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 93/318; PARTIAL TARGETED SCREEN 1; 224 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 94/318; PARTIAL TARGETED SCREEN 1; 223 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 93,
-    "content_review_pending": 224,
-    "human_validation_pending": 93,
+    "preliminary_content_reviewed": 94,
+    "content_review_pending": 223,
+    "human_validation_pending": 94,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 1
   },
@@ -13386,15 +13386,19 @@
           "size_bytes": 17971,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_025",
+          "terminology_assessment": "PRELIMINARY_REVIEW_ENTITY_STATUS_DIMENSIONS_MUST_STAY_SEPARATE",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B025:B025-01"
+          ],
+          "findings": [
+            "B025-F01"
+          ],
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_ENTITY_STATUS_DIMENSIONS_MUST_STAY_SEPARATE",
+          "note": "Entity verification registry is not a canonical terminology or certification register. Necessity, feasibility, credibility, adoption and operability need separate meanings/evidence; 'verified' is not ISO conformity or deployment proof.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/verification/02-ENTITY-REGISTRY.md",
@@ -14862,5 +14866,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 024 reviewed AstroCrown-Web public-claim governance and homepage header requirements at exact baseline SHAs. These documents are requirements/process evidence, not proof each claim or UI behavior is implemented and independently verified. Row-derived counts: 93+1+224=318."
+  "last_update_note": "Batch 025 reviewed the AstroCrown entity registry for distinct status dimensions. Counts derived from rows: 94+1+223=318."
 }
