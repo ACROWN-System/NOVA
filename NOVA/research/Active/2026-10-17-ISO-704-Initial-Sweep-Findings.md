@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.11  
+**Version:** 0.1.12  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL FINDINGS — lexical screening only; not a completed conformity audit  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -12,7 +12,7 @@
 
 This record captures an automated exact-pattern lexical screen of all 318 inventoried active file paths on the six repositories' recorded default-branch `main` tree snapshots. Exact content was retrieved by the file/blob interface and checked for selected canonical labels, old/new naming variants, certification/compliance language and selected concept phrases. The scan is a discovery aid only. It does **not** decide whether each occurrence is semantically correct or current, does not complete the semantic term-by-term human review, does not replace the full-standard matrix, and is not an independent audit.
 
-The six-repository inventory contains 318 active file paths. All 318 now have a lexical-screen record in the tracker and no Git-blob fetch failed. Every tracker row remains `content_review_status: NOT_REVIEWED` and `terminology_assessment: NOT_ASSESSED` until a substantive entry-level content review and reviewer decision are recorded. The lexical scan does not constitute that review.
+The six-repository inventory contains 318 active file paths. All 318 received an initial lexical screen, which is discovery-only. The row-level tracker subsequently records per-file preliminary full-file reviews and partial targeted screens; these remain AI-assisted preliminary records awaiting human validation and are not formal ISO 704 clause-level assessments. Backup/archive paths remain excluded and immutable.
 
 No backup/archive paths were scanned as active targets or modified. Historical/backup files remain immutable and outside the active sweep.
 
@@ -580,3 +580,24 @@ See [Semantic Review Batch 046 — NOVA Controls and Security Language](2026-10-
 **Positive control — B046-02:** the pull request template strongly distinguishes source-backed external contracts, test types, unknowns, cost/permission checks and review evidence. This is a useful designed control, but its existence does not prove the template is followed or that repository rules enforce every check.
 
 **Row-derived counts after Batch 046:** 318 lexical scans; 146 preliminary full-file reviews; 5 partial targeted screens; 167 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. No backup/archive path or runtime file was changed.
+
+## Batch 047 — NOVA web styles and route claims
+
+See [Semantic Review Batch 047 — NOVA Web Styles and Route Claims](2026-10-17-ISO-704-Semantic-Review-Batch-047-NOVA-Web-Styles-and-Route-Claims.md). Five inventoried NOVA paths were reviewed against exact blob SHAs at baseline commit `2a1f5c496474aa099703432e99b3d3dfddfd3fd7`. Three .gitkeep files were confirmed to be empty placeholders and recorded as reviewed.
+
+### SWEEP-F-0021 — Missing-route page implies access/security properties not established by its content
+- **Status:** OPEN.
+- **Affected path:** `404.html`.
+- **Observed issue:** “Access Restricted”, “encrypted address” and “Secure Portal” imply properties not established by this HTML. The robots meta directive governs crawler/indexing behavior, not user authorization. Actual deployed HTTP status and access-control behavior were not tested.
+- **Required action:** Use accurate missing-route wording and independently verify any asserted response status, encryption or authorization behavior.
+- **Closure evidence:** Reviewed wording plus deployment-level response evidence; specific access-control tests if that claim remains.
+
+### SWEEP-F-0022 — Stylesheet header overstates privacy and anti-fingerprinting assurance
+- **Status:** OPEN.
+- **Affected path:** `assets/css/style.css`.
+- **Observed issue:** A system-preferred font stack and no web-font import declarations in this stylesheet do not establish page-wide privacy hardening or prevention of browser fingerprinting.
+- **Required action:** Narrow the comment to observable file-level properties or supply appropriately scoped independent evidence for wider claims.
+- **Closure evidence:** Reviewed wording plus site-wide test evidence for any broader privacy/anti-fingerprinting assertion.
+
+**Row-derived counts after Batch 047:** 318 lexical scans; 151 preliminary full-file reviews; 5 partial targeted screens; 162 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. No backup/archive path or runtime file was changed.
+
