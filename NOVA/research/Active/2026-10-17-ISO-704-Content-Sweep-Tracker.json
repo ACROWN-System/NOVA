@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 146/318; PARTIAL TARGETED SCREENS 5; 167 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 151/318; PARTIAL TARGETED SCREENS 5; 162 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 146,
-    "content_review_pending": 167,
-    "human_validation_pending": 146,
+    "preliminary_content_reviewed": 151,
+    "content_review_pending": 162,
+    "human_validation_pending": 151,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 5
   },
@@ -596,15 +596,19 @@
           "size_bytes": 1718,
           "extension": ".html",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_047",
+          "terminology_assessment": "PRELIMINARY_REVIEW_ROUTE_AND_SECURITY_LABELS_OVERSTATE_EVIDENCE",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B047:B047-01"
+          ],
+          "findings": [
+            "SWEEP-F-0021"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDING_SWEEP-F-0021",
+          "note": "Batch 047: page title/content use “Access Restricted”, “encrypted address” and “Secure Portal”, but the HTML does not establish access control, encryption, or the actual HTTP response status. The robots meta directive concerns crawler indexing/following, not user authorization. No deployed endpoint was tested.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "404.html",
@@ -631,7 +635,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+          "reviewed_blob_sha": "9f703659b0ad9649c48b5d1549a21e1d0059ab96"
         },
         {
           "path": "assets/css/.gitkeep",
@@ -639,15 +645,17 @@
           "size_bytes": 0,
           "extension": "[no-ext]",
           "provisional_review_queue": "EXTENSIONLESS_CONTENT_FETCHED; SEMANTIC REVIEW REQUIRED",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_047",
+          "terminology_assessment": "PRELIMINARY_REVIEW_EMPTY_PLACEHOLDER_NO_SUBSTANTIVE_CONTENT",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B047:B047-02"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_EMPTY_PLACEHOLDER_NO_SUBSTANTIVE_CONTENT",
+          "note": "Batch 047: exact baseline blob is zero bytes. The file is an empty directory placeholder and contains no definition, terminology, privacy/security claim, or other substantive text to assess.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "assets/css/.gitkeep",
@@ -674,7 +682,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+          "reviewed_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
         },
         {
           "path": "assets/css/style.css",
@@ -682,15 +692,19 @@
           "size_bytes": 2337,
           "extension": ".css",
           "provisional_review_queue": "UNKNOWN_FORMAT_REVIEW_REQUIRED",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_047",
+          "terminology_assessment": "PRELIMINARY_REVIEW_PRIVACY_AND_FINGERPRINTING_CLAIMS_UNSUPPORTED",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B047:B047-03"
+          ],
+          "findings": [
+            "SWEEP-F-0022"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDING_SWEEP-F-0022",
+          "note": "Batch 047: stylesheet header labels the design “Privacy-Hardened” and “Anti-Fingerprinting Layout”. It defines a system-preferred font stack and has no external font import or @font-face declaration in this file, but those facts do not establish page-wide privacy hardening or prevention of browser fingerprinting. No site/runtime privacy test was performed.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "assets/css/style.css",
@@ -717,7 +731,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+          "reviewed_blob_sha": "071b1094967502314a484e12ef31ce7f55582726"
         },
         {
           "path": "assets/images/.gitkeep",
@@ -725,15 +741,17 @@
           "size_bytes": 0,
           "extension": "[no-ext]",
           "provisional_review_queue": "UNKNOWN_FORMAT_REVIEW_REQUIRED",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_047",
+          "terminology_assessment": "PRELIMINARY_REVIEW_EMPTY_PLACEHOLDER_NO_SUBSTANTIVE_CONTENT",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B047:B047-04"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_EMPTY_PLACEHOLDER_NO_SUBSTANTIVE_CONTENT",
+          "note": "Batch 047: exact baseline blob is zero bytes. The file is an empty directory placeholder and contains no definition, terminology, privacy/security claim, or other substantive text to assess.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "assets/images/.gitkeep",
@@ -760,7 +778,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+          "reviewed_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
         },
         {
           "path": "assets/js/.gitkeep",
@@ -768,15 +788,17 @@
           "size_bytes": 0,
           "extension": "[no-ext]",
           "provisional_review_queue": "UNKNOWN_FORMAT_REVIEW_REQUIRED",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_047",
+          "terminology_assessment": "PRELIMINARY_REVIEW_EMPTY_PLACEHOLDER_NO_SUBSTANTIVE_CONTENT",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B047:B047-05"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_EMPTY_PLACEHOLDER_NO_SUBSTANTIVE_CONTENT",
+          "note": "Batch 047: exact baseline blob is zero bytes. The file is an empty directory placeholder and contains no definition, terminology, privacy/security claim, or other substantive text to assess.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "assets/js/.gitkeep",
@@ -803,7 +825,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+          "reviewed_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
         },
         {
           "path": "assets/js/app.js",
@@ -15066,5 +15090,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 046 reviewed five active NOVA files at main baseline commit 2a1f5c496474aa099703432e99b3d3dfddfd3fd7, verifying each recorded blob SHA. Findings SWEEP-F-0017 through SWEEP-F-0020 opened. Counts: 146 preliminary full-file reviews + 5 partial screens + 167 not reviewed = 318. Human validation pending; formal ISO 704 clause assessment remains zero."
+  "last_update_note": "Batch 047 reviewed five active NOVA files at main baseline commit 2a1f5c496474aa099703432e99b3d3dfddfd3fd7, verifying each recorded blob SHA. Findings SWEEP-F-0021 and SWEEP-F-0022 opened for unsupported route/security wording and stylesheet privacy/anti-fingerprinting claims; three zero-byte .gitkeep placeholders recorded as reviewed. Counts: 151 preliminary full-file reviews + 5 partial screens + 162 not reviewed = 318. Human validation pending; formal ISO 704 clause assessment remains zero."
 }
