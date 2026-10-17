@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.30  
+**Version:** 0.1.31  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL SWEEP FINDINGS — lexical screening plus preliminary content reviews; human validation and formal clause assessment pending  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -863,11 +863,11 @@ See [Semantic Review Batch 064 — AstroCrown External Review and Evidence Gover
 ### SWEEP-F-0038 — Homepage audit references a requirements artifact absent from the reviewed baseline
 
 - **Status:** OPEN — preliminary; human validation required.
-- **Affected path:** `AstroCrown-Web/development/audit/records/AUDIT-2026.09.20-001.md`; cited artifact `development/HOMEPAGE-REQUIREMENTS.md`.
-- **Observed issue:** Fetching the cited active path at reviewed main baseline `5faea74dd1b40ec98acf9d59d9e404fc18122032` returns not found. The audit's remediation evidence for F-001 points to that path; its related verification matrix remains present at `development/audit/tests/HOMEPAGE-BASELINE.md`.
-- **Interpretation:** The requirement document may have existed at the historic audit date, but the record does not give a retrievable immutable historical reference or a retained replacement reference in the reviewed baseline. The 404 does not prove historical non-existence or whether an excluded archive contains a copy.
-- **Required action:** Attach an immutable historical source reference or explicitly identify the retained/superseding artifact and its provenance. Do not silently rewrite the historic result or inspect/change excluded backups as part of this sweep.
-- **Closure evidence:** A retrievable historical or retained evidence reference, clear provenance/date, and explicit distinction between the original audit snapshot and current requirement state.
+- **Affected paths:** `AstroCrown-Web/development/audit/records/AUDIT-2026.09.20-001.md`; `AstroCrown-Web/development/audit/tests/HOMEPAGE-BASELINE.md`; cited artifact `development/HOMEPAGE-REQUIREMENTS.md`.
+- **Observed issue:** Fetching the cited active path at reviewed main baseline `5faea74dd1b40ec98acf9d59d9e404fc18122032` returns not found. The historic audit's remediation evidence for F-001 points to that path. The surviving verification matrix refers to requirement identifiers `R-001` through `R-013`, but does not reproduce their definitions or link to a retrievable immutable requirement baseline.
+- **Interpretation:** The requirement document may have existed at the historic audit date, but the current reviewed baseline does not provide a retrievable requirement concept source against which the test identifiers can be interpreted. The 404 does not prove historical non-existence or whether an excluded archive contains a copy.
+- **Required action:** Attach an immutable historical source reference or explicitly identify the retained/superseding artifact and its provenance; ensure dependent tests can trace each test identifier to its controlled requirement. Do not silently rewrite the historic result, reconstruct requirement wording from test descriptions, or inspect/change excluded backups as part of this sweep.
+- **Closure evidence:** A retrievable historical or retained requirement reference, clear provenance/date, explicit distinction between original audit snapshot and current requirement state, and verified mapping from test IDs to their approved requirements.
 
 ### SWEEP-F-0039 — Audit record template does not define Remediated versus Closed
 
@@ -892,3 +892,29 @@ See [Semantic Review Batch 064 — AstroCrown External Review and Evidence Gover
 See [Semantic Review Batch 065 — AstroCrown Audit Records and Templates](2026-10-17-ISO-704-Semantic-Review-Batch-065-AstroCrown-Audit-Records-and-Templates.md). Five AstroCrown-Web files were reviewed against the exact blob SHAs at main-baseline commit `5faea74dd1b40ec98acf9d59d9e404fc18122032`. Opened SWEEP-F-0037 for a completed remediation list titled `Required next work`; SWEEP-F-0038 because a cited homepage-requirements artifact does not resolve at the reviewed baseline (without assuming it never existed historically); SWEEP-F-0039 because the audit template does not define `Remediated` versus `Closed`; and SWEEP-F-0040 because candidate eligibility does not define how a justified mandatory N/A affects eligibility. The audit overview and dated security-baseline report had no unique finding. No AstroCrown-Web sources were changed, historic audits were not re-performed, and no test/workflow was run.
 
 **Row-derived counts after Batch 065:** 318 lexical scans; 241 preliminary full-file reviews; 5 partial targeted screens; 72 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. Scope remains proposed and not human-approved. No AstroCrown-Web source/runtime files, backup/archive paths, credentials, provider settings, workflows, tests, billing, security controls, or repository settings were changed.
+
+ 
+### SWEEP-F-0041 — Fact-evidence template mixes distinct classification dimensions in one primary category
+
+- **Status:** OPEN — preliminary; human validation required.
+- **Affected path:** `AstroCrown-Web/development/audit/templates/FACT-OBSERVATION-RECORD.md`, field `Primary category`.
+- **Observed issue:** One single-choice field places evidential/epistemic classes, material/method classes, confidentiality handling and uncertainty/state classes in the same list, although those labels may apply simultaneously to a source or record.
+- **Interpretation:** The values are not mutually exclusive and do not occupy one conceptual level. This can create inconsistent classification and reduce comparability across records. Other fields capture some dimensions, but no controlled rule explains selection of the single primary value or use of multiple labels.
+- **Required action:** Separate independent classification axes (e.g. evidence/evaluation type, material kind, information-handling status and verification state), or define a controlled primary-category rule with permitted secondary labels. Define the concepts and relations before changing existing records.
+- **Closure evidence:** Human-approved concept structure; definitions/inclusion-exclusion rules for each category; examples showing multi-dimensional cases; and a migration rule for existing records.
+
+### SWEEP-F-0042 — Recovery-after-compromise assurance is not distinguished from backup existence
+
+- **Status:** OPEN — preliminary; human validation required.
+- **Affected paths:** `AstroCrown-Web/development/audit/tests/SECURITY-BASELINE-TESTS.md` (SEC-015); `AstroCrown-Web/development/audit/records/SECURITY-AUDIT-2026.09.20-001.md` (SEC-015 result).
+- **Observed issue:** The control is titled `Recovery after compromise`, while the dated audit's PASS evidence says only that versioned backup structure and recovery-oriented backup copies exist. The record does not cite a restore exercise, measured recovery outcome, or equivalent evidence demonstrating the recovery function.
+- **Interpretation:** The cited evidence supports backup artefact presence but does not by itself establish recoverability. This is a gap between the control concept implied by the result and its recorded evidence.
+- **Required action:** A human security owner should define whether SEC-015 means backup presence, restore capability, or complete recovery after compromise; set the acceptance criterion accordingly; and record a controlled restore/recovery exercise if required and authorized. Do not run recovery or alter backups as part of this terminology sweep.
+- **Closure evidence:** Approved control definition, explicit acceptance criteria, and traceable evidence matching the chosen meaning. If recovery testing remains unperformed, the status must not imply demonstrated recoverability.
+
+## Batch 066 — AstroCrown evidence templates and verification convention
+
+See [Semantic Review Batch 066 — AstroCrown Evidence Templates and Verification Convention](2026-10-17-ISO-704-Semantic-Review-Batch-066-AstroCrown-Evidence-Templates-and-Verification-Convention.md). Five files were reviewed at exact blob SHAs from AstroCrown-Web main-baseline commit `5faea74dd1b40ec98acf9d59d9e404fc18122032`. Opened SWEEP-F-0041 because the fact-observation template's single-choice primary category conflates epistemic/evidential type, material/method type, confidentiality handling and unknown/blocked state. Extended SWEEP-F-0038 because the homepage verification matrix uses R-001–R-013 identifiers whose requirement definitions are not retrievable from the reviewed baseline. Opened SWEEP-F-0042 because a dated audit marks recovery-after-compromise PASS based on backup-artefact existence without recording restoration/recovery verification. The test-case template and development convention provide useful criterion/method/result/evidence vocabulary and versioned-reference discipline. This review does not assert a formal ISO 704 clause interpretation and did not execute tests or restore actions.
+
+**Row-derived counts after Batch 066:** 318 lexical scans; 246 preliminary full-file reviews; 5 partial targeted screens; 67 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. Scope remains proposed and not human-approved. No AstroCrown-Web source/runtime files, backup/archive paths, workflows, credentials, provider calls, billing, restore actions or repository settings were changed.
+
