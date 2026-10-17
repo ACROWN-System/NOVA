@@ -40,7 +40,8 @@ class GitHubAlertDeduplicationTests(unittest.TestCase):
         self.assertIn("/issues?state=open&per_page=100", list_req.full_url)
         self.assertEqual(comment_req.method, "POST")
         self.assertTrue(comment_req.full_url.endswith("/issues/42/comments"))
-        self.assertNotIn("/issues", comment_req.full_url.split("/comments")[0].rsplit("/", 1)[-1])
+        self.assertTrue(comment_req.full_url.endswith("/issues/42/comments"))
+        self.assertNotEqual(comment_req.full_url, "https://api.github.com/repos/example/repo/issues")
 
     def test_new_open_issue_created_when_exact_title_is_absent(self):
         issue_title = "NOVA AI heart: gemini model model-b health is unacceptable"
@@ -63,6 +64,18 @@ class GitHubAlertDeduplicationTests(unittest.TestCase):
         self.assertEqual(create_req.method, "POST")
         self.assertTrue(create_req.full_url.endswith("/issues"))
         self.assertNotIn("/comments", create_req.full_url)
+
+    def test_notice_alert_never_invokes_sms_or_voice(self):
+        from NOVA import alerts
+
+        with patch("NOVA.alerts.send_github_issue", return_value=True) as github:
+            with patch("NOVA.alerts.send_sms") as sms:
+                with patch("NOVA.alerts.send_voice") as voice:
+                    alerts.send_all_alerts("health warning", "details", severity="notice")
+
+        github.assert_called_once_with("health warning", "details")
+        sms.assert_not_called()
+        voice.assert_not_called()
 
     def test_issue_listing_failure_does_not_fall_back_to_duplicate_creation(self):
         issue_title = "NOVA AI heart: groq model model-c health is unacceptable"
