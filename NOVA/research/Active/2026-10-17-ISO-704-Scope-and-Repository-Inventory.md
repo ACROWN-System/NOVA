@@ -1,7 +1,7 @@
 # ISO 704:2022 Scope Proposal and Repository Inventory
 
 **Document ID:** NOVA-ISO704-SCOPE-001  
-**Version:** 0.1.7  
+**Version:** 0.1.8  
 **Snapshot date:** 2026-10-17  
 **Status:** PROPOSED SCOPE / INITIAL PATH INVENTORY — human approval and detailed content review pending  
 **Related dossier:** [ISO 704:2022 Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
@@ -40,7 +40,7 @@ The following default-branch tree snapshots were retrieved from GitHub's Git dat
 
 ## 4. Coverage limits and exclusions to resolve
 
-This is a snapshot of active file paths at the recorded Git tree SHAs. The tracker records a selected-term lexical scan of all 318 inventoried active files, with all rows marked `FETCHED_AND_LEXICALLY_SCANNED`. Preliminary semantic reviews have now been recorded for six repository-level README files in [Batch 001](2026-10-17-ISO-704-Semantic-Review-Batch-001-READMEs.md) and five NOVA governance/operational files in [Batch 002](2026-10-17-ISO-704-Semantic-Review-Batch-002-NOVA-Core.md); the five additional NOVA core files are also reviewed in [Batch 002](2026-10-17-ISO-704-Semantic-Review-Batch-002-NOVA-Core.md), and the large 28,490-line NOVA state-ledger README has a separately marked PARTIAL targeted screen in [Batch 003](2026-10-17-ISO-704-Semantic-Review-Batch-003-Large-NOVA-README.md). Currently 29 active files have preliminary full-file reviews, one file has a partial targeted screen, and the other 289 active-file rows remain `NOT_REVIEWED` / `NOT_ASSESSED`. The six preliminary reviews are not human-validated ISO conformity results. The lexical scan does **not** establish that context has been interpreted, all terms have been located, or repository usage is consistent. See the [initial sweep findings](2026-10-17-ISO-704-Initial-Sweep-Findings.md).
+This is a snapshot of active file paths at the recorded Git tree SHAs. The tracker records a selected-term lexical scan of all 318 inventoried active files, with all rows marked `FETCHED_AND_LEXICALLY_SCANNED`. Preliminary semantic reviews have now been recorded for six repository-level README files in [Batch 001](2026-10-17-ISO-704-Semantic-Review-Batch-001-READMEs.md) and five NOVA governance/operational files in [Batch 002](2026-10-17-ISO-704-Semantic-Review-Batch-002-NOVA-Core.md); the five additional NOVA core files are also reviewed in [Batch 002](2026-10-17-ISO-704-Semantic-Review-Batch-002-NOVA-Core.md), and the large 28,490-line NOVA state-ledger README has a separately marked PARTIAL targeted screen in [Batch 003](2026-10-17-ISO-704-Semantic-Review-Batch-003-Large-NOVA-README.md). Currently 32 active files have preliminary full-file reviews, one file has a partial targeted screen, and the other 285 active-file rows remain `NOT_REVIEWED` / `NOT_ASSESSED`. The six preliminary reviews are not human-validated ISO conformity results. The lexical scan does **not** establish that context has been interpreted, all terms have been located, or repository usage is consistent. See the [initial sweep findings](2026-10-17-ISO-704-Initial-Sweep-Findings.md).
 
 The inventory includes all non-archive blobs regardless of file extension so that file types are not excluded merely because their content format is unfamiliar. During the audit, classify each file as applicable text/content, non-text asset, generated artefact, secret-bearing/restricted material or justified exclusion; record the reason and reviewer. Do not treat a file as non-applicable solely from its extension.
 
@@ -95,3 +95,8 @@ Languages: English is the initial authored language in the current draft framewo
 ## 13. Revision history
 
 - **2026-10-17 / v0.1.7:** Updated counts after Batch 006 (Simulation Lab) and Batch 007 (AI Sanctuary). The 29 preliminary reviews include all eight inventoried paths in each of those repositories. AI Sanctuary remains a human scope-decision blocker; 289 active-file content reviews remain and one large state-ledger file remains only partially screened.
+
+
+## 14. Revision history
+
+- **2026-10-17 / v0.1.8:** Added [Batch 008 — Resource Readiness](2026-10-17-ISO-704-Semantic-Review-Batch-008-Resource-Readiness.md), documented the conflicting Hugging Face inference-credit status across two active documents, and reconciled the summary count using row-level statuses. Current counts: 32 preliminary full-file reviews, one partial targeted screen and 285 not reviewed, across 318 rows.
