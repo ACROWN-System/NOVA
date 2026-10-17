@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 106/318; PARTIAL TARGETED SCREENS 5; 207 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 111/318; PARTIAL TARGETED SCREENS 5; 202 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 106,
-    "content_review_pending": 207,
-    "human_validation_pending": 106,
+    "preliminary_content_reviewed": 111,
+    "content_review_pending": 202,
+    "human_validation_pending": 111,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 5
   },
@@ -7005,15 +7005,19 @@
           "size_bytes": 7274,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_039",
+          "terminology_assessment": "PRELIMINARY_REVIEW_COMPLETED_RECORD_MISCLASSIFIED_IN_ACTIVE_PATH",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B039:B039-04"
+          ],
+          "findings": [
+            "SWEEP-F-0012"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_COMPLETED_RECORD_MISCLASSIFIED_IN_ACTIVE_PATH",
+          "note": "Reviewed full file at exact main blob SHA. The record explicitly says COMPLETED and that this Active-path copy is retained as an archival mirror, while independent security verification remains BLOCKED. It transparently limits Docker smoke-test evidence and retains INCOMPLETE readiness. The Active-versus-archival classification needs a human scope decision; the file was not moved or edited.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Active/2026-10-11-RSI-Docker-Isolation.md",
@@ -7331,15 +7335,19 @@
           "size_bytes": 7092,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_039",
+          "terminology_assessment": "PRELIMINARY_REVIEW_COMPLETED_RECORD_MISCLASSIFIED_IN_ACTIVE_PATH",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B039:B039-03"
+          ],
+          "findings": [
+            "SWEEP-F-0012"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_COMPLETED_RECORD_MISCLASSIFIED_IN_ACTIVE_PATH",
+          "note": "Reviewed full file at exact main blob SHA. It calls itself COMPLETED and an archival mirror, but is located in development/audit/Active/. It properly says this was targeted code/test review, not independent third-party sandbox certification, and preserves the independent approval blocker. The Active-versus-archival classification needs a human scope decision; the file was not moved or edited.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Active/2026-10-11-RSI-Independent-Security-Review.md",
@@ -7613,15 +7621,19 @@
           "size_bytes": 4751,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_039",
+          "terminology_assessment": "PRELIMINARY_REVIEW_COMPLETED_RECORD_MISCLASSIFIED_IN_ACTIVE_PATH",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B039:B039-05"
+          ],
+          "findings": [
+            "SWEEP-F-0012"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_COMPLETED_RECORD_MISCLASSIFIED_IN_ACTIVE_PATH",
+          "note": "Reviewed full file at exact main blob SHA. It says COMPLETED and that the Active-path copy is an archival mirror; the context-packing profile remains disabled/unapproved and readiness INCOMPLETE. Its claim boundaries are explicit, but location/status classification must be resolved by a human scope decision. The file was not moved or edited.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Active/2026-10-11-RSI-Task-Benchmark-Dispatcher.md",
@@ -11853,15 +11865,17 @@
           "size_bytes": 5903,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_039",
+          "terminology_assessment": "PRELIMINARY_REVIEW_SNAPSHOT_PROVENANCE_AND_CAPABILITY_BOUNDARY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B039:B039-01"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_SNAPSHOT_PROVENANCE_AND_CAPABILITY_BOUNDARY",
+          "note": "Reviewed full file at exact main blob SHA. The record specifies source commit/tree IDs, counts, blob/byte comparisons and explicitly states tree identity detects exact tracked-state recurrence but is not a quality score or proof of capability improvement. It distinguishes the tracked snapshot scope from Git history, untracked files, runtime/deployed/provider state. This is dated historical evidence; no backup content was inspected or modified in this review.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/nova-recursive-self-improvement/Completed/2026-10-11-System-Snapshot-and-RSI-Cycle-Detection.md",
@@ -12167,15 +12181,19 @@
           "size_bytes": 13924,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_039",
+          "terminology_assessment": "PRELIMINARY_REVIEW_REVIEWER_INDEPENDENCE_AND_STALE_WORKFLOW_REFERENCE",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B039:B039-02"
+          ],
+          "findings": [
+            "SWEEP-F-0011"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_REVIEWER_INDEPENDENCE_AND_STALE_WORKFLOW_REFERENCE",
+          "note": "Reviewed full file at exact main blob SHA. It clearly states the package is review material, not an approval/certification/readiness declaration; requires reviewer competence/independence, exact commit, per-gate evidence, findings and explicit conclusions; and says an automated pass or approval string is not independent review. However, its primary-components list links to ../../.github/workflows/nova-rsi.yml despite the RSI README/status records saying Strong RSI is suspended and that active workflow is absent. Finding SWEEP-F-0011.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/nova-recursive-self-improvement/INDEPENDENT-REVIEW-PACKAGE.md",

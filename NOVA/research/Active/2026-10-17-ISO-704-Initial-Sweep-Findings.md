@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.3  
+**Version:** 0.1.4  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL FINDINGS — lexical screening only; not a completed conformity audit  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -444,3 +444,24 @@ See [Semantic Review Batch 038](2026-10-17-ISO-704-Semantic-Review-Batch-038-RSI
 - **Closure evidence:** revised text and repeat search confirming no contradictory instruction.
 
 **Row-derived counts after Batch 038:** 318 lexical scans; 106 preliminary full-file reviews; 5 partial targeted screens; 207 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments.
+
+
+## Batch 039 — RSI review evidence and archive classification
+
+See [Semantic Review Batch 039](2026-10-17-ISO-704-Semantic-Review-Batch-039-RSI-Review-Evidence-and-Archive-Classification.md).
+
+### SWEEP-F-0011 — Stale active-workflow reference in independent-review package
+- **Status:** OPEN.
+- **Affected path:** `development/nova-recursive-self-improvement/INDEPENDENT-REVIEW-PACKAGE.md`.
+- **Observed issue:** The primary-components list references `.github/workflows/nova-rsi.yml`, although current status sources say Strong RSI is suspended and this active workflow path is absent.
+- **Action:** Refresh the reference to the current protected policy/status and dormant template, preserving the distinction between active CI and historical/suspended workflow evidence.
+- **Closure evidence:** checked links at a pinned commit and repeat verification of `SUSPENDED` / `INCOMPLETE`.
+
+### SWEEP-F-0012 — Completed records labelled archival mirrors are stored under Active/
+- **Status:** OPEN — human scope decision required.
+- **Affected paths:** three RSI audit records for independent security review, Docker isolation and task benchmark dispatcher under `development/audit/Active/`.
+- **Observed issue:** Each records COMPLETED and calls itself an archival mirror while its location says Active.
+- **Action:** Determine and document the source-of-truth/lifecycle classification; do not relocate or edit these records until authorized. This finding is not permission to change any backup/archive path.
+- **Closure evidence:** human-approved scope mapping and record relationships.
+
+**Row-derived counts after Batch 039:** 318 lexical scans; 111 preliminary full-file reviews; 5 partial targeted screens; 202 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments.
