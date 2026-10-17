@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 266,
-    "content_review_pending": 47,
-    "human_validation_pending": 266,
+    "preliminary_content_reviewed": 271,
+    "content_review_pending": 42,
+    "human_validation_pending": 271,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 5
   },
@@ -11936,15 +11936,20 @@
           "size_bytes": 1704,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_071",
+          "terminology_assessment": "PRELIMINARY_REVIEW_MARKET-METRIC-AND-REFERENCE-TERM-BOUNDARY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B071:B071-01"
+          ],
+          "findings": [
+            "SWEEP-F-0038",
+            "SWEEP-F-0049"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDINGS_SWEEP-F-0038_F-0049",
+          "note": "Batch 071: candidate metric/asset list and source/freshness/derived-status safeguards reviewed. Reference currency/device remains undefined here too (SWEEP-F-0049); migration excerpt is not pinned to immutable origin (SWEEP-F-0038). No market methodology was inferred.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/index-section/MARKET-DATA-BAR.md",
@@ -11971,7 +11976,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "abccb55ba2f3c88ebca65a1c1eb8a3fc66406318"
         },
         {
           "path": "development/index-section/PAGINATION.md",
@@ -11979,15 +11986,20 @@
           "size_bytes": 2828,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_071",
+          "terminology_assessment": "PRELIMINARY_REVIEW_PAGINATION-SCOPE-AND-DUPLICATED-DIRECTORY-EXCERPT",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B071:B071-02"
+          ],
+          "findings": [
+            "SWEEP-F-0038",
+            "SWEEP-F-0051"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDINGS_SWEEP-F-0038_F-0051",
+          "note": "Batch 071: PAGINATION.md reproduces R-023 directory/filter requirements also present in DIRECTORY.md while exact pagination remains undefined and no pagination-specific model is provided (SWEEP-F-0051). Historical line-range source lacks immutable origin pin (SWEEP-F-0038). No pagination behavior was invented.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/index-section/PAGINATION.md",
@@ -12014,7 +12026,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "7048fe35517e99ee421b4fe1d8b9ffcd93cd9c00"
         },
         {
           "path": "development/index-section/README.md",
@@ -12022,15 +12036,19 @@
           "size_bytes": 1842,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_071",
+          "terminology_assessment": "PRELIMINARY_REVIEW_SOURCE-AUTHORITY-MODEL-PROVENANCE",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B071:B071-03"
+          ],
+          "findings": [
+            "SWEEP-F-0038"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_SOURCE-BOUNDARY-TRACEABILITY_SWEEP-F-0038",
+          "note": "Batch 071: clearly distinguishes active section sources, shared reference conventions, historical material, candidate and approved states, and subsystem directories. The pre-migration source is described as preserved in backup snapshots but has no immutable source identifier in this README (SWEEP-F-0038); excluded paths were not inspected.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/index-section/README.md",
@@ -12057,7 +12075,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "7380213b0aa909e09090b9f9c20dec170c698ae8"
         },
         {
           "path": "development/index-section/SECONDARY-NAVIGATION.md",
@@ -12065,15 +12085,19 @@
           "size_bytes": 1178,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_071",
+          "terminology_assessment": "PRELIMINARY_REVIEW_CANDIDATE-DESTINATIONS-AND-SOURCE-TRACEABILITY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B071:B071-04"
+          ],
+          "findings": [
+            "SWEEP-F-0038"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_SEMANTIC_FINDING_SWEEP-F-0038",
+          "note": "Batch 071: candidate destinations, non-duplication objective, prohibition on invented destinations, and undefined state are explicitly preserved. Historical line-range source lacks immutable origin pin (SWEEP-F-0038).",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/index-section/SECONDARY-NAVIGATION.md",
@@ -12100,7 +12124,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "08fe585ac93ec0bd058c125d9301b1f403aec574"
         },
         {
           "path": "development/index.html",
@@ -12108,15 +12134,17 @@
           "size_bytes": 197,
           "extension": ".html",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_071",
+          "terminology_assessment": "PRELIMINARY_REVIEW_MINIMAL_HTML_SCAFFOLD_NO_UNIQUE_TERMINOLOGY_FINDING",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B071:B071-05"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_TERMINOLOGY_FINDING_MINIMAL_SCAFFOLD",
+          "note": "Batch 071: pinned baseline is a minimal HTML shell with document language/metadata/title and an empty body. Review does not infer a rendered homepage and did not run browser/build verification; no unique terminology finding from this file alone.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/index.html",
@@ -12143,7 +12171,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "0832cf9e8bbee2221e9ee937f8a89a14b388d300"
         },
         {
           "path": "development/nova-ai-orchestration/README.md",
@@ -15697,5 +15727,5 @@
     }
   ],
   "last_updated": "2026-10-18",
-  "last_update_note": "Batch 070 reviewed five active AstroCrown-Web homepage-section documents at pinned main-baseline commit 5faea74dd1b40ec98acf9d59d9e404fc18122032 and verified exact source blob SHAs. Extended SWEEP-F-0038 to all five migrated section excerpts and SWEEP-F-0044 to the active Discovery Information Bar; opened SWEEP-F-0048 for candidate directory taxonomy semantics, SWEEP-F-0049 for reference device/currency and percentage-basis ambiguity, and SWEEP-F-0050 for untyped Influence Map candidate dimensions/mapping relations. Counts: 266 preliminary full reviews + 5 partial targeted screens + 47 pending = 318. Human validation pending; formal ISO 704 clause assessment remains zero; scope remains proposed/not human-approved. No source/runtime edits, tests/workflows, backup/archive reads, credentials, provider calls, billing or repository settings were involved."
+  "last_update_note": "Batch 071 reviewed five active AstroCrown-Web source files at main baseline commit 5faea74dd1b40ec98acf9d59d9e404fc18122032 and verified exact blob SHAs. Extended SWEEP-F-0038 to three more migrated section excerpts and the index-section authority README; extended SWEEP-F-0049 to MARKET-DATA-BAR; opened SWEEP-F-0051 because PAGINATION.md duplicates R-023 directory/filter content while stating exact pagination is undefined and gives no pagination-specific concept model. The HTML entry point is an empty-body scaffold and yielded no unique terminology finding. Counts: 271 preliminary full reviews + 5 partial screens + 42 pending = 318. Human validation pending; formal clause-level assessments remain zero; scope remains proposed/not human-approved. No source/runtime edits, backup/archive reads, tests/workflows, provider calls or settings changes."
 }
