@@ -1,7 +1,7 @@
 # ISO 704:2022 Audit-Readiness Dossier and Evidence Register
 
 **Document ID:** NOVA-ISO704-AR-001  
-**Version:** 0.1.47  
+**Version:** 0.1.48  
 **Date opened:** 2026-10-17  
 **Status:** ACTIVE — readiness package construction; NOT READY FOR AN ISO 704 AUDIT  
 **Owner:** Designated human maintainer  
@@ -43,7 +43,7 @@ ISO does not itself certify or issue certificates. Certification and accreditati
 
 ## 3. Scope to freeze before detailed assessment
 
-The current proposed repository coverage and baseline tree SHAs are recorded in [Scope Proposal and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md), its [machine-readable active-path inventory](2026-10-17-ISO-704-Active-Path-Inventory.json), the [file-by-file content sweep tracker](2026-10-17-ISO-704-Content-Sweep-Tracker.json), [initial sweep findings](2026-10-17-ISO-704-Initial-Sweep-Findings.md), and [branch-integrity incident/recovery](2026-10-17-ISO-704-Branch-Integrity-Incident.md). The inventory and tracker establish paths and a review queue only; human scope approval and content review remain open. The scope statement must identify:
+The current proposed repository coverage and baseline tree SHAs are recorded in [Scope Proposal and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md), its [machine-readable active-path inventory](2026-10-17-ISO-704-Active-Path-Inventory.json), the [file-by-file content sweep tracker](2026-10-17-ISO-704-Content-Sweep-Tracker.json), [initial sweep findings](2026-10-17-ISO-704-Initial-Sweep-Findings.md), and [branch-integrity incident/recovery](2026-10-17-ISO-704-Branch-Integrity-Incident.md). The inventory and tracker establish paths and a review queue only. On 2026-10-18, the human maintainer approved the proposed six-repository planning scope with English as the initial assessment language and a $0-only lawful-access policy. That decision does not freeze the final assessment baseline or establish content validity. The scope statement must also identify:
 
 - The organizational/project entity whose terminology work is being assessed, without implying a separate legal entity unless established.
 - The repositories, projects, technical domains, governance terms, service/product material and public communication included.
@@ -80,7 +80,7 @@ Status meanings: **EXISTS—DRAFT** = an artifact exists but has not been accept
 
 | Evidence ID | Evidence package component | What acceptable evidence must demonstrate | Current status | Next action |
 |---|---|---|---|---|
-| AR-E01 | Scope and boundaries | Approved scope statement; included domains, repos/paths, activity, languages, period, exclusions and rationale | DRAFT / NOT APPROVED | Review the [scope proposal and repository inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md); approve the six-repository scope, languages, assessment period and exclusions, or document changes before claiming coverage |
+| AR-E01 | Scope and boundaries | Approved scope statement; included domains, repos/paths, activity, languages, period, exclusions and rationale | PLANNING SCOPE APPROVED 2026-10-18 / FINAL BASELINE FREEZE PENDING | Preserve the approved six-repository set and English initial-language boundary; refresh exact repository/path refs and commit SHAs, set assessment period, document roles/independence and confirm exclusions before treating the scope as frozen |
 | AR-E02 | Controlled standard baseline and lifecycle freeze | Lawful access to the complete ISO 704:2022 edition; edition/version, source, access/licence record, controlled-copy identifier, lifecycle/revision status checked at baseline date | BLOCKED | Follow [Standard Baseline and Lawful-Access Investigation](2026-10-17-ISO-704-Standard-Baseline-and-Access-Research.md): investigate existing lawful no-cost access first; record any edition/revision check at the final baseline freeze. Official ISO metadata is verified, but complete lawful no-cost access is not. No purchase or paid subscription without separate authorization |
 | AR-E03 | Clause/topic-to-evidence matrix | Every applicable section/clause captured from the controlled edition; statement force, project interpretation, applicability, control, evidence, result, gaps and rationale | BLOCKED — template available | Use the [controlled matrix template](2026-10-17-ISO-704-Clause-Evidence-Matrix.md) only after AR-E02; no guessed or invented clause mappings |
 | AR-E04 | Terminology governance procedure | Approved roles, workflow, criteria, decision gates, status lifecycle and audit controls | EXISTS—DRAFT | Review, approve and establish an effective date |
@@ -215,9 +215,9 @@ The governance standard, initial register, and AstroCrown-Web application guide 
 
 Next actions, in sequence:
 
-1. Freeze the practical assessment scope and language boundaries (AR-E01).
+1. Apply the 2026-10-18 approved planning-scope decision to AR-E01; complete the final scope freeze by refreshing repository/path refs, setting the assessment period, confirming roles/independence and recording any external-publication boundaries.
 2. Review and approve the internal terminology procedure and register-entry controls.
-3. Investigate lawful no-cost access via official BIS standards/library services, existing institutional/consortium access or an already licensed copy; verify the exact edition and usage rights. If no lawful no-cost route is confirmed, pause for a separate human decision. No purchase is authorized by this dossier.
+3. Under the approved $0-only policy, investigate only lawful no-cost access via existing institutional/library access or a verified no-cost consultation route; confirm exact edition and usage rights. Do not purchase, subscribe, take paid membership or make a billable enquiry. If no lawful no-cost route is confirmed, keep AR-E02 BLOCKED and stop before clause-level mapping unless the human maintainer separately and explicitly changes the cost policy.
 4. Populate the [matrix template](2026-10-17-ISO-704-Clause-Evidence-Matrix.md) only from that controlled edition; no clause-level mapping is valid before that prerequisite.
 5. Continue the [file-by-file content sweep tracker](2026-10-17-ISO-704-Content-Sweep-Tracker.json), resolve the findings in the [initial sweep findings log](2026-10-17-ISO-704-Initial-Sweep-Findings.md), and inspect actual file content rather than relying on extension hints.
 6. Produce, inspect and test each remaining evidence item through documented changes and reviews.
@@ -394,3 +394,13 @@ Five pending NOVA files were prioritized by lexical hits and received selected-l
 - SWEEP-F-0015 is expanded by test evidence: engine, preflight and evidence-verifier tests do not demonstrate that READY+SUSPENDED remains blocked across privileged entry points.
 - New SWEEP-F-0016 records that a duplicate test method name in `test_rsi_engine.py` shadows the earlier definition, so some workflow timeout/job configuration assertions are not discovered.
 - No tests were run in this content-review batch. Overall status remains **NOT READY FOR AN ISO 704 AUDIT** and provider discovery remains deferred.
+
+## Revision update — Approved planning scope and $0-only access policy (2026-10-18)
+
+- The human maintainer approved the proposed six-repository planning scope: NOVA, Freebies-, AstroCrown_ACS_MC_Spec, AI-Sanctuary-Core, ACROWN-SIMULATION-LAB, and AstroCrown-Web.
+- English is the initial assessment language. No translation/localization equivalence is claimed; any additional language scope needs an explicit scope change and evidence.
+- The AI-Sanctuary-Core repository remains a distinct identity/governance domain; inclusion means terminology-work and terminology-use review within declared boundaries, not integration into AstroCrown tokenomics or Space Empire governance.
+- The $0-only policy is binding: no standards purchase, paid subscription/membership, billable enquiry, hired provider or other cost is authorized. If full applicable standard text cannot be consulted lawfully at no cost, AR-E02 remains BLOCKED and clause-level mapping remains stopped.
+- AR-E01 is now planning-scope approved; final baseline freeze, assessment period, precise final path manifest, roles/independence, language finalization and scope exclusions still require recorded confirmation.
+- The overall status remains **NOT READY FOR AN ISO 704 AUDIT**. Human validation, full applicable standard access, the clause/evidence matrix, full disposition of partial screens and missing report artifacts, objective operational evidence, internal audit, corrective-action retesting and management GO/NO-GO remain open.
+- **Impact Analysis — IF applied:** scope direction and cost boundary are auditable and ambiguity about domain separation is reduced. **IF not applied:** unapproved wording could persist or the project could inadvertently assume spending authorization.
