@@ -1,7 +1,7 @@
 # ISO 704:2022 Scope Proposal and Repository Inventory
 
 **Document ID:** NOVA-ISO704-SCOPE-001  
-**Version:** 0.1.33  
+**Version:** 0.1.34  
 **Snapshot date:** 2026-10-17  
 **Status:** PROPOSED SCOPE / INITIAL PATH INVENTORY — human approval and detailed content review pending  
 **Related dossier:** [ISO 704:2022 Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
@@ -225,3 +225,8 @@ Tracker states were re-counted directly: 96 preliminary full reviews, 5 partial 
 ## 38. Revision history
 
 - **2026-10-17 / v0.1.33:** Added Batch 035 partial triage of five pending NOVA files selected by lexical relevance. They remain partial. Counts: 96 full preliminary reviews, 5 partial screens, 217 not reviewed.
+
+
+## 39. Revision history
+
+- **2026-10-17 / v0.1.34:** Added Batch 036 partial triage of Freebies repository files. Repository licensing, third-party asset rights, token contract quality and deployability remain distinct evidence categories. Counts: 96 full preliminary reviews, 5 partial screens, 217 not reviewed.
