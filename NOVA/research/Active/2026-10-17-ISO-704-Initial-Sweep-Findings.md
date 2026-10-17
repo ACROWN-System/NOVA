@@ -305,3 +305,14 @@ See [Semantic Review Batch 018 — Credential and Health](2026-10-17-ISO-704-Sem
 - The scheduler/health test values are synthetic; no live timing or health behavior was validated in this review.
 
 Tracker after Batch 018: **318 lexical scans; 67 preliminary full-file reviews; one partial targeted screen; 250 not reviewed; human validation pending.** Invariant: 67 + 1 + 250 = 318.
+
+
+## Semantic/data-state review update — Batch 019 persisted health-state snapshot
+
+See [Semantic Review Batch 019 — Health-State Snapshot](2026-10-17-ISO-704-Semantic-Review-Batch-019-Health-State-Snapshot.md).
+
+- **B019-F01:** `NOVA/health_state.json` top-level update and latest record are dated 2026-10-11, while policy freshness is six hours. At the 2026-10-17 review time, zero of 116 historical rows were within the freshness window. Preserve as dated historical evidence; do not use its labels as current provider health.
+- **B019-F02:** 94 history rows contain non-empty `error_detail`. A bounded pattern scan did not find common bearer/API-key/email patterns, but this cannot prove full sanitization. Track redaction-before-persistence and negative-test coverage with B016-F02; do not assert a confirmed leak.
+- **B019-F03:** historical model target identities may outlive current configuration; current reporting should join them to the current roster/lifecycle and keep orphaned/deprecated identities as history rather than active configuration.
+
+Tracker after Batch 019: **318 lexical scans; 68 preliminary full-file reviews; one partial targeted screen; 249 not reviewed; human validation pending.** Invariant: 68 + 1 + 249 = 318.
