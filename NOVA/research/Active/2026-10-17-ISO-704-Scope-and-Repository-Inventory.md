@@ -1,7 +1,7 @@
 # ISO 704:2022 Scope Proposal and Repository Inventory
 
 **Document ID:** NOVA-ISO704-SCOPE-001  
-**Version:** 0.1.68  
+**Version:** 0.1.69  
 **Snapshot date:** 2026-10-17  
 **Status:** PROPOSED SCOPE / INITIAL PATH INVENTORY — human approval and detailed content review pending  
 **Related dossier:** [ISO 704:2022 Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
@@ -386,4 +386,8 @@ Tracker states were re-counted directly: 96 preliminary full reviews, 5 partial 
 ## 73. Revision history
 
 - **2026-10-18 / v0.1.68:** Added Batch 070 preliminary full-file review of the Directory Filter, Working Market Directory, Discovery Information Bar, Footer, and Hero Cards section documents at exact recorded baseline blob SHAs. Extended SWEEP-F-0038 to these five migrated line-range excerpts and SWEEP-F-0044 to the active Discovery Information Bar requirement. Opened SWEEP-F-0048 for candidate filter taxonomy semantics, SWEEP-F-0049 for the undefined reference-device/currency concept and percentage-change basis, and SWEEP-F-0050 for untyped candidate Influence Map dimensions and example relation mappings. Preserved positive controls for candidate state, undefined calculation methods, source-versus-derived data, missing/stale-data handling, established link destinations, and observed influence versus causation. Counts: 266 preliminary full reviews + 5 partial targeted screens + 47 not reviewed = 318. Human validation remains pending; formal ISO 704 clause assessment remains zero; scope remains proposed/not human-approved. No AstroCrown-Web source/runtime files, backup/archive paths, workflows, tests, credentials, provider calls, billing or repository settings were changed or used.
+
+## 74. Revision history
+
+- **2026-10-18 / v0.1.69:** Added Batch 071 preliminary full-file review of MARKET-DATA-BAR, PAGINATION, README, SECONDARY-NAVIGATION, and the development HTML entry point at exact recorded baseline blob SHAs. Extended SWEEP-F-0038 to three migrated section excerpts and the index-section source-of-authority README; extended SWEEP-F-0049 to MARKET-DATA-BAR because “reference currency/device” is also explicitly undefined there. Opened SWEEP-F-0051 because PAGINATION.md duplicates R-023 directory/filter content without defining pagination concepts, while preserving its explicit “pagination undefined” caveat. The minimal HTML scaffold was recorded without inferring runtime/rendered behavior. Counts: 271 preliminary full reviews + 5 partial targeted screens + 42 not reviewed = 318. Human validation remains pending; formal ISO 704 clause assessment remains zero; scope remains proposed/not human-approved. No AstroCrown-Web source/runtime files, backup/archive paths, tests, workflows, credentials, provider calls, billing or repository settings were changed or used.
 
