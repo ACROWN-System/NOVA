@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 171/318; PARTIAL TARGETED SCREENS 5; 142 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 176/318; PARTIAL TARGETED SCREENS 5; 137 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 171,
-    "content_review_pending": 142,
-    "human_validation_pending": 171,
+    "preliminary_content_reviewed": 176,
+    "content_review_pending": 137,
+    "human_validation_pending": 176,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 5
   },
@@ -5944,15 +5944,17 @@
           "size_bytes": 1658,
           "extension": ".yml",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_052",
+          "terminology_assessment": "PRELIMINARY_REVIEW_PIPELINE_CI_CLAIMS_BOUNDED_TO_SCHEMA_AND_CURRENT_LEDGER_ASSERTIONS",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B052:B052-01"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 052: workflow compiles the external-review pipeline, runs it against the current ledger, asserts schema_version and one expected no-eligible-outcomes result, then runs conversion/scoring unit tests. The ledger at the same baseline has one open outreach item, and pipeline semantics explicitly treat unknown/maturing outcomes as unavailable rather than failures. Assertions depend on a non-empty first cohort and the current ledger shape but are consistent with the checked baseline. CI source/test execution and conversion validity were not independently run; no unique terminology finding.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": ".github/workflows/external-review-pipeline-ci.yml",
@@ -5980,7 +5982,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "c128ae13c3d49c909d39c212d75688b16b38830c"
         },
         {
           "path": ".github/workflows/media-generator-tests.yml",
@@ -5988,15 +5992,17 @@
           "size_bytes": 1218,
           "extension": ".yml",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_052",
+          "terminology_assessment": "PRELIMINARY_REVIEW_OFFLINE_MEDIA_TEST_SCOPE_EXPLICIT",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B052:B052-02"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 052: path-filtered workflow compiles the Cloudflare image adapter and runs deterministic adapter/image-container tests for relevant pull requests and pushes. It does not itself perform live image inference; the scope is appropriately identified as offline tests. The workflow source was reviewed only; no tests or provider calls were executed. No unique terminology finding.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": ".github/workflows/media-generator-tests.yml",
@@ -6024,7 +6030,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "c4de1f9bc507b3326a5739a3f21f947b3114a5e9"
         },
         {
           "path": ".github/workflows/nova-credential-readiness.yml",
@@ -6032,15 +6040,17 @@
           "size_bytes": 5164,
           "extension": ".yml",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_052",
+          "terminology_assessment": "PRELIMINARY_REVIEW_PRESENCE_ONLY_LIMITATIONS_EXPLICIT",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B052:B052-03"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 052: workflow is main-only for matching pushes plus manual dispatch. It reports credential/configuration presence or status without printing secret values or calling provider APIs. Its summary explicitly says key presence is not proof of authentication, free-tier eligibility, commercial rights or quota, and that RSI readiness remains authoritative. The auto-merge row reports a repository variable rather than verifying actual branch-rule settings; text limits its meaning, but actual settings remain separately unverified. No unique finding opened.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": ".github/workflows/nova-credential-readiness.yml",
@@ -6068,7 +6078,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "76165a0d286bd15e69828c7a349909b7322ba639"
         },
         {
           "path": ".github/workflows/nova-rsi-ci.yml",
@@ -6076,15 +6088,17 @@
           "size_bytes": 1710,
           "extension": ".yml",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_052",
+          "terminology_assessment": "PRELIMINARY_REVIEW_RSI_CI_SCOPE_AND_SANDBOX_VERIFICATION_STEPS_EXPLICIT",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B052:B052-04"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 052: pull requests and selected push paths run Python compileall, RSI unit tests and Docker isolation self-tests. The workflow pulls a digest-pinned Python image and compares its image ID with the expected ID before tests. Repository permissions are contents:read and checkout disables persisted credentials. Source review does not prove successful current CI, sandbox isolation, branch-protection enforcement, or Strong RSI readiness. No tests/workflows executed; no unique terminology finding.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": ".github/workflows/nova-rsi-ci.yml",
@@ -6112,7 +6126,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "69ca805ef19c16885f5c10a130c2169ea67e0465"
         },
         {
           "path": ".github/workflows/nova-rsi-codeql.yml",
@@ -6120,15 +6136,17 @@
           "size_bytes": 1538,
           "extension": ".yml",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_052",
+          "terminology_assessment": "PRELIMINARY_REVIEW_CODEQL_WORKFLOW_TARGET_AND_PERMISSION_BOUNDARY_EXPLICIT",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B052:B052-05"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 052: CodeQL workflow is configured for Python, pull requests to main, matching path-filtered pushes, weekly scheduled analysis and manual dispatch. It pins checkout/CodeQL actions by commit SHA, disables persisted checkout credentials, and scopes security-events:write to the analysis job. Query path limits are documented in the separate matching CodeQL config reviewed in Batch 051. Configuration does not prove a successful scan or vulnerability-free code; no scan was executed. No unique terminology finding.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": ".github/workflows/nova-rsi-codeql.yml",
@@ -6156,7 +6174,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "ff9ff5d3fd73bb4db28745af9786bafc6c4d693f"
         },
         {
           "path": ".github/workflows/ossf-scorecard.yml",
@@ -15189,5 +15209,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 051 reviewed five active files from NOVA and AstroCrown-Web at their respective recorded main baseline commits, verifying each file blob SHA. No unique finding was opened. NOVA observer tests remain insufficient for the closure tests specified by SWEEP-F-0024/F-0025; workflow coverage tests do not close SWEEP-F-0018/F-0019. AstroCrown-Web publication, CodeQL and Dependabot configuration comments were assessed within their declared scope. Counts: 171 preliminary full-file reviews + 5 partial screens + 142 not reviewed = 318. Human validation pending; formal ISO 704 clause assessment remains zero."
+  "last_update_note": "Batch 052 reviewed five active AstroCrown-Web workflow files at main baseline commit 5faea74dd1b40ec98acf9d59d9e404fc18122032 and verified the recorded blob SHAs. No unique finding was opened. The review distinguished external-review CI assertions, offline media tests, presence-only credential reporting, RSI CI gates and CodeQL scan configuration from live capability, successful run, branch-enforcement or readiness evidence. Counts: 176 preliminary full-file reviews + 5 partial screens + 137 not reviewed = 318. Human validation pending; formal ISO 704 clause assessment remains zero."
 }
