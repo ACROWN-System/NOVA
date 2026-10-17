@@ -188,7 +188,7 @@ The current access research and its confirmed limits are recorded in [Standard B
 
 ## 8. Readiness gate — every condition is mandatory
 
-The package may be labelled **INTERNAL AUDIT-READY FOR PROVIDER DISCUSSION** only when all of the following are recorded PASS:
+The package may be labelled **INTERNALLY READY FOR A COMPLETE ISO 704 CONFORMANCE ASSESSMENT** only when all of the following are recorded PASS:
 
 - [ ] Scope and exclusions are approved and detailed enough to judge completeness.
 - [ ] Complete ISO 704:2022 edition is lawfully available as a controlled audit baseline.
@@ -209,7 +209,7 @@ If any item is BLOCKED, FAIL or unverified, the overall readiness decision is NO
 
 ## 9. Current status and immediate next steps
 
-**Overall status: NOT READY FOR AN ISO 704 AUDIT.**
+**Overall status: NOT READY FOR A COMPLETE ISO 704 CONFORMANCE ASSESSMENT.**
 
 The governance standard, initial register, and AstroCrown-Web application guide are draft artifacts. The complete edition has not been established as a controlled baseline; no complete clause/evidence matrix, exhaustive active-path sweep, operational pilot record, completed internal audit, corrective-action closure package, or management readiness decision has been demonstrated.
 
@@ -222,13 +222,13 @@ Next actions, in sequence:
 5. Continue the [file-by-file content sweep tracker](2026-10-17-ISO-704-Content-Sweep-Tracker.json), resolve the findings in the [initial sweep findings log](2026-10-17-ISO-704-Initial-Sweep-Findings.md), and inspect actual file content rather than relying on extension hints.
 6. Produce, inspect and test each remaining evidence item through documented changes and reviews.
 7. Complete internal audit, corrective-action closure/retesting, management review and the final package manifest.
-8. Keep certification-provider discovery deferred until the readiness gate is fully passed.
+8. Record the internal assessment disposition, open limitations, accepted residual risks and re-review conditions. An internal GO does not trigger external provider discovery or certification work; any such work requires a separately approved scope change.
 
 ## 10. Impact Analysis
 
-**IF this dossier and sequence are applied:** project readiness is measured against traceable evidence and a controlled version of the actual standard; gaps remain visible; later external discussions can be precise about scope and maturity; unsupported certification claims are prevented.
+**IF this dossier and sequence are applied:** internal assessment completeness is measured against traceable evidence and the applicable standard; gaps remain visible, improvements can proceed on accessible evidence, and unsupported conformity or certification claims are prevented.
 
-**IF this dossier and sequence are not applied:** the project could mistake policy wording for operational evidence, overlook active terminology conflicts, claim completeness based on partial public summaries, or begin provider discussions with an undefined scope and unverified readiness.
+**IF this dossier and sequence are not applied:** the project could mistake policy wording for operational evidence, overlook active terminology conflicts, claim completeness based on partial public summaries, or spend effort on external-service discovery rather than improving terminology quality and operation.
 
 ## 11. Change log
 
@@ -452,3 +452,8 @@ This gate complements rather than replaces any real standard assessment. It must
 This dossier supports internal evidence-backed improvement and assessment of terminology practices. The goal is for the project's concepts, definitions, designations, relations, governance and operational use to be precise, useful and defensible against applicable ISO 704 principles. The goal is not to obtain an external certificate. A future internal GO decision only authorizes the declared internal disposition; it does not trigger provider discovery, external audit outreach, paid services or certification applications.
 
 Complete-baseline access and the full clause inventory remain prerequisites to claiming complete assessment coverage, but they are not prerequisites for all useful work. Continue source-bounded and independently justified terminology improvements; mark invisible provisions NOT ASSESSED. The $0-only policy remains binding.
+
+
+## Change update — internal assessment objective (2026-10-18)
+
+The earlier readiness gate included an eventual step to explore certification providers. This has been superseded by the current human-approved scope: **internal terminology-quality and operability improvement informed by ISO 704; external certification is not the objective**. The checklist above therefore gates claims of complete internal assessment coverage, not purchase of a certificate or provider outreach. Keep the complete baseline/matrix prerequisite for claims of complete coverage; do not stop independently justified terminology improvement while source-bounded work remains possible. Historical changelog entries describe prior plans at their stated dates and are not current authorization for external outreach.
