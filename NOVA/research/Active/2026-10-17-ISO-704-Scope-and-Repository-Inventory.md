@@ -1,7 +1,7 @@
 # ISO 704:2022 Scope Proposal and Repository Inventory
 
 **Document ID:** NOVA-ISO704-SCOPE-001  
-**Version:** 0.1.56  
+**Version:** 0.1.57  
 **Snapshot date:** 2026-10-17  
 **Status:** PROPOSED SCOPE / INITIAL PATH INVENTORY — human approval and detailed content review pending  
 **Related dossier:** [ISO 704:2022 Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
@@ -335,3 +335,8 @@ Tracker states were re-counted directly: 96 preliminary full reviews, 5 partial 
 ## 61. Revision history
 
 - **2026-10-17 / v0.1.56:** Added Batch 058 preliminary full-file review of five AstroCrown-Web RSI provider-egress, retention-baseline, sandbox-cleanup and schema/supervisor records. Counts: 206 preliminary full reviews + 5 partial screens + 107 not reviewed = 318. Extended SWEEP-F-0031 for Active retention-baseline-binding and strict-schema navigation plans included in merged PRs #70 and #74 with recorded successful CI runs; extended SWEEP-F-0012 for three completed archival mirrors still located under Active. Historical workflow metadata was inspected but CI was not rerun. Human validation pending; formal ISO 704 clause assessment remains zero and scope remains proposed/not human-approved. No backup/archive paths or AstroCrown-Web runtime files changed.
+
+
+## 62. Revision history
+
+- **2026-10-17 / v0.1.57:** Added Batch 059 preliminary full-file review of five AstroCrown-Web RSI token telemetry, trusted evaluator, cleanup finalizer and free-provider-pool records. Counts: 211 preliminary full reviews + 5 partial screens + 102 not reviewed = 318. Cross-referenced three explicitly completed Active-path mirrors with SWEEP-F-0012 and extended SWEEP-F-0028 to include the dated Mistral requalification wording in the active provider-pool plan. No new finding ID; the dated evidence matrix was reviewed without promoting candidates to qualified states. Historical PR/CI metadata only was inspected; no live provider calls or runtime actions were performed. Human validation remains pending; formal ISO 704 clause assessment remains zero, and scope remains proposed/not human-approved.
