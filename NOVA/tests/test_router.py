@@ -11,11 +11,14 @@ from unittest.mock import MagicMock, patch
 from NOVA.health import _state_defaults
 from NOVA.router import (
     advance_scheduled_probe_rotation,
+    call_gemini,
     call_openai_compatible,
     classify_http_error,
     diagnostic_http_headers,
     health_order_providers,
     scheduled_probe_provider_order,
+    should_emit_health_alert,
+    validate_health_payload,
     _record_root_cause_case,
 )
 
@@ -460,6 +463,107 @@ class DeferredProviderRosterTests(unittest.TestCase):
         self.assertNotIn("MISTRAL_API_KEY_01", workflow)
         self.assertNotIn("CLOUDFLARE_API_KEY_01", workflow)
         self.assertNotIn("CLOUDFLARE_ACCOUNT_ID", workflow)
+
+
+class HealthResponseContractTests(unittest.TestCase):
+    def test_json_non_object_is_rejected_without_exception(self):
+        for body in ("[]", "null", "1", '"text"'):
+            with self.subTest(body=body):
+                self.assertEqual(validate_health_payload(body), (False, "JSON_NOT_OBJECT"))
+
+    def test_unverified_gemini_model_is_blocked_before_network(self):
+        model = "gemini-3.8-flash"
+        gemini = {
+            "name": "gemini",
+            "api_key_env": "TEST_GEMINI_KEY",
+            "base_url": "https://generativelanguage.googleapis.com/v1beta/models",
+            "models": [model],
+            "model_contracts": {
+                model: {
+                    "structured_json": "BLOCKED_UNVERIFIED",
+                    "reason": "Repeated health response contract failures.",
+                }
+            },
+        }
+        with patch.dict(os.environ, {"TEST_GEMINI_KEY": "test-key"}):
+            with patch("NOVA.router.urllib.request.urlopen") as urlopen:
+                content, signal, probes = call_gemini(gemini, "test prompt")
+
+        urlopen.assert_not_called()
+        self.assertIsNone(content)
+        self.assertEqual(signal, "blocked")
+        self.assertEqual(len(probes), 1)
+        self.assertEqual(probes[0]["error_class"], "contract_gate")
+        self.assertEqual(probes[0]["authentication"], "NOT_ATTEMPTED")
+
+    def test_verified_gemini_model_keeps_working_path(self):
+        model = "gemini-3.1-flash-lite"
+        response_payload = {
+            "candidates": [{
+                "content": {"parts": [{
+                    "text": json.dumps({
+                        "nova_health": "OK",
+                        "ack": "NOVA_HEALTH_PROBE",
+                    })
+                }]}
+            }],
+            "usageMetadata": {"totalTokenCount": 9},
+        }
+        response = MagicMock()
+        response.__enter__.return_value = response
+        response.status = 200
+        response.headers = Message()
+        response.read.return_value = json.dumps(response_payload).encode("utf-8")
+        gemini = {
+            "name": "gemini",
+            "api_key_env": "TEST_GEMINI_KEY",
+            "base_url": "https://generativelanguage.googleapis.com/v1beta/models",
+            "models": [model],
+            "model_contracts": {model: {"structured_json": "VERIFIED"}},
+        }
+
+        with patch.dict(os.environ, {"TEST_GEMINI_KEY": "test-key"}):
+            with patch("NOVA.router.urllib.request.urlopen", return_value=response) as urlopen:
+                content, signal, probes = call_gemini(gemini, "test prompt")
+
+        self.assertEqual(signal, "success")
+        self.assertIsNotNone(content)
+        self.assertTrue(probes[0]["response_valid"])
+        self.assertEqual(probes[0]["quality_status"], "PASS")
+        self.assertIn(f"/{model}:generateContent", urlopen.call_args.args[0].full_url)
+
+    def test_health_alert_only_fires_on_transition_into_unacceptable(self):
+        self.assertTrue(should_emit_health_alert("HEALTHY", "UNACCEPTABLE"))
+        self.assertTrue(should_emit_health_alert("UNKNOWN", "UNACCEPTABLE"))
+        self.assertFalse(should_emit_health_alert("UNACCEPTABLE", "UNACCEPTABLE"))
+        self.assertFalse(should_emit_health_alert("UNACCEPTABLE", "HEALTHY"))
+        self.assertFalse(should_emit_health_alert("DEGRADED", "HEALTHY"))
+
+
+class ModelContractRosterTests(unittest.TestCase):
+    def test_known_failing_models_are_blocked_but_fallbacks_are_contract_verified(self):
+        repository_root = Path(__file__).resolve().parents[1]
+        roster = json.loads((repository_root / "roster.json").read_text(encoding="utf-8"))
+        providers = {entry["name"]: entry for entry in roster["providers"]}
+
+        self.assertEqual(
+            providers["groq"]["model_contracts"]["openai/gpt-oss-120b"]["structured_json"],
+            "BLOCKED_UNVERIFIED",
+        )
+        self.assertEqual(
+            providers["groq"]["model_contracts"]["openai/gpt-oss-20b"]["structured_json"],
+            "VERIFIED",
+        )
+        self.assertEqual(
+            providers["gemini"]["model_contracts"]["gemini-3.8-flash"]["structured_json"],
+            "BLOCKED_UNVERIFIED",
+        )
+        self.assertEqual(
+            providers["gemini"]["model_contracts"]["gemini-3.1-flash-lite"]["structured_json"],
+            "VERIFIED",
+        )
+        self.assertEqual(providers["groq"]["status"], "active")
+        self.assertEqual(providers["gemini"]["status"], "active")
 
 
 if __name__ == "__main__":

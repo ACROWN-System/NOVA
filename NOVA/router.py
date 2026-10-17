@@ -154,6 +154,8 @@ def validate_health_payload(content: Any) -> tuple[bool, str]:
         payload = json.loads(content)
     except json.JSONDecodeError:
         return False, "INVALID_JSON"
+    if not isinstance(payload, dict):
+        return False, "JSON_NOT_OBJECT"
     if payload.get("nova_health") != "OK":
         return False, "HEALTH_MARKER_MISSING"
     if payload.get("ack") != "NOVA_HEALTH_PROBE":
@@ -385,6 +387,23 @@ def call_gemini(provider: dict[str, Any], prompt: str, validator=validate_health
     probes: list[dict[str, Any]] = []
 
     for model in provider["models"]:
+        decision = model_capability_decision(provider, model, "structured_json")
+        if not decision["allowed"]:
+            probes.append({
+                "provider": provider["name"],
+                "credential_env": provider["api_key_env"],
+                "requested_model": model,
+                "actual_model": None,
+                "api_status": None,
+                "authentication": "NOT_ATTEMPTED",
+                "response_valid": False,
+                "quality_status": decision["status"],
+                "latency_ms": None,
+                "error_class": "contract_gate",
+                "error_detail": decision["reason"],
+            })
+            continue
+
         url = f"{provider['base_url']}/{model}:generateContent"
         data = {
             "contents": [{"parts": [{"text": prompt}]}],
@@ -486,6 +505,8 @@ def call_gemini(provider: dict[str, Any], prompt: str, validator=validate_health
             })
             print(f"[{provider['name']}] Exception on model '{model}': {exc}")
 
+    if probes and all(probe.get("error_class") == "contract_gate" for probe in probes):
+        return None, "blocked", probes
     if any(probe["error_class"] == "permanent" for probe in probes):
         return None, "permanent", probes
     return None, "quality_or_transient", probes
@@ -495,6 +516,11 @@ def call_provider(provider: dict[str, Any], prompt: str, validator=validate_heal
     if provider["kind"] == "gemini":
         return call_gemini(provider, prompt, validator)
     return call_openai_compatible(provider, prompt, validator)
+
+
+def should_emit_health_alert(previous_status: str | None, current_status: str | None) -> bool:
+    """Emit only on entry into UNACCEPTABLE, not on every repeated observation."""
+    return current_status == "UNACCEPTABLE" and previous_status != "UNACCEPTABLE"
 
 
 def rotate_starting_provider(providers: list[dict[str, Any]], start_index: int = 0) -> list[dict[str, Any]]:
@@ -704,6 +730,14 @@ def intelligent_router(prompt: str) -> tuple[str, dict[str, Any]]:
                 if scheduled_provider and provider["name"] == scheduled_provider["name"]
                 else "failover_probe"
             )
+            target_model = probe.get("actual_model") or probe.get("requested_model")
+            target_key = f"ai-heart:{probe.get('provider', provider['name'])}:{target_model or '-'}"
+            prior_target = state.get("targets", {}).get(target_key, {})
+            previous_health_status = (
+                prior_target.get("health_status", "UNKNOWN")
+                if isinstance(prior_target, dict)
+                else "UNKNOWN"
+            )
             observation = record_probe(
                 state,
                 namespace="ai-heart",
@@ -732,11 +766,24 @@ def intelligent_router(prompt: str) -> tuple[str, dict[str, Any]]:
             )
             all_probes.append(observation)
             _record_root_cause_case(state, provider, probe)
-            if observation["health_status"] == "UNACCEPTABLE":
+            if should_emit_health_alert(
+                previous_health_status, observation["health_status"]
+            ):
+                model_label = str(
+                    observation.get("requested_model")
+                    or observation.get("actual_model")
+                    or target_model
+                    or "unknown-model"
+                )
                 alerts.send_all_alerts(
-                    title=f"NOVA AI heart: {provider['name']} health is unacceptable",
+                    title=(
+                        f"NOVA AI heart: {provider['name']} model "
+                        f"{model_label} health is unacceptable"
+                    ),
                     body=json.dumps(observation, indent=2, sort_keys=True),
-                    severity="urgent",
+                    # Automated health probes are GitHub-only under the $0-only
+                    # policy; SMS/voice require separate explicit authorization.
+                    severity="notice",
                 )
 
         if text:
@@ -767,11 +814,14 @@ def intelligent_router(prompt: str) -> tuple[str, dict[str, Any]]:
             analysis = alerts.generate_comparative_analysis(
                 roster, provider["name"], remaining
             )
-            severity = "urgent" if len(remaining) <= 2 else "notice"
+            # Automated heartbeat alerts remain GitHub-only under the
+            # $0-only policy. Twilio SMS/voice are reserved for a separately
+            # authorized manual action; even an urgent automated alert must
+            # not silently incur an external-channel charge.
             alerts.send_all_alerts(
                 title=f"NOVA roster alert: {provider['name']} appears permanently unavailable",
                 body=analysis,
-                severity=severity,
+                severity="notice",
             )
 
     if scheduled_provider:
