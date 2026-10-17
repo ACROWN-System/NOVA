@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 29/318; PARTIAL TARGETED SCREEN 1; 289 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 32/318; PARTIAL TARGETED SCREEN 1; 285 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 29,
-    "content_review_pending": 289,
-    "human_validation_pending": 29,
+    "preliminary_content_reviewed": 32,
+    "content_review_pending": 285,
+    "human_validation_pending": 32,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 1
   },
@@ -1239,15 +1239,21 @@
           "size_bytes": 12465,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_008",
+          "terminology_assessment": "PRELIMINARY_REVIEW_EVIDENCE_FRESHNESS_AND_STATE_DIMENSIONS_OPEN",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B008:B008-02"
+          ],
+          "findings": [
+            "B008-F01",
+            "B008-F02",
+            "B008-F04"
+          ],
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_EVIDENCE_FRESHNESS_AND_STATE_DIMENSIONS_OPEN",
+          "note": "Batch 008: dynamic quota rows need row-level source date/scope/verification state; bare REQUIRED role must be distinct from actual resource availability. HF inference-credit statement conflicts with PROVIDER-ACQUISITION-READINESS.md.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/DEVELOPMENT-RESOURCE-READINESS.md",
@@ -1579,15 +1585,19 @@
           "size_bytes": 20510,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_008",
+          "terminology_assessment": "PRELIMINARY_REVIEW_CAREFUL_ACCOUNTING_BOUNDARY_METERING_UNVERIFIED",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B008:B008-03"
+          ],
+          "findings": [
+            "B008-F02"
+          ],
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_CAREFUL_ACCOUNTING_BOUNDARY_METERING_UNVERIFIED",
+          "note": "Batch 008 confirms useful vocabulary separating advertised/recurring/one-time capacity and useful work; 86,400 GPU-min/month is explicitly provisional/unvalidated. Empirical reliability and useful-work metering remain unverified.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/GPU-CAPACITY-ACCOUNTING.md",
@@ -2372,15 +2382,20 @@
           "size_bytes": 23750,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_008",
+          "terminology_assessment": "PRELIMINARY_REVIEW_CROSS_DOC_STATUS_CONFLICT",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B008:B008-01"
+          ],
+          "findings": [
+            "B008-F01",
+            "B008-F02"
+          ],
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_CROSS_DOC_STATUS_CONFLICT",
+          "note": "Batch 008 found conflict with DEVELOPMENT-RESOURCE-READINESS.md: one doc says Hugging Face inference credit is conflicted/no included free credit; the other says $0.10/month. Preserve blocked/not-counted state pending current official/account evidence.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/PROVIDER-ACQUISITION-READINESS.md",
@@ -14637,5 +14652,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 007 reviewed the seven non-README paths in AI-Sanctuary-Core against exact baseline blob SHAs. Together with Batch 001, all eight inventoried active paths now have preliminary reviews, but the README's explicit exclusion from AstroCrown audits conflicts with the proposed umbrella scope; a human decision is still mandatory. Counts: 29 preliminary reviews, one partial targeted screen, 289 files not reviewed."
+  "last_update_note": "Batch 008 reviewed three NOVA resource/capacity documents. Tracker row counts reconciled to 318 total rows: 32 preliminary full-file reviews, one partial targeted screen, 285 NOT_REVIEWED rows. Human validation remains outstanding; no ISO clause conformity assessment has completed."
 }
