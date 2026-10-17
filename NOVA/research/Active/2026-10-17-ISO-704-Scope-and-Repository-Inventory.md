@@ -1,7 +1,7 @@
 # ISO 704:2022 Scope Proposal and Repository Inventory
 
 **Document ID:** NOVA-ISO704-SCOPE-001  
-**Version:** 0.1.1  
+**Version:** 0.1.2  
 **Snapshot date:** 2026-10-17  
 **Status:** PROPOSED SCOPE / INITIAL PATH INVENTORY — human approval and detailed content review pending  
 **Related dossier:** [ISO 704:2022 Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
@@ -40,7 +40,7 @@ The following default-branch tree snapshots were retrieved from GitHub's Git dat
 
 ## 4. Coverage limits and exclusions to resolve
 
-This is a snapshot of active file paths at the recorded Git tree SHAs. The tracker records a selected-term lexical scan of all 318 inventoried active files, with all file rows marked `FETCHED_AND_LEXICALLY_SCANNED`. This scan has not been followed by file-by-file semantic/content review: all 318 rows still show `content_review_status: NOT_REVIEWED` and `terminology_assessment: NOT_ASSESSED`. The lexical scan does **not** establish that context has been interpreted, all terms have been located, or repository usage is consistent. See the [initial sweep findings](2026-10-17-ISO-704-Initial-Sweep-Findings.md).
+This is a snapshot of active file paths at the recorded Git tree SHAs. The tracker records a selected-term lexical scan of all 318 inventoried active files, with all rows marked `FETCHED_AND_LEXICALLY_SCANNED`. A preliminary semantic review has now been recorded for the six repository-level README files in [Batch 001](2026-10-17-ISO-704-Semantic-Review-Batch-001-READMEs.md); the other 312 active-file rows remain `content_review_status: NOT_REVIEWED` and `terminology_assessment: NOT_ASSESSED`. The six preliminary reviews are not human-validated ISO conformity results. The lexical scan does **not** establish that context has been interpreted, all terms have been located, or repository usage is consistent. See the [initial sweep findings](2026-10-17-ISO-704-Initial-Sweep-Findings.md).
 
 The inventory includes all non-archive blobs regardless of file extension so that file types are not excluded merely because their content format is unfamiliar. During the audit, classify each file as applicable text/content, non-text asset, generated artefact, secret-bearing/restricted material or justified exclusion; record the reason and reviewer. Do not treat a file as non-applicable solely from its extension.
 
@@ -65,3 +65,8 @@ Languages: English is the initial authored language in the current draft framewo
 ## 7. Revision history
 
 - **2026-10-17 / v0.1.1:** Reconciled the scope narrative with the machine-readable tracker: all 318 active paths have a lexical scan, but none of the 318 content-review assessments is closed. Scope approval remains pending.
+
+
+## 8. Revision history
+
+- **2026-10-17 / v0.1.2:** Corrected the narrative to reflect the tracker after the first semantic review batch: six README files preliminarily reviewed; 312 active-file content assessments remain open; scope approval and human validation are still pending.
