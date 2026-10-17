@@ -2,11 +2,11 @@
 
 **Record ID:** NOVA-ISO704-ACCESS-001  
 **Date checked:** 2026-10-17
-**Version:** 0.1.1  
+**Version:** 0.1.2  
 **Status:** OPEN — EXACT FULL-TEXT LAWFUL ACCESS NOT CONFIRMED  
 **Owner:** Designated human maintainer  
 **Linked evidence:** AR-E02 in [Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
-**Paid action:** NONE authorized or taken  
+**Cost policy:** $0-only — no purchase, paid subscription/membership, billable enquiry or other cost is authorized  
 **Provider discovery:** Out of scope for this record and remains deferred until the readiness gate passes
 
 ## 1. Purpose
@@ -61,16 +61,22 @@ As of this check:
 - The BIS library is a potential information source, but its stated membership terms are paid; no claim of free full-text access is made.
 - Existing institutional access or an already licensed copy might be available to a project participant, but none has yet been evidenced in this record.
 - No unauthorized copy has been sought, stored or reproduced.
-- No standard has been purchased, and no paid enquiry, membership, subscription or tool has been authorized.
+- On 2026-10-18, the human maintainer explicitly reaffirmed the $0-only access policy. No standard has been purchased, and no paid enquiry, membership, subscription or tool is authorized. This remains a hard constraint unless separately changed by explicit human instruction.
 
 ## 4. Required next step
 
-The human maintainer should first check whether the project already has lawful access through an existing eligible library/institution or licensed copy. If not, a written information request may ask BIS or another relevant standards-information service to confirm whether the exact ISO edition or a permitted equivalent route is available without charge; an enquiry must not incur fees or imply an application. Do not proceed to buy without separate explicit authorization.
+Under the approved $0-only policy, first check existing lawful access through an eligible library/institution, subscription or already licensed copy. If none is available, investigate only routes that can confirm lawful no-cost consultation of the exact edition. A written inquiry to BIS or another standards-information service is acceptable only if submitting it is free, creates no paid membership/application, and incurs no fee or commitment. Do not purchase, subscribe, join a paid library plan, submit a billable enquiry or proceed to any other paid step. Any change to the $0-only policy requires separate explicit human-maintainer authorization.
 
-If no free route can be confirmed, keep AR-E02 **BLOCKED** and stop before clause-level mapping. Continue non-normative preparation (scope proposal, entry schema, operational evidence and content review) only with clearly labeled internal criteria; do not call that work a completed ISO 704 assessment.
+If lawful no-cost access to the complete applicable edition cannot be confirmed, keep AR-E02 **BLOCKED** and stop before clause-level mapping. The cost constraint is a stop condition, not a prompt to select a paid substitute. Continue non-normative preparation (scope proposal, entry schema, operational evidence and content review) only with clearly labeled internal criteria; do not call that work a completed ISO 704 assessment.
 
 ## 5. Readiness impact
 
 This access gate prevents three errors: treating the public abstract as the full standard, relying on a different national/adopted standard without verifying equivalence, and filling in unknown clauses from memory. The evidence matrix remains a blank controlled template until the exact edition is lawfully available.
 
 **Current decision: BLOCKED — NO COMPLETE CONTROLLED BASELINE.**
+
+## Decision update — $0-only access policy approved (2026-10-18)
+
+The human maintainer approved and reaffirmed a $0-only access policy. Permitted next steps are limited to checking already available lawful access and investigating verified no-cost consultation routes for the exact applicable edition. No purchase, paid membership/subscription, billable enquiry, hired assistance or other cost is authorized. A request for information must itself be free and create no payment obligation. If lawful no-cost full-text access cannot be confirmed, AR-E02 remains BLOCKED and the clause/evidence matrix remains unpopulated. No provider/accreditation discovery is authorized before the readiness gates pass; this scope approval does not authorize outreach.
+
+**Impact Analysis — IF followed:** the normative baseline remains evidence-controlled without breaching the user's cost constraint. **IF not followed:** the work could mistake a public abstract or paid lead for accessible full text, or inadvertently incur an unauthorized cost.
