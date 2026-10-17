@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 96/318; PARTIAL TARGETED SCREENS 2; 220 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 96/318; PARTIAL TARGETED SCREENS 5; 217 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -18,10 +18,10 @@
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
     "preliminary_content_reviewed": 96,
-    "content_review_pending": 220,
+    "content_review_pending": 217,
     "human_validation_pending": 96,
     "formal_iso_clause_assessment_completed": 0,
-    "partial_targeted_review": 2
+    "partial_targeted_review": 5
   },
   "repositories": [
     {
@@ -13346,15 +13346,19 @@
           "size_bytes": 3694,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "PARTIAL_TARGETED_SCREEN_BATCH_028",
+          "terminology_assessment": "PARTIAL_SELECTED_HEADING_AND_EVIDENCE_TERM_TRIAGE",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B028:01"
+          ],
+          "findings": [
+            "B028-F01"
+          ],
+          "reviewer": "AI-assisted metadata/keyword triage only; full human semantic review required",
+          "review_date": "2026-10-17",
+          "result": "PARTIAL_TARGETED_SCREEN_NOT_FULL_CONTENT_REVIEW",
+          "note": "Only headings and selected status/source/evidence lines screened. Entire file was fetched, but complete semantic audit and underlying claim verification remain open.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/verification/01-VERIFICATION-ECOSYSTEM-MAP.md",
@@ -13458,15 +13462,19 @@
           "size_bytes": 1501,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "PARTIAL_TARGETED_SCREEN_BATCH_028",
+          "terminology_assessment": "PARTIAL_SELECTED_HEADING_AND_EVIDENCE_TERM_TRIAGE",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B028:02"
+          ],
+          "findings": [
+            "B028-F01"
+          ],
+          "reviewer": "AI-assisted metadata/keyword triage only; full human semantic review required",
+          "review_date": "2026-10-17",
+          "result": "PARTIAL_TARGETED_SCREEN_NOT_FULL_CONTENT_REVIEW",
+          "note": "Only headings and selected status/source/evidence lines screened. Entire file was fetched, but complete semantic audit and underlying claim verification remain open.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/verification/03-STANDARDS-REGISTRY.md",
@@ -13510,15 +13518,19 @@
           "size_bytes": 1538,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "PARTIAL_TARGETED_SCREEN_BATCH_028",
+          "terminology_assessment": "PARTIAL_SELECTED_HEADING_AND_EVIDENCE_TERM_TRIAGE",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B028:03"
+          ],
+          "findings": [
+            "B028-F01"
+          ],
+          "reviewer": "AI-assisted metadata/keyword triage only; full human semantic review required",
+          "review_date": "2026-10-17",
+          "result": "PARTIAL_TARGETED_SCREEN_NOT_FULL_CONTENT_REVIEW",
+          "note": "Only headings and selected status/source/evidence lines screened. Entire file was fetched, but complete semantic audit and underlying claim verification remain open.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/verification/04-NECESSITY-REGISTRY.md",
@@ -14878,5 +14890,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 027 reviewed AstroCrown prompt guidance and development README. Counts derived from row states: 96+2+220=318."
+  "last_update_note": "Batch 028 performed selected-heading/status-evidence triage of three AstroCrown verification docs. All remain PARTIAL, not full reviews. Counts: 96 full preliminary + 5 partial + 217 not reviewed = 318."
 }
