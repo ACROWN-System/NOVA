@@ -172,3 +172,22 @@ Authoritative public standard metadata:
 **IF not modified:** competitor claims remain difficult to reproduce, independent reviewers may apply qualitative categories differently, and the proposed archive path may conflict with the scope-exclusion/immutability rules. Status values may be interpreted outside their intended field dimension.
 
 **Verification still required:** verify the final PR changed-file list; ensure no backup/archive path is added; confirm tracker arithmetic and exact source SHAs; human-validate all new findings; resolve the source-of-truth and archive classification; acquire lawful controlled access to the complete applicable ISO 704 edition before filling the clause/topic matrix. No audit-readiness claim is authorized.
+
+
+## Execution update — 2026-10-18 — semantic review Batch 077
+
+- Reviewed five previously unreviewed AstroCrown-Web verification documents at exact blob SHAs from baseline commit `5faea74dd1b40ec98acf9d59d9e404fc18122032`: Investigation Backlog, U.S. Federal SI Terminology and Audit Context, Assessments README, Benchmarks README and Evidence Extracts README.
+- Reconciled each row in the tracker with the exact reviewed source commit/blob, evidence ID, disposition, reviewer/date and findings. Updated the counts to 301 preliminary full-file reviews + 5 partial targeted screens + 12 not reviewed = 318 active paths.
+- Opened preliminary SWEEP-F-0059 for the document-level `Evidence state: VERIFIED` label in the Federal SI terminology file, because the same document includes verifiable official-source propositions, derived AstroCrown relevance and a candidate project policy without explicitly scoping that overall status.
+- Checked the official White House Executive Order 14434 and 15 U.S.C. § 9401(3) on 2026-10-18. The review preserves the distinction between executive-branch terminology direction, existing statutory definition, proposed future legislative language, and AstroCrown policy candidacy. No legal opinion is claimed.
+- Recorded positive controls in the unresolved-research backlog’s warning against silent evidence-state rewriting; the assessments layer’s facts/interpretation/candidacy/blocked distinction; the benchmark layer’s anti-duplication rule; and the extracts layer’s source-authority rule.
+- No runtime code, tests, workflows, provider calls, credentials, billing, repository settings or immutable backup/archive contents were executed, changed or inspected.
+- Human validation remains pending; formal ISO 704 clause-level assessments completed remain 0; scope remains proposed/not human-approved; overall status remains **NOT READY FOR AN ISO 704 AUDIT**.
+
+### Impact Analysis — Batch 077
+
+**IF modified:** the federal terminology document’s evidence metadata can accurately distinguish source-backed legal propositions from project interpretations and candidate policy; research, assessment, benchmark and extract artifacts remain semantically separated; and review counts match the verified source rows.
+
+**IF not modified:** downstream users could treat a document-level VERIFIED label as approval of recommendations, even though the document itself labels its project policy as a candidate. The review queue and derivative evidence layer would also be more vulnerable to confused scope if their existing boundary rules were not retained.
+
+**Verification still required:** inspect the final PR diff and changed-path list; ensure no backup/archive path was added; verify tracker arithmetic and exact source SHAs; human-validate all findings; review status-field use in related records; acquire lawful controlled access to the full applicable ISO 704 edition before populating the clause/topic matrix. No audit-readiness claim is authorized.

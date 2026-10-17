@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.42  
+**Version:** 0.1.43  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL SWEEP FINDINGS — lexical screening plus preliminary content reviews; human validation and formal clause assessment pending  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -1131,3 +1131,19 @@ See [Semantic Review Batch 075 — AstroCrown Verification Opportunity, Visibili
 See [Semantic Review Batch 076 — AstroCrown Verification Benchmark, Architecture, Tracking, Prioritization and Gap Analysis](2026-10-18-ISO-704-Semantic-Review-Batch-076-AstroCrown-Verification-Benchmark-Architecture-Tracking-Prioritization-and-Gap-Analysis.md). Five files were reviewed at exact blob SHAs from AstroCrown-Web baseline commit `5faea74dd1b40ec98acf9d59d9e404fc18122032`. Opened SWEEP-F-0056 for missing item-level provenance in the Competitor Verification Benchmark; SWEEP-F-0057 for qualitative Strategic Prioritization values without per-dimension criteria; and SWEEP-F-0058 for the proposed `development/verification/archive/` path not being reconciled with the immutable archive-directory and active-review-exclusion rules. Batch 076 also confirms the Verification Tracking System explicitly separates evidence state from operational status; it cross-references SWEEP-F-0054 so downstream records preserve the field/dimension context. The Gap Analysis preserves NOT CONFIRMED/BLOCKED rather than asserting unavailable evidence is absent, and its Mozilla Observatory/MDN HTTP Observatory distinction matches the official MDN FAQ checked 2026-10-18. No code, tests, workflows, provider calls, settings or immutable archive contents were accessed or changed.
 
 **Row-derived counts after Batch 076:** 318 lexical screens; 296 preliminary full-file reviews; 5 partial targeted screens; 17 not reviewed; human validation pending; formal ISO 704 clause-level assessments completed: 0. Scope remains proposed and not human-approved. All findings remain preliminary; this is not a formal ISO 704 clause or conformity assessment.
+
+
+### SWEEP-F-0059 — Document-level VERIFIED evidence state is not scoped across facts and candidate recommendations
+
+- **Status:** OPEN — preliminary; human validation required.
+- **Affected path:** AstroCrown-Web/development/verification/17-US-FEDERAL-SI-TERMINOLOGY-AND-AUDIT-CONTEXT.md, document metadata field `Evidence state: VERIFIED`.
+- **Observed issue:** The document-level state is VERIFIED, while the same file contains official-source propositions, audience-specific interpretation, potential relevance to AstroCrown, control implications and an explicitly candidate terminology policy. The body separates those content roles, but the metadata does not define the scope of the VERIFIED label.
+- **Interpretation:** Verification of the cited Executive Order and statute is not equivalent to verification, approval or adoption of AstroCrown’s candidate terminology policy. A global label can be read more broadly than the source evidence supports.
+- **Required action:** Define what a document-level evidence state represents, or split status metadata so source verification, claim-level evidence, derived interpretation and policy approval/candidacy are separately identifiable. Retain the explicit jurisdiction, document-type, statutory-exception and effective-date limitations; do not convert the Order’s request for proposed legislative language into a claim that new statutory language has already been enacted.
+- **Closure evidence:** Human-approved metadata semantics, an example separating a verified legal-source proposition from a candidate project recommendation, a review of affected uses of document-level VERIFIED status, and confirmation that downstream readers cannot mistake evidence verification for project-policy approval.
+
+## Batch 077 — AstroCrown investigation, Federal SI terminology, assessments, benchmarks and evidence extracts
+
+See [Semantic Review Batch 077 — AstroCrown Investigation, Federal SI Terminology, Assessments, Benchmarks and Extracts](2026-10-18-ISO-704-Semantic-Review-Batch-077-AstroCrown-Investigation-Federal-SI-Assessments-Benchmarks-and-Extracts.md). Five files were reviewed at exact blob SHAs from AstroCrown-Web baseline commit `5faea74dd1b40ec98acf9d59d9e404fc18122032`. Opened SWEEP-F-0059 because the U.S. Federal SI terminology document uses document-level `Evidence state: VERIFIED` across official-source propositions, derived compliance relevance and an explicitly candidate AstroCrown policy; the status needs scope so source verification cannot be confused with approval of project recommendations. Official White House EO 14434 and 15 U.S.C. § 9401(3) were checked on 2026-10-18. The order’s executive-branch terminology instruction is scoped by law and audience, adopts the existing statutory AI definition for purposes of the Order, and requests proposed legislative language rather than itself enacting a new statutory definition. The backlog, assessments README, benchmark README and extract README preserve useful unresolved-research, external-authority, duplicate-test and source-versus-derivative boundaries.
+
+**Row-derived counts after Batch 077:** 318 lexical screens; 301 preliminary full-file reviews; 5 partial targeted screens; 12 not reviewed; human validation pending; formal ISO 704 clause-level assessments completed: 0. Scope remains proposed and not human-approved. This is not a formal ISO 704 clause or conformity assessment.
