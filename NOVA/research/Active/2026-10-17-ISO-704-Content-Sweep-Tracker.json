@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 77/318; PARTIAL TARGETED SCREEN 1; 240 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 84/318; PARTIAL TARGETED SCREEN 1; 233 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 77,
-    "content_review_pending": 240,
-    "human_validation_pending": 77,
+    "preliminary_content_reviewed": 84,
+    "content_review_pending": 233,
+    "human_validation_pending": 84,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 1
   },
@@ -1314,15 +1314,19 @@
           "size_bytes": 1357,
           "extension": ".json",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_022",
+          "terminology_assessment": "PRELIMINARY_REVIEW_PAYMENT_INTENT_OPERATION_NEEDS_EXPLICIT_SEMANTICS",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B022:B022-01"
+          ],
+          "findings": [
+            "B022-F01"
+          ],
+          "reviewer": "AI-assisted preliminary content/contract review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_PAYMENT_INTENT_OPERATION_NEEDS_EXPLICIT_SEMANTICS",
+          "note": "Batch 022: policy allows autonomous payment-intent creation while payment execution/irreversible transfer remain human-gated; implementation locally appends an intent marked HUMAN_GATE_REQUIRED but irreversible=true. Define whether irreversible describes the eventual transfer or current operation.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/economic_policy.json",
@@ -1357,15 +1361,19 @@
           "size_bytes": 658,
           "extension": ".json",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_022",
+          "terminology_assessment": "INITIAL_DEFAULT_STATE_NOT_VERIFIED_LEDGER",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B022:B022-02"
+          ],
+          "findings": [
+            "B022-F04"
+          ],
+          "reviewer": "AI-assisted preliminary content/contract review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "INITIAL_DEFAULT_STATE_NOT_VERIFIED_LEDGER",
+          "note": "Batch 022: valid initial schema with null updated_at, zero pools, no transactions/obligations/payment intents. This does not prove current real balances/absence of external transactions; treat as uninitialized until controlled reconciliation.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/economic_state.json",
@@ -2192,15 +2200,20 @@
           "size_bytes": 1914,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_022",
+          "terminology_assessment": "PRELIMINARY_REVIEW_HUMAN_GATED_SETTLEMENT_INTENT_SEMANTICS",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B022:B022-05"
+          ],
+          "findings": [
+            "B022-F01",
+            "B022-F03"
+          ],
+          "reviewer": "AI-assisted preliminary content/contract review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_HUMAN_GATED_SETTLEMENT_INTENT_SEMANTICS",
+          "note": "Batch 022: settlement fails closed without verified adapter and intent is appended locally with HUMAN_GATE_REQUIRED. The intent field irreversible=true is ambiguous for the local draft operation; amount only nonempty, not finite positive decimal checked.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/payments.py",
@@ -2235,15 +2248,19 @@
           "size_bytes": 2218,
           "extension": ".json",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_022",
+          "terminology_assessment": "PRELIMINARY_REVIEW_EMPTY_SERVICE_TARIFF_MAP",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B022:B022-03"
+          ],
+          "findings": [
+            "B022-F04"
+          ],
+          "reviewer": "AI-assisted preliminary content/contract review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_EMPTY_SERVICE_TARIFF_MAP",
+          "note": "Batch 022: public price/provider-independence and notice/approval rules are defined, dynamic pricing is disabled, but services={} means no specific service tariff is established by this file.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/pricing_policy.json",
@@ -2278,15 +2295,20 @@
           "size_bytes": 3229,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_022",
+          "terminology_assessment": "PRELIMINARY_REVIEW_EXCHANGE_RATE_PROVENANCE_AND_INPUT_VALIDATION_OPEN",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B022:B022-04"
+          ],
+          "findings": [
+            "B022-F02",
+            "B022-F03"
+          ],
+          "reviewer": "AI-assisted preliminary content/contract review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_EXCHANGE_RATE_PROVENANCE_AND_INPUT_VALIDATION_OPEN",
+          "note": "Batch 022: conversion docstring says verified exchange rate but accepts bare numeric argument with no source/time/expiry; quote does not retain rate provenance. Negative/malformed rate/price inputs need explicit checks.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/pricing.py",
@@ -3988,15 +4010,20 @@
           "size_bytes": 3421,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_022",
+          "terminology_assessment": "PRELIMINARY_REVIEW_POSITIVE_CASES_ONLY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B022:B022-06"
+          ],
+          "findings": [
+            "B022-F02",
+            "B022-F03"
+          ],
+          "reviewer": "AI-assisted preliminary content/contract review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_POSITIVE_CASES_ONLY",
+          "note": "Batch 022: public-price invariance/approval, quote validity and human-gated settlement have positive examples, but no negative/malformed rate/amount/unit/destination-input cases. Test not executed.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/tests/test_payments_and_pricing.py",
@@ -4076,15 +4103,17 @@
           "size_bytes": 1514,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_022",
+          "terminology_assessment": "PRELIMINARY_REVIEW_POLICY_TESTS_DECLARED_NOT_EXECUTED",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B022:B022-07"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary content/contract review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_POLICY_TESTS_DECLARED_NOT_EXECUTED",
+          "note": "Batch 022: tests assert Cerebras is deferred and its secret is absent from two live LLM workflows; tests not executed in this review and current policy state not revalidated against account terms.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/tests/test_provider_policy.py",
@@ -14799,5 +14828,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 021 reviewed action policy, alerts, economics tests, reasoning tests and watchlist. Documented alert state collapse, undefined payment-intent side effects, missing negative test cases, empty external watchlist and TwiML escaping follow-up. Counts: 77 preliminary full + 1 partial + 240 not reviewed = 318."
+  "last_update_note": "Batch 022 reviewed economic/pricing policy and state, pricing/payments implementations, and payment/provider-policy tests. Core finding: exchange-rate provenance absent from quote object; invalid pricing default/unknown-value semantics from Batch 020 remain open; payment intent lifecycle fields need reconciliation. Counts: 84 full preliminary reviews + 1 partial screen + 233 not reviewed = 318."
 }
