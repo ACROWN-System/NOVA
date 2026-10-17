@@ -1,7 +1,7 @@
 # ISO 704:2022 Scope Proposal and Repository Inventory
 
 **Document ID:** NOVA-ISO704-SCOPE-001  
-**Version:** 0.1.49  
+**Version:** 0.1.50  
 **Snapshot date:** 2026-10-17  
 **Status:** PROPOSED SCOPE / INITIAL PATH INVENTORY — human approval and detailed content review pending  
 **Related dossier:** [ISO 704:2022 Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
@@ -300,4 +300,8 @@ Tracker states were re-counted directly: 96 preliminary full reviews, 5 partial 
 ## 54. Revision history
 
 - **2026-10-17 / v0.1.49:** Added Batch 051 preliminary full-file review of two NOVA test files and three AstroCrown-Web configuration files. Counts: 171 preliminary full reviews + 5 partial screens + 142 not reviewed = 318. No new unique finding was opened; the tests were recorded as cross-reference evidence for still-open F-0018/F-0019 and F-0024/F-0025, not as closure proof. Publication, CodeQL and Dependabot configurations were reviewed only within their declared scope. Human validation pending; formal ISO clause assessment remains zero. No backup/archive or runtime paths changed.
+
+## 55. Revision history
+
+- **2026-10-17 / v0.1.50:** Added Batch 052 preliminary full-file review of five AstroCrown-Web CI workflow files covering external-review measurement, offline media-generator tests, credential-readiness reporting, RSI CI and CodeQL. Counts: 176 preliminary full reviews + 5 partial screens + 137 not reviewed = 318. No new unique finding was opened. Workflow configuration remains distinct from successful execution, live provider capability, RSI readiness, or branch-rule enforcement. Human validation pending; formal ISO clause assessment remains zero. No backup/archive paths changed.
 
