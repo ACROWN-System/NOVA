@@ -114,7 +114,7 @@ def publish_operational_state(repo_root: Path, state_ref: str, message: str) -> 
             shutil.copyfile(repo_root / relative_path, destination)
 
         _git(worktree_path, "config", "user.name", "NOVA Autonomous Engine")
-        _git(worktree_path, "config", "user.email", "nova@haan.system")
+        _git(worktree_path, "config", "user.email", "nova@hsian.system")
         _git(worktree_path, "add", "--", *STATE_PATHS)
         staged = _git(worktree_path, "diff", "--cached", "--quiet", check=False)
         if staged.returncode == 0:
