@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 206/318; PARTIAL TARGETED SCREENS 5; 107 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 211/318; PARTIAL TARGETED SCREENS 5; 102 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 206,
-    "content_review_pending": 107,
-    "human_validation_pending": 206,
+    "preliminary_content_reviewed": 211,
+    "content_review_pending": 102,
+    "human_validation_pending": 211,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 5
   },
@@ -8002,15 +8002,19 @@
           "size_bytes": 3784,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_059",
+          "terminology_assessment": "PRELIMINARY_REVIEW_CROSS_REFERENCE_SWEEP-F-0012",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B059:B059-01"
+          ],
+          "findings": [
+            "SWEEP-F-0012"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_CROSS_REFERENCE_SWEEP-F-0012",
+          "note": "Batch 059: explicitly COMPLETED token-telemetry audit mirror under Active/, with canonical Completed link; PR #66 and associated CI run #38090170989 are merged/successful in recorded evidence. Cross-reference F-0012; preserve this historical record and leave it untouched pending human scope decision.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Active/2026-10-11-RSI-Token-Telemetry-Integrity.md",
@@ -8046,7 +8050,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "7db7feb572a3055d85fdf6253e2adde6fb2af854"
         },
         {
           "path": "development/audit/Active/2026-10-11-RSI-Trusted-Evaluator-Control-Plane.md",
@@ -8054,15 +8060,19 @@
           "size_bytes": 5637,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_059",
+          "terminology_assessment": "PRELIMINARY_REVIEW_CROSS_REFERENCE_SWEEP-F-0012",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B059:B059-02"
+          ],
+          "findings": [
+            "SWEEP-F-0012"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_CROSS_REFERENCE_SWEEP-F-0012",
+          "note": "Batch 059: explicitly COMPLETED trusted-evaluator/control-plane audit mirror under Active/, with canonical Completed link; PR #64 and associated CI run #38089860304 are merged/successful in recorded evidence. Cross-reference F-0012; preserve mirror and RSI readiness gates.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Active/2026-10-11-RSI-Trusted-Evaluator-Control-Plane.md",
@@ -8098,7 +8108,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "e6cabd1f2484081e47967b0a1b5df30262f0f2d3"
         },
         {
           "path": "development/audit/Active/2026-10-11-RSI-Workflow-Cleanup-Finalizer.md",
@@ -8106,15 +8118,19 @@
           "size_bytes": 4183,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_059",
+          "terminology_assessment": "PRELIMINARY_REVIEW_CROSS_REFERENCE_SWEEP-F-0012",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B059:B059-03"
+          ],
+          "findings": [
+            "SWEEP-F-0012"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_CROSS_REFERENCE_SWEEP-F-0012",
+          "note": "Batch 059: explicitly COMPLETED workflow cleanup-finalizer mirror under Active/, with canonical Completed link and independent sandbox approval still BLOCKED. PR #79/run #38095122426 provide historical implementation/CI context; PR #80 lists Active and Completed counterparts. Cross-reference F-0012; do not relocate or edit pending human scope decision.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Active/2026-10-11-RSI-Workflow-Cleanup-Finalizer.md",
@@ -8146,7 +8162,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "7fd473bbf0617a815fd62c34977534efb8b3c01e"
         },
         {
           "path": "development/audit/Active/2026-10-12-Free-Provider-Pool-Evidence-Matrix.md",
@@ -8154,15 +8172,17 @@
           "size_bytes": 13041,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_059",
+          "terminology_assessment": "PRELIMINARY_REVIEW_CANDIDATE-STATUS-AND-EVIDENCE-BOUNDARY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B059:B059-04"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 059: dated 2026-10-12 provider-pool research matrix separates measured probes from account billing eligibility, cardless access, privacy, license, free-only overage behavior, and production/capacity qualification. Candidates remain gated and Mistral DEFERRED; record is a dated research baseline, not proof of current October 17 terms or guaranteed GPU capacity. No unique finding.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Active/2026-10-12-Free-Provider-Pool-Evidence-Matrix.md",
@@ -8189,7 +8209,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "5fdba84272bcb4c7df97998b6b0d2ae5d086575b"
         },
         {
           "path": "development/audit/Active/2026-10-12-Free-Provider-Pool-Qualification.md",
@@ -8197,15 +8219,19 @@
           "size_bytes": 13855,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_059",
+          "terminology_assessment": "PRELIMINARY_REVIEW_CROSS_REFERENCE_SWEEP-F-0028",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B059:B059-05"
+          ],
+          "findings": [
+            "SWEEP-F-0028"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_CROSS_REFERENCE_SWEEP-F-0028",
+          "note": "Batch 059: active cross-repository qualification plan retains a request-specific instruction to re-qualify Mistral from 2026-10-12, despite authoritative NOVA deferral record requiring explicit authorization and re-entry evidence. Existing F-0028 extended as a precaution; do not invoke probes or treat historical request as evergreen authorization. Other no-card, quota, data-use and paid-fallback gates remain open.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Active/2026-10-12-Free-Provider-Pool-Qualification.md",
@@ -8232,7 +8258,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "742c7f51205eda8c16df1235b4603e6d20fb0874"
         },
         {
           "path": "development/audit/Active/2026-10-12-Systemic-Engineering-Quality-Investigation-Plan.md",
