@@ -133,3 +133,14 @@ See [Semantic Review Batch 002 — NOVA Core](2026-10-17-ISO-704-Semantic-Review
 - **B002-F05:** heartbeat workflow labels were reviewed for terminology context only; runtime/security/functionality were not audited and no term defect was identified in this file.
 
 Tracker status after Batch 002: **LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEW 11/318; 307 NOT REVIEWED; HUMAN VALIDATION PENDING.** No ISO 704 clause result is inferred.
+
+
+## Semantic review update — Batch 003 large NOVA state ledger
+
+See [Semantic Review Batch 003 — Large NOVA README](2026-10-17-ISO-704-Semantic-Review-Batch-003-Large-NOVA-README.md).
+
+- **B003-F01:** `NOVA/README.md` is a 28,490-line operational/state-report ledger with a mix of templates, placeholder text and definitive-sounding status claims. The file is not itself a canonical terminology register, and this screen does not verify the underlying metrics or legal/compliance claims.
+- **B003-F02:** the file's certification-pattern hits are TLS/security certificate references under the existing certification-context review; generic compliance labels are not ISO 704 certification evidence.
+- **B003-F03:** the file's exact terminology-audit applicability and any separate public-claim validation requirement need an explicit scope decision; the file row remains PARTIAL rather than fully reviewed.
+
+Tracker state after Batch 003: **318/318 lexical scans; 11 preliminary file reviews; 1 partial targeted screen; 306 not reviewed; human validation pending.**
