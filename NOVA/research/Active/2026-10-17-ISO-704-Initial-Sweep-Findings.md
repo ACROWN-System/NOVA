@@ -374,3 +374,12 @@ See [Semantic Review Batch 025 — AstroCrown Entity Registry](2026-10-17-ISO-70
 - Keep entity records linked to their exact source and declared scope. Do not copy a verification status into the canonical term register without the underlying evidence and a precise claim.
 
 Tracker after Batch 025: **318 lexical scans; 94 preliminary full-file reviews; one partial targeted screen; 223 not reviewed; human validation pending.** Invariant: 94 + 1 + 223 = 318.
+
+
+## Targeted partial review — Batch 026 AstroCrown data-display conventions
+
+See [Semantic Review Batch 026 — Data-Display Partial Screen](2026-10-17-ISO-704-Semantic-Review-Batch-026-Data-Display-Partial.md).
+
+- **B026-F01:** The selected-term pattern screen is not a semantic pass. The display-conventions file still needs a complete section-by-section review and comparison against live/assessed builds. Display specifications should map each in-scope field to a canonical/domain definition, source/method, unit/currency/time window, freshness and missing/error behavior, plus implementation evidence. No actual market feed or website was tested.
+
+Tracker after Batch 026: **318 lexical scans; 94 preliminary full-file reviews; two partial targeted screens; 222 not reviewed; human validation pending.** Invariant: 94 + 2 + 222 = 318.
