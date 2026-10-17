@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 306/318; PARTIAL TARGETED SCREENS 5; 7 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 311/318; PARTIAL TARGETED SCREENS 5; 2 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 306,
-    "content_review_pending": 7,
-    "human_validation_pending": 306,
+    "preliminary_content_reviewed": 311,
+    "content_review_pending": 2,
+    "human_validation_pending": 311,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 5
   },
@@ -15524,15 +15524,19 @@
           "size_bytes": 913,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_079",
+          "terminology_assessment": "PRELIMINARY_REVIEW_OPEN_FINDING_SWEEP-F-0062",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B079:B079-01"
+          ],
+          "findings": [
+            "SWEEP-F-0062"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDING_SWEEP-F-0062",
+          "note": "Batch 079: evidence-state CANDIDATE and operational-status Candidate share a lexical value distinguished only by capitalization; the dimensions are declared separate but values need field-qualified semantics (SWEEP-F-0062).",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/verification/operations/STATUS-ENUM.md",
@@ -15559,7 +15563,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "0ac4d7b7ba37282894aa5e6aed1ffda23bb1d23c"
         },
         {
           "path": "development/verification/operations/VERIFICATION-TRACKER.yaml",
@@ -15567,15 +15573,20 @@
           "size_bytes": 1440,
           "extension": ".yaml",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_079",
+          "terminology_assessment": "PRELIMINARY_REVIEW_STATUS-DIMENSION-POSITIVE-CONTROLS",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B079:B079-02"
+          ],
+          "findings": [
+            "SWEEP-F-0061",
+            "SWEEP-F-0062"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_POSITIVE-CONTROLS_CROSS-REFERENCES",
+          "note": "Batch 079: explicitly separates evidence_state and operational_status; preserves unknown/conflict and trigger-driven refresh. Cross-reference SWEEP-F-0061 for normative schema constraints and SWEEP-F-0062 for overloaded Candidate value semantics.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/verification/operations/VERIFICATION-TRACKER.yaml",
@@ -15602,7 +15613,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "37fd81670d62f0316770d504ab0e1352490ae143"
         },
         {
           "path": "development/verification/paths/README.md",
@@ -15610,15 +15623,17 @@
           "size_bytes": 353,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_079",
+          "terminology_assessment": "PRELIMINARY_REVIEW_VERIFICATION-PATH-CONCEPT-BOUNDARY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B079:B079-03"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 079: locally frames paths as external verification execution routes and favors trigger-driven entry over assumed lifecycle stage. Positive control; human validation required.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/verification/paths/README.md",
@@ -15645,7 +15660,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "4f14816cb884473a71a576f9d80733ee300520da"
         },
         {
           "path": "development/verification/paths/VERIFICATION-PATHS.md",
@@ -15653,15 +15670,17 @@
           "size_bytes": 1927,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_079",
+          "terminology_assessment": "PRELIMINARY_REVIEW_VERIFICATION-PATH-MODEL",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B079:B079-04"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 079: supplies a useful pathway sequence and domain-specific routes. Slash/composite wording such as Entity/pathway could be expanded, but no distinct finding was opened; human validation required.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/verification/paths/VERIFICATION-PATHS.md",
@@ -15697,7 +15716,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "57306113d9999b5a15cfc2e6c0a8b0a9792eb931"
         },
         {
           "path": "development/verification/README.md",
@@ -15705,15 +15726,17 @@
           "size_bytes": 3190,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_079",
+          "terminology_assessment": "PRELIMINARY_REVIEW_VERIFICATION-INTELLIGENCE-VS-AUDIT-BOUNDARY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B079:B079-05"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 079: distinguishes verification intelligence from records of actual audit activity and prohibits presenting internal simulations as external decisions/certifications. Positive control; human validation required.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/verification/README.md",
@@ -15753,7 +15776,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "f8b0e26c35f2c0b547c0e7c3aab396f9a9cfa9bb"
         },
         {
           "path": "LICENSE",
@@ -15889,5 +15914,5 @@
     }
   ],
   "last_updated": "2026-10-18",
-  "last_update_note": "Batch 073 reviewed five active AstroCrown-Web Strong RSI/status and test files at pinned main-baseline commit 5faea74dd1b40ec98acf9d59d9e404fc18122032 and verified exact blob SHAs. Extended SWEEP-F-0052 to tests/test_cycle_detector.py: the test explicitly includes failed scheduled/manual workflow records in selected history, confirming that the measured interval is a run-record interval and should not be called successful/completed RSI passes unless the outcome rule is defined. Strong RSI suspension/readiness, dispatcher states, evaluator gates and Weak RSI report-only behavior provide positive controls. Test files were inspected statically only; no tests/workflows/code executed. Counts: 281 preliminary full reviews + 5 partial screens + 32 pending = 318. Human validation pending, formal clause assessment zero, scope proposed/not human-approved. No source/runtime changes or backup/archive reads."
+  "last_update_note": "Batch 079 reviewed five active AstroCrown-Web verification status/path/subsystem README files at pinned main-baseline commit 5faea74dd1b40ec98acf9d59d9e404fc18122032 and verified exact blob SHAs. Opened SWEEP-F-0062 for the same lexical value Candidate used in separate evidence-state and operational-status dimensions with only capitalization distinguishing it. The tracker and paths documentation preserve useful evidence/operational-state, trigger-driven pathway and internal-intelligence/external-audit boundaries. No source/runtime changes, tests, workflows, provider calls or backup/archive reads. Counts: 311 preliminary full reviews + 5 partial screens + 2 pending = 318. Human validation pending; formal clause assessment zero; scope proposed/not human-approved."
 }
