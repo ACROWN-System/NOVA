@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.29  
+**Version:** 0.1.30  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL SWEEP FINDINGS — lexical screening plus preliminary content reviews; human validation and formal clause assessment pending  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -850,3 +850,45 @@ See [Semantic Review Batch 063 — AstroCrown RSI Handoff and Access Roadmap](20
 See [Semantic Review Batch 064 — AstroCrown External Review and Evidence Governance](2026-10-17-ISO-704-Semantic-Review-Batch-064-AstroCrown-External-Review-and-Evidence-Governance.md). Five AstroCrown-Web records were reviewed against exact blob SHAs from the recorded main-baseline commit `5faea74dd1b40ec98acf9d59d9e404fc18122032`. Opened SWEEP-F-0036 after source review found that the external-review pipeline's `schema_version` equality check accepts JSON `true` and `1.0` as equal to integer `1`; the companion unit tests do not cover this type boundary. The outreach ledger correctly labels its probability as an unvalidated sensitivity scenario; the README distinguishes fit scores from probabilities and keeps automated analysis separate from independent review; the proposed fact/evidence governance standard preserves observation/source-claim/inference and rights boundaries. No test or workflow was executed.
 
 **Row-derived counts after Batch 064:** 318 lexical scans; 236 preliminary full-file reviews; 5 partial targeted screens; 77 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. Scope remains proposed and not human-approved.
+
+### SWEEP-F-0037 — Homepage audit record labels completed remediation as required next work
+
+- **Status:** OPEN — preliminary; human validation required.
+- **Affected path:** `AstroCrown-Web/development/audit/records/AUDIT-2026.09.20-001.md`, section `Remediation`.
+- **Observed issue:** The heading `Required next work` precedes four entries written as completed actions or completed absence of action. Findings F-001/F-002 are marked remediated, both re-tests pass, and closure states that remediation occurred before substantive implementation.
+- **Interpretation:** The heading and recorded lifecycle state appear inconsistent. This is a documentation-state ambiguity, not a claim that the historic audit result is false.
+- **Required action:** Relabel the list as recorded/completed remediation or separate genuinely outstanding work from historical actions while preserving the record's point-in-time meaning.
+- **Closure evidence:** Human-approved heading/action alignment; any actual open work separated from completed remediation; historic target commit and results preserved.
+
+### SWEEP-F-0038 — Homepage audit references a requirements artifact absent from the reviewed baseline
+
+- **Status:** OPEN — preliminary; human validation required.
+- **Affected path:** `AstroCrown-Web/development/audit/records/AUDIT-2026.09.20-001.md`; cited artifact `development/HOMEPAGE-REQUIREMENTS.md`.
+- **Observed issue:** Fetching the cited active path at reviewed main baseline `5faea74dd1b40ec98acf9d59d9e404fc18122032` returns not found. The audit's remediation evidence for F-001 points to that path; its related verification matrix remains present at `development/audit/tests/HOMEPAGE-BASELINE.md`.
+- **Interpretation:** The requirement document may have existed at the historic audit date, but the record does not give a retrievable immutable historical reference or a retained replacement reference in the reviewed baseline. The 404 does not prove historical non-existence or whether an excluded archive contains a copy.
+- **Required action:** Attach an immutable historical source reference or explicitly identify the retained/superseding artifact and its provenance. Do not silently rewrite the historic result or inspect/change excluded backups as part of this sweep.
+- **Closure evidence:** A retrievable historical or retained evidence reference, clear provenance/date, and explicit distinction between the original audit snapshot and current requirement state.
+
+### SWEEP-F-0039 — Audit record template does not define Remediated versus Closed
+
+- **Status:** OPEN — preliminary; human validation required.
+- **Affected path:** `AstroCrown-Web/development/audit/templates/AUDIT-RECORD.md`, sections `Findings`, `Re-test` and `Closure`.
+- **Observed issue:** The status choices list `Open / Remediated / Closed`, but the template does not define the distinction or specify whether a successful re-test is required before `Closed` is permitted.
+- **Interpretation:** Different users could apply status labels differently without a shared rule for action completion versus evidence-backed closure.
+- **Required action:** Define each status and its transition/closure criteria. Keep result vocabulary (`PASS / FAIL / N/A / BLOCKED`) distinct from finding-lifecycle vocabulary.
+- **Closure evidence:** Human-approved status definitions and closure evidence requirements, with consistent interpretation in at least one sample record.
+
+### SWEEP-F-0040 — Candidate eligibility rule leaves mandatory N/A handling ambiguous
+
+- **Status:** OPEN — preliminary; human validation required.
+- **Affected path:** `AstroCrown-Web/development/audit/templates/CANDIDATE-EVALUATION.md`, sections `Result State Definitions` and `Eligibility`.
+- **Observed issue:** The template requires justification for a mandatory N/A but says eligibility requires all mandatory criteria to PASS. It does not state whether a justified N/A removes that criterion from the applicable mandatory set or still prevents eligibility.
+- **Interpretation:** Two reviewers may make different eligibility decisions from the same evidence even if both agree the mandatory criterion is genuinely not applicable.
+- **Required action:** Define the intended rule explicitly: whether eligibility requires all applicable mandatory criteria to PASS and each N/A to have an approved rationale, or whether any mandatory N/A blocks eligibility until the criterion set is revised. This review does not select the intended policy.
+- **Closure evidence:** Approved, internally consistent wording; an example covering justified mandatory N/A; and continued clarity of FAIL/BLOCKED gates and prohibition on compensating scores.
+
+## Batch 065 — AstroCrown audit records and templates
+
+See [Semantic Review Batch 065 — AstroCrown Audit Records and Templates](2026-10-17-ISO-704-Semantic-Review-Batch-065-AstroCrown-Audit-Records-and-Templates.md). Five AstroCrown-Web files were reviewed against the exact blob SHAs at main-baseline commit `5faea74dd1b40ec98acf9d59d9e404fc18122032`. Opened SWEEP-F-0037 for a completed remediation list titled `Required next work`; SWEEP-F-0038 because a cited homepage-requirements artifact does not resolve at the reviewed baseline (without assuming it never existed historically); SWEEP-F-0039 because the audit template does not define `Remediated` versus `Closed`; and SWEEP-F-0040 because candidate eligibility does not define how a justified mandatory N/A affects eligibility. The audit overview and dated security-baseline report had no unique finding. No AstroCrown-Web sources were changed, historic audits were not re-performed, and no test/workflow was run.
+
+**Row-derived counts after Batch 065:** 318 lexical scans; 241 preliminary full-file reviews; 5 partial targeted screens; 72 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. Scope remains proposed and not human-approved. No AstroCrown-Web source/runtime files, backup/archive paths, credentials, provider settings, workflows, tests, billing, security controls, or repository settings were changed.
