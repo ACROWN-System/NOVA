@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.14  
+**Version:** 0.1.15  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL FINDINGS — lexical screening only; not a completed conformity audit  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -656,4 +656,19 @@ See [Semantic Review Batch 049 — NOVA Provider and Capacity Claims](2026-10-17
 **Positive review notes:** B049-02 keeps speculative nonlinear/physics-inspired mappings distinct from implemented capabilities and lists re-entry dependencies. B049-04 explicitly blocks resource economics on missing task estimates, alternative costs, renewal evidence and negative-effect measurements. B049-05's implementation statements align with inspected baseline source and existing test design, but no tests or runtime operations were executed.
 
 **Row-derived counts after Batch 049:** 318 lexical scans; 161 preliminary full-file reviews; 5 partial targeted screens; 152 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. No implementation, workflow, provider or backup/archive paths were changed.
+
+## Batch 050 — NOVA freshness and Sanctuary doctrine
+
+See [Semantic Review Batch 050 — NOVA Freshness and Sanctuary Doctrine](2026-10-17-ISO-704-Semantic-Review-Batch-050-NOVA-Freshness-and-Sanctuary-Doctrine.md). Five active files were reviewed at exact main baseline blob SHAs.
+
+### SWEEP-F-0029 — Mistral diagnostics note conflates pending validation with later offline validation evidence
+- **Status:** OPEN.
+- **Affected path:** `NOVA/research/2026.10.09-IMPLEMENTED-mistral-429-diagnostics-investigation-loop.md`.
+- **Observed issue:** The note's “validation pending” status does not distinguish the later successful offline compilation/unit-test record from still-deferred live/provider-cause validation. The later run made no provider API calls and does not establish why Mistral returned HTTP 429.
+- **Required action:** Preserve the historical record and UNKNOWN root-cause classification, but distinguish offline implementation validation from live provider-cause validation and cross-reference the merged Mistral deferral.
+- **Closure evidence:** Human-reviewed status clarification linked to the test-run and deferral records. Do not reactivate provider checks.
+
+**Positive review notes:** The observation-freshness note and source keep staleness separate from truth; the Sanctuary doctrine distinguishes capability, agency, consciousness, possible sentience/welfare, moral patienthood and expressive behavior; the README and research/protection procedure explicitly state they do not establish runtime capability or enforcement. No unique findings were opened from those four files.
+
+**Row-derived counts after Batch 050:** 318 lexical scans; 166 preliminary full-file reviews; 5 partial targeted screens; 147 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. No runtime, provider or backup/archive paths were changed.
 
