@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.12  
+**Version:** 0.1.13  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL FINDINGS — lexical screening only; not a completed conformity audit  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -600,4 +600,38 @@ See [Semantic Review Batch 047 — NOVA Web Styles and Route Claims](2026-10-17-
 - **Closure evidence:** Reviewed wording plus site-wide test evidence for any broader privacy/anti-fingerprinting assertion.
 
 **Row-derived counts after Batch 047:** 318 lexical scans; 151 preliminary full-file reviews; 5 partial targeted screens; 162 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. No backup/archive path or runtime file was changed.
+
+## Batch 048 — NOVA wallet and observer claims
+
+See [Semantic Review Batch 048 — NOVA Wallet and Observer Claims](2026-10-17-ISO-704-Semantic-Review-Batch-048-NOVA-Wallet-and-Observer-Claims.md). Five active paths were reviewed at exact main baseline blob SHAs.
+
+### SWEEP-F-0023 — Wallet account access is labelled as authentication without proof of identity
+- **Status:** OPEN.
+- **Affected path:** `assets/js/app.js`.
+- **Observed issue:** The code requests `eth_requestAccounts` and displays the returned address; it does not sign/verify an authentication challenge or establish a session in this file. “Sovereign Authentication” overstates the shown flow. “Zero-Tracking” is not a site-wide result from a single file review.
+- **Required action:** Distinguish account access from authenticated sign-in or reference a separate implemented and verified flow; scope no-tracking claims to the evidence collected.
+- **Closure evidence:** Reviewed wording, source/test evidence for authentication, and separate site-wide privacy/telemetry evidence if claimed.
+
+### SWEEP-F-0024 — Non-empty HTTP error responses can overwrite the prior observation
+- **Status:** OPEN.
+- **Affected path:** `NOVA/operational_observer.py`.
+- **Observed issue:** If `fetch_text` returns an HTTPError with a non-empty body, `observe_source` does not exit early and can fingerprint/store the error page. This contradicts the docstring's broad assurance that transient failures do not overwrite the last successful observation.
+- **Required action:** Preserve the last good observation on failed fetches and record fetch failures separately.
+- **Closure evidence:** Negative tests for non-empty/empty HTTP error bodies and transient network exceptions.
+
+### SWEEP-F-0025 — Silent response truncation can make content fingerprints incomplete
+- **Status:** OPEN.
+- **Affected path:** `NOVA/operational_observer.py`.
+- **Observed issue:** Payloads above `max_bytes` are silently truncated before fingerprinting, without a completeness/truncation marker. Changed content after the limit may not affect the fingerprint.
+- **Required action:** Mark/handle incomplete payloads before treating the fingerprint as complete.
+- **Closure evidence:** Boundary tests and changed-suffix tests beyond the limit.
+
+### SWEEP-F-0026 — State-ledger README contains an unqualified and ambiguous heartbeat lifecycle statement
+- **Status:** OPEN.
+- **Affected path:** `NOVA/NOVA/README.md`.
+- **Observed issue:** “Awaiting autonomous heartbeat execution” has no timestamp or referenced state/run. A scheduled workflow and historical state snapshot exist, but do not by themselves prove a specific execution or this README's intended component scope.
+- **Required action:** Confirm the component being described and publish a timestamped/source-linked status, or label it as a placeholder.
+- **Closure evidence:** Human-confirmed scope and dated state/run evidence.
+
+**Row-derived counts after Batch 048:** 318 lexical scans; 156 preliminary full-file reviews; 5 partial targeted screens; 157 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. No implementation, workflow, credential or backup/archive paths were changed.
 
