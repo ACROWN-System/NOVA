@@ -305,3 +305,8 @@ Tracker states were re-counted directly: 96 preliminary full reviews, 5 partial 
 
 - **2026-10-17 / v0.1.50:** Added Batch 052 preliminary full-file review of five AstroCrown-Web CI workflow files covering external-review measurement, offline media-generator tests, credential-readiness reporting, RSI CI and CodeQL. Counts: 176 preliminary full reviews + 5 partial screens + 137 not reviewed = 318. No new unique finding was opened. Workflow configuration remains distinct from successful execution, live provider capability, RSI readiness, or branch-rule enforcement. Human validation pending; formal ISO clause assessment remains zero. No backup/archive paths changed.
 
+
+
+## 56. Revision history
+
+- **2026-10-17 / v0.1.51:** Added Batch 053 preliminary full-file review of five AstroCrown-Web active paths: OpenSSF Scorecard workflow, account-continuity roadmap, capacity-aware media rollout proposal, Cloudflare image adapter, and image/video candidate register. Counts: 181 preliminary full reviews + 5 partial screens + 132 not reviewed = 318. Added SWEEP-F-0030 for the image adapter's request-ID provenance mismatch. Human validation pending; formal ISO 704 clause assessment remains zero. No backup/archive paths, credentials, runtime code outside the reviewed baseline, provider calls or deployments were changed.
