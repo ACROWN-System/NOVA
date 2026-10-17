@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.18  
+**Version:** 0.1.19  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL FINDINGS — lexical screening only; not a completed conformity audit  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -708,12 +708,20 @@ See [Semantic Review Batch 053 — AstroCrown Scorecard, Account, and Media Cand
 **Row-derived counts after Batch 053:** 318 lexical scans; 181 preliminary full-file reviews; 5 partial targeted screens; 132 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. No backup/archive path, credentials, provider configuration or runtime environment was changed.
 
 
-### SWEEP-F-0030 — Image adapter's provenance contract promises a request ID but always returns null
+### SWEEP-F-0030 — Image adapter's request-ID documentation/contract is ambiguous
 
 - **Status:** OPEN — preliminary; human validation required.
-- **Affected path:** `development/ai-media-generator/cloudflare_image.py`.
-- **Observed issue:** The `request_image` docstring describes its tuple as image bytes, request ID and declared MIME (line 375). However, `_extract_image` returns `(response_body, None, content_type)` at line 361, and `write_artifact` writes the received value to the `provider_request_id` sidecar field at line 480. The current path therefore always stores a null request identifier.
-- **Risk / interpretation:** Artifact provenance cannot correlate an output to the individual provider request through the declared request-ID field. The actual endpoint's availability of a stable request identifier was not independently established.
-- **Required action:** Verify the exact supported endpoint response contract. Capture and propagate the identifier if exposed; otherwise name/status the field as unavailable (for example, `NOT_EXPOSED`) rather than describing it as a returned request ID. Add offline positive/negative tests for present, absent and malformed identifier metadata without live provider calls.
-- **Closure evidence:** Source-contract alignment, offline tests, example metadata for the supported states, and human review of any claim about identifier stability or provenance.
+- **Affected path:** `development/ai-media-generator/cloudflare_image.py`; supporting cross-reference: `development/ai-media-generator/tests/test_cloudflare_image.py`.
+- **Observed issue:** The `request_image` docstring describes its tuple as image bytes, request ID and declared MIME. However, `_extract_image` returns `(response_body, None, content_type)`, and `write_artifact` serializes the supplied value as `provider_request_id`. The offline tests at the recorded baseline explicitly assert `request_id is None` for two `request_image` cases. A separate provenance test passes `"req-1"` directly to `write_artifact`; that test verifies writer serialization only, not extraction from a provider response.
+- **Interpretation:** The evidence establishes a documentation/contract mismatch and confirms the current path represents request ID as unavailable. It does **not** establish that this exact provider endpoint exposes a stable request identifier that should be parsed. Provenance currently has no provider request ID value to correlate.
+- **Required action:** Human review should decide the intended contract based on the exact supported endpoint response. If request ID is not exposed/used, say so explicitly in the docstring and metadata semantics; if the response does expose a request ID, capture/propagate it and add offline tests for present, absent and malformed response metadata.
+- **Closure evidence:** Reviewed source-contract wording, appropriate offline tests and example metadata for the supported states; any claim of stable provider-level identifier must be supported by endpoint-specific evidence.
 - **Safety boundary:** No provider request, credential access/change, workflow run or deployment was performed in this review.
+
+## Batch 054 — AstroCrown media and Sanctuary documentation
+
+See [Semantic Review Batch 054 — AstroCrown Media and Sanctuary Documentation](2026-10-17-ISO-704-Semantic-Review-Batch-054-AstroCrown-Media-and-Sanctuary-Documentation.md). Five AstroCrown-Web files were reviewed at their exact recorded `main` baseline blob SHAs. No new unique finding was opened. The strategy and README preserve candidate/proposal boundaries, and both Sanctuary documents distinguish research and protection architecture from current runtime behavior.
+
+The Cloudflare adapter test file cross-references SWEEP-F-0030: two `request_image` tests explicitly expect a null request-ID value, while a separate writer test supplies a synthetic ID directly and does not test extraction from a provider response. This refines the existing finding as a documentation/contract mismatch; it does not prove an endpoint-issued ID exists. No tests were executed.
+
+**Row-derived counts after Batch 054:** 318 lexical scans; 186 preliminary full-file reviews; 5 partial targeted screens; 127 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. No backup/archive path, runtime file, provider config, credential or repository setting was changed.
