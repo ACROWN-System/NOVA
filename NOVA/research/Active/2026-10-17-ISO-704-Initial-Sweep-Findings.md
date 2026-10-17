@@ -316,3 +316,14 @@ See [Semantic Review Batch 019 — Health-State Snapshot](2026-10-17-ISO-704-Sem
 - **B019-F03:** historical model target identities may outlive current configuration; current reporting should join them to the current roster/lifecycle and keep orphaned/deprecated identities as history rather than active configuration.
 
 Tracker after Batch 019: **318 lexical scans; 68 preliminary full-file reviews; one partial targeted screen; 249 not reviewed; human validation pending.** Invariant: 68 + 1 + 249 = 318.
+
+
+## Semantic review update — Batch 020 quality gates, reasoning payload and economics
+
+See [Semantic Review Batch 020 — Quality, Reasoning and Economics](2026-10-17-ISO-704-Semantic-Review-Batch-020-Quality-Reasoning-Economics.md).
+
+- **B020-F01:** `validate_reasoning_payload` should first require an object/dict, strictly check each field's type before enum membership, reject boolean confidence values, and return controlled invalid-payload states for scalar/unhashable JSON instead of exceptions. Human-gate requirements should be derived/constrained by trusted policy rather than merely model-authored. No runtime code change made by this review.
+- **B020-F02:** `money()` maps invalid values to zero and `provider_cost()` defaults missing tariff fields to zero. Missing/invalid price evidence must not masquerade as verified free service. Require explicit free status or complete source-backed pricing, preserve UNKNOWN/BLOCKED for missing fields, and test negative rates/inputs through a reviewed implementation change.
+- **Positive controls:** quality-case closure requires exact candidate-commit verification, passing regression evidence, and timezone-aware timestamp; recurrence reopens closure. Model capability gating blocks undeclared models where the provider has adopted a contract registry, while LEGACY_UNDECLARED remains an explicit compatibility exception.
+
+Tracker after Batch 020: **318 lexical scans; 72 preliminary full-file reviews; one partial targeted screen; 245 not reviewed; human validation pending.** Invariant: 72 + 1 + 245 = 318.
