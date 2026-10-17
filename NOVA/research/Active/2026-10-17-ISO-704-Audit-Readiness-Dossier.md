@@ -1,7 +1,7 @@
 # ISO 704:2022 Audit-Readiness Dossier and Evidence Register
 
 **Document ID:** NOVA-ISO704-AR-001  
-**Version:** 0.1.34  
+**Version:** 0.1.35  
 **Date opened:** 2026-10-17  
 **Status:** ACTIVE — readiness package construction; NOT READY FOR AN ISO 704 AUDIT  
 **Owner:** Designated human maintainer  
@@ -294,3 +294,8 @@ Five remaining AstroCrown reference documents received selected-line triage and 
 ## Revision note — Batch 032 audit/readiness triage (2026-10-17)
 
 Five AstroCrown audit/readiness documents received selected-line triage and are explicitly marked PARTIAL. Acceptance criteria and plans must be linked to actual execution/result evidence before they can support a readiness decision. Current row-derived counts: 96 preliminary full reviews + 5 partial screens + 217 not reviewed = 318.
+
+
+## Revision note — Batch 033 capability/availability triage (2026-10-17)
+
+5 files across the active scope are now in partial targeted-screen status; Batch 033 added 0 AstroCrown capability/availability documents. These screens do not prove implementation, no-payment entitlement, GPU capacity or commercial rights. Row-derived counts: 96 full preliminary reviews + 5 partial screens + 217 not reviewed = 318.
