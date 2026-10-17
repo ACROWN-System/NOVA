@@ -1,7 +1,7 @@
 # ISO 704:2022 Audit-Readiness Dossier and Evidence Register
 
 **Document ID:** NOVA-ISO704-AR-001  
-**Version:** 0.1.30  
+**Version:** 0.1.31  
 **Date opened:** 2026-10-17  
 **Status:** ACTIVE — readiness package construction; NOT READY FOR AN ISO 704 AUDIT  
 **Owner:** Designated human maintainer  
@@ -274,3 +274,8 @@ Next actions, in sequence:
 ## Revision note — Blocks 027/028 tracker reconciliation (2026-10-17)
 
 The master counts were re-derived from per-file tracker states after the prompt/navigation and AstroCrown verification triage batches. The invariant is **96 full preliminary reviews + 5 partial screens + 217 not reviewed = 318 inventoried active paths**. Batch 027 covers the prompt guide and development navigation. Batch 028 remains three partial verification-file screens; none has been promoted to a full semantic review. Human validation remains pending and no ISO 704 clause-level assessment is complete.
+
+
+## Revision note — Batch 029 homepage section triage (2026-10-17)
+
+Three active homepage section specifications received selected-term triage only and are marked PARTIAL, not full reviews. The counts are derived directly from tracker rows: 96 preliminary full reviews + 5 partial screens + 217 not reviewed = 318. Human validation is pending and clause-level ISO 704 assessment remains zero.
