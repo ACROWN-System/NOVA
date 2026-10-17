@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — INVENTORY LOADED; CONTENT-LEVEL REVIEW NOT YET PERFORMED",
+  "status": "OPEN — BASELINE LEXICAL SCAN COMPLETE; PRELIMINARY SEMANTIC REVIEW 6/318; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -16,7 +16,11 @@
     "repository_count": 6,
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
-    "tree_responses_truncated": false
+    "tree_responses_truncated": false,
+    "preliminary_content_reviewed": 6,
+    "content_review_pending": 312,
+    "human_validation_pending": 6,
+    "formal_iso_clause_assessment_completed": 0
   },
   "repositories": [
     {
@@ -14540,5 +14544,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 001 reviewed the six repository README files against exact baseline blob SHAs. This is a preliminary content review only; human scope approval and human validation remain required. The other 312 active file rows remain NOT_REVIEWED / NOT_ASSESSED."
+  "last_update_note": "Batch 001 reviewed the six repository README files against exact baseline blob SHAs. Preliminary observations are recorded in 2026-10-17-ISO-704-Semantic-Review-Batch-001-READMEs.md. Human scope approval/validation remains required. The other 312 active file rows remain NOT_REVIEWED / NOT_ASSESSED."
 }
