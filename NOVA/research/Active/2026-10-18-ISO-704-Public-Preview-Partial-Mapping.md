@@ -59,3 +59,14 @@ The objective here is evidence-backed implementation/conformance work, not purch
 
 **IF it is not used:** useful accessible guidance remains unconverted into implementation criteria, or the project may confuse source-access limitations with a requirement to seek paid certification.
 
+
+
+## 8. Quality-preservation and non-regression
+
+The partial mapping is a decision aid for improving terminology; it is not an instruction to rewrite every project artifact into a standardized form. ISO 704's scope is terminology work (objects, concepts, definitions and designations) and does not make every architectural, operational, governance, interface or explanatory document a terminology entry. See the official ISO scope: https://www.iso.org/standard/79077.html
+
+For each proposed implementation action arising from this map, preserve the purpose and domain semantics of the current material. Identify the problem and evidence, expected user/operational benefit, alternatives (including no change), potential loss of nuance or operability, and a verification method. Prefer additive clarification when a destructive rewrite offers no clear benefit. Accept, adapt, reject or defer the proposed action with a written rationale.
+
+The project must not simplify definitions by deleting necessary explanatory context, flatten domain-specific concepts into generic terms, or change operational behaviour solely to make a terminology record look more uniform. Where an actual ISO requirement and a project need appear to conflict, investigate and document the trade-off; do not silently ignore the requirement or claim full conformity.
+
+This quality rule does not change the source limits of this record: unseen provisions remain NOT ASSESSED, and this partial map is not a complete conformity finding.
