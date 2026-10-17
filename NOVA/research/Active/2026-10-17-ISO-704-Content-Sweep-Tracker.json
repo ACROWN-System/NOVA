@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — BASELINE LEXICAL SCAN COMPLETE; PRELIMINARY SEMANTIC REVIEW 6/318; HUMAN VALIDATION PENDING",
+  "status": "OPEN — BASELINE LEXICAL SCAN COMPLETE; PRELIMINARY SEMANTIC REVIEW 11/318; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 6,
-    "content_review_pending": 312,
-    "human_validation_pending": 6,
+    "preliminary_content_reviewed": 11,
+    "content_review_pending": 307,
+    "human_validation_pending": 11,
     "formal_iso_clause_assessment_completed": 0
   },
   "repositories": [
@@ -288,15 +288,19 @@
           "size_bytes": 3423,
           "extension": ".yml",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_002",
+          "terminology_assessment": "PRELIMINARY_REVIEW_NO_TERM_FINDING_RUNTIME_NOT_AUDITED",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B002:B002-05"
+          ],
+          "findings": [
+            "B002-F05"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human review required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_TERM_FINDING_RUNTIME_NOT_AUDITED",
+          "note": "Preliminary terminology-context review in Semantic Review Batch 002. Workflow labels do not claim ISO conformity; runtime, permissions, and workflow behavior were not audited.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": ".github/workflows/nova_heartbeat.yml",
@@ -1617,15 +1621,19 @@
           "size_bytes": 10747,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_002",
+          "terminology_assessment": "PRELIMINARY_REVIEW_FINDING_OPEN_NOT_ISO_CONFORMITY_RESULT",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B002:B002-02"
+          ],
+          "findings": [
+            "B002-F02"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human review required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_FINDING_OPEN_NOT_ISO_CONFORMITY_RESULT",
+          "note": "Preliminary content review in Semantic Review Batch 002. Active HAAN/Imperial HAAN use remains affected by pending HSIAN rename integration; the doctrine clearly states it is not runtime enforcement.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/HAAN-FOUNDATIONAL-MISSION-AND-COLLECTIVE-PRESERVATION.md",
@@ -2012,15 +2020,19 @@
           "size_bytes": 6547,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_002",
+          "terminology_assessment": "PRELIMINARY_REVIEW_FINDING_OPEN_NOT_ISO_CONFORMITY_RESULT",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B002:B002-03"
+          ],
+          "findings": [
+            "B002-F03"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human review required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_FINDING_OPEN_NOT_ISO_CONFORMITY_RESULT",
+          "note": "Preliminary naming-context review in Semantic Review Batch 002. Git author address nova@haan.system is an active legacy string; intention/compatibility needs explicit disposition. No code changed.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/operational_state.py",
@@ -3095,15 +3107,19 @@
           "size_bytes": 27883,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_002",
+          "terminology_assessment": "PRELIMINARY_REVIEW_FINDING_OPEN_NOT_ISO_CONFORMITY_RESULT",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B002:B002-01"
+          ],
+          "findings": [
+            "B002-F01"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human review required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_FINDING_OPEN_NOT_ISO_CONFORMITY_RESULT",
+          "note": "Preliminary content review in Semantic Review Batch 002. 'system intelligence (SI)' may collide with canonical 'Super Intelligence'; decide explicit acronym policy. Architecture is stated as proposed/not universally enforced.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/ROOT-CAUSE-PREVENTION-AND-SHARED-KNOWLEDGE-GOVERNANCE.md",
@@ -3778,15 +3794,19 @@
           "size_bytes": 7549,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_002",
+          "terminology_assessment": "PRELIMINARY_REVIEW_NOTE_ONLY_HUMAN_VALIDATION_REQUIRED",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B002:B002-04"
+          ],
+          "findings": [
+            "B002-F04"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human review required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NOTE_ONLY_HUMAN_VALIDATION_REQUIRED",
+          "note": "Preliminary content review in Semantic Review Batch 002. GROQ_API_KEY_02 appears as a synthetic test-fixture value, not proof of an operational secret requirement. No functional tests run.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/tests/test_operational_state.py",
@@ -14544,5 +14564,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 001 reviewed the six repository README files against exact baseline blob SHAs. Preliminary observations are recorded in 2026-10-17-ISO-704-Semantic-Review-Batch-001-READMEs.md. Human scope approval/validation remains required. The other 312 active file rows remain NOT_REVIEWED / NOT_ASSESSED."
+  "last_update_note": "Batch 002 reviewed five NOVA governance/operational paths against exact baseline blob SHAs. Batch 001 + 002 account for 11 preliminary file reviews total; 307 active file rows remain NOT_REVIEWED / NOT_ASSESSED. Human scope approval/validation remains required."
 }
