@@ -327,3 +327,16 @@ See [Semantic Review Batch 020 — Quality, Reasoning and Economics](2026-10-17-
 - **Positive controls:** quality-case closure requires exact candidate-commit verification, passing regression evidence, and timezone-aware timestamp; recurrence reopens closure. Model capability gating blocks undeclared models where the provider has adopted a contract registry, while LEGACY_UNDECLARED remains an explicit compatibility exception.
 
 Tracker after Batch 020: **318 lexical scans; 72 preliminary full-file reviews; one partial targeted screen; 245 not reviewed; human validation pending.** Invariant: 72 + 1 + 245 = 318.
+
+
+## Semantic review update — Batch 021 policy, alerts and regression tests
+
+See [Semantic Review Batch 021 — Policy, Alerts and Tests](2026-10-17-ISO-704-Semantic-Review-Batch-021-Policy-Alerts-Tests.md).
+
+- **B021-F01:** alert generation maps `active` to `live` and all other statuses to `DOWN`. Constrain allowed roster states and report down/deferred/candidate/blocked/unconfigured/unknown distinctly.
+- **B021-F02:** action policy labels `create_payment_intent` autonomous, but this file does not define whether it is only a local non-binding draft or can reserve/charge funds/incur fees. Define the operation's side effects before treating the label as safe.
+- **B021-F03:** existing economics tests do not cover unknown/malformed tariffs or negative monetary inputs; reasoning tests do not cover adversarial JSON types or model-authored critical human-gate contradictions. These cases need separate reviewed code/test changes.
+- **B021-F04:** `watchlist.json` has an empty source list; do not claim current external-feed observation on the basis of the reasoning module alone.
+- **B021-F05:** GitHub issue creation does not itself prove recipient email delivery; the voice-alert output interpolates text into TwiML without visible escaping and should receive a separate security review. No alert was sent and no exploit was tested.
+
+Tracker after Batch 021: **318 lexical scans; 77 preliminary full-file reviews; one partial targeted screen; 240 not reviewed; human validation pending.** Invariant: 77 + 1 + 240 = 318.
