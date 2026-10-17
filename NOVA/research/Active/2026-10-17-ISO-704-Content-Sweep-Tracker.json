@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 15/318; PARTIAL TARGETED SCREEN 1; 302 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 22/318; PARTIAL TARGETED SCREEN 1; 296 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 15,
-    "content_review_pending": 302,
-    "human_validation_pending": 15,
+    "preliminary_content_reviewed": 22,
+    "content_review_pending": 296,
+    "human_validation_pending": 22,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 1
   },
@@ -5027,15 +5027,19 @@
           "size_bytes": 1,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_006",
+          "terminology_assessment": "EMPTY_PLACEHOLDER_DOCUMENTATION_GAP",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B006:B006-02"
+          ],
+          "findings": [
+            "B006-F01"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human review required",
+          "review_date": "2026-10-17",
+          "result": "EMPTY_PLACEHOLDER_DOCUMENTATION_GAP",
+          "note": "Baseline file contains only one newline. Directory label does not prove an agent model exists or establish scope/source/status.",
           "lexical_scan": {
             "repo": "ACROWN-SIMULATION-LAB",
             "path": "agent-models/README.md",
@@ -5071,15 +5075,19 @@
           "size_bytes": 1,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_006",
+          "terminology_assessment": "EMPTY_PLACEHOLDER_DOCUMENTATION_GAP",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B006:B006-03"
+          ],
+          "findings": [
+            "B006-F01"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human review required",
+          "review_date": "2026-10-17",
+          "result": "EMPTY_PLACEHOLDER_DOCUMENTATION_GAP",
+          "note": "Baseline file contains only one newline. No governance-model scope, authoritative source, status or term definitions supplied.",
           "lexical_scan": {
             "repo": "ACROWN-SIMULATION-LAB",
             "path": "governance-models/README.md",
@@ -5115,15 +5123,17 @@
           "size_bytes": 1070,
           "extension": "[no-ext]",
           "provisional_review_queue": "EXTENSIONLESS_CONTENT_FETCHED; SEMANTIC REVIEW REQUIRED",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_006",
+          "terminology_assessment": "PRELIMINARY_REVIEW_LICENSE_SCOPE_BOUNDARY_ONLY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B006:B006-01"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary content review; designated human review required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_LICENSE_SCOPE_BOUNDARY_ONLY",
+          "note": "Conventional MIT licence reviewed in Batch 006. Licence presence does not demonstrate simulator quality or third-party asset coverage.",
           "lexical_scan": {
             "repo": "ACROWN-SIMULATION-LAB",
             "path": "LICENSE",
@@ -5158,15 +5168,19 @@
           "size_bytes": 1,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_006",
+          "terminology_assessment": "EMPTY_PLACEHOLDER_DOCUMENTATION_GAP",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B006:B006-04"
+          ],
+          "findings": [
+            "B006-F01"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human review required",
+          "review_date": "2026-10-17",
+          "result": "EMPTY_PLACEHOLDER_DOCUMENTATION_GAP",
+          "note": "Baseline file contains only one newline. No simulator/model source, methodology, version or exploratory-versus-validated-results boundary described.",
           "lexical_scan": {
             "repo": "ACROWN-SIMULATION-LAB",
             "path": "monte-carlo/README.md",
@@ -5202,15 +5216,19 @@
           "size_bytes": 1,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_006",
+          "terminology_assessment": "EMPTY_PLACEHOLDER_DOCUMENTATION_GAP",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B006:B006-05"
+          ],
+          "findings": [
+            "B006-F01"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human review required",
+          "review_date": "2026-10-17",
+          "result": "EMPTY_PLACEHOLDER_DOCUMENTATION_GAP",
+          "note": "Baseline file contains only one newline. No Paymaster-domain definition, specification link, status or implementation boundary described.",
           "lexical_scan": {
             "repo": "ACROWN-SIMULATION-LAB",
             "path": "paymaster-models/README.md",
@@ -5289,15 +5307,19 @@
           "size_bytes": 1,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_006",
+          "terminology_assessment": "EMPTY_PLACEHOLDER_DOCUMENTATION_GAP",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B006:B006-06"
+          ],
+          "findings": [
+            "B006-F01"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human review required",
+          "review_date": "2026-10-17",
+          "result": "EMPTY_PLACEHOLDER_DOCUMENTATION_GAP",
+          "note": "Baseline file contains only one newline. No results provenance, run/config/version metadata or validity status described.",
           "lexical_scan": {
             "repo": "ACROWN-SIMULATION-LAB",
             "path": "results/README.md",
@@ -5333,15 +5355,19 @@
           "size_bytes": 1,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_006",
+          "terminology_assessment": "EMPTY_PLACEHOLDER_DOCUMENTATION_GAP",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B006:B006-07"
+          ],
+          "findings": [
+            "B006-F01"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human review required",
+          "review_date": "2026-10-17",
+          "result": "EMPTY_PLACEHOLDER_DOCUMENTATION_GAP",
+          "note": "Baseline file contains only one newline. No scenario definitions, assumptions, versioning or review state described.",
           "lexical_scan": {
             "repo": "ACROWN-SIMULATION-LAB",
             "path": "scenarios/README.md",
@@ -14583,5 +14609,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 005 reviewed the ACS/Monte Carlo specification and licence. The specification has a verified internal completeness failure: its text ends partway through section H while claiming sections A-P and an auditor prompt. Counts: 15 preliminary full-file reviews; one partial targeted screen; 302 active files not reviewed."
+  "last_update_note": "Batch 006 reviewed the seven remaining paths in ACROWN-SIMULATION-LAB. Combined with Batch 001's root README review, all eight inventoried active paths in that repository now have preliminary content-review records. Six subdirectory README files are empty placeholders. Counts: 22 preliminary full-file reviews; one partial targeted screen; 296 active files remain not reviewed."
 }
