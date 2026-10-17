@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 34/318; PARTIAL TARGETED SCREEN 1; 283 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 37/318; PARTIAL TARGETED SCREEN 1; 280 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 34,
-    "content_review_pending": 283,
-    "human_validation_pending": 34,
+    "preliminary_content_reviewed": 37,
+    "content_review_pending": 280,
+    "human_validation_pending": 37,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 1
   },
@@ -1858,15 +1858,20 @@
           "size_bytes": 3076,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_010",
+          "terminology_assessment": "PRELIMINARY_REVIEW_CAPABILITY_SPECIFIC_STATUS_NEEDED",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B010:B010-03"
+          ],
+          "findings": [
+            "B010-F03",
+            "B010-F04"
+          ],
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_CAPABILITY_SPECIFIC_STATUS_NEEDED",
+          "note": "Batch 010: presence-only workflow correctly does not prove qualification. Cloudflare image endpoint qualification and Cloudflare LLM/chat qualification must be tracked separately; changing quota/plan values require dated source and scope.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/KEY-READINESS.md",
@@ -2088,15 +2093,17 @@
           "size_bytes": 3214,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_010",
+          "terminology_assessment": "PRELIMINARY_REVIEW_STATE_BOUNDARY_CLEAR_ADMIN_TASKS_NOT_VERIFIED",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B010:B010-02"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_STATE_BOUNDARY_CLEAR_ADMIN_TASKS_NOT_VERIFIED",
+          "note": "Batch 010: clearly separates main code/policy from state-branch telemetry and provider-down markers; required branch-protection/App settings are administrative tasks, not proof of present configuration.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/OPERATIONAL-STATE.md",
@@ -2962,15 +2969,20 @@
           "size_bytes": 19758,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_010",
+          "terminology_assessment": "PRELIMINARY_REVIEW_HISTORICAL_STATUS_HEADER_STALE",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B010:B010-01"
+          ],
+          "findings": [
+            "B010-F01",
+            "B010-F04"
+          ],
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_HISTORICAL_STATUS_HEADER_STALE",
+          "note": "Batch 010: dated 2026-10-09 incident file header still says PR #57 OPEN and live outcomes pending; later docs record Mistral deferral on 2026-10-10 and subsequent diagnostic/deferral decisions. Add dated-status reconciliation without rewriting original incident evidence or asserting unverified 429 cause.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/research/2026.10.09-Provider-Error-Evidence-and-Credential-Gap-Review.md",
@@ -14661,5 +14673,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 009 reviewed two active NOVA documents: Cloudflare image qualification history and cross-cutting RSI principle. Row-count invariant verified: 34 preliminary full reviews + 1 partial targeted screen + 283 NOT_REVIEWED = 318 inventoried active files. Human validation, scope approval and normative full-standard mapping remain open."
+  "last_update_note": "Batch 010 reviewed three NOVA incident/operational-state/key-readiness documents. Reconciled tracker row counts: 37 preliminary full-file reviews + 1 partial screen + 280 NOT_REVIEWED = 318 inventoried active files. Human scope approval, human validation and full-standard clause mapping remain open."
 }
