@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.28  
+**Version:** 0.1.29  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL SWEEP FINDINGS — lexical screening plus preliminary content reviews; human validation and formal clause assessment pending  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -834,3 +834,19 @@ See [Semantic Review Batch 062 — AstroCrown Completed RSI Security Records](20
 See [Semantic Review Batch 063 — AstroCrown RSI Handoff and Access Roadmap](2026-10-17-ISO-704-Semantic-Review-Batch-063-AstroCrown-RSI-Handoff-and-Access-Roadmap.md). Five AstroCrown-Web files were reviewed at exact recorded main-baseline blob SHAs. Extended SWEEP-F-0033 because the Completed account-continuity record still says PR #132 will remain unmerged, although live GitHub confirms the documentation PR merged on 2026-10-16. Opened SWEEP-F-0035 because the repeat-state diagnostic's documented handoff points to `.github/workflows/nova-rsi.yml`, which is absent from the current main workflow listing; the detector source remains, and no equivalent protected operational integration is inferred. The task-specific dispatcher, telemetry-validation record, and dated cross-repository reconciliation had no unique findings.
 
 **Row-derived counts after Batch 063:** 318 lexical scans; 231 preliminary full-file reviews; 5 partial targeted screens; 82 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. Scope remains proposed and not human-approved. No AstroCrown-Web source/runtime files, backup/archive paths, provider settings, credentials, workflows, tests, billing or repository settings were changed.
+
+### SWEEP-F-0036 — External-review ledger accepts malformed schema-version types
+
+- **Status:** OPEN — preliminary; human validation required.
+- **Affected paths:** `AstroCrown-Web/development/audit/external-review/pipeline.py` (`analyze_ledger`); corroborating coverage path `AstroCrown-Web/development/audit/external-review/tests/test_pipeline.py`.
+- **Observed issue:** The guard `ledger.get("schema_version") != 1` relies on Python equality and does not reject `True` or `1.0`, both of which compare equal to integer `1`. JSON inputs with boolean `true` or floating-point `1.0` can therefore pass the version check despite the expected integer-version contract.
+- **Interpretation:** The source does not fully enforce the schema-version type boundary. This is a static source-level conclusion; runtime behavior was not executed in this review.
+- **Required action:** Require an integer version but explicitly exclude booleans, and require equality to the supported version. Add negative tests for `true`, `1.0`, `null`, string values and unsupported integer versions, plus a positive integer version test.
+- **Closure evidence:** Reviewed change, focused positive/negative unit-test results, and explicit error behavior for unsupported/malformed versions.
+- **Safety boundary:** No source/runtime file, test, ledger, outreach/inbox, external review submission, credential, provider call, repository setting, billing setting, or backup/archive path was changed. No test or workflow was run.
+
+## Batch 064 — AstroCrown external review and evidence governance
+
+See [Semantic Review Batch 064 — AstroCrown External Review and Evidence Governance](2026-10-17-ISO-704-Semantic-Review-Batch-064-AstroCrown-External-Review-and-Evidence-Governance.md). Five AstroCrown-Web records were reviewed against exact blob SHAs from the recorded main-baseline commit `5faea74dd1b40ec98acf9d59d9e404fc18122032`. Opened SWEEP-F-0036 after source review found that the external-review pipeline's `schema_version` equality check accepts JSON `true` and `1.0` as equal to integer `1`; the companion unit tests do not cover this type boundary. The outreach ledger correctly labels its probability as an unvalidated sensitivity scenario; the README distinguishes fit scores from probabilities and keeps automated analysis separate from independent review; the proposed fact/evidence governance standard preserves observation/source-claim/inference and rights boundaries. No test or workflow was executed.
+
+**Row-derived counts after Batch 064:** 318 lexical scans; 236 preliminary full-file reviews; 5 partial targeted screens; 77 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. Scope remains proposed and not human-approved.
