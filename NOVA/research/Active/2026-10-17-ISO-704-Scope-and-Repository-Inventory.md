@@ -1,7 +1,7 @@
 # ISO 704:2022 Scope Proposal and Repository Inventory
 
 **Document ID:** NOVA-ISO704-SCOPE-001  
-**Version:** 0.1.43  
+**Version:** 0.1.44  
 **Snapshot date:** 2026-10-17  
 **Status:** PROPOSED SCOPE / INITIAL PATH INVENTORY — human approval and detailed content review pending  
 **Related dossier:** [ISO 704:2022 Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
@@ -275,3 +275,8 @@ Tracker states were re-counted directly: 96 preliminary full reviews, 5 partial 
 ## 48. Revision history
 
 - **2026-10-17 / v0.1.43:** Added Batch 045 review of five RSI control test files. Counts: 141 preliminary full reviews + 5 partial screens + 172 not reviewed = 318. Confirmed test coverage does not establish suspended-lifecycle blocking across entry points, and a duplicate unittest method shadows stronger workflow assertions. Added SWEEP-F-0016; expanded F-0015's closure evidence to include negative tests at each privileged gate. Human validation pending.
+
+
+## 49. Revision history
+
+- **2026-10-17 / v0.1.44:** Added Batch 046 preliminary content review of five NOVA files: `_headers`, pull request template, Cloudflare smoke-test workflow, health-test workflow, and `.gitignore`. Counts: 146 preliminary full reviews + 5 partial screens + 167 not reviewed = 318 active paths. Added SWEEP-F-0017 through SWEEP-F-0020 for overbroad header/security comments, Cloudflare contract/result traceability, unverified required-check enforcement, and overbroad `.gitignore` labels. The PR template is recorded as a positive evidence-discipline control. Human validation pending; formal ISO clause assessment remains zero.
