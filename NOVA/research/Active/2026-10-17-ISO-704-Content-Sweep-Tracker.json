@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 13/318; PARTIAL TARGETED SCREEN 1; 304 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 15/318; PARTIAL TARGETED SCREEN 1; 302 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 13,
-    "content_review_pending": 304,
-    "human_validation_pending": 13,
+    "preliminary_content_reviewed": 15,
+    "content_review_pending": 302,
+    "human_validation_pending": 15,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 1
   },
@@ -4493,15 +4493,19 @@
           "size_bytes": 13608,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_005",
+          "terminology_assessment": "PRELIMINARY_REVIEW_DOCUMENT_INTEGRITY_FAILURE_OPEN",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B005:B005-01"
+          ],
+          "findings": [
+            "B005-F01"
+          ],
+          "reviewer": "AI-assisted preliminary content review; domain/human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_DOCUMENT_INTEGRITY_FAILURE_OPEN",
+          "note": "Batch 005 confirms the v1.1.2 source file ends mid-section H although its instructions claim sections A-P and an auditor prompt. Treat as incomplete; no missing economic rules inferred.",
           "lexical_scan": {
             "repo": "AstroCrown_ACS_MC_Spec",
             "path": "AstroCrown_ACS_MC_Spec_v1.1.2.md",
@@ -4542,15 +4546,17 @@
           "size_bytes": 1070,
           "extension": "[no-ext]",
           "provisional_review_queue": "EXTENSIONLESS_CONTENT_FETCHED; SEMANTIC REVIEW REQUIRED",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_005",
+          "terminology_assessment": "PRELIMINARY_REVIEW_NO_SPECIFIC_TERM_FINDING_HUMAN_VALIDATION_REQUIRED",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B005:B005-02"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary content review; domain/human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_SPECIFIC_TERM_FINDING_HUMAN_VALIDATION_REQUIRED",
+          "note": "MIT licence inspected in Batch 005; licence presence does not establish spec completeness, implementation or third-party asset scope.",
           "lexical_scan": {
             "repo": "AstroCrown_ACS_MC_Spec",
             "path": "LICENSE",
@@ -14577,5 +14583,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 004 reviewed the remaining two files in Freebies- against exact baseline blob SHAs. Counts: 13 preliminary full-file reviews; one partial targeted screen; 304 active files not reviewed. This does not constitute ISO clause conformity or contract security testing."
+  "last_update_note": "Batch 005 reviewed the ACS/Monte Carlo specification and licence. The specification has a verified internal completeness failure: its text ends partway through section H while claiming sections A-P and an auditor prompt. Counts: 15 preliminary full-file reviews; one partial targeted screen; 302 active files not reviewed."
 }
