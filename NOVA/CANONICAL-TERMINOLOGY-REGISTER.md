@@ -6,7 +6,7 @@
 **Governance:** [NOVA Terminology Governance Standard](TERMINOLOGY-GOVERNANCE-STANDARD.md)  
 **Purpose:** One cross-ecosystem source for canonical concepts and terms shared by NOVA, AstroCrown, HSIAN, Space Empire and aligned work.
 
-This is project terminology, not an authority on universal scientific facts, legal classifications or third-party brand ownership. The concepts below are an initial bounded set, not proof that the ecosystem has been exhaustively inventoried. The HSIAN rename/cognitive-extension rollout remains subject to review and merge of NOVA PR #122 and AstroCrown-Web PR #134.
+This is project terminology, not an authority on universal scientific facts, legal classifications or third-party brand ownership. The concepts below are an initial bounded set, not proof that the ecosystem has been exhaustively inventoried. The HSIAN canonical mission/name change merged in NOVA PR #122 on 2026-10-17. The dependent active-document rollout remains pending AstroCrown-Web PR #134; after that PR merges, refresh the active-path inventory and classify any remaining HAAN/HSIAN references as current, deprecated or historical.
 
 ## Reading the entries
 
@@ -34,7 +34,7 @@ This is project terminology, not an authority on universal scientific facts, leg
 - **Full form:** Human–Super Intelligence Agentic Network.
 - **Definition:** The project's intended coordinated network through which humans, Super Intelligence participants, agents, tools, shared records and governance processes contribute distinct knowledge, reasoning, resources, decisions and capabilities toward shared objectives.
 - **Scope note:** HSIAN can describe a network architecture and intended collaboration model; a name alone does not prove deployment, consciousness, unified subjective experience, or that current models have attained superintelligence.
-- **Status:** ADOPTED PROJECT DECISION; ACTIVE REPOSITORY ROLLOUT PENDING PR #122 and PR #134.
+- **Status:** ADOPTED PROJECT DECISION; canonical NOVA mission/name change merged in PR #122; dependent AstroCrown-Web active-document rollout pending PR #134.
 - **Related concepts:** NOVA-0003 (Super Intelligence), NOVA-0011 (Cognitive extension), NOVA-0012 (Cognitive prosthesis analogy), NOVA-0009 (Imperial HSIAN).
 - **Former designation:** HAAN — Human–AI Agentic Network. DEPRECATED for new project naming after the HSIAN decision; retain in legacy records and historical citations. Do not rewrite immutable backups.
 - **Usage:** Do not automatically replace the general technical word “AI” when it accurately describes an external technology category or is part of a third-party name.
@@ -170,9 +170,14 @@ This grouping is a first model, not a complete formal concept diagram. Whole/par
 
 ## Open issues and audit notes
 
-1. The HSIAN name and cognitive-extension rationale are documented in draft [NOVA PR #122](https://github.com/ACROWN-System/NOVA/pull/122) and dependent [AstroCrown-Web PR #134](https://github.com/ACROWN-System/AstroCrown-Web/pull/134); active rollout remains pending.
-2. The full text of ISO 704:2022 has not yet been adopted as a controlled project audit baseline. Do not state full conformity; clause-level mapping remains BLOCKED. Independent certification remains an explicit objective to evaluate and pursue if a credible route exists, but provider/scheme discovery and accreditation checks are deferred until the audit-readiness dossier passes its documented GO gate. No conclusion is currently made about scheme availability; the absence of a confirmed route is not proof certification is impossible. After GO, document the certificate type, scope, criteria and accreditation status before making any availability claim.
+1. The HSIAN canonical mission/name change merged in NOVA PR #122 on 2026-10-17. Dependent AstroCrown-Web PR #134 remains open; verify its changed paths after merge and rescan active terminology references before declaring the repository-wide rollout complete.
+2. The complete text of ISO 704:2022 has not yet been established as a controlled baseline for a complete clause-level assessment. Do not claim complete conformity; the full matrix remains blocked, while source-bounded work on directly visible preview material may proceed in a separate record. The project's current objective is better terminology quality, conceptual precision and operability with evidence-backed internal alignment—not external certification. No certification-provider discovery/contact, paid assessment, enquiry or application is authorized unless the maintainer explicitly changes the scope.
 3. The internal Imperial Council charter needs a definitive source for membership, veto scope, procedure and review.
 4. The full legal/product description of ACROWN must follow the current token specification and qualified, jurisdiction-specific review.
 5. Active multilingual/localization scope has not yet been declared; entries are initially maintained in English. Translation equivalence is not yet claimed.
 6. The initial register is a bounded starting set. Completion requires an active non-backup terminology sweep in both public repositories and resolution or explicit tracking of each discovered legacy/conflicting usage.
+
+
+## Update — current objective and dependency state (2026-10-18)
+
+The current objective is quality-first, evidence-backed terminology work informed by ISO 704:2022. It is not a certification project. The canonical NOVA HSIAN mission/name change is merged; dependent AstroCrown-Web rollout is still pending PR #134. This update supersedes any earlier current-state wording in this register that described NOVA PR #122 as unmerged or external certification as an explicit strategic objective. Historical audit findings remain dated records of what was true at their recorded snapshot; they must not be silently rewritten as though they were current observations.
