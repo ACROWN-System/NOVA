@@ -1,7 +1,7 @@
 # ISO 704:2022 Scope Proposal and Repository Inventory
 
 **Document ID:** NOVA-ISO704-SCOPE-001  
-**Version:** 0.1.30  
+**Version:** 0.1.31  
 **Snapshot date:** 2026-10-17  
 **Status:** PROPOSED SCOPE / INITIAL PATH INVENTORY — human approval and detailed content review pending  
 **Related dossier:** [ISO 704:2022 Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
@@ -210,3 +210,8 @@ Tracker states were re-counted directly: 96 preliminary full reviews, 5 partial 
 ## 35. Revision history
 
 - **2026-10-17 / v0.1.30:** Added Batch 032 partial triage of five audit/readiness documents; planned checks are not counted as executed audits. Current counts: 96 full preliminary reviews, 5 partial screens, 217 not reviewed.
+
+
+## 36. Revision history
+
+- **2026-10-17 / v0.1.31:** Added Batch 033 partial triage of AstroCrown capability and availability documents. Statements about planned generators, GPU providers, cost, output transparency and commercial rights still require full semantic review and evidence. Counts: 96 full preliminary reviews, 5 partial screens and 217 not reviewed.
