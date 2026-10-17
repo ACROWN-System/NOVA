@@ -190,3 +190,16 @@ See [Semantic Review Batch 008 — Resource Readiness](2026-10-17-ISO-704-Semant
 - **Positive practice:** GPU capacity vocabulary explicitly separates advertised, recurring, one-time, reserved, idle, useful and unknown usage, and labels 86,400 GPU-minutes/month as provisional/unvalidated.
 
 Tracker counts were reconciled from row status after finding a one-row aggregate arithmetic mismatch. Prevention: after every batch, derive totals from row states and verify `full reviews + partial reviews + NOT_REVIEWED = total active rows`. Current count: 32 + 1 + 285 = 318.
+
+
+## Semantic review update — Batch 009 image qualification and RSI doctrine
+
+See [Semantic Review Batch 009 — Image and RSI Doctrine](2026-10-17-ISO-704-Semantic-Review-Batch-009-Image-and-RSI-Doctrine.md).
+
+- **B009-F01:** the image qualification record's initial status/objective still says “establish the first live image test”, even though later sections record three successful request/artifact deliveries, visual acceptance failure, and unresolved account cost/quota, alpha and commercial rights. Reconcile the current header without deleting dated history.
+- **B009-F02:** preserve the useful evidence boundaries between request success, visual quality, JPEG/alpha, cost/quota and commercial rights.
+- **B009-F03:** the cooperative RSI principle is properly labelled proposed/documentation-only and not an operational capability proof.
+- **B009-F04:** the active HAAN mission reference still depends on the pending HSIAN rename integration.
+- **B009-F05:** the cross-cutting principle locally defines legitimacy resilience, protective intelligence, emergent coordination and shared human–AI sovereignty; decide which concepts need canonical IDs versus domain-local definitions.
+
+Tracker after Batch 009: **318 lexical scans; 34 preliminary full-file reviews; one partial targeted screen; 283 not reviewed; human validation pending.** Row-count integrity control checked: 34 + 1 + 283 = 318.
