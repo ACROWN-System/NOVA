@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.9  
+**Version:** 0.1.10  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL FINDINGS — lexical screening only; not a completed conformity audit  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -530,3 +530,16 @@ See [Semantic Review Batch 044](2026-10-17-ISO-704-Semantic-Review-Batch-044-RSI
 - **Closure evidence:** reviewed implementation PR; negative tests show preflight/engine remain blocked with zero provider calls under every suspended state; current policy remains suspended until a separate human decision.
 
 **Row-derived counts after Batch 044:** 318 lexical scans; 136 preliminary full-file reviews; 5 partial targeted screens; 177 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments.
+
+
+## Batch 045 — RSI control tests
+
+See [Semantic Review Batch 045](2026-10-17-ISO-704-Semantic-Review-Batch-045-RSI-Control-Tests.md).
+
+### SWEEP-F-0015 — Lifecycle negative tests missing across privileged gates
+Existing tests cover the current INCOMPLETE policy and static suspended state, but do not test `READY + SUSPENDED` across cycle/evaluator/preflight/evidence-retention. Closure must demonstrate every relevant boundary blocks before provider access and retention with zero calls/retention while suspended. Current policy stays unchanged.
+
+### SWEEP-F-0016 — Duplicate test method shadows workflow timeout assertions
+The engine test file defines the same workflow-cleanup test name twice. The second definition replaces the first in the class body; unique timeout and job/cycle assertions in the first definition are not discovered. Rename/split tests, verify discovery output, and collect passing CI evidence.
+
+**Row-derived counts after Batch 045:** 318 lexical scans; 141 preliminary full-file reviews; 5 partial targeted screens; 172 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments.

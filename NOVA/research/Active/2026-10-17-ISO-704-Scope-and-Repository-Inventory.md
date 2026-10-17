@@ -1,7 +1,7 @@
 # ISO 704:2022 Scope Proposal and Repository Inventory
 
 **Document ID:** NOVA-ISO704-SCOPE-001  
-**Version:** 0.1.42  
+**Version:** 0.1.43  
 **Snapshot date:** 2026-10-17  
 **Status:** PROPOSED SCOPE / INITIAL PATH INVENTORY — human approval and detailed content review pending  
 **Related dossier:** [ISO 704:2022 Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
@@ -40,7 +40,7 @@ The following default-branch tree snapshots were retrieved from GitHub's Git dat
 
 ## 4. Coverage limits and exclusions to resolve
 
-This is a snapshot of active file paths at the recorded Git tree SHAs. The tracker records a selected-term lexical scan of all 318 inventoried active files, with all rows marked `FETCHED_AND_LEXICALLY_SCANNED`. Preliminary semantic reviews have now been recorded for six repository-level README files in [Batch 001](2026-10-17-ISO-704-Semantic-Review-Batch-001-READMEs.md) and five NOVA governance/operational files in [Batch 002](2026-10-17-ISO-704-Semantic-Review-Batch-002-NOVA-Core.md); the five additional NOVA core files are also reviewed in [Batch 002](2026-10-17-ISO-704-Semantic-Review-Batch-002-NOVA-Core.md), and the large 28,490-line NOVA state-ledger README has a separately marked PARTIAL targeted screen in [Batch 003](2026-10-17-ISO-704-Semantic-Review-Batch-003-Large-NOVA-README.md). After Batch 044, 136 active files have preliminary full-file reviews, 5 files have partial targeted screens, and the other 177 active-file rows remain `NOT_REVIEWED` / `NOT_ASSESSED`. All 101 preliminary reviews require human validation and are not ISO conformity results. The lexical scan does **not** establish that context has been interpreted, all terms have been located, or repository usage is consistent. See the [initial sweep findings](2026-10-17-ISO-704-Initial-Sweep-Findings.md).
+This is a snapshot of active file paths at the recorded Git tree SHAs. The tracker records a selected-term lexical scan of all 318 inventoried active files, with all rows marked `FETCHED_AND_LEXICALLY_SCANNED`. Preliminary semantic reviews have now been recorded for six repository-level README files in [Batch 001](2026-10-17-ISO-704-Semantic-Review-Batch-001-READMEs.md) and five NOVA governance/operational files in [Batch 002](2026-10-17-ISO-704-Semantic-Review-Batch-002-NOVA-Core.md); the five additional NOVA core files are also reviewed in [Batch 002](2026-10-17-ISO-704-Semantic-Review-Batch-002-NOVA-Core.md), and the large 28,490-line NOVA state-ledger README has a separately marked PARTIAL targeted screen in [Batch 003](2026-10-17-ISO-704-Semantic-Review-Batch-003-Large-NOVA-README.md). After Batch 045, 141 active files have preliminary full-file reviews, 5 files have partial targeted screens, and the other 172 active-file rows remain `NOT_REVIEWED` / `NOT_ASSESSED`. All 101 preliminary reviews require human validation and are not ISO conformity results. The lexical scan does **not** establish that context has been interpreted, all terms have been located, or repository usage is consistent. See the [initial sweep findings](2026-10-17-ISO-704-Initial-Sweep-Findings.md).
 
 The inventory includes all non-archive blobs regardless of file extension so that file types are not excluded merely because their content format is unfamiliar. During the audit, classify each file as applicable text/content, non-text asset, generated artefact, secret-bearing/restricted material or justified exclusion; record the reason and reviewer. Do not treat a file as non-applicable solely from its extension.
 
@@ -270,3 +270,8 @@ Tracker states were re-counted directly: 96 preliminary full reviews, 5 partial 
 ## 47. Revision history
 
 - **2026-10-17 / v0.1.42:** Added Batch 044 review of RSI engine, sandbox runtime, provider client, preflight and candidate schema. Counts: 136 preliminary full reviews + 5 partial screens + 177 not reviewed = 318. Added SWEEP-F-0015 because engine and preflight gate implementation readiness but do not independently gate Strong RSI lifecycle SUSPENDED / zero provider calls. Human validation pending; formal ISO clause assessment remains zero.
+
+
+## 48. Revision history
+
+- **2026-10-17 / v0.1.43:** Added Batch 045 review of five RSI control test files. Counts: 141 preliminary full reviews + 5 partial screens + 172 not reviewed = 318. Confirmed test coverage does not establish suspended-lifecycle blocking across entry points, and a duplicate unittest method shadows stronger workflow assertions. Added SWEEP-F-0016; expanded F-0015's closure evidence to include negative tests at each privileged gate. Human validation pending.
