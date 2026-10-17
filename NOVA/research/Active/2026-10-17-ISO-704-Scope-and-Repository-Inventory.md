@@ -1,7 +1,7 @@
 # ISO 704:2022 Scope Proposal and Repository Inventory
 
 **Document ID:** NOVA-ISO704-SCOPE-001  
-**Version:** 0.1.62  
+**Version:** 0.1.63  
 **Snapshot date:** 2026-10-17  
 **Status:** PROPOSED SCOPE / INITIAL PATH INVENTORY — human approval and detailed content review pending  
 **Related dossier:** [ISO 704:2022 Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
@@ -362,3 +362,7 @@ Tracker states were re-counted directly: 96 preliminary full reviews, 5 partial 
 ## 67. Revision history
 
 - **2026-10-17 / v0.1.62:** Added Batch 064 preliminary full-file review of five AstroCrown-Web external-review/evidence-governance records at exact recorded main-baseline blob SHAs. Opened SWEEP-F-0036 for `schema_version` type validation: the external-review pipeline checks equality to `1`, which accepts JSON `true` and `1.0` under Python equality semantics; companion tests lack cases for this boundary. Proposed exact integer/non-boolean validation and focused negative/positive tests; source/tests were not changed or executed. Counts: 236 preliminary full reviews + 5 partial targeted screens + 77 not reviewed = 318. Human validation remains pending; formal ISO 704 clause assessment remains zero and scope remains proposed/not human-approved. No AstroCrown-Web source/runtime files, backups/archives, credentials, provider settings, workflows, tests, billing or repository settings were changed.
+
+## 68. Revision history
+
+- **2026-10-17 / v0.1.63:** Added Batch 065 preliminary full-file review of five AstroCrown-Web audit overview, dated audit/security records and audit/candidate-evaluation templates at exact recorded main-baseline blob SHAs. Opened SWEEP-F-0037 for mismatch between `Required next work` and completed actions; SWEEP-F-0038 for a cited requirement artifact unavailable at the reviewed baseline while explicitly preserving historical uncertainty; SWEEP-F-0039 for undefined `Remediated` versus `Closed` finding statuses; and SWEEP-F-0040 for ambiguous eligibility when a mandatory criterion is N/A. Counts: 241 preliminary full reviews + 5 partial screens + 72 not reviewed = 318. Human validation remains pending; formal ISO 704 clause assessment remains zero; scope remains proposed/not human-approved. No AstroCrown-Web source/runtime files, backup/archive paths, credentials, provider settings, workflows, tests, billing, security controls or repository settings were changed.
