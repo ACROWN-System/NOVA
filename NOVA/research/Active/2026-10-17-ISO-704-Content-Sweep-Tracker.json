@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 116/318; PARTIAL TARGETED SCREENS 5; 197 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 121/318; PARTIAL TARGETED SCREENS 5; 192 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 116,
-    "content_review_pending": 197,
-    "human_validation_pending": 116,
+    "preliminary_content_reviewed": 121,
+    "content_review_pending": 192,
+    "human_validation_pending": 121,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 5
   },
@@ -8733,15 +8733,19 @@
           "size_bytes": 2363,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_041",
+          "terminology_assessment": "PRELIMINARY_REVIEW_EXECUTABLE_FILE_MODE_INTEGRITY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B041:B041-04"
+          ],
+          "findings": [
+            "SWEEP-F-0001"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_EXECUTABLE_FILE_MODE_INTEGRITY",
+          "note": "Reviewed full file at exact main blob SHA. It documents consistency between evaluator and retention checks on executable mode and links a regression test plus a dated CI run; it keeps readiness INCOMPLETE and the benchmark disabled. Legacy HAAN mission reference remains in existing SWEEP-F-0001.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Completed/2026-10-11-RSI-Executable-Mode-Consistency.md",
@@ -8925,15 +8929,19 @@
           "size_bytes": 4174,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_041",
+          "terminology_assessment": "PRELIMINARY_REVIEW_HISTORICAL_PROVIDER_EGRESS_BOUNDARY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B041:B041-02"
+          ],
+          "findings": [
+            "SWEEP-F-0009"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_HISTORICAL_PROVIDER_EGRESS_BOUNDARY",
+          "note": "Reviewed full file at exact main blob SHA. The dated Oct 11 audit record describes a Nosana hostname allowlist and redirect rejection and explicitly says no provider request was made then; it is historical evidence, not the current provider configuration. Current policy/client use Groq, so retain the date/scope distinction and do not use this old Nosana host as a current setup instruction. Related context for SWEEP-F-0009; no runtime settings were changed.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Completed/2026-10-11-RSI-Provider-Egress-Boundary.md",
@@ -9063,15 +9071,17 @@
           "size_bytes": 2492,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_041",
+          "terminology_assessment": "PRELIMINARY_REVIEW_BOUNDED_PROCESS_TERMINATION_AND_CLEANUP",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B041:B041-03"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_BOUNDED_PROCESS_TERMINATION_AND_CLEANUP",
+          "note": "Reviewed full file at exact main blob SHA. It records concrete output-pipe/timeout error scenarios, process-group termination and labelled cleanup, with fail-closed BLOCKED behavior when cleanup cannot be confirmed. Test evidence is linked to a dated run and residual Docker/kernel/host/supply-chain risks remain explicit.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Completed/2026-10-11-RSI-Supervisor-IO-Failure-Cleanup.md",
@@ -9206,15 +9216,19 @@
           "size_bytes": 5578,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_041",
+          "terminology_assessment": "PRELIMINARY_REVIEW_TRUSTED_CONTROL_PLANE_AND_MAIN_REF_GUARD",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B041:B041-01"
+          ],
+          "findings": [
+            "SWEEP-F-0001"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_TRUSTED_CONTROL_PLANE_AND_MAIN_REF_GUARD",
+          "note": "Reviewed full file at exact main blob SHA. It explains trusted evaluator/dispatcher/sandbox separation from candidate source and a main-ref guard before credential-bearing jobs, records exact PR/run evidence, and explicitly leaves broader independent sandbox/security review BLOCKED with readiness INCOMPLETE. Historical claim is date/commit-bound. Legacy HAAN reference remains in existing SWEEP-F-0001.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Completed/2026-10-11-RSI-Trusted-Evaluator-Control-Plane.md",
@@ -11837,15 +11851,19 @@
           "size_bytes": 9142,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_041",
+          "terminology_assessment": "PRELIMINARY_REVIEW_BENCHMARK_SCOPE_AND_LIFECYCLE_WORDING",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B041:B041-05"
+          ],
+          "findings": [
+            "SWEEP-F-0013"
+          ],
+          "reviewer": "AI-assisted preliminary content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_BENCHMARK_SCOPE_AND_LIFECYCLE_WORDING",
+          "note": "Reviewed full file at exact main blob SHA. The protocol clearly distinguishes a narrow context-packing workload from general intelligence, requires exact baseline/candidate commits, fail-closed output, protected scope and independent review, and leaves the command unconfigured/readiness INCOMPLETE. However, one paragraph says the workload 'is being developed' while later sections say the workload is implemented as a candidate. Finding SWEEP-F-0013: align lifecycle wording without implying independent approval.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/nova-recursive-self-improvement/CAPABILITY-BENCHMARK-PROTOCOL.md",

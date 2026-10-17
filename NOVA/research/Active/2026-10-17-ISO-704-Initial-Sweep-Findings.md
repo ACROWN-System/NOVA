@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.5  
+**Version:** 0.1.6  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL FINDINGS — lexical screening only; not a completed conformity audit  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -475,3 +475,17 @@ See [Semantic Review Batch 040](2026-10-17-ISO-704-Semantic-Review-Batch-040-RSI
 - Their wording consistently distinguishes tested cleanup/provenance properties from remaining Docker/runner risks, benchmark validity and independent security approval.
 - No new unique finding was raised in this batch. Legacy HAAN mission links remain within the existing SWEEP-F-0001 active naming-rollout finding; do not mass-edit or rewrite history ahead of the approved HSIAN rollout.
 - **Row-derived counts after Batch 040:** 318 lexical scans; 116 preliminary full-file reviews; 5 partial targeted screens; 197 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments.
+
+
+## Batch 041 — RSI control plane and benchmark protocol
+
+See [Semantic Review Batch 041](2026-10-17-ISO-704-Semantic-Review-Batch-041-RSI-Control-Plane-and-Benchmark-Protocol.md).
+
+### SWEEP-F-0013 — Benchmark protocol lifecycle wording is inconsistent
+- **Status:** OPEN — documentation clarity.
+- **Affected path:** `development/nova-recursive-self-improvement/CAPABILITY-BENCHMARK-PROTOCOL.md`.
+- **Observed issue:** The document describes the initial workload as “being developed,” then later describes it as implemented but independent-review-required. The implemented/approval distinction is otherwise made correctly.
+- **Action:** Make the implementation state consistent throughout: implemented candidate; independent review required; disabled/unapproved; command unconfigured.
+- **Closure evidence:** reviewed change and check of the rest of the policy/status language.
+
+**Row-derived counts after Batch 041:** 318 lexical scans; 121 preliminary full-file reviews; 5 partial screens; 192 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments.
