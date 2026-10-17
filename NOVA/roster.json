@@ -1,5 +1,5 @@
 {
-  "_comment": "NOVA provider roster. Priority = order in this list. 'status' is set to 'down' automatically by router.py when a provider's models are all permanently dead (e.g. decommissioned) \u2014 the HAAN Council restores it to 'active' after approving a replacement. Model IDs drift often; verify against each provider's live docs periodically.",
+  "_comment": "NOVA provider roster. Priority = order in this list. 'status' is set to 'down' automatically by router.py when a provider's models are all permanently dead (e.g. decommissioned) \u2014 the Imperial Council restores it to 'active' after approving a replacement. Model IDs drift often; verify against each provider's live docs periodically.",
   "candidates_not_in_roster": [
     "OpenRouter \u2014 OPENROUTER_API_KEY_01; aggregator; official free plan currently lists 25+ free models and 50 requests/day; free upstream availability changes; https://openrouter.ai/pricing/",
     "Hugging Face Inference Providers \u2014 HF_INFERENCE_API_KEY_01; current Free-plan included credit is CONFLICTED: earlier source says $0.10/month, latest 2026-10-08 catalog audit of official pricing says no credit on Free and credits must be purchased; UNKNOWN until current account/official page discrepancy is resolved; https://huggingface.co/docs/inference-providers/en/pricing",
