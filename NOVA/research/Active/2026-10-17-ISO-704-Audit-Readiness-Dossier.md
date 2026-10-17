@@ -434,3 +434,14 @@ The status **NOT READY FOR A COMPLETE ISO 704 CONFORMANCE ASSESSMENT** continues
 - No paid access, paid membership/subscription, billable inquiry, hired adviser/provider or other cost is authorized.
 
 **Impact Analysis — IF this distinction is maintained:** the project advances on evidence it can actually inspect without treating a payment model as a certification requirement, while all invisible material remains an explicit gap. **IF not maintained:** access limitations could unnecessarily stop useful work or encourage unsupported claims about complete conformance.
+
+
+## Quality and non-regression gate for corrective actions (2026-10-18)
+
+A terminology finding is not permission to simplify, rename, consolidate or restructure automatically. Before implementing a finding or ISO-inspired recommendation, record the real problem and evidence, purpose/use case, expected benefit, alternatives (including no change), regression risks, a verification method and a reasoned ACCEPT / ADAPT / REJECT / DEFER disposition. Use the separate [Quality Preservation and Non-Regression Plan](2026-10-18-ISO-704-Quality-Preservation-and-Non-Regression-Plan.md).
+
+The reviewer must consider loss of semantic nuance, domain boundaries, helpful explanatory context, operational meaning, cross-repository discoverability, navigation, retrieval, maintainability, automation/API compatibility, security constraints and public commitments. Prefer additive clarification over destructive rewriting when it addresses the problem adequately. A concise canonical definition must not require removal of its explanation, examples, rationale or operational instructions where these serve distinct purposes.
+
+This gate complements rather than replaces any real standard assessment. It must not be used to silently disregard a verified ISO requirement; where a genuine conflict appears, document it transparently, assess the consequences and avoid any unsupported complete-conformity claim. The public-preview map remains partial, and no unseen text is presumed compliant.
+
+**Impact Analysis — IF applied:** corrective actions improve terminology without creating regressions elsewhere. **IF not applied:** the project may reduce useful knowledge and operability while increasing superficial uniformity.
