@@ -6,14 +6,14 @@
 **Date opened:** 2026-10-17  
 **Owner:** Designated human maintainer  
 **Standard baseline:** ISO 704:2022, Edition 4 — full controlled text not yet established  
-**Readiness status:** BLOCKED until lawful access to the complete edition and full clause/section inventory  
+**Readiness status:** COMPLETE MATRIX remains blocked until the applicable edition and full clause/section inventory are established; separate source-bounded preview mapping may proceed  
 **Related dossier:** [ISO 704:2022 Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)
 
 ## 1. Purpose
 
 Use this controlled template to assess every relevant section/clause of the exact ISO 704:2022 edition against project controls and objective evidence. The current file is only the structure for future work. It contains no clause-level conclusions and must not be presented as a completed conformity matrix.
 
-Do not create rows from memory, search-result snippets, a public abstract or another standard. Populate standard identifiers only after the lawful full edition is available and the document structure has been verified. Do not reproduce protected ISO text; capture a concise project-authored paraphrase and record the actual type of statement being assessed.
+Do not create rows from memory, search-result snippets, an abstract or another standard. Exact locations and content directly visible in an identified, traceable standards preview may be summarized in a separate partial mapping with source and coverage limits. Do not use this complete-matrix template to imply total coverage; the full inventory and final baseline still require the applicable edition and all relevant sections to be accounted for. Do not reproduce protected ISO text; capture a concise project-authored paraphrase and record the actual type of statement being assessed.
 
 ## 2. Matrix row schema
 
@@ -77,6 +77,6 @@ Before the matrix can support readiness:
 
 ## 5. Current status
 
-**BLOCKED / NOT STARTED AS A CLAUSE-LEVEL ASSESSMENT.** The project has not yet established lawful, controlled access to the complete ISO 704:2022 edition. The next valid step is to resolve that prerequisite through a separately authorized access route. No paid access is authorized by this template.
+**BLOCKED / NOT STARTED AS A COMPLETE CLAUSE-LEVEL ASSESSMENT.** The project has not established the complete applicable ISO 704:2022 baseline or reconciled every relevant clause/section. This template remains blank as the complete matrix. Source-bounded assessment of provisions directly visible in public previews may proceed in a separate record, currently [Public-Preview Partial Mapping](2026-10-18-ISO-704-Public-Preview-Partial-Mapping.md). No paid access is authorized by this template and no conclusion is drawn for text not directly inspected.
 
 The readiness dossier defines the wider evidence package, internal audit, corrective-action and management decision gates. Provider discovery remains deferred until the full package passes those gates.
