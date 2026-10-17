@@ -236,3 +236,15 @@ See [Semantic Review Batch 012 — Provider Qualification](2026-10-17-ISO-704-Se
 - **Positive control:** diagnostic status words distinguish HTTP class, valid shape, probe marker, rate-limit headers, lifecycle and resource eligibility; mocks protect secrets and response text. Preserve these distinctions.
 
 Tracker after Batch 012: **318 lexical scans; 44 preliminary full-file reviews; one partial targeted screen; 273 not reviewed; human validation pending.** Row-count invariant: 44 + 1 + 273 = 318.
+
+
+## Semantic review update — Batch 013 rosters, health policy and GPU capacity evidence
+
+See [Semantic Review Batch 013 — Rosters and Capacity](2026-10-17-ISO-704-Semantic-Review-Batch-013-Rosters-and-Capacity.md).
+
+- **B013-F01:** current roster comment still says “HAAN Council”; update only through reviewed HSIAN naming integration after verifying the authoritative governance decision.
+- **B013-F02:** the candidates_not_in_roster list mixes direct providers, gateways and specialized/community routes as free-form strings with inconsistent evidence fields and source dates. Maintain these as explicit candidates, not active providers; normalize provenance/status before counting them or comparing independent capacity.
+- **B013-F03:** GPU capacity evidence marks Lightning's free_without_payment_method as VERIFIED while actual GPU credit balance/no-card GPU entitlement remains unresolved. Split account creation, free CPU workspace access, GPU credits, actual GPU allocation and no-paid-overage into separate evidence fields.
+- **Positive control:** rosters and capacity evidence correctly distinguish active vs candidate/deferred, documented theoretical vs verified recurring and one-time capacity, and unknown/unmetered usage. The health policy explicitly states that stale observation is not proof of false state.
+
+Tracker after Batch 013: **318 lexical scans; 48 preliminary full-file reviews; one partial targeted screen; 269 not reviewed; human validation pending.** Row-count invariant: 48 + 1 + 269 = 318.
