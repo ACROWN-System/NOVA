@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 44/318; PARTIAL TARGETED SCREEN 1; 273 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 48/318; PARTIAL TARGETED SCREEN 1; 269 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 44,
-    "content_review_pending": 273,
-    "human_validation_pending": 44,
+    "preliminary_content_reviewed": 48,
+    "content_review_pending": 269,
+    "human_validation_pending": 48,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 1
   },
@@ -1421,15 +1421,19 @@
           "size_bytes": 21589,
           "extension": ".json",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_013",
+          "terminology_assessment": "PRELIMINARY_REVIEW_LIGHTNING_NO_CARD_SCOPE_AMBIGUOUS",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B013:B013-04"
+          ],
+          "findings": [
+            "B013-F03"
+          ],
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_LIGHTNING_NO_CARD_SCOPE_AMBIGUOUS",
+          "note": "Batch 013: capacity accounting states distinguish theoretical/recurring/one-time/used/unknown. Lightning free_without_payment_method=VERIFIED is ambiguous alongside unverified GPU credit allocation/no-card GPU entitlement; split account/CPU workspace/GPU credit/no-overage propositions.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/gpu_capacity_evidence.json",
@@ -1550,15 +1554,17 @@
           "size_bytes": 2633,
           "extension": ".json",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_013",
+          "terminology_assessment": "PRELIMINARY_REVIEW_CANDIDATE_CAPACITY_BOUNDARY_CLEAR",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B013:B013-02"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_CANDIDATE_CAPACITY_BOUNDARY_CLEAR",
+          "note": "Batch 013: providers list is empty; Nosana/HF ZeroGPU are candidates; read-only checks explicitly do not establish GPU capacity or eligibility. No live credentials verified.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/gpu_roster.json",
@@ -1737,15 +1743,17 @@
           "size_bytes": 2118,
           "extension": ".json",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_013",
+          "terminology_assessment": "PRELIMINARY_REVIEW_FRESHNESS_AND_HUMAN_GATE_TERMS_CLEAR",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B013:B013-03"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_FRESHNESS_AND_HUMAN_GATE_TERMS_CLEAR",
+          "note": "Batch 013: stale observation non-inference, separate health intervals, failover actions and human gate for irreversible actions are clearly stated. Runtime enforcement not verified.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/health_policy.json",
@@ -3228,15 +3236,20 @@
           "size_bytes": 11113,
           "extension": ".json",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_013",
+          "terminology_assessment": "PRELIMINARY_REVIEW_CANDIDATE_SCHEMA_AND_LEGACY_NAME",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B013:B013-01"
+          ],
+          "findings": [
+            "B013-F01",
+            "B013-F02"
+          ],
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_CANDIDATE_SCHEMA_AND_LEGACY_NAME",
+          "note": "Batch 013: active/deferred/candidate distinctions are present; comment still uses HAAN Council. candidates_not_in_roster is free-form and has inconsistent evidence dates/status scope; no candidates are endorsed or refreshed.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/roster.json",
@@ -14694,5 +14707,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 012 reviewed provider_qualification.py, its mocked tests, and the bounded qualification workflow. Found a cross-source Cloudflare qualification status conflict with KEY-READINESS.md. Tracker invariant: 44 preliminary full reviews + 1 partial targeted screen + 273 NOT_REVIEWED = 318."
+  "last_update_note": "Batch 013 reviewed LLM/GPU rosters, health policy and GPU capacity evidence. Found a legacy HAAN Council label, inconsistent free-form candidate provenance, and ambiguous scope of Lightning's no-card status. Tracker invariant: 48 preliminary full reviews + 1 partial screen + 269 not reviewed = 318."
 }
