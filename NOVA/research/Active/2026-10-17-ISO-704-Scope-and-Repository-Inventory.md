@@ -1,7 +1,7 @@
 # ISO 704:2022 Scope Proposal and Repository Inventory
 
 **Document ID:** NOVA-ISO704-SCOPE-001  
-**Version:** 0.1.48  
+**Version:** 0.1.49  
 **Snapshot date:** 2026-10-17  
 **Status:** PROPOSED SCOPE / INITIAL PATH INVENTORY — human approval and detailed content review pending  
 **Related dossier:** [ISO 704:2022 Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
@@ -296,4 +296,8 @@ Tracker states were re-counted directly: 96 preliminary full reviews, 5 partial 
 ## 53. Revision history
 
 - **2026-10-17 / v0.1.48:** Added Batch 050 preliminary full-file review of five NOVA freshness and Sanctuary doctrine paths. Counts: 166 preliminary full reviews + 5 partial screens + 147 not reviewed = 318. Added SWEEP-F-0029 for ambiguous validation status in the historical Mistral diagnostics note; later offline tests passed, while live provider-cause validation remains deferred and the original 429 cause remains UNKNOWN. The freshness and Sanctuary doctrine files were reviewed with no unique findings. Human validation pending; formal ISO clause assessment remains zero. No backup/archive or runtime paths changed.
+
+## 54. Revision history
+
+- **2026-10-17 / v0.1.49:** Added Batch 051 preliminary full-file review of two NOVA test files and three AstroCrown-Web configuration files. Counts: 171 preliminary full reviews + 5 partial screens + 142 not reviewed = 318. No new unique finding was opened; the tests were recorded as cross-reference evidence for still-open F-0018/F-0019 and F-0024/F-0025, not as closure proof. Publication, CodeQL and Dependabot configurations were reviewed only within their declared scope. Human validation pending; formal ISO clause assessment remains zero. No backup/archive or runtime paths changed.
 
