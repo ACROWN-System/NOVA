@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 311/318; PARTIAL TARGETED SCREENS 5; 2 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 313/318; PARTIAL TARGETED SCREENS 5; 0 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 311,
-    "content_review_pending": 2,
-    "human_validation_pending": 311,
+    "preliminary_content_reviewed": 313,
+    "content_review_pending": 0,
+    "human_validation_pending": 313,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 5
   },
@@ -15786,15 +15786,17 @@
           "size_bytes": 1070,
           "extension": "[no-ext]",
           "provisional_review_queue": "EXTENSIONLESS_CONTENT_FETCHED; SEMANTIC REVIEW REQUIRED",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_080",
+          "terminology_assessment": "PRELIMINARY_REVIEW_LICENSE-TERMS-AND-SCOPE",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B080:B080-01"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 080: MIT license defines Software, states permission grant and notice condition, and separates warranty disclaimer/liability limitation. Review is not a legal opinion or an audit of all asset licenses; no unique terminology finding.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "LICENSE",
@@ -15821,7 +15823,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "ece2b4b8bdc31602fa252f5aa726849c03d909b7"
         },
         {
           "path": "README.md",
@@ -15873,15 +15877,17 @@
           "size_bytes": 1979,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_080",
+          "terminology_assessment": "PRELIMINARY_REVIEW_SECURITY-EVIDENCE-AND-READINESS-BOUNDARIES",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B080:B080-02"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 080: expands RSI, distinguishes automated reports from confirmed vulnerabilities, makes private-reporting route conditional, disclaims a response-time promise, and separates scan success from human review/RSI promotion. No unique finding.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "SECURITY.md",
@@ -15908,11 +15914,13 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "e870673e7052a0b2660eea67cac0dc6f47abbc91"
         }
       ]
     }
   ],
   "last_updated": "2026-10-18",
-  "last_update_note": "Batch 079 reviewed five active AstroCrown-Web verification status/path/subsystem README files at pinned main-baseline commit 5faea74dd1b40ec98acf9d59d9e404fc18122032 and verified exact blob SHAs. Opened SWEEP-F-0062 for the same lexical value Candidate used in separate evidence-state and operational-status dimensions with only capitalization distinguishing it. The tracker and paths documentation preserve useful evidence/operational-state, trigger-driven pathway and internal-intelligence/external-audit boundaries. No source/runtime changes, tests, workflows, provider calls or backup/archive reads. Counts: 311 preliminary full reviews + 5 partial screens + 2 pending = 318. Human validation pending; formal clause assessment zero; scope proposed/not human-approved."
+  "last_update_note": "Batch 080 reviewed the final two active AstroCrown-Web paths, LICENSE and SECURITY.md, at pinned main-baseline commit 5faea74dd1b40ec98acf9d59d9e404fc18122032 and verified exact blob SHAs. Both are positive controls for precise license scope and security-evidence boundaries; no unique terminology finding was opened. Counts: 313 preliminary full reviews + 5 partial targeted screens + 0 pending = 318. This completes recorded preliminary per-file disposition coverage but not full semantic coverage: five reviews remain partial, all 313 preliminary full reviews need human validation, formal clause assessment remains zero, and scope remains proposed/not human-approved."
 }
