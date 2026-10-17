@@ -3,7 +3,7 @@
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
   "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 313/318; PARTIAL TARGETED SCREENS 5; 0 NOT REVIEWED; HUMAN VALIDATION PENDING",
-  "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
+  "scope_status": "PLANNING SCOPE APPROVED 2026-10-18 / FINAL ASSESSMENT BASELINE NOT FROZEN",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
     "Review each active file's actual content and record result, evidence, reviewer, date, and any findings. Do not classify as N/A solely from extension.",
@@ -15922,5 +15922,28 @@
     }
   ],
   "last_updated": "2026-10-18",
-  "last_update_note": "Batch 080 reviewed the final two active AstroCrown-Web paths, LICENSE and SECURITY.md, at pinned main-baseline commit 5faea74dd1b40ec98acf9d59d9e404fc18122032 and verified exact blob SHAs. Both are positive controls for precise license scope and security-evidence boundaries; no unique terminology finding was opened. Counts: 313 preliminary full reviews + 5 partial targeted screens + 0 pending = 318. This completes recorded preliminary per-file disposition coverage but not full semantic coverage: five reviews remain partial, all 313 preliminary full reviews need human validation, formal clause assessment remains zero, and scope remains proposed/not human-approved."
+  "last_update_note": "Human maintainer approved the proposed six-repository planning scope and English as the initial assessment language, and reaffirmed a $0-only access policy. This is not the final assessment baseline freeze. AI-Sanctuary-Core remains a distinct domain; backup/archive paths remain immutable/excluded. No paid access or provider activity is authorized. AR-E02 and the clause matrix remain blocked until lawful no-cost access to the complete applicable standard is confirmed. Sweep coverage remains 313 preliminary full reviews + 5 partial targeted screens + 0 not reviewed = 318; 313 reviews still need human validation and the Batches 029–036 report-artifact gap remains open.",
+  "scope_decision": {
+    "decision_date": "2026-10-18",
+    "decision_record": "NOVA/research/Active/2026-10-18-ISO-704-Scope-Approval-and-Zero-Cost-Access-Policy-Plan.md",
+    "approval_basis": "Explicit human-maintainer instruction recorded in the conversation",
+    "planning_scope_status": "APPROVED_FOR_PLANNING",
+    "repositories": [
+      "ACROWN-System/NOVA",
+      "ACROWN-System/Freebies-",
+      "ACROWN-System/AstroCrown_ACS_MC_Spec",
+      "ACROWN-System/AI-Sanctuary-Core",
+      "ACROWN-System/ACROWN-SIMULATION-LAB",
+      "ACROWN-System/AstroCrown-Web"
+    ],
+    "initial_assessment_language": "English",
+    "localization_status": "OUT_OF_INITIAL_SCOPE_UNLESS_EXPLICIT_SCOPE_CHANGE; NO EQUIVALENCE CLAIM",
+    "domain_separation": "AI-Sanctuary-Core remains a distinct identity/governance domain; inclusion is for scoped terminology use and does not integrate its governance with AstroCrown tokenomics or Space Empire governance.",
+    "immutable_exclusions": "All backup/archive paths, regardless of capitalization; no edits or assessments as active targets.",
+    "access_cost_policy": "ZERO_COST_ONLY",
+    "paid_activity_authorized": false,
+    "full_standard_access_status": "BLOCKED_UNTIL_LAWFUL_NO_COST_ACCESS_TO_COMPLETE_APPLICABLE_EDITION_IS_CONFIRMED",
+    "clause_matrix_status": "DO_NOT_POPULATE_UNTIL_CONTROLLED_FULL_STANDARD_ACCESS_AND_FINAL_BASELINE",
+    "final_baseline_freeze": "PENDING_REFRESHED_COMMIT_PINS_ASSESSMENT_PERIOD_ROLE_AND_INDEPENDENCE_RECORD_AND_EXTERNAL_PUBLICATION_BOUNDARIES"
+  }
 }
