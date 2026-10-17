@@ -211,3 +211,20 @@ Authoritative public standard metadata:
 **IF not modified:** users may mistake a discoverability index for confirmation of a claim’s source scope/currentness, or treat a bare list of field names as a complete validation contract. Those risks would make the evidence system harder to reproduce and compare.
 
 **Verification still required:** verify the final PR changed-file list and immutable-path boundary; reconcile tracker arithmetic and exact source SHAs; human-validate findings; perform any full URL/currentness audit called for by the source policy; resolve the intended schema role and its relation to the separate controlled-status vocabulary; and obtain lawful controlled access to the full applicable ISO 704 edition before populating its clause/topic matrix. No audit-readiness claim is authorized.
+
+## Execution update — 2026-10-18 — human-approved planning scope and $0-only access policy
+
+- The human maintainer explicitly approved the proposed six-repository planning scope: NOVA, Freebies-, AstroCrown_ACS_MC_Spec, AI-Sanctuary-Core, ACROWN-SIMULATION-LAB and AstroCrown-Web.
+- English is the initial assessment language. Translation/localization and any assertion of cross-language equivalence remain outside the initial scope unless a later explicit scope change and supporting evidence are recorded.
+- AI-Sanctuary-Core remains a separate identity/governance domain; its inclusion for scoped terminology review does not integrate its governance with AstroCrown tokenomics or Space Empire governance.
+- The human maintainer reaffirmed a hard $0-only access policy. No standard purchase, paid subscription/membership, billable inquiry, hired adviser/provider or other cost is authorized. Only existing lawful access or verified no-cost consultation routes may be pursued.
+- If lawful no-cost access to the complete applicable ISO 704 edition is not confirmed, AR-E02 remains BLOCKED and the clause/topic-to-evidence matrix stays unpopulated. Public abstracts and snippets are insufficient.
+- Updated the scope proposal, audit-readiness dossier, standard-access investigation and machine-readable sweep tracker to reflect the decision. Scope direction is approved for planning; final baseline freeze, assessment period, exact refreshed commit/path manifest, roles/independence, external-publication boundaries, human validation, partial-screen completion/disposition and the Batches 029–036 report-artifact gap remain open.
+- No purchase, billable inquiry, provider outreach, standard copy acquisition, runtime/code/test/workflow change or backup/archive modification was performed.
+
+### Impact Analysis — scope approval and $0-only access policy
+
+**IF recorded and followed:** the intended repositories and initial language are stable for planning, domain separation is explicit, and the access-cost boundary is enforceable and auditable. Work can continue on internal evidence without either guessing at clauses or implicitly authorizing spending.
+
+**IF not recorded or followed:** the scope could keep being described as unapproved, project domains could be conflated, or the team could mistake an information lead for authorization to incur fees or use non-controlled text.
+
