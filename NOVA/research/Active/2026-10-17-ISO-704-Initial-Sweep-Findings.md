@@ -105,3 +105,18 @@ No backup/archive paths were scanned as active targets or modified. Historical/b
 
 - The [candidate concept-relation map](2026-10-17-ISO-704-Concept-Relation-Map-Draft.md) records proposed types/directions for relations among the 15 starter concepts and leaves charter-dependent or architecture-dependent relations blocked. It is not approved and needs domain validation and sources.
 - The [HSIAN pilot entry review](2026-10-17-ISO-704-Pilot-Entry-Review-HSIAN.md) follows one naming gap through the draft checklist. It remains blocked pending PR #122/#134 and human approval; it tests the review form but is not a complete operational workflow cycle.
+
+
+## Semantic review update — Batch 001 READMEs (2026-10-17)
+
+A preliminary AI-assisted content review has now been recorded for the six repository README files. See [Semantic Review Batch 001](2026-10-17-ISO-704-Semantic-Review-Batch-001-READMEs.md) for exact baseline blob SHAs and file-by-file evidence.
+
+New/confirmed follow-up findings:
+- **B001-F01:** NOVA README retains active HAAN naming; the HSIAN naming rollout remains pending.
+- **B001-F02:** Freebies README's “free forever” and deployment “in minutes” claims need scope and substantiation.
+- **B001-F03:** ACS/Monte Carlo specification README does not identify an authoritative specification/version or adequate scope.
+- **B001-F04:** AI-Sanctuary-Core's explicit statement that it is outside AstroCrown audits conflicts with the proposed six-repository umbrella scope. Human scope resolution is required before AR-E01 can pass.
+- **B001-F05:** Simulation Lab README contains only a title; inspect the other active files before deciding scope/applicability.
+- **B001-F06:** AstroCrown-Web README makes a useful source-code licence / brand-identifier distinction, but does not establish every asset or public-content claim.
+
+Tracker status after this batch: **LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEW 6/318; 312 NOT REVIEWED; HUMAN VALIDATION PENDING.** These are preliminary observations, not ISO 704 clause findings. No backup/archive path was changed.
