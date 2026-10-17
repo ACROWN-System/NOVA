@@ -383,3 +383,13 @@ See [Semantic Review Batch 026 — Data-Display Partial Screen](2026-10-17-ISO-7
 - **B026-F01:** The selected-term pattern screen is not a semantic pass. The display-conventions file still needs a complete section-by-section review and comparison against live/assessed builds. Display specifications should map each in-scope field to a canonical/domain definition, source/method, unit/currency/time window, freshness and missing/error behavior, plus implementation evidence. No actual market feed or website was tested.
 
 Tracker after Batch 026: **318 lexical scans; 94 preliminary full-file reviews; two partial targeted screens; 222 not reviewed; human validation pending.** Invariant: 94 + 2 + 222 = 318.
+
+
+## Semantic review update — Batch 027 prompt and navigation
+
+See [Batch 027 — Prompt and Navigation](2026-10-17-ISO-704-Semantic-Review-Batch-027-Prompt-and-Navigation.md). Prompt guidance is not evidence that generated output is correct, tested or approved; index/navigation links are not proof that a target document or feature is current/implemented. Reviewers must use the canonical register and exact assessed branch/commit and preserve human authorization and immutable backup boundaries.
+
+
+## Targeted triage update — Batch 028 AstroCrown verification records
+
+See [Batch 028 — AstroCrown Verification Partial](2026-10-17-ISO-704-Semantic-Review-Batch-028-AstroCrown-Verification-Partial.md). Three verification files received selected-heading/status/evidence-term triage only; they remain partial. Full content and underlying claim-by-claim verification are still required. No third-party registry or live service was checked.
