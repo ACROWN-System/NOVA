@@ -1,7 +1,7 @@
 # ISO 704:2022 Scope Proposal and Repository Inventory
 
 **Document ID:** NOVA-ISO704-SCOPE-001  
-**Version:** 0.1.57  
+**Version:** 0.1.58  
 **Snapshot date:** 2026-10-17  
 **Status:** PROPOSED SCOPE / INITIAL PATH INVENTORY — human approval and detailed content review pending  
 **Related dossier:** [ISO 704:2022 Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
@@ -340,3 +340,8 @@ Tracker states were re-counted directly: 96 preliminary full reviews, 5 partial 
 ## 62. Revision history
 
 - **2026-10-17 / v0.1.57:** Added Batch 059 preliminary full-file review of five AstroCrown-Web RSI token telemetry, trusted evaluator, cleanup finalizer and free-provider-pool records. Counts: 211 preliminary full reviews + 5 partial screens + 102 not reviewed = 318. Cross-referenced three explicitly completed Active-path mirrors with SWEEP-F-0012 and extended SWEEP-F-0028 to include the dated Mistral requalification wording in the active provider-pool plan. No new finding ID; the dated evidence matrix was reviewed without promoting candidates to qualified states. Historical PR/CI metadata only was inspected; no live provider calls or runtime actions were performed. Human validation remains pending; formal ISO 704 clause assessment remains zero, and scope remains proposed/not human-approved.
+
+
+## 63. Revision history
+
+- **2026-10-17 / v0.1.58:** Added Batch 060 preliminary full-file review of five AstroCrown-Web systemic quality, remediation status, image-first architecture and Cloudflare image MVP records. Counts: 216 preliminary full reviews + 5 partial screens + 97 not reviewed = 318. Extended SWEEP-F-0031 for the image-first architecture plan included in merged PR #117; opened SWEEP-F-0032 for the current interpretation of an Active remediation-status snapshot that still describes merged PRs #116/#83/#84 as open, with explicit caveat that the day-only timestamp does not establish it was wrong when authored. Cross-referenced image request-ID evidence with SWEEP-F-0030. No source/runtime or provider action was performed. Human validation remains pending; formal ISO 704 clause assessment remains zero and scope remains proposed/not human-approved.
