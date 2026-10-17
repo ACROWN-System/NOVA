@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.19  
+**Version:** 0.1.20  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL FINDINGS — lexical screening only; not a completed conformity audit  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -725,3 +725,20 @@ See [Semantic Review Batch 054 — AstroCrown Media and Sanctuary Documentation]
 The Cloudflare adapter test file cross-references SWEEP-F-0030: two `request_image` tests explicitly expect a null request-ID value, while a separate writer test supplies a synthetic ID directly and does not test extraction from a provider response. This refines the existing finding as a documentation/contract mismatch; it does not prove an endpoint-issued ID exists. No tests were executed.
 
 **Row-derived counts after Batch 054:** 318 lexical scans; 186 preliminary full-file reviews; 5 partial targeted screens; 127 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. No backup/archive path, runtime file, provider config, credential or repository setting was changed.
+
+
+### SWEEP-F-0031 — Capacity-aware rollout navigation plan remains Active after its documentation PR merged
+
+- **Status:** OPEN — preliminary; human validation required.
+- **Affected path:** `development/audit/Active/2026-10-10-Capacity-Aware-AI-Media-Rollout.md`.
+- **Evidence:** The plan's “Verification and handoff” section says to keep the plan Active until the documentation change is reviewed and merged, then move it to the repository's Completed plan area. AstroCrown-Web PR [#47](https://github.com/ACROWN-System/AstroCrown-Web/pull/47) merged on 2026-10-09 23:13:40 UTC, and its changed-file list includes the plan, `CAPACITY-AWARE-ROLLOUT-PROPOSAL.md`, and the AI Media Generator README. The recorded main baseline still stores the plan under `development/audit/Active/` with status `ACTIVE — proposal documentation submitted for review`.
+- **Interpretation:** The plan's own lifecycle instruction and current location/status are inconsistent after the documented PR merge. This concerns the navigation-plan record only; it does not imply the media rollout or generator is implemented. The separate media candidate and rollout gates remain open.
+- **Required action:** Have a human confirm the canonical Completed plan destination and required closure metadata, then move the completed documentation-task plan out of Active without changing the proposal's unresolved candidate/rollout status.
+- **Closure evidence:** Verified destination path, a completed navigation plan referencing merged PR #47, and no claim that runtime rollout is implemented.
+- **Safety boundary:** No AstroCrown-Web plan, proposal, README, provider configuration, credential, workflow or runtime code was modified in this sweep. Only the NOVA assessment branch records the finding.
+
+## Batch 055 — AstroCrown Sanctuary and audit records
+
+See [Semantic Review Batch 055 — AstroCrown Sanctuary and Audit Records](2026-10-17-ISO-704-Semantic-Review-Batch-055-AstroCrown-Sanctuary-and-Audit-Records.md). Five active AstroCrown-Web files were reviewed at exact main baseline blob SHAs. Added SWEEP-F-0031 because the capacity-aware media-rollout navigation plan remains in Active and states “submitted for review” even though AstroCrown-Web PR #47 merged the plan, proposal and README link. This is a plan-lifecycle/status inconsistency only; it does not claim the rollout is implemented. The Sanctuary research register and three Cloudflare/media evaluation records produced no other unique findings. Provider/account gates remain blocked, and no live request or test was made.
+
+**Row-derived counts after Batch 055:** 318 lexical scans; 191 preliminary full-file reviews; 5 partial targeted screens; 122 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. No runtime, credential, provider configuration or backup/archive path was changed.
