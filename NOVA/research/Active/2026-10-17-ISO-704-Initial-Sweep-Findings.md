@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.6  
+**Version:** 0.1.7  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL FINDINGS — lexical screening only; not a completed conformity audit  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -489,3 +489,18 @@ See [Semantic Review Batch 041](2026-10-17-ISO-704-Semantic-Review-Batch-041-RSI
 - **Closure evidence:** reviewed change and check of the rest of the policy/status language.
 
 **Row-derived counts after Batch 041:** 318 lexical scans; 121 preliminary full-file reviews; 5 partial screens; 192 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments.
+
+
+## Batch 042 — Context-packing evidence
+
+See [Semantic Review Batch 042](2026-10-17-ISO-704-Semantic-Review-Batch-042-Context-Packing-Evidence.md).
+
+### SWEEP-F-0014 — Required evidence identity is not fully enforced by the benchmark comparator
+- **Status:** OPEN — benchmark validity/control gap.
+- **Affected paths:** context-packing benchmark runner and tests.
+- **Observed issue:** the comparator compares per-case counts of required hits, not which required IDs were preserved; it does not require the candidate to select each case's mandatory IDs.
+- **Risk:** a candidate could replace a specific required record yet maintain the same required-hit count, weakening the claimed no-loss acceptance rule.
+- **Action:** compare exact required-ID sets, report missing IDs, block/fail any mandatory required-item loss, and add same-count substitution negative tests.
+- **Closure evidence:** reviewed code-change PR, targeted/full test results, and negative-case output showing the unsafe candidate rejected. This terminology-readiness work does not itself remediate runtime code.
+
+**Row-derived counts after Batch 042:** 318 lexical scans; 126 preliminary full-file reviews; 5 partial targeted screens; 187 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments.
