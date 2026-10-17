@@ -178,3 +178,15 @@ See [Batch 006 — Simulation Lab](2026-10-17-ISO-704-Semantic-Review-Batch-006-
 - **B007-F04:** “jailbreaker seed” terminology is ambiguous; do not infer capability or security behavior from the name.
 
 Tracker after Batch 007: **318/318 lexical scans; 29 preliminary file reviews; one partial targeted screen; 289 not reviewed; human validation pending.** The six-repository scope and English-only/localization boundary remain unapproved. No backup/archive path was changed.
+
+
+## Semantic review update — Batch 008 resource/capacity vocabulary
+
+See [Semantic Review Batch 008 — Resource Readiness](2026-10-17-ISO-704-Semantic-Review-Batch-008-Resource-Readiness.md).
+
+- **B008-F01:** `PROVIDER-ACQUISITION-READINESS.md` classifies Hugging Face Inference Providers as conflicted / do not count as free capacity pending current evidence, while `DEVELOPMENT-RESOURCE-READINESS.md` still records $0.10/month as the free-account allowance. Retain the conservative blocked/not-counted state until a dated official/account record resolves the contradiction.
+- **B008-F02:** dynamic quotas need row-level source date, scope, verification status and recheck/expiry metadata, not only a general warning elsewhere in the document.
+- **B008-F04:** the role label `REQUIRED` in a resource matrix is not a resource-state result such as `VERIFIED_AVAILABLE`; keep role and availability in separate fields.
+- **Positive practice:** GPU capacity vocabulary explicitly separates advertised, recurring, one-time, reserved, idle, useful and unknown usage, and labels 86,400 GPU-minutes/month as provisional/unvalidated.
+
+Tracker counts were reconciled from row status after finding a one-row aggregate arithmetic mismatch. Prevention: after every batch, derive totals from row states and verify `full reviews + partial reviews + NOT_REVIEWED = total active rows`. Current count: 32 + 1 + 285 = 318.
