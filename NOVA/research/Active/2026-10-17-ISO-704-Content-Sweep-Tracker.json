@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 236/318; PARTIAL TARGETED SCREENS 5; 77 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 241/318; PARTIAL TARGETED SCREENS 5; 72 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 236,
-    "content_review_pending": 77,
-    "human_validation_pending": 236,
+    "preliminary_content_reviewed": 241,
+    "content_review_pending": 72,
+    "human_validation_pending": 241,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 5
   },
@@ -10285,15 +10285,17 @@
           "size_bytes": 2211,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_065",
+          "terminology_assessment": "PRELIMINARY_REVIEW_AUDIT-SCOPE-RECORD-STRUCTURE-AND-EXTERNAL-REFERENCE-VERSIONING",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B065:B065-01"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 065: distinguishes records, tests, evidence and templates; requires criteria/method/results/retest fields, versioned external requirement identifiers, and separate controls for public claims. No unique terminology finding.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/README.md",
@@ -10329,7 +10331,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "973c70d6a894d9dc9a8eca1e0928f7d2c9fa44a9"
         },
         {
           "path": "development/audit/records/AUDIT-2026.09.20-001.md",
@@ -10337,15 +10341,20 @@
           "size_bytes": 4950,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_065",
+          "terminology_assessment": "PRELIMINARY_REVIEW_OPEN_FINDINGS_AUDIT-LIFECYCLE-AND-EVIDENCE-TRACEABILITY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B065:B065-02"
+          ],
+          "findings": [
+            "SWEEP-F-0037",
+            "SWEEP-F-0038"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDINGS_SWEEP-F-0037_F-0038",
+          "note": "Batch 065: `Required next work` introduces past-tense completed actions despite remediated findings/retests/closure (F-0037). Cited HOMEPAGE-REQUIREMENTS.md is absent at the reviewed baseline; historical existence is not disproved, but current evidence traceability needs an immutable reference (F-0038).",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/records/AUDIT-2026.09.20-001.md",
@@ -10372,7 +10381,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "35733a415d5f7ed2dade977158bd48583d26404c"
         },
         {
           "path": "development/audit/records/SECURITY-AUDIT-2026.09.20-001.md",
@@ -10380,15 +10391,17 @@
           "size_bytes": 3199,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_065",
+          "terminology_assessment": "PRELIMINARY_REVIEW_DATED-SECURITY-BASELINE-AND-RESULT-STATE-BOUNDARIES",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B065:B065-03"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 065: explicit timestamp, scope, per-control IDs, PASS/BLOCKED/N/A distinctions and limitations keep claims bounded to a dated baseline. Current security posture was not revalidated.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/records/SECURITY-AUDIT-2026.09.20-001.md",
@@ -10420,7 +10433,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "afe53b149d5f4b716c6fe31f3d0ca3ce33c6ca49"
         },
         {
           "path": "development/audit/templates/AUDIT-RECORD.md",
@@ -10428,15 +10443,19 @@
           "size_bytes": 708,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_065",
+          "terminology_assessment": "PRELIMINARY_REVIEW_OPEN_FINDING_FINDING-STATUS-LIFECYCLE-SEMANTICS",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B065:B065-04"
+          ],
+          "findings": [
+            "SWEEP-F-0039"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDING_SWEEP-F-0039",
+          "note": "Batch 065: lists Open/Remediated/Closed without defining the distinctions or requiring evidence for closure, allowing inconsistent interpretation of finding lifecycle.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/templates/AUDIT-RECORD.md",
@@ -10463,7 +10482,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "325fb75a8bc75600b86f3727a18650837fb3c7a4"
         },
         {
           "path": "development/audit/templates/CANDIDATE-EVALUATION.md",
@@ -10471,15 +10492,19 @@
           "size_bytes": 1941,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_065",
+          "terminology_assessment": "PRELIMINARY_REVIEW_OPEN_FINDING_MANDATORY-NA-ELIGIBILITY-SEMANTICS",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B065:B065-05"
+          ],
+          "findings": [
+            "SWEEP-F-0040"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDING_SWEEP-F-0040",
+          "note": "Batch 065: mandatory N/A must be justified, but eligibility requires all mandatory criteria PASS without specifying how a justified N/A affects eligibility.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/templates/CANDIDATE-EVALUATION.md",
@@ -10511,7 +10536,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "cb4c959900dafdce77a43b15f4d5c5b481e43922"
         },
         {
           "path": "development/audit/templates/FACT-OBSERVATION-RECORD.md",
