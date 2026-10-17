@@ -120,3 +120,16 @@ New/confirmed follow-up findings:
 - **B001-F06:** AstroCrown-Web README makes a useful source-code licence / brand-identifier distinction, but does not establish every asset or public-content claim.
 
 Tracker status after this batch: **LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEW 6/318; 312 NOT REVIEWED; HUMAN VALIDATION PENDING.** These are preliminary observations, not ISO 704 clause findings. No backup/archive path was changed.
+
+
+## Semantic review update — Batch 002 NOVA governance/operational paths (2026-10-17)
+
+See [Semantic Review Batch 002 — NOVA Core](2026-10-17-ISO-704-Semantic-Review-Batch-002-NOVA-Core.md) for the five exact baseline blob SHAs, observations, and dispositions.
+
+- **B002-F01:** “system intelligence (SI)” in the root-cause architecture may collide with “Super Intelligence” terminology; establish an unambiguous acronym policy.
+- **B002-F02:** the foundational mission document still uses HAAN/Imperial HAAN pending HSIAN rename integration.
+- **B002-F03:** `nova@haan.system` remains in active operational-state author metadata; record whether it is intentionally retained or should be changed by a reviewed change.
+- **B002-F04:** a test fixture's `GROQ_API_KEY_02` value is synthetic, not a statement of required production secrets; do not confuse test fixtures with actual configuration.
+- **B002-F05:** heartbeat workflow labels were reviewed for terminology context only; runtime/security/functionality were not audited and no term defect was identified in this file.
+
+Tracker status after Batch 002: **LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEW 11/318; 307 NOT REVIEWED; HUMAN VALIDATION PENDING.** No ISO 704 clause result is inferred.
