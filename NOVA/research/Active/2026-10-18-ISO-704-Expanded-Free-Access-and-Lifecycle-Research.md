@@ -7,7 +7,7 @@
 **Owner:** Designated human maintainer  
 **Policy:** $0-only. No purchase, subscription, paid membership, billable inquiry, hired adviser/provider or other cost is authorized.  
 **Linked evidence:** AR-E02 in the [Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
-**Research plan:** [Expanded free-access and lifecycle research plan](2026-10-18-ISO-704-Expanded-Free-Access-and-Lifecycle-Research-Plan.md)
+**Research plan:** [Expanded free-access and lifecycle research plan](../Completed/2026-10-18-ISO-704-Expanded-Free-Access-and-Lifecycle-Research-Plan.md)
 
 ## 1. Executive result
 
