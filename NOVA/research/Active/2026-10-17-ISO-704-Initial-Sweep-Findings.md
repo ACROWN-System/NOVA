@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.44  
+**Version:** 0.1.45  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL SWEEP FINDINGS — lexical screening plus preliminary content reviews; human validation and formal clause assessment pending  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -1133,6 +1133,15 @@ See [Semantic Review Batch 076 — AstroCrown Verification Benchmark, Architectu
 **Row-derived counts after Batch 076:** 318 lexical screens; 296 preliminary full-file reviews; 5 partial targeted screens; 17 not reviewed; human validation pending; formal ISO 704 clause-level assessments completed: 0. Scope remains proposed and not human-approved. All findings remain preliminary; this is not a formal ISO 704 clause or conformity assessment.
 
 
+### SWEEP-F-0059 — Document-level VERIFIED evidence state is not scoped across facts and candidate recommendations
+
+- **Status:** OPEN — preliminary; human validation required.
+- **Affected path:** AstroCrown-Web/development/verification/17-US-FEDERAL-SI-TERMINOLOGY-AND-AUDIT-CONTEXT.md, document metadata field `Evidence state: VERIFIED`.
+- **Observed issue:** The document-level state is VERIFIED, while the same file contains official-source propositions, audience-specific interpretation, potential relevance to AstroCrown, control implications and an explicitly candidate terminology policy. The body separates those content roles, but the metadata does not define the scope of the VERIFIED label.
+- **Interpretation:** Verification of the cited Executive Order and statute is not equivalent to verification, approval or adoption of AstroCrown’s candidate terminology policy. A global label can be read more broadly than the source evidence supports.
+- **Required action:** Define what a document-level evidence state represents, or split status metadata so source verification, claim-level evidence, derived interpretation and policy approval/candidacy are separately identifiable. Retain the explicit jurisdiction, document-type, statutory-exception and effective-date limitations; do not convert the Order’s request for proposed legislative language into a claim that new statutory language has already been enacted.
+- **Closure evidence:** Human-approved metadata semantics, an example separating a verified legal-source proposition from a candidate project recommendation, a review of affected uses of document-level VERIFIED status, and confirmation that downstream readers cannot mistake evidence verification for project-policy approval.
+
 ### SWEEP-F-0060 — External Source Index does not distinguish discovery links from claim-level provenance
 
 - **Status:** OPEN — preliminary; human validation required.
@@ -1150,15 +1159,6 @@ See [Semantic Review Batch 076 — AstroCrown Verification Benchmark, Architectu
 - **Interpretation:** The field inventory indicates the concepts intended to be recorded but does not establish an interoperable or machine-validatable record structure. Distinctions among fields such as `status` and `evidence_state` can be lost unless their definitions and value domains are explicit.
 - **Required action:** Clarify whether the document is a conceptual field inventory or normative schema. If it is an inventory, label it non-normative and link to the authoritative schema and field definitions. If normative, provide a versioned structural definition with field type, meaning, cardinality, requiredness, allowed values or external enum link, null/unknown/N/A behavior, cross-field constraints and examples.
 - **Closure evidence:** Human-approved schema role/version; an authoritative field-definition set; valid and invalid example records; validation results covering missing, malformed, unknown and conflicting values; and alignment with the approved status/evidence enum and lifecycle rules.
-
-### SWEEP-F-0059 — Document-level VERIFIED evidence state is not scoped across facts and candidate recommendations
-
-- **Status:** OPEN — preliminary; human validation required.
-- **Affected path:** AstroCrown-Web/development/verification/17-US-FEDERAL-SI-TERMINOLOGY-AND-AUDIT-CONTEXT.md, document metadata field `Evidence state: VERIFIED`.
-- **Observed issue:** The document-level state is VERIFIED, while the same file contains official-source propositions, audience-specific interpretation, potential relevance to AstroCrown, control implications and an explicitly candidate terminology policy. The body separates those content roles, but the metadata does not define the scope of the VERIFIED label.
-- **Interpretation:** Verification of the cited Executive Order and statute is not equivalent to verification, approval or adoption of AstroCrown’s candidate terminology policy. A global label can be read more broadly than the source evidence supports.
-- **Required action:** Define what a document-level evidence state represents, or split status metadata so source verification, claim-level evidence, derived interpretation and policy approval/candidacy are separately identifiable. Retain the explicit jurisdiction, document-type, statutory-exception and effective-date limitations; do not convert the Order’s request for proposed legislative language into a claim that new statutory language has already been enacted.
-- **Closure evidence:** Human-approved metadata semantics, an example separating a verified legal-source proposition from a candidate project recommendation, a review of affected uses of document-level VERIFIED status, and confirmation that downstream readers cannot mistake evidence verification for project-policy approval.
 
 ## Batch 077 — AstroCrown investigation, Federal SI terminology, assessments, benchmarks and evidence extracts
 
