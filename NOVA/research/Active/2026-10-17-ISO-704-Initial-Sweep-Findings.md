@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.7  
+**Version:** 0.1.8  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL FINDINGS — lexical screening only; not a completed conformity audit  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -504,3 +504,14 @@ See [Semantic Review Batch 042](2026-10-17-ISO-704-Semantic-Review-Batch-042-Con
 - **Closure evidence:** reviewed code-change PR, targeted/full test results, and negative-case output showing the unsafe candidate rejected. This terminology-readiness work does not itself remediate runtime code.
 
 **Row-derived counts after Batch 042:** 318 lexical scans; 126 preliminary full-file reviews; 5 partial targeted screens; 187 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments.
+
+
+## Batch 043 — RSI policy and evidence verifier
+
+See [Semantic Review Batch 043](2026-10-17-ISO-704-Semantic-Review-Batch-043-RSI-Policy-and-Evidence-Verifier.md).
+
+- The five reviewed control-plane files state that readiness is INCOMPLETE, Strong RSI is SUSPENDED, the only benchmark profile is disabled/unapproved, and artifact/commit/tree/budget checks are required before retention.
+- No new unique finding was raised by this content review. These are source inspections only; no live tests or settings were checked.
+- SWEEP-F-0014 remains relevant: a validly formatted benchmark output and consistent evidence hashes do not fix the runner's missing required-item identity/coverage enforcement.
+
+**Row-derived counts after Batch 043:** 318 lexical scans; 131 preliminary full-file reviews; 5 partial targeted screens; 182 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments.
