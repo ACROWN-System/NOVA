@@ -248,3 +248,14 @@ See [Semantic Review Batch 013 — Rosters and Capacity](2026-10-17-ISO-704-Sema
 - **Positive control:** rosters and capacity evidence correctly distinguish active vs candidate/deferred, documented theoretical vs verified recurring and one-time capacity, and unknown/unmetered usage. The health policy explicitly states that stale observation is not proof of false state.
 
 Tracker after Batch 013: **318 lexical scans; 48 preliminary full-file reviews; one partial targeted screen; 269 not reviewed; human validation pending.** Row-count invariant: 48 + 1 + 269 = 318.
+
+
+## Semantic review update — Batch 014 provider history and Sanctuary roadmap
+
+See [Semantic Review Batch 014 — Provider Records and Sanctuary](2026-10-17-ISO-704-Semantic-Review-Batch-014-Provider-Records-and-Sanctuary.md).
+
+- **B014-F01:** `NOVA/sanctuary/IMPLEMENTATION-ROADMAP.md` references `NOVA/NOVA/sanctuary/`, which appears to be an incorrect nested path. Verify the active tree and update by a reviewed source change; do not create a duplicate canonical directory.
+- **B014-F02:** the roadmap's cross-repository responsibility wording needs resolution against AI-Sanctuary-Core's statement that it is outside AstroCrown audits. Repository inclusion in a terminology sweep must not imply shared governance/financial scope. Human scope decision required.
+- **Positive control:** the Mistral deferral and provider-diagnostics plans preserve historical uncertainty and explicitly distinguish offline CI from live qualification; the rolling scheduler doc does not equate quota expiry with money or synthetic work.
+
+Tracker after Batch 014: **318 lexical scans; 52 preliminary full-file reviews; one partial targeted screen; 265 not reviewed; human validation pending.** Row-count invariant: 52 + 1 + 265 = 318.
