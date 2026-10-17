@@ -1,7 +1,8 @@
 # ISO 704:2022 Standard Baseline and Lawful-Access Investigation
 
 **Record ID:** NOVA-ISO704-ACCESS-001  
-**Date checked:** 2026-10-17  
+**Date checked:** 2026-10-17
+**Version:** 0.1.1  
 **Status:** OPEN — EXACT FULL-TEXT LAWFUL ACCESS NOT CONFIRMED  
 **Owner:** Designated human maintainer  
 **Linked evidence:** AR-E02 in [Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
@@ -39,6 +40,18 @@ Official information reviewed:
 - BIS standards portal instructions: https://standards.bis.gov.in/website/how-to-use
 
 The BIS library page states that the Headquarters Library collection includes standards issued by ISO and other bodies, but describes paid annual membership (₹2,000 plus 18% GST) for reference purposes and says copies issued under its policy are watermarked for registered library users and officials. Therefore, BIS membership is **not a verified no-cost access route**. The public BIS portal explains access to published Indian Standards; this does not prove that ISO 704:2022 itself is freely available there, nor that an Indian adoption is identical to the ISO text. Exact edition, availability, permitted use and copying restrictions would need direct confirmation.
+
+## 2A. Lifecycle cross-check — preliminary ISO/PWI 704 lead
+
+The official ISO catalogue page checked on 2026-10-17 continues to identify ISO 704:2022, Edition 4, as the published International Standard. Source: https://www.iso.org/standard/79077.html
+
+A separate national standards-body project listing identifies **ISO/PWI 704 — Terminology work — Principles and methods**, with stage `00.00` (“Proposal for new project received”), effective 2026-06-01, originator ISO and owner ISO/TC 37/SC 1. Source: https://dps.gov.al/en/project/show/iso%3Aproj%3A94618
+
+These records do **not** establish that a replacement edition has been published. A preliminary work item/proposal is not itself a new published edition or a controlled audit text. The exact relationship between the published ISO 704:2022 catalogue entry and the separately listed preliminary work item must be confirmed against authoritative ISO/TC 37/SC 1 lifecycle information before baseline freeze.
+
+**Required control:** re-check the official ISO record and current ISO/TC 37/SC 1 work programme; record date and source; seek authoritative confirmation of whether the PWI has progressed and whether ISO 704:2022 remains the applicable baseline for an assessment initiated now. Do not infer future-edition requirements or replace the published baseline based only on a PWI listing.
+
+This is standards-baseline research, not certification-provider discovery. Provider/accreditation searches remain deferred. No purchase, paid enquiry or subscription is authorized.
 
 ## 3. No-cost route status
 

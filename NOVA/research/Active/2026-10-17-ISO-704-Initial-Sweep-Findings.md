@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.1  
+**Version:** 0.1.2  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL FINDINGS — lexical screening only; not a completed conformity audit  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -398,3 +398,24 @@ See [Batch 028 — AstroCrown Verification Partial](2026-10-17-ISO-704-Semantic-
 ## Targeted triage — Batch 029 homepage section specifications
 
 See [Batch 029 — Homepage Sections Partial](2026-10-17-ISO-704-Semantic-Review-Batch-029-Homepage-Sections-Partial.md). Three remaining homepage section specs were scanned for headings and selected requirements/status/data/UX terms. This did not verify live UI behavior, market data, accessibility, or full content semantics; the files stay PARTIAL in the tracker.
+
+
+## Reconciliation finding — missing Batch 029–036 report artifacts
+
+### SWEEP-F-0006 — Review history lacks matching report files in inspected branch tree
+
+- **Status:** OPEN — evidence traceability gap.
+- **Severity for readiness:** Blocking to a claim that the complete semantic review trail is present.
+- **Observed evidence:** The NOVA draft branch tree at the pre-B037 snapshot contains committed review reports for Batches 001–028, but no matching report files for Batches 029–036. The scope inventory contains revision-history entries describing those batches, and this findings file references Batch 029, but those later reports could not be found at their documented paths in that snapshot.
+- **Interpretation:** This is a documentary integrity gap. It does not prove the described reviews did not occur; it means their results are not evidenced by matching review artifacts in this branch snapshot. A commit message or scope-history sentence is not a substitute for row-level review evidence.
+- **Required action:** Recover original reports only from verifiable commits/paths, or correct the history so it accurately represents available evidence. Do not fabricate contents, findings, or approvals.
+- **Closure evidence:** exact report paths and commit SHAs with row-level reconciliation, or a reviewed correction to the history with missing work left explicitly open.
+
+## Batch 037 — AstroCrown RSI status and review governance
+
+See [Semantic Review Batch 037](2026-10-17-ISO-704-Semantic-Review-Batch-037-AstroCrown-RSI-Status-and-Review-Governance.md).
+
+- **SWEEP-F-0007 / B037-F01:** Two active documents make a broad claim about meaningful progress in autonomous self-modification/recursive improvement without direct point-of-use citations. Add sources with claim-level fit or qualify the statement; do not treat it as proof of NOVA's capability or ISO conformity.
+- **SWEEP-F-0008 / B037-F02:** The RSI README's autonomy statement is a target operating model but could be quoted as a current capability despite the same README declaring Strong RSI suspended and readiness incomplete. Label it as target architecture and cross-link current status.
+
+**Row-derived counts after Batch 037:** 318 lexical scans; 101 preliminary full-file reviews; 5 partial targeted screens; 212 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments.
