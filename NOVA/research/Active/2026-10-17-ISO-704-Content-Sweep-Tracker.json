@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 261,
-    "content_review_pending": 52,
-    "human_validation_pending": 261,
+    "preliminary_content_reviewed": 266,
+    "content_review_pending": 47,
+    "human_validation_pending": 266,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 5
   },
@@ -11612,15 +11612,20 @@
           "size_bytes": 1470,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_070",
+          "terminology_assessment": "PRELIMINARY_REVIEW_CANDIDATE_FILTER_CLASSIFICATION_RISK",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B070:B070-01"
+          ],
+          "findings": [
+            "SWEEP-F-0038",
+            "SWEEP-F-0048"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDINGS_SWEEP-F-0038_F-0048",
+          "note": "Batch 070: candidate filter list mixes “All” selection behavior with market labels from potentially overlapping classification criteria (SWEEP-F-0048). Migrated line-range excerpt lacks immutable source identity in the active document (SWEEP-F-0038); all category meanings remain candidates.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/index-section/DIRECTORY-FILTER.md",
@@ -11647,7 +11652,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "0b4c65cc016b5870bdc4d3f139a1b4ccea2f7088"
         },
         {
           "path": "development/index-section/DIRECTORY.md",
@@ -11655,15 +11662,21 @@
           "size_bytes": 2780,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_070",
+          "terminology_assessment": "PRELIMINARY_REVIEW_REFERENCE-UNIT-AND-TAXONOMY-AMBIGUITY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B070:B070-02"
+          ],
+          "findings": [
+            "SWEEP-F-0038",
+            "SWEEP-F-0048",
+            "SWEEP-F-0049"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDINGS_SWEEP-F-0038_F-0048_F-0049",
+          "note": "Batch 070: repeats the candidate filter taxonomy (SWEEP-F-0048); “reference device/currency” and the asserted effect on percentage interpretation lack a defined reference concept and calculation basis (SWEEP-F-0049). Migrated source excerpt origin is not pinned in the active document (SWEEP-F-0038). Explicitly undefined implementation decisions are preserved.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/index-section/DIRECTORY.md",
@@ -11690,7 +11703,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "9ec72d6e30ee84cbb92ad880fd93495b9e86ef35"
         },
         {
           "path": "development/index-section/DISCOVERY-INFORMATION-BAR.md",
@@ -11698,15 +11713,20 @@
           "size_bytes": 15461,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_070",
+          "terminology_assessment": "PRELIMINARY_REVIEW_INFORMATION-TYPE-CLASSIFICATION-AND-PROVENANCE",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B070:B070-03"
+          ],
+          "findings": [
+            "SWEEP-F-0038",
+            "SWEEP-F-0044"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDINGS_SWEEP-F-0038_F-0044",
+          "note": "Batch 070: the active R-020.3 table repeats mixed classification dimensions already tracked in SWEEP-F-0044. Migrated source excerpt is identified by historical line range but no immutable source revision in this document (SWEEP-F-0038). Candidate/undefined status and accessibility evaluation needs are preserved.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/index-section/DISCOVERY-INFORMATION-BAR.md",
@@ -11746,7 +11766,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "1aa678d5eb29defd1017c455ab82c1743d447752"
         },
         {
           "path": "development/index-section/FOOTER.md",
@@ -11754,15 +11776,19 @@
           "size_bytes": 1228,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_070",
+          "terminology_assessment": "PRELIMINARY_REVIEW_NO_UNIQUE_SEMANTIC_FINDING_PROVENANCE_OPEN",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B070:B070-04"
+          ],
+          "findings": [
+            "SWEEP-F-0038"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING_SWEEP-F-0038",
+          "note": "Batch 070: the footer purpose is bounded and links are constrained to established destination and purpose; no distinct semantic finding. The migrated line-range excerpt lacks an immutable source reference in the active document (SWEEP-F-0038).",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/index-section/FOOTER.md",
@@ -11789,7 +11815,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "ebc4098b7044f6c623183e195e521c8deb37bf36"
         },
         {
           "path": "development/index-section/HEADER.md",
@@ -11849,15 +11877,20 @@
           "size_bytes": 19174,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_070",
+          "terminology_assessment": "PRELIMINARY_REVIEW_INFLUENCE-DIMENSIONS-AND-RELATION-TYPES",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B070:B070-05"
+          ],
+          "findings": [
+            "SWEEP-F-0038",
+            "SWEEP-F-0050"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDINGS_SWEEP-F-0038_F-0050",
+          "note": "Batch 070: candidate Influence Map dimensions mix concept kinds and the example arrows lack named relation semantics (SWEEP-F-0050). Positive controls distinguish observations from consensus, preserve missing/stale states, require methodology/provenance, and avoid unsupported causation. Migrated source excerpt provenance remains unpinned (SWEEP-F-0038).",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/index-section/HERO-CARDS.md",
@@ -11893,7 +11926,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "a0410ff66f14d645fd7d516ea7625f71b808d8ff"
         },
         {
           "path": "development/index-section/MARKET-DATA-BAR.md",
@@ -15661,6 +15696,6 @@
       ]
     }
   ],
-  "last_updated": "2026-10-17",
-  "last_update_note": "Batch 056 reviewed five active AstroCrown-Web audit-plan files at main baseline commit 5faea74dd1b40ec98acf9d59d9e404fc18122032 and verified recorded blob SHAs. Extended SWEEP-F-0031: the open-source multi-model strategy navigation plan remains Active although its own documentation PR #50 merged with the plan/strategy/README and its verification was recorded. Cross-referenced three explicitly completed Active-path mirrors under SWEEP-F-0012 (HAAN mission integration, RSI candidate-tree binding, RSI evaluator supervisor cleanup); no move/edit is authorized pending the existing human scope decision. The RSI canonical-path validation plan remains Active/under verification because its full RSI CI acceptance was not independently confirmed here even though PR #84 merged. Counts: 196 preliminary full-file reviews + 5 partial screens + 117 not reviewed = 318. Human validation pending; formal ISO 704 clause assessment remains zero. No tests/workflows/provider calls or runtime changes were made."
+  "last_updated": "2026-10-18",
+  "last_update_note": "Batch 070 reviewed five active AstroCrown-Web homepage-section documents at pinned main-baseline commit 5faea74dd1b40ec98acf9d59d9e404fc18122032 and verified exact source blob SHAs. Extended SWEEP-F-0038 to all five migrated section excerpts and SWEEP-F-0044 to the active Discovery Information Bar; opened SWEEP-F-0048 for candidate directory taxonomy semantics, SWEEP-F-0049 for reference device/currency and percentage-basis ambiguity, and SWEEP-F-0050 for untyped Influence Map candidate dimensions/mapping relations. Counts: 266 preliminary full reviews + 5 partial targeted screens + 47 pending = 318. Human validation pending; formal ISO 704 clause assessment remains zero; scope remains proposed/not human-approved. No source/runtime edits, tests/workflows, backup/archive reads, credentials, provider calls, billing or repository settings were involved."
 }
