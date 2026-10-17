@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 32/318; PARTIAL TARGETED SCREEN 1; 285 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 34/318; PARTIAL TARGETED SCREEN 1; 283 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 32,
-    "content_review_pending": 285,
-    "human_validation_pending": 32,
+    "preliminary_content_reviewed": 34,
+    "content_review_pending": 283,
+    "human_validation_pending": 34,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 1
   },
@@ -1899,15 +1899,20 @@
           "size_bytes": 10417,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_009",
+          "terminology_assessment": "PRELIMINARY_REVIEW_PROPOSED_STATE_AND_DOMAIN_TERMS",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B009:B009-02"
+          ],
+          "findings": [
+            "B009-F04",
+            "B009-F05"
+          ],
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_PROPOSED_STATE_AND_DOMAIN_TERMS",
+          "note": "Batch 009: document clearly states proposed/not runtime enforced and distinguishes concentration from proof of malevolence; active HAAN mission link conflicts with pending HSIAN naming rollout; several cross-cutting project terms need canonization/domain-scope review.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/LEGITIMACY-RESILIENCE-AND-COOPERATIVE-RSI.md",
@@ -3000,15 +3005,19 @@
           "size_bytes": 34513,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_009",
+          "terminology_assessment": "PRELIMINARY_REVIEW_STALE_TOP_LEVEL_STATUS",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B009:B009-01"
+          ],
+          "findings": [
+            "B009-F01"
+          ],
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_STALE_TOP_LEVEL_STATUS",
+          "note": "Batch 009: top header still says establish first live image test, while the record later documents three successful request/artifact runs and visual acceptance failure; rights/cost/alpha remain unqualified. No live run performed in this review.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/research/Active/2026-10-14-AstroCrown-Cloudflare-Image-Qualification.md",
@@ -14652,5 +14661,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 008 reviewed three NOVA resource/capacity documents. Tracker row counts reconciled to 318 total rows: 32 preliminary full-file reviews, one partial targeted screen, 285 NOT_REVIEWED rows. Human validation remains outstanding; no ISO clause conformity assessment has completed."
+  "last_update_note": "Batch 009 reviewed two active NOVA documents: Cloudflare image qualification history and cross-cutting RSI principle. Row-count invariant verified: 34 preliminary full reviews + 1 partial targeted screen + 283 NOT_REVIEWED = 318 inventoried active files. Human validation, scope approval and normative full-standard mapping remain open."
 }
