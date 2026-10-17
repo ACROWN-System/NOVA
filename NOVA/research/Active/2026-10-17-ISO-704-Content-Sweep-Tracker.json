@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 251/318; PARTIAL TARGETED SCREENS 5; 62 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 256/318; PARTIAL TARGETED SCREENS 5; 57 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 251,
-    "content_review_pending": 62,
-    "human_validation_pending": 251,
+    "preliminary_content_reviewed": 256,
+    "content_review_pending": 57,
+    "human_validation_pending": 256,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 5
   },
@@ -11105,15 +11105,20 @@
           "size_bytes": 5484,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_068",
+          "terminology_assessment": "PRELIMINARY_REVIEW_INDICATOR-CLASSIFICATION-AXES-AND-STATUS",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B068:B068-01"
+          ],
+          "findings": [
+            "SWEEP-F-0038",
+            "SWEEP-F-0044"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDING_SWEEP-F-0044",
+          "note": "Batch 068: candidate status is explicit, but candidate information types mix priority/severity, sentiment valence, domain and message purpose in one category column. F-0038 provenance extended; source revision absent at reviewed baseline.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/index-reference/ICONS-AND-INDICATORS.md",
@@ -11140,7 +11145,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "bea00c7a613298649805f8e33d734f826bc8c250"
         },
         {
           "path": "development/index-reference/INTERACTION-CONVENTIONS.md",
@@ -11148,15 +11155,20 @@
           "size_bytes": 17725,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_068",
+          "terminology_assessment": "PRELIMINARY_REVIEW_INTERACTION-SEMANTICS-AND-CONTROL-DESIGNATION",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B068:B068-02"
+          ],
+          "findings": [
+            "SWEEP-F-0038",
+            "SWEEP-F-0045"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDING_SWEEP-F-0045",
+          "note": "Batch 068: preserves keyboard/focus/motion and mechanism-vs-outcome distinctions. `H1-style header control` leaves visual typography vs semantic heading role ambiguous for Wallet. F-0038 provenance extended.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/index-reference/INTERACTION-CONVENTIONS.md",
@@ -11183,7 +11195,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "6dcd98ac8ca19f55a2171bc0ff2984537481db93"
         },
         {
           "path": "development/index-reference/LAYOUT-AND-ALIGNMENT.md",
@@ -11191,15 +11205,20 @@
           "size_bytes": 28409,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_068",
+          "terminology_assessment": "PRELIMINARY_REVIEW_LAYOUT-TERM-RELATIONS-AND-EXTRACTED-REFERENCE-STATUS",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B068:B068-03"
+          ],
+          "findings": [
+            "SWEEP-F-0038",
+            "SWEEP-F-0043"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_EXTENDS_SWEEP-F-0038_AND_F-0043",
+          "note": "Batch 068: preserves candidate/TBD limits but repeats the reversed Space Blue relative-lightness relation (F-0043); requirement excerpts are not pinned to source revision (F-0038).",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/index-reference/LAYOUT-AND-ALIGNMENT.md",
@@ -11226,7 +11245,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "d06850c148208a34a4d2999e1aa5a39cb3a05936"
         },
         {
           "path": "development/index-reference/README.md",
@@ -11234,15 +11255,19 @@
           "size_bytes": 735,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_068",
+          "terminology_assessment": "PRELIMINARY_REVIEW_SOURCE-OF-TRUTH-AND-REFERENCE-LAYER",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B068:B068-04"
+          ],
+          "findings": [
+            "SWEEP-F-0038"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_POSITIVE-CONTROL_NO-UNIQUE-FINDING",
+          "note": "Batch 068: clearly defines cross-section indexes as navigational aids, not a source replacement or second approval layer, and directs conflict resolution to the origin. F-0038 provenance issue persists; no new finding.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/index-reference/README.md",
@@ -11269,7 +11294,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "2cf350b722ed5a13b1093242341c8487cc3f90ee"
         },
         {
           "path": "development/index-reference/RESPONSIVE-CONVENTIONS.md",
@@ -11277,15 +11304,19 @@
           "size_bytes": 8955,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_068",
+          "terminology_assessment": "PRELIMINARY_REVIEW_RESPONSIVE-TERM-STATUS-AND-SOURCE-TRACEABILITY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B068:B068-05"
+          ],
+          "findings": [
+            "SWEEP-F-0038"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_EXTENDS_SWEEP-F-0038",
+          "note": "Batch 068: preserves desktop-first intent, later mobile refinement, accessibility and candidate/undefined status while source ranges lack immutable origin revision, extending F-0038.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/index-reference/RESPONSIVE-CONVENTIONS.md",
@@ -11312,7 +11343,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "765e0052a331a22c8c99d6c38476481f217ee70b"
         },
         {
           "path": "development/index-reference/SIZING-AND-DIMENSIONS.md",
