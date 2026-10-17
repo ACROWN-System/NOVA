@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 301/318; PARTIAL TARGETED SCREENS 5; 12 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 306/318; PARTIAL TARGETED SCREENS 5; 7 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 301,
-    "content_review_pending": 12,
-    "human_validation_pending": 301,
+    "preliminary_content_reviewed": 306,
+    "content_review_pending": 7,
+    "human_validation_pending": 306,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 5
   },
@@ -15280,15 +15280,17 @@
           "size_bytes": 585,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_078",
+          "terminology_assessment": "PRELIMINARY_REVIEW-EVIDENCE-LAYER-SOURCE-SNAPSHOT-EXTRACT-BOUNDARIES",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B078:B078-01"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 078: defines sources, snapshots and extracts as distinct evidence roles; calls for acquisition date and source identity where material, and discourages duplication. Positive control. The layer README does not itself define a complete per-artifact provenance record; see SWEEP-F-0060 for source index/provenance granularity.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/verification/evidence/README.md",
@@ -15315,7 +15317,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "7605cbbc73a9008620c11b2cd27a773f6e65d389"
         },
         {
           "path": "development/verification/evidence/snapshots/README.md",
@@ -15323,15 +15327,17 @@
           "size_bytes": 219,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_078",
+          "terminology_assessment": "PRELIMINARY_REVIEW-HISTORICAL-SNAPSHOT-IMMUTABILITY-AND-PROVENANCE",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B078:B078-02"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_TERMINOLOGY_FINDING",
+          "note": "Batch 078: clearly distinguishes dated external-source captures from current pages and instructs that historical snapshots are never overwritten; new dated artifacts retain provenance links. Positive preservation control; no snapshot contents were inspected.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/verification/evidence/snapshots/README.md",
@@ -15358,7 +15364,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "c22cf38def0b63b54c9caca5f6f31b5ca4a987dd"
         },
         {
           "path": "development/verification/evidence/sources/EXTERNAL-SOURCE-INDEX-2026-10-02.md",
@@ -15366,15 +15374,19 @@
           "size_bytes": 3174,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_078",
+          "terminology_assessment": "PRELIMINARY_REVIEW-SOURCE-DISCOVERY-INDEX-VS-CLAIM-LEVEL-PROVENANCE",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B078:B078-03"
+          ],
+          "findings": [
+            "SWEEP-F-0060"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDING_SWEEP-F-0060",
+          "note": "Batch 078: dated index contains an organized list of standards, tools, institutions and programs, but entries vary from version-specific documents to general homepages and do not supply per-item access date/version/section, claim relation, source class or scope/limitations. Clarify index-vs-provenance role (SWEEP-F-0060). Only a small number of current official references were sampled; no full link-by-link validation was performed.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/verification/evidence/sources/EXTERNAL-SOURCE-INDEX-2026-10-02.md",
@@ -15406,7 +15418,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "2689196106a101b0428e032f534a24a262345ecd"
         },
         {
           "path": "development/verification/operations/CHANGELOG.md",
@@ -15414,15 +15428,17 @@
           "size_bytes": 669,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_078",
+          "terminology_assessment": "PRELIMINARY_REVIEW-DATED-HISTORY-AND-APPEND-ONLY-INTENT",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B078:B078-04"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW-NO-UNIQUE-FINDING",
+          "note": "Batch 078: documents a dated initial preservation event, the branch/PR governance constraint, and that future refreshes should append rather than overwrite dated source evidence. Git history remains the authoritative commit-level change record; the changelog text alone is a narrative summary, not per-artifact provenance.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/verification/operations/CHANGELOG.md",
@@ -15449,7 +15465,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "9bb7c407a076f113ef34cc63655713c7ad7e4195"
         },
         {
           "path": "development/verification/operations/SCHEMA.md",
@@ -15457,15 +15475,19 @@
           "size_bytes": 843,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_078",
+          "terminology_assessment": "PRELIMINARY_REVIEW-FIELD-CATALOG-VS-NORMATIVE-DATA-SCHEMA",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B078:B078-05"
+          ],
+          "findings": [
+            "SWEEP-F-0061"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDING_SWEEP-F-0061",
+          "note": "Batch 078: lists a broad field set for a structured verification entity, including evidence_state and status, but supplies only field names—not field definitions, data types, cardinality, required/optional rules, relationships or field-level validation constraints. Clarify whether this is a non-normative field inventory or complete the normative schema (SWEEP-F-0061); external status-enum file was not part of this batch.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/verification/operations/SCHEMA.md",
@@ -15492,7 +15514,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "6668f112eb8f1888a65c0ba020c3c673ee482b87"
         },
         {
           "path": "development/verification/operations/STATUS-ENUM.md",

@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.43  
+**Version:** 0.1.44  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL SWEEP FINDINGS — lexical screening plus preliminary content reviews; human validation and formal clause assessment pending  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -1133,6 +1133,24 @@ See [Semantic Review Batch 076 — AstroCrown Verification Benchmark, Architectu
 **Row-derived counts after Batch 076:** 318 lexical screens; 296 preliminary full-file reviews; 5 partial targeted screens; 17 not reviewed; human validation pending; formal ISO 704 clause-level assessments completed: 0. Scope remains proposed and not human-approved. All findings remain preliminary; this is not a formal ISO 704 clause or conformity assessment.
 
 
+### SWEEP-F-0060 — External Source Index does not distinguish discovery links from claim-level provenance
+
+- **Status:** OPEN — preliminary; human validation required.
+- **Affected path:** AstroCrown-Web/development/verification/evidence/sources/EXTERNAL-SOURCE-INDEX-2026-10-02.md.
+- **Observed issue:** Entries mix version-specific publications, methodology pages, service/program pages and broad homepages, and generally include only a label and URL. The index-level date does not establish per-entry last verification, current version, relevant section, claim relationship, authority/source type, scope/limitation or refresh trigger.
+- **Interpretation:** A discovery index can help locate potentially relevant material but is not automatically evidence that a specific claim is supported by a particular source version. Without an explicit distinction, a source’s presence in the index may be over-interpreted as claim validation or currentness.
+- **Required action:** Define the index as discovery-only or enrich it with explicit source-record identifiers. For each consequential claim, connect to an appropriate provenance record containing applicable fields such as issuing organization, source title/type, exact URL/section, publication/version/effective date, actual access/check date, relevant claim/requirement, scope/limitations, evidence status and refresh trigger. Mark unavailable or unchecked attributes as unknown rather than inferred. Do not assume every field applies to every source.
+- **Closure evidence:** Human-approved discovery-index/provenance distinction; a representative sample tracing claim → source record → specific source passage/version; explicit dates and state meanings; and a full URL/source validation if required by the evidence policy. The small spot check in this batch is not sufficient for whole-index closure.
+
+### SWEEP-F-0061 — Verification Entity Schema is a field list without normative structural and semantic constraints
+
+- **Status:** OPEN — preliminary; human validation required.
+- **Affected path:** AstroCrown-Web/development/verification/operations/SCHEMA.md.
+- **Observed issue:** The document is titled a schema and calls its contents a “Minimum structured record,” but provides field names only. It defines no data types, cardinality, required/optional rules, allowed-value binding, relation constraints or validation rules.
+- **Interpretation:** The field inventory indicates the concepts intended to be recorded but does not establish an interoperable or machine-validatable record structure. Distinctions among fields such as `status` and `evidence_state` can be lost unless their definitions and value domains are explicit.
+- **Required action:** Clarify whether the document is a conceptual field inventory or normative schema. If it is an inventory, label it non-normative and link to the authoritative schema and field definitions. If normative, provide a versioned structural definition with field type, meaning, cardinality, requiredness, allowed values or external enum link, null/unknown/N/A behavior, cross-field constraints and examples.
+- **Closure evidence:** Human-approved schema role/version; an authoritative field-definition set; valid and invalid example records; validation results covering missing, malformed, unknown and conflicting values; and alignment with the approved status/evidence enum and lifecycle rules.
+
 ### SWEEP-F-0059 — Document-level VERIFIED evidence state is not scoped across facts and candidate recommendations
 
 - **Status:** OPEN — preliminary; human validation required.
@@ -1147,3 +1165,10 @@ See [Semantic Review Batch 076 — AstroCrown Verification Benchmark, Architectu
 See [Semantic Review Batch 077 — AstroCrown Investigation, Federal SI Terminology, Assessments, Benchmarks and Extracts](2026-10-18-ISO-704-Semantic-Review-Batch-077-AstroCrown-Investigation-Federal-SI-Assessments-Benchmarks-and-Extracts.md). Five files were reviewed at exact blob SHAs from AstroCrown-Web baseline commit `5faea74dd1b40ec98acf9d59d9e404fc18122032`. Opened SWEEP-F-0059 because the U.S. Federal SI terminology document uses document-level `Evidence state: VERIFIED` across official-source propositions, derived compliance relevance and an explicitly candidate AstroCrown policy; the status needs scope so source verification cannot be confused with approval of project recommendations. Official White House EO 14434 and 15 U.S.C. § 9401(3) were checked on 2026-10-18. The order’s executive-branch terminology instruction is scoped by law and audience, adopts the existing statutory AI definition for purposes of the Order, and requests proposed legislative language rather than itself enacting a new statutory definition. The backlog, assessments README, benchmark README and extract README preserve useful unresolved-research, external-authority, duplicate-test and source-versus-derivative boundaries.
 
 **Row-derived counts after Batch 077:** 318 lexical screens; 301 preliminary full-file reviews; 5 partial targeted screens; 12 not reviewed; human validation pending; formal ISO 704 clause-level assessments completed: 0. Scope remains proposed and not human-approved. This is not a formal ISO 704 clause or conformity assessment.
+
+
+## Batch 078 — AstroCrown evidence sources, snapshots, changelog and schema
+
+See [Semantic Review Batch 078 — AstroCrown Evidence Sources, Snapshots, Changelog and Schema](2026-10-18-ISO-704-Semantic-Review-Batch-078-AstroCrown-Evidence-Sources-Snapshots-Changelog-and-Schema.md). Five files were reviewed at exact blob SHAs from AstroCrown-Web baseline commit `5faea74dd1b40ec98acf9d59d9e404fc18122032`. Opened SWEEP-F-0060 because the dated External Source Index works as a source-discovery list but does not establish per-entry provenance/currentness or map sources to individual claims; the review calls for an explicit distinction between discovery index and claim-level provenance rather than inferring all entries are incorrect. Opened SWEEP-F-0061 because `operations/SCHEMA.md` is a field list under a schema heading, with no types, cardinality, requiredness or validation constraints; its intended role must be clarified or its normative specification completed. Evidence and snapshot READMEs preserve source/snapshot/extract distinctions and prohibit overwriting historical captures. The Changelog preserves a dated history and append-not-overwrite instruction. Two official reference URLs were spot-checked on 2026-10-18; this was not a full external-source-index audit.
+
+**Row-derived counts after Batch 078:** 318 lexical screens; 306 preliminary full-file reviews; 5 partial targeted screens; 7 not reviewed; human validation pending; formal ISO 704 clause-level assessments completed: 0. Scope remains proposed and not human-approved. This is not a formal ISO 704 clause or conformity assessment.

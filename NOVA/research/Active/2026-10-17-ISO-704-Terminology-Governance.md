@@ -191,3 +191,23 @@ Authoritative public standard metadata:
 **IF not modified:** downstream users could treat a document-level VERIFIED label as approval of recommendations, even though the document itself labels its project policy as a candidate. The review queue and derivative evidence layer would also be more vulnerable to confused scope if their existing boundary rules were not retained.
 
 **Verification still required:** inspect the final PR diff and changed-path list; ensure no backup/archive path was added; verify tracker arithmetic and exact source SHAs; human-validate all findings; review status-field use in related records; acquire lawful controlled access to the full applicable ISO 704 edition before populating the clause/topic matrix. No audit-readiness claim is authorized.
+
+
+## Execution update — 2026-10-18 — semantic review Batch 078
+
+- Reviewed five previously unreviewed AstroCrown-Web verification documents at exact blob SHAs from baseline commit `5faea74dd1b40ec98acf9d59d9e404fc18122032`: evidence README, snapshot README, dated external-source index, operations changelog and verification entity schema.
+- Reconciled all five tracker rows to their exact reviewed source commit/blob, evidence ID, disposition, reviewer/date and finding references. Updated counts to 306 preliminary full-file reviews + 5 partial targeted screens + 7 not reviewed = 318 active paths.
+- Opened preliminary SWEEP-F-0060 because the External Source Index is a useful discovery list but does not on its own give each entry a reproducible claim-level provenance record or establish individual currentness; the index/provenance distinction should be explicit.
+- Opened preliminary SWEEP-F-0061 because `operations/SCHEMA.md` lists the intended entity fields but does not by itself define structural or semantic constraints. The owner should clarify whether it is a conceptual field inventory or normative schema and align it with the status/evidence vocabularies.
+- Recorded positive controls in the evidence layer’s source/snapshot/extract distinctions; the snapshots instruction not to overwrite historical captures; and the changelog’s dated history and append-not-overwrite intention.
+- Checked the White House Executive Order 14434 URL and 15 U.S.C. § 9401 as representative official-source spot checks on 2026-10-18. This did not validate every URL or source in the dated index.
+- No runtime code, tests, workflows, credentials, external provider calls, billing, repository settings or immutable backup/archive contents were executed, changed or inspected.
+- Human validation remains pending; formal ISO 704 clause-level assessments completed remain 0; scope remains proposed/not human-approved. Overall status remains **NOT READY FOR AN ISO 704 AUDIT**.
+
+### Impact Analysis — Batch 078
+
+**IF modified:** the distinction between a source-discovery list and claim-level provenance can be made explicit; consequential claims can link to appropriate, versioned evidence; and the entity schema can be made unambiguous about whether it is a field catalogue or the normative record contract. This helps prevent a URL’s presence or a field name’s existence being treated as more evidence than it provides.
+
+**IF not modified:** users may mistake a discoverability index for confirmation of a claim’s source scope/currentness, or treat a bare list of field names as a complete validation contract. Those risks would make the evidence system harder to reproduce and compare.
+
+**Verification still required:** verify the final PR changed-file list and immutable-path boundary; reconcile tracker arithmetic and exact source SHAs; human-validate findings; perform any full URL/currentness audit called for by the source policy; resolve the intended schema role and its relation to the separate controlled-status vocabulary; and obtain lawful controlled access to the full applicable ISO 704 edition before populating its clause/topic matrix. No audit-readiness claim is authorized.
