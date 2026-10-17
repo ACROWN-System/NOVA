@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.23  
+**Version:** 0.1.24  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL FINDINGS — lexical screening only; not a completed conformity audit  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -459,13 +459,12 @@ See [Semantic Review Batch 039](2026-10-17-ISO-704-Semantic-Review-Batch-039-RSI
 
 ### SWEEP-F-0012 — Completed records labelled archival mirrors are stored under Active/
 - **Status:** OPEN — human scope decision required.
-- **Affected paths (initially identified):** three RSI audit records for independent security review, Docker isolation and task benchmark dispatcher under `development/audit/Active/`. **Additional examples recorded in Batch 056:** `development/audit/Active/2026-10-11-HAAN-Foundational-Mission-Integration.md`, `development/audit/Active/2026-10-11-RSI-Candidate-Tree-Binding.md`, and `development/audit/Active/2026-10-11-RSI-Evaluator-Supervisor-Cleanup.md`. **Additional examples recorded in Batch 057:** `development/audit/Active/2026-10-11-RSI-Evidence-Retention-Verification.md`, `development/audit/Active/2026-10-11-RSI-Executable-Mode-Consistency.md`, and `development/audit/Active/2026-10-11-RSI-GitHub-Action-SHA-Pinning.md`. **Additional examples recorded in Batch 058:** `development/audit/Active/2026-10-11-RSI-Provider-Egress-Boundary.md`, `development/audit/Active/2026-10-11-RSI-Sandbox-Cleanup-Verification.md`, and `development/audit/Active/2026-10-11-RSI-Supervisor-IO-Failure-Cleanup.md`. The additional records explicitly state that they are completed archival mirrors and point to canonical Completed records.
-- **Observed issue:** Each records COMPLETED and calls itself an archival mirror while its location says Active.
+- **Affected paths (initially identified):** three RSI audit records for independent security review, Docker isolation and task benchmark dispatcher under `development/audit/Active/`. **Additional examples recorded in Batch 056:** `development/audit/Active/2026-10-11-HAAN-Foundational-Mission-Integration.md`, `development/audit/Active/2026-10-11-RSI-Candidate-Tree-Binding.md`, and `development/audit/Active/2026-10-11-RSI-Evaluator-Supervisor-Cleanup.md`. **Batch 057 additions:** `development/audit/Active/2026-10-11-RSI-Evidence-Retention-Verification.md`, `development/audit/Active/2026-10-11-RSI-Executable-Mode-Consistency.md`, and `development/audit/Active/2026-10-11-RSI-GitHub-Action-SHA-Pinning.md`. **Batch 058 additions:** `development/audit/Active/2026-10-11-RSI-Provider-Egress-Boundary.md`, `development/audit/Active/2026-10-11-RSI-Sandbox-Cleanup-Verification.md`, and `development/audit/Active/2026-10-11-RSI-Supervisor-IO-Failure-Cleanup.md`. **Batch 059 additions:** `development/audit/Active/2026-10-11-RSI-Token-Telemetry-Integrity.md`, `development/audit/Active/2026-10-11-RSI-Trusted-Evaluator-Control-Plane.md`, and `development/audit/Active/2026-10-11-RSI-Workflow-Cleanup-Finalizer.md`. These additional records explicitly describe themselves as completed archival mirrors and link canonical Completed records.
+- **Observed issue:** Each record says COMPLETED and calls itself a mirror while its path remains under Active.
 - **Action:** Determine and document the source-of-truth/lifecycle classification; do not relocate or edit these records until authorized. This finding is not permission to change any backup/archive path.
 - **Closure evidence:** human-approved scope mapping and record relationships.
 
 **Row-derived counts after Batch 039:** 318 lexical scans; 111 preliminary full-file reviews; 5 partial targeted screens; 202 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments.
-
 
 ### SWEEP-F-0013 — Benchmark protocol lifecycle wording is inconsistent
 - **Status:** OPEN — documentation clarity.
@@ -634,10 +633,10 @@ See [Semantic Review Batch 049 — NOVA Provider and Capacity Claims](2026-10-17
 
 ### SWEEP-F-0028 — Old live-secret checklist can revive deferred Mistral qualification
 - **Status:** OPEN.
-- **Affected path:** `NOVA/research/2026.10.08-BLOCKED-LIVE-SECRETS-GROQ-GEMINI-MISTRAL-CEREBRAS-CLOUDFLARE-NOSANA-HF.md`.
-- **Observed issue:** A dated historical checklist continues to present Mistral live qualification as pending work without linking the later deferral decision.
+- **Affected paths:** `NOVA/research/2026.10.08-BLOCKED-LIVE-SECRETS-GROQ-GEMINI-MISTRAL-CEREBRAS-CLOUDFLARE-NOSANA-HF.md`; related cross-repository plan `AstroCrown-Web/development/audit/Active/2026-10-12-Free-Provider-Pool-Qualification.md`.
+- **Observed issue:** A dated historical checklist continues to present Mistral live qualification as pending work without linking the later deferral decision. The related active AstroCrown-Web provider-pool plan also retains date-specific language to re-qualify Mistral because of the then-current 2026-10-12 request. The plan elsewhere correctly says Mistral remains deferred; the historical request text must not become standing future authorization.
 - **Required action:** Preserve the historical record, but identify the item as superseded/deferred and link the authoritative deferral/re-entry conditions. Do not reactivate Mistral as a side effect of this review.
-- **Closure evidence:** Human-reviewed and consistent task status with a traceable deferral record.
+- **Closure evidence:** Human-reviewed and consistent task status with a traceable deferral record, including an explicit current authorization gate for any future requalification. The dated provider-pool plan should be clarified through the approved process, preserving the original research history and not reactivating Mistral.
 
 **Positive review notes:** B049-02 keeps speculative nonlinear/physics-inspired mappings distinct from implemented capabilities and lists re-entry dependencies. B049-04 explicitly blocks resource economics on missing task estimates, alternative costs, renewal evidence and negative-effect measurements. B049-05's implementation statements align with inspected baseline source and existing test design, but no tests or runtime operations were executed.
 
@@ -755,3 +754,10 @@ See [Semantic Review Batch 057 — AstroCrown RSI Evidence and Lifecycle](2026-1
 See [Semantic Review Batch 058 — AstroCrown RSI Egress, Baseline and Cleanup](2026-10-17-ISO-704-Semantic-Review-Batch-058-AstroCrown-RSI-Egress-Baseline-and-Cleanup.md). Five AstroCrown-Web records were reviewed at exact recorded main-baseline blob SHAs. Extended SWEEP-F-0031 for retention baseline-binding and strict schema-type-validation navigation plans included in merged PRs #70 and #74 with CI runs recorded successful. Cross-referenced three completed archival mirrors to SWEEP-F-0012: provider egress boundary, sandbox cleanup verification and supervisor I/O failure cleanup. No new finding ID was opened. Historical PR/CI records were inspected; tests and workflows were not rerun.
 
 **Row-derived counts after Batch 058:** 318 lexical scans; 206 preliminary full-file reviews; 5 partial targeted screens; 107 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. No AstroCrown-Web source, backup/archive path, runtime file, credential, provider configuration or repository setting was changed.
+
+
+## Batch 059 — AstroCrown RSI and free provider pool
+
+See [Semantic Review Batch 059 — AstroCrown RSI and Free Provider Pool](2026-10-17-ISO-704-Semantic-Review-Batch-059-AstroCrown-RSI-and-Free-Provider-Pool.md). Five AstroCrown-Web records were reviewed at exact recorded main-baseline blob SHAs. Cross-referenced three completed archival mirrors (token telemetry, trusted evaluator control plane, workflow cleanup finalizer) to SWEEP-F-0012. Extended SWEEP-F-0028 for the active provider-pool plan's dated, request-specific Mistral requalification instruction; the plan remains a research/qualification navigation record with other open gates, and no live probe was authorized or run. The dated provider-pool evidence matrix had no new unique finding because it distinguishes uncertain/cardless eligibility, quota, privacy/licensing and production capacity correctly.
+
+**Row-derived counts after Batch 059:** 318 lexical scans; 211 preliminary full-file reviews; 5 partial targeted screens; 102 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. No AstroCrown-Web source, backup/archive path, runtime file, credential, provider configuration or repository setting was changed.
