@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.15  
+**Version:** 0.1.16  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL FINDINGS — lexical screening only; not a completed conformity audit  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -671,4 +671,16 @@ See [Semantic Review Batch 050 — NOVA Freshness and Sanctuary Doctrine](2026-1
 **Positive review notes:** The observation-freshness note and source keep staleness separate from truth; the Sanctuary doctrine distinguishes capability, agency, consciousness, possible sentience/welfare, moral patienthood and expressive behavior; the README and research/protection procedure explicitly state they do not establish runtime capability or enforcement. No unique findings were opened from those four files.
 
 **Row-derived counts after Batch 050:** 318 lexical scans; 166 preliminary full-file reviews; 5 partial targeted screens; 147 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. No runtime, provider or backup/archive paths were changed.
+
+## Batch 051 — NOVA test coverage and AstroCrown-Web publication configuration
+
+See [Semantic Review Batch 051 — NOVA Test Coverage and Web Publication Configuration](2026-10-17-ISO-704-Semantic-Review-Batch-051-NOVA-Test-Coverage-and-Web-Publication-Config.md). Five files were reviewed against their respective NOVA and AstroCrown-Web main baseline blob SHAs. No new unique finding was opened.
+
+**Cross-reference evidence, not closures:**
+- `NOVA/tests/test_observer.py` currently tests content normalization only and does not provide the failed-fetch preservation or truncation-boundary tests required by SWEEP-F-0024/F-0025.
+- `NOVA/tests/test_workflow_coverage.py` statically checks selected workflow/config text; it does not independently verify provider response contract behavior or the repository ruleset required-check setting. SWEEP-F-0018/F-0019 remain open.
+- AstroCrown-Web `_config.yml` explicitly describes its excludes as a Pages publication boundary and states the source repository remains public.
+- CodeQL query paths and Dependabot's GitHub Actions ecosystem scope are explicit in their respective configs; this source review does not establish successful runs or complete whole-repository coverage.
+
+**Row-derived counts after Batch 051:** 318 lexical scans; 171 preliminary full-file reviews; 5 partial targeted screens; 142 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. No implementation, test, workflow, repository setting or backup/archive path was changed.
 
