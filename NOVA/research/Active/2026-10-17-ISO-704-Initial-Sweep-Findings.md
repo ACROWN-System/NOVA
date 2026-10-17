@@ -393,3 +393,8 @@ See [Batch 027 — Prompt and Navigation](2026-10-17-ISO-704-Semantic-Review-Bat
 ## Targeted triage update — Batch 028 AstroCrown verification records
 
 See [Batch 028 — AstroCrown Verification Partial](2026-10-17-ISO-704-Semantic-Review-Batch-028-AstroCrown-Verification-Partial.md). Three verification files received selected-heading/status/evidence-term triage only; they remain partial. Full content and underlying claim-by-claim verification are still required. No third-party registry or live service was checked.
+
+
+## Targeted triage — Batch 029 homepage section specifications
+
+See [Batch 029 — Homepage Sections Partial](2026-10-17-ISO-704-Semantic-Review-Batch-029-Homepage-Sections-Partial.md). Three remaining homepage section specs were scanned for headings and selected requirements/status/data/UX terms. This did not verify live UI behavior, market data, accessibility, or full content semantics; the files stay PARTIAL in the tracker.
