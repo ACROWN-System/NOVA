@@ -215,3 +215,14 @@ See [Semantic Review Batch 010 — Credential State](2026-10-17-ISO-704-Semantic
 - **B010-F04:** dynamic quota/candidate tables need current source/date/account scope before their values are reused operationally.
 
 Tracker after Batch 010: **318 lexical scans; 37 preliminary full-file reviews; one partial targeted screen; 280 not reviewed; human validation pending.** Row-count invariant: 37 + 1 + 280 = 318.
+
+
+## Semantic review update — Batch 011 GPU heartbeat and Weak RSI workflows
+
+See [Semantic Review Batch 011 — GPU and Weak RSI](2026-10-17-ISO-704-Semantic-Review-Batch-011-GPU-and-Weak-RSI.md).
+
+- **B011-F01:** the Weak RSI workflow's PASS_AFTER_REVIEW input is an operator attestation that current terms were reviewed, not independent evidence that a use is permitted. Retain reviewer/source/date/scope evidence alongside the decision.
+- **Positive control:** GPU credential state separates missing/configured/authenticated token from candidate activation and unverified capacity; preserve this model.
+- **B011-F03:** mocked unit tests and static YAML assertions are offline implementation evidence, not proof of a live provider, current account terms, or actual workflow dispatch result.
+
+Tracker after Batch 011: **318 lexical scans; 41 preliminary full-file reviews; one partial targeted screen; 276 not reviewed; human validation pending.** Row-count invariant: 41 + 1 + 276 = 318.
