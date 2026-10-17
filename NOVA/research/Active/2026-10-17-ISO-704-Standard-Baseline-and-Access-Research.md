@@ -1,8 +1,9 @@
 # ISO 704:2022 Standard Baseline and Lawful-Access Investigation
 
 **Record ID:** NOVA-ISO704-ACCESS-001  
-**Date checked:** 2026-10-17
-**Version:** 0.1.2  
+**Date initially checked:** 2026-10-17  
+**Latest public-source recheck:** 2026-10-18
+**Version:** 0.1.3  
 **Status:** OPEN — EXACT FULL-TEXT LAWFUL ACCESS NOT CONFIRMED  
 **Owner:** Designated human maintainer  
 **Linked evidence:** AR-E02 in [Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
@@ -53,6 +54,18 @@ These records do **not** establish that a replacement edition has been published
 
 This is standards-baseline research, not certification-provider discovery. Provider/accreditation searches remain deferred. No purchase, paid enquiry or subscription is authorized.
 
+## 2B. Public-source recheck — 2026-10-18
+
+Official ISO product record rechecked: https://www.iso.org/standard/79077.html
+
+The live page continues to identify ISO 704:2022, Edition 4, as a published International Standard (publication date July 2022; 80 pages). It advertises preview/sample access and displays a purchase price of CHF 204. The displayed preview and public abstract are not evidence that the complete text is freely accessible. The page also describes ISO copyright conditions and states that reproduction requires permission. Sources: [official ISO 704 record](https://www.iso.org/standard/79077.html).
+
+Official BIS pages rechecked:
+- [BIS Library Services](https://www.bis.gov.in/library-services-2/?lang=en) states that its collection includes standards from ISO and other standards bodies, but says the library may provide watermarked standards only to registered users/officials and lists annual reference membership at ₹2,000 plus 18% GST (page last updated 2026-01-22).
+- [BIS Know Your Standard](https://www.bis.gov.in/know-your-standard/?lang=en) describes search and access for an Indian Standard (IS) number or keyword. The public page does not establish that the complete ISO 704:2022 text itself is available without cost, or that a potentially corresponding Indian adoption is identical in edition/content.
+
+**Evidence result:** No lawful no-cost route to the complete applicable ISO 704:2022 text was confirmed in these official public-source checks. This is a bounded result about the sources inspected, not proof that no eligible institution or other lawful no-cost consultation route exists. The separate ISO/PWI 704 lifecycle lead recorded above still requires authoritative confirmation at final baseline freeze; the current product page's “Published” status does not by itself resolve the lead's relationship to the applicable assessment baseline.
+
 ## 3. No-cost route status
 
 As of this check:
@@ -80,3 +93,12 @@ This access gate prevents three errors: treating the public abstract as the full
 The human maintainer approved and reaffirmed a $0-only access policy. Permitted next steps are limited to checking already available lawful access and investigating verified no-cost consultation routes for the exact applicable edition. No purchase, paid membership/subscription, billable enquiry, hired assistance or other cost is authorized. A request for information must itself be free and create no payment obligation. If lawful no-cost full-text access cannot be confirmed, AR-E02 remains BLOCKED and the clause/evidence matrix remains unpopulated. No provider/accreditation discovery is authorized before the readiness gates pass; this scope approval does not authorize outreach.
 
 **Impact Analysis — IF followed:** the normative baseline remains evidence-controlled without breaching the user's cost constraint. **IF not followed:** the work could mistake a public abstract or paid lead for accessible full text, or inadvertently incur an unauthorized cost.
+
+## Decision update — public-source recheck on 2026-10-18
+
+The current official ISO page still lists ISO 704:2022, Edition 4, as Published and displays sample/preview access plus a CHF 204 purchase price. The official BIS library page lists paid annual reference membership at ₹2,000 plus 18% GST; its public “Know Your Standard” description concerns Indian Standards and does not verify a free complete copy of ISO 704:2022. These checks do not establish lawful no-cost access to the full applicable text.
+
+**Disposition:** AR-E02 remains BLOCKED. Under the approved $0-only policy, no purchase, paid subscription/membership, billable inquiry or hired service is authorized. Continue only by checking existing lawful institutional/licensed access or another verified no-cost consultation route. Do not populate the clause/topic-to-evidence matrix until complete-text access, licence/use conditions and the final applicable edition are recorded.
+
+**Impact Analysis — IF followed:** the baseline decision remains honest, legally controlled and cost compliant. **IF not followed:** a sample/abstract or paid institutional lead could be mistaken for complete no-cost access.
+
