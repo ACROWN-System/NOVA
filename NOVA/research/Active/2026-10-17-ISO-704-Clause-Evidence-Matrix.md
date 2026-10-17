@@ -27,12 +27,15 @@ For each row, record:
 - **Project-authored paraphrase:** short summary in original words; do not paste the copyrighted clause.
 - **Applicability:** applicable / partly applicable / not applicable / blocked, with rationale and approved scope reference.
 - **Project control:** procedure, register field, governance control or actual operational practice intended to address the point.
+- **Quality / operability rationale:** the real terminology problem and expected improvement; do not propose a change merely to match a presentation pattern.
+- **Non-regression review:** effect on meaning, necessary nuance, domain boundaries, discoverability, navigation, automation, retrieval, maintainability and backward compatibility.
+- **Alternatives and disposition:** include no change where relevant; ACCEPT / ADAPT / REJECT / DEFER with documented rationale.
 - **Evidence IDs:** IDs from the readiness dossier's evidence register, plus exact path, URL, version, branch/commit or snapshot.
 - **Verification method:** inspection, record trace, interview, observation, sample review, repeatable search or other justified method.
 - **Test result:** PASS / FAIL / BLOCKED / N/A. No result is assigned without actual verification.
 - **Finding/reference:** link to a finding ID where a gap, conflict or uncertainty is recorded.
 - **Owner and target date:** person accountable for closure, where relevant.
-- **Correction/corrective action:** actions taken or planned to address a finding, with root-cause notes where appropriate.
+- **Correction/corrective action:** actions taken or planned to address a finding, with root-cause notes where appropriate. Describe any documentation/context-preservation or migration steps needed to avoid regression.
 - **Closure and retest evidence:** exact record demonstrating the fix and the independent/appropriate re-test.
 - **Reviewer/date:** who assessed the row and when; record conflicts of interest or limitations.
 - **Notes / unresolved interpretation:** questions that require review; do not decide ambiguous points by guessing.
@@ -80,3 +83,16 @@ Before the matrix can support readiness:
 **BLOCKED / NOT STARTED AS A COMPLETE CLAUSE-LEVEL ASSESSMENT.** The project has not established the complete applicable ISO 704:2022 baseline or reconciled every relevant clause/section. This template remains blank as the complete matrix. Source-bounded assessment of provisions directly visible in public previews may proceed in a separate record, currently [Public-Preview Partial Mapping](2026-10-18-ISO-704-Public-Preview-Partial-Mapping.md). No paid access is authorized by this template and no conclusion is drawn for text not directly inspected.
 
 The readiness dossier defines the wider evidence package, internal audit, corrective-action and management decision gates. Provider discovery remains deferred until the full package passes those gates.
+
+
+## 6. Project-action quality gate (does not replace the standard's own statement type)
+
+For each proposed project change that follows from a completed row or partial preview mapping, ask:
+
+1. Does the change correct an evidenced concept/term/definition/relation problem?
+2. Does it improve clarity, retrieval, communication, interoperability, traceability or operability for the intended users and domain?
+3. What semantic richness, explanatory context, domain-specificity or working behaviour could be lost?
+4. Could a note, typed relation, separate definition, example, alias or cross-reference improve clarity without destructive rewriting?
+5. What is the reasoned disposition if the current design is better for the stated project purpose?
+
+Record **ACCEPT / ADAPT / REJECT / DEFER** as a project-action disposition, separately from any assessment result concerning the standard. Never use rejection of a proposed project change to imply the standard itself has been satisfied. The project-action gate may preserve project quality; it does not override an actual standard requirement or permit an unsupported conformity claim.
