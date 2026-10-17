@@ -1,0 +1,63 @@
+# ISO 704:2022 Standard Baseline and Lawful-Access Investigation
+
+**Record ID:** NOVA-ISO704-ACCESS-001  
+**Date checked:** 2026-10-17  
+**Status:** OPEN — EXACT FULL-TEXT LAWFUL ACCESS NOT CONFIRMED  
+**Owner:** Designated human maintainer  
+**Linked evidence:** AR-E02 in [Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
+**Paid action:** NONE authorized or taken  
+**Provider discovery:** Out of scope for this record and remains deferred until the readiness gate passes
+
+## 1. Purpose
+
+Determine whether the exact ISO 704 edition required for a defensible audit baseline can be consulted lawfully before requesting any purchase or paid subscription. This record separates verified facts about publication metadata from unverified claims about free access.
+
+## 2. Primary-source observations
+
+### ISO catalogue — ISO 704:2022
+
+Official record: https://www.iso.org/standard/79077.html
+
+On 2026-10-17, the official ISO catalogue result identifies:
+- Identifier: ISO 704:2022, *Terminology work — Principles and methods*.
+- Edition: 4.
+- Publication date: July 2022 (published 2022-07-05).
+- Current catalogue status: Published.
+- Extent: 80 pages.
+- Displayed price: CHF 204.
+- Public abstract: covers principles/methods for preparing and compiling terminologies, relationships among objects/concepts/definitions/designations, term and proper-name formation, and definition writing.
+
+**Interpretation:** The public abstract supports the broad work scope only. It cannot be used to invent clause numbers, exact requirement wording or a clause-level evidence matrix. The displayed price is publication information, not an authorization to buy. No purchase was made.
+
+The catalogue also exposes a life-cycle view with review stages. The public evidence checked here does not independently establish whether any preliminary work item found elsewhere has become an approved revision project or replacement edition. At the eventual baseline freeze, re-check the official record and the current work programme of ISO/TC 37/SC 1. Do not replace ISO 704:2022 as the planned baseline unless an authoritative source establishes a newer applicable published edition or a scope decision explains the treatment of an in-progress revision.
+
+### Bureau of Indian Standards (BIS) access leads
+
+Official information reviewed:
+- BIS library services: https://www.bis.gov.in/library-services-2/?lang=en
+- BIS “Know Your Standard”: https://www.bis.gov.in/Know-Your-Standard/?lang=en
+- BIS standards portal instructions: https://standards.bis.gov.in/website/how-to-use
+
+The BIS library page states that the Headquarters Library collection includes standards issued by ISO and other bodies, but describes paid annual membership (₹2,000 plus 18% GST) for reference purposes and says copies issued under its policy are watermarked for registered library users and officials. Therefore, BIS membership is **not a verified no-cost access route**. The public BIS portal explains access to published Indian Standards; this does not prove that ISO 704:2022 itself is freely available there, nor that an Indian adoption is identical to the ISO text. Exact edition, availability, permitted use and copying restrictions would need direct confirmation.
+
+## 3. No-cost route status
+
+As of this check:
+- A complete, lawfully usable no-cost copy of ISO 704:2022 has **not been confirmed**.
+- A publicly visible preview or abstract is insufficient for the full baseline.
+- The BIS library is a potential information source, but its stated membership terms are paid; no claim of free full-text access is made.
+- Existing institutional access or an already licensed copy might be available to a project participant, but none has yet been evidenced in this record.
+- No unauthorized copy has been sought, stored or reproduced.
+- No standard has been purchased, and no paid enquiry, membership, subscription or tool has been authorized.
+
+## 4. Required next step
+
+The human maintainer should first check whether the project already has lawful access through an existing eligible library/institution or licensed copy. If not, a written information request may ask BIS or another relevant standards-information service to confirm whether the exact ISO edition or a permitted equivalent route is available without charge; an enquiry must not incur fees or imply an application. Do not proceed to buy without separate explicit authorization.
+
+If no free route can be confirmed, keep AR-E02 **BLOCKED** and stop before clause-level mapping. Continue non-normative preparation (scope proposal, entry schema, operational evidence and content review) only with clearly labeled internal criteria; do not call that work a completed ISO 704 assessment.
+
+## 5. Readiness impact
+
+This access gate prevents three errors: treating the public abstract as the full standard, relying on a different national/adopted standard without verifying equivalence, and filling in unknown clauses from memory. The evidence matrix remains a blank controlled template until the exact edition is lawfully available.
+
+**Current decision: BLOCKED — NO COMPLETE CONTROLLED BASELINE.**
