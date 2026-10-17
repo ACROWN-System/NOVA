@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 271,
-    "content_review_pending": 42,
-    "human_validation_pending": 271,
+    "preliminary_content_reviewed": 276,
+    "content_review_pending": 37,
+    "human_validation_pending": 276,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 5
   },
@@ -12181,15 +12181,17 @@
           "size_bytes": 6178,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_072",
+          "terminology_assessment": "PRELIMINARY_REVIEW_ORCHESTRATION-CONCEPT-BOUNDARIES-CANDIDATE-STATUS",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B072:B072-01"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_TERMINOLOGY_FINDING",
+          "note": "Batch 072: defines reusable NOVA AI Orchestration separately from the AI Assistant consumer; distinguishes provider/model eligibility, evidence, distillation, provenance, uncertainty and governance decision authority. Candidate architecture/status is explicit; no unique finding.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/nova-ai-orchestration/README.md",
@@ -12225,7 +12227,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "cc833fe126972e3752a20ee2cf93427c63f61645"
         },
         {
           "path": "development/nova-context-memory-optimization/context_packer.py",
@@ -12278,15 +12282,17 @@
           "size_bytes": 11388,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_072",
+          "terminology_assessment": "PRELIMINARY_REVIEW_MEMORY-CONTEXT-COST-AND-MECHANISM-BOUNDARIES",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B072:B072-02"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_TERMINOLOGY_FINDING",
+          "note": "Batch 072: distinguishes external-call/token costs, local inference, retrieval/context operations and cache reuse; preserves freshness, provenance and task correctness; technology choices remain candidates. No unique finding.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/nova-context-memory-optimization/README.md",
@@ -12318,7 +12324,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "a84575b4aed3d5bc100f251c8bd792402af8f2ef"
         },
         {
           "path": "development/nova-recursive-self-improvement/benchmark_dispatcher.py",
@@ -12662,15 +12670,17 @@
           "size_bytes": 1329,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_072",
+          "terminology_assessment": "PRELIMINARY_REVIEW_CREDENTIAL-PRESENCE-VS-ELIGIBILITY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B072:B072-03"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_TERMINOLOGY_FINDING",
+          "note": "Batch 072: presence-only credential status is explicitly distinguished from provider validity/health, free-tier status, commercial-use eligibility and sufficient availability. Positive control; no unique finding.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/nova-recursive-self-improvement/CREDENTIAL-READINESS.md",
@@ -12697,7 +12707,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "60b521a557e0d0fb86c5af6b04e6b9048017ec6b"
         },
         {
           "path": "development/nova-recursive-self-improvement/cycle_detector.py",
@@ -12705,15 +12717,19 @@
           "size_bytes": 18110,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_072",
+          "terminology_assessment": "PRELIMINARY_REVIEW_CYCLE-INTERVAL-UNIT-TERMINOLOGY-OPEN",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B072:B072-04"
+          ],
+          "findings": [
+            "SWEEP-F-0052"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDING_SWEEP-F-0052",
+          "note": "Batch 072 static review: recent_prior_runs retains eligible main-branch scheduled/manual workflow records regardless of conclusion, and analyze_history names record-index difference `cycle_length_passes`. “RSI pass(es)” may imply a completed/successful pass although a failed/cancelled/incomplete run can be included. F-0052 requests a defined history unit and output/test alignment. No code was run.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/nova-recursive-self-improvement/cycle_detector.py",
@@ -12740,7 +12756,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "d6c8f216ce792902b099adefae09095592208a44"
         },
         {
           "path": "development/nova-recursive-self-improvement/evaluator.py",
@@ -13222,15 +13240,17 @@
           "size_bytes": 4936,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_072",
+          "terminology_assessment": "PRELIMINARY_REVIEW_RSI-MODE-LIFECYCLE-BOUNDARIES",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B072:B072-05"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_TERMINOLOGY_FINDING",
+          "note": "Batch 072: Weak RSI is separately defined as manual/HITL; Strong RSI is explicitly suspended and INCOMPLETE pending independent gates. NO_CHANGE, provider credential/authentication distinction, readiness, and verified improvement are bounded; cross-reference F-0052 to align diagnostic pass terminology. No unique finding from this file alone.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/nova-recursive-self-improvement/RSI-OPERATING-MODES.md",
@@ -13257,7 +13277,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "989b8036bee959314e0ff5d5780c527fe9d341d0"
         },
         {
           "path": "development/nova-recursive-self-improvement/sandbox_runtime.py",
@@ -15727,5 +15749,5 @@
     }
   ],
   "last_updated": "2026-10-18",
-  "last_update_note": "Batch 071 reviewed five active AstroCrown-Web source files at main baseline commit 5faea74dd1b40ec98acf9d59d9e404fc18122032 and verified exact blob SHAs. Extended SWEEP-F-0038 to three more migrated section excerpts and the index-section authority README; extended SWEEP-F-0049 to MARKET-DATA-BAR; opened SWEEP-F-0051 because PAGINATION.md duplicates R-023 directory/filter content while stating exact pagination is undefined and gives no pagination-specific concept model. The HTML entry point is an empty-body scaffold and yielded no unique terminology finding. Counts: 271 preliminary full reviews + 5 partial screens + 42 pending = 318. Human validation pending; formal clause-level assessments remain zero; scope remains proposed/not human-approved. No source/runtime edits, backup/archive reads, tests/workflows, provider calls or settings changes."
+  "last_update_note": "Batch 072 reviewed five active AstroCrown-Web AI orchestration, context/memory optimization and RSI files at pinned main-baseline commit 5faea74dd1b40ec98acf9d59d9e404fc18122032 and verified exact blob SHAs. Four files preserved clear candidate/operational boundaries; opened SWEEP-F-0052 on cycle_detector.py because a record-index interval of workflow runs with unconstrained conclusions is labelled `cycle_length_passes`/“RSI pass(es)”. The Python file was reviewed statically only; no code or workflow was executed. Counts: 276 preliminary full reviews + 5 partial screens + 37 pending = 318. Human validation pending; formal clause-level assessments remain zero; scope remains proposed/not human-approved. No source/runtime edits, backup/archive reads, tests/workflows, provider calls, credentials, billing or repository settings were involved."
 }
