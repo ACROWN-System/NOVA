@@ -1,7 +1,7 @@
 # ISO 704:2022 Scope Proposal and Repository Inventory
 
 **Document ID:** NOVA-ISO704-SCOPE-001  
-**Version:** 0.1.58  
+**Version:** 0.1.59  
 **Snapshot date:** 2026-10-17  
 **Status:** PROPOSED SCOPE / INITIAL PATH INVENTORY — human approval and detailed content review pending  
 **Related dossier:** [ISO 704:2022 Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
@@ -345,3 +345,8 @@ Tracker states were re-counted directly: 96 preliminary full reviews, 5 partial 
 ## 63. Revision history
 
 - **2026-10-17 / v0.1.58:** Added Batch 060 preliminary full-file review of five AstroCrown-Web systemic quality, remediation status, image-first architecture and Cloudflare image MVP records. Counts: 216 preliminary full reviews + 5 partial screens + 97 not reviewed = 318. Extended SWEEP-F-0031 for the image-first architecture plan included in merged PR #117; opened SWEEP-F-0032 for the current interpretation of an Active remediation-status snapshot that still describes merged PRs #116/#83/#84 as open, with explicit caveat that the day-only timestamp does not establish it was wrong when authored. Cross-referenced image request-ID evidence with SWEEP-F-0030. No source/runtime or provider action was performed. Human validation remains pending; formal ISO 704 clause assessment remains zero and scope remains proposed/not human-approved.
+
+
+## 64. Revision history
+
+- **2026-10-17 / v0.1.59:** Added Batch 061 preliminary full-file review of five AstroCrown-Web research/completed-record paths at their exact recorded main-baseline blob SHAs. Opened SWEEP-F-0033 for conflicting lifecycle labels in two records: a merged PR still called Draft in an Active plan that remains open for counsel review, and a Completed record with an obsolete Active-plan title. Counts: 221 preliminary full reviews + 5 partial targeted screens + 92 not reviewed = 318. Human validation remains pending; formal ISO 704 clause assessment remains zero; scope remains proposed/not human-approved. No source/runtime files, backup/archive paths, credentials, provider settings, workflows, tests, billing, or repository settings were changed.
