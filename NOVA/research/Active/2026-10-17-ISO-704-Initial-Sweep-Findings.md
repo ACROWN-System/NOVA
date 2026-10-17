@@ -144,3 +144,13 @@ See [Semantic Review Batch 003 — Large NOVA README](2026-10-17-ISO-704-Semanti
 - **B003-F03:** the file's exact terminology-audit applicability and any separate public-claim validation requirement need an explicit scope decision; the file row remains PARTIAL rather than fully reviewed.
 
 Tracker state after Batch 003: **318/318 lexical scans; 11 preliminary file reviews; 1 partial targeted screen; 306 not reviewed; human validation pending.**
+
+
+## Semantic review update — Batch 004 Freebies licence and token example
+
+See [Semantic Review Batch 004 — Freebies](2026-10-17-ISO-704-Semantic-Review-Batch-004-Freebies.md) for the two exact baseline blob SHAs and dispositions.
+
+- **B004-F01:** the MIT licence file is present and conventional, but does not prove all repository resources, third-party assets or future offerings are covered; public “open-source/free forever” wording remains open.
+- **B004-F02:** the `SimpleToken.sol` example uses “Minimal ERC-20 Token (BSC ready)”; standard/chain compatibility, deployment and security remain unverified in this terminology review. Keep it labelled as an example until separate engineering evidence supports stronger claims.
+
+Tracker status after Batch 004: **318/318 lexical scans; 13 preliminary content reviews; 1 partial targeted screen; 304 not reviewed; human validation pending.**
