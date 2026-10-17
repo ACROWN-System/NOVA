@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.13  
+**Version:** 0.1.14  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL FINDINGS — lexical screening only; not a completed conformity audit  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -634,4 +634,26 @@ See [Semantic Review Batch 048 — NOVA Wallet and Observer Claims](2026-10-17-I
 - **Closure evidence:** Human-confirmed scope and dated state/run evidence.
 
 **Row-derived counts after Batch 048:** 318 lexical scans; 156 preliminary full-file reviews; 5 partial targeted screens; 157 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. No implementation, workflow, credential or backup/archive paths were changed.
+
+## Batch 049 — NOVA provider and capacity claims
+
+See [Semantic Review Batch 049 — NOVA Provider and Capacity Claims](2026-10-17-ISO-704-Semantic-Review-Batch-049-NOVA-Provider-and-Capacity-Claims.md). Five active NOVA files were reviewed at exact main baseline blob SHAs. Supporting provider/capacity/allocation implementation and tests were inspected as source only.
+
+### SWEEP-F-0027 — Provider-qualification guide conflicts with current diagnostic behavior
+- **Status:** OPEN.
+- **Affected path:** `NOVA/PROVIDER-QUALIFICATION.md`.
+- **Observed issue:** The guide states that Mistral remains a diagnostic probe and Cloudflare inference is conditionally probed; the same-baseline provider qualification source excludes Mistral and deliberately skips duplicate Cloudflare inference.
+- **Required action:** Align the guide with the current source and operator decision without triggering provider calls.
+- **Closure evidence:** Revised guide and matching source references at one revision, with human-confirmed provider/diagnostic lifecycle.
+
+### SWEEP-F-0028 — Old live-secret checklist can revive deferred Mistral qualification
+- **Status:** OPEN.
+- **Affected path:** `NOVA/research/2026.10.08-BLOCKED-LIVE-SECRETS-GROQ-GEMINI-MISTRAL-CEREBRAS-CLOUDFLARE-NOSANA-HF.md`.
+- **Observed issue:** A dated historical checklist continues to present Mistral live qualification as pending work without linking the later deferral decision.
+- **Required action:** Preserve the historical record, but identify the item as superseded/deferred and link the authoritative deferral/re-entry conditions. Do not reactivate Mistral as a side effect of this review.
+- **Closure evidence:** Human-reviewed and consistent task status with a traceable deferral record.
+
+**Positive review notes:** B049-02 keeps speculative nonlinear/physics-inspired mappings distinct from implemented capabilities and lists re-entry dependencies. B049-04 explicitly blocks resource economics on missing task estimates, alternative costs, renewal evidence and negative-effect measurements. B049-05's implementation statements align with inspected baseline source and existing test design, but no tests or runtime operations were executed.
+
+**Row-derived counts after Batch 049:** 318 lexical scans; 161 preliminary full-file reviews; 5 partial targeted screens; 152 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. No implementation, workflow, provider or backup/archive paths were changed.
 
