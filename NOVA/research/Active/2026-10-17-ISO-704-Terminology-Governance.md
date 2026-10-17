@@ -241,3 +241,27 @@ Authoritative public standard metadata:
 
 **IF not recorded:** the access state could be inferred from partial public material instead of verified evidence.
 
+## Execution update — 2026-10-18 — scope decision and expanded no-cost access search
+
+- Human maintainer approval is recorded for the six-repository planning scope and English as the initial assessment language. The final assessment baseline is not frozen. AI-Sanctuary-Core remains a distinct identity/governance domain.
+- The $0-only rule is binding. No purchase, paid library membership/subscription, billable enquiry, hired service, or provider outreach is authorized.
+- The expanded search found no verified lawful no-cost online access to the complete applicable ISO 704 text. ISO's official OBP free preview is restricted to selected sections; full text has not been verified as free.
+- The official ISO product record still lists ISO 704:2022 Edition 4 as published. A separate public standards-body listing shows ISO/PWI 704 at proposal stage, not a published successor. The latter requires authoritative lifecycle confirmation before final baseline freeze.
+- IIT Delhi Central Library is a possible in-person route to ask about: it lists subscriptions to ISO standards and a library-visit facility for outside users, but public pages do not confirm no-cost access for a non-member to this exact standard. Only a free informational inquiry is appropriate. AR-E02 remains BLOCKED and the clause matrix remains template-only.
+- Added the detailed report [Expanded Search — Lawful No-Cost Access to ISO 704 and Current Lifecycle](2026-10-18-ISO-704-Expanded-Free-Access-and-Lifecycle-Research.md), updated the access investigation and dossier, and reflected the access lead in the tracker.
+- Batches 079 and 080 have recorded preliminary dispositions for the last seven outstanding active paths: 5 files in Batch 079 and 2 in Batch 080. Tracker arithmetic is 313 preliminary full-file reviews + 5 partial targeted screens + 0 unreviewed = 318. Human validation remains pending for all 313 full-file reviews; formal clause-level assessments remain zero. Finding SWEEP-F-0062 remains open.
+
+### Execution incident — branch target omission and prevention
+
+One create-file call for the expanded access report omitted its optional branch argument, so GitHub created the file on the default branch. Verification caught the mismatch; the report was recreated on the intended ISO review branch and deleted from the current default-branch tree with a follow-up commit. The current branch contains the artifact only at the intended path; no runtime/source file or backup/archive path was changed.
+
+**Root cause:** the write API defaults to the repository's default branch when `branch` is omitted, and the call did not enforce explicit target-ref input.
+
+**Prevention:** every create/update/delete call in this workstream must explicitly specify the intended branch, then re-fetch the exact path on that same branch immediately after the write. Where a routing mistake is suspected, verify the default-branch tree separately; do not rewrite history.
+
+### Impact Analysis — expanded access and branch control
+
+**IF followed:** scope/cost decisions and standard-access limits stay auditable, and write operations stay inside the intended review branch.
+
+**IF not followed:** the project risks treating a preview or proposal as a controlled standard, incurring an unauthorized cost, or bypassing review-branch change control.
+
