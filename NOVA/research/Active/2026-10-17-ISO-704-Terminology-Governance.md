@@ -126,3 +126,12 @@ Authoritative public standard metadata:
 - Recovery copied those four documents into PR #124 using an explicit tree/commit/ref update parented to the then-current PR head, then removed only those four paths from `main`. Current tree verification confirms they are present on the draft branch and absent on current `main`.
 - The accidental add/remove commits remain in shared `main` history; no force-push/history rewrite was performed. All immutable backup/archive paths remain untouched.
 - Prevention rule: for new files on non-default branches, use the explicit tree → commit → ref-update path and then verify the exact target ref, blob content, PR changed-file list and immutable-path boundary. A successful action response alone is insufficient.
+
+
+## Execution update — 2026-10-17 — semantic review Batch 046
+
+- Reviewed five previously unreviewed active NOVA paths against their recorded blob SHAs at baseline `2a1f5c496474aa099703432e99b3d3dfddfd3fd7`: `_headers`, `.github/pull_request_template.md`, `.github/workflows/nova_cloudflare_smoke_test.yml`, `.github/workflows/nova_health_tests.yml`, and `.gitignore`.
+- Added [Semantic Review Batch 046](2026-10-17-ISO-704-Semantic-Review-Batch-046-NOVA-Controls-and-Security-Language.md); reconciled [the sweep tracker](2026-10-17-ISO-704-Content-Sweep-Tracker.json), [initial findings](2026-10-17-ISO-704-Initial-Sweep-Findings.md), and [scope inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md).
+- New preliminary findings: SWEEP-F-0017 (overbroad security-header comments), F-0018 (Cloudflare request/response-contract traceability), F-0019 (PR workflow trigger versus verified required check), and F-0020 (.gitignore labels versus actual protection).
+- **Coverage now:** 146 preliminary full-file reviews + 5 partial targeted screens + 167 not reviewed = 318 active paths. Human validation pending; formal ISO 704 clause-level assessments remain zero.
+- No source/runtime file, workflow, secret, repository setting or backup/archive path was changed. Current PR remains a draft; there is no readiness or certification claim.
