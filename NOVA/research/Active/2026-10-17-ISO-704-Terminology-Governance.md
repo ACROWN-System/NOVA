@@ -135,3 +135,21 @@ Authoritative public standard metadata:
 - New preliminary findings: SWEEP-F-0017 (overbroad security-header comments), F-0018 (Cloudflare request/response-contract traceability), F-0019 (PR workflow trigger versus verified required check), and F-0020 (.gitignore labels versus actual protection).
 - **Coverage now:** 146 preliminary full-file reviews + 5 partial targeted screens + 167 not reviewed = 318 active paths. Human validation pending; formal ISO 704 clause-level assessments remain zero.
 - No source/runtime file, workflow, secret, repository setting or backup/archive path was changed. Current PR remains a draft; there is no readiness or certification claim.
+
+
+## Execution update — 2026-10-18 — semantic review Batches 074–075
+
+- Reviewed 10 previously unreviewed AstroCrown-Web active paths at exact blob SHAs from baseline commit `5faea74dd1b40ec98acf9d59d9e404fc18122032`: five paths in Batch 074 and five in Batch 075. Source manifests and dispositions are recorded in the two linked batch reports.
+- Reconciled the row-level sweep tracker to record source commit and blob SHA, review status, evidence ID, findings, reviewer/date and disposition for all ten files. Corrected the tracker’s stale top-level status text to match row-derived totals.
+- Opened preliminary SWEEP-F-0053 for the Public Relations target-state list mixing verification, temporal/lineage and account/organization lifecycle status dimensions; SWEEP-F-0054 for the undefined relation between UNVERIFIED evidence state and BLOCKED decision status; and SWEEP-F-0055 for the NOVA replication-state field mixing replication extent, feasibility, workflow maturity and trust/independence dimensions.
+- Recorded positive controls in report-only Weak RSI behavior; Public Relations versus GitHub pull-request terminology; internal preparation versus external authority; visibility versus credibility; and adoption metrics versus independent quality/assurance evidence.
+- No application/runtime code, tests, workflows, providers, credentials, billing, repository settings or immutable backup/archive paths were executed, modified or inspected. Batch 074’s Python source and all tests remain static-review-only.
+- **Updated coverage:** 291 preliminary full-file reviews + 5 partial targeted screens + 22 not reviewed = 318 active paths. Human validation remains pending; formal ISO 704 clause-level assessments completed: 0; scope remains proposed and not human-approved.
+
+### Impact Analysis — Batches 074–075
+
+**IF modified:** review status becomes traceable to exact source blobs; distinct status dimensions and the evidence-state/decision-state relationship become visible for human resolution; replication-state comparison can be standardized without implying external assurance. Tracker counts become consistent with documented dispositions.
+
+**IF not modified:** the active review record would continue to overstate the number of unreviewed files while leaving the status taxonomy and replication-state ambiguities undisclosed; reviewers could compare unlike values or infer a decision result from an evidence label.
+
+**Verification still required:** inspect the final PR diff and changed-path list; prove no backup/archive paths were added; verify tracker arithmetic and exact source SHAs; conduct designated human validation; reconcile dependent terminology rollouts and approved scope; obtain lawful controlled access to the complete ISO 704:2022 edition before populating its clause-level matrix. Overall status remains **NOT READY FOR AN ISO 704 AUDIT**.

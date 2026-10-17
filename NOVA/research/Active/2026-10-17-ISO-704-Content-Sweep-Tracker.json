@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 261/318; PARTIAL TARGETED SCREENS 5; 52 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 291/318; PARTIAL TARGETED SCREENS 5; 22 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 281,
-    "content_review_pending": 32,
-    "human_validation_pending": 281,
+    "preliminary_content_reviewed": 291,
+    "content_review_pending": 22,
+    "human_validation_pending": 291,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 5
   },
@@ -13945,15 +13945,17 @@
           "size_bytes": 11672,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_074",
+          "terminology_assessment": "PRELIMINARY_REVIEW_WEAK-RSI-REPORT-ONLY-OUTCOME-AND-ELIGIBILITY-BOUNDARIES",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B074:B074-01"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_TERMINOLOGY_FINDING",
+          "note": "Batch 074: statically reviewed the manual-only Weak RSI report path. BLOCKED versus HUMAN_REVIEW_REQUIRED, provider data-use eligibility versus credential presence, model-generated advice versus human decision, and report-only operation are distinct. No provider call or execution occurred.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/nova-recursive-self-improvement/weak_rsi_report.py",
@@ -13980,7 +13982,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "c12ad3eb29ac1f6dd52b493bb8b559f1fce232ae"
         },
         {
           "path": "development/Prompt-Guide.md",
@@ -14035,15 +14039,19 @@
           "size_bytes": 27166,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_074",
+          "terminology_assessment": "PRELIMINARY_REVIEW_TARGET-STATE-DIMENSIONS-NEED-SEPARATE-CLASSIFICATION",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B074:B074-02"
+          ],
+          "findings": [
+            "SWEEP-F-0053"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDING_SWEEP-F-0053",
+          "note": "Batch 074: the shared target-state list mixes verification/confidence labels (VERIFIED, OBSERVED, CANDIDATE, UNVERIFIED), historical/lineage labels (HISTORICAL, REPLACED), and account/organization lifecycle states (SUSPENDED, CLOSED). The document says identity, role and relationship should be tracked separately but does not define allowed states by dimension. Human validation required.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/public-relations/ASTROCROWN-SPACE-EMPIRE-STRATEGIC-TARGET-UNIVERSE-2026-10-03.md",
@@ -14079,7 +14087,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "2bf11d03acd3da78ae565586d877ebb9bae3f336"
         },
         {
           "path": "development/public-relations/README.md",
@@ -14087,15 +14097,17 @@
           "size_bytes": 3673,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_074",
+          "terminology_assessment": "PRELIMINARY_REVIEW_PUBLIC-RELATIONS-VS-PULL-REQUEST-DISTINCTION",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B074:B074-03"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_TERMINOLOGY_FINDING",
+          "note": "Batch 074: explicitly distinguishes Public Relations from GitHub pull request terminology and separates identity, role, decision function, evidence and relationship state. Missing X handles are not treated as proof of nonexistence. Positive terminology control.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/public-relations/README.md",
@@ -14127,7 +14139,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "d3adb9c9ba88683ec958d5d23f258eb6a1394726"
         },
         {
           "path": "development/README.md",
@@ -14184,15 +14198,19 @@
           "size_bytes": 1434,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_074",
+          "terminology_assessment": "PRELIMINARY_REVIEW_EVIDENCE-STATE-VS-DECISION-STATUS-AMBIGUITY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B074:B074-04"
+          ],
+          "findings": [
+            "SWEEP-F-0054"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDING_SWEEP-F-0054",
+          "note": "Batch 074: the matrix Result column says UNVERIFIED while a separate rule says Unknown status = BLOCKED. These may be different concepts (evidence verification state and decision outcome), but the mapping is not defined. Human validation required; no security test was performed.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/SECURITY-BASELINE.md",
@@ -14219,7 +14237,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "ede2ddc44012f901c8b4c4de056d948d6ef50db7"
         },
         {
           "path": "development/verification/01-VERIFICATION-ECOSYSTEM-MAP.md",
@@ -14446,15 +14466,17 @@
           "size_bytes": 1059,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_074",
+          "terminology_assessment": "PRELIMINARY_REVIEW_INTERNAL-PREPARATION-VS-EXTERNAL-AUTHORITY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B074:B074-05"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_TERMINOLOGY_FINDING",
+          "note": "Batch 074: distinguishes internal preparation/control replication from external certification, authorization, listing, publication and peer-review decisions. Positive boundary; no unique finding.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/verification/05-FEASIBILITY-REGISTRY.md",
@@ -14490,7 +14512,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "19ab772f594bf6e9acb38d66cf01d8c3f1452a1d"
         },
         {
           "path": "development/verification/06-OPPORTUNITY-READINESS.md",
@@ -14498,15 +14522,17 @@
           "size_bytes": 2507,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_075",
+          "terminology_assessment": "PRELIMINARY_REVIEW_TRIGGER-AND-EVIDENCE-BASED-OPPORTUNITY-READINESS",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B075:B075-01"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 075: rejects a universal fixed lifecycle ladder and separates trigger, evidence, earliest/typical/latest useful stage and preparation gap. Qualitative Yes/Sometimes/Usually values in Stage independent? need owner clarification before use as an automated gate; no unique finding opened.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/verification/06-OPPORTUNITY-READINESS.md",
@@ -14538,7 +14564,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "f7c4f804fac71de3e1574c91fd22ca7bc373a569"
         },
         {
           "path": "development/verification/07-VISIBILITY-REGISTRY.md",
@@ -14546,15 +14574,17 @@
           "size_bytes": 807,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_075",
+          "terminology_assessment": "PRELIMINARY_REVIEW_VISIBILITY-DISTINCT-FROM-CREDIBILITY-AND-ASSURANCE",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B075:B075-02"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_TERMINOLOGY_FINDING",
+          "note": "Batch 075: distinguishes visibility mechanisms/dimensions and explicitly states that visibility/ranking is not credibility, legal assurance or security assurance. Requires date, source, scope, method and limitations. No unique finding.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/verification/07-VISIBILITY-REGISTRY.md",
@@ -14581,7 +14611,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "08c6a5d7f24488f36483d973077e9ff234575257"
         },
         {
           "path": "development/verification/08-CREDIBILITY-REGISTRY.md",
@@ -14589,15 +14621,17 @@
           "size_bytes": 789,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_075",
+          "terminology_assessment": "PRELIMINARY_REVIEW_ASSURANCE-MECHANISMS-AND-TRUST-LIMITS",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B075:B075-03"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_TERMINOLOGY_FINDING",
+          "note": "Batch 075: distinguishes certification, attestation, audit, benchmark, regulatory status, listing, publication, reputation and community evidence; limits claims that any single mechanism answers every trust question. More explicit definitions/criteria may be useful before comparative scoring; no separate finding opened.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/verification/08-CREDIBILITY-REGISTRY.md",
@@ -14629,7 +14663,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "838860c1b04895a82d61e9340b893b1a3aee167b"
         },
         {
           "path": "development/verification/09-ADOPTION-REGISTRY.md",
@@ -14637,15 +14673,17 @@
           "size_bytes": 851,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_075",
+          "terminology_assessment": "PRELIMINARY_REVIEW_ADOPTION-SEPARATE-FROM-VISIBILITY-AND-CREDIBILITY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B075:B075-04"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_TERMINOLOGY_FINDING",
+          "note": "Batch 075: separates adoption effects from visibility and credibility; public metrics are signals rather than independent proof of product quality, security, legality or trustworthiness; causal effects require evidence. No unique finding.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/verification/09-ADOPTION-REGISTRY.md",
@@ -14672,7 +14710,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "2be563e078728e6b2c9d9b45007e0f43fcff10d4"
         },
         {
           "path": "development/verification/10-NOVA-REPLICATION-REGISTRY.md",
@@ -14680,15 +14720,19 @@
           "size_bytes": 2341,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_075",
+          "terminology_assessment": "PRELIMINARY_REVIEW_REPLICATION-STATE-MIXES-CLASSIFICATION-AXES",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B075:B075-05"
+          ],
+          "findings": [
+            "SWEEP-F-0055"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-18",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDING_SWEEP-F-0055",
+          "note": "Batch 075: NOVA replication state mixes replication extent (FULL/PARTIAL), NOT REPLICABLE, qualified status and FULL workflow / PARTIAL trust. Workflow maturity and independent trust are different properties. Human validation required.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/verification/10-NOVA-REPLICATION-REGISTRY.md",
@@ -14720,7 +14764,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "245001b081ae3c925e6a95bc0f9f35ce740cf15f"
         },
         {
           "path": "development/verification/11-COMPETITOR-VERIFICATION-BENCHMARK.md",

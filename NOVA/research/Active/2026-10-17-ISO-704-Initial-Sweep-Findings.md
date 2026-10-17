@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.38  
+**Version:** 0.1.41  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL SWEEP FINDINGS — lexical screening plus preliminary content reviews; human validation and formal clause assessment pending  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -1044,6 +1044,33 @@ See [Semantic Review Batch 071 — AstroCrown Market Data, Pagination and Naviga
 - **Required action:** Define the intended history unit and eligible outcomes; align the field names, report wording, calculation, and tests to that definition. If outcomes are filtered, keep incomplete/unavailable history distinct from a genuine no-repeat result. Preserve the existing caveats that bounded history cannot rule out older cycles and repeated source state does not prove capability quality or improvement.
 - **Closure evidence:** Human-approved definitions for run/attempt/pass and repeat interval; reviewed outcome-eligibility criteria; test evidence for successful, failed, cancelled/incomplete, repeated-state, and no-repeat histories; and report wording consistent with the measured quantity.
 
+### SWEEP-F-0053 — Public Relations target-state vocabulary mixes status dimensions
+
+- **Status:** OPEN — preliminary; human validation required.
+- **Affected path:** AstroCrown-Web/development/public-relations/ASTROCROWN-SPACE-EMPIRE-STRATEGIC-TARGET-UNIVERSE-2026-10-03.md, section “Strategic target states”.
+- **Observed issue:** The shared list places verification/confidence labels (VERIFIED, OBSERVED, CANDIDATE, UNVERIFIED), temporal/record-lineage labels (HISTORICAL, REPLACED), and external account/organization lifecycle labels (SUSPENDED, CLOSED) in one set. The document says the states apply separately to identity, role and relationship, but does not specify which values are valid for each dimension.
+- **Interpretation:** Verification confidence, temporal validity/record lineage, and account/organization operational state are different concepts. A shared, untyped set risks inconsistent records or using one dimension's status to answer a different question. This is a schema/definition ambiguity, not a claim that any listed target has been misclassified.
+- **Required action:** Define the state dimensions and their permitted values, including subject of the state (identity, role, relationship, account, organization/program, or record); provide inclusion rules and examples. Preserve historical evidence and avoid changing external target states without current evidence.
+- **Closure evidence:** Human-approved status-dimension model, definitions and permitted-value table, examples of multi-dimensional states, and a review/migration rule for existing entries.
+
+### SWEEP-F-0054 — Security baseline does not define evidence-state to decision-status mapping
+
+- **Status:** OPEN — preliminary; human validation required.
+- **Affected path:** AstroCrown-Web/development/SECURITY-BASELINE.md, Security Verification Matrix and Security Review Rule.
+- **Observed issue:** All matrix cells use UNVERIFIED in a column titled Result, while a separate rule states “Unknown status = BLOCKED”. The document does not explicitly say whether these labels describe distinct fields or how one maps to the other.
+- **Interpretation:** Evidence verification status and a control/operation decision can legitimately be distinct. Without a stated mapping, however, a reader cannot tell whether UNVERIFIED is itself the decision result, whether BLOCKED is an additional outcome, or whether the matrix is only an evidence-state table.
+- **Required action:** Define the difference and relation between evidence status, control result and decision/gate status. Either separate the fields or state the exact mapping and apply it consistently. Do not change security outcomes without evidence.
+- **Closure evidence:** Approved definitions and mapping, fully populated examples for known/unknown/blocked/pass cases, and a human-reviewed check that the matrix and associated tests use the labels consistently.
+
+### SWEEP-F-0055 — NOVA replication-state field combines different classification axes
+
+- **Status:** OPEN — preliminary; human validation required.
+- **Affected path:** AstroCrown-Web/development/verification/10-NOVA-REPLICATION-REGISTRY.md, column “NOVA replication state”.
+- **Observed issue:** The column combines replication extent (FULL/PARTIAL), NOT REPLICABLE, qualified states such as FULL / PARTIAL, and “FULL workflow / PARTIAL trust”, which combines operational workflow maturity with trust/independence.
+- **Interpretation:** Replication extent, feasibility boundary, workflow maturity and external independence/trust are distinct properties. Current values are not directly comparable along one classification axis.
+- **Required action:** Define the replication-state concept and permitted values, or separate the table into independent fields for replication extent/feasibility, internal workflow maturity, and external independence/authority boundary. Preserve the existing caution that internal replication does not confer external authority.
+- **Closure evidence:** Human-approved concept definitions and classification rules, examples for each field, reviewed/migrated rows, and consistency checks against approved value sets.
+
 ## Batch 073 — Strong RSI readiness and test-outcome terminology
 
 See [Semantic Review Batch 073 — Strong RSI Readiness and Test-Outcome Terminology](2026-10-18-ISO-704-Semantic-Review-Batch-073-Strong-RSI-Readiness-and-Test-Outcome-Terminology.md). Five files were reviewed at exact blob SHAs from AstroCrown-Web baseline commit `5faea74dd1b40ec98acf9d59d9e404fc18122032`: Strong RSI Status, benchmark dispatcher tests, cycle detector tests, evaluator tests, and Weak RSI report tests. Extended SWEEP-F-0052 to `tests/test_cycle_detector.py`, whose recent-runs test explicitly keeps failed scheduled/manual runs in history. This confirms the interval is currently a selected-workflow-run record count, so the issue is to name/define the interval accurately rather than assume failed runs must be filtered. Strong RSI's SUSPENDED lifecycle versus INCOMPLETE readiness; dispatcher READY/BLOCKED outcomes; evaluator PASS gates and exact-commit evidence; and Weak RSI BLOCKED/HUMAN_REVIEW_REQUIRED report-only behavior are recorded as positive controls. Test files were reviewed statically only; no tests or workflows were executed.
@@ -1057,3 +1084,16 @@ See [Semantic Review Batch 072 — NOVA Orchestration, Memory and RSI-Mode Termi
 **Row-derived counts after Batch 072:** 318 lexical scans; 276 preliminary full-file reviews; 5 partial targeted screens; 37 not reviewed; human validation pending; formal ISO 704 clause-level assessments completed: 0. Scope remains proposed and not human-approved. All findings remain preliminary and require designated human validation; this is not a formal ISO 704 clause or conformity assessment. No AstroCrown-Web source/runtime files, backup/archive paths, workflows, credentials, provider settings, billing or repository settings were changed or used.
 
 
+
+
+## Batch 074 — AstroCrown Weak RSI, Public Relations and verification registries
+
+See [Semantic Review Batch 074 — AstroCrown Weak RSI, Public Relations and Verification Registry Boundaries](2026-10-18-ISO-704-Semantic-Review-Batch-074-AstroCrown-Weak-RSI-Public-Relations-and-Verification-Registries.md). Five files were reviewed at exact blob SHAs from AstroCrown-Web baseline commit `5faea74dd1b40ec98acf9d59d9e404fc18122032`: the manual Weak RSI report generator, Public Relations target universe, Public Relations README, development security baseline and feasibility registry. Opened SWEEP-F-0053 because the target-state list combines verification confidence, record history/replacement and account/organization lifecycle labels without defining allowed values by state dimension. Opened SWEEP-F-0054 because the Security Verification Matrix uses UNVERIFIED while the rule says unknown status = BLOCKED, without defining whether these are distinct evidence and decision states. The Weak RSI source was reviewed statically only; no code or provider calls occurred. Public Relations versus pull-request vocabulary, report-only/human-review boundaries, and internal preparation versus external authority are recorded as positive controls.
+
+**Row-derived counts after Batch 074:** 318 lexical screens; 286 preliminary full-file reviews; 5 partial targeted screens; 27 not reviewed; human validation pending; formal ISO 704 clause-level assessments completed: 0. Scope remains proposed and not human-approved. Findings remain preliminary; this is not a formal ISO 704 clause or conformity assessment.
+
+## Batch 075 — AstroCrown opportunity, visibility, credibility, adoption and replication registries
+
+See [Semantic Review Batch 075 — AstroCrown Verification Opportunity, Visibility, Credibility, Adoption and Replication Registries](2026-10-18-ISO-704-Semantic-Review-Batch-075-AstroCrown-Verification-Opportunity-and-Adoption-Registries.md). Five files were reviewed at exact blob SHAs from AstroCrown-Web baseline commit `5faea74dd1b40ec98acf9d59d9e404fc18122032`: Opportunity Readiness, Visibility, Credibility/Trust, Adoption and NOVA Replication registries. Opened SWEEP-F-0055 because the NOVA replication-state column combines replication extent, non-replicability, and a mixed workflow-maturity/trust value, which are different properties and not directly comparable. The first four registries preserve useful boundaries among opportunity timing and evidence, visibility versus credibility, assurance mechanisms, and adoption metrics versus proof of quality or trust. The qualitative “Stage independent?” values remain owner-clarification work before they are used as an automated gate. No code or workflows were executed.
+
+**Row-derived counts after Batch 075:** 318 lexical screens; 291 preliminary full-file reviews; 5 partial targeted screens; 22 not reviewed; human validation pending; formal ISO 704 clause-level assessments completed: 0. Scope remains proposed and not human-approved. Findings remain preliminary; this is not a formal ISO 704 clause or conformity assessment.
