@@ -1,7 +1,7 @@
 # ISO 704:2022 Audit-Readiness Dossier and Evidence Register
 
 **Document ID:** NOVA-ISO704-AR-001  
-**Version:** 0.1.48  
+**Version:** 0.1.49  
 **Date opened:** 2026-10-17  
 **Status:** ACTIVE — readiness package construction; NOT READY FOR AN ISO 704 AUDIT  
 **Owner:** Designated human maintainer  
@@ -81,7 +81,7 @@ Status meanings: **EXISTS—DRAFT** = an artifact exists but has not been accept
 | Evidence ID | Evidence package component | What acceptable evidence must demonstrate | Current status | Next action |
 |---|---|---|---|---|
 | AR-E01 | Scope and boundaries | Approved scope statement; included domains, repos/paths, activity, languages, period, exclusions and rationale | PLANNING SCOPE APPROVED 2026-10-18 / FINAL BASELINE FREEZE PENDING | Preserve the approved six-repository set and English initial-language boundary; refresh exact repository/path refs and commit SHAs, set assessment period, document roles/independence and confirm exclusions before treating the scope as frozen |
-| AR-E02 | Controlled standard baseline and lifecycle freeze | Lawful access to the complete ISO 704:2022 edition; edition/version, source, access/licence record, controlled-copy identifier, lifecycle/revision status checked at baseline date | BLOCKED | Follow [Standard Baseline and Lawful-Access Investigation](2026-10-17-ISO-704-Standard-Baseline-and-Access-Research.md): investigate existing lawful no-cost access first; record any edition/revision check at the final baseline freeze. Official ISO metadata is verified, but complete lawful no-cost access is not. No purchase or paid subscription without separate authorization |
+| AR-E02 | Controlled standard baseline and lifecycle freeze | Lawful access to the complete applicable ISO 704 edition; edition/version, source, access/licence record, controlled-copy identifier, lifecycle/revision status checked at baseline date | BLOCKED — no-cost full-text access not confirmed (public-source recheck 2026-10-18) | [Standard Baseline and Lawful-Access Investigation](2026-10-17-ISO-704-Standard-Baseline-and-Access-Research.md) records the current official ISO product page (sample/preview plus CHF 204 displayed price) and BIS library/portal check (paid reference membership; no verified free full ISO 704 text). Under the $0-only policy, check only existing lawful institutional/licensed access or verified no-cost consultation. No purchase, paid subscription/membership, billable enquiry or hired service is authorized. Keep AR-E02 BLOCKED until full-text rights/access and applicable edition/lifecycle are recorded |
 | AR-E03 | Clause/topic-to-evidence matrix | Every applicable section/clause captured from the controlled edition; statement force, project interpretation, applicability, control, evidence, result, gaps and rationale | BLOCKED — template available | Use the [controlled matrix template](2026-10-17-ISO-704-Clause-Evidence-Matrix.md) only after AR-E02; no guessed or invented clause mappings |
 | AR-E04 | Terminology governance procedure | Approved roles, workflow, criteria, decision gates, status lifecycle and audit controls | EXISTS—DRAFT | Review, approve and establish an effective date |
 | AR-E05 | Canonical terminology register | Versioned concept entries with stable IDs, domain/context, preferred designations, definitions, characteristics, relations, variants, sources, owner, status and history where applicable | EXISTS—DRAFT; ENTRY COMPLETENESS GAPS DOCUMENTED | Apply the [15-entry register quality review](2026-10-17-ISO-704-Register-Quality-Review.md); fill gaps only from evidence, establish typed relations/provenance, obtain human domain approval and freeze a controlled snapshot |
@@ -404,3 +404,11 @@ Five pending NOVA files were prioritized by lexical hits and received selected-l
 - AR-E01 is now planning-scope approved; final baseline freeze, assessment period, precise final path manifest, roles/independence, language finalization and scope exclusions still require recorded confirmation.
 - The overall status remains **NOT READY FOR AN ISO 704 AUDIT**. Human validation, full applicable standard access, the clause/evidence matrix, full disposition of partial screens and missing report artifacts, objective operational evidence, internal audit, corrective-action retesting and management GO/NO-GO remain open.
 - **Impact Analysis — IF applied:** scope direction and cost boundary are auditable and ambiguity about domain separation is reduced. **IF not applied:** unapproved wording could persist or the project could inadvertently assume spending authorization.
+
+## Revision update — $0-only standard-access recheck (2026-10-18)
+
+The official ISO 704 product record and official BIS library/Know Your Standard pages were rechecked. ISO's page identifies ISO 704:2022, Edition 4, as published and advertises preview/sample access with a CHF 204 price; the BIS library page lists paid annual reference membership and the public BIS standard portal does not establish free availability of the complete ISO 704 text. See [the access investigation](2026-10-17-ISO-704-Standard-Baseline-and-Access-Research.md).
+
+**AR-E02 remains BLOCKED.** The public-source check did not confirm a lawful no-cost route to the complete applicable text. This does not prove that no already-licensed institutional copy or permitted no-cost consultation route exists. The $0-only policy remains binding; no paid activity is authorized, and the clause/topic-to-evidence matrix remains a template only.
+
+**Impact Analysis — IF respected:** no guessed clause mapping or unauthorized cost is introduced. **IF ignored:** preview content or a paid access lead could be misrepresented as a controlled, lawful no-cost baseline.
