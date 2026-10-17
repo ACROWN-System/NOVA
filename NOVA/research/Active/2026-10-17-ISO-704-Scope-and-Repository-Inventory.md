@@ -315,3 +315,8 @@ Tracker states were re-counted directly: 96 preliminary full reviews, 5 partial 
 ## 57. Revision history
 
 - **2026-10-17 / v0.1.52:** Added Batch 054 preliminary full-file review of five AstroCrown-Web paths: multi-model composition strategy, media-generator README, Cloudflare adapter tests, AI Sanctuary README and Sanctuary repository-integration architecture. Counts: 186 preliminary full reviews + 5 partial screens + 127 not reviewed = 318. No new unique finding was opened; test-source evidence refines SWEEP-F-0030 as a request-ID documentation/contract mismatch rather than proof that the provider exposes such an identifier. Human validation pending; formal ISO 704 clause assessment remains zero. No backup/archive paths or runtime configuration changed.
+
+
+## 58. Revision history
+
+- **2026-10-17 / v0.1.53:** Added Batch 055 preliminary full-file review of five AstroCrown-Web paths: Sanctuary research register, capacity-aware media-rollout navigation plan, Cloudflare image-model evaluation plan and evaluation, and image/video candidate-register plan. Counts: 191 preliminary full reviews + 5 partial screens + 122 not reviewed = 318. Added SWEEP-F-0031 for the capacity-rollout navigation plan remaining Active with “submitted for review” status after merged PR #47, despite its own handoff instructing completion/move after merge. The finding concerns plan lifecycle, not product implementation. Human validation pending; formal ISO 704 clause assessment remains zero. No backup/archive paths or runtime configuration changed.
