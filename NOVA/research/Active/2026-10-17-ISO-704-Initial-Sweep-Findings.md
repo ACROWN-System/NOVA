@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.17  
+**Version:** 0.1.18  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL FINDINGS — lexical screening only; not a completed conformity audit  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -699,3 +699,10 @@ The credential-readiness workflow reports a repository variable for auto-merge s
 
 **Row-derived counts after Batch 052:** 318 lexical scans; 176 preliminary full-file reviews; 5 partial targeted screens; 137 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. No tests, workflows, security scans, live provider calls or deployments were executed; no backup/archive paths changed.
 
+
+
+## Batch 053 — AstroCrown Scorecard, account, and media candidates
+
+See [Semantic Review Batch 053 — AstroCrown Scorecard, Account, and Media Candidates](2026-10-17-ISO-704-Semantic-Review-Batch-053-AstroCrown-Scorecard-Account-and-Media-Candidates.md). Five AstroCrown-Web active paths were reviewed at their exact recorded `main` baseline blob SHAs. The Scorecard workflow and three planning/candidate documents did not produce a unique new finding. Added SWEEP-F-0030 for a request-ID provenance contract mismatch in `cloudflare_image.py`: the function documentation promises a request ID, but the extraction path returns `None` unconditionally and the metadata field therefore cannot carry the ID. No live API request or test was executed.
+
+**Row-derived counts after Batch 053:** 318 lexical scans; 181 preliminary full-file reviews; 5 partial targeted screens; 132 not reviewed; human validation pending; zero formal ISO 704 clause-level assessments. No backup/archive path, credentials, provider configuration or runtime environment was changed.
