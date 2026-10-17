@@ -4,6 +4,7 @@ import base64
 import urllib.request
 import urllib.error
 import urllib.parse
+from datetime import datetime, timezone
 
 
 def get_env(name):
@@ -51,6 +52,12 @@ def generate_comparative_analysis(roster, dead_provider_name, remaining_active):
 # ---------------------------------------------------------------------------
 
 def send_github_issue(title, body):
+    """Create or append to one open issue per exact alert title.
+
+    Listing failures fail closed instead of creating a duplicate during an
+    API outage. Existing issue history is preserved; new observations become
+    comments rather than silently overwriting the original report.
+    """
     token = get_env("GITHUB_TOKEN")
     repo = get_env("GITHUB_REPOSITORY")  # auto-set by Actions as "owner/repo"
     if not token or not repo:
@@ -58,21 +65,67 @@ def send_github_issue(title, body):
               "'permissions: issues: write' and GITHUB_TOKEN passed into the job's env in nova_heartbeat.yml).")
         return False
 
-    url = f"https://api.github.com/repos/{repo}/issues"
+    base_url = f"https://api.github.com/repos/{repo}"
     headers = {
         "Authorization": f"Bearer {token}",
         "Accept": "application/vnd.github+json",
         "Content-Type": "application/json",
     }
-    data = json.dumps({"title": title, "body": body}).encode("utf-8")
-    req = urllib.request.Request(url, data=data, headers=headers, method="POST")
     try:
-        with urllib.request.urlopen(req, timeout=15) as response:
+        # Search current open issues before creating anything. This endpoint
+        # includes pull requests, so exclude records carrying pull_request.
+        list_req = urllib.request.Request(
+            f"{base_url}/issues?state=open&per_page=100",
+            headers=headers,
+            method="GET",
+        )
+        with urllib.request.urlopen(list_req, timeout=15) as response:
+            open_items = json.loads(response.read().decode("utf-8"))
+        if not isinstance(open_items, list):
+            print("[alerts:github] Open-issue listing returned an invalid payload; refusing duplicate creation.")
+            return False
+
+        existing = next(
+            (
+                item for item in open_items
+                if isinstance(item, dict)
+                and item.get("title") == title
+                and "pull_request" not in item
+                and isinstance(item.get("number"), int)
+            ),
+            None,
+        )
+        stamp = datetime.now(timezone.utc).isoformat()
+        if existing:
+            comment_url = f"{base_url}/issues/{existing['number']}/comments"
+            comment = (
+                f"Additional alert observation at {stamp}. "
+                "The existing issue is retained to avoid duplicates.\n\n"
+                f"{body}"
+            )
+            comment_req = urllib.request.Request(
+                comment_url,
+                data=json.dumps({"body": comment}).encode("utf-8"),
+                headers=headers,
+                method="POST",
+            )
+            with urllib.request.urlopen(comment_req, timeout=15) as response:
+                json.loads(response.read().decode("utf-8"))
+            print(f"[alerts:github] Reused open issue: {existing.get('html_url')}")
+            return True
+
+        create_req = urllib.request.Request(
+            f"{base_url}/issues",
+            data=json.dumps({"title": title, "body": body}).encode("utf-8"),
+            headers=headers,
+            method="POST",
+        )
+        with urllib.request.urlopen(create_req, timeout=15) as response:
             result = json.loads(response.read().decode("utf-8"))
             print(f"[alerts:github] Issue opened: {result.get('html_url')}")
             return True
     except Exception as e:
-        print(f"[alerts:github] Failed to open issue: {e}")
+        print(f"[alerts:github] Failed to record alert without duplicating issues: {e}")
         return False
 
 
