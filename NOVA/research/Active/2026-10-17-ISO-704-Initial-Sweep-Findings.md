@@ -294,3 +294,14 @@ See [Semantic Review Batch 017 — GPU Capacity and Scheduler](2026-10-17-ISO-70
 - **Usage limitation:** manual `gpu_capacity.py` reporting with the default empty active-provider list is a candidate snapshot rather than proof of operationally active capacity unless the active roster is explicitly provided.
 
 Tracker after Batch 017: **318 lexical scans; 63 preliminary full-file reviews; one partial targeted screen; 254 not reviewed; human validation pending.** Invariant: 63 + 1 + 254 = 318.
+
+
+## Semantic review update — Batch 018 credential readiness and GPU health
+
+See [Semantic Review Batch 018 — Credential and Health](2026-10-17-ISO-704-Semantic-Review-Batch-018-Credential-and-Health.md).
+
+- **Positive control:** credential readiness is presence-only; credentials and candidate lifecycle stay separate; candidate GPU auth uses a documented read-only endpoint/host allowlist and does not infer quota from undocumented response fields.
+- **Scope rule:** GPU heartbeat `HEALTHY` describes its configured HTTP health endpoint probe, not a successful GPU workload, LLM structured-response contract, remaining GPU quota, zero-cost entitlement, or commercial rights.
+- The scheduler/health test values are synthetic; no live timing or health behavior was validated in this review.
+
+Tracker after Batch 018: **318 lexical scans; 67 preliminary full-file reviews; one partial targeted screen; 250 not reviewed; human validation pending.** Invariant: 67 + 1 + 250 = 318.
