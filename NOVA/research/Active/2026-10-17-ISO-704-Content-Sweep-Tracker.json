@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 141/318; PARTIAL TARGETED SCREENS 5; 172 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 146/318; PARTIAL TARGETED SCREENS 5; 167 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 141,
-    "content_review_pending": 172,
-    "human_validation_pending": 141,
+    "preliminary_content_reviewed": 146,
+    "content_review_pending": 167,
+    "human_validation_pending": 146,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 5
   },
@@ -41,15 +41,19 @@
           "size_bytes": 1098,
           "extension": "[no-ext]",
           "provisional_review_queue": "EXTENSIONLESS_CONTENT_FETCHED; SEMANTIC REVIEW REQUIRED",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_046",
+          "terminology_assessment": "PRELIMINARY_REVIEW_SECURITY-CONTROL-CLAIMS-OVERSTATED",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B046:B046-01"
+          ],
+          "findings": [
+            "SWEEP-F-0017"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDING_SWEEP-F-0017",
+          "note": "Batch 046: source comments overstate the coverage of Referrer-Policy, HSTS and CSP; 'unsafe-inline' weakens CSP, and deployment response behavior was not tested. See Semantic Review Batch 046.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "_headers",
@@ -76,7 +80,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+          "reviewed_blob_sha": "097939eb42fb487acc31b29d5202730621a61b74"
         },
         {
           "path": ".github/pull_request_template.md",
@@ -84,15 +90,17 @@
           "size_bytes": 4211,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_046",
+          "terminology_assessment": "PRELIMINARY_REVIEW_EVIDENCE-DISCIPLINE-POSITIVE-CONTROL",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B046:B046-02"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_NO_UNIQUE_FINDING",
+          "note": "Batch 046: strong positive control for source/date traceability, evidence-status distinctions, negative/error tests, external contract checks and Impact Analysis. Template existence does not prove operational use or required branch checks. See Batch 046.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": ".github/pull_request_template.md",
@@ -117,7 +125,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+          "reviewed_blob_sha": "312460bbdc6bbee0b59f45416c8916043daa1f44"
         },
         {
           "path": ".github/workflows/astrocrown-cloudflare-image-qualification.yml",
@@ -171,15 +181,19 @@
           "size_bytes": 5919,
           "extension": ".yml",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_046",
+          "terminology_assessment": "PRELIMINARY_REVIEW_PROVIDER-CONTRACT-AND-RESPONSE-CLAIM-BOUNDARY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B046:B046-03"
+          ],
+          "findings": [
+            "SWEEP-F-0018"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDING_SWEEP-F-0018",
+          "note": "Batch 046: model/schema support claim lacks a dated official source link at point of use; local JSON response assertions check two values but not full object shape/additional keys. No workflow executed. See Batch 046.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": ".github/workflows/nova_cloudflare_smoke_test.yml",
@@ -204,7 +218,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+          "reviewed_blob_sha": "c9e3dbf5509cd4dcbebee39a4bf97382e07cb4f1"
         },
         {
           "path": ".github/workflows/nova_GPU_heartbeat.yml",
@@ -255,15 +271,19 @@
           "size_bytes": 906,
           "extension": ".yml",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_046",
+          "terminology_assessment": "PRELIMINARY_REVIEW_WORKFLOW-TRIGGER-VS-REQUIRED-CHECK",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B046:B046-04"
+          ],
+          "findings": [
+            "SWEEP-F-0019"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDING_SWEEP-F-0019",
+          "note": "Batch 046: pull_request trigger is present, but file content does not prove repository branch protection/rulesets require the check. Live settings status UNKNOWN/BLOCKED through this review. See Batch 046.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": ".github/workflows/nova_health_tests.yml",
@@ -288,7 +308,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+          "reviewed_blob_sha": "2f2fbfed66e4de0b719c000fd888cc874e3ab46c"
         },
         {
           "path": ".github/workflows/nova_heartbeat.yml",
@@ -525,15 +547,19 @@
           "size_bytes": 309,
           "extension": "[no-ext]",
           "provisional_review_queue": "EXTENSIONLESS_CONTENT_FETCHED; SEMANTIC REVIEW REQUIRED",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_046",
+          "terminology_assessment": "PRELIMINARY_REVIEW_IGNORE-RULES-NOT-SECURITY-ENFORCEMENT",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B046:B046-05"
+          ],
+          "findings": [
+            "SWEEP-F-0020"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_OPEN_FINDING_SWEEP-F-0020",
+          "note": "Batch 046: ignore patterns cover only selected untracked path patterns; headings 'Secret Shield' and 'Anti-Fingerprinting' may imply broader protection than provided. No secrets were examined. See Batch 046.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": ".gitignore",
@@ -560,7 +586,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+          "reviewed_blob_sha": "0c1b62a34f37505ae731e2a1f563d7f9da9b4013"
         },
         {
           "path": "404.html",
@@ -15038,5 +15066,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 028 performed selected-heading/status-evidence triage of three AstroCrown verification docs. All remain PARTIAL, not full reviews. Counts: 96 full preliminary + 5 partial + 217 not reviewed = 318."
+  "last_update_note": "Batch 046 reviewed five active NOVA files at main baseline commit 2a1f5c496474aa099703432e99b3d3dfddfd3fd7, verifying each recorded blob SHA. Findings SWEEP-F-0017 through SWEEP-F-0020 opened. Counts: 146 preliminary full-file reviews + 5 partial screens + 167 not reviewed = 318. Human validation pending; formal ISO 704 clause assessment remains zero."
 }
