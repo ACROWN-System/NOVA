@@ -282,3 +282,15 @@ See [Semantic Review Batch 016 — Router, Health and Capacity](2026-10-17-ISO-7
 - **Positive controls:** health freshness terms distinguish UNKNOWN/stale/future/invalid timestamps; structured response markers distinguish HTTP success from NOVA contract success; total resource observations remain separate from call allowances, with unknown economics not treated as zero-cost and expiry not creating synthetic work.
 
 Tracker after Batch 016: **318 lexical scans; 59 preliminary full-file reviews; one partial targeted screen; 258 not reviewed; human validation pending.** Row-count invariant: 59 + 1 + 258 = 318.
+
+
+## Semantic review update — Batch 017 GPU capacity qualification and expiry scheduler
+
+See [Semantic Review Batch 017 — GPU Capacity and Scheduler](2026-10-17-ISO-704-Semantic-Review-Batch-017-GPU-Capacity-Scheduler.md).
+
+- **Positive control:** GPU capacity qualifies only with fresh source-backed account/terms/data-handling/allocation evidence and an active roster entry; advertised quotas do not count; recurring and one-time capacity remain distinct; unknown usage remains unknown.
+- **B013-F03 remains open:** the upstream Lightning `free_without_payment_method` status needs a precise scope split; an exact `VERIFIED` enum cannot compensate for an ambiguously defined proposition.
+- **Scheduler control:** expiry preemption needs an observed expiry opportunity, may only run already-required health work, skips unacceptable providers, and moves checked providers to the end of the rolling queue. Expiry pressure alone cannot create work.
+- **Usage limitation:** manual `gpu_capacity.py` reporting with the default empty active-provider list is a candidate snapshot rather than proof of operationally active capacity unless the active roster is explicitly provided.
+
+Tracker after Batch 017: **318 lexical scans; 63 preliminary full-file reviews; one partial targeted screen; 254 not reviewed; human validation pending.** Invariant: 63 + 1 + 254 = 318.
