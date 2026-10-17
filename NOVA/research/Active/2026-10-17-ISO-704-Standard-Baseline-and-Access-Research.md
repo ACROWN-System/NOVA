@@ -3,8 +3,8 @@
 **Record ID:** NOVA-ISO704-ACCESS-001  
 **Date initially checked:** 2026-10-17  
 **Latest public-source recheck:** 2026-10-18
-**Version:** 0.1.3  
-**Status:** OPEN — EXACT FULL-TEXT LAWFUL ACCESS NOT CONFIRMED  
+**Version:** 0.1.4  
+**Status:** OPEN — COMPLETE-TEXT LAWFUL ACCESS AT $0 NOT CONFIRMED; INSTITUTIONAL VISIT LEAD UNVERIFIED  
 **Owner:** Designated human maintainer  
 **Linked evidence:** AR-E02 in [Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
 **Cost policy:** $0-only — no purchase, paid subscription/membership, billable enquiry or other cost is authorized  
@@ -66,6 +66,34 @@ Official BIS pages rechecked:
 
 **Evidence result:** No lawful no-cost route to the complete applicable ISO 704:2022 text was confirmed in these official public-source checks. This is a bounded result about the sources inspected, not proof that no eligible institution or other lawful no-cost consultation route exists. The separate ISO/PWI 704 lifecycle lead recorded above still requires authoritative confirmation at final baseline freeze; the current product page's “Published” status does not by itself resolve the lead's relationship to the applicable assessment baseline.
 
+## 2C. Expanded public search — no-cost access and revision status (2026-10-18)
+
+See the [Expanded Search — Lawful No-Cost Access to ISO 704 and Current Lifecycle](2026-10-18-ISO-704-Expanded-Free-Access-and-Lifecycle-Research.md) for the detailed source log.
+
+### Legitimate public preview
+
+ISO's official help page states that its Online Browsing Platform makes selected parts available for free preview: Foreword, Introduction, Scope, Normative references, and Terms & definitions. It does not offer the entire text for free through that preview facility. Source: https://www.iso.org/contact-iso.html. A GSO/SIMS preview endpoint was also located at https://gso-sims-preview-doc-aws.s3-eu-west-1.amazonaws.com/iso-704-2022-en.html; it is treated as a preview resource, not a lawful no-cost full-text release. The standard's substantive clause text is not copied into this record.
+
+### Latest published edition and proposal-stage lead
+
+The official ISO catalogue continues to list ISO 704:2022, Edition 4, as published (stage 60.60), with ISO 704:2009 withdrawn: https://www.iso.org/standard/79077.html. ISO/TC 37/SC 1's public work-programme page still lists ISO 704:2022 as published and does not show a later published ISO 704 edition: https://www.iso.org/committee/48116/x/catalogue/p/0/u/1/w/0/d/0.
+
+A separate national standards-body listing records `ISO/PWI 704` at stage `00.00`, “Proposal for new project received,” effective 2026-06-01: https://dps.gov.al/en/project/show/iso%3Aproj%3A94618. This is a proposal-stage lifecycle lead, not a published replacement edition and not a controlled text for clause mapping. It must be confirmed against authoritative ISO lifecycle information at final baseline freeze.
+
+### Institutional reference-access lead
+
+IIT Delhi Central Library lists ISO Standards as a subscribed resource, and its Reader Services Division says it supports outside users through a library-visit facility:
+- https://library.iitd.ac.in/page/user-guides/
+- https://library.iitd.ac.in/page/allresources/
+- https://library.iitd.ac.in/divisions/rsd/
+- https://library.iitd.ac.in/divisions/erd/
+
+However, the pages state that off-campus e-resource access is for authorized institute users and do not establish that an outside visitor can read the complete ISO 704:2022 text onsite without fee. This is a **potential route to verify**, not confirmed access. A no-cost informational inquiry may ask whether a non-member may consult the exact standard onsite under the visit facility without a fee or payment obligation. Do not purchase membership or request a paid service.
+
+### Search result quality
+
+Search engines also surfaced full-text-looking uploads on document-sharing platforms. No explicit redistribution licence or ISO/member-body authorization was verified for those copies, so they are not accepted as lawful baseline sources and are not linked here as access routes.
+
 ## 3. No-cost route status
 
 As of this check:
@@ -78,7 +106,7 @@ As of this check:
 
 ## 4. Required next step
 
-Under the approved $0-only policy, first check existing lawful access through an eligible library/institution, subscription or already licensed copy. If none is available, investigate only routes that can confirm lawful no-cost consultation of the exact edition. A written inquiry to BIS or another standards-information service is acceptable only if submitting it is free, creates no paid membership/application, and incurs no fee or commitment. Do not purchase, subscribe, join a paid library plan, submit a billable enquiry or proceed to any other paid step. Any change to the $0-only policy requires separate explicit human-maintainer authorization.
+The human maintainer has confirmed there is no existing institutional/licensed access. Under the approved $0-only policy, the remaining specific lead is a free informational inquiry to IIT Delhi Central Library asking whether an outside visitor may consult the complete ISO 704:2022 text onsite through its library-visit facility without a fee or payment commitment. The publicly available pages do not settle this question, so do not assume the answer is yes. Contacts published by the library include `rsd@library.iitd.ac.in` and `erd@library.iitd.ac.in`. If the answer is no, or access requires payment/authorized-user credentials unavailable to the maintainer, keep AR-E02 BLOCKED. Do not purchase, subscribe, join paid membership, submit a billable enquiry or pursue a paid service. Any change to the $0-only policy requires separate explicit human-maintainer authorization.
 
 If lawful no-cost access to the complete applicable edition cannot be confirmed, keep AR-E02 **BLOCKED** and stop before clause-level mapping. The cost constraint is a stop condition, not a prompt to select a paid substitute. Continue non-normative preparation (scope proposal, entry schema, operational evidence and content review) only with clearly labeled internal criteria; do not call that work a completed ISO 704 assessment.
 
@@ -102,3 +130,12 @@ The current official ISO page still lists ISO 704:2022, Edition 4, as Published 
 
 **Impact Analysis — IF followed:** the baseline decision remains honest, legally controlled and cost compliant. **IF not followed:** a sample/abstract or paid institutional lead could be mistaken for complete no-cost access.
 
+## Decision update — expanded search (2026-10-18)
+
+- No lawful no-cost public online route to the complete applicable ISO 704 text was verified.
+- The official ISO free preview covers selected sections only; a GSO-hosted preview is not accepted as a full-text baseline.
+- ISO 704:2022 remains the latest published edition identified on the official ISO product/committee pages reviewed. The separate `ISO/PWI 704` record is proposal-stage, not a published successor; lifecycle confirmation remains required at baseline freeze.
+- IIT Delhi Central Library provides one unverified no-cost in-person consultation lead. A free inquiry is the next action; no visit/access right has been assumed.
+- AR-E02 remains BLOCKED and the clause matrix stays template-only.
+
+**Impact Analysis — IF followed:** the search has been expanded beyond the product page while preserving a lawful access standard and zero cost. **IF not followed:** the project may either stop before a plausible institutional route is checked, or mistakenly treat a preview/unverified upload/proposal as the full current standard.
