@@ -15922,10 +15922,10 @@
     }
   ],
   "last_updated": "2026-10-18",
-  "last_update_note": "Human maintainer approved the proposed six-repository planning scope and English as the initial assessment language, and reaffirmed a $0-only access policy. This is not the final assessment baseline freeze. AI-Sanctuary-Core remains a distinct domain; backup/archive paths remain immutable/excluded. No paid access or provider activity is authorized. AR-E02 and the clause matrix remain blocked until lawful no-cost access to the complete applicable standard is confirmed. Sweep coverage remains 313 preliminary full reviews + 5 partial targeted screens + 0 not reviewed = 318; 313 reviews still need human validation and the Batches 029–036 report-artifact gap remains open.",
+  "last_update_note": "Human maintainer approved the proposed six-repository planning scope and English as the initial assessment language, and reaffirmed a $0-only access policy. This is not the final assessment baseline freeze. AI-Sanctuary-Core remains a distinct domain; backup/archive paths remain immutable/excluded. No paid access or provider activity is authorized. AR-E02 and the clause matrix remain blocked until lawful no-cost access to the complete applicable standard is confirmed. Sweep coverage remains 313 preliminary full reviews + 5 partial targeted screens + 0 not reviewed = 318; 313 reviews still need human validation and the Batches 029–036 report-artifact gap remains open. Scope approval action plan was completed and moved to NOVA/research/Completed/2026-10-18-ISO-704-Scope-Approval-and-Zero-Cost-Access-Policy-Plan.md after verifying the scope, cost policy, and readiness blockers.",
   "scope_decision": {
     "decision_date": "2026-10-18",
-    "decision_record": "NOVA/research/Active/2026-10-18-ISO-704-Scope-Approval-and-Zero-Cost-Access-Policy-Plan.md",
+    "decision_record": "NOVA/research/Completed/2026-10-18-ISO-704-Scope-Approval-and-Zero-Cost-Access-Policy-Plan.md",
     "approval_basis": "Explicit human-maintainer instruction recorded in the conversation",
     "planning_scope_status": "APPROVED_FOR_PLANNING",
     "repositories": [
