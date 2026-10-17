@@ -1,7 +1,7 @@
 # ISO 704:2022 Scope Proposal and Repository Inventory
 
 **Document ID:** NOVA-ISO704-SCOPE-001  
-**Version:** 0.1.65  
+**Version:** 0.1.66  
 **Snapshot date:** 2026-10-17  
 **Status:** PROPOSED SCOPE / INITIAL PATH INVENTORY — human approval and detailed content review pending  
 **Related dossier:** [ISO 704:2022 Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
@@ -374,3 +374,7 @@ Tracker states were re-counted directly: 96 preliminary full reviews, 5 partial 
 ## 70. Revision history
 
 - **2026-10-17 / v0.1.65:** Added Batch 067 preliminary full-file review of the Nosana GPU-inference adapter, GPU subsystem README, and three design-reference indexes at exact recorded main-baseline blob SHAs. Extended SWEEP-F-0009 because the adapter's “current RSI proposer interface” wording conflicts with same-baseline Groq policy/client evidence; extended SWEEP-F-0038 because extracted Borders, Cards and Colors indexes cite line ranges from the homepage requirements without immutable source revision, which is absent at the reviewed baseline; and opened SWEEP-F-0043 for reversed relative-lightness wording in the intermediate Space Blue definition. Counts: 251 preliminary full reviews + 5 partial targeted screens + 62 not reviewed = 318. Human validation remains pending; formal ISO 704 clause assessment remains zero; scope remains proposed/not human-approved. No AstroCrown-Web source/runtime files, backup/archive paths, workflows, credentials, provider calls, billing, repository settings or tests were changed or run. This is preliminary terminology/relation analysis, not a formal clause assessment.
+
+## 71. Revision history
+
+- **2026-10-17 / v0.1.66:** Added Batch 068 preliminary full-file review of five AstroCrown-Web cross-section design-reference indexes at exact recorded main-baseline blob SHAs. Opened SWEEP-F-0044 for candidate information-bar types that mix priority/severity, sentiment valence, topic/domain and communication purpose; opened SWEEP-F-0045 because “H1-style header control” does not distinguish visual typography from semantic heading role and interactive control semantics. Extended SWEEP-F-0038 to include icons, interaction, layout, index README and responsive indexes whose extracted source ranges lack immutable origin revisions; the README's source-of-truth hierarchy is preserved as a positive control. The layout index repeats F-0043's Space Blue relation wording. Counts: 256 preliminary full reviews + 5 partial targeted screens + 57 not reviewed = 318. Human validation remains pending; formal ISO 704 clause assessment remains zero; scope remains proposed/not human-approved. No AstroCrown-Web source/runtime files, backup/archive paths, workflows, credentials, provider calls, billing or repository settings were changed; no tests or workflows were run.
