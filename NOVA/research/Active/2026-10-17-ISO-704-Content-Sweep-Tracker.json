@@ -15922,7 +15922,7 @@
     }
   ],
   "last_updated": "2026-10-18",
-  "last_update_note": "Human maintainer approved the proposed six-repository planning scope and English as the initial assessment language, and reaffirmed a $0-only access policy. This is not the final assessment baseline freeze. AI-Sanctuary-Core remains a distinct domain; backup/archive paths remain immutable/excluded. No paid access or provider activity is authorized. AR-E02 and the clause matrix remain blocked until lawful no-cost access to the complete applicable standard is confirmed. Sweep coverage remains 313 preliminary full reviews + 5 partial targeted screens + 0 not reviewed = 318; 313 reviews still need human validation and the Batches 029–036 report-artifact gap remains open. Scope approval action plan was completed and moved to NOVA/research/Completed/2026-10-18-ISO-704-Scope-Approval-and-Zero-Cost-Access-Policy-Plan.md after verifying the scope, cost policy, and readiness blockers. A separate 2026-10-18 official-source recheck of the ISO product page and BIS library/Know Your Standard pages found no verified public lawful no-cost route to the complete applicable ISO 704:2022 text. The ISO page lists a sample/preview and CHF 204 price; BIS library membership is paid. This is not proof that no institutional lawful no-cost access exists. AR-E02 remains BLOCKED; clause matrix stays template-only; no paid step is authorized. The access-verification plan was moved to NOVA/research/Completed/2026-10-18-ISO-704-No-Cost-Access-Verification-Plan.md.",
+  "last_update_note": "Human maintainer approved the proposed six-repository planning scope and English as the initial assessment language, and reaffirmed a $0-only access policy. This is not the final assessment baseline freeze. AI-Sanctuary-Core remains a distinct domain; backup/archive paths remain immutable/excluded. No paid access or provider activity is authorized. AR-E02 and the clause matrix remain blocked until lawful no-cost access to the complete applicable standard is confirmed. Sweep coverage remains 313 preliminary full reviews + 5 partial targeted screens + 0 not reviewed = 318; 313 reviews still need human validation and the Batches 029–036 report-artifact gap remains open. Scope approval action plan was completed and moved to NOVA/research/Completed/2026-10-18-ISO-704-Scope-Approval-and-Zero-Cost-Access-Policy-Plan.md after verifying the scope, cost policy, and readiness blockers. A separate 2026-10-18 official-source recheck of the ISO product page and BIS library/Know Your Standard pages found no verified public lawful no-cost route to the complete applicable ISO 704:2022 text. The ISO page lists a sample/preview and CHF 204 price; BIS library membership is paid. This is not proof that no institutional lawful no-cost access exists. AR-E02 remains BLOCKED; clause matrix stays template-only; no paid step is authorized. The access-verification plan was moved to NOVA/research/Completed/2026-10-18-ISO-704-No-Cost-Access-Verification-Plan.md. Expanded public-source access/lifecycle research was recorded in NOVA/research/Active/2026-10-18-ISO-704-Expanded-Free-Access-and-Lifecycle-Research.md. Official ISO preview rules expose selected sections only; no lawful no-cost online full-text route was verified. The official catalogue still lists ISO 704:2022 as published; a separate ISO/PWI 704 listing is proposal-stage, not a newer published edition. IIT Delhi Central Library is a potential onsite visit lead only: it subscribes to ISO Standards and supports outside users via a library-visit facility, but non-member access to the complete ISO 704 text without fee remains unconfirmed. A free informational inquiry is the only next access action; AR-E02 remains BLOCKED and no paid activity is authorized.",
   "scope_decision": {
     "decision_date": "2026-10-18",
     "decision_record": "NOVA/research/Completed/2026-10-18-ISO-704-Scope-Approval-and-Zero-Cost-Access-Policy-Plan.md",
@@ -15942,8 +15942,27 @@
     "immutable_exclusions": "All backup/archive paths, regardless of capitalization; no edits or assessments as active targets.",
     "access_cost_policy": "ZERO_COST_ONLY",
     "paid_activity_authorized": false,
-    "full_standard_access_status": "BLOCKED_UNTIL_LAWFUL_NO_COST_ACCESS_TO_COMPLETE_APPLICABLE_EDITION_IS_CONFIRMED",
-    "clause_matrix_status": "DO_NOT_POPULATE_UNTIL_CONTROLLED_FULL_STANDARD_ACCESS_AND_FINAL_BASELINE",
-    "final_baseline_freeze": "PENDING_REFRESHED_COMMIT_PINS_ASSESSMENT_PERIOD_ROLE_AND_INDEPENDENCE_RECORD_AND_EXTERNAL_PUBLICATION_BOUNDARIES"
+    "full_standard_access_status": "BLOCKED — expanded public search did not verify lawful no-cost online access to the complete applicable edition",
+    "clause_matrix_status": "DO NOT POPULATE UNTIL LAWFUL ACCESS TO COMPLETE APPLICABLE STANDARD AND FINAL BASELINE ARE CONFIRMED",
+    "final_baseline_freeze": "PENDING_REFRESHED_COMMIT_PINS_ASSESSMENT_PERIOD_ROLE_AND_INDEPENDENCE_RECORD_AND_EXTERNAL_PUBLICATION_BOUNDARIES",
+    "latest_published_edition_checked": "ISO 704:2022, Edition 4, remains listed as published in the official ISO catalogue checked 2026-10-18",
+    "newer_edition_lead": {
+      "identifier": "ISO/PWI 704",
+      "source": "https://dps.gov.al/en/project/show/iso%3Aproj%3A94618",
+      "reported_stage": "00.00 — Proposal for new project received",
+      "reported_effective_date": "2026-06-01",
+      "interpretation": "Proposal-stage lead only; not a published successor. Verify against authoritative ISO lifecycle sources at final baseline freeze."
+    },
+    "institutional_access_lead": {
+      "institution": "IIT Delhi Central Library",
+      "status": "UNVERIFIED_NO_COST_ONSITE_ACCESS",
+      "evidence": "Public library pages list ISO Standards as a subscribed resource and say outside users are supported through a library-visit facility; published pages do not establish that a non-member may consult ISO 704:2022 full text without a fee.",
+      "next_action": "Free informational inquiry only; do not book paid membership or incur any fee.",
+      "contacts": [
+        "rsd@library.iitd.ac.in",
+        "erd@library.iitd.ac.in"
+      ],
+      "research_record": "NOVA/research/Active/2026-10-18-ISO-704-Expanded-Free-Access-and-Lifecycle-Research.md"
+    }
   }
 }
