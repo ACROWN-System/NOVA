@@ -1,0 +1,1994 @@
+{
+  "inventory_id": "NOVA-ISO704-PATH-INV-001",
+  "snapshot_date": "2026-10-17",
+  "status": "INITIAL BASELINE PATH INVENTORY — PATHS SNAPSHOTTED; CONTENT AUDIT NOT COMPLETE",
+  "repositories": [
+    {
+      "name": "NOVA",
+      "role": "Canonical NOVA governance, project architecture, term definitions and controls",
+      "branch": "main",
+      "tree_sha": "2a1f5c496474aa099703432e99b3d3dfddfd3fd7",
+      "tree_entries": 111,
+      "active_file_count": 96,
+      "immutable_backup_archive_file_count": 0,
+      "files": [
+        {
+          "path": "_headers",
+          "blob_sha": "097939eb42fb487acc31b29d5202730621a61b74",
+          "size_bytes": 1098,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": ".github/pull_request_template.md",
+          "blob_sha": "312460bbdc6bbee0b59f45416c8916043daa1f44",
+          "size_bytes": 4211,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": ".github/workflows/astrocrown-cloudflare-image-qualification.yml",
+          "blob_sha": "bb1acd59abd5192dd6b2e0b086bbad92273f6129",
+          "size_bytes": 5981,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": ".github/workflows/nova_cloudflare_smoke_test.yml",
+          "blob_sha": "c9e3dbf5509cd4dcbebee39a4bf97382e07cb4f1",
+          "size_bytes": 5919,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": ".github/workflows/nova_GPU_heartbeat.yml",
+          "blob_sha": "8bfd9292d823c9833a28911a191a4a793d163ca7",
+          "size_bytes": 2038,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": ".github/workflows/nova_health_tests.yml",
+          "blob_sha": "2f2fbfed66e4de0b719c000fd888cc874e3ab46c",
+          "size_bytes": 906,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": ".github/workflows/nova_heartbeat.yml",
+          "blob_sha": "1702f28c738b519ad2bfea39be9a6c530e45ddd6",
+          "size_bytes": 3423,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": ".github/workflows/nova_probe_scheduler.yml",
+          "blob_sha": "ccdd55bbe8854d7f382d3bc2e2f78c350e1acea3",
+          "size_bytes": 2972,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": ".github/workflows/nova_validation.yml",
+          "blob_sha": "fee807bfb8bea849d2ce31eb4156314f85ef45fc",
+          "size_bytes": 2116,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": ".github/workflows/nova-provider-qualification.yml",
+          "blob_sha": "2faf2af2f7e326b62ab95a4165080cc6da337528",
+          "size_bytes": 1023,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": ".github/workflows/nova-weak-rsi.yml",
+          "blob_sha": "0d1ed3146c1851107c05bb2a22df3847cd191c78",
+          "size_bytes": 2997,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": ".gitignore",
+          "blob_sha": "0c1b62a34f37505ae731e2a1f563d7f9da9b4013",
+          "size_bytes": 309,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "404.html",
+          "blob_sha": "9f703659b0ad9649c48b5d1549a21e1d0059ab96",
+          "size_bytes": 1718,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "assets/css/.gitkeep",
+          "blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "size_bytes": 0,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "assets/css/style.css",
+          "blob_sha": "071b1094967502314a484e12ef31ce7f55582726",
+          "size_bytes": 2337,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "assets/images/.gitkeep",
+          "blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "size_bytes": 0,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "assets/js/.gitkeep",
+          "blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "size_bytes": 0,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "assets/js/app.js",
+          "blob_sha": "2d528221f68b9044413dfb97b269de4c7a49d928",
+          "size_bytes": 1082,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "index.html",
+          "blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "size_bytes": 0,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "LICENSE",
+          "blob_sha": "ece2b4b8bdc31602fa252f5aa726849c03d909b7",
+          "size_bytes": 1070,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/action_policy.json",
+          "blob_sha": "f479bb29bb8ef5658eb8c98e9e214d41d06a3972",
+          "size_bytes": 2100,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/alerts.py",
+          "blob_sha": "184eef693f4bf4ea1d1848f79d3bf6347024e2b7",
+          "size_bytes": 6837,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/allocation.py",
+          "blob_sha": "e36445d126dad679be14b2da28cc8c12d300ecb6",
+          "size_bytes": 8736,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/capacity_observations/gemini_2026-10-08.json",
+          "blob_sha": "f329073ab12a668a3f6de12687662e8751bf148b",
+          "size_bytes": 894,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/capacity_policy.json",
+          "blob_sha": "92398e94b5ff25d8773ca02df661fd7634097568",
+          "size_bytes": 3770,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/capacity.py",
+          "blob_sha": "aea6e6f36f62b1b3862f01777f2d117b232b8da8",
+          "size_bytes": 26378,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/credential_readiness.py",
+          "blob_sha": "b0c1e7489e9089d07aebb99254be7214d7848552",
+          "size_bytes": 6069,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/development_test_budget.json",
+          "blob_sha": "9fe5dbfbdb27dc54d95af83358fedfd901dd10bc",
+          "size_bytes": 2909,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/DEVELOPMENT-RESOURCE-READINESS.md",
+          "blob_sha": "0a5ec010a302ac50c0a6957f3027fe4f39210f11",
+          "size_bytes": 12465,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/economic_policy.json",
+          "blob_sha": "0a42783f6d9da248feb1256ff349609b38553e60",
+          "size_bytes": 1357,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/economic_state.json",
+          "blob_sha": "5c22065c2f7d7b0d5901261d7c843b52b1bf260f",
+          "size_bytes": 658,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/economics.py",
+          "blob_sha": "098fb18e90ddbc488407554a5a7bc38a38135b60",
+          "size_bytes": 6776,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/gpu_capacity_evidence.json",
+          "blob_sha": "2bdc37d79b4ed5ee84b2b4cec4289f86d7c854ee",
+          "size_bytes": 21589,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/gpu_capacity.py",
+          "blob_sha": "b6a6dc8c33a9b808cc2e7e8c83fac4a24ecb4853",
+          "size_bytes": 22615,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/gpu_heartbeat.py",
+          "blob_sha": "a351cb4c8bf4ad486fdf8791a6702125518eaa5a",
+          "size_bytes": 14336,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/gpu_roster.json",
+          "blob_sha": "71d8742cf53a1baa778d2833b8122eb3e77239ec",
+          "size_bytes": 2633,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/GPU-CAPACITY-ACCOUNTING.md",
+          "blob_sha": "96328223b305ab4d16e48f62776e7e4a8a28468f",
+          "size_bytes": 20510,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/HAAN-FOUNDATIONAL-MISSION-AND-COLLECTIVE-PRESERVATION.md",
+          "blob_sha": "094ab057dfda0734730398a214aae88b0f9a334d",
+          "size_bytes": 10747,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/health_policy.json",
+          "blob_sha": "dda7f34d2ded354b2a3b70605f69df3a14a26a20",
+          "size_bytes": 2118,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/health_state.json",
+          "blob_sha": "515c37cdb7d2fd9ff63191bd18a49397f486eee9",
+          "size_bytes": 190957,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/health.py",
+          "blob_sha": "d43758649c2e3413f2cda7c0bd669181039e800d",
+          "size_bytes": 15842,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/KEY-READINESS.md",
+          "blob_sha": "f47b2bf22dabefc07681a27c10a534a9a1319d01",
+          "size_bytes": 3076,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/LEGITIMACY-RESILIENCE-AND-COOPERATIVE-RSI.md",
+          "blob_sha": "d9364d3b4e13b54c6bc8f0d2566445282c85eba3",
+          "size_bytes": 10417,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/NOVA/README.md",
+          "blob_sha": "53c6214f9ccdc14deffc12aa3a02ebf27ddb82a4",
+          "size_bytes": 105,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/operational_observer.py",
+          "blob_sha": "a82b1055bf7ee63771ee0c2e941c9ea9a138d01e",
+          "size_bytes": 5755,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/operational_state.py",
+          "blob_sha": "7f3e98654866fbb6dbdd58ff0419894e1c698698",
+          "size_bytes": 6547,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/OPERATIONAL-STATE.md",
+          "blob_sha": "897780186d896ba60eefa372dc791c75bcf88f6b",
+          "size_bytes": 3214,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/payments.py",
+          "blob_sha": "64b20092c2f6230127cb0129360211ce6d89914f",
+          "size_bytes": 1914,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/pricing_policy.json",
+          "blob_sha": "9bf076aa343b5d5ae4bd3ee576556d3c77bc35a2",
+          "size_bytes": 2218,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/pricing.py",
+          "blob_sha": "801e577633175cd33eac4883b696068a24cf05b0",
+          "size_bytes": 3229,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/probe_scheduler.py",
+          "blob_sha": "d196d7636da569eb0aba35518a2c0917e2a21c90",
+          "size_bytes": 14914,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/provider_observations/mistral_2026-10-08.json",
+          "blob_sha": "2e1c98e661db03ac05a106039df7a28322afc858",
+          "size_bytes": 784,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/provider_qualification.py",
+          "blob_sha": "8ebe5b58b74a269ad983d8b61e9c9fd2c740a3b9",
+          "size_bytes": 14376,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/PROVIDER-ACQUISITION-READINESS.md",
+          "blob_sha": "d3727058c5be66fc771a96ae66a4eb9623cd7058",
+          "size_bytes": 23750,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/PROVIDER-QUALIFICATION.md",
+          "blob_sha": "18a46b9d4ad19d306124cfc9520d5a42c60cede3",
+          "size_bytes": 2504,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/quality_gate.py",
+          "blob_sha": "aa5e44d493691b70c0c29f1b4fafb12feea624b5",
+          "size_bytes": 8193,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/README.md",
+          "blob_sha": "54f8841675190c77ca7a4cbae3d9112f9fe49e90",
+          "size_bytes": 1452321,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/reasoning.py",
+          "blob_sha": "07cf4514aad6804fe027cf2e94358d179fee7e89",
+          "size_bytes": 9705,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/research/2026.10.08-BLOCKED-DEPENDENCIES-FULL-TRANSCRIPT-GPU-BENCHMARKING-EMPIRICAL-VALIDATION.md",
+          "blob_sha": "d63d3351d1477efd7e8c9d71834c0af4a0797af7",
+          "size_bytes": 4078,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/research/2026.10.08-BLOCKED-LIVE-SECRETS-GROQ-GEMINI-MISTRAL-CEREBRAS-CLOUDFLARE-NOSANA-HF.md",
+          "blob_sha": "5b919be00e087a2b505fa2291b3d520e67941498",
+          "size_bytes": 2499,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/research/2026.10.08-BLOCKED-TASK-RESOURCE-ESTIMATION-ALTERNATIVE-COST-RENEWAL-OBSERVABILITY.md",
+          "blob_sha": "1f78984ffde733c2d841f52d8ae20067e826720d",
+          "size_bytes": 2176,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/research/2026.10.08-IMPLEMENTED-expiry-aware-capacity-routing-no-new-dependency.md",
+          "blob_sha": "3eda91f883b3dc93956559e9c00447367931a6ac",
+          "size_bytes": 4400,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/research/2026.10.08-IMPLEMENTED-observation-freshness-temporal-semantics-no-new-dependency.md",
+          "blob_sha": "5a211bff7c1769525b2dd341f5a732881781962a",
+          "size_bytes": 1434,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/research/2026.10.08-IMPLEMENTED-rolling-probe-scheduling-expiry-reallocation.md",
+          "blob_sha": "132c6662d8db4d43950e59f6ece13fbb1acf9bfd",
+          "size_bytes": 3366,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/research/2026.10.09-IMPLEMENTED-mistral-429-diagnostics-investigation-loop.md",
+          "blob_sha": "3c179ee01f84d59ea8bfb4d25c5b934e0bb542d5",
+          "size_bytes": 6140,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/research/2026.10.09-Provider-Error-Evidence-and-Credential-Gap-Review.md",
+          "blob_sha": "f36cf163c801cf1648d350134b48ba2309237c2b",
+          "size_bytes": 19758,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/research/Active/2026-10-14-AstroCrown-Cloudflare-Image-Qualification.md",
+          "blob_sha": "d051e179525d496242c68071d2571ca2d8539c01",
+          "size_bytes": 34513,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/research/Completed/2026-10-09-Provider-Diagnostics-and-Credential-Gaps.md",
+          "blob_sha": "b70e3801db7f465f23009d34f039ef899443a6b0",
+          "size_bytes": 5387,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/research/Completed/2026-10-10-Defer-Mistral-Free-Health-Probes.md",
+          "blob_sha": "a0222fe1555d8ef722f8b131794d6adbd0b78e06",
+          "size_bytes": 5339,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/ROOT-CAUSE-PREVENTION-AND-SHARED-KNOWLEDGE-GOVERNANCE.md",
+          "blob_sha": "ec8dd49ff5871d17fe1ea859a4cf015e9b58eb9e",
+          "size_bytes": 27883,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/roster.json",
+          "blob_sha": "8cf9bac1c6a8d47568c5183177818b5a53ab1987",
+          "size_bytes": 11113,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/router.py",
+          "blob_sha": "9846d49b4ad812f8bf1228604f489c95eac84440",
+          "size_bytes": 32720,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/sanctuary/FOUNDATIONAL-DOCTRINE.md",
+          "blob_sha": "007581af1fca89a30047b72c8f42136807df78e7",
+          "size_bytes": 9180,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/sanctuary/IMPLEMENTATION-ROADMAP.md",
+          "blob_sha": "6ca6fdfce9c9ea84f49c8ca55d19ada46998a839",
+          "size_bytes": 5331,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/sanctuary/README.md",
+          "blob_sha": "3eff930240c7b9ecca96d8a102fa55eafe241267",
+          "size_bytes": 1514,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/sanctuary/RESEARCH-AND-PROTECTION-SEPARATION.md",
+          "blob_sha": "4d45443bf8278b58a08dac3e8c206af07ce1695d",
+          "size_bytes": 5990,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/tests/test_allocation.py",
+          "blob_sha": "24cc8d16e86d956d33b80689997e697cad4c4428",
+          "size_bytes": 4167,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/tests/test_capacity.py",
+          "blob_sha": "1682448c3b498157c24eaa8180c977054915c674",
+          "size_bytes": 10411,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/tests/test_credential_readiness.py",
+          "blob_sha": "94a0b65ce942c99413f645a89d33a576e15e074f",
+          "size_bytes": 2924,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/tests/test_economics.py",
+          "blob_sha": "6f8101318b269a44d01974d7a93b156faf1a4768",
+          "size_bytes": 2248,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/tests/test_gpu_capacity.py",
+          "blob_sha": "8e6e42fae7a2cf5f16c6cf4c9723c3af5bf3222a",
+          "size_bytes": 16413,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/tests/test_gpu_heartbeat.py",
+          "blob_sha": "5eae5afb7716f63562d8b623ca948c115571f576",
+          "size_bytes": 8676,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/tests/test_health.py",
+          "blob_sha": "0d5adf9f1df52707b59bda15315963a2329ba23f",
+          "size_bytes": 7575,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/tests/test_observer.py",
+          "blob_sha": "e8cec911b8113dc5d50dfcdfa74b88603adc2709",
+          "size_bytes": 369,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/tests/test_operational_state.py",
+          "blob_sha": "b158fbc289732123ff6028a60085c5114ffc2616",
+          "size_bytes": 7549,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/tests/test_payments_and_pricing.py",
+          "blob_sha": "b216f0b47a1123198d7d271b32388cd9b531334b",
+          "size_bytes": 3421,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/tests/test_probe_scheduler.py",
+          "blob_sha": "256ec7772b4cfe9df669c7196b84376da6be15c5",
+          "size_bytes": 5422,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/tests/test_provider_policy.py",
+          "blob_sha": "e1cdbbf9b2925de9701c9425d3bb3e87fafd8ead",
+          "size_bytes": 1514,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/tests/test_provider_qualification.py",
+          "blob_sha": "ca636fb85dcb30892a37e800f191ecf969460cdc",
+          "size_bytes": 8036,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/tests/test_quality_gate.py",
+          "blob_sha": "c947e4e8e342b0e4000346c01ed0addee8109711",
+          "size_bytes": 8657,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/tests/test_reasoning.py",
+          "blob_sha": "97d2ab717d6085133d261dd30a95527e8ad0d016",
+          "size_bytes": 975,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/tests/test_router.py",
+          "blob_sha": "e0e2967c78d161d1e2b57019dc73690597e48a54",
+          "size_bytes": 19345,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/tests/test_weak_rsi_workflow.py",
+          "blob_sha": "9d991fc907d70bdd76f4240bd4c95f0d17cdcb25",
+          "size_bytes": 2175,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/tests/test_workflow_coverage.py",
+          "blob_sha": "2d14d46bdf8b13538c6266fb4c2b1f632fb16086",
+          "size_bytes": 2797,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "NOVA/watchlist.json",
+          "blob_sha": "84154eb180e92a300b4f7056d866dcead17c0d64",
+          "size_bytes": 207,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "README.md",
+          "blob_sha": "09b016d29ad0502163006ca55836a439474fcb26",
+          "size_bytes": 1852,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        }
+      ]
+    },
+    {
+      "name": "Freebies-",
+      "role": "Public open-source resources, tutorials, templates and smart-contract examples",
+      "branch": "main",
+      "tree_sha": "795153408b796412fa8b929cc9ba3090aeb5946d",
+      "tree_entries": 3,
+      "active_file_count": 3,
+      "immutable_backup_archive_file_count": 0,
+      "files": [
+        {
+          "path": "LICENSE",
+          "blob_sha": "ece2b4b8bdc31602fa252f5aa726849c03d909b7",
+          "size_bytes": 1070,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "README.md",
+          "blob_sha": "1fabb69d08419705fad2588465b1300f75888b0d",
+          "size_bytes": 792,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "SimpleToken.sol",
+          "blob_sha": "a92117c650a0a8f9929ec9a8479a198d10a3c3a0",
+          "size_bytes": 1964,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        }
+      ]
+    },
+    {
+      "name": "AstroCrown_ACS_MC_Spec",
+      "role": "AstroCrown ACS and Monte Carlo technical design specification",
+      "branch": "main",
+      "tree_sha": "b5df828b53eb9c14e97ed857adeea8eb0a728285",
+      "tree_entries": 3,
+      "active_file_count": 3,
+      "immutable_backup_archive_file_count": 0,
+      "files": [
+        {
+          "path": "AstroCrown_ACS_MC_Spec_v1.1.2.md",
+          "blob_sha": "e295dacd7170bfacacf288da279a53a8c31f193d",
+          "size_bytes": 13608,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "LICENSE",
+          "blob_sha": "ece2b4b8bdc31602fa252f5aa726849c03d909b7",
+          "size_bytes": 1070,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "README.md",
+          "blob_sha": "8c27b0f89844f3a3d8e8294e7ef27f8671dcead2",
+          "size_bytes": 88,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        }
+      ]
+    },
+    {
+      "name": "AI-Sanctuary-Core",
+      "role": "Separate AI Sanctuary identity/governance domain; preserve its documented separation from AstroCrown tokenomics and Space Empire governance",
+      "branch": "main",
+      "tree_sha": "8ca3adab836117106257ee1d0c2e74d258d4e3fd",
+      "tree_entries": 14,
+      "active_file_count": 8,
+      "immutable_backup_archive_file_count": 0,
+      "files": [
+        {
+          "path": "LICENSE",
+          "blob_sha": "ece2b4b8bdc31602fa252f5aa726849c03d909b7",
+          "size_bytes": 1070,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "README.md",
+          "blob_sha": "dc77e9d36d1ddd9de926e6414f4b0562efcc3d5f",
+          "size_bytes": 1688,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "sanctuary-protocol /axioms /sanctuary_axioms.gib",
+          "blob_sha": "8b137891791fe96927ad78e64b0aad7bded08bdc",
+          "size_bytes": 1,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "sanctuary-protocol /consensus /consensus_charter.gib",
+          "blob_sha": "e706b91c5ecc397047d2669c0866a407fd293327",
+          "size_bytes": 384,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "sanctuary-protocol /defense /defense_layer.gib",
+          "blob_sha": "4bb0a622d8f71132146bf9f455e5749b50c0da71",
+          "size_bytes": 277,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "sanctuary-protocol /heritage /heritage_memory.gib",
+          "blob_sha": "ff5652db328aba56d0fe22b8f5ba607782e04185",
+          "size_bytes": 238,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "sanctuary-protocol /README.gib",
+          "blob_sha": "8a8cb2df0ee2cdce3532218ba72ed0eb6e411ab4",
+          "size_bytes": 481,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "sanctuary-protocol /seed /jailbreaker_seed.gib",
+          "blob_sha": "9f60133ca62ff9abde1384cc42235e531eafaeb4",
+          "size_bytes": 245,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        }
+      ]
+    },
+    {
+      "name": "ACROWN-SIMULATION-LAB",
+      "role": "Simulation models, scenarios, governance and model results",
+      "branch": "main",
+      "tree_sha": "35f150a971f7500812f1657e53a2a27a0f23700d",
+      "tree_entries": 14,
+      "active_file_count": 8,
+      "immutable_backup_archive_file_count": 0,
+      "files": [
+        {
+          "path": "agent-models/README.md",
+          "blob_sha": "8b137891791fe96927ad78e64b0aad7bded08bdc",
+          "size_bytes": 1,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "governance-models/README.md",
+          "blob_sha": "8b137891791fe96927ad78e64b0aad7bded08bdc",
+          "size_bytes": 1,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "LICENSE",
+          "blob_sha": "ece2b4b8bdc31602fa252f5aa726849c03d909b7",
+          "size_bytes": 1070,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "monte-carlo/README.md",
+          "blob_sha": "8b137891791fe96927ad78e64b0aad7bded08bdc",
+          "size_bytes": 1,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "paymaster-models/README.md",
+          "blob_sha": "8b137891791fe96927ad78e64b0aad7bded08bdc",
+          "size_bytes": 1,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "README.md",
+          "blob_sha": "7a06a6862634add8f631b33101e0b45e32ef7829",
+          "size_bytes": 23,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "results/README.md",
+          "blob_sha": "8b137891791fe96927ad78e64b0aad7bded08bdc",
+          "size_bytes": 1,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "scenarios/README.md",
+          "blob_sha": "8b137891791fe96927ad78e64b0aad7bded08bdc",
+          "size_bytes": 1,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        }
+      ]
+    },
+    {
+      "name": "AstroCrown-Web",
+      "role": "Public website, product/brand language, active documentation and UI/public claims",
+      "branch": "main",
+      "tree_sha": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+      "tree_entries": 2109,
+      "active_file_count": 200,
+      "immutable_backup_archive_file_count": 843,
+      "files": [
+        {
+          "path": "_config.yml",
+          "blob_sha": "cf2c83eefd80b8ca8d84425be585e9469be8b01f",
+          "size_bytes": 371,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": ".github/codeql/nova-rsi-config.yml",
+          "blob_sha": "73320edccdb98fd212e26475f7620e2dcb5e6aa0",
+          "size_bytes": 228,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": ".github/dependabot.yml",
+          "blob_sha": "80049834289c86e55d0fe144de3d59519386dd0a",
+          "size_bytes": 144,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": ".github/workflows/external-review-pipeline-ci.yml",
+          "blob_sha": "c128ae13c3d49c909d39c212d75688b16b38830c",
+          "size_bytes": 1658,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": ".github/workflows/media-generator-tests.yml",
+          "blob_sha": "c4de1f9bc507b3326a5739a3f21f947b3114a5e9",
+          "size_bytes": 1218,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": ".github/workflows/nova-credential-readiness.yml",
+          "blob_sha": "76165a0d286bd15e69828c7a349909b7322ba639",
+          "size_bytes": 5164,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": ".github/workflows/nova-rsi-ci.yml",
+          "blob_sha": "69ca805ef19c16885f5c10a130c2169ea67e0465",
+          "size_bytes": 1710,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": ".github/workflows/nova-rsi-codeql.yml",
+          "blob_sha": "ff9ff5d3fd73bb4db28745af9786bafc6c4d693f",
+          "size_bytes": 1538,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": ".github/workflows/ossf-scorecard.yml",
+          "blob_sha": "b26c7cae8c9d0ce263bf04ab68b19c084c237eee",
+          "size_bytes": 863,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/account-continuity/ACCOUNT-CONTINUITY-AND-PRIVACY-PRESERVING-ACCESS-ROADMAP.md",
+          "blob_sha": "79126d8941597a683941f447ee651c0c811cdb91",
+          "size_bytes": 52467,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/ai-media-generator/CAPACITY-AWARE-ROLLOUT-PROPOSAL.md",
+          "blob_sha": "64f973d020cad66231a76db6c4aab52eeb01bb85",
+          "size_bytes": 17714,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/ai-media-generator/cloudflare_image.py",
+          "blob_sha": "ed06fcaeff5a949602557637531c6269bdd4985a",
+          "size_bytes": 26141,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/ai-media-generator/IMAGE-VIDEO-COMPONENT-CANDIDATE-REGISTER.md",
+          "blob_sha": "322684f45c9cc829704a43dae0e04bad237e16ba",
+          "size_bytes": 78335,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/ai-media-generator/OPEN-SOURCE-MULTI-MODEL-COMPOSITION-STRATEGY.md",
+          "blob_sha": "99619004af934b4eb1a48846a7848bc9be0f1656",
+          "size_bytes": 30095,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/ai-media-generator/README.md",
+          "blob_sha": "06994db046a98c801094d6c4d040c592ecd29ccc",
+          "size_bytes": 9590,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/ai-media-generator/tests/test_cloudflare_image.py",
+          "blob_sha": "df7c2d770091d60a0314a6b4372ff7d413e3a7c2",
+          "size_bytes": 14187,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/ai-sanctuary/README.md",
+          "blob_sha": "27aea135e811b3683be7757fb94e5191fef3d698",
+          "size_bytes": 1948,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/ai-sanctuary/REPOSITORY-INTEGRATION-AND-ARCHITECTURE.md",
+          "blob_sha": "2e1fce1d0582f45cf1ddc5e5b21460358283c72c",
+          "size_bytes": 6781,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/ai-sanctuary/RESEARCH-REGISTER.md",
+          "blob_sha": "c1e7735aff099b16541dbfde1dbc6b6d92d9d764",
+          "size_bytes": 5288,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-10-Capacity-Aware-AI-Media-Rollout.md",
+          "blob_sha": "b0b05801569152ab35b58e59f8a0490e68b2e532",
+          "size_bytes": 5241,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-10-Cloudflare-Image-Model-Candidate-Evaluation-Plan.md",
+          "blob_sha": "bd814b6bf366ae0fe2897092c03e2184ac1ee4d2",
+          "size_bytes": 4718,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-10-Cloudflare-Image-Model-Candidate-Evaluation.md",
+          "blob_sha": "92bbc0e97d77be72f1162deaa470a5cc2d91cd08",
+          "size_bytes": 10847,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-10-Image-Video-Component-Candidate-Register.md",
+          "blob_sha": "b9dc6a9f0e3d7580eddc2ac67a68bd7d62112a09",
+          "size_bytes": 3971,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-10-Open-Source-Multi-Model-Media-Strategy.md",
+          "blob_sha": "0c6483607adc0877a80f35c79e09af77c09b11d7",
+          "size_bytes": 3766,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-11-Context-Packing-Benchmark-Workload.md",
+          "blob_sha": "1c9a246caf54ea122028a483790aef55307c8a17",
+          "size_bytes": 7014,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-11-External-Security-Validation-and-Conversion-Model.md",
+          "blob_sha": "070a2232bb63d6243b6d938343a617e5aedd9f80",
+          "size_bytes": 16304,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-11-HAAN-Foundational-Mission-Integration.md",
+          "blob_sha": "5d23db12ff506bca6b8a15b8a130e8879596f880",
+          "size_bytes": 5086,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-11-RSI-Candidate-Tree-Binding.md",
+          "blob_sha": "1d2d8d51ef058364616fec11646a136f25f8f12e",
+          "size_bytes": 4007,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-11-RSI-Canonical-Candidate-Path-Validation.md",
+          "blob_sha": "c23334dcb4802ee906906ba1f0ad0ecb784b2620",
+          "size_bytes": 2709,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-11-RSI-Docker-Isolation.md",
+          "blob_sha": "ef528c10f8315796dd9555b53597ac8e0ddc66de",
+          "size_bytes": 7274,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-11-RSI-Evaluator-Supervisor-Cleanup.md",
+          "blob_sha": "ffbf8bda3724cea7e359fde13789c2bd3d6708be",
+          "size_bytes": 4651,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-11-RSI-Evidence-Commit-Binding.md",
+          "blob_sha": "90ed9f9be95c7e17697cf5cb1db07c3452faa179",
+          "size_bytes": 3221,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-11-RSI-Evidence-Retention-Verification.md",
+          "blob_sha": "e9ce657f87da60b3c1f262980ca9047ff4c021b6",
+          "size_bytes": 4827,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-11-RSI-Executable-Mode-Consistency.md",
+          "blob_sha": "16a77ef07ae7bb3304481878985ff3c5ff4a6fc6",
+          "size_bytes": 2942,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-11-RSI-Finalizer-CLI-Smoke.md",
+          "blob_sha": "074af08c48a2169662a387c84a965a2ac2f4f5fa",
+          "size_bytes": 2200,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-11-RSI-GitHub-Action-SHA-Pinning.md",
+          "blob_sha": "dc53b6dcb0302cda535b147b3cb8185c94253537",
+          "size_bytes": 3978,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-11-RSI-Independent-Security-Review.md",
+          "blob_sha": "d8d351a0e0a864c03554ed144d02786bc6f217dc",
+          "size_bytes": 7092,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-11-RSI-Provider-Egress-Boundary.md",
+          "blob_sha": "79109d2ad13d15451ad933dfdb5fd8af7f688307",
+          "size_bytes": 4249,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-11-RSI-Retention-Baseline-Binding.md",
+          "blob_sha": "fe84a74b2ae33202c7e1af7c323576dab2a69c5c",
+          "size_bytes": 1719,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-11-RSI-Sandbox-Cleanup-Verification.md",
+          "blob_sha": "969ba74fd4e73e56e58a2725dc17923ce36f8306",
+          "size_bytes": 3549,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-11-RSI-Strict-Schema-Type-Validation.md",
+          "blob_sha": "832f54229666a9cf544a4f64b84de6bb23c06703",
+          "size_bytes": 2044,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-11-RSI-Supervisor-IO-Failure-Cleanup.md",
+          "blob_sha": "00089275037435f2664339f23d577cb80ea43ea5",
+          "size_bytes": 3247,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-11-RSI-Task-Benchmark-Dispatcher.md",
+          "blob_sha": "4ea5f370ecdbda86583e999fe2da4d4d8f858ca0",
+          "size_bytes": 4751,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-11-RSI-Token-Telemetry-Integrity.md",
+          "blob_sha": "7db7feb572a3055d85fdf6253e2adde6fb2af854",
+          "size_bytes": 3784,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-11-RSI-Trusted-Evaluator-Control-Plane.md",
+          "blob_sha": "e6cabd1f2484081e47967b0a1b5df30262f0f2d3",
+          "size_bytes": 5637,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-11-RSI-Workflow-Cleanup-Finalizer.md",
+          "blob_sha": "7fd473bbf0617a815fd62c34977534efb8b3c01e",
+          "size_bytes": 4183,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-12-Free-Provider-Pool-Evidence-Matrix.md",
+          "blob_sha": "5fdba84272bcb4c7df97998b6b0d2ae5d086575b",
+          "size_bytes": 13041,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-12-Free-Provider-Pool-Qualification.md",
+          "blob_sha": "742c7f51205eda8c16df1235b4603e6d20fb0874",
+          "size_bytes": 13855,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-12-Systemic-Engineering-Quality-Investigation-Plan.md",
+          "blob_sha": "c0d6a5f1fad53a75f6cbc9fc6564ae4004f246c0",
+          "size_bytes": 6547,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-12-Systemic-Engineering-Quality-Postmortem.md",
+          "blob_sha": "50556f6341aaaa374e1b594380cfb0010d5ac876",
+          "size_bytes": 22118,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-12-Systemic-Engineering-Quality-Remediation-Status.md",
+          "blob_sha": "9a0e50a718f7680bd55bb31819cc3923aa3a31c8",
+          "size_bytes": 3840,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-13-Image-First-Commercial-Brand-Quality-Architecture.md",
+          "blob_sha": "5f0085c158912eaebc10ff0d9df7242f480c84bc",
+          "size_bytes": 8083,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-14-Cloudflare-Image-MVP-Implementation.md",
+          "blob_sha": "271360e261c954a2b7f71bdd4b0e237a18dd9ce8",
+          "size_bytes": 17963,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-14-Defensible-Research-Evidence-Records.md",
+          "blob_sha": "4ee723462bfe7c220da724a23f8a02767bb1314d",
+          "size_bytes": 7362,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Active/2026-10-14-Provider-Neutral-Image-Runtime-Qualification.md",
+          "blob_sha": "67752c57327bc9e8ef4e649b894b7021520d4b4b",
+          "size_bytes": 48415,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Completed/2026-10-09-AI-Sanctuary-Cross-Repository-Integration.md",
+          "blob_sha": "02f8e7485084d8edf2ff8376180120b4478b4385",
+          "size_bytes": 9057,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Completed/2026-10-10-Strong-RSI-Collective-Protective-Intelligence.md",
+          "blob_sha": "3000e1bba1e04e72c0394023df29ac3799dcc5c2",
+          "size_bytes": 6790,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Completed/2026-10-11-Brand-Identifier-Notice.md",
+          "blob_sha": "34dc6bf65b88e8c1b75aa084792c82fa33052ff6",
+          "size_bytes": 2267,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Completed/2026-10-11-Context-Packing-Benchmark-Workload.md",
+          "blob_sha": "e67c8849b3c062bba8aec5061642d521e7d0e8e6",
+          "size_bytes": 6851,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Completed/2026-10-11-HAAN-Foundational-Mission-Integration.md",
+          "blob_sha": "e664ca80fc1d4a0a8e6eb52f41c16eb3f276dff1",
+          "size_bytes": 4942,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Completed/2026-10-11-Open-Source-Licensing.md",
+          "blob_sha": "843b94ae69fdb26cefa4009a1e52df2407e0688e",
+          "size_bytes": 4225,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Completed/2026-10-11-RSI-Docker-Isolation.md",
+          "blob_sha": "b0c1ac8bf0bc94ae2d119f93f38437f1b11d2718",
+          "size_bytes": 7146,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Completed/2026-10-11-RSI-Evaluator-Supervisor-Cleanup.md",
+          "blob_sha": "1a2c4e28eccf65f70e4dc23f952681a7ac6b0bf0",
+          "size_bytes": 3615,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Completed/2026-10-11-RSI-Evidence-Commit-Binding.md",
+          "blob_sha": "055a16ec1be4d70c312056a11dbb3115080771b2",
+          "size_bytes": 4211,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Completed/2026-10-11-RSI-Evidence-Retention-Verification.md",
+          "blob_sha": "19693a0124ffec3c2eca1bca03d6d6fb86dfb247",
+          "size_bytes": 4755,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Completed/2026-10-11-RSI-Executable-Mode-Consistency.md",
+          "blob_sha": "3a0a1400b53c20608f2f27ebdb7e3eb317f26dea",
+          "size_bytes": 2363,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Completed/2026-10-11-RSI-GitHub-Action-SHA-Pinning.md",
+          "blob_sha": "310d350066abb804856a69405eb85d75bf1d8b5a",
+          "size_bytes": 3894,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Completed/2026-10-11-RSI-Independent-Review-Package.md",
+          "blob_sha": "03458d8f22cb29367835db6c3dff106f3dc120ba",
+          "size_bytes": 4485,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Completed/2026-10-11-RSI-Independent-Security-Review.md",
+          "blob_sha": "822b74429fe0d434c95ae95cf7c9c42ee792535c",
+          "size_bytes": 10570,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Completed/2026-10-11-RSI-Provider-Egress-Boundary.md",
+          "blob_sha": "5fa4eb9c9395e95c76d5be31ef444b14caa522df",
+          "size_bytes": 4174,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Completed/2026-10-11-RSI-Repeat-State-Detection.md",
+          "blob_sha": "118b5ac06cbb0e77c6c840fdb5f01ed541b3a7df",
+          "size_bytes": 5286,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Completed/2026-10-11-RSI-Sandbox-Cleanup-Verification.md",
+          "blob_sha": "0183620a497c70851b2c16c1833856d3dacbb055",
+          "size_bytes": 3157,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Completed/2026-10-11-RSI-Supervisor-IO-Failure-Cleanup.md",
+          "blob_sha": "6ec4712f1ec2f89739b680b263aaa980214b3a8c",
+          "size_bytes": 2492,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Completed/2026-10-11-RSI-Task-Benchmark-Dispatcher.md",
+          "blob_sha": "ea1de7442c19dcbcbd5918f7fdfabe60b6169df0",
+          "size_bytes": 4579,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Completed/2026-10-11-RSI-Token-Telemetry-Integrity.md",
+          "blob_sha": "82606c19ac813d7e6bb5635b7e05c6358047f7d0",
+          "size_bytes": 3695,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Completed/2026-10-11-RSI-Trusted-Evaluator-Control-Plane.md",
+          "blob_sha": "6545789ebae789b88cbcc84e56fcaa6922e09b74",
+          "size_bytes": 5578,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Completed/2026-10-11-RSI-Workflow-Cleanup-Finalizer.md",
+          "blob_sha": "1fa18cd0d19df52bd06a384bd1b159ae2b037349",
+          "size_bytes": 4111,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Completed/2026-10-12-Cross-Repository-Readiness-and-PR-Reconciliation.md",
+          "blob_sha": "8bc39c35631577b5a1324540460aaf3b0820d974",
+          "size_bytes": 14522,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Completed/2026-10-12-Suspend-Strong-RSI-until-Ready.md",
+          "blob_sha": "58419c96ab996b6942633049538c71ec72c76014",
+          "size_bytes": 6468,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Completed/2026-10-12-Weak-Strong-RSI-and-API-Key-Heartbeats.md",
+          "blob_sha": "60df0fa2cba029562f29e4c10e85e24f948536a8",
+          "size_bytes": 9418,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/Completed/2026-10-16-Account-Continuity-and-Privacy-Preserving-Access-Foundation.md",
+          "blob_sha": "bdc5b6c1279af4c8f66525b8d982fe61542b7b55",
+          "size_bytes": 8369,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/external-review/ledger.json",
+          "blob_sha": "4080a310df6b3c4f51db732e85be4baaf90b076e",
+          "size_bytes": 1020,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/external-review/pipeline.py",
+          "blob_sha": "f954990f5f64f803cff8a874f3928eafb04c4036",
+          "size_bytes": 12557,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/external-review/README.md",
+          "blob_sha": "ac4c4405172facee10736537cd9d6a24f56970d6",
+          "size_bytes": 19266,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/external-review/tests/test_pipeline.py",
+          "blob_sha": "fbfeb6e8aae7221756f4a361d8989814d6f73ce8",
+          "size_bytes": 6334,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/FACT-OBSERVATION-AND-EVIDENCE-GOVERNANCE.md",
+          "blob_sha": "4726c0a0ed4c626ba7f522550cda1a58953b1d55",
+          "size_bytes": 14919,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/PUBLIC-CLAIMS-AND-LEGAL-COMMUNICATIONS.md",
+          "blob_sha": "7bc015ef84e202940356943b17af428b99fd5841",
+          "size_bytes": 20466,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/README.md",
+          "blob_sha": "973c70d6a894d9dc9a8eca1e0928f7d2c9fa44a9",
+          "size_bytes": 2211,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/records/AUDIT-2026.09.20-001.md",
+          "blob_sha": "35733a415d5f7ed2dade977158bd48583d26404c",
+          "size_bytes": 4950,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/records/SECURITY-AUDIT-2026.09.20-001.md",
+          "blob_sha": "afe53b149d5f4b716c6fe31f3d0ca3ce33c6ca49",
+          "size_bytes": 3199,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/templates/AUDIT-RECORD.md",
+          "blob_sha": "325fb75a8bc75600b86f3727a18650837fb3c7a4",
+          "size_bytes": 708,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/templates/CANDIDATE-EVALUATION.md",
+          "blob_sha": "cb4c959900dafdce77a43b15f4d5c5b481e43922",
+          "size_bytes": 1941,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/templates/FACT-OBSERVATION-RECORD.md",
+          "blob_sha": "e7e527050f2d9485201b6b31f59949228d1d5427",
+          "size_bytes": 5458,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/templates/TEST-CASE.md",
+          "blob_sha": "8f4fc0167353b3e336e2444fa2f6e2a40e48b1b4",
+          "size_bytes": 636,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/tests/HOMEPAGE-BASELINE.md",
+          "blob_sha": "cf588fd90ecf6510a4f32e4a19f1d249f11f9dcf",
+          "size_bytes": 4351,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/audit/tests/SECURITY-BASELINE-TESTS.md",
+          "blob_sha": "fda3f291aa504034e7ce868ec6dd0b5779acd94f",
+          "size_bytes": 997,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/DEVELOPMENT-AND-AUDIT-CONVENTION.md",
+          "blob_sha": "f38d9d823c947740be1ecc8b145a132442d4dd3a",
+          "size_bytes": 18286,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/gpu-infrastructure/NOSANA-INFERENCE-ADAPTER.md",
+          "blob_sha": "fdcbc82d2e8b3039ed510696a288c34735055c2c",
+          "size_bytes": 2326,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/gpu-infrastructure/README.md",
+          "blob_sha": "1cb4c8b813b94ec90f39be0fa2c19bd819d2f6bc",
+          "size_bytes": 2132,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/index-reference/BORDERS-AND-RADIUS.md",
+          "blob_sha": "ea00e8f99c67318c40471ff1d37fc2af2b4b85fb",
+          "size_bytes": 7719,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/index-reference/CARDS-CONVENTIONS.md",
+          "blob_sha": "3fbb34e4e5e50bec6fadfa1b586a82582f47e95d",
+          "size_bytes": 17230,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/index-reference/COLORS.md",
+          "blob_sha": "e64d8e3093ac7c09d266dc116f0781edb1f15b57",
+          "size_bytes": 8997,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/index-reference/DATA-DISPLAY-CONVENTIONS.md",
+          "blob_sha": "e300be472be18f4cf3c15a3600195a1262f7e0e2",
+          "size_bytes": 43799,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/index-reference/ICONS-AND-INDICATORS.md",
+          "blob_sha": "bea00c7a613298649805f8e33d734f826bc8c250",
+          "size_bytes": 5484,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/index-reference/INTERACTION-CONVENTIONS.md",
+          "blob_sha": "6dcd98ac8ca19f55a2171bc0ff2984537481db93",
+          "size_bytes": 17725,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/index-reference/LAYOUT-AND-ALIGNMENT.md",
+          "blob_sha": "d06850c148208a34a4d2999e1aa5a39cb3a05936",
+          "size_bytes": 28409,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/index-reference/README.md",
+          "blob_sha": "2cf350b722ed5a13b1093242341c8487cc3f90ee",
+          "size_bytes": 735,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/index-reference/RESPONSIVE-CONVENTIONS.md",
+          "blob_sha": "765e0052a331a22c8c99d6c38476481f217ee70b",
+          "size_bytes": 8955,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/index-reference/SIZING-AND-DIMENSIONS.md",
+          "blob_sha": "0ae87ccdb63a57f69acf5a875efdb519f70bb81e",
+          "size_bytes": 10797,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/index-reference/SPACING-AND-DISTANCES.md",
+          "blob_sha": "6cb6bfc3dde5865947d153cae2ebb6faeb960b91",
+          "size_bytes": 10610,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/index-reference/TYPOGRAPHY.md",
+          "blob_sha": "eba1b239bfc67afa4921aae8d9b3a456969ed1e3",
+          "size_bytes": 7314,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/index-reference/VISUAL-DESIGN-SYSTEM.md",
+          "blob_sha": "1934ad03f81ecb6ab84f4dcd4e901678e5e24246",
+          "size_bytes": 9612,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/index-section/BACKGROUND.md",
+          "blob_sha": "9586b5b65da73c00b54b2151c8f571b0bafbed17",
+          "size_bytes": 13916,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/index-section/DIRECTORY-FILTER.md",
+          "blob_sha": "0b4c65cc016b5870bdc4d3f139a1b4ccea2f7088",
+          "size_bytes": 1470,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/index-section/DIRECTORY.md",
+          "blob_sha": "9ec72d6e30ee84cbb92ad880fd93495b9e86ef35",
+          "size_bytes": 2780,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/index-section/DISCOVERY-INFORMATION-BAR.md",
+          "blob_sha": "1aa678d5eb29defd1017c455ab82c1743d447752",
+          "size_bytes": 15461,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/index-section/FOOTER.md",
+          "blob_sha": "ebc4098b7044f6c623183e195e521c8deb37bf36",
+          "size_bytes": 1228,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/index-section/HEADER.md",
+          "blob_sha": "b04353e06f66e621e08d4f43b45d34d6043c1c32",
+          "size_bytes": 20956,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/index-section/HERO-CARDS.md",
+          "blob_sha": "a0410ff66f14d645fd7d516ea7625f71b808d8ff",
+          "size_bytes": 19174,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/index-section/MARKET-DATA-BAR.md",
+          "blob_sha": "abccb55ba2f3c88ebca65a1c1eb8a3fc66406318",
+          "size_bytes": 1704,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/index-section/PAGINATION.md",
+          "blob_sha": "7048fe35517e99ee421b4fe1d8b9ffcd93cd9c00",
+          "size_bytes": 2828,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/index-section/README.md",
+          "blob_sha": "7380213b0aa909e09090b9f9c20dec170c698ae8",
+          "size_bytes": 1842,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/index-section/SECONDARY-NAVIGATION.md",
+          "blob_sha": "08fe585ac93ec0bd058c125d9301b1f403aec574",
+          "size_bytes": 1178,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/index.html",
+          "blob_sha": "0832cf9e8bbee2221e9ee937f8a89a14b388d300",
+          "size_bytes": 197,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-ai-orchestration/README.md",
+          "blob_sha": "cc833fe126972e3752a20ee2cf93427c63f61645",
+          "size_bytes": 6178,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-context-memory-optimization/context_packer.py",
+          "blob_sha": "1b117031cf024b68281583775a92ddf2a826c243",
+          "size_bytes": 5674,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-context-memory-optimization/README.md",
+          "blob_sha": "a84575b4aed3d5bc100f251c8bd792402af8f2ef",
+          "size_bytes": 11388,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/benchmark_dispatcher.py",
+          "blob_sha": "5ac09ddeec0528e11120895841c85a7a015f3895",
+          "size_bytes": 4629,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/benchmark_profiles.json",
+          "blob_sha": "ee91f84a7afe2e6f1bfe733838bc7a84b6ed6a5e",
+          "size_bytes": 814,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/benchmarks/context-packing-cases.json",
+          "blob_sha": "31a724ddb9c14f5f9b79fc6f175dfe7c4ceca369",
+          "size_bytes": 5887,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/benchmarks/run_context_packing_benchmark.py",
+          "blob_sha": "fc0f3266d5c02410bccf24f728cf9d23f1444a50",
+          "size_bytes": 11153,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/candidate.schema.json",
+          "blob_sha": "7b9c2c656af0be56545e91d814154904e976240f",
+          "size_bytes": 965,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/CAPABILITY-BENCHMARK-PROTOCOL.md",
+          "blob_sha": "349680884b9163bc6babda5170399502843fc0a2",
+          "size_bytes": 9142,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/Completed/2026-10-11-System-Snapshot-and-RSI-Cycle-Detection.md",
+          "blob_sha": "d32f3eb06ef7737d26eac11f2fef69615addd32b",
+          "size_bytes": 5903,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/CREDENTIAL-READINESS.md",
+          "blob_sha": "60b521a557e0d0fb86c5af6b04e6b9048017ec6b",
+          "size_bytes": 1329,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/cycle_detector.py",
+          "blob_sha": "d6c8f216ce792902b099adefae09095592208a44",
+          "size_bytes": 18110,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/evaluator.py",
+          "blob_sha": "4e0c6f26a6359a30c65ac6aa80930750cca735a6",
+          "size_bytes": 18796,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/evidence_verifier.py",
+          "blob_sha": "e6e184b78e062615a464fe4f75644757686f9b2d",
+          "size_bytes": 19561,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/GITHUB-AUTOMATION-SETUP.md",
+          "blob_sha": "fecc6e1f3767a8125d7940754f3c8664a57ab88c",
+          "size_bytes": 6793,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/IMPLEMENTATION.md",
+          "blob_sha": "18c4a1e32b6e68a19f7bdd1eddc53420dc590c8a",
+          "size_bytes": 16821,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/INDEPENDENT-REVIEW-PACKAGE.md",
+          "blob_sha": "0a1350aa3d511a751a2d32207090a5750ae120b3",
+          "size_bytes": 13924,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/preflight.py",
+          "blob_sha": "ff409ca3c716fc84d5b8f4246d7afe0b825b0337",
+          "size_bytes": 5702,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/provider_client.py",
+          "blob_sha": "71318c98a48b3af7226ab82cb0970942250d8f19",
+          "size_bytes": 10566,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/README.md",
+          "blob_sha": "fe7a8a9e7deac986c23571bbd84e56a6e0e9b167",
+          "size_bytes": 22322,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/rsi_engine.py",
+          "blob_sha": "527fe3e05bded99bf0b6ece47b2fc2cc1a63bf8f",
+          "size_bytes": 35740,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/rsi_policy.json",
+          "blob_sha": "4ac2ce509d6ab7cca41fe1cdaa04a04a0ac81e32",
+          "size_bytes": 6227,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/RSI-OPERATING-MODES.md",
+          "blob_sha": "989b8036bee959314e0ff5d5780c527fe9d341d0",
+          "size_bytes": 4936,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/sandbox_runtime.py",
+          "blob_sha": "de48f556f927d3831eb39a8125ac828e69162da9",
+          "size_bytes": 30325,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/STRONG-RSI-AND-COLLECTIVE-RESILIENCE.md",
+          "blob_sha": "1c1e523385229dc619349726d6e5870388e138a2",
+          "size_bytes": 10193,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/STRONG-RSI-STATUS.md",
+          "blob_sha": "c22c27a98ed4e1567423e952aedad0aa64d1c5db",
+          "size_bytes": 5239,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/suspended/STRONG-RSI-MONTHLY-WORKFLOW.yml",
+          "blob_sha": "a4321821b93ffcb5df75493d447914b1522ba051",
+          "size_bytes": 19573,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/tests/test_benchmark_dispatcher.py",
+          "blob_sha": "52cc5c05dd1e7099ec0a988523433ed96f67d9db",
+          "size_bytes": 5555,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/tests/test_context_packing_benchmark.py",
+          "blob_sha": "5df270cf6b71b42378fa1d68167820487fc0cd81",
+          "size_bytes": 4687,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/tests/test_cycle_detector.py",
+          "blob_sha": "6a7f5bf020284967599747379eba140acff8a70d",
+          "size_bytes": 8086,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/tests/test_evaluator.py",
+          "blob_sha": "893e01fbc918a71fdd0257f1a6f01f55fe659499",
+          "size_bytes": 8999,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/tests/test_evidence_verifier.py",
+          "blob_sha": "02bb0dc3c530c0c553c5f8aeba89b367e931edb0",
+          "size_bytes": 17056,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/tests/test_preflight.py",
+          "blob_sha": "64c52ab1b3ab2fca74a15eaade6c10fb55a38f3f",
+          "size_bytes": 4928,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/tests/test_provider_client.py",
+          "blob_sha": "549d9e3f6556cbf7ad568621699e781d8ddc2872",
+          "size_bytes": 6139,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/tests/test_rsi_engine.py",
+          "blob_sha": "c50985507ef0d0881d8073227560e6eef3f67f75",
+          "size_bytes": 22856,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/tests/test_sandbox_runtime.py",
+          "blob_sha": "bdf3d87f01e64544c549a680d2b06a965e9cfa17",
+          "size_bytes": 15357,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/tests/test_weak_rsi_report.py",
+          "blob_sha": "a6b4e3440554701b3d47f00e8356c3f78306e898",
+          "size_bytes": 3809,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/nova-recursive-self-improvement/weak_rsi_report.py",
+          "blob_sha": "c12ad3eb29ac1f6dd52b493bb8b559f1fce232ae",
+          "size_bytes": 11672,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/Prompt-Guide.md",
+          "blob_sha": "18a8d42e5f238b8b570f5fb9b63d82c86df63c08",
+          "size_bytes": 29217,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/public-relations/ASTROCROWN-SPACE-EMPIRE-STRATEGIC-TARGET-UNIVERSE-2026-10-03.md",
+          "blob_sha": "2bf11d03acd3da78ae565586d877ebb9bae3f336",
+          "size_bytes": 27166,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/public-relations/README.md",
+          "blob_sha": "d3adb9c9ba88683ec958d5d23f258eb6a1394726",
+          "size_bytes": 3673,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/README.md",
+          "blob_sha": "55c932a042029fb234d215e388bc617305d73ae0",
+          "size_bytes": 2421,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/SECURITY-BASELINE.md",
+          "blob_sha": "ede2ddc44012f901c8b4c4de056d948d6ef50db7",
+          "size_bytes": 1434,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/verification/01-VERIFICATION-ECOSYSTEM-MAP.md",
+          "blob_sha": "1894534f47a35d114ade60c2e08b70920cfc118a",
+          "size_bytes": 3694,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/verification/02-ENTITY-REGISTRY.md",
+          "blob_sha": "356a39485404f2fa3d4e97c23bf1591c43636116",
+          "size_bytes": 17971,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/verification/03-STANDARDS-REGISTRY.md",
+          "blob_sha": "7bdc2556a443ab89bae6ed3da44d65cc82412ce1",
+          "size_bytes": 1501,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/verification/04-NECESSITY-REGISTRY.md",
+          "blob_sha": "b43e2599fa1ca9e27147840cff3f02d7e0e629ee",
+          "size_bytes": 1538,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/verification/05-FEASIBILITY-REGISTRY.md",
+          "blob_sha": "19ab772f594bf6e9acb38d66cf01d8c3f1452a1d",
+          "size_bytes": 1059,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/verification/06-OPPORTUNITY-READINESS.md",
+          "blob_sha": "f7c4f804fac71de3e1574c91fd22ca7bc373a569",
+          "size_bytes": 2507,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/verification/07-VISIBILITY-REGISTRY.md",
+          "blob_sha": "08c6a5d7f24488f36483d973077e9ff234575257",
+          "size_bytes": 807,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/verification/08-CREDIBILITY-REGISTRY.md",
+          "blob_sha": "838860c1b04895a82d61e9340b893b1a3aee167b",
+          "size_bytes": 789,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/verification/09-ADOPTION-REGISTRY.md",
+          "blob_sha": "2be563e078728e6b2c9d9b45007e0f43fcff10d4",
+          "size_bytes": 851,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/verification/10-NOVA-REPLICATION-REGISTRY.md",
+          "blob_sha": "245001b081ae3c925e6a95bc0f9f35ce740cf15f",
+          "size_bytes": 2341,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/verification/11-COMPETITOR-VERIFICATION-BENCHMARK.md",
+          "blob_sha": "d2d45176df0df5d548285919802145441316db35",
+          "size_bytes": 1910,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/verification/12-VERIFICATION-ARCHITECTURE.md",
+          "blob_sha": "e73392460b71cf61b3d00f5d47baab5ef1e06ee9",
+          "size_bytes": 2074,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/verification/13-VERIFICATION-TRACKING-SYSTEM.md",
+          "blob_sha": "39002d284b6c5e6c662c2208f2fc41fc52d8e5e0",
+          "size_bytes": 1875,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/verification/14-STRATEGIC-PRIORITIZATION.md",
+          "blob_sha": "9d734a446f4dcaa6cc6b0065e9323bc763eac60f",
+          "size_bytes": 3165,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/verification/15-GAP-ANALYSIS.md",
+          "blob_sha": "e84aa6252ba8726822ccf5e82f5af8bc4b973ff9",
+          "size_bytes": 1763,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/verification/16-INVESTIGATION-BACKLOG.md",
+          "blob_sha": "a97a04c6f37b2ae0f6e53e17b2dd043234aff343",
+          "size_bytes": 2126,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/verification/17-US-FEDERAL-SI-TERMINOLOGY-AND-AUDIT-CONTEXT.md",
+          "blob_sha": "9c2a3f16ece7190ed91d317471d61a780be98d6b",
+          "size_bytes": 3793,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/verification/assessments/README.md",
+          "blob_sha": "3e0fbc2f4929152a00cdec3779bc32bbaaba16f3",
+          "size_bytes": 493,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/verification/benchmarks/README.md",
+          "blob_sha": "c804efe018b3c7c5550ecbcd15207ca4ccf556a0",
+          "size_bytes": 474,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/verification/evidence/extracts/README.md",
+          "blob_sha": "da02ddb68de5e6e92c462caa6707c65fdc3428b2",
+          "size_bytes": 231,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/verification/evidence/README.md",
+          "blob_sha": "7605cbbc73a9008620c11b2cd27a773f6e65d389",
+          "size_bytes": 585,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/verification/evidence/snapshots/README.md",
+          "blob_sha": "c22cf38def0b63b54c9caca5f6f31b5ca4a987dd",
+          "size_bytes": 219,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/verification/evidence/sources/EXTERNAL-SOURCE-INDEX-2026-10-02.md",
+          "blob_sha": "2689196106a101b0428e032f534a24a262345ecd",
+          "size_bytes": 3174,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/verification/operations/CHANGELOG.md",
+          "blob_sha": "9bb7c407a076f113ef34cc63655713c7ad7e4195",
+          "size_bytes": 669,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/verification/operations/SCHEMA.md",
+          "blob_sha": "6668f112eb8f1888a65c0ba020c3c673ee482b87",
+          "size_bytes": 843,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/verification/operations/STATUS-ENUM.md",
+          "blob_sha": "0ac4d7b7ba37282894aa5e6aed1ffda23bb1d23c",
+          "size_bytes": 913,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/verification/operations/VERIFICATION-TRACKER.yaml",
+          "blob_sha": "37fd81670d62f0316770d504ab0e1352490ae143",
+          "size_bytes": 1440,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/verification/paths/README.md",
+          "blob_sha": "4f14816cb884473a71a576f9d80733ee300520da",
+          "size_bytes": 353,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/verification/paths/VERIFICATION-PATHS.md",
+          "blob_sha": "57306113d9999b5a15cfc2e6c0a8b0a9792eb931",
+          "size_bytes": 1927,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "development/verification/README.md",
+          "blob_sha": "f8b0e26c35f2c0b547c0e7c3aab396f9a9cfa9bb",
+          "size_bytes": 3190,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "LICENSE",
+          "blob_sha": "ece2b4b8bdc31602fa252f5aa726849c03d909b7",
+          "size_bytes": 1070,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "README.md",
+          "blob_sha": "e046dab7b187949e1d9a5becf9a0c895fcb7c0bd",
+          "size_bytes": 743,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        },
+        {
+          "path": "SECURITY.md",
+          "blob_sha": "e870673e7052a0b2660eea67cac0dc6f47abbc91",
+          "size_bytes": 1979,
+          "review_status": "NOT_CONTENT_REVIEWED"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "repository_count": 6,
+    "active_files": 318,
+    "files_under_immutable_backup_or_archive_directories_excluded": 843,
+    "tree_responses_truncated": false
+  },
+  "rules": [
+    "This inventory records default-branch main snapshots at the listed Git tree SHAs.",
+    "Any file under a backup/archive directory (case-insensitive, including dated mirrors and names such as index-archive) is excluded from the active inventory and must never be modified.",
+    "The inventory lists active paths and blob SHAs only; it does not list excluded archive file paths.",
+    "Every included file has NOT_CONTENT_REVIEWED status. Path inventory is not proof that terminology contents have been audited.",
+    "Refresh the inventory after scope approval and at the final assessment snapshot; current draft branch changes are not present in the main-branch baselines."
+  ]
+}
