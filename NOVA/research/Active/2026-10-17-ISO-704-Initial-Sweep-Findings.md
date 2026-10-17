@@ -165,3 +165,16 @@ See [Semantic Review Batch 005 — ACS/Monte Carlo Spec](2026-10-17-ISO-704-Sema
 - The same repository's README and licence were also reviewed in B001/B005; all three current active paths have a preliminary review, but repository scope and human approval remain pending.
 
 Tracker status after Batch 005: **318/318 lexical scans; 15 preliminary content reviews; 1 partial targeted screen; 302 not reviewed; human validation pending.**
+
+
+## Semantic review update — Batch 006 Simulation Lab and Batch 007 AI Sanctuary (2026-10-17)
+
+See [Batch 006 — Simulation Lab](2026-10-17-ISO-704-Semantic-Review-Batch-006-Simulation-Lab.md) and [Batch 007 — AI Sanctuary](2026-10-17-ISO-704-Semantic-Review-Batch-007-AI-Sanctuary.md).
+
+- **B006-F01:** six Simulation Lab subdirectory README files consist of a single newline. Folder names do not establish that a corresponding model, governance procedure, Monte Carlo simulation, Paymaster model, result set or scenario definition actually exists. The ordinary root README is only a title. Combined with B001 review, all eight inventoried paths have preliminary review records.
+- **B007-F01:** AI-Sanctuary-Core says it is outside AstroCrown audits, conflicting with the proposed umbrella inclusion. Scope decision requires the human maintainer; do not override the repo's boundary based on org membership alone.
+- **B007-F02:** symbolic protocol files use numerous undefined/project-defined governance and security concepts; strings such as “cryptographic signature”, “least privilege”, “AI-only” or “hidden encoding” are not evidence that a control is implemented.
+- **B007-F03:** the axioms file contains only a newline; no axioms are evidenced in that file.
+- **B007-F04:** “jailbreaker seed” terminology is ambiguous; do not infer capability or security behavior from the name.
+
+Tracker after Batch 007: **318/318 lexical scans; 29 preliminary file reviews; one partial targeted screen; 289 not reviewed; human validation pending.** The six-repository scope and English-only/localization boundary remain unapproved. No backup/archive path was changed.
