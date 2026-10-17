@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 91/318; PARTIAL TARGETED SCREEN 1; 226 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 93/318; PARTIAL TARGETED SCREEN 1; 224 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 91,
-    "content_review_pending": 226,
-    "human_validation_pending": 91,
+    "preliminary_content_reviewed": 93,
+    "content_review_pending": 224,
+    "human_validation_pending": 93,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 1
   },
@@ -9688,15 +9688,19 @@
           "size_bytes": 20466,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_024",
+          "terminology_assessment": "PRELIMINARY_REVIEW_POLICY_DOES_NOT_VERIFY_EACH_LIVE_CLAIM",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B024:B024-01"
+          ],
+          "findings": [
+            "B024-F01"
+          ],
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_POLICY_DOES_NOT_VERIFY_EACH_LIVE_CLAIM",
+          "note": "Batch 024: public-claims/legal-communications guidance defines substantiation process, but each current public claim still needs exact source/date/scope/reviewer evidence; no live claim audit performed.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/PUBLIC-CLAIMS-AND-LEGAL-COMMUNICATIONS.md",
@@ -11103,15 +11107,19 @@
           "size_bytes": 20956,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_024",
+          "terminology_assessment": "PRELIMINARY_REVIEW_UI_REQUIREMENTS_NOT_DEPLOYED_EVIDENCE",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B024:B024-02"
+          ],
+          "findings": [
+            "B024-F02"
+          ],
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_UI_REQUIREMENTS_NOT_DEPLOYED_EVIDENCE",
+          "note": "Batch 024: header specification is intended UI requirements, not proof of live implementation, accessibility, keyboard/focus or responsive behavior. Shared domain terms should be linked to canonical definitions where relevant.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/index-section/HEADER.md",
@@ -14854,5 +14862,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 023 reviewed allocator, allocation tests, capacity policy, development test budget, dated Gemini/Mistral observations, and credential-readiness tests. Main finding: unknown remaining amounts in a task's required hard dimensions may not block eligibility. Historical observations and operator caps remain separate from current quota. Counts 91+1+226=318."
+  "last_update_note": "Batch 024 reviewed AstroCrown-Web public-claim governance and homepage header requirements at exact baseline SHAs. These documents are requirements/process evidence, not proof each claim or UI behavior is implemented and independently verified. Row-derived counts: 93+1+224=318."
 }
