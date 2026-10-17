@@ -1,7 +1,7 @@
 # ISO 704:2022 Initial Active-Content Sweep Findings
 
 **Document ID:** NOVA-ISO704-FIND-001  
-**Version:** 0.1.45  
+**Version:** 0.1.46  
 **Snapshot date:** 2026-10-17  
 **Status:** INITIAL SWEEP FINDINGS — lexical screening plus preliminary content reviews; human validation and formal clause assessment pending  
 **Scope source:** [Proposed Scope and Repository Inventory](2026-10-17-ISO-704-Scope-and-Repository-Inventory.md)  
@@ -1062,6 +1062,15 @@ See [Semantic Review Batch 071 — AstroCrown Market Data, Pagination and Naviga
 - **Required action:** Define the difference and relation between evidence status, control result and decision/gate status. Either separate the fields or state the exact mapping and apply it consistently. Do not change security outcomes without evidence.
 - **Closure evidence:** Approved definitions and mapping, fully populated examples for known/unknown/blocked/pass cases, and a human-reviewed check that the matrix and associated tests use the labels consistently.
 
+### SWEEP-F-0055 — NOVA replication-state field combines different classification axes
+
+- **Status:** OPEN — preliminary; human validation required.
+- **Affected path:** AstroCrown-Web/development/verification/10-NOVA-REPLICATION-REGISTRY.md, column “NOVA replication state”.
+- **Observed issue:** The column combines replication extent (FULL/PARTIAL), NOT REPLICABLE, qualified states such as FULL / PARTIAL, and “FULL workflow / PARTIAL trust”, which combines operational workflow maturity with trust/independence.
+- **Interpretation:** Replication extent, feasibility boundary, workflow maturity and external independence/trust are distinct properties. Current values are not directly comparable along one classification axis.
+- **Required action:** Define the replication-state concept and permitted values, or separate the table into independent fields for replication extent/feasibility, internal workflow maturity, and external independence/authority boundary. Preserve the existing caution that internal replication does not confer external authority.
+- **Closure evidence:** Human-approved concept definitions and classification rules, examples for each field, reviewed/migrated rows, and consistency checks against approved value sets.
+
 ### SWEEP-F-0056 — Competitor benchmark observations lack item-level provenance
 
 - **Status:** OPEN — preliminary; human validation required.
@@ -1088,15 +1097,6 @@ See [Semantic Review Batch 071 — AstroCrown Market Data, Pagination and Naviga
 - **Interpretation:** “Archive” as a knowledge-management concept and “archive/” as a repository-path classification may overlap but are not automatically synonymous. Without an explicit relation, the path may be excluded from review yet remain an intended operational destination, creating a scope/governance conflict.
 - **Required action:** Have the repository owner define whether this is a permitted immutable snapshot destination, a conceptual layer stored elsewhere, or a different class of active record. Document how any approved path is inventoried, how new snapshots are authorized without rewriting prior ones, and which controls prohibit modification. Do not create, read, or modify anything within excluded archive paths while resolving the question.
 - **Closure evidence:** Human-approved path classification and lifecycle policy; a scope-inventory rule consistent with the immutable boundary; and a reviewed architecture/tree reference. No archive contents need to be accessed to close the terminology/policy ambiguity.
-
-### SWEEP-F-0055 — NOVA replication-state field combines different classification axes
-
-- **Status:** OPEN — preliminary; human validation required.
-- **Affected path:** AstroCrown-Web/development/verification/10-NOVA-REPLICATION-REGISTRY.md, column “NOVA replication state”.
-- **Observed issue:** The column combines replication extent (FULL/PARTIAL), NOT REPLICABLE, qualified states such as FULL / PARTIAL, and “FULL workflow / PARTIAL trust”, which combines operational workflow maturity with trust/independence.
-- **Interpretation:** Replication extent, feasibility boundary, workflow maturity and external independence/trust are distinct properties. Current values are not directly comparable along one classification axis.
-- **Required action:** Define the replication-state concept and permitted values, or separate the table into independent fields for replication extent/feasibility, internal workflow maturity, and external independence/authority boundary. Preserve the existing caution that internal replication does not confer external authority.
-- **Closure evidence:** Human-approved concept definitions and classification rules, examples for each field, reviewed/migrated rows, and consistency checks against approved value sets.
 
 ## Batch 073 — Strong RSI readiness and test-outcome terminology
 
