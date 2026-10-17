@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 41/318; PARTIAL TARGETED SCREEN 1; 276 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 44/318; PARTIAL TARGETED SCREEN 1; 273 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 41,
-    "content_review_pending": 276,
-    "human_validation_pending": 41,
+    "preliminary_content_reviewed": 44,
+    "content_review_pending": 273,
+    "human_validation_pending": 44,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 1
   },
@@ -424,15 +424,17 @@
           "size_bytes": 1023,
           "extension": ".yml",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_012",
+          "terminology_assessment": "PRELIMINARY_REVIEW_MANUAL_BOUNDED_WORKFLOW_SOURCE_ONLY",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B012:B012-03"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_MANUAL_BOUNDED_WORKFLOW_SOURCE_ONLY",
+          "note": "Batch 012: workflow is workflow_dispatch plus narrow push paths, read-only repo permissions, Groq/Gemini secrets only. No live workflow execution or external behavior verified.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": ".github/workflows/nova-provider-qualification.yml",
@@ -2357,15 +2359,20 @@
           "size_bytes": 14376,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_012",
+          "terminology_assessment": "PRELIMINARY_REVIEW_CLOUDFLARE_QUALIFICATION_SCOPE_CONFLICT",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B012:B012-01"
+          ],
+          "findings": [
+            "B012-F01",
+            "B012-F02"
+          ],
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_CLOUDFLARE_QUALIFICATION_SCOPE_CONFLICT",
+          "note": "Batch 012: implementation skips Cloudflare as SKIPPED_ALREADY_QUALIFIED for a linked historical model/JSON contract check, yet KEY-READINESS.md still says BLOCKED_CONTRACT_UNVERIFIED. Reconcile exact capability/scope/freshness, don't conflate prior contract evidence with live health/account eligibility.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/provider_qualification.py",
@@ -4021,15 +4028,17 @@
           "size_bytes": 8036,
           "extension": ".py",
           "provisional_review_queue": "SOURCE_OR_CONFIGURATION_TEXT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_012",
+          "terminology_assessment": "PRELIMINARY_REVIEW_MOCK_TESTS_AND_STATE_LABELS_CLEAR",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B012:B012-02"
+          ],
           "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "reviewer": "AI-assisted preliminary content review; human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_MOCK_TESTS_AND_STATE_LABELS_CLEAR",
+          "note": "Batch 012: offline mock tests clearly separate payment-vs-rate-limit statuses, response shape/marker, secret redaction and production-roster mutation; no live probe performed.",
           "lexical_scan": {
             "repo": "NOVA",
             "path": "NOVA/tests/test_provider_qualification.py",
@@ -14685,5 +14694,5 @@
     }
   ],
   "last_updated": "2026-10-17",
-  "last_update_note": "Batch 011 reviewed GPU heartbeat tests/workflow and manual Weak RSI workflow/tests. Tracker invariant checked: 41 preliminary full reviews + 1 partial targeted screen + 276 NOT_REVIEWED = 318 active rows. Mock/static tests remain distinct from live/account eligibility evidence."
+  "last_update_note": "Batch 012 reviewed provider_qualification.py, its mocked tests, and the bounded qualification workflow. Found a cross-source Cloudflare qualification status conflict with KEY-READINESS.md. Tracker invariant: 44 preliminary full reviews + 1 partial targeted screen + 273 NOT_REVIEWED = 318."
 }
