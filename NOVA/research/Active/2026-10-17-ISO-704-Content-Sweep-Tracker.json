@@ -2,7 +2,7 @@
   "tracker_id": "NOVA-ISO704-CONTENT-SWEEP-001",
   "snapshot_date": "2026-10-17",
   "baseline_scope_source": "2026-10-17-ISO-704-Active-Path-Inventory.json",
-  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 201/318; PARTIAL TARGETED SCREENS 5; 112 NOT REVIEWED; HUMAN VALIDATION PENDING",
+  "status": "OPEN — LEXICAL SCREEN 318/318; PRELIMINARY SEMANTIC REVIEWS 206/318; PARTIAL TARGETED SCREENS 5; 107 NOT REVIEWED; HUMAN VALIDATION PENDING",
   "scope_status": "PROPOSED / NOT HUMAN-APPROVED",
   "instructions": [
     "Every row below records path metadata and a provisional review queue based on filename/extension only. This is NOT content review and no file is considered audited or conformant.",
@@ -17,9 +17,9 @@
     "active_files": 318,
     "files_under_immutable_backup_or_archive_directories_excluded": 843,
     "tree_responses_truncated": false,
-    "preliminary_content_reviewed": 201,
-    "content_review_pending": 112,
-    "human_validation_pending": 201,
+    "preliminary_content_reviewed": 206,
+    "content_review_pending": 107,
+    "human_validation_pending": 206,
     "formal_iso_clause_assessment_completed": 0,
     "partial_targeted_review": 5
   },
@@ -7690,15 +7690,19 @@
           "size_bytes": 4249,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_058",
+          "terminology_assessment": "PRELIMINARY_REVIEW_CROSS_REFERENCE_SWEEP-F-0012",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B058:B058-01"
+          ],
+          "findings": [
+            "SWEEP-F-0012"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_CROSS_REFERENCE_SWEEP-F-0012",
+          "note": "Batch 058: completed egress-boundary audit mirror under Active/, with canonical Completed link; PR #65 merged and associated CI run #38090029867 reports success. Cross-reference F-0012; human scope decision still required; no provider calls or credential use.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Active/2026-10-11-RSI-Provider-Egress-Boundary.md",
@@ -7725,7 +7729,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "79109d2ad13d15451ad933dfdb5fd8af7f688307"
         },
         {
           "path": "development/audit/Active/2026-10-11-RSI-Retention-Baseline-Binding.md",
@@ -7733,15 +7739,19 @@
           "size_bytes": 1719,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_058",
+          "terminology_assessment": "PRELIMINARY_REVIEW_UPDATE_SWEEP-F-0031",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B058:B058-02"
+          ],
+          "findings": [
+            "SWEEP-F-0031"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_UPDATE_SWEEP-F-0031",
+          "note": "Batch 058: Active retention-baseline-binding plan was included in merged PR #70; associated CI run #38091173406 reports successful image verification, compilation, RSI tests and Docker-boundary steps. Candidate navigation-task lifecycle mismatch; human closeout confirmation required.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Active/2026-10-11-RSI-Retention-Baseline-Binding.md",
@@ -7768,7 +7778,9 @@
             },
             "candidate_excerpts": [],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "fe84a74b2ae33202c7e1af7c323576dab2a69c5c"
         },
         {
           "path": "development/audit/Active/2026-10-11-RSI-Sandbox-Cleanup-Verification.md",
@@ -7776,15 +7788,19 @@
           "size_bytes": 3549,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_058",
+          "terminology_assessment": "PRELIMINARY_REVIEW_CROSS_REFERENCE_SWEEP-F-0012",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B058:B058-03"
+          ],
+          "findings": [
+            "SWEEP-F-0012"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_CROSS_REFERENCE_SWEEP-F-0012",
+          "note": "Batch 058: explicitly COMPLETED sandbox cleanup verification mirror under Active/, linked to canonical Completed record; PR #71 and associated CI run #38093812456 report success, and PR #73 file list includes Active and Completed counterparts. Cross-reference F-0012; preserve independent sandbox approval BLOCKED.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Active/2026-10-11-RSI-Sandbox-Cleanup-Verification.md",
@@ -7816,7 +7832,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "969ba74fd4e73e56e58a2725dc17923ce36f8306"
         },
         {
           "path": "development/audit/Active/2026-10-11-RSI-Strict-Schema-Type-Validation.md",
@@ -7824,15 +7842,19 @@
           "size_bytes": 2044,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_058",
+          "terminology_assessment": "PRELIMINARY_REVIEW_UPDATE_SWEEP-F-0031",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B058:B058-04"
+          ],
+          "findings": [
+            "SWEEP-F-0031"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_UPDATE_SWEEP-F-0031",
+          "note": "Batch 058: Active strict-schema-type-validation plan was included in merged PR #74; associated CI run #38094165089 reports successful image verification, compilation, RSI tests and Docker-boundary steps. Candidate navigation-task lifecycle mismatch; human closeout confirmation required.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Active/2026-10-11-RSI-Strict-Schema-Type-Validation.md",
@@ -7864,7 +7886,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "832f54229666a9cf544a4f64b84de6bb23c06703"
         },
         {
           "path": "development/audit/Active/2026-10-11-RSI-Supervisor-IO-Failure-Cleanup.md",
@@ -7872,15 +7896,19 @@
           "size_bytes": 3247,
           "extension": ".md",
           "provisional_review_queue": "TEXT_OR_DOCUMENT",
-          "content_review_status": "NOT_REVIEWED",
-          "terminology_assessment": "NOT_ASSESSED",
-          "applicability": "UNDETERMINED",
-          "evidence_ids": [],
-          "findings": [],
-          "reviewer": null,
-          "review_date": null,
-          "result": "PENDING",
-          "note": "Extension/path hint only; inspect actual content before classification.",
+          "content_review_status": "REVIEWED_PRELIMINARY_BATCH_058",
+          "terminology_assessment": "PRELIMINARY_REVIEW_CROSS_REFERENCE_SWEEP-F-0012",
+          "applicability": "PROVISIONALLY_IN_SCOPE_SCOPE_NOT_HUMAN_APPROVED",
+          "evidence_ids": [
+            "NOVA-ISO704-SEM-B058:B058-05"
+          ],
+          "findings": [
+            "SWEEP-F-0012"
+          ],
+          "reviewer": "AI-assisted preliminary full-file content review; designated human validation required",
+          "review_date": "2026-10-17",
+          "result": "PRELIMINARY_REVIEW_CROSS_REFERENCE_SWEEP-F-0012",
+          "note": "Batch 058: explicitly COMPLETED supervisor I/O failure cleanup mirror under Active/; PR #76 and associated CI run #38094680673 report success, and PR #77 file list includes Active and Completed counterparts. Cross-reference F-0012; no source move/edit pending human decision.",
           "lexical_scan": {
             "repo": "AstroCrown-Web",
             "path": "development/audit/Active/2026-10-11-RSI-Supervisor-IO-Failure-Cleanup.md",
@@ -7912,7 +7940,9 @@
               }
             ],
             "error": null
-          }
+          },
+          "reviewed_source_commit": "5faea74dd1b40ec98acf9d59d9e404fc18122032",
+          "reviewed_blob_sha": "00089275037435f2664339f23d577cb80ea43ea5"
         },
         {
           "path": "development/audit/Active/2026-10-11-RSI-Task-Benchmark-Dispatcher.md",
