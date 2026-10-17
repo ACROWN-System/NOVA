@@ -340,3 +340,15 @@ See [Semantic Review Batch 021 — Policy, Alerts and Tests](2026-10-17-ISO-704-
 - **B021-F05:** GitHub issue creation does not itself prove recipient email delivery; the voice-alert output interpolates text into TwiML without visible escaping and should receive a separate security review. No alert was sent and no exploit was tested.
 
 Tracker after Batch 021: **318 lexical scans; 77 preliminary full-file reviews; one partial targeted screen; 240 not reviewed; human validation pending.** Invariant: 77 + 1 + 240 = 318.
+
+
+## Semantic review update — Batch 022 payment and pricing controls
+
+See [Semantic Review Batch 022 — Payments and Pricing](2026-10-17-ISO-704-Semantic-Review-Batch-022-Payments-and-Pricing.md).
+
+- **B022-F01:** policy allows payment-intent creation autonomously, while implementation locally appends a record in `HUMAN_GATE_REQUIRED` state and labels it `irreversible: true`. Clarify whether this flag refers to the future contemplated transfer or the local draft operation. Keep settlement blocked without an approved, verified adapter.
+- **B022-F02:** pricing conversion accepts a bare exchange-rate number while the docstring calls it verified; quote output records created/expires times but no rate source/observation/expiry or evidence ID. Add source-backed rate evidence and freshness validation in a separate reviewed implementation.
+- **B022-F03:** current payment/quote tests use positive values only. Amounts should be finite/positive and valid for asset precision; rates/prices should reject invalid or stale inputs; “PASS” must describe only the actual local checks, not recipient verification or payment approval.
+- **B022-F04:** empty pricing service map and zero/null economic state are valid initial scaffolding, not proof of approved live service tariffs, real-world zero balances or absence of external transactions. Represent uninitialized/unknown distinctly from verified zero.
+
+Tracker after Batch 022: **318 lexical scans; 84 preliminary full-file reviews; one partial targeted screen; 233 not reviewed; human validation pending.** Invariant: 84 + 1 + 233 = 318.
