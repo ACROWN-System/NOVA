@@ -1,7 +1,7 @@
 # ISO 704:2022 Scope Proposal and Repository Inventory
 
 **Document ID:** NOVA-ISO704-SCOPE-001  
-**Version:** 0.1.70  
+**Version:** 0.1.71  
 **Snapshot date:** 2026-10-17  
 **Status:** PROPOSED SCOPE / INITIAL PATH INVENTORY — human approval and detailed content review pending  
 **Related dossier:** [ISO 704:2022 Audit-Readiness Dossier](2026-10-17-ISO-704-Audit-Readiness-Dossier.md)  
@@ -394,4 +394,8 @@ Tracker states were re-counted directly: 96 preliminary full reviews, 5 partial 
 ## 75. Revision history
 
 - **2026-10-18 / v0.1.70:** Added Batch 072 preliminary full-file review of the AI Orchestration README, Context & Memory Optimization README, RSI Credential Readiness document, repeat-state cycle detector, and RSI Operating Modes at exact recorded baseline blob SHAs. Opened SWEEP-F-0052 because cycle-state history records scheduled/manual main-branch workflow runs without eligibility filtering on conclusion but labels record-index intervals as “RSI passes”; define the measurement unit and align report language/calculation/tests. Preserved positive controls distinguishing orchestration from its UI consumer, external-call/token and local-compute measures, credential presence from provider eligibility, and Weak RSI from suspended/incomplete Strong RSI. The Python file was inspected statically; no code/tests/workflows were executed. Counts: 276 preliminary full reviews + 5 partial targeted screens + 37 not reviewed = 318. Human validation remains pending; formal ISO 704 clause assessment remains zero; scope remains proposed/not human-approved. No AstroCrown-Web source/runtime files, backup/archive paths, workflows, credentials, provider calls, billing or repository settings were changed or used.
+
+## 76. Revision history
+
+- **2026-10-18 / v0.1.71:** Added Batch 073 preliminary full-file review of Strong RSI Status, benchmark dispatcher tests, cycle detector tests, evaluator tests, and Weak RSI report tests at exact recorded AstroCrown-Web baseline blob SHAs. Extended SWEEP-F-0052 to the cycle-detector tests, which explicitly retain failed scheduled/manual runs in the selected history; the semantic requirement is to accurately label/define that workflow-run interval, not assume failed runs must be excluded. Preserved positive controls for Strong RSI SUSPENDED versus INCOMPLETE, explicit provider/readiness gates, dispatcher READY/BLOCKED outcomes, exact candidate evidence, and Weak RSI report-only/HUMAN_REVIEW_REQUIRED behavior. Tests and code were inspected statically; no tests/workflows were executed. Counts: 281 preliminary full reviews + 5 partial targeted screens + 32 not reviewed = 318. Human validation remains pending; formal ISO 704 clause assessment remains zero; scope remains proposed/not human-approved. No AstroCrown-Web source/runtime files, backup/archive paths, tests, workflows, credentials, provider calls, billing or repository settings were changed or used.
 
