@@ -203,3 +203,15 @@ See [Semantic Review Batch 009 — Image and RSI Doctrine](2026-10-17-ISO-704-Se
 - **B009-F05:** the cross-cutting principle locally defines legitimacy resilience, protective intelligence, emergent coordination and shared human–AI sovereignty; decide which concepts need canonical IDs versus domain-local definitions.
 
 Tracker after Batch 009: **318 lexical scans; 34 preliminary full-file reviews; one partial targeted screen; 283 not reviewed; human validation pending.** Row-count integrity control checked: 34 + 1 + 283 = 318.
+
+
+## Semantic review update — Batch 010 provider incidents and credential state
+
+See [Semantic Review Batch 010 — Credential State](2026-10-17-ISO-704-Semantic-Review-Batch-010-Credential-State.md).
+
+- **B010-F01:** the 2026-10-09 Provider Error Evidence report's top-level status still says PR #57 OPEN and live outcomes pending; later records document Mistral's 2026-10-10 deferral and subsequent diagnostic/follow-up state. Add a dated status note after confirming PR dispositions from repository metadata; preserve the original incident evidence and uncertainty.
+- **B010-F02:** provider lifecycle distinctions are strong: configured key, auth, API health, response contract, quality, quota scope, and provider activation are separate states.
+- **B010-F03:** Cloudflare image-generation evidence cannot be reused as proof of Cloudflare LLM/chat qualification, and vice versa. Each adapter/model/endpoint needs its own contract and result.
+- **B010-F04:** dynamic quota/candidate tables need current source/date/account scope before their values are reused operationally.
+
+Tracker after Batch 010: **318 lexical scans; 37 preliminary full-file reviews; one partial targeted screen; 280 not reviewed; human validation pending.** Row-count invariant: 37 + 1 + 280 = 318.
