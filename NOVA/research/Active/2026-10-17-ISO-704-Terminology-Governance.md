@@ -228,3 +228,16 @@ Authoritative public standard metadata:
 
 **IF not recorded or followed:** the scope could keep being described as unapproved, project domains could be conflated, or the team could mistake an information lead for authorization to incur fees or use non-controlled text.
 
+## Execution update — 2026-10-18 — standard access research
+
+- The official ISO product page and BIS library/standards pages were rechecked. ISO lists ISO 704:2022, Edition 4, as published; the page offers sample/preview access and displays CHF 204. The BIS library page lists paid annual reference membership. The public BIS portal does not verify free access to the complete ISO 704 text.
+- No lawful no-cost route to the complete applicable text was confirmed in the inspected public sources. This does not establish that existing institutional access is unavailable.
+- Updated the access investigation, readiness dossier AR-E02 and tracker. AR-E02 remains BLOCKED and the clause/topic-to-evidence matrix remains a template only. The approved $0-only access policy remains in force.
+- No purchase or billable inquiry was made; no source/runtime changes or backup/archive changes were made.
+
+### Impact Analysis — standard access research
+
+**IF recorded:** the project can distinguish public preview access from a controlled full-text baseline and retain a traceable reason for the current BLOCKED status.
+
+**IF not recorded:** the access state could be inferred from partial public material instead of verified evidence.
+
