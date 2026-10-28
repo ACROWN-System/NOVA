@@ -73,8 +73,10 @@ def validate_reasoning_payload(content: Any) -> tuple[bool, str]:
         return False, "EMPTY_RESPONSE"
     try:
         payload = json.loads(content)
-    except json.JSONDecodeError:
+    except (json.JSONDecodeError, RecursionError):
         return False, "INVALID_JSON"
+    if not isinstance(payload, dict):
+        return False, "INVALID_JSON_TYPE"
     required = {
         "significance",
         "affected_areas",
