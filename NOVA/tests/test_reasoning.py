@@ -25,6 +25,36 @@ class ReasoningTests(unittest.TestCase):
         self.assertFalse(ok)
         self.assertEqual(reason, "SCHEMA_FIELDS_MISMATCH")
 
+    def test_boolean_confidence_is_rejected_as_not_numeric_confidence(self):
+        payload = {
+            "significance": "LOW",
+            "affected_areas": [],
+            "evidence": ["No observed change"],
+            "conclusion": "No action indicated by this observation alone.",
+            "recommended_actions": [],
+            "autonomy_level": "L1_ANALYZE",
+            "requires_human_gate": True,
+            "confidence": True,
+        }
+        ok, reason = validate_reasoning_payload(json.dumps(payload))
+        self.assertFalse(ok)
+        self.assertEqual(reason, "INVALID_CONFIDENCE")
+
+    def test_confidence_outside_unit_interval_is_rejected(self):
+        payload = {
+            "significance": "LOW",
+            "affected_areas": [],
+            "evidence": ["No observed change"],
+            "conclusion": "No action indicated by this observation alone.",
+            "recommended_actions": [],
+            "autonomy_level": "L1_ANALYZE",
+            "requires_human_gate": True,
+            "confidence": 1.1,
+        }
+        ok, reason = validate_reasoning_payload(json.dumps(payload))
+        self.assertFalse(ok)
+        self.assertEqual(reason, "INVALID_CONFIDENCE")
+
 
 if __name__ == "__main__":
     unittest.main()
