@@ -44,6 +44,11 @@ DEFAULT_WATCHLIST = {"schema_version": 1, "sources": []}
 
 
 def fetch_text(url: str, max_bytes: int, timeout: int) -> tuple[int | None, str, str | None]:
+    if isinstance(max_bytes, bool) or not isinstance(max_bytes, int) or max_bytes < 1:
+        return None, "", "Invalid max_bytes; must be a positive integer."
+    if isinstance(timeout, bool) or not isinstance(timeout, int) or timeout < 1:
+        return None, "", "Invalid timeout; must be a positive integer."
+
     request = urllib.request.Request(
         url,
         headers={
@@ -55,16 +60,19 @@ def fetch_text(url: str, max_bytes: int, timeout: int) -> tuple[int | None, str,
         with urllib.request.urlopen(request, timeout=timeout) as response:
             payload = response.read(max_bytes + 1)
             if len(payload) > max_bytes:
-                payload = payload[:max_bytes]
+                return (
+                    response.status,
+                    "",
+                    "Response exceeded configured max_bytes; incomplete content was not observed.",
+                )
             return response.status, payload.decode("utf-8", errors="replace"), None
     except urllib.error.HTTPError as exc:
-        try:
-            body = exc.read(max_bytes).decode("utf-8", errors="replace")
-        except Exception:
-            body = ""
-        return exc.code, body, f"HTTP {exc.code}"
+        # Do not return an HTTP error body as source content; it may contain
+        # arbitrary diagnostic text and is not a successful source observation.
+        return exc.code, "", f"HTTP {exc.code}"
     except Exception as exc:
-        return None, "", str(exc)
+        # Transport exception messages may contain URLs or request details.
+        return None, "", f"Fetch failed ({type(exc).__name__}); details redacted."
 
 
 def normalize_content(content: str) -> str:
@@ -81,7 +89,7 @@ def observe_source(source: dict, state: dict, *, timeout: int, max_bytes: int) -
         return {"source": name, "status": "BLOCKED", "reason": "Source has no URL."}
 
     status, raw, error = fetch_text(url, max_bytes, timeout)
-    if error and not raw:
+    if error:
         return {
             "source": name,
             "url": url,
