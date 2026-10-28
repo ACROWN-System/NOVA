@@ -533,18 +533,27 @@ def reusable_analysis(
     if not isinstance(analysis, dict):
         return None
 
+    # Even without an explicit freshness TTL, a cached analysis must have a
+    # parseable, non-future observation timestamp. "Unspecified" means the age
+    # limit is unknown; it must not make invalid timestamps trustworthy.
+    age_seconds = observation_age_seconds(previous.get("observed_at"), now=now)
+    if age_seconds is None:
+        return None
+
     observation_freshness_state = observation_record_freshness(previous, now=now)
     if observation_freshness_state not in {"FRESH", "UNSPECIFIED"}:
         return None
 
     valid_for = previous.get("analysis_valid_for_seconds")
-    observed_at = previous.get("observed_at")
-    if valid_for is not None and observed_at:
+    if valid_for is not None:
+        if isinstance(valid_for, bool):
+            return None
         try:
-            observed_dt = datetime.fromisoformat(observed_at)
-            current_dt = now or datetime.now(timezone.utc)
-            if (current_dt - observed_dt).total_seconds() > int(valid_for):
-                return None
-        except (ValueError, TypeError):
+            valid_for_seconds = float(valid_for)
+        except (TypeError, ValueError, OverflowError):
+            return None
+        if not math.isfinite(valid_for_seconds) or valid_for_seconds < 0:
+            return None
+        if age_seconds > valid_for_seconds:
             return None
     return analysis
