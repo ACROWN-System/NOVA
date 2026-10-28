@@ -137,6 +137,15 @@ class HealthTests(unittest.TestCase):
             state, namespace="external-annotation", source="source", observation={"headline": "B"},
         )
         self.assertEqual(third["analysis_history"][-1]["analysis"], {"decision": "monitor"})
+        self.assertIsNone(third["analysis"])
+        self.assertIsNone(
+            reusable_analysis(
+                state,
+                namespace="external-annotation",
+                source="source",
+                current_observation={"headline": "B"},
+            )
+        )
 
     def test_reordered_observation_list_invalidates_reusable_analysis(self):
         state = _state_defaults()
@@ -157,6 +166,7 @@ class HealthTests(unittest.TestCase):
         )
         self.assertFalse(changed["unchanged_from_previous"])
         self.assertEqual(changed["observation"]["steps"], second["steps"])
+        self.assertIsNone(changed["analysis"])
         self.assertIsNone(
             reusable_analysis(
                 state,
