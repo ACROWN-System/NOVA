@@ -39,6 +39,32 @@ class ObserverTests(unittest.TestCase):
         self.assertEqual(raw, "")
         self.assertIn("max_bytes", detail)
 
+    def test_returning_to_previous_content_creates_new_event_and_supersedes_old_pending_events(self):
+        state = {"observations": {}, "events": {}}
+        source = {"name": "release-notes", "url": "https://example.invalid/annotation"}
+        with patch(
+            "NOVA.operational_observer.fetch_text",
+            side_effect=[(200, "Content A", None), (200, "Content B", None), (200, "Content A", None)],
+        ):
+            results = [
+                observe_source(source, state, timeout=5, max_bytes=1024)
+                for _ in range(3)
+            ]
+
+        self.assertEqual([result["status"] for result in results], ["CHANGED", "CHANGED", "CHANGED"])
+        events = list(state["events"].values())
+        self.assertEqual(len(events), 3)
+        self.assertEqual(events[0]["fingerprint"], events[2]["fingerprint"])
+        self.assertNotEqual(events[0]["event_id"], events[2]["event_id"])
+        self.assertEqual(
+            [event["analysis_status"] for event in events],
+            ["SUPERSEDED", "SUPERSEDED", "PENDING"],
+        )
+        self.assertEqual(
+            [event["action_status"] for event in events],
+            ["SUPERSEDED_BY_NEW_OBSERVATION", "SUPERSEDED_BY_NEW_OBSERVATION", "PENDING_POLICY_DECISION"],
+        )
+
     def test_failed_fetch_preserves_previous_successful_observation(self):
         state = {
             "observations": {
