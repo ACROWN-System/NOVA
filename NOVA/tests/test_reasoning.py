@@ -25,6 +25,13 @@ class ReasoningTests(unittest.TestCase):
         self.assertFalse(ok)
         self.assertEqual(reason, "SCHEMA_FIELDS_MISMATCH")
 
+    def test_non_object_json_payloads_are_rejected_without_exception(self):
+        for content in ("null", "123", "true", '"text"', "[]"):
+            with self.subTest(content=content):
+                ok, reason = validate_reasoning_payload(content)
+                self.assertFalse(ok)
+                self.assertEqual(reason, "INVALID_JSON_TYPE")
+
     def test_high_impact_model_recommendation_requires_a_human_gate(self):
         payload = {
             "significance": "HIGH",
