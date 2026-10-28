@@ -129,19 +129,27 @@ def observe_source(source: dict, state: dict, *, timeout: int, max_bytes: int) -
         fresh_for_seconds=int(fresh_for) if fresh_for is not None else None,
     )
 
+    events = state["events"]
+    has_pending_current_event = any(
+        isinstance(event, dict)
+        and event.get("source") == str(name)
+        and event.get("analysis_status") == "PENDING"
+        and event.get("fingerprint") == memory["fingerprint"]
+        for event in events.values()
+    )
     if memory["unchanged_from_previous"] and previous_analysis is not None:
         analysis_action = "REUSE_PRIOR_ANALYSIS"
     elif (
         memory["unchanged_from_previous"]
         and not isinstance(memory.get("analysis"), dict)
         and not memory.get("analysis_invalidated")
+        and not has_pending_current_event
     ):
         analysis_action = "NO_CHANGE_NO_ANALYSIS"
     else:
-        # A changed source, invalid legacy provenance, or expired/untrusted
-        # analysis needs review even if the source text itself is unchanged.
+        # A changed source, invalid legacy provenance, pending event, or
+        # expired/untrusted analysis needs review even if source text is unchanged.
         analysis_action = "ANALYSIS_REQUIRED"
-        events = state["events"]
 
         # When new content replaces an older observation, an older pending event
         # must not later be analyzed against the latest source content.
