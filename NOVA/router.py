@@ -85,7 +85,7 @@ def get_env(name: str) -> str:
 
 
 def classify_http_error(exc: urllib.error.HTTPError) -> tuple[str, str]:
-    """Classify an HTTP error without destroying the provider's original message."""
+    """Classify an HTTP error in memory while preserving its body for caller analysis."""
     try:
         body = exc.read().decode("utf-8", errors="ignore")
     except Exception:
@@ -96,6 +96,45 @@ def classify_http_error(exc: urllib.error.HTTPError) -> tuple[str, str]:
     ):
         return "permanent", body
     return "transient", body
+
+
+def safe_http_error_detail(body: Any, http_status: int | None) -> str:
+    """Retain a numeric provider code/status only; never persist or log free text."""
+    detail: dict[str, Any] = {}
+    if type(http_status) is int and 100 <= http_status <= 599:
+        detail["http_status"] = http_status
+
+    try:
+        payload = json.loads(body) if isinstance(body, str) else None
+    except (json.JSONDecodeError, RecursionError):
+        payload = None
+
+    sources = [payload] if isinstance(payload, dict) else []
+    nested_error = payload.get("error") if isinstance(payload, dict) else None
+    if isinstance(nested_error, dict):
+        sources.append(nested_error)
+
+    for source in sources:
+        code = source.get("code")
+        if type(code) is int and 0 <= code <= 999999:
+            detail["code"] = str(code)
+            break
+        if isinstance(code, str) and code.isascii() and code.isdecimal() and 1 <= len(code) <= 6:
+            detail["code"] = code
+            break
+
+    if "code" not in detail:
+        detail["body"] = "REDACTED"
+    return json.dumps(detail, sort_keys=True, separators=(",", ":"))
+
+
+def safe_exception_detail(exc: Exception) -> str:
+    """Keep the exception type but not a potentially sensitive exception message."""
+    return json.dumps(
+        {"exception_type": type(exc).__name__, "message": "REDACTED"},
+        sort_keys=True,
+        separators=(",", ":"),
+    )
 
 
 def validate_health_payload(content: Any) -> tuple[bool, str]:
@@ -276,7 +315,7 @@ def call_openai_compatible(provider: dict[str, Any], prompt: str, validator=vali
                 "quality_status": "NOT_APPLICABLE",
                 "latency_ms": latency_ms,
                 "error_class": signal,
-                "error_detail": body[:400],
+                "error_detail": safe_http_error_detail(body, exc.code),
                 "response_headers": diagnostic_http_headers(exc.headers),
                 "capacity": annotate_probe(
                     {
@@ -288,7 +327,7 @@ def call_openai_compatible(provider: dict[str, Any], prompt: str, validator=vali
             })
             print(
                 f"[{provider['name']}] HTTP {exc.code} on model '{model}' "
-                f"({signal}): {body[:200]} "
+                f"({signal}): {safe_http_error_detail(body, exc.code)} "
                 f"diagnostic_headers={diagnostic_http_headers(exc.headers)}"
             )
         except Exception as exc:
@@ -304,9 +343,12 @@ def call_openai_compatible(provider: dict[str, Any], prompt: str, validator=vali
                 "quality_status": "NOT_APPLICABLE",
                 "latency_ms": latency_ms,
                 "error_class": "exception",
-                "error_detail": str(exc)[:400],
+                "error_detail": safe_exception_detail(exc),
             })
-            print(f"[{provider['name']}] Exception on model '{model}': {exc}")
+            print(
+                f"[{provider['name']}] Exception on model '{model}': "
+                f"{safe_exception_detail(exc)}"
+            )
 
     if not probes:
         return None, "transient", []
@@ -431,12 +473,12 @@ def call_gemini(provider: dict[str, Any], prompt: str, validator=validate_health
                 "quality_status": "NOT_APPLICABLE",
                 "latency_ms": latency_ms,
                 "error_class": signal,
-                "error_detail": body[:400],
+                "error_detail": safe_http_error_detail(body, exc.code),
                 "response_headers": diagnostic_http_headers(exc.headers),
             })
             print(
                 f"[{provider['name']}] HTTP {exc.code} on model '{model}' "
-                f"({signal}): {body[:200]} "
+                f"({signal}): {safe_http_error_detail(body, exc.code)} "
                 f"diagnostic_headers={diagnostic_http_headers(exc.headers)}"
             )
         except Exception as exc:
@@ -452,9 +494,12 @@ def call_gemini(provider: dict[str, Any], prompt: str, validator=validate_health
                 "quality_status": "NOT_APPLICABLE",
                 "latency_ms": latency_ms,
                 "error_class": "exception",
-                "error_detail": str(exc)[:400],
+                "error_detail": safe_exception_detail(exc),
             })
-            print(f"[{provider['name']}] Exception on model '{model}': {exc}")
+            print(
+                f"[{provider['name']}] Exception on model '{model}': "
+                f"{safe_exception_detail(exc)}"
+            )
 
     if probes and all(probe.get("error_class") == "contract_gate" for probe in probes):
         return None, "blocked", probes
