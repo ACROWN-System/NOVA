@@ -18,6 +18,11 @@ class HealthTests(unittest.TestCase):
         right = {"value": 1, "observed_at": "2026-10-07T01:00:00Z", "latency_ms": 900}
         self.assertEqual(fingerprint(left), fingerprint(right))
 
+    def test_fingerprint_preserves_order_of_json_lists(self):
+        first = {"steps": [{"name": "authenticate"}, {"name": "authorize"}]}
+        reordered = {"steps": [{"name": "authorize"}, {"name": "authenticate"}]}
+        self.assertNotEqual(fingerprint(first), fingerprint(reordered))
+
     def test_unconfigured_probe_does_not_count_as_failure(self):
         state = _state_defaults()
         observation = record_probe(
@@ -132,6 +137,44 @@ class HealthTests(unittest.TestCase):
             state, namespace="external-annotation", source="source", observation={"headline": "B"},
         )
         self.assertEqual(third["analysis_history"][-1]["analysis"], {"decision": "monitor"})
+        self.assertIsNone(third["analysis"])
+        self.assertIsNone(
+            reusable_analysis(
+                state,
+                namespace="external-annotation",
+                source="source",
+                current_observation={"headline": "B"},
+            )
+        )
+
+    def test_reordered_observation_list_invalidates_reusable_analysis(self):
+        state = _state_defaults()
+        first = {"steps": ["authenticate", "authorize"]}
+        second = {"steps": ["authorize", "authenticate"]}
+        remember_observation(
+            state,
+            namespace="external-annotation",
+            source="ordered-source",
+            observation=first,
+            analysis={"decision": "first order"},
+        )
+        changed = remember_observation(
+            state,
+            namespace="external-annotation",
+            source="ordered-source",
+            observation=second,
+        )
+        self.assertFalse(changed["unchanged_from_previous"])
+        self.assertEqual(changed["observation"]["steps"], second["steps"])
+        self.assertIsNone(changed["analysis"])
+        self.assertIsNone(
+            reusable_analysis(
+                state,
+                namespace="external-annotation",
+                source="ordered-source",
+                current_observation=second,
+            )
+        )
 
     def test_reusable_analysis_requires_same_fingerprint(self):
         state = _state_defaults()
