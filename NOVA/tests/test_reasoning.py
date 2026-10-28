@@ -1,7 +1,12 @@
 import json
 import unittest
+from contextlib import redirect_stdout
+from io import StringIO
+from pathlib import Path
+from unittest.mock import patch
 
 from NOVA.reasoning import (
+    analyze_pending,
     build_alert_body,
     supersede_stale_pending_events,
     validate_reasoning_payload,
@@ -54,6 +59,34 @@ class ReasoningTests(unittest.TestCase):
 
         self.assertEqual(supersede_stale_pending_events(state), 0)
         self.assertEqual(state["events"]["current-event"]["analysis_status"], "PENDING")
+
+    def test_analyze_pending_persists_superseded_event_before_provider_selection(self):
+        state = {
+            "events": {
+                "old-event": {
+                    "source": "release-notes",
+                    "fingerprint": "old-fingerprint",
+                    "observed_at": "2026-10-01T00:00:00+00:00",
+                    "analysis_status": "PENDING",
+                    "action_status": "PENDING_POLICY_DECISION",
+                }
+            },
+            "observations": {
+                "external-annotation:release-notes": {
+                    "fingerprint": "current-fingerprint",
+                    "observed_at": "2026-10-02T00:00:00+00:00",
+                }
+            },
+        }
+        output = StringIO()
+        with patch("NOVA.reasoning.load_health_state", return_value=state), patch(
+            "NOVA.reasoning.load_json", return_value={}
+        ), patch("NOVA.reasoning.atomic_write_json") as write_state, redirect_stdout(output):
+            self.assertEqual(analyze_pending(Path(".")), 0)
+
+        self.assertEqual(state["events"]["old-event"]["analysis_status"], "SUPERSEDED")
+        write_state.assert_called_once()
+        self.assertIn("NO_PENDING_EVENTS", output.getvalue())
 
     def test_valid_reasoning_contract(self):
         payload = {
