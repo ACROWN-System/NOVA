@@ -71,6 +71,16 @@ class HealthTests(unittest.TestCase):
             "UNSPECIFIED",
         )
 
+    def test_nonfinite_and_boolean_freshness_windows_are_invalid(self):
+        now = datetime(2026, 10, 8, 12, 0, tzinfo=timezone.utc)
+        observed = "2026-10-08T11:59:00+00:00"
+        for ttl in (True, False, float("inf"), float("-inf"), float("nan"), "inf", "nan"):
+            with self.subTest(ttl=ttl):
+                self.assertEqual(
+                    observation_freshness(observed, fresh_for_seconds=ttl, now=now),
+                    "INVALID_FRESHNESS_POLICY",
+                )
+
     def test_stale_observation_does_not_reuse_analysis(self):
         state = _state_defaults()
         observed_at = (datetime.now(timezone.utc) - timedelta(hours=2)).isoformat()
