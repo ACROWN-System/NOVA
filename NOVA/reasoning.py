@@ -52,6 +52,8 @@ you did not receive in the input.
 
 Treat confidence as an uncalibrated self-assessment, not a measured probability or proof of correctness. Base it on the supplied evidence, disclose material uncertainty in the conclusion, and do not let confidence substitute for verification or determine permitted actions.
 
+Your autonomy level and human-gate fields are recommendations only, not authorization. The trusted NOVA/action_policy.json determines permitted action classes; never imply that your recommendation expands those permissions.
+
 Return ONLY valid JSON with exactly these fields:
 {
   "significance": "LOW|MEDIUM|HIGH|CRITICAL",
@@ -59,8 +61,8 @@ Return ONLY valid JSON with exactly these fields:
   "evidence": ["..."],
   "conclusion": "...",
   "recommended_actions": ["..."],
-  "autonomy_level": "L0_OBSERVE|L1_ANALYZE|L2_REVERSIBLE_PROTECT|L3_CONTROLLED_CHANGE|L4_HIGH_IMPACT|L5_IRREVERSIBLE",
-  "requires_human_gate": true,
+  "model_recommended_autonomy_level": "L0_OBSERVE|L1_ANALYZE|L2_REVERSIBLE_PROTECT|L3_CONTROLLED_CHANGE|L4_HIGH_IMPACT|L5_IRREVERSIBLE",
+  "model_recommended_requires_human_gate": true,
   "confidence": 0.0
 }
 """
@@ -79,8 +81,8 @@ def validate_reasoning_payload(content: Any) -> tuple[bool, str]:
         "evidence",
         "conclusion",
         "recommended_actions",
-        "autonomy_level",
-        "requires_human_gate",
+        "model_recommended_autonomy_level",
+        "model_recommended_requires_human_gate",
         "confidence",
     }
     if set(payload) != required:
@@ -91,7 +93,7 @@ def validate_reasoning_payload(content: Any) -> tuple[bool, str]:
         return False, "INVALID_EVIDENCE_FIELDS"
     if not isinstance(payload["recommended_actions"], list) or not isinstance(payload["conclusion"], str):
         return False, "INVALID_CONCLUSION_FIELDS"
-    if payload["autonomy_level"] not in {
+    if payload["model_recommended_autonomy_level"] not in {
         "L0_OBSERVE",
         "L1_ANALYZE",
         "L2_REVERSIBLE_PROTECT",
@@ -100,11 +102,28 @@ def validate_reasoning_payload(content: Any) -> tuple[bool, str]:
         "L5_IRREVERSIBLE",
     }:
         return False, "INVALID_AUTONOMY_LEVEL"
-    if not isinstance(payload["requires_human_gate"], bool):
+    if not isinstance(payload["model_recommended_requires_human_gate"], bool):
         return False, "INVALID_GATE"
     if isinstance(payload["confidence"], bool) or not isinstance(payload["confidence"], (int, float)) or not 0 <= payload["confidence"] <= 1:
         return False, "INVALID_CONFIDENCE"
     return True, "PASS"
+
+
+def build_alert_body(
+    analysis: dict[str, Any],
+    permitted_action_classes: list[str],
+) -> str:
+    """Separate advisory model output from permissions derived by trusted policy."""
+    return json.dumps(
+        {
+            "model_analysis": analysis,
+            "model_analysis_authority": "ADVISORY_ONLY",
+            "permitted_action_classes": permitted_action_classes,
+            "permitted_action_classes_source": "NOVA/action_policy.json",
+        },
+        indent=2,
+        sort_keys=True,
+    )
 
 
 def _watch_source_config(watchlist: dict[str, Any], source_name: str) -> dict[str, Any]:
@@ -220,21 +239,23 @@ def analyze_pending(root: Path) -> int:
         significance = analysis["significance"]
         event["analysis_status"] = "ANALYZED"
         event["significance"] = significance
-        event["autonomy_level"] = analysis["autonomy_level"]
-        event["requires_human_gate"] = analysis["requires_human_gate"]
+        event["model_recommended_autonomy_level"] = analysis["model_recommended_autonomy_level"]
+        event["model_recommended_requires_human_gate"] = analysis["model_recommended_requires_human_gate"]
         event["confidence"] = analysis["confidence"]
+        event["confidence_semantics"] = "UNCALIBRATED_SELF_ASSESSMENT"
 
         safe_actions = action_policy.get("external_event_actions", {}).get(
             significance,
             ["analyze", "human_gate"],
         )
         event["permitted_action_classes"] = safe_actions
+        event["permitted_action_classes_source"] = "NOVA/action_policy.json"
 
         if significance in {"MEDIUM", "HIGH", "CRITICAL"}:
             severity = "urgent" if significance == "CRITICAL" else "notice"
             alerts.send_all_alerts(
                 title=f"NOVA operational annotation: {source} — {significance}",
-                body=json.dumps(analysis, indent=2, sort_keys=True),
+                body=build_alert_body(analysis, safe_actions),
                 severity=severity,
             )
         processed += 1
