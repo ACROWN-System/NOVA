@@ -82,6 +82,7 @@ class ObserverTests(unittest.TestCase):
         with patch("NOVA.operational_observer.fetch_text", return_value=(200, "Content A", None)):
             second = observe_source(source, state, timeout=5, max_bytes=1024)
 
+        memory = state["observations"]["external-annotation:release-notes"]
         self.assertEqual(first["analysis_action"], "ANALYSIS_REQUIRED")
         self.assertEqual(second["status"], "UNCHANGED")
         self.assertEqual(second["analysis_action"], "ANALYSIS_REQUIRED")
@@ -90,6 +91,29 @@ class ObserverTests(unittest.TestCase):
         self.assertEqual(memory["analysis_history"][-1]["provenance_status"], "UNVERIFIED_ANALYSIS_FINGERPRINT")
         self.assertEqual(len(state["events"]), 1)
         self.assertEqual(next(iter(state["events"].values()))["analysis_status"], "PENDING")
+
+    def test_cached_analysis_without_analysis_timestamp_is_requeued(self):
+        state = {"observations": {}, "events": {}}
+        source = {
+            "name": "release-notes",
+            "url": "https://example.invalid/annotation",
+            "analysis_valid_for_seconds": 3600,
+        }
+        with patch("NOVA.operational_observer.fetch_text", return_value=(200, "Content A", None)):
+            observe_source(source, state, timeout=5, max_bytes=1024)
+        memory = state["observations"]["external-annotation:release-notes"]
+        memory["analysis"] = {"decision": "untimed cached result"}
+        memory["analysis_fingerprint"] = memory["fingerprint"]
+        memory.pop("analysis_observed_at", None)
+
+        with patch("NOVA.operational_observer.fetch_text", return_value=(200, "Content A", None)):
+            result = observe_source(source, state, timeout=5, max_bytes=1024)
+
+        memory = state["observations"]["external-annotation:release-notes"]
+        self.assertEqual(result["analysis_action"], "ANALYSIS_REQUIRED")
+        self.assertIsNone(memory["analysis"])
+        self.assertTrue(memory["analysis_invalidated"])
+        self.assertEqual(memory["analysis_history"][-1]["provenance_status"], "UNVERIFIED_ANALYSIS_TIMESTAMP")
 
     def test_failed_fetch_preserves_previous_successful_observation(self):
         state = {
