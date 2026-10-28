@@ -1,8 +1,9 @@
 import json
 import os
 import unittest
+from contextlib import redirect_stdout
 from email.message import Message
-from io import BytesIO
+from io import BytesIO, StringIO
 import urllib.error
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -165,6 +166,29 @@ class RouterRotationTests(unittest.TestCase):
         self.assertNotIn("DO_NOT_LOG", repr(diagnostic))
         self.assertNotIn("DO_NOT_PERSIST", repr(diagnostic))
 
+    def test_transport_exception_message_is_redacted_from_probe_and_logs(self):
+        provider = {
+            "name": "groq",
+            "api_key_env": "TEST_GROQ_KEY",
+            "base_url": "https://api.groq.com/openai/v1/chat/completions",
+            "models": ["test-model"],
+        }
+        output = StringIO()
+        with patch.dict(os.environ, {"TEST_GROQ_KEY": "test-key"}):
+            with patch(
+                "NOVA.router.urllib.request.urlopen",
+                side_effect=urllib.error.URLError("echoed secret test-key DO_NOT_LOG"),
+            ):
+                with redirect_stdout(output):
+                    _, _, probes = call_openai_compatible(provider, "test prompt")
+
+        self.assertEqual(probes[0]["error_class"], "exception")
+        self.assertIn("URLError", probes[0]["error_detail"])
+        self.assertNotIn("test-key", repr(probes))
+        self.assertNotIn("DO_NOT_LOG", repr(probes))
+        self.assertNotIn("test-key", output.getvalue())
+        self.assertNotIn("DO_NOT_LOG", output.getvalue())
+
     def test_mistral_429_probe_records_rate_limit_headers_without_secrets(self):
         headers = Message()
         headers["Retry-After"] = "12"
@@ -178,7 +202,10 @@ class RouterRotationTests(unittest.TestCase):
             429,
             "Too Many Requests",
             headers,
-            BytesIO(b'{"message":"rate limit exceeded","type":"rate_limited","code":"1300"}'),
+            BytesIO(
+                b'{"message":"echoed secret test-key Bearer DO_NOT_LOG",'
+                b'"type":"rate_limited","code":"1300","token":"DO_NOT_LOG"}'
+            ),
         )
         mistral = {
             "name": "mistral",
@@ -187,9 +214,11 @@ class RouterRotationTests(unittest.TestCase):
             "models": ["mistral-small-latest"],
         }
 
+        output = StringIO()
         with patch.dict(os.environ, {"TEST_MISTRAL_KEY": "test-key"}):
             with patch("NOVA.router.urllib.request.urlopen", side_effect=error):
-                _, _, probes = call_openai_compatible(mistral, "test prompt")
+                with redirect_stdout(output):
+                    _, _, probes = call_openai_compatible(mistral, "test prompt")
 
         probe = probes[0]
         self.assertEqual(probe["api_status"], 429)
@@ -203,6 +232,9 @@ class RouterRotationTests(unittest.TestCase):
         )
         self.assertNotIn("authorization", probe["response_headers"])
         self.assertNotIn("test-key", repr(probe))
+        self.assertNotIn("DO_NOT_LOG", repr(probe))
+        self.assertNotIn("test-key", output.getvalue())
+        self.assertNotIn("DO_NOT_LOG", output.getvalue())
         self.assertEqual(
             probe["capacity"]["metrics"]["requests_per_minute"]["remaining"], 0
         )
