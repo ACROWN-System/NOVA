@@ -50,6 +50,8 @@ conclusion, and what safe next action is appropriate.
 Do not execute changes. Do not invent evidence. Do not claim access to systems
 you did not receive in the input.
 
+Treat confidence as an uncalibrated self-assessment, not a measured probability or proof of correctness. Base it on the supplied evidence, disclose material uncertainty in the conclusion, and do not let confidence substitute for verification or determine permitted actions.
+
 Return ONLY valid JSON with exactly these fields:
 {
   "significance": "LOW|MEDIUM|HIGH|CRITICAL",
@@ -100,7 +102,7 @@ def validate_reasoning_payload(content: Any) -> tuple[bool, str]:
         return False, "INVALID_AUTONOMY_LEVEL"
     if not isinstance(payload["requires_human_gate"], bool):
         return False, "INVALID_GATE"
-    if not isinstance(payload["confidence"], (int, float)) or not 0 <= payload["confidence"] <= 1:
+    if isinstance(payload["confidence"], bool) or not isinstance(payload["confidence"], (int, float)) or not 0 <= payload["confidence"] <= 1:
         return False, "INVALID_CONFIDENCE"
     return True, "PASS"
 
