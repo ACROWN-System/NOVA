@@ -154,18 +154,62 @@ def _watch_source_config(watchlist: dict[str, Any], source_name: str) -> dict[st
     return {}
 
 
+def supersede_stale_pending_events(state: dict[str, Any]) -> int:
+    """Mark pending events superseded when their source fingerprint is no longer current."""
+    events = state.get("events")
+    observations = state.get("observations")
+    if not isinstance(events, dict) or not isinstance(observations, dict):
+        return 0
+
+    superseded = 0
+    for event in events.values():
+        if not isinstance(event, dict) or event.get("analysis_status") != "PENDING":
+            continue
+        source = event.get("source")
+        memory = (
+            observations.get(f"external-annotation:{source}")
+            if isinstance(source, str) and source
+            else None
+        )
+        current_fingerprint = memory.get("fingerprint") if isinstance(memory, dict) else None
+        event_fingerprint = event.get("fingerprint")
+        if (
+            isinstance(event_fingerprint, str)
+            and event_fingerprint
+            and event_fingerprint == current_fingerprint
+        ):
+            continue
+
+        event["analysis_status"] = "SUPERSEDED"
+        event["action_status"] = "SUPERSEDED_BY_NEW_OBSERVATION"
+        event["block_reason"] = (
+            "Pending event fingerprint no longer matches the current successful source observation."
+        )
+        if isinstance(current_fingerprint, str) and current_fingerprint:
+            event["superseded_by_fingerprint"] = current_fingerprint
+        superseded += 1
+    return superseded
+
+
 def analyze_pending(root: Path) -> int:
     del root
     state = load_health_state(HEALTH_STATE_PATH)
+    superseded = supersede_stale_pending_events(state)
+    if superseded:
+        # Persist stale-event closure even if no provider is configured or no
+        # current event remains to analyze.
+        atomic_write_json(HEALTH_STATE_PATH, state)
+
     roster = load_json(ROOT / "roster.json", {"providers": []})
     policy = load_json(HEALTH_POLICY_PATH, {})
     watchlist = load_json(WATCHLIST_PATH, {"sources": []})
     action_policy = load_json(ACTION_POLICY_PATH, {})
 
+    events = state.get("events", {})
     pending = [
-        event for event in state.get("events", {}).values()
-        if event.get("analysis_status") == "PENDING"
-    ]
+        event for event in events.values()
+        if isinstance(event, dict) and event.get("analysis_status") == "PENDING"
+    ] if isinstance(events, dict) else []
     if not pending:
         print(json.dumps({"status": "NO_PENDING_EVENTS"}))
         return 0
@@ -287,8 +331,8 @@ def analyze_pending(root: Path) -> int:
         "processed": processed,
         "pending_remaining": sum(
             1 for event in state.get("events", {}).values()
-            if event.get("analysis_status") == "PENDING"
-        ),
+            if isinstance(event, dict) and event.get("analysis_status") == "PENDING"
+        ) if isinstance(state.get("events"), dict) else 0,
     }, indent=2, sort_keys=True))
     return 0
 
