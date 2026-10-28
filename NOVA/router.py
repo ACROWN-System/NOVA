@@ -22,6 +22,8 @@ try:
     from . import alerts  # package execution
     from .health import (
         atomic_write_json,
+        diagnostic_http_headers,
+        HTTP_DIAGNOSTIC_HEADER_NAMES,
         load_health_state,
         load_json,
         provider_health_status,
@@ -34,6 +36,8 @@ except ImportError:  # direct script execution
     import alerts
     from health import (
         atomic_write_json,
+        diagnostic_http_headers,
+        HTTP_DIAGNOSTIC_HEADER_NAMES,
         load_health_state,
         load_json,
         provider_health_status,
@@ -92,59 +96,6 @@ def classify_http_error(exc: urllib.error.HTTPError) -> tuple[str, str]:
     ):
         return "permanent", body
     return "transient", body
-
-
-# Allowlisted response headers only: never persist arbitrary headers that might
-# contain credentials or unrelated provider/account metadata.
-HTTP_DIAGNOSTIC_HEADER_NAMES = (
-    "retry-after",
-    "ratelimit-limit",
-    "ratelimit-remaining",
-    "ratelimit-reset",
-    "x-ratelimit-limit",
-    "x-ratelimit-remaining",
-    "x-ratelimit-reset",
-    "x-ratelimit-limit-requests",
-    "x-ratelimit-remaining-requests",
-    "x-ratelimit-reset-requests",
-    "x-ratelimit-limit-tokens",
-    "x-ratelimit-remaining-tokens",
-    "x-ratelimit-reset-tokens",
-    # Mistral-specific rate-limit headers documented in real responses.
-    "x-ratelimit-limit-req-minute",
-    "x-ratelimit-remaining-req-minute",
-    "x-ratelimit-reset-req-minute",
-    "x-ratelimit-limit-req-10-second",
-    "x-ratelimit-remaining-req-10-second",
-    "x-ratelimit-reset-req-10-second",
-    "x-ratelimit-limit-tokens-minute",
-    "x-ratelimit-remaining-tokens-minute",
-    "x-ratelimit-reset-tokens-minute",
-    "x-ratelimit-limit-tokens-month",
-    "x-ratelimit-remaining-tokens-month",
-    "x-ratelimit-reset-tokens-month",
-    "x-ratelimit-tokens-query-cost",
-    "mistral-correlation-id",
-    "x-kong-request-id",
-    "x-request-id",
-    "request-id",
-)
-
-
-def diagnostic_http_headers(headers: Any) -> dict[str, str]:
-    """Return a small allowlisted set of response headers useful for diagnosis."""
-    if headers is None:
-        return {}
-    try:
-        items = headers.items()
-    except AttributeError:
-        return {}
-    normalized = {str(name).lower(): str(value) for name, value in items}
-    return {
-        name: normalized[name]
-        for name in HTTP_DIAGNOSTIC_HEADER_NAMES
-        if name in normalized
-    }
 
 
 def validate_health_payload(content: Any) -> tuple[bool, str]:

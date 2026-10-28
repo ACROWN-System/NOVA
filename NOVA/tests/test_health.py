@@ -1,3 +1,4 @@
+import json
 import unittest
 from datetime import datetime, timedelta, timezone
 
@@ -196,6 +197,38 @@ class HealthTests(unittest.TestCase):
         )
 
 
+
+    def test_health_persistence_drops_non_allowlisted_response_headers(self):
+        state = _state_defaults()
+        record_probe(
+            state,
+            namespace="ai-heart",
+            provider="test",
+            credential_env="TEST_API_KEY",
+            requested_model="model-a",
+            actual_model="model-a",
+            api_status=200,
+            authentication="PASS",
+            response_valid=True,
+            quality_status="PASS",
+            latency_ms=100,
+            error_class=None,
+            error_detail=None,
+            response_headers={
+                "Authorization": "Bearer secret-value",
+                "Set-Cookie": "session=secret-value",
+                "X-RateLimit-Remaining-Req-Minute": "0",
+                "Content-Type": "application/json",
+            },
+        )
+        observation = state["targets"]["ai-heart:test:model-a"]["last_observation"]
+        self.assertEqual(
+            observation["response_headers"],
+            {"x-ratelimit-remaining-req-minute": "0"},
+        )
+        self.assertNotIn("Authorization", json.dumps(state))
+        self.assertNotIn("Set-Cookie", json.dumps(state))
+        self.assertNotIn("secret-value", json.dumps(state))
 
     def test_allowlisted_response_headers_are_persisted_in_health_history(self):
         state = _state_defaults()

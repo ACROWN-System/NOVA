@@ -20,6 +20,58 @@ from pathlib import Path
 from typing import Any
 
 
+# Allowlisted response headers only: never persist arbitrary headers that might
+# contain credentials or unrelated provider/account metadata.
+HTTP_DIAGNOSTIC_HEADER_NAMES = (
+    "retry-after",
+    "ratelimit-limit",
+    "ratelimit-remaining",
+    "ratelimit-reset",
+    "x-ratelimit-limit",
+    "x-ratelimit-remaining",
+    "x-ratelimit-reset",
+    "x-ratelimit-limit-requests",
+    "x-ratelimit-remaining-requests",
+    "x-ratelimit-reset-requests",
+    "x-ratelimit-limit-tokens",
+    "x-ratelimit-remaining-tokens",
+    "x-ratelimit-reset-tokens",
+    # Mistral-specific rate-limit headers documented in real responses.
+    "x-ratelimit-limit-req-minute",
+    "x-ratelimit-remaining-req-minute",
+    "x-ratelimit-reset-req-minute",
+    "x-ratelimit-limit-req-10-second",
+    "x-ratelimit-remaining-req-10-second",
+    "x-ratelimit-reset-req-10-second",
+    "x-ratelimit-limit-tokens-minute",
+    "x-ratelimit-remaining-tokens-minute",
+    "x-ratelimit-reset-tokens-minute",
+    "x-ratelimit-limit-tokens-month",
+    "x-ratelimit-remaining-tokens-month",
+    "x-ratelimit-reset-tokens-month",
+    "x-ratelimit-tokens-query-cost",
+    "mistral-correlation-id",
+    "x-kong-request-id",
+    "x-request-id",
+    "request-id",
+)
+
+
+def diagnostic_http_headers(headers: Any) -> dict[str, str]:
+    """Return a small allowlisted set of response headers useful for diagnosis."""
+    if headers is None:
+        return {}
+    try:
+        items = headers.items()
+    except AttributeError:
+        return {}
+    normalized = {str(name).lower(): str(value) for name, value in items}
+    return {
+        name: normalized[name]
+        for name in HTTP_DIAGNOSTIC_HEADER_NAMES
+        if name in normalized
+    }
+
 def utc_now() -> str:
     return datetime.now(timezone.utc).isoformat()
 
@@ -345,9 +397,11 @@ def record_probe(
     }
     if isinstance(capacity, dict):
         observation["capacity"] = capacity
-    if isinstance(response_headers, dict) and response_headers:
-        # Only the router's allowlisted response headers are accepted here.
-        observation["response_headers"] = response_headers
+    safe_response_headers = diagnostic_http_headers(response_headers)
+    if safe_response_headers:
+        # Enforce the allowlist at the persistence boundary, even if a caller
+        # bypasses router.diagnostic_http_headers().
+        observation["response_headers"] = safe_response_headers
 
     target["last_observation"] = observation
     target["history"].append(observation)
