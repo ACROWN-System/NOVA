@@ -24,6 +24,11 @@ class HealthTests(unittest.TestCase):
         reordered = {"steps": [{"name": "authorize"}, {"name": "authenticate"}]}
         self.assertNotEqual(fingerprint(first), fingerprint(reordered))
 
+    def test_fingerprint_preserves_numeric_precision_in_observations(self):
+        first = {"measurement": 1.0000000001}
+        slightly_different = {"measurement": 1.0000000002}
+        self.assertNotEqual(fingerprint(first), fingerprint(slightly_different))
+
     def test_unconfigured_probe_does_not_count_as_failure(self):
         state = _state_defaults()
         observation = record_probe(

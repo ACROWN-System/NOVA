@@ -99,8 +99,12 @@ def canonicalize(value: Any) -> Any:
         # Preserve it by default; callers with set-like fields must normalize
         # those fields explicitly using their known schema before fingerprinting.
         return [canonicalize(item) for item in value]
+    # Do not round observed numeric values globally: precision can be
+    # meaningful for scientific, economic, and measurement evidence. JSON
+    # serialization below already gives deterministic representations for
+    # equal Python float values.
     if isinstance(value, float):
-        return round(value, 9)
+        return value
     return value
 
 
