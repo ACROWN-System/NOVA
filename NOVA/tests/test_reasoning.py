@@ -25,6 +25,21 @@ class ReasoningTests(unittest.TestCase):
         self.assertFalse(ok)
         self.assertEqual(reason, "SCHEMA_FIELDS_MISMATCH")
 
+    def test_high_impact_model_recommendation_requires_a_human_gate(self):
+        payload = {
+            "significance": "HIGH",
+            "affected_areas": [],
+            "evidence": ["Observed state only"],
+            "conclusion": "A human should review this recommendation.",
+            "recommended_actions": ["Review"],
+            "model_recommended_autonomy_level": "L5_IRREVERSIBLE",
+            "model_recommended_requires_human_gate": False,
+            "confidence": 0.99,
+        }
+        ok, reason = validate_reasoning_payload(json.dumps(payload))
+        self.assertFalse(ok)
+        self.assertEqual(reason, "HIGH_IMPACT_REQUIRES_HUMAN_GATE")
+
     def test_alert_labels_model_analysis_as_advisory_and_shows_policy_permissions(self):
         analysis = {
             "model_recommended_autonomy_level": "L5_IRREVERSIBLE",
@@ -33,6 +48,7 @@ class ReasoningTests(unittest.TestCase):
         }
         body = json.loads(build_alert_body(analysis, ["analyze", "human_gate_for_irreversible_action"]))
         self.assertEqual(body["model_analysis_authority"], "ADVISORY_ONLY")
+        self.assertEqual(body["confidence_semantics"], "UNCALIBRATED_SELF_ASSESSMENT")
         self.assertEqual(body["model_analysis"], analysis)
         self.assertEqual(
             body["permitted_action_classes"],
