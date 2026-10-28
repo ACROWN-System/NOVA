@@ -42,11 +42,10 @@ def canonicalize(value: Any) -> Any:
             if str(key).lower() not in volatile
         }
     if isinstance(value, list):
-        normalized = [canonicalize(item) for item in value]
-        try:
-            return sorted(normalized, key=lambda item: json.dumps(item, sort_keys=True))
-        except TypeError:
-            return normalized
+        # List order may carry meaning (priority, sequence, chronology).
+        # Preserve it by default; callers with set-like fields must normalize
+        # those fields explicitly using their known schema before fingerprinting.
+        return [canonicalize(item) for item in value]
     if isinstance(value, float):
         return round(value, 9)
     return value
