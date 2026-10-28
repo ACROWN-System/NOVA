@@ -131,9 +131,15 @@ def observe_source(source: dict, state: dict, *, timeout: int, max_bytes: int) -
 
     if memory["unchanged_from_previous"] and previous_analysis is not None:
         analysis_action = "REUSE_PRIOR_ANALYSIS"
-    elif memory["unchanged_from_previous"]:
+    elif (
+        memory["unchanged_from_previous"]
+        and not isinstance(memory.get("analysis"), dict)
+        and not memory.get("analysis_invalidated")
+    ):
         analysis_action = "NO_CHANGE_NO_ANALYSIS"
     else:
+        # A changed source, invalid legacy provenance, or expired/untrusted
+        # analysis needs review even if the source text itself is unchanged.
         analysis_action = "ANALYSIS_REQUIRED"
         events = state["events"]
 
@@ -153,25 +159,33 @@ def observe_source(source: dict, state: dict, *, timeout: int, max_bytes: int) -
                 )
                 previous_event["superseded_by_fingerprint"] = memory["fingerprint"]
 
-        event_id_base = (
-            f"{name}|{memory['fingerprint']}|{memory['observed_at']}"
+        already_pending = any(
+            isinstance(event, dict)
+            and event.get("source") == str(name)
+            and event.get("analysis_status") == "PENDING"
+            and event.get("fingerprint") == memory["fingerprint"]
+            for event in events.values()
         )
-        event_id = event_id_base
-        suffix = 2
-        while event_id in events:
-            event_id = f"{event_id_base}|{suffix}"
-            suffix += 1
+        if not already_pending:
+            event_id_base = (
+                f"{name}|{memory['fingerprint']}|{memory['observed_at']}"
+            )
+            event_id = event_id_base
+            suffix = 2
+            while event_id in events:
+                event_id = f"{event_id_base}|{suffix}"
+                suffix += 1
 
-        events[event_id] = {
-            "event_id": event_id,
-            "event_type": "external-annotation-change",
-            "source": str(name),
-            "observed_at": memory["observed_at"],
-            "fingerprint": memory["fingerprint"],
-            "analysis_status": "PENDING",
-            "action_status": "PENDING_POLICY_DECISION",
-            "risk_level": source.get("risk_level", "UNKNOWN"),
-        }
+            events[event_id] = {
+                "event_id": event_id,
+                "event_type": "external-annotation-change",
+                "source": str(name),
+                "observed_at": memory["observed_at"],
+                "fingerprint": memory["fingerprint"],
+                "analysis_status": "PENDING",
+                "action_status": "PENDING_POLICY_DECISION",
+                "risk_level": source.get("risk_level", "UNKNOWN"),
+            }
 
     return {
         "source": name,
