@@ -462,7 +462,7 @@ def remember_observation(
     fresh_for_seconds: int | None = None,
     max_analysis_history: int = 12,
 ) -> dict[str, Any]:
-    """Remember a non-heart observation and retain prior analyses when it changes."""
+    """Remember an observation and keep any attached analysis bound to its source fingerprint."""
     canonical = canonicalize(observation)
     fp = fingerprint(canonical)
     key = f"{namespace}:{source}"
@@ -472,22 +472,56 @@ def remember_observation(
     history = list(previous.get("analysis_history", [])) if previous else []
 
     previous_analysis = previous.get("analysis") if previous else None
+    previous_analysis_fingerprint = previous.get("analysis_fingerprint") if previous else None
+    previous_analysis_observed_at = previous.get("analysis_observed_at") if previous else None
+    analysis_invalidated = False
+
     if previous and not unchanged and isinstance(previous_analysis, dict):
+        previous_fingerprint = previous.get("fingerprint")
         history.append({
-            "fingerprint": previous.get("fingerprint"),
+            "fingerprint": previous_fingerprint,
             "observed_at": previous.get("observed_at"),
             "analysis": previous_analysis,
+            "analysis_fingerprint": previous_analysis_fingerprint,
+            "analysis_observed_at": previous_analysis_observed_at,
+            "provenance_status": (
+                "FINGERPRINT_MATCHED"
+                if previous_analysis_fingerprint == previous_fingerprint
+                else "UNVERIFIED_ANALYSIS_FINGERPRINT"
+            ),
         })
         history = history[-max_analysis_history:]
 
     if analysis is not None:
         active_analysis = analysis
-    elif unchanged:
-        active_analysis = previous_analysis
+        active_analysis_fingerprint = fp
+        active_analysis_observed_at = utc_now()
+    elif unchanged and isinstance(previous_analysis, dict):
+        if previous_analysis_fingerprint == fp:
+            active_analysis = previous_analysis
+            active_analysis_fingerprint = previous_analysis_fingerprint
+            active_analysis_observed_at = previous_analysis_observed_at
+        else:
+            # Preserve the legacy claim in history but do not attach it to a
+            # current observation whose analysis provenance cannot be verified.
+            history.append({
+                "fingerprint": previous.get("fingerprint"),
+                "observed_at": previous.get("observed_at"),
+                "analysis": previous_analysis,
+                "analysis_fingerprint": previous_analysis_fingerprint,
+                "analysis_observed_at": previous_analysis_observed_at,
+                "provenance_status": "UNVERIFIED_ANALYSIS_FINGERPRINT",
+            })
+            history = history[-max_analysis_history:]
+            active_analysis = None
+            active_analysis_fingerprint = None
+            active_analysis_observed_at = None
+            analysis_invalidated = True
     else:
-        # Retain the prior analysis in history, but never attach it to changed
-        # content as though it were analysis of the new observation.
+        # Never carry an analysis across a content change.
         active_analysis = None
+        active_analysis_fingerprint = None
+        active_analysis_observed_at = None
 
     record = {
         "namespace": namespace,
@@ -497,8 +531,12 @@ def remember_observation(
         "unchanged_from_previous": unchanged,
         "observation": canonical,
         "analysis": active_analysis,
+        "analysis_fingerprint": active_analysis_fingerprint,
+        "analysis_observed_at": active_analysis_observed_at,
         "analysis_history": history,
     }
+    if analysis_invalidated:
+        record["analysis_invalidated"] = True
 
     if fresh_for_seconds is not None:
         record["observation_fresh_for_seconds"] = int(fresh_for_seconds)
@@ -532,6 +570,22 @@ def reusable_analysis(
     analysis = previous.get("analysis")
     if not isinstance(analysis, dict):
         return None
+    analysis_fingerprint = previous.get("analysis_fingerprint")
+    if (
+        not isinstance(analysis_fingerprint, str)
+        or not analysis_fingerprint
+        or analysis_fingerprint != previous.get("fingerprint")
+    ):
+        return None
+
+    # An analysis timestamp is separate from the last-seen timestamp. Repeated
+    # observations must not reset the analysis validity window.
+    analysis_age_seconds = observation_age_seconds(
+        previous.get("analysis_observed_at"),
+        now=now,
+    )
+    if analysis_age_seconds is None:
+        return None
 
     # Even without an explicit freshness TTL, a cached analysis must have a
     # parseable, non-future observation timestamp. "Unspecified" means the age
@@ -554,6 +608,6 @@ def reusable_analysis(
             return None
         if not math.isfinite(valid_for_seconds) or valid_for_seconds < 0:
             return None
-        if age_seconds > valid_for_seconds:
+        if analysis_age_seconds > valid_for_seconds:
             return None
     return analysis
