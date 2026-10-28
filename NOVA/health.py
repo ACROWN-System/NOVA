@@ -423,6 +423,15 @@ def remember_observation(
         })
         history = history[-max_analysis_history:]
 
+    if analysis is not None:
+        active_analysis = analysis
+    elif unchanged:
+        active_analysis = previous_analysis
+    else:
+        # Retain the prior analysis in history, but never attach it to changed
+        # content as though it were analysis of the new observation.
+        active_analysis = None
+
     record = {
         "namespace": namespace,
         "source": source,
@@ -430,7 +439,7 @@ def remember_observation(
         "observed_at": utc_now(),
         "unchanged_from_previous": unchanged,
         "observation": canonical,
-        "analysis": analysis if analysis is not None else (previous.get("analysis") if previous else None),
+        "analysis": active_analysis,
         "analysis_history": history,
     }
 
