@@ -485,9 +485,13 @@ def remember_observation(
             "analysis_fingerprint": previous_analysis_fingerprint,
             "analysis_observed_at": previous_analysis_observed_at,
             "provenance_status": (
-                "FINGERPRINT_MATCHED"
-                if previous_analysis_fingerprint == previous_fingerprint
-                else "UNVERIFIED_ANALYSIS_FINGERPRINT"
+                "UNVERIFIED_ANALYSIS_FINGERPRINT"
+                if previous_analysis_fingerprint != previous_fingerprint
+                else (
+                    "UNVERIFIED_ANALYSIS_TIMESTAMP"
+                    if observation_age_seconds(previous_analysis_observed_at) is None
+                    else "FINGERPRINT_AND_TIMESTAMP_PRESENT"
+                )
             ),
         })
         history = history[-max_analysis_history:]
@@ -497,20 +501,26 @@ def remember_observation(
         active_analysis_fingerprint = fp
         active_analysis_observed_at = utc_now()
     elif unchanged and isinstance(previous_analysis, dict):
-        if previous_analysis_fingerprint == fp:
+        timestamp_trustworthy = observation_age_seconds(previous_analysis_observed_at) is not None
+        if previous_analysis_fingerprint == fp and timestamp_trustworthy:
             active_analysis = previous_analysis
             active_analysis_fingerprint = previous_analysis_fingerprint
             active_analysis_observed_at = previous_analysis_observed_at
         else:
             # Preserve the legacy claim in history but do not attach it to a
             # current observation whose analysis provenance cannot be verified.
+            provenance_status = (
+                "UNVERIFIED_ANALYSIS_FINGERPRINT"
+                if previous_analysis_fingerprint != fp
+                else "UNVERIFIED_ANALYSIS_TIMESTAMP"
+            )
             history.append({
                 "fingerprint": previous.get("fingerprint"),
                 "observed_at": previous.get("observed_at"),
                 "analysis": previous_analysis,
                 "analysis_fingerprint": previous_analysis_fingerprint,
                 "analysis_observed_at": previous_analysis_observed_at,
-                "provenance_status": "UNVERIFIED_ANALYSIS_FINGERPRINT",
+                "provenance_status": provenance_status,
             })
             history = history[-max_analysis_history:]
             active_analysis = None
