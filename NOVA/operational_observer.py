@@ -87,6 +87,13 @@ def observe_source(source: dict, state: dict, *, timeout: int, max_bytes: int) -
     url = source.get("url")
     if not isinstance(url, str) or not url:
         return {"source": name, "status": "BLOCKED", "reason": "Source has no URL."}
+    if not isinstance(state.get("events"), dict):
+        return {
+            "source": name,
+            "url": url,
+            "status": "BLOCKED",
+            "reason": "Persisted event ledger is not a JSON object.",
+        }
 
     status, raw, error = fetch_text(url, max_bytes, timeout)
     if error:
@@ -128,15 +135,7 @@ def observe_source(source: dict, state: dict, *, timeout: int, max_bytes: int) -
         analysis_action = "NO_CHANGE_NO_ANALYSIS"
     else:
         analysis_action = "ANALYSIS_REQUIRED"
-        events = state.get("events")
-        if not isinstance(events, dict):
-            # Do not overwrite a malformed event ledger with a fresh empty one.
-            return {
-                "source": name,
-                "url": url,
-                "status": "BLOCKED",
-                "reason": "Persisted event ledger is not a JSON object.",
-            }
+        events = state["events"]
 
         # When new content replaces an older observation, an older pending event
         # must not later be analyzed against the latest source content.
