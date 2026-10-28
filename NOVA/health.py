@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import os
 import statistics
 import tempfile
@@ -158,11 +159,13 @@ def observation_freshness(
         return "UNOBSERVED"
     if fresh_for_seconds is None:
         return "UNSPECIFIED"
+    if isinstance(fresh_for_seconds, bool):
+        return "INVALID_FRESHNESS_POLICY"
     try:
         ttl = float(fresh_for_seconds)
-    except (TypeError, ValueError):
+    except (TypeError, ValueError, OverflowError):
         return "INVALID_FRESHNESS_POLICY"
-    if ttl < 0:
+    if not math.isfinite(ttl) or ttl < 0:
         return "INVALID_FRESHNESS_POLICY"
 
     observed_dt = _parse_observed_at(observed_at)
