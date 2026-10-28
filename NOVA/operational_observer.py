@@ -128,7 +128,43 @@ def observe_source(source: dict, state: dict, *, timeout: int, max_bytes: int) -
         analysis_action = "NO_CHANGE_NO_ANALYSIS"
     else:
         analysis_action = "ANALYSIS_REQUIRED"
-        state.setdefault("events", {})[memory["fingerprint"]] = {
+        events = state.get("events")
+        if not isinstance(events, dict):
+            # Do not overwrite a malformed event ledger with a fresh empty one.
+            return {
+                "source": name,
+                "url": url,
+                "status": "BLOCKED",
+                "reason": "Persisted event ledger is not a JSON object.",
+            }
+
+        # When new content replaces an older observation, an older pending event
+        # must not later be analyzed against the latest source content.
+        for previous_event in events.values():
+            if (
+                isinstance(previous_event, dict)
+                and previous_event.get("source") == str(name)
+                and previous_event.get("analysis_status") == "PENDING"
+                and previous_event.get("fingerprint") != memory["fingerprint"]
+            ):
+                previous_event["analysis_status"] = "SUPERSEDED"
+                previous_event["action_status"] = "SUPERSEDED_BY_NEW_OBSERVATION"
+                previous_event["block_reason"] = (
+                    "A newer successful source observation replaced this pending event."
+                )
+                previous_event["superseded_by_fingerprint"] = memory["fingerprint"]
+
+        event_id_base = (
+            f"{name}|{memory['fingerprint']}|{memory['observed_at']}"
+        )
+        event_id = event_id_base
+        suffix = 2
+        while event_id in events:
+            event_id = f"{event_id_base}|{suffix}"
+            suffix += 1
+
+        events[event_id] = {
+            "event_id": event_id,
             "event_type": "external-annotation-change",
             "source": str(name),
             "observed_at": memory["observed_at"],
