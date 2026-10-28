@@ -10,24 +10,6 @@
           "latency_ms": null,
           "lifecycle_status": "ACTIVE",
           "model": "@cf/meta/llama-3.1-8b-instruct-fast",
-          "observed_at": "2026-10-26T11:51:53.659913+00:00",
-          "probe_marker_present": null,
-          "provider": "cloudflare",
-          "provider_type": "llm_inference",
-          "qualification_evidence_url": "https://github.com/ACROWN-System/NOVA/actions/runs/38350563789",
-          "rate_limit_headers": {},
-          "response_shape_valid": null,
-          "status": "SKIPPED_ALREADY_QUALIFIED",
-          "usage": {}
-        },
-        {
-          "credential_configuration_status": "NOT_EXPOSED_TO_DIAGNOSTIC_BY_POLICY",
-          "credential_configured": null,
-          "credential_env": "CLOUDFLARE_API_KEY_01+CLOUDFLARE_ACCOUNT_ID",
-          "http_status": null,
-          "latency_ms": null,
-          "lifecycle_status": "ACTIVE",
-          "model": "@cf/meta/llama-3.1-8b-instruct-fast",
           "observed_at": "2026-10-26T17:54:09.540849+00:00",
           "probe_marker_present": null,
           "provider": "cloudflare",
@@ -217,6 +199,24 @@
           "response_shape_valid": null,
           "status": "SKIPPED_ALREADY_QUALIFIED",
           "usage": {}
+        },
+        {
+          "credential_configuration_status": "NOT_EXPOSED_TO_DIAGNOSTIC_BY_POLICY",
+          "credential_configured": null,
+          "credential_env": "CLOUDFLARE_API_KEY_01+CLOUDFLARE_ACCOUNT_ID",
+          "http_status": null,
+          "latency_ms": null,
+          "lifecycle_status": "ACTIVE",
+          "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+          "observed_at": "2026-10-28T23:04:19.903627+00:00",
+          "probe_marker_present": null,
+          "provider": "cloudflare",
+          "provider_type": "llm_inference",
+          "qualification_evidence_url": "https://github.com/ACROWN-System/NOVA/actions/runs/38350563789",
+          "rate_limit_headers": {},
+          "response_shape_valid": null,
+          "status": "SKIPPED_ALREADY_QUALIFIED",
+          "usage": {}
         }
       ],
       "latest": {
@@ -227,7 +227,7 @@
         "latency_ms": null,
         "lifecycle_status": "ACTIVE",
         "model": "@cf/meta/llama-3.1-8b-instruct-fast",
-        "observed_at": "2026-10-28T22:56:43.179485+00:00",
+        "observed_at": "2026-10-28T23:04:19.903627+00:00",
         "probe_marker_present": null,
         "provider": "cloudflare",
         "provider_type": "llm_inference",
@@ -240,25 +240,6 @@
     },
     "gemini": {
       "history": [
-        {
-          "credential_configured": true,
-          "credential_env": "GEMINI_API_KEY_01",
-          "http_status": 200,
-          "latency_ms": 1289,
-          "lifecycle_status": "ACTIVE",
-          "observed_at": "2026-10-26T11:51:53.659913+00:00",
-          "probe_marker_present": true,
-          "provider": "gemini",
-          "provider_type": "llm_inference",
-          "rate_limit_headers": {},
-          "response_shape_valid": true,
-          "status": "PASS",
-          "usage": {
-            "input_tokens": 15,
-            "output_tokens": 7,
-            "total_tokens": 22
-          }
-        },
         {
           "credential_configured": true,
           "credential_env": "GEMINI_API_KEY_01",
@@ -447,15 +428,34 @@
             "output_tokens": 7,
             "total_tokens": 22
           }
+        },
+        {
+          "credential_configured": true,
+          "credential_env": "GEMINI_API_KEY_01",
+          "http_status": 200,
+          "latency_ms": 1641,
+          "lifecycle_status": "ACTIVE",
+          "observed_at": "2026-10-28T23:04:19.903627+00:00",
+          "probe_marker_present": true,
+          "provider": "gemini",
+          "provider_type": "llm_inference",
+          "rate_limit_headers": {},
+          "response_shape_valid": true,
+          "status": "PASS",
+          "usage": {
+            "input_tokens": 15,
+            "output_tokens": 7,
+            "total_tokens": 22
+          }
         }
       ],
       "latest": {
         "credential_configured": true,
         "credential_env": "GEMINI_API_KEY_01",
         "http_status": 200,
-        "latency_ms": 3568,
+        "latency_ms": 1641,
         "lifecycle_status": "ACTIVE",
-        "observed_at": "2026-10-28T22:56:43.179485+00:00",
+        "observed_at": "2026-10-28T23:04:19.903627+00:00",
         "probe_marker_present": true,
         "provider": "gemini",
         "provider_type": "llm_inference",
@@ -471,30 +471,6 @@
     },
     "groq": {
       "history": [
-        {
-          "credential_configured": true,
-          "credential_env": "GROQ_API_KEY_01",
-          "http_status": 200,
-          "latency_ms": 291,
-          "lifecycle_status": "ACTIVE",
-          "observed_at": "2026-10-26T11:51:53.659913+00:00",
-          "probe_marker_present": true,
-          "provider": "groq",
-          "provider_type": "llm_inference",
-          "rate_limit_headers": {
-            "x-ratelimit-limit-requests": "1000",
-            "x-ratelimit-limit-tokens": "8000",
-            "x-ratelimit-remaining-requests": "999",
-            "x-ratelimit-remaining-tokens": "7851"
-          },
-          "response_shape_valid": true,
-          "status": "PASS",
-          "usage": {
-            "input_tokens": 85,
-            "output_tokens": 21,
-            "total_tokens": 106
-          }
-        },
         {
           "credential_configured": true,
           "credential_env": "GROQ_API_KEY_01",
@@ -758,15 +734,39 @@
             "output_tokens": 20,
             "total_tokens": 105
           }
+        },
+        {
+          "credential_configured": true,
+          "credential_env": "GROQ_API_KEY_01",
+          "http_status": 200,
+          "latency_ms": 416,
+          "lifecycle_status": "ACTIVE",
+          "observed_at": "2026-10-28T23:04:19.903627+00:00",
+          "probe_marker_present": true,
+          "provider": "groq",
+          "provider_type": "llm_inference",
+          "rate_limit_headers": {
+            "x-ratelimit-limit-requests": "1000",
+            "x-ratelimit-limit-tokens": "8000",
+            "x-ratelimit-remaining-requests": "999",
+            "x-ratelimit-remaining-tokens": "7851"
+          },
+          "response_shape_valid": true,
+          "status": "PASS",
+          "usage": {
+            "input_tokens": 85,
+            "output_tokens": 20,
+            "total_tokens": 105
+          }
         }
       ],
       "latest": {
         "credential_configured": true,
         "credential_env": "GROQ_API_KEY_01",
         "http_status": 200,
-        "latency_ms": 415,
+        "latency_ms": 416,
         "lifecycle_status": "ACTIVE",
-        "observed_at": "2026-10-28T22:56:43.179485+00:00",
+        "observed_at": "2026-10-28T23:04:19.903627+00:00",
         "probe_marker_present": true,
         "provider": "groq",
         "provider_type": "llm_inference",
@@ -1122,7 +1122,7 @@
     ]
   },
   "last_annotation_scan": {
-    "observed_at": "2026-10-28T22:56:38.212709+00:00",
+    "observed_at": "2026-10-28T23:04:17.273504+00:00",
     "results": []
   },
   "last_gpu_heartbeat": {
@@ -1593,7 +1593,7 @@
   },
   "last_llm_key_heartbeat": {
     "diagnostic_only": true,
-    "observed_at": "2026-10-28T22:56:43.179485+00:00",
+    "observed_at": "2026-10-28T23:04:19.903627+00:00",
     "production_roster_mutated": false,
     "results": {
       "cloudflare": {
@@ -1604,7 +1604,7 @@
         "latency_ms": null,
         "lifecycle_status": "ACTIVE",
         "model": "@cf/meta/llama-3.1-8b-instruct-fast",
-        "observed_at": "2026-10-28T22:56:43.179485+00:00",
+        "observed_at": "2026-10-28T23:04:19.903627+00:00",
         "probe_marker_present": null,
         "provider": "cloudflare",
         "provider_type": "llm_inference",
@@ -1618,9 +1618,9 @@
         "credential_configured": true,
         "credential_env": "GEMINI_API_KEY_01",
         "http_status": 200,
-        "latency_ms": 3568,
+        "latency_ms": 1641,
         "lifecycle_status": "ACTIVE",
-        "observed_at": "2026-10-28T22:56:43.179485+00:00",
+        "observed_at": "2026-10-28T23:04:19.903627+00:00",
         "probe_marker_present": true,
         "provider": "gemini",
         "provider_type": "llm_inference",
@@ -1637,9 +1637,9 @@
         "credential_configured": true,
         "credential_env": "GROQ_API_KEY_01",
         "http_status": 200,
-        "latency_ms": 415,
+        "latency_ms": 416,
         "lifecycle_status": "ACTIVE",
-        "observed_at": "2026-10-28T22:56:43.179485+00:00",
+        "observed_at": "2026-10-28T23:04:19.903627+00:00",
         "probe_marker_present": true,
         "provider": "groq",
         "provider_type": "llm_inference",
@@ -1662,31 +1662,31 @@
   "observations": {},
   "provider_rotation": {
     "ai-heart": {
-      "last_completed_at": "2026-10-28T22:56:39.062976+00:00",
+      "last_completed_at": "2026-10-28T23:04:17.687892+00:00",
       "last_probe_providers": [
-        "gemini"
+        "cloudflare"
       ],
       "last_schedule_reason": "ROLLING_INTERVAL",
       "last_scheduled_at": "2026-10-08T12:32:24.729000+00:00",
       "last_scheduled_provider": "mistral",
       "last_selection_decision": {
         "details": {},
-        "due_at": "2026-10-29T03:59:46.564107+00:00",
+        "due_at": "2026-10-29T04:56:39.062976+00:00",
         "preempted": false,
-        "provider": "gemini",
+        "provider": "cloudflare",
         "reason": "SCHEDULED_PENDING"
       },
-      "next_index": 2,
-      "next_provider": "cloudflare",
+      "next_index": 0,
+      "next_provider": "groq",
       "probe_queue": [
-        "cloudflare",
         "groq",
-        "gemini"
+        "gemini",
+        "cloudflare"
       ],
       "probe_schedule": {
-        "cloudflare": "2026-10-29T04:56:39.062976+00:00",
-        "gemini": "2026-10-29T16:56:39.062976+00:00",
-        "groq": "2026-10-29T10:56:39.062976+00:00"
+        "cloudflare": "2026-10-29T17:04:17.687892+00:00",
+        "gemini": "2026-10-29T11:04:17.687892+00:00",
+        "groq": "2026-10-29T05:04:17.687892+00:00"
       },
       "schedule_interval_seconds": 21600.0
     }
@@ -2484,40 +2484,6 @@
           "actual_model": "@cf/meta/llama-3.1-8b-instruct-fast",
           "api_status": 200,
           "authentication": "PASS",
-          "baseline_latency_ms": 354.376,
-          "capacity": {
-            "call_allowances": {},
-            "last_request_usage": {
-              "completion_tokens": 15,
-              "neurons": 0.7948424816131592,
-              "prompt_tokens": 66,
-              "prompt_tokens_details": "{'cached_tokens': 0}",
-              "total_tokens": 81
-            },
-            "measurement_state": "NOT_EXPOSED",
-            "metrics": {},
-            "observed_at": "2026-10-16T15:46:26.605508+00:00",
-            "provider": "cloudflare",
-            "resources": {}
-          },
-          "credential_env": "CLOUDFLARE_API_KEY_01",
-          "error_class": null,
-          "error_detail": null,
-          "health_status": "HEALTHY",
-          "latency_degraded": false,
-          "latency_ms": 348.664,
-          "observed_at": "2026-10-16T15:46:26.605615+00:00",
-          "probe_role": "scheduled_probe",
-          "provider": "cloudflare",
-          "quality_status": "PASS",
-          "requested_model": "@cf/meta/llama-3.1-8b-instruct-fast",
-          "response_valid": true
-        },
-        {
-          "action": "MAINTAIN",
-          "actual_model": "@cf/meta/llama-3.1-8b-instruct-fast",
-          "api_status": 200,
-          "authentication": "PASS",
           "baseline_latency_ms": 351.52,
           "capacity": {
             "call_allowances": {},
@@ -3294,6 +3260,40 @@
           "quality_status": "PASS",
           "requested_model": "@cf/meta/llama-3.1-8b-instruct-fast",
           "response_valid": true
+        },
+        {
+          "action": "MAINTAIN",
+          "actual_model": "@cf/meta/llama-3.1-8b-instruct-fast",
+          "api_status": 200,
+          "authentication": "PASS",
+          "baseline_latency_ms": 430.592,
+          "capacity": {
+            "call_allowances": {},
+            "last_request_usage": {
+              "completion_tokens": 15,
+              "neurons": 0.7948424816131592,
+              "prompt_tokens": 66,
+              "prompt_tokens_details": "{'cached_tokens': 0}",
+              "total_tokens": 81
+            },
+            "measurement_state": "NOT_EXPOSED",
+            "metrics": {},
+            "observed_at": "2026-10-28T23:04:17.687762+00:00",
+            "provider": "cloudflare",
+            "resources": {}
+          },
+          "credential_env": "CLOUDFLARE_API_KEY_01",
+          "error_class": null,
+          "error_detail": null,
+          "health_status": "HEALTHY",
+          "latency_degraded": false,
+          "latency_ms": 317.114,
+          "observed_at": "2026-10-28T23:04:17.687864+00:00",
+          "probe_role": "scheduled_probe",
+          "provider": "cloudflare",
+          "quality_status": "PASS",
+          "requested_model": "@cf/meta/llama-3.1-8b-instruct-fast",
+          "response_valid": true
         }
       ],
       "last_action": "MAINTAIN",
@@ -3308,7 +3308,7 @@
         },
         "measurement_state": "NOT_EXPOSED",
         "metrics": {},
-        "observed_at": "2026-10-28T17:38:15.562673+00:00",
+        "observed_at": "2026-10-28T23:04:17.687762+00:00",
         "provider": "cloudflare",
         "resources": {}
       },
@@ -3317,7 +3317,7 @@
         "actual_model": "@cf/meta/llama-3.1-8b-instruct-fast",
         "api_status": 200,
         "authentication": "PASS",
-        "baseline_latency_ms": 420.935,
+        "baseline_latency_ms": 430.592,
         "capacity": {
           "call_allowances": {},
           "last_request_usage": {
@@ -3329,7 +3329,7 @@
           },
           "measurement_state": "NOT_EXPOSED",
           "metrics": {},
-          "observed_at": "2026-10-28T17:38:15.562673+00:00",
+          "observed_at": "2026-10-28T23:04:17.687762+00:00",
           "provider": "cloudflare",
           "resources": {}
         },
@@ -3338,16 +3338,15 @@
         "error_detail": null,
         "health_status": "HEALTHY",
         "latency_degraded": false,
-        "latency_ms": 745.258,
-        "observed_at": "2026-10-28T17:38:15.562791+00:00",
-        "probe_role": "failover_probe",
+        "latency_ms": 317.114,
+        "observed_at": "2026-10-28T23:04:17.687864+00:00",
+        "probe_role": "scheduled_probe",
         "provider": "cloudflare",
         "quality_status": "PASS",
         "requested_model": "@cf/meta/llama-3.1-8b-instruct-fast",
         "response_valid": true
       },
       "latency_ms": [
-        348.664,
         541.94,
         348.271,
         469.199,
@@ -3370,7 +3369,8 @@
         339.347,
         370.763,
         556.405,
-        745.258
+        745.258,
+        317.114
       ],
       "namespace": "ai-heart",
       "provider": "cloudflare",
@@ -9531,5 +9531,5 @@
       "requested_model": "mistral-small-latest"
     }
   },
-  "updated_at": "2026-10-28T22:56:43.179485+00:00"
+  "updated_at": "2026-10-28T23:04:19.903627+00:00"
 }
