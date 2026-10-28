@@ -1,10 +1,60 @@
 import json
 import unittest
 
-from NOVA.reasoning import build_alert_body, validate_reasoning_payload
+from NOVA.reasoning import (
+    build_alert_body,
+    supersede_stale_pending_events,
+    validate_reasoning_payload,
+)
 
 
 class ReasoningTests(unittest.TestCase):
+    def test_stale_pending_event_is_superseded_before_reasoning(self):
+        state = {
+            "events": {
+                "old-event": {
+                    "source": "release-notes",
+                    "fingerprint": "old-fingerprint",
+                    "observed_at": "2026-10-01T00:00:00+00:00",
+                    "analysis_status": "PENDING",
+                    "action_status": "PENDING_POLICY_DECISION",
+                }
+            },
+            "observations": {
+                "external-annotation:release-notes": {
+                    "fingerprint": "current-fingerprint",
+                    "observed_at": "2026-10-02T00:00:00+00:00",
+                }
+            },
+        }
+
+        self.assertEqual(supersede_stale_pending_events(state), 1)
+        event = state["events"]["old-event"]
+        self.assertEqual(event["analysis_status"], "SUPERSEDED")
+        self.assertEqual(event["action_status"], "SUPERSEDED_BY_NEW_OBSERVATION")
+        self.assertEqual(event["superseded_by_fingerprint"], "current-fingerprint")
+
+    def test_unchanged_content_keeps_pending_event_despite_new_seen_timestamp(self):
+        state = {
+            "events": {
+                "current-event": {
+                    "source": "release-notes",
+                    "fingerprint": "same-fingerprint",
+                    "observed_at": "2026-10-01T00:00:00+00:00",
+                    "analysis_status": "PENDING",
+                }
+            },
+            "observations": {
+                "external-annotation:release-notes": {
+                    "fingerprint": "same-fingerprint",
+                    "observed_at": "2026-10-02T00:00:00+00:00",
+                }
+            },
+        }
+
+        self.assertEqual(supersede_stale_pending_events(state), 0)
+        self.assertEqual(state["events"]["current-event"]["analysis_status"], "PENDING")
+
     def test_valid_reasoning_contract(self):
         payload = {
             "significance": "HIGH",
