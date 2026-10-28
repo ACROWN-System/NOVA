@@ -22,6 +22,7 @@ try:
         load_health_state,
         load_json,
         record_probe,
+        utc_now,
     )
     from .router import call_provider, order_providers
 except ImportError:  # direct script execution
@@ -31,6 +32,7 @@ except ImportError:  # direct script execution
         load_health_state,
         load_json,
         record_probe,
+        utc_now,
     )
     from router import call_provider, order_providers
 
@@ -296,6 +298,8 @@ def analyze_pending(root: Path) -> int:
         source_config = _watch_source_config(watchlist, source)
         memory["analysis"] = analysis
         memory["analysis_fingerprint"] = memory.get("fingerprint")
+        memory["analysis_observed_at"] = utc_now()
+        memory.pop("analysis_invalidated", None)
         if source_config.get("analysis_valid_for_seconds") is not None:
             memory["analysis_valid_for_seconds"] = int(
                 source_config["analysis_valid_for_seconds"]
