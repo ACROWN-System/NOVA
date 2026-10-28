@@ -208,6 +208,34 @@ class HealthTests(unittest.TestCase):
 
 
 
+    def test_reusable_analysis_rejects_untrusted_timestamp_without_freshness_ttl(self):
+        now = datetime.now(timezone.utc)
+        invalid_timestamps = (
+            "not-a-timestamp",
+            (now + timedelta(minutes=5)).isoformat(),
+        )
+        for observed_at in invalid_timestamps:
+            with self.subTest(observed_at=observed_at):
+                state = _state_defaults()
+                observation = {"headline": "A"}
+                remember_observation(
+                    state,
+                    namespace="external-annotation",
+                    source="timestamp-check",
+                    observation=observation,
+                    analysis={"decision": "monitor"},
+                )
+                state["observations"]["external-annotation:timestamp-check"]["observed_at"] = observed_at
+                self.assertIsNone(
+                    reusable_analysis(
+                        state,
+                        namespace="external-annotation",
+                        source="timestamp-check",
+                        current_observation=observation,
+                        now=now,
+                    )
+                )
+
     def test_health_persistence_drops_non_allowlisted_response_headers(self):
         state = _state_defaults()
         record_probe(
