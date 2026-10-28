@@ -89,13 +89,26 @@ def validate_reasoning_payload(content: Any) -> tuple[bool, str]:
     }
     if set(payload) != required:
         return False, "SCHEMA_FIELDS_MISMATCH"
-    if payload["significance"] not in {"LOW", "MEDIUM", "HIGH", "CRITICAL"}:
+    if (
+        not isinstance(payload["significance"], str)
+        or payload["significance"] not in {"LOW", "MEDIUM", "HIGH", "CRITICAL"}
+    ):
         return False, "INVALID_SIGNIFICANCE"
-    if not isinstance(payload["affected_areas"], list) or not isinstance(payload["evidence"], list):
+    if (
+        not isinstance(payload["affected_areas"], list)
+        or any(not isinstance(item, str) or not item.strip() for item in payload["affected_areas"])
+        or not isinstance(payload["evidence"], list)
+        or any(not isinstance(item, str) or not item.strip() for item in payload["evidence"])
+    ):
         return False, "INVALID_EVIDENCE_FIELDS"
-    if not isinstance(payload["recommended_actions"], list) or not isinstance(payload["conclusion"], str):
+    if (
+        not isinstance(payload["recommended_actions"], list)
+        or any(not isinstance(item, str) or not item.strip() for item in payload["recommended_actions"])
+        or not isinstance(payload["conclusion"], str)
+        or not payload["conclusion"].strip()
+    ):
         return False, "INVALID_CONCLUSION_FIELDS"
-    if payload["model_recommended_autonomy_level"] not in {
+    if not isinstance(payload["model_recommended_autonomy_level"], str) or payload["model_recommended_autonomy_level"] not in {
         "L0_OBSERVE",
         "L1_ANALYZE",
         "L2_REVERSIBLE_PROTECT",

@@ -32,6 +32,53 @@ class ReasoningTests(unittest.TestCase):
                 self.assertFalse(ok)
                 self.assertEqual(reason, "INVALID_JSON_TYPE")
 
+    def test_unhashable_enum_fields_are_rejected_without_exception(self):
+        for field, value, expected in (
+            ("significance", [], "INVALID_SIGNIFICANCE"),
+            ("significance", {}, "INVALID_SIGNIFICANCE"),
+            ("model_recommended_autonomy_level", [], "INVALID_AUTONOMY_LEVEL"),
+            ("model_recommended_autonomy_level", {}, "INVALID_AUTONOMY_LEVEL"),
+        ):
+            with self.subTest(field=field, value=value):
+                payload = {
+                    "significance": "LOW",
+                    "affected_areas": [],
+                    "evidence": [],
+                    "conclusion": "Observed result needs review.",
+                    "recommended_actions": [],
+                    "model_recommended_autonomy_level": "L1_ANALYZE",
+                    "model_recommended_requires_human_gate": True,
+                    "confidence": 0.5,
+                }
+                payload[field] = value
+                ok, reason = validate_reasoning_payload(json.dumps(payload))
+                self.assertFalse(ok)
+                self.assertEqual(reason, expected)
+
+    def test_evidence_and_action_arrays_require_nonempty_strings(self):
+        base = {
+            "significance": "LOW",
+            "affected_areas": [],
+            "evidence": [],
+            "conclusion": "No action indicated by this observation alone.",
+            "recommended_actions": [],
+            "model_recommended_autonomy_level": "L1_ANALYZE",
+            "model_recommended_requires_human_gate": True,
+            "confidence": 0.5,
+        }
+        invalid_cases = [
+            ("affected_areas", [None], "INVALID_EVIDENCE_FIELDS"),
+            ("evidence", [{"claim": "verified"}], "INVALID_EVIDENCE_FIELDS"),
+            ("recommended_actions", [1], "INVALID_CONCLUSION_FIELDS"),
+            ("conclusion", "   ", "INVALID_CONCLUSION_FIELDS"),
+        ]
+        for field, value, expected in invalid_cases:
+            with self.subTest(field=field, value=value):
+                payload = {**base, field: value}
+                ok, reason = validate_reasoning_payload(json.dumps(payload))
+                self.assertFalse(ok)
+                self.assertEqual(reason, expected)
+
     def test_high_impact_model_recommendation_requires_a_human_gate(self):
         payload = {
             "significance": "HIGH",
