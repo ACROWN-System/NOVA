@@ -1,7 +1,7 @@
 import json
 import unittest
 
-from NOVA.reasoning import validate_reasoning_payload
+from NOVA.reasoning import build_alert_body, validate_reasoning_payload
 
 
 class ReasoningTests(unittest.TestCase):
@@ -12,8 +12,8 @@ class ReasoningTests(unittest.TestCase):
             "evidence": ["A published retirement notice"],
             "conclusion": "Investigate workflow compatibility.",
             "recommended_actions": ["Inspect workflows"],
-            "autonomy_level": "L1_ANALYZE",
-            "requires_human_gate": False,
+            "model_recommended_autonomy_level": "L1_ANALYZE",
+            "model_recommended_requires_human_gate": False,
             "confidence": 0.9,
         }
         ok, reason = validate_reasoning_payload(json.dumps(payload))
@@ -25,6 +25,37 @@ class ReasoningTests(unittest.TestCase):
         self.assertFalse(ok)
         self.assertEqual(reason, "SCHEMA_FIELDS_MISMATCH")
 
+    def test_high_impact_model_recommendation_requires_a_human_gate(self):
+        payload = {
+            "significance": "HIGH",
+            "affected_areas": [],
+            "evidence": ["Observed state only"],
+            "conclusion": "A human should review this recommendation.",
+            "recommended_actions": ["Review"],
+            "model_recommended_autonomy_level": "L5_IRREVERSIBLE",
+            "model_recommended_requires_human_gate": False,
+            "confidence": 0.99,
+        }
+        ok, reason = validate_reasoning_payload(json.dumps(payload))
+        self.assertFalse(ok)
+        self.assertEqual(reason, "HIGH_IMPACT_REQUIRES_HUMAN_GATE")
+
+    def test_alert_labels_model_analysis_as_advisory_and_shows_policy_permissions(self):
+        analysis = {
+            "model_recommended_autonomy_level": "L5_IRREVERSIBLE",
+            "model_recommended_requires_human_gate": True,
+            "confidence": 0.99,
+        }
+        body = json.loads(build_alert_body(analysis, ["analyze", "human_gate_for_irreversible_action"]))
+        self.assertEqual(body["model_analysis_authority"], "ADVISORY_ONLY")
+        self.assertEqual(body["confidence_semantics"], "UNCALIBRATED_SELF_ASSESSMENT")
+        self.assertEqual(body["model_analysis"], analysis)
+        self.assertEqual(
+            body["permitted_action_classes"],
+            ["analyze", "human_gate_for_irreversible_action"],
+        )
+        self.assertEqual(body["permitted_action_classes_source"], "NOVA/action_policy.json")
+
     def test_boolean_confidence_is_rejected_as_not_numeric_confidence(self):
         payload = {
             "significance": "LOW",
@@ -32,8 +63,8 @@ class ReasoningTests(unittest.TestCase):
             "evidence": ["No observed change"],
             "conclusion": "No action indicated by this observation alone.",
             "recommended_actions": [],
-            "autonomy_level": "L1_ANALYZE",
-            "requires_human_gate": True,
+            "model_recommended_autonomy_level": "L1_ANALYZE",
+            "model_recommended_requires_human_gate": True,
             "confidence": True,
         }
         ok, reason = validate_reasoning_payload(json.dumps(payload))
@@ -47,8 +78,8 @@ class ReasoningTests(unittest.TestCase):
             "evidence": ["No observed change"],
             "conclusion": "No action indicated by this observation alone.",
             "recommended_actions": [],
-            "autonomy_level": "L1_ANALYZE",
-            "requires_human_gate": True,
+            "model_recommended_autonomy_level": "L1_ANALYZE",
+            "model_recommended_requires_human_gate": True,
             "confidence": 1.1,
         }
         ok, reason = validate_reasoning_payload(json.dumps(payload))
