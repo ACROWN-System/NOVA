@@ -104,6 +104,11 @@ def validate_reasoning_payload(content: Any) -> tuple[bool, str]:
         return False, "INVALID_AUTONOMY_LEVEL"
     if not isinstance(payload["model_recommended_requires_human_gate"], bool):
         return False, "INVALID_GATE"
+    if (
+        payload["model_recommended_autonomy_level"] in {"L4_HIGH_IMPACT", "L5_IRREVERSIBLE"}
+        and payload["model_recommended_requires_human_gate"] is not True
+    ):
+        return False, "HIGH_IMPACT_REQUIRES_HUMAN_GATE"
     if isinstance(payload["confidence"], bool) or not isinstance(payload["confidence"], (int, float)) or not 0 <= payload["confidence"] <= 1:
         return False, "INVALID_CONFIDENCE"
     return True, "PASS"
@@ -118,6 +123,7 @@ def build_alert_body(
         {
             "model_analysis": analysis,
             "model_analysis_authority": "ADVISORY_ONLY",
+            "confidence_semantics": "UNCALIBRATED_SELF_ASSESSMENT",
             "permitted_action_classes": permitted_action_classes,
             "permitted_action_classes_source": "NOVA/action_policy.json",
         },
