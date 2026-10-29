@@ -1,4 +1,5 @@
 import json
+import tempfile
 import unittest
 from contextlib import redirect_stdout
 from io import StringIO
@@ -79,13 +80,30 @@ class ReasoningTests(unittest.TestCase):
             },
         }
         output = StringIO()
-        with patch("NOVA.reasoning.load_health_state", return_value=state), patch(
-            "NOVA.reasoning.load_json", return_value={}
-        ), patch("NOVA.reasoning.atomic_write_json") as write_state, redirect_stdout(output):
-            self.assertEqual(analyze_pending(Path(".")), 0)
+        with tempfile.TemporaryDirectory(prefix="nova-reasoning-root-test-") as temp_dir:
+            repo_root = Path(temp_dir)
+            nova_root = repo_root / "NOVA"
+            nova_root.mkdir()
+
+            with patch("NOVA.reasoning.load_health_state", return_value=state) as read_state, patch(
+                "NOVA.reasoning.load_json", return_value={}
+            ) as read_json, patch("NOVA.reasoning.atomic_write_json") as write_state, redirect_stdout(output):
+                self.assertEqual(analyze_pending(repo_root), 0)
+
+            health_path = nova_root / "health_state.json"
+            read_state.assert_called_once_with(health_path)
+            self.assertEqual(
+                [call.args[0] for call in read_json.call_args_list],
+                [
+                    nova_root / "roster.json",
+                    nova_root / "health_policy.json",
+                    nova_root / "watchlist.json",
+                    nova_root / "action_policy.json",
+                ],
+            )
+            write_state.assert_called_once_with(health_path, state)
 
         self.assertEqual(state["events"]["old-event"]["analysis_status"], "SUPERSEDED")
-        write_state.assert_called_once()
         self.assertIn("NO_PENDING_EVENTS", output.getvalue())
 
     def test_reasoning_prompt_marks_external_source_as_untrusted_data(self):
