@@ -106,6 +106,19 @@ class RouterRotationTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, expected_error):
                     validate_health_probe_policy({section: {field: value}})
 
+    def test_health_probe_policy_rejects_minimum_samples_above_retained_sample_limit(self):
+        policy = {
+            "latency": {
+                "max_samples_per_target": 3,
+                "minimum_samples_for_comparison": 4,
+            }
+        }
+        with self.assertRaisesRegex(
+            ValueError,
+            "minimum_samples_for_comparison must not exceed latency.max_samples_per_target",
+        ):
+            validate_health_probe_policy(policy)
+
     def test_invalid_health_policy_stops_before_state_load_or_provider_request(self):
         invalid_policy = {"latency": {"degraded_multiplier": "2"}}
         roster = {"providers": [provider("groq")]}
