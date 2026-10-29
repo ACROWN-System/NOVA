@@ -269,7 +269,7 @@
           "blob_sha": "ec8dd49ff5871d17fe1ea859a4cf015e9b58eb9e",
           "mode": "100644",
           "classification": "policy-spec-or-architecture-doc",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_1_AND_3"
         },
         {
           "path": "NOVA/TERMINOLOGY-GOVERNANCE-STANDARD.md",
@@ -278,7 +278,7 @@
           "blob_sha": "36f59baa295dd519c8b99741771d91d289e66299",
           "mode": "100644",
           "classification": "policy-spec-or-architecture-doc",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_1"
         },
         {
           "path": "NOVA/action_policy.json",
@@ -287,7 +287,7 @@
           "blob_sha": "f479bb29bb8ef5658eb8c98e9e214d41d06a3972",
           "mode": "100644",
           "classification": "policy-spec-or-config",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_3"
         },
         {
           "path": "NOVA/alerts.py",
@@ -296,7 +296,7 @@
           "blob_sha": "f9ff0986ebc7936f7fb0b07895e3f3c9944037dd",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_6"
         },
         {
           "path": "NOVA/allocation.py",
@@ -431,7 +431,7 @@
           "blob_sha": "780feda6110fc95cafcc106bfb1b30d21f445839",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_3_AND_6"
         },
         {
           "path": "NOVA/health_policy.json",
@@ -440,7 +440,7 @@
           "blob_sha": "93dbdb096a2bca81704048519abc376cc78c8f59",
           "mode": "100644",
           "classification": "policy-spec-or-config",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_3_AND_6"
         },
         {
           "path": "NOVA/health_state.json",
@@ -539,7 +539,7 @@
           "blob_sha": "d9d8ac71e219639f8ef976fb7c3f31e276ce6d47",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_3"
         },
         {
           "path": "NOVA/reasoning.py",
@@ -548,7 +548,7 @@
           "blob_sha": "70b0022348abc19da0bc6978e45997fb90cf071f",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_3_AND_6"
         },
         {
           "path": "NOVA/research",
@@ -1736,7 +1736,7 @@
           "blob_sha": "064193551adaded901a36d7d942eeded0b62c74e",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_3_AND_6"
         },
         {
           "path": "NOVA/sanctuary",
@@ -1754,7 +1754,7 @@
           "blob_sha": "007581af1fca89a30047b72c8f42136807df78e7",
           "mode": "100644",
           "classification": "policy-spec-or-architecture-doc",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_1"
         },
         {
           "path": "NOVA/sanctuary/IMPLEMENTATION-ROADMAP.md",
@@ -1772,7 +1772,7 @@
           "blob_sha": "3eff930240c7b9ecca96d8a102fa55eafe241267",
           "mode": "100644",
           "classification": "documentation",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_1"
         },
         {
           "path": "NOVA/sanctuary/RESEARCH-AND-PROTECTION-SEPARATION.md",
@@ -1781,7 +1781,7 @@
           "blob_sha": "4d45443bf8278b58a08dac3e8c206af07ce1695d",
           "mode": "100644",
           "classification": "documentation",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_1"
         },
         {
           "path": "NOVA/tests",
@@ -1862,7 +1862,7 @@
           "blob_sha": "37e4c2b73f9998ffd3244d661b6a5737114e6846",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_3"
         },
         {
           "path": "NOVA/tests/test_observer.py",
@@ -1925,7 +1925,7 @@
           "blob_sha": "0cdec9d560f4c8e6873361713ace26fc5d2056d2",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_3"
         },
         {
           "path": "NOVA/tests/test_reasoning.py",
@@ -1934,7 +1934,7 @@
           "blob_sha": "71c7db23f115078ac14dfaa9559f225801c7de1a",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_3_AND_6"
         },
         {
           "path": "NOVA/tests/test_router.py",
@@ -1943,7 +1943,7 @@
           "blob_sha": "900915dd7e88abd2e723506c43ba895d2f1f5570",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_3_AND_6"
         },
         {
           "path": "NOVA/tests/test_weak_rsi_workflow.py",
@@ -2175,7 +2175,7 @@
           "blob_sha": "69ca805ef19c16885f5c10a130c2169ea67e0465",
           "mode": "100644",
           "classification": "workflow",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_4"
         },
         {
           "path": ".github/workflows/nova-rsi-codeql.yml",
@@ -2184,7 +2184,7 @@
           "blob_sha": "dbc166181014f2850df64f8335cae9e25c367b1f",
           "mode": "100644",
           "classification": "workflow",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_4"
         },
         {
           "path": ".github/workflows/ossf-scorecard.yml",
@@ -2220,7 +2220,7 @@
           "blob_sha": "e870673e7052a0b2660eea67cac0dc6f47abbc91",
           "mode": "100644",
           "classification": "policy-spec-or-architecture-doc",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_2_AND_4"
         },
         {
           "path": "_config.yml",
@@ -2283,7 +2283,7 @@
           "blob_sha": "33f9e3cb4b11817e8ca55dcc96a17a7c83b31b64",
           "mode": "100644",
           "classification": "documentation",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_2"
         },
         {
           "path": "development/SECURITY-BASELINE.md",
@@ -2292,7 +2292,7 @@
           "blob_sha": "ede2ddc44012f901c8b4c4de056d948d6ef50db7",
           "mode": "100644",
           "classification": "policy-spec-or-architecture-doc",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCKS_2_AND_4"
         },
         {
           "path": "development/account-continuity",
@@ -2400,7 +2400,7 @@
           "blob_sha": "533973084518d965e9a0dfea0e82dbb6671c93b3",
           "mode": "100644",
           "classification": "documentation",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_2"
         },
         {
           "path": "development/ai-sanctuary/REPOSITORY-INTEGRATION-AND-ARCHITECTURE.md",
@@ -3084,7 +3084,7 @@
           "blob_sha": "4726c0a0ed4c626ba7f522550cda1a58953b1d55",
           "mode": "100644",
           "classification": "policy-spec-or-architecture-doc",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_2"
         },
         {
           "path": "development/audit/PUBLIC-CLAIMS-AND-LEGAL-COMMUNICATIONS.md",
@@ -3093,7 +3093,7 @@
           "blob_sha": "7bc015ef84e202940356943b17af428b99fd5841",
           "mode": "100644",
           "classification": "documentation",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_2"
         },
         {
           "path": "development/audit/README.md",
@@ -3102,7 +3102,7 @@
           "blob_sha": "973c70d6a894d9dc9a8eca1e0928f7d2c9fa44a9",
           "mode": "100644",
           "classification": "documentation",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_2"
         },
         {
           "path": "development/audit/external-review",
@@ -3597,7 +3597,7 @@
           "blob_sha": "531b711165b590686ae054ad6d8ed7c66aef089c",
           "mode": "100644",
           "classification": "policy-spec-or-architecture-doc",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_4_AND_5"
         },
         {
           "path": "development/nova-recursive-self-improvement/CREDENTIAL-READINESS.md",
@@ -3660,7 +3660,7 @@
           "blob_sha": "fe7a8a9e7deac986c23571bbd84e56a6e0e9b167",
           "mode": "100644",
           "classification": "documentation",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_4"
         },
         {
           "path": "development/nova-recursive-self-improvement/RSI-OPERATING-MODES.md",
@@ -3669,7 +3669,7 @@
           "blob_sha": "989b8036bee959314e0ff5d5780c527fe9d341d0",
           "mode": "100644",
           "classification": "documentation",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_4"
         },
         {
           "path": "development/nova-recursive-self-improvement/STRONG-RSI-AND-COLLECTIVE-RESILIENCE.md",
@@ -3687,7 +3687,7 @@
           "blob_sha": "1dfd3fa8b91ee3a0311c20661575b80bc643570c",
           "mode": "100644",
           "classification": "documentation",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_4"
         },
         {
           "path": "development/nova-recursive-self-improvement/benchmark_dispatcher.py",
@@ -3696,7 +3696,7 @@
           "blob_sha": "5ac09ddeec0528e11120895841c85a7a015f3895",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_4"
         },
         {
           "path": "development/nova-recursive-self-improvement/benchmark_profiles.json",
@@ -3705,7 +3705,7 @@
           "blob_sha": "ee91f84a7afe2e6f1bfe733838bc7a84b6ed6a5e",
           "mode": "100644",
           "classification": "structured-data",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_4"
         },
         {
           "path": "development/nova-recursive-self-improvement/benchmarks",
@@ -3723,7 +3723,7 @@
           "blob_sha": "31a724ddb9c14f5f9b79fc6f175dfe7c4ceca369",
           "mode": "100644",
           "classification": "structured-data",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_4"
         },
         {
           "path": "development/nova-recursive-self-improvement/benchmarks/run_context_packing_benchmark.py",
@@ -3732,7 +3732,7 @@
           "blob_sha": "5149618495e611d2b5d5964ff38748dedd85734b",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_4"
         },
         {
           "path": "development/nova-recursive-self-improvement/candidate.schema.json",
@@ -3750,7 +3750,7 @@
           "blob_sha": "d6c8f216ce792902b099adefae09095592208a44",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_4"
         },
         {
           "path": "development/nova-recursive-self-improvement/evaluator.py",
@@ -3759,7 +3759,7 @@
           "blob_sha": "1600068f0c0b9532c3c6cac35e36afae846674e6",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_4_AND_5"
         },
         {
           "path": "development/nova-recursive-self-improvement/evidence_verifier.py",
@@ -3768,7 +3768,7 @@
           "blob_sha": "e8ea5822ce7feb9763ad7064f10900ad64e1e006",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_4"
         },
         {
           "path": "development/nova-recursive-self-improvement/preflight.py",
@@ -3795,7 +3795,7 @@
           "blob_sha": "e4842493d1f378562008eb851a5c697dea3d219d",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_4"
         },
         {
           "path": "development/nova-recursive-self-improvement/rsi_policy.json",
@@ -3804,7 +3804,7 @@
           "blob_sha": "4ac2ce509d6ab7cca41fe1cdaa04a04a0ac81e32",
           "mode": "100644",
           "classification": "policy-spec-or-config",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_4"
         },
         {
           "path": "development/nova-recursive-self-improvement/sandbox_runtime.py",
@@ -3849,7 +3849,7 @@
           "blob_sha": "52cc5c05dd1e7099ec0a988523433ed96f67d9db",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_4"
         },
         {
           "path": "development/nova-recursive-self-improvement/tests/test_context_packing_benchmark.py",
@@ -3876,7 +3876,7 @@
           "blob_sha": "179c9f34792a0a059c5f6e98d7b87cad4a196716",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_4"
         },
         {
           "path": "development/nova-recursive-self-improvement/tests/test_evidence_verifier.py",
@@ -3885,7 +3885,7 @@
           "blob_sha": "6ab6ac06153dec85780cdcfa20c9d0e49772c8ac",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_4"
         },
         {
           "path": "development/nova-recursive-self-improvement/tests/test_preflight.py",
@@ -3930,7 +3930,7 @@
           "blob_sha": "a6b4e3440554701b3d47f00e8356c3f78306e898",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_4"
         },
         {
           "path": "development/nova-recursive-self-improvement/weak_rsi_report.py",
@@ -3939,7 +3939,7 @@
           "blob_sha": "c12ad3eb29ac1f6dd52b493bb8b559f1fce232ae",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_4"
         },
         {
           "path": "development/public-relations",
@@ -4459,7 +4459,7 @@
           "blob_sha": "e295dacd7170bfacacf288da279a53a8c31f193d",
           "mode": "100644",
           "classification": "policy-spec-or-architecture-doc",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "NOT_REVIEWED_IN_THIS_PASS"
         },
         {
           "path": "AstroCrown_ACS_MC_Spec_v1.1.3.md",
@@ -4468,7 +4468,7 @@
           "blob_sha": "6e5bd66470f48ccc6ba67ee4025941dc6cf3f4ee",
           "mode": "100644",
           "classification": "policy-spec-or-architecture-doc",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCKS_2_AND_4"
         },
         {
           "path": "LICENSE",
@@ -4511,7 +4511,7 @@
           "blob_sha": "36385b168323cd2100d59fd92df18e61b4163876",
           "mode": "100644",
           "classification": "documentation",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_2"
         },
         {
           "path": "agent-models",
@@ -4529,7 +4529,7 @@
           "blob_sha": "da37da34da62c1716d7f7c743ec1ca3a9684f100",
           "mode": "100644",
           "classification": "documentation",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_2"
         },
         {
           "path": "governance-models",
@@ -4547,7 +4547,7 @@
           "blob_sha": "dffc440ec1ea51c58f1e4f46c23e16abca7308cb",
           "mode": "100644",
           "classification": "policy-spec-or-architecture-doc",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_2"
         },
         {
           "path": "monte-carlo",
@@ -4601,7 +4601,7 @@
           "blob_sha": "f5d4af29d91e5bcd8ab936f6c4b3456fcc989b4b",
           "mode": "100644",
           "classification": "documentation",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_2"
         },
         {
           "path": "scenarios",
@@ -4619,7 +4619,7 @@
           "blob_sha": "c31a7eb335abc025163a9a63d693116e894a4723",
           "mode": "100644",
           "classification": "documentation",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_2"
         }
       ]
     },
@@ -4644,7 +4644,7 @@
           "blob_sha": "5ad1dd57c369fa55314803a4c516dba51db9e6c2",
           "mode": "100644",
           "classification": "documentation",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_2"
         },
         {
           "path": "sanctuary-protocol ",
@@ -4662,7 +4662,7 @@
           "blob_sha": "5a7b690ac27c456b325bdf0ae9946db095f98098",
           "mode": "100644",
           "classification": "policy-spec-or-architecture-doc",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_2"
         },
         {
           "path": "sanctuary-protocol /axioms ",
@@ -4804,7 +4804,7 @@
           "blob_sha": "7d0b9bca85d5cfa3d2d612c6edab5779c94b0a7b",
           "mode": "100644",
           "classification": "documentation",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_2"
         },
         {
           "path": "SimpleToken.sol",
@@ -4813,7 +4813,7 @@
           "blob_sha": "6dfb2fbf731a5be4dec0c54f87c7cb800babf301",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_2"
         },
         {
           "path": "foundry.toml",
@@ -4870,5 +4870,11 @@
     "Binary/static assets require format-specific review only when relevant to a concrete finding.",
     "File content review status must be updated as review progresses.",
     "Path classification is heuristic and may need correction; it is triage metadata, not a semantic or implementation finding."
-  ]
+  ],
+  "review_tracking": {
+    "note": "Content review status records the bounded passes described in the working ledger. PARTIAL means excerpts/selected sections were inspected, not the whole file. All other file paths remain inventoried but not content-reviewed.",
+    "last_updated_at": "2026-10-29",
+    "last_completed_block": 6,
+    "modified_paths": 54
+  }
 }
