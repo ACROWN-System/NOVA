@@ -1,7 +1,7 @@
 # Active Navigation Plan — NOVA Block 43: Source-Bound, Time-Bounded Cached Analysis
 
 **Date:** 2026-10-29  
-**Status:** ACTIVE — reconcile stale PR #143 with the hardened main branch  
+**Status:** COMPLETE — replacement PR #155 merged and stale PR #143 closed as superseded  
 **Objective:** Ensure cached analysis is reused only for the exact current observation and within its own validity window, then queue re-analysis without duplicating pending events when provenance is missing, changed, or expired.
 
 ## Navigation and source of truth
@@ -54,4 +54,11 @@ Port the valid PR #143 changes onto current `main`, preserving newer merged safe
 
 ## Completion evidence
 
-Record the replacement pull request, successful workflow runs, merge commit, and disposition of stale PR #143 here before marking this plan COMPLETE.
+- **Replacement pull request:** https://github.com/ACROWN-System/NOVA/pull/155 — squash-merged.
+- **Merge commit:** `681e602d5eef185d0c76ea18354aaba47949000d`.
+- **Pull-request workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40831397596 — NOVA Health Tests passed on head `fa8b60483e68bb61597163005c7d8dda3b4ac6d7`.
+- **Push workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40831343945 — NOVA Health Tests passed on the same head commit.
+- **Regression evidence:** All 183 offline tests passed, including source fingerprint matching, analysis timestamp preservation, independent analysis TTL, missing/mismatched cache provenance invalidation, and pending-event/cache-reuse behavior.
+- **Stale PR disposition:** [PR #143](https://github.com/ACROWN-System/NOVA/pull/143) was closed as superseded after the replacement merged; its discussion links to PR #155. The underlying finding was fixed, not discarded.
+- **Review:** Integrated only the scoped functions into current `main`, preserving Block 42 strict state loading, duplicate JSON-key defenses, and the current reasoning prompt trust boundary.
+- **Boundaries confirmed:** No live provider calls, credentials/configuration changes, external actions, or backup modifications were made.
