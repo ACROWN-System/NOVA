@@ -26,6 +26,7 @@ try:
         HTTP_DIAGNOSTIC_HEADER_NAMES,
         load_health_state,
         load_json,
+        loads_json_no_duplicate_keys,
         provider_health_status,
         record_probe,
     )
@@ -40,6 +41,7 @@ except ImportError:  # direct script execution
         HTTP_DIAGNOSTIC_HEADER_NAMES,
         load_health_state,
         load_json,
+        loads_json_no_duplicate_keys,
         provider_health_status,
         record_probe,
     )
@@ -105,8 +107,8 @@ def safe_http_error_detail(body: Any, http_status: int | None) -> str:
         detail["http_status"] = http_status
 
     try:
-        payload = json.loads(body) if isinstance(body, str) else None
-    except (json.JSONDecodeError, RecursionError):
+        payload = loads_json_no_duplicate_keys(body) if isinstance(body, str) else None
+    except (ValueError, RecursionError):
         payload = None
 
     sources = [payload] if isinstance(payload, dict) else []
@@ -285,7 +287,7 @@ def call_openai_compatible(provider: dict[str, Any], prompt: str, validator=vali
             with urllib.request.urlopen(req, timeout=30) as response:
                 raw = response.read()
                 latency_ms = (time.perf_counter() - started) * 1000
-                result = json.loads(raw.decode("utf-8"))
+                result = loads_json_no_duplicate_keys(raw.decode("utf-8"))
                 choices = result.get("choices")
                 message = choices[0].get("message") if isinstance(choices, list) and choices else None
                 content = message.get("content") if isinstance(message, dict) else None
@@ -441,7 +443,7 @@ def call_gemini(provider: dict[str, Any], prompt: str, validator=validate_health
             with urllib.request.urlopen(req, timeout=30) as response:
                 raw = response.read()
                 latency_ms = (time.perf_counter() - started) * 1000
-                result = json.loads(raw.decode("utf-8"))
+                result = loads_json_no_duplicate_keys(raw.decode("utf-8"))
                 candidates = result.get("candidates")
                 parts = (
                     candidates[0].get("content", {}).get("parts", [])
