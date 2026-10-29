@@ -3,6 +3,7 @@ import tempfile
 import unittest
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from unittest.mock import patch
 
 from NOVA.health import (
     _state_defaults,
@@ -56,6 +57,18 @@ class HealthTests(unittest.TestCase):
                 load_health_state(path)
 
             self.assertEqual(path.read_bytes(), invalid_bytes)
+
+    def test_health_state_loader_rejects_read_error_without_modifying_file(self):
+        original = '{"events": {}}'
+        with tempfile.TemporaryDirectory(prefix="nova-unreadable-health-state-") as temp_dir:
+            path = Path(temp_dir) / "health_state.json"
+            path.write_text(original, encoding="utf-8")
+
+            with patch.object(Path, "read_text", side_effect=PermissionError("permission denied")):
+                with self.assertRaisesRegex(RuntimeError, "could not be read"):
+                    load_health_state(path)
+
+            self.assertEqual(path.read_text(encoding="utf-8"), original)
 
     def test_health_state_loader_rejects_duplicate_json_keys_without_modifying_file(self):
         invalid_documents = (
