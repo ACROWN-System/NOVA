@@ -18,6 +18,11 @@ from pathlib import Path
 from typing import Any, Mapping
 from urllib.parse import urlsplit
 
+try:
+    from .health import loads_json_no_duplicate_keys
+except ImportError:  # Direct script execution
+    from health import loads_json_no_duplicate_keys
+
 
 DEFAULT_PLANNING_REFERENCE_GPU_MINUTES_PER_MONTH = 86_400
 ACCOUNTING_UNIT = "one GPU allocated for one minute"
@@ -592,8 +597,7 @@ def build_capacity_report(
 def load_capacity_evidence(path: str | Path) -> dict[str, Any]:
     """Load the evidence register; malformed or missing content is an explicit error."""
     evidence_path = Path(path)
-    with evidence_path.open("r", encoding="utf-8") as handle:
-        data = json.load(handle)
+    data = loads_json_no_duplicate_keys(evidence_path.read_text(encoding="utf-8"))
     if not isinstance(data, dict):
         raise ValueError("GPU capacity evidence root must be a JSON object")
     if not isinstance(data.get("providers"), list):

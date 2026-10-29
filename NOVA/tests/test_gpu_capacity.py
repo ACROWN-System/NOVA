@@ -1,10 +1,14 @@
+import json
+import tempfile
 import unittest
 from datetime import datetime, timedelta, timezone
+from pathlib import Path
 
 from NOVA.gpu_capacity import (
     CURRENT_INTENDED_USE_MODE,
     DEFAULT_PLANNING_REFERENCE_GPU_MINUTES_PER_MONTH,
     build_capacity_report,
+    load_capacity_evidence,
 )
 
 
@@ -65,6 +69,43 @@ def evidence(*providers):
 
 
 class AggregateGpuCapacityTests(unittest.TestCase):
+    def test_capacity_evidence_loader_preserves_valid_register(self):
+        source = evidence(qualified_record())
+        with tempfile.TemporaryDirectory(prefix="nova-valid-gpu-evidence-") as temp_dir:
+            path = Path(temp_dir) / "gpu_capacity_evidence.json"
+            path.write_text(json.dumps(source), encoding="utf-8")
+
+            self.assertEqual(load_capacity_evidence(path), source)
+
+    def test_capacity_evidence_loader_rejects_duplicate_keys_at_any_depth(self):
+        invalid_documents = (
+            '{"providers": [], "providers": []}',
+            '{"providers": [{"name": "provider-a", "name": "provider-b"}]}',
+            '{"providers": [{"recurring_capacity": {"usable_gpu_minutes_per_month": 100, "usable_gpu_minutes_per_month": 999}]}',
+        )
+        for raw in invalid_documents:
+            with self.subTest(raw=raw):
+                with tempfile.TemporaryDirectory(prefix="nova-duplicate-gpu-evidence-") as temp_dir:
+                    path = Path(temp_dir) / "gpu_capacity_evidence.json"
+                    path.write_text(raw, encoding="utf-8")
+
+                    with self.assertRaisesRegex(ValueError, "duplicate JSON object key"):
+                        load_capacity_evidence(path)
+
+    def test_capacity_evidence_loader_rejects_wrong_root_and_providers_types(self):
+        invalid_documents = (
+            ("[]", "root must be a JSON object"),
+            ('{"providers": {}}', "must contain a providers list"),
+        )
+        for raw, expected_error in invalid_documents:
+            with self.subTest(raw=raw):
+                with tempfile.TemporaryDirectory(prefix="nova-invalid-gpu-evidence-shape-") as temp_dir:
+                    path = Path(temp_dir) / "gpu_capacity_evidence.json"
+                    path.write_text(raw, encoding="utf-8")
+
+                    with self.assertRaisesRegex(ValueError, expected_error):
+                        load_capacity_evidence(path)
+
     def test_advertised_quota_is_never_counted_as_verified_capacity(self):
         candidate = qualified_record("huggingface_zerogpu")
         candidate["advertised"]["normalized_monthly_gpu_minutes"] = 150
