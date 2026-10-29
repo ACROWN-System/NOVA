@@ -646,27 +646,37 @@ def scheduled_probe_provider_order(
     )
 
 
+def _has_actual_probe_attempt(probes: list[dict[str, Any]]) -> bool:
+    """Whether any provider request reached an HTTP/API attempt rather than a local gate."""
+    return any(
+        probe.get("api_status") is not None or probe.get("latency_ms") is not None
+        for probe in probes
+    )
+
+
 def advance_scheduled_probe_rotation(
     state: dict[str, Any],
     providers: list[dict[str, Any]],
     scheduled_provider: dict[str, Any] | None,
     probed_provider_names: list[str] | None = None,
+    skipped_provider_names: list[str] | None = None,
 ) -> None:
-    """Move checked providers to the end and rebuild the rolling 6h schedule."""
+    """Reschedule real probes separately from providers skipped without a request."""
     if not providers or get_env("NOVA_ADVANCE_PROVIDER_ROTATION").lower() not in {"1", "true", "yes"}:
         return
 
-    # The scheduler intentionally uses the providers actually checked, not
-    # only the originally selected provider. Every checked provider therefore
-    # moves to the back of the ring.
+    # Keep actual request attempts separate from local skips (missing
+    # credentials, blocked model contracts, or an empty model list).
     probed = list(dict.fromkeys(probed_provider_names or []))
-    if not probed and scheduled_provider:
+    skipped = list(dict.fromkeys(skipped_provider_names or []))
+    if probed_provider_names is None and not skipped and scheduled_provider:
         probed = [str(scheduled_provider.get("name"))]
 
     reschedule_after_probes(
         state,
         providers,
         probed,
+        skipped_provider_names=skipped,
         completed_at=datetime.now(timezone.utc),
     )
 
@@ -724,12 +734,16 @@ def intelligent_router(prompt: str) -> tuple[str, dict[str, Any]]:
     failure_policy = policy.get("failure", {})
     all_probes: list[dict[str, Any]] = []
     probed_provider_names: list[str] = []
+    skipped_provider_names: list[str] = []
 
     for provider in active:
         print(f"Trying provider: {provider['name']}")
         text, signal, probes = call_provider(provider, prompt)
-        if any(probe.get("error_class") != "contract_gate" for probe in probes) and provider["name"] not in probed_provider_names:
-            probed_provider_names.append(provider["name"])
+        if _has_actual_probe_attempt(probes):
+            if provider["name"] not in probed_provider_names:
+                probed_provider_names.append(provider["name"])
+        elif provider["name"] not in skipped_provider_names:
+            skipped_provider_names.append(provider["name"])
 
         for probe in probes:
             if probe.get("error_class") == "contract_gate":
@@ -803,6 +817,7 @@ def intelligent_router(prompt: str) -> tuple[str, dict[str, Any]]:
                 roster["providers"],
                 scheduled_provider,
                 probed_provider_names,
+                skipped_provider_names,
             )
             atomic_write_json(HEALTH_STATE_PATH, state)
 
@@ -841,6 +856,7 @@ def intelligent_router(prompt: str) -> tuple[str, dict[str, Any]]:
             roster["providers"],
             scheduled_provider,
             probed_provider_names,
+            skipped_provider_names,
         )
     atomic_write_json(HEALTH_STATE_PATH, state)
 
