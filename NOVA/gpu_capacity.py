@@ -59,6 +59,11 @@ def _parse_aware_timestamp(value: Any) -> datetime | None:
     return parsed.astimezone(timezone.utc)
 
 
+def _provider_identity(value: Any) -> str:
+    """Normalize provider names for duplicate detection without changing display labels."""
+    return value.strip().casefold() if isinstance(value, str) else ""
+
+
 def _nonnegative_number(value: Any) -> int | float | None:
     """Accept finite JSON numbers; reject strings, booleans, negatives and infinity."""
     if isinstance(value, bool) or not isinstance(value, (int, float)):
@@ -288,6 +293,24 @@ def _aggregate_usage(
             "reserved_gpu_minutes": None,
         }
 
+    provider_names = [
+        _provider_identity(provider.get("name"))
+        for provider in providers
+        if _provider_identity(provider.get("name"))
+    ]
+    duplicate_provider_keys = {
+        name for name in provider_names if provider_names.count(name) > 1
+    }
+    active_provider_keys = {_provider_identity(name) for name in active_names}
+    if duplicate_provider_keys.intersection(active_provider_keys):
+        return {
+            "month": month,
+            "status": "DUPLICATE_PROVIDER_IDENTITY",
+            "completed_useful_gpu_minutes": None,
+            "idle_gpu_minutes": None,
+            "reserved_gpu_minutes": None,
+        }
+
     by_name = {
         str(provider.get("name", "")).strip(): provider
         for provider in providers
@@ -399,6 +422,38 @@ def build_capacity_report(
         for record in providers
     ]
 
+    provider_identity_keys = [
+        _provider_identity(record.get("name")) for record in providers
+    ]
+    duplicate_provider_keys = {
+        key for key in provider_identity_keys if key and provider_identity_keys.count(key) > 1
+    }
+    duplicate_provider_names = sorted({
+        str(record.get("name", "")).strip()
+        for record, key in zip(providers, provider_identity_keys)
+        if key in duplicate_provider_keys
+    }, key=str.casefold)
+    missing_provider_identity_count = sum(not key for key in provider_identity_keys)
+    if duplicate_provider_keys or missing_provider_identity_count:
+        # Duplicate/absent identities cannot establish distinct, traceable
+        # provider contributions. Block each affected record from all totals.
+        for record, identity_key, item in zip(providers, provider_identity_keys, assessments):
+            if identity_key and identity_key not in duplicate_provider_keys:
+                continue
+            identity_reason = (
+                "duplicate_provider_identity" if identity_key else "provider_identity_missing"
+            )
+            for capacity_key in ("recurring_capacity", "one_time_capacity"):
+                item[capacity_key] = {
+                    "status": "BLOCKED",
+                    "gpu_minutes": None,
+                    "reason_codes": [identity_reason],
+                }
+            item["status"] = "BLOCKED"
+            item["provider_identity_status"] = (
+                "DUPLICATE" if identity_key else "MISSING"
+            )
+
     verified_recurring = [
         item for item in assessments
         if item["recurring_capacity"]["status"] in {
@@ -479,6 +534,15 @@ def build_capacity_report(
         )
     if use_mode_mismatch:
         warnings.append("Evidence register intended_use_mode differs from the code's current intended-use policy.")
+    if duplicate_provider_names:
+        warnings.append(
+            "Duplicate provider identities are blocked from capacity totals until the evidence register is disambiguated: "
+            + ", ".join(duplicate_provider_names)
+        )
+    if missing_provider_identity_count:
+        warnings.append(
+            f"{missing_provider_identity_count} provider evidence record(s) with missing names are blocked from capacity totals."
+        )
     return {
         "schema_version": 1,
         "observed_at": current.isoformat(),
