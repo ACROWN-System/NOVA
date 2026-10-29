@@ -217,18 +217,21 @@ def supersede_stale_pending_events(state: dict[str, Any]) -> int:
 
 
 def analyze_pending(root: Path) -> int:
-    del root
-    state = load_health_state(HEALTH_STATE_PATH)
+    # Match operational_observer.run(): root is the repository root.
+    # Keep all state/config reads and state writes inside the requested checkout.
+    nova_root = Path(root).resolve() / "NOVA"
+    health_state_path = nova_root / "health_state.json"
+    state = load_health_state(health_state_path)
     superseded = supersede_stale_pending_events(state)
     if superseded:
         # Persist stale-event closure even if no provider is configured or no
         # current event remains to analyze.
-        atomic_write_json(HEALTH_STATE_PATH, state)
+        atomic_write_json(health_state_path, state)
 
-    roster = load_json(ROOT / "roster.json", {"providers": []})
-    policy = load_json(HEALTH_POLICY_PATH, {})
-    watchlist = load_json(WATCHLIST_PATH, {"sources": []})
-    action_policy = load_json(ACTION_POLICY_PATH, {})
+    roster = load_json(nova_root / "roster.json", {"providers": []})
+    policy = load_json(nova_root / "health_policy.json", {})
+    watchlist = load_json(nova_root / "watchlist.json", {})
+    action_policy = load_json(nova_root / "action_policy.json", {})
 
     events = state.get("events", {})
     pending = [
@@ -352,7 +355,7 @@ def analyze_pending(root: Path) -> int:
             )
         processed += 1
 
-    atomic_write_json(HEALTH_STATE_PATH, state)
+    atomic_write_json(health_state_path, state)
     print(json.dumps({
         "status": "COMPLETE",
         "processed": processed,
