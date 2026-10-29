@@ -204,6 +204,16 @@ class RootCauseClosureGateTests(unittest.TestCase):
         )
         self.assertNotEqual(scoped["case_id"], legacy["case_id"])
         self.assertEqual(scoped["failure_domain"], "reasoning_analysis")
+        scoped_repeat = record_failure_case(
+            state,
+            source="provider:model-a",
+            failure_class="transient",
+            expected_result=expected,
+            observed_result="transient:NOT_APPLICABLE",
+            failure_domain="reasoning_analysis",
+        )
+        self.assertEqual(scoped_repeat["case_id"], scoped["case_id"])
+        self.assertEqual(scoped_repeat["occurrences"], 2)
         self.assertEqual(len(state["quality_cases"]), 2)
 
         before = dict(state["quality_cases"])
