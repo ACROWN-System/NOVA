@@ -71,7 +71,7 @@ class ProviderQualificationTests(unittest.TestCase):
     def test_probe_marker_must_be_exact_response_not_substring(self):
         for text, expected_status, expected_marker in (
             ("NOVA_PROBE_OK", "PASS", True),
-            ("  NOVA_PROBE_OK\\n", "PASS", True),
+            ("  NOVA_PROBE_OK\n", "PASS", True),
             ("I cannot comply. NOVA_PROBE_OK", "RESPONSE_VALID_MARKER_MISSING", False),
         ):
             with self.subTest(text=text):
