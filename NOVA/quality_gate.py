@@ -39,6 +39,108 @@ def _nonempty(value: Any) -> bool:
     return isinstance(value, str) and bool(value.strip())
 
 
+_CASE_REQUIRED_TEXT_FIELDS = (
+    "source",
+    "failure_class",
+    "expected_result",
+    "observed_result",
+    "state",
+    "first_seen",
+    "last_seen",
+)
+
+
+def validate_quality_cases_payload(
+    cases: Any, *, description: str = "NOVA quality_cases"
+) -> dict[str, dict[str, Any]]:
+    """Reject malformed persisted RCA cases without changing or discarding them.
+
+    Optional closure fields remain optional for compatibility with existing
+    open cases. If a counter or optional field is present, its type is checked.
+    """
+    if not isinstance(cases, dict):
+        raise RuntimeError(
+            f"{description} must be a JSON object; refusing to reset persisted RCA cases."
+        )
+
+    for key, case in cases.items():
+        if not isinstance(key, str) or not key.strip():
+            raise RuntimeError(
+                f"{description} contains an empty or non-string case key; "
+                "refusing to reset persisted RCA cases."
+            )
+        if not isinstance(case, dict):
+            raise RuntimeError(
+                f"{description} entry '{key}' must be a JSON object; "
+                "refusing to overwrite persisted RCA evidence."
+            )
+        if not _nonempty(case.get("case_id")) or case["case_id"] != key:
+            raise RuntimeError(
+                f"{description} entry '{key}' has a missing or mismatched case_id; "
+                "refusing to overwrite persisted RCA evidence."
+            )
+        for field in _CASE_REQUIRED_TEXT_FIELDS:
+            if not _nonempty(case.get(field)):
+                raise RuntimeError(
+                    f"{description} entry '{key}' field '{field}' must be a non-empty string; "
+                    "refusing to overwrite persisted RCA evidence."
+                )
+
+        if "occurrences" in case:
+            occurrences = case["occurrences"]
+            if (
+                isinstance(occurrences, bool)
+                or not isinstance(occurrences, int)
+                or occurrences < 1
+            ):
+                raise RuntimeError(
+                    f"{description} entry '{key}' field 'occurrences' must be a positive integer; "
+                    "refusing to overwrite persisted RCA evidence."
+                )
+        if "reopened_count" in case:
+            reopened_count = case["reopened_count"]
+            if (
+                isinstance(reopened_count, bool)
+                or not isinstance(reopened_count, int)
+                or reopened_count < 0
+            ):
+                raise RuntimeError(
+                    f"{description} entry '{key}' field 'reopened_count' must be a non-negative integer; "
+                    "refusing to overwrite persisted RCA evidence."
+                )
+
+        if "candidate_sha" in case and case["candidate_sha"] is not None and not isinstance(
+            case["candidate_sha"], str
+        ):
+            raise RuntimeError(
+                f"{description} entry '{key}' field 'candidate_sha' must be a string or null; "
+                "refusing to overwrite persisted RCA evidence."
+            )
+        for field in CLOSURE_FIELDS:
+            if field == "candidate_sha":
+                # Candidate identity is optional for a locally recorded case.
+                continue
+            if field in case and not _nonempty(case[field]):
+                raise RuntimeError(
+                    f"{description} entry '{key}' field '{field}' must be a non-empty string when present; "
+                    "refusing to overwrite persisted RCA evidence."
+                )
+        if "closed_at" in case and not _nonempty(case["closed_at"]):
+            raise RuntimeError(
+                f"{description} entry '{key}' field 'closed_at' must be a non-empty string when present; "
+                "refusing to overwrite persisted RCA evidence."
+            )
+        if "last_verified_closure" in case and not isinstance(
+            case["last_verified_closure"], dict
+        ):
+            raise RuntimeError(
+                f"{description} entry '{key}' field 'last_verified_closure' must be a JSON object; "
+                "refusing to overwrite persisted RCA evidence."
+            )
+
+    return cases
+
+
 def model_capability_decision(
     provider: dict[str, Any],
     model: str,
@@ -117,12 +219,15 @@ def record_failure_case(
     Only stable classifications and short caller-authored descriptions belong
     here. Callers must not provide raw prompts, response bodies, or credentials.
     """
-    stamp = now or _now_iso()
-    cases = state.setdefault("quality_cases", {})
-    if not isinstance(cases, dict):
-        cases = {}
-        state["quality_cases"] = cases
+    if not isinstance(state, dict):
+        raise RuntimeError("NOVA health state must be a JSON object to record an RCA case.")
+    if "quality_cases" not in state:
+        state["quality_cases"] = {}
+    cases = validate_quality_cases_payload(
+        state["quality_cases"], description="NOVA health state field 'quality_cases'"
+    )
 
+    stamp = now or _now_iso()
     case_id = _case_signature(source, failure_class, expected_result)
     existing = cases.get(case_id)
     if not isinstance(existing, dict):

@@ -20,6 +20,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+try:
+    from .quality_gate import validate_quality_cases_payload
+except ImportError:  # Direct script execution
+    from quality_gate import validate_quality_cases_payload
+
 
 # Allowlisted response headers only: never persist arbitrary headers that might
 # contain credentials or unrelated provider/account metadata.
@@ -296,6 +301,11 @@ def validate_health_state_payload(
                 f"{description} field '{key}' must be a JSON object; "
                 "refusing to reset persisted state."
             )
+    if "quality_cases" in state:
+        validate_quality_cases_payload(
+            state["quality_cases"],
+            description=f"{description} field 'quality_cases'",
+        )
     return state
 
 

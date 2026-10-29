@@ -206,7 +206,7 @@ class OperationalStateRosterMergeTests(unittest.TestCase):
                     self.assertEqual(roster_path.read_text(encoding="utf-8"), original_roster)
 
     def test_load_rejects_malformed_health_state_maps_before_writing_local_state(self):
-        for field in ("targets", "observations", "events", "provider_rotation"):
+        for field in ("targets", "observations", "events", "provider_rotation", "quality_cases"):
             with self.subTest(field=field):
                 with tempfile.TemporaryDirectory(prefix="nova-invalid-health-shape-load-") as temp_dir:
                     repo_root = Path(temp_dir)
@@ -242,6 +242,33 @@ class OperationalStateRosterMergeTests(unittest.TestCase):
 
                     self.assertEqual(health_path.read_text(encoding="utf-8"), local_health)
                     self.assertEqual(roster_path.read_text(encoding="utf-8"), local_roster)
+
+    def test_publish_rejects_malformed_quality_cases_before_git_operations(self):
+        for invalid_cases in (
+            [],
+            {"rca-corrupt": "not a case object"},
+        ):
+            with self.subTest(invalid_cases=repr(invalid_cases)[:100]):
+                with tempfile.TemporaryDirectory(prefix="nova-invalid-quality-case-publish-") as temp_dir:
+                    workspace = Path(temp_dir)
+                    nova_dir = workspace / "NOVA"
+                    nova_dir.mkdir()
+                    health_path = nova_dir / "health_state.json"
+                    roster_path = nova_dir / "roster.json"
+                    state = {"schema_version": 1, "targets": {}, "quality_cases": invalid_cases}
+                    roster = {"providers": [{"name": "groq", "status": "active"}]}
+                    health_path.write_text(json.dumps(state), encoding="utf-8")
+                    roster_path.write_text(json.dumps(roster), encoding="utf-8")
+                    original_health = health_path.read_text(encoding="utf-8")
+                    original_roster = roster_path.read_text(encoding="utf-8")
+
+                    with patch("NOVA.operational_state._git") as git_call:
+                        with self.assertRaisesRegex(RuntimeError, "quality_cases"):
+                            publish_operational_state(workspace, "unused-state-ref", "test")
+
+                    git_call.assert_not_called()
+                    self.assertEqual(health_path.read_text(encoding="utf-8"), original_health)
+                    self.assertEqual(roster_path.read_text(encoding="utf-8"), original_roster)
 
     def test_publish_rejects_unloadable_state_before_git_operations(self):
         with tempfile.TemporaryDirectory(prefix="nova-invalid-state-test-") as temp_dir:

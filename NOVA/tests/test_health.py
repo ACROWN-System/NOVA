@@ -101,7 +101,7 @@ class HealthTests(unittest.TestCase):
                     self.assertEqual(path.read_text(encoding="utf-8"), invalid_root)
 
     def test_health_state_loader_rejects_malformed_core_maps_without_modifying_file(self):
-        for field in ("targets", "observations", "events", "provider_rotation"):
+        for field in ("targets", "observations", "events", "provider_rotation", "quality_cases"):
             for invalid_value in (None, [], "invalid", 7, True):
                 with self.subTest(field=field, invalid_value=invalid_value):
                     with tempfile.TemporaryDirectory(prefix="nova-invalid-health-map-") as temp_dir:
@@ -115,6 +115,40 @@ class HealthTests(unittest.TestCase):
                             load_health_state(path)
 
                         self.assertEqual(path.read_text(encoding="utf-8"), serialized)
+
+    def test_health_state_loader_rejects_malformed_quality_case_records_without_modifying_file(self):
+        valid_case = {
+            "case_id": "rca-example",
+            "source": "provider:model",
+            "failure_class": "response_contract",
+            "expected_result": "Structured response satisfies the required contract.",
+            "observed_result": "INVALID_JSON",
+            "candidate_sha": None,
+            "state": "INVESTIGATION_REQUIRED",
+            "first_seen": "2026-10-13T00:00:00+00:00",
+            "last_seen": "2026-10-13T00:00:00+00:00",
+            "occurrences": 1,
+            "reopened_count": 0,
+        }
+        malformed_maps = (
+            {"rca-example": "not an object"},
+            {"rca-example": {**valid_case, "case_id": "different-key"}},
+            {"rca-example": {**valid_case, "occurrences": True}},
+            {"rca-example": {**valid_case, "reopened_count": -1}},
+        )
+        for cases in malformed_maps:
+            with self.subTest(cases=repr(cases)[:100]):
+                with tempfile.TemporaryDirectory(prefix="nova-invalid-quality-case-") as temp_dir:
+                    path = Path(temp_dir) / "health_state.json"
+                    state = _state_defaults()
+                    state["quality_cases"] = cases
+                    serialized = json.dumps(state)
+                    path.write_text(serialized, encoding="utf-8")
+
+                    with self.assertRaisesRegex(RuntimeError, "quality_cases"):
+                        load_health_state(path)
+
+                    self.assertEqual(path.read_text(encoding="utf-8"), serialized)
 
     def test_strict_json_parser_rejects_duplicate_keys_at_any_depth(self):
         invalid_documents = (
