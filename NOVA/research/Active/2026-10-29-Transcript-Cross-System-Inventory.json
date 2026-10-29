@@ -4872,7 +4872,7 @@
     "Path classification is heuristic and may need correction; it is triage metadata, not a semantic or implementation finding."
   ],
   "review_tracking": {
-    "note": "Bounded content review is documented in the working ledger. Blocks 8–11 reviewed NOVA RCA persistence, integrity and reasoning integration; Block 12 reviewed AstroCrown-Web preview/account behavior, public-claims guidance and source-vs-derived market-data requirements; Block 13 reviewed AstroCrown_ACS_MC_Spec and ACROWN-SIMULATION-LAB together. Both Block 13 repository trees exactly match their recorded path inventories. The ACS spec explicitly keeps decision-grade Monte Carlo BLOCKED; its current v1.1.3 has an unterminated terminal code fence and unspecified fee-formula parameters. Simulation Lab accurately identifies all six model areas as scaffolds, with no implementation, scenarios or results present. No code or simulation was run. AI-Sanctuary-Core and Freebies- remain to be reviewed in Block 14. Backup descendants remain excluded.",
+    "note": "Blocks 8–11 reviewed NOVA RCA persistence, integrity and reasoning integration; Block 12 reviewed AstroCrown-Web preview/account behavior and public-claims/data evidence; Block 13 reviewed ACS Monte Carlo specification and Simulation Lab, then was expanded in a transcript reassessment mapping all 15 chapters' transferable ideas against current repo evidence. Main conclusions: evidence/model boundary is strongly documented but not universally enforced; current reasoning payload has evidence/conclusion/actions and labels confidence uncalibrated but does not by itself ensure assumptions/alternatives/reusable insight in every consequential result; independent capability benchmark remains unapproved and Strong RSI remains suspended; failed/inconclusive retention is documented but universal attempt-denominator coverage is not demonstrated; no change is justified solely by the transcript. The ACS v1.1.3 spec also has a terminal unclosed code fence and fee-formula parameters not defined in this version; decision-grade Monte Carlo remains BLOCKED. Block 14 has not started. Backup descendants remain excluded.",
     "last_updated_at": "2026-10-29",
     "last_completed_block": 13,
     "modified_paths": 54
@@ -4907,5 +4907,21 @@
       "paths_included": 14,
       "backup_descendants_excluded": true
     }
+  },
+  "transcript_reassessment": {
+    "status": "COMPLETE",
+    "completed_on": "2026-10-29",
+    "ledger_section": "Transcript reassessment — system usefulness and improvement priorities",
+    "source_scope": "User-supplied 15-chapter interview transcript; speaker-specific empirical/current-event claims were not treated as independently verified facts.",
+    "high_value_themes": [
+      "separate observation, source claim, hypothesis/inference, model output, verified result and decision",
+      "distinguish result correctness from explanation/reusable insight and real-world validity",
+      "preserve failures, inconclusive outcomes and denominators to avoid success-selection bias",
+      "use low-cost abstractions and tests before real-world execution without confusing simulation with validation",
+      "enforce tool permissions at the trusted execution boundary; keep proposer and evaluator separate",
+      "treat cross-domain analogies as hypotheses requiring evidence, scope and possible refutation"
+    ],
+    "no_application_code_change": true,
+    "next_block_not_started": true
   }
 }
