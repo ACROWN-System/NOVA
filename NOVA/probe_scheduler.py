@@ -69,7 +69,7 @@ def _duplicate_active_names(providers: list[dict[str, Any]]) -> list[str]:
         counts[key] = counts.get(key, 0) + 1
     return sorted(
         {name for name in names if counts[name.casefold()] > 1},
-        key=str.casefold,
+        key=lambda name: (name.casefold(), name),
     )
 
 
