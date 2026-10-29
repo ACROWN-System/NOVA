@@ -1,7 +1,7 @@
 # Active Navigation Plan — NOVA Block 49: Reject Ambiguous Watchlist Sources
 
 **Date:** 2026-10-29  
-**Status:** ACTIVE — prevent multiple external sources from sharing one observation/event identity  
+**Status:** COMPLETE — PR #161 merged after successful regression-test workflows  
 **Objective:** Validate watchlist structure and require unique normalized source identities and URLs before NOVA reads or fetches any watched source.
 
 ## Navigation and source of truth
@@ -49,4 +49,10 @@ Validate the entire watchlist before loading operational state or making any HTT
 
 ## Completion evidence
 
-Record the pull request, successful regression workflows, final review, and merge commit here before marking this plan COMPLETE.
+- **Pull request:** https://github.com/ACROWN-System/NOVA/pull/161 — squash-merged.
+- **Merge commit:** `ecb751fb03761f9c041d93e40fbc0413af15b785`.
+- **Push workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40834476934 — NOVA Health Tests passed on head `064470db76f035aa37254f546ad20f3e753e4000`.
+- **Pull-request workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40834483760 — NOVA Health Tests passed on the same head commit.
+- **Regression evidence:** All 200 offline tests passed, including rejection of duplicate normalized names, duplicate URLs, malformed source entries, and proof invalid watchlists cause no state load, fetch, or state write.
+- **Review:** Watchlist validation runs immediately after config loading and before health-state loading or any fetch. URL normalization folds scheme and authority case only; paths, queries, and fragments retain their case. Existing untrusted-content handling and cache provenance rules remain intact.
+- **Boundaries confirmed:** No live external GETs, AI/provider calls, operational-state branch writes, credential changes, or backup modifications were made.
