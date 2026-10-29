@@ -59,6 +59,11 @@ def _parse_aware_timestamp(value: Any) -> datetime | None:
     return parsed.astimezone(timezone.utc)
 
 
+def _provider_identity(value: Any) -> str:
+    """Normalize provider names for duplicate detection without changing display labels."""
+    return value.strip().casefold() if isinstance(value, str) else ""
+
+
 def _nonnegative_number(value: Any) -> int | float | None:
     """Accept finite JSON numbers; reject strings, booleans, negatives and infinity."""
     if isinstance(value, bool) or not isinstance(value, (int, float)):
@@ -289,13 +294,15 @@ def _aggregate_usage(
         }
 
     provider_names = [
-        str(provider.get("name", "")).strip()
+        _provider_identity(provider.get("name"))
         for provider in providers
-        if str(provider.get("name", "")).strip()
+        if _provider_identity(provider.get("name"))
     ]
-    if len(provider_names) != len(set(provider_names)) and active_names.intersection(
+    duplicate_provider_keys = {
         name for name in provider_names if provider_names.count(name) > 1
-    ):
+    }
+    active_provider_keys = {_provider_identity(name) for name in active_names}
+    if duplicate_provider_keys.intersection(active_provider_keys):
         return {
             "month": month,
             "status": "DUPLICATE_PROVIDER_IDENTITY",
@@ -415,29 +422,37 @@ def build_capacity_report(
         for record in providers
     ]
 
-    provider_names = [
-        str(record.get("name", "")).strip()
-        for record in providers
-        if str(record.get("name", "")).strip()
+    provider_identity_keys = [
+        _provider_identity(record.get("name")) for record in providers
     ]
+    duplicate_provider_keys = {
+        key for key in provider_identity_keys if key and provider_identity_keys.count(key) > 1
+    }
     duplicate_provider_names = sorted({
-        name for name in provider_names if provider_names.count(name) > 1
-    })
-    if duplicate_provider_names:
-        # Duplicate evidence records do not identify distinct providers. Block
-        # every occurrence of a duplicated identity so repeated records cannot
-        # inflate recurring or one-time totals.
-        for item in assessments:
-            if item["provider"] not in duplicate_provider_names:
+        str(record.get("name", "")).strip()
+        for record, key in zip(providers, provider_identity_keys)
+        if key in duplicate_provider_keys
+    }, key=str.casefold)
+    missing_provider_identity_count = sum(not key for key in provider_identity_keys)
+    if duplicate_provider_keys or missing_provider_identity_count:
+        # Duplicate/absent identities cannot establish distinct, traceable
+        # provider contributions. Block each affected record from all totals.
+        for record, identity_key, item in zip(providers, provider_identity_keys, assessments):
+            if identity_key and identity_key not in duplicate_provider_keys:
                 continue
+            identity_reason = (
+                "duplicate_provider_identity" if identity_key else "provider_identity_missing"
+            )
             for capacity_key in ("recurring_capacity", "one_time_capacity"):
                 item[capacity_key] = {
                     "status": "BLOCKED",
                     "gpu_minutes": None,
-                    "reason_codes": ["duplicate_provider_identity"],
+                    "reason_codes": [identity_reason],
                 }
             item["status"] = "BLOCKED"
-            item["duplicate_provider_identity"] = True
+            item["provider_identity_status"] = (
+                "DUPLICATE" if identity_key else "MISSING"
+            )
 
     verified_recurring = [
         item for item in assessments
@@ -523,6 +538,10 @@ def build_capacity_report(
         warnings.append(
             "Duplicate provider identities are blocked from capacity totals until the evidence register is disambiguated: "
             + ", ".join(duplicate_provider_names)
+        )
+    if missing_provider_identity_count:
+        warnings.append(
+            f"{missing_provider_identity_count} provider evidence record(s) with missing names are blocked from capacity totals."
         )
     return {
         "schema_version": 1,
