@@ -371,7 +371,7 @@ def analyze_pending(root: Path) -> int:
 
         try:
             analysis = json.loads(response_text)
-        except json.JSONDecodeError:
+        except (json.JSONDecodeError, RecursionError):
             _record_reasoning_failure(
                 event,
                 attempt_count=attempt_count,
