@@ -6,6 +6,11 @@ import urllib.error
 import urllib.parse
 from datetime import datetime, timezone
 
+try:
+    from .health import loads_json_no_duplicate_keys
+except ImportError:  # Direct script execution
+    from health import loads_json_no_duplicate_keys
+
 
 def get_env(name):
     return os.environ.get(name, "").strip().strip('"').strip("'")
@@ -80,7 +85,7 @@ def send_github_issue(title, body):
             method="GET",
         )
         with urllib.request.urlopen(list_req, timeout=15) as response:
-            open_items = json.loads(response.read().decode("utf-8"))
+            open_items = loads_json_no_duplicate_keys(response.read().decode("utf-8"))
         if not isinstance(open_items, list):
             print("[alerts:github] Open-issue listing returned an invalid payload; refusing duplicate creation.")
             return False
@@ -110,7 +115,7 @@ def send_github_issue(title, body):
                 method="POST",
             )
             with urllib.request.urlopen(comment_req, timeout=15) as response:
-                json.loads(response.read().decode("utf-8"))
+                loads_json_no_duplicate_keys(response.read().decode("utf-8"))
             print(f"[alerts:github] Reused open issue: {existing.get('html_url')}")
             return True
 
@@ -121,7 +126,7 @@ def send_github_issue(title, body):
             method="POST",
         )
         with urllib.request.urlopen(create_req, timeout=15) as response:
-            result = json.loads(response.read().decode("utf-8"))
+            result = loads_json_no_duplicate_keys(response.read().decode("utf-8"))
             print(f"[alerts:github] Issue opened: {result.get('html_url')}")
             return True
     except Exception as e:
@@ -156,7 +161,7 @@ def _twilio_request(path, form_fields, sid, token):
     data = urllib.parse.urlencode(form_fields).encode("utf-8")
     req = urllib.request.Request(url, data=data, headers=headers, method="POST")
     with urllib.request.urlopen(req, timeout=15) as response:
-        return json.loads(response.read().decode("utf-8"))
+        return loads_json_no_duplicate_keys(response.read().decode("utf-8"))
 
 
 def send_sms(body):
