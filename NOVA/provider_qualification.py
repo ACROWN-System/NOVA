@@ -109,7 +109,7 @@ def probe(name, kind, env_name, credential, url, method, headers, body, validato
             return base
         text = validator(payload)
         base["response_shape_valid"] = isinstance(text, str)
-        base["probe_marker_present"] = bool(isinstance(text, str) and MARKER in text)
+        base["probe_marker_present"] = bool(isinstance(text, str) and text.strip() == MARKER)
         if not isinstance(text, str):
             base["status"] = "INVALID_RESPONSE_SHAPE"
         elif base["probe_marker_present"]:
