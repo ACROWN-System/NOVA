@@ -143,6 +143,42 @@ class AggregateGpuCapacityTests(unittest.TestCase):
             report["useful_work_and_allocation_usage_month_to_date"]["completed_useful_gpu_minutes"]
         )
 
+    def test_case_only_duplicate_names_are_blocked(self):
+        lower = qualified_record("provider-a", minutes=12_000)
+        upper = qualified_record("PROVIDER-A", minutes=24_000)
+
+        report = build_capacity_report(
+            evidence(lower, upper),
+            active_provider_names={"provider-a"},
+            now=NOW,
+        )
+
+        self.assertEqual(report["verified_eligible_recurring_gpu_minutes_per_month"], 0)
+        self.assertEqual(report["verified_active_recurring_gpu_minutes_per_month"], 0)
+        self.assertIn("provider-a", " ".join(report["warnings"]).casefold())
+        self.assertEqual(
+            report["useful_work_and_allocation_usage_month_to_date"]["status"],
+            "DUPLICATE_PROVIDER_IDENTITY",
+        )
+
+    def test_provider_record_without_name_cannot_count_as_eligible_capacity(self):
+        candidate = qualified_record(minutes=12_000)
+        candidate.pop("name")
+
+        report = build_capacity_report(
+            evidence(candidate),
+            active_provider_names=set(),
+            now=NOW,
+        )
+
+        self.assertEqual(report["verified_eligible_recurring_gpu_minutes_per_month"], 0)
+        self.assertEqual(report["providers"][0]["status"], "BLOCKED")
+        self.assertIn(
+            "provider_identity_missing",
+            report["providers"][0]["recurring_capacity"]["reason_codes"],
+        )
+        self.assertTrue(any("missing names" in warning for warning in report["warnings"]))
+
     def test_unknown_or_partial_gate_blocks_capacity(self):
         for gate in (
             "account_eligibility",
