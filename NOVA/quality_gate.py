@@ -50,12 +50,19 @@ def model_capability_decision(
     path during staged adoption. Once a provider declares model_contracts, an
     absent model/capability entry is blocked rather than silently assumed.
     """
-    contracts = provider.get("model_contracts")
-    if not isinstance(contracts, dict):
+    if "model_contracts" not in provider:
         return {
             "allowed": True,
             "status": "LEGACY_UNDECLARED",
             "reason": "No model-specific contract gate is declared for this provider.",
+        }
+
+    contracts = provider.get("model_contracts")
+    if not isinstance(contracts, dict):
+        return {
+            "allowed": False,
+            "status": "BLOCKED_CONTRACT_UNVERIFIED",
+            "reason": "The declared model_contracts field is not a JSON object.",
         }
 
     contract = contracts.get(model)

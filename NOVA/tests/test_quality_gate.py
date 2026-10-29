@@ -32,6 +32,20 @@ class ModelCapabilityGateTests(unittest.TestCase):
                 self.assertFalse(decision["allowed"])
                 self.assertEqual(decision["status"], "BLOCKED_CONTRACT_UNVERIFIED")
 
+    def test_malformed_declared_contracts_field_fails_closed(self):
+        # Only an absent field is the legacy path. A present but malformed
+        # declaration must not silently bypass the model-specific gate.
+        for malformed in (None, [], "not-an-object", 17, False):
+            with self.subTest(malformed=malformed):
+                decision = model_capability_decision(
+                    {"name": "provider", "model_contracts": malformed},
+                    "model-a",
+                    "structured_json",
+                )
+                self.assertFalse(decision["allowed"])
+                self.assertEqual(decision["status"], "BLOCKED_CONTRACT_UNVERIFIED")
+                self.assertIn("not a JSON object", decision["reason"])
+
     def test_exact_verified_capability_is_allowed(self):
         decision = model_capability_decision(
             {
