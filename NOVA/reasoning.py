@@ -24,6 +24,7 @@ try:
         record_probe,
         utc_now,
     )
+    from .quality_gate import record_failure_case
     from .router import call_provider, order_providers, validate_health_probe_policy
 except ImportError:  # direct script execution
     import alerts
@@ -34,6 +35,7 @@ except ImportError:  # direct script execution
         record_probe,
         utc_now,
     )
+    from quality_gate import record_failure_case
     from router import call_provider, order_providers, validate_health_probe_policy
 
 
@@ -89,6 +91,79 @@ Return ONLY valid JSON with exactly these fields:
   "confidence": 0.0
 }
 """
+
+
+_REASONING_RCA_FAILURES = {
+    "transient",
+    "permanent",
+    "exception",
+    "response_contract",
+}
+_REASONING_RCA_EXPECTED_RESULTS = {
+    "permanent": "Reasoning provider request returns a valid structured reasoning response.",
+    "exception": "Reasoning provider request and response processing complete without an exception.",
+    "response_contract": "Reasoning provider returns NOVA's required structured analysis payload.",
+}
+_SHARED_PROVIDER_FAILURE_EXPECTED_RESULT = (
+    "Provider response satisfies NOVA's required structured response contract."
+)
+
+
+def _record_reasoning_root_cause_case(
+    state: dict[str, Any],
+    probe: dict[str, Any],
+) -> dict[str, Any] | None:
+    """Record eligible reasoning-provider failures using the canonical RCA store.
+
+    Keep actual transient provider failures on the existing provider/model
+    signature so they join an equivalent router case. Other eligible classes
+    use a reasoning-specific domain and fixed descriptions so they cannot be
+    conflated with a health-probe contract or failure of a different kind.
+    Raw error details, prompts, event sources, response bodies and credentials
+    are deliberately never passed to the RCA recorder.
+    """
+    if not isinstance(probe, dict) or probe.get("response_valid") is True:
+        return None
+
+    failure_class = probe.get("error_class")
+    if not isinstance(failure_class, str) or failure_class not in _REASONING_RCA_FAILURES:
+        return None
+
+    provider = probe.get("provider")
+    model = probe.get("requested_model") or probe.get("actual_model")
+    if (
+        not isinstance(provider, str)
+        or not provider.strip()
+        or not isinstance(model, str)
+        or not model.strip()
+    ):
+        return None
+
+    source = f"{provider}:{model}"
+    failure_domain = None
+    if failure_class == "transient":
+        # Preserve the exact historical source/class/expected-result signature
+        # used by router._record_root_cause_case() for shared transport failures.
+        expected_result = _SHARED_PROVIDER_FAILURE_EXPECTED_RESULT
+        observed_result = "transient:NOT_APPLICABLE"
+    else:
+        failure_domain = "reasoning_analysis"
+        expected_result = _REASONING_RCA_EXPECTED_RESULTS[failure_class]
+        observed_result = {
+            "permanent": "permanent:REASONING_REQUEST_FAILED",
+            "exception": "exception:REASONING_REQUEST_FAILED",
+            "response_contract": "response_contract:REASONING_PAYLOAD_INVALID",
+        }[failure_class]
+
+    return record_failure_case(
+        state,
+        source=source,
+        failure_class=failure_class,
+        expected_result=expected_result,
+        observed_result=observed_result,
+        candidate_sha=os.environ.get("GITHUB_SHA"),
+        failure_domain=failure_domain,
+    )
 
 
 def validate_reasoning_payload(content: Any) -> tuple[bool, str]:
@@ -363,6 +438,7 @@ def analyze_pending(root: Path) -> int:
                 latency_min_samples=validated_policy["minimum_samples_for_comparison"],
                 unacceptable_failure_streak=validated_policy["unacceptable_consecutive_failures"],
             )
+            _record_reasoning_root_cause_case(state, probe)
 
         if not response_text:
             _record_reasoning_failure(

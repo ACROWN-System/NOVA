@@ -6,12 +6,149 @@ from io import StringIO
 from pathlib import Path
 from unittest.mock import patch
 
+from NOVA.quality_gate import record_failure_case
 from NOVA.reasoning import (
+    _record_reasoning_root_cause_case,
     analyze_pending,
     build_alert_body,
     supersede_stale_pending_events,
     validate_reasoning_payload,
 )
+
+
+class ReasoningRcaTests(unittest.TestCase):
+    SHARED_EXPECTED = (
+        "Provider response satisfies NOVA's required structured response contract."
+    )
+
+    def test_transient_failure_joins_existing_provider_case_without_raw_details(self):
+        state = {}
+        existing = record_failure_case(
+            state,
+            source="groq:test-model",
+            failure_class="transient",
+            expected_result=self.SHARED_EXPECTED,
+            observed_result="transient:NOT_APPLICABLE",
+        )
+        probe = {
+            "provider": "groq",
+            "requested_model": "test-model",
+            "response_valid": False,
+            "error_class": "transient",
+            "quality_status": "NOT_APPLICABLE",
+            "error_detail": "RAW RESPONSE BODY AND SECRET MUST NOT PERSIST",
+        }
+
+        recorded = _record_reasoning_root_cause_case(state, probe)
+
+        self.assertEqual(recorded["case_id"], existing["case_id"])
+        self.assertEqual(recorded["occurrences"], 2)
+        self.assertNotIn("failure_domain", recorded)
+        self.assertEqual(len(state["quality_cases"]), 1)
+        serialized = json.dumps(state, sort_keys=True)
+        self.assertNotIn("RAW RESPONSE BODY", serialized)
+        self.assertNotIn("SECRET MUST NOT PERSIST", serialized)
+        self.assertNotIn("error_detail", recorded)
+
+    def test_reasoning_contract_failure_is_distinct_from_health_contract_case(self):
+        state = {}
+        health_case = record_failure_case(
+            state,
+            source="gemini:test-model",
+            failure_class="response_contract",
+            expected_result=self.SHARED_EXPECTED,
+            observed_result="response_contract:EMPTY_RESPONSE",
+        )
+        reasoning_case = _record_reasoning_root_cause_case(
+            state,
+            {
+                "provider": "gemini",
+                "requested_model": "test-model",
+                "response_valid": False,
+                "error_class": "response_contract",
+                "quality_status": "INVALID_JSON",
+                "error_detail": "untrusted response text",
+            },
+        )
+
+        self.assertNotEqual(reasoning_case["case_id"], health_case["case_id"])
+        self.assertEqual(reasoning_case["failure_domain"], "reasoning_analysis")
+        self.assertEqual(reasoning_case["failure_class"], "response_contract")
+        self.assertEqual(len(state["quality_cases"]), 2)
+        self.assertNotIn("untrusted response text", json.dumps(state))
+
+    def test_permanent_and_exception_cases_use_reasoning_domain(self):
+        for failure_class in ("permanent", "exception"):
+            with self.subTest(failure_class=failure_class):
+                state = {}
+                case = _record_reasoning_root_cause_case(
+                    state,
+                    {
+                        "provider": "groq",
+                        "requested_model": "test-model",
+                        "response_valid": False,
+                        "error_class": failure_class,
+                        "quality_status": "NOT_APPLICABLE",
+                        "error_detail": "private raw error",
+                    },
+                )
+                self.assertIsNotNone(case)
+                self.assertEqual(case["failure_domain"], "reasoning_analysis")
+                self.assertEqual(case["failure_class"], failure_class)
+                self.assertNotIn("private raw error", json.dumps(state))
+
+    def test_local_blocks_unknown_classes_and_successes_do_not_create_cases(self):
+        excluded_classes = (
+            None,
+            "contract_gate",
+            "credential_not_configured",
+            "account_id_not_configured",
+            "health_url_not_configured",
+            "unsupported_auth_type",
+            "unreviewed_failure",
+            ["transient"],
+        )
+        for failure_class in excluded_classes:
+            with self.subTest(failure_class=repr(failure_class)):
+                state = {}
+                result = _record_reasoning_root_cause_case(
+                    state,
+                    {
+                        "provider": "groq",
+                        "requested_model": "test-model",
+                        "response_valid": False,
+                        "error_class": failure_class,
+                    },
+                )
+                self.assertIsNone(result)
+                self.assertNotIn("quality_cases", state)
+
+        success_state = {}
+        self.assertIsNone(_record_reasoning_root_cause_case(
+            success_state,
+            {
+                "provider": "groq",
+                "requested_model": "test-model",
+                "response_valid": True,
+                "error_class": "response_contract",
+            },
+        ))
+        self.assertNotIn("quality_cases", success_state)
+
+    def test_missing_model_identity_does_not_create_case(self):
+        state = {}
+        result = _record_reasoning_root_cause_case(
+            state,
+            {
+                "provider": "groq",
+                "requested_model": None,
+                "actual_model": None,
+                "response_valid": False,
+                "error_class": "transient",
+            },
+        )
+        self.assertIsNone(result)
+        self.assertNotIn("quality_cases", state)
 
 
 class ReasoningTests(unittest.TestCase):
@@ -106,6 +243,125 @@ class ReasoningTests(unittest.TestCase):
         self.assertEqual(state["events"]["old-event"]["analysis_status"], "SUPERSEDED")
         self.assertIn("NO_PENDING_EVENTS", output.getvalue())
 
+    def test_failed_provider_case_persists_when_fallback_succeeds(self):
+        source = "release-notes"
+        provider_a = {"name": "groq", "status": "active", "kind": "openai-compatible"}
+        provider_b = {"name": "gemini", "status": "active", "kind": "gemini"}
+        probe_a = {
+            "provider": "groq",
+            "credential_env": "GROQ_API_KEY_01",
+            "requested_model": "model-a",
+            "actual_model": None,
+            "api_status": 503,
+            "authentication": "UNKNOWN",
+            "response_valid": False,
+            "quality_status": "NOT_APPLICABLE",
+            "latency_ms": 10.0,
+            "error_class": "transient",
+            "error_detail": "RAW PROVIDER BODY MUST NOT PERSIST",
+        }
+        probe_b = {
+            "provider": "gemini",
+            "credential_env": "GEMINI_API_KEY_01",
+            "requested_model": "model-b",
+            "actual_model": "model-b",
+            "api_status": 200,
+            "authentication": "PASS",
+            "response_valid": True,
+            "quality_status": "PASS",
+            "latency_ms": 12.0,
+            "error_class": None,
+            "error_detail": None,
+        }
+        valid_response = json.dumps({
+            "significance": "LOW",
+            "affected_areas": ["NOVA"],
+            "evidence": ["No material impact found in the supplied annotation."],
+            "conclusion": "No material operational impact is indicated.",
+            "recommended_actions": ["Continue monitoring."],
+            "model_recommended_autonomy_level": "L1_ANALYZE",
+            "model_recommended_requires_human_gate": True,
+            "confidence": 0.5,
+        })
+        state = {
+            "events": {
+                "event-1": {
+                    "event_id": "event-1",
+                    "source": source,
+                    "fingerprint": "fingerprint-a",
+                    "analysis_status": "PENDING",
+                    "analysis_attempt_count": 0,
+                }
+            },
+            "observations": {
+                f"external-annotation:{source}": {
+                    "fingerprint": "fingerprint-a",
+                    "observation": {
+                        "url": "https://example.invalid/private-release-notes",
+                        "content_excerpt": "PRIVATE SOURCE EXCERPT MUST NOT PERSIST",
+                        "content_fingerprint": "fingerprint-a",
+                    },
+                }
+            },
+            "targets": {},
+            "provider_rotation": {},
+        }
+
+        def fake_load_json(path, default):
+            name = Path(path).name
+            if name == "roster.json":
+                return {"providers": [provider_a, provider_b]}
+            if name == "health_policy.json":
+                return {
+                    "reasoning": {"max_attempts_per_event": 2},
+                    "latency": {
+                        "max_samples_per_target": 6,
+                        "degraded_multiplier": 1.5,
+                        "minimum_samples_for_comparison": 2,
+                    },
+                    "failure": {"unacceptable_consecutive_failures": 4},
+                }
+            if name == "watchlist.json":
+                return {"sources": [{"name": source, "analysis_valid_for_seconds": 3600}]}
+            if name == "action_policy.json":
+                return {"external_event_actions": {}}
+            raise AssertionError(f"Unexpected configuration path: {path}")
+
+        def fake_call_provider(provider, prompt, validator):
+            if provider["name"] == "groq":
+                return None, "quality_or_transient", [probe_a]
+            if provider["name"] == "gemini":
+                return valid_response, "success", [probe_b]
+            raise AssertionError(f"Unexpected provider: {provider['name']}")
+
+        with tempfile.TemporaryDirectory(prefix="nova-reasoning-fallback-rca-") as temp_dir:
+            repo_root = Path(temp_dir)
+            (repo_root / "NOVA").mkdir()
+            with patch("NOVA.reasoning.load_health_state", return_value=state), patch(
+                "NOVA.reasoning.load_json", side_effect=fake_load_json
+            ), patch("NOVA.reasoning.order_providers", return_value=[provider_a, provider_b]), patch(
+                "NOVA.reasoning.call_provider", side_effect=fake_call_provider
+            ) as call_provider, patch("NOVA.reasoning.record_probe") as record_probe, patch(
+                "NOVA.reasoning.atomic_write_json"
+            ) as write_state, redirect_stdout(StringIO()):
+                self.assertEqual(analyze_pending(repo_root), 0)
+
+        event = state["events"]["event-1"]
+        self.assertEqual(event["analysis_status"], "ANALYZED")
+        self.assertEqual(event["last_attempt_status"], "SUCCEEDED")
+        self.assertEqual(call_provider.call_count, 2)
+        self.assertEqual(record_probe.call_count, 2)
+        write_state.assert_called_once()
+        self.assertEqual(len(state["quality_cases"]), 1)
+        case = next(iter(state["quality_cases"].values()))
+        self.assertEqual(case["source"], "groq:model-a")
+        self.assertEqual(case["failure_class"], "transient")
+        self.assertEqual(case["occurrences"], 1)
+        serialized = json.dumps(state["quality_cases"], sort_keys=True)
+        self.assertNotIn("RAW PROVIDER BODY", serialized)
+        self.assertNotIn("PRIVATE SOURCE EXCERPT", serialized)
+        self.assertNotIn("private-release-notes", serialized)
+
     def test_reasoning_failure_retries_boundedly_then_blocks(self):
         source = "release-notes"
         state = {
@@ -199,6 +455,10 @@ class ReasoningTests(unittest.TestCase):
                 self.assertEqual(call_provider.call_count, 3)
 
             self.assertEqual(record_probe.call_count, 3)
+            self.assertEqual(len(state["quality_cases"]), 1)
+            only_case = next(iter(state["quality_cases"].values()))
+            self.assertEqual(only_case["failure_class"], "transient")
+            self.assertEqual(only_case["occurrences"], 3)
             for recorded in record_probe.call_args_list:
                 self.assertEqual(recorded.kwargs["max_samples"], 6)
                 self.assertEqual(recorded.kwargs["latency_degraded_multiplier"], 1.5)
