@@ -1,7 +1,7 @@
 # Active Navigation Plan — NOVA Block 48: Validate Health-State Shape at Operational Boundaries
 
 **Date:** 2026-10-29  
-**Status:** ACTIVE — keep state-branch loading and publication consistent with the strict runtime health-state loader  
+**Status:** COMPLETE — PR #160 merged after successful regression-test workflows  
 **Objective:** Prevent the operational-state loader or publisher from accepting a health-state JSON object whose core state maps have invalid types and will be rejected later by `load_health_state()`.
 
 ## Navigation and source of truth
@@ -48,4 +48,10 @@ Extract the shared core-map shape validation into a function in `NOVA/health.py`
 
 ## Completion evidence
 
-Record the pull request, successful regression workflows, final review, and merge commit here before marking this plan COMPLETE.
+- **Pull request:** https://github.com/ACROWN-System/NOVA/pull/160 — squash-merged.
+- **Merge commit:** `e0eff016f33a1bb6b4d4538fdcdf2837a26ba51b`.
+- **Push workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40833932270 — NOVA Health Tests passed on head `c4a8cbcf63d3a0ad24d386c07ab5391fb93cb26d`.
+- **Pull-request workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40833965265 — NOVA Health Tests passed on the same head commit.
+- **Regression evidence:** All 196 offline tests passed. New tests reject each malformed core map during state-branch loading without local writes, and reject malformed local health-state maps before publication can create a git worktree.
+- **Review:** `validate_health_state_payload()` is shared by `load_health_state()` and both operational-state boundaries. Missing core maps remain compatible with older state and can receive runtime defaults; present non-object core maps fail closed.
+- **Boundaries confirmed:** No live provider calls, operational-state branch writes, credential changes, or backup modifications were made.
