@@ -37,6 +37,36 @@ def _read_json_text(text: str, *, description: str) -> dict[str, Any]:
     return value
 
 
+def _validate_provider_roster(
+    roster: dict[str, Any], *, description: str
+) -> list[dict[str, Any]]:
+    """Validate provider identities before a roster is published or merged."""
+    providers = roster.get("providers")
+    if not isinstance(providers, list):
+        raise RuntimeError(f"{description} must contain a providers array.")
+
+    validated_providers: list[dict[str, Any]] = []
+    seen_names: set[str] = set()
+    for index, provider in enumerate(providers):
+        if not isinstance(provider, dict):
+            raise RuntimeError(
+                f"{description} providers[{index}] must be a JSON object."
+            )
+        name = provider.get("name")
+        if not isinstance(name, str) or not name.strip():
+            raise RuntimeError(
+                f"{description} providers[{index}] must have a non-empty name."
+            )
+        normalized_name = name.strip().casefold()
+        if normalized_name in seen_names:
+            raise RuntimeError(
+                f"{description} contains duplicate provider identities."
+            )
+        seen_names.add(normalized_name)
+        validated_providers.append(provider)
+    return validated_providers
+
+
 def _validate_publishable_state(repo_root: Path) -> None:
     """Reject state that would make the next operational-state load fail."""
     _read_json_text(
@@ -47,27 +77,7 @@ def _validate_publishable_state(repo_root: Path) -> None:
         (repo_root / "NOVA/roster.json").read_text(encoding="utf-8"),
         description="NOVA/roster.json",
     )
-    providers = roster.get("providers")
-    if not isinstance(providers, list):
-        raise RuntimeError("NOVA/roster.json must contain a providers array.")
-
-    seen_names: set[str] = set()
-    for index, provider in enumerate(providers):
-        if not isinstance(provider, dict):
-            raise RuntimeError(
-                f"NOVA/roster.json providers[{index}] must be a JSON object."
-            )
-        name = provider.get("name")
-        if not isinstance(name, str) or not name.strip():
-            raise RuntimeError(
-                f"NOVA/roster.json providers[{index}] must have a non-empty name."
-            )
-        normalized_name = name.strip().casefold()
-        if normalized_name in seen_names:
-            raise RuntimeError(
-                "NOVA/roster.json contains duplicate provider identities."
-            )
-        seen_names.add(normalized_name)
+    _validate_provider_roster(roster, description="NOVA/roster.json")
 
 
 def _write_json(path: Path, value: dict[str, Any]) -> None:
@@ -92,20 +102,19 @@ def merge_dynamic_roster(
 ) -> dict[str, Any]:
     """Use current main policy, overlaying only previously persisted DOWN markers."""
     merged = copy.deepcopy(repository_roster)
-    current_providers = merged.get("providers")
-    persisted_providers = persisted_roster.get("providers")
-    if not isinstance(current_providers, list) or not isinstance(persisted_providers, list):
-        raise RuntimeError("Both provider rosters must contain a providers array.")
+    current_providers = _validate_provider_roster(
+        merged, description="Current repository roster"
+    )
+    persisted_providers = _validate_provider_roster(
+        persisted_roster, description="Persisted operational-state roster"
+    )
 
     persisted_by_name = {
-        provider.get("name"): provider
+        provider["name"].strip().casefold(): provider
         for provider in persisted_providers
-        if isinstance(provider, dict) and isinstance(provider.get("name"), str)
     }
     for provider in current_providers:
-        if not isinstance(provider, dict):
-            raise RuntimeError("The repository roster contains a non-object provider.")
-        saved = persisted_by_name.get(provider.get("name"))
+        saved = persisted_by_name.get(provider["name"].strip().casefold())
         if provider.get("status") == "active" and isinstance(saved, dict) and saved.get("status") == "down":
             provider["status"] = "down"
             provider.pop("marked_down_at", None)
