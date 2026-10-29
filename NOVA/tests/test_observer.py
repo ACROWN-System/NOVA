@@ -1,13 +1,78 @@
 import json
+import tempfile
 import unittest
 import urllib.error
 from io import BytesIO
+from pathlib import Path
 from unittest.mock import MagicMock, patch
 
-from NOVA.operational_observer import fetch_text, normalize_content, observe_source
+from NOVA.operational_observer import (
+    fetch_text,
+    normalize_content,
+    observe_source,
+    run,
+    validate_watchlist,
+)
 
 
 class ObserverTests(unittest.TestCase):
+    def test_watchlist_rejects_duplicate_normalized_source_names(self):
+        watchlist = {
+            "sources": [
+                {"name": "release-notes", "url": "https://example.invalid/a"},
+                {"name": " RELEASE-NOTES ", "url": "https://example.invalid/b"},
+            ]
+        }
+        with self.assertRaisesRegex(RuntimeError, "duplicate source identities"):
+            validate_watchlist(watchlist)
+
+    def test_watchlist_rejects_duplicate_urls_even_when_names_differ(self):
+        watchlist = {
+            "sources": [
+                {"name": "source-a", "url": "HTTPS://EXAMPLE.INVALID/updates"},
+                {"name": "source-b", "url": "https://example.invalid/updates"},
+            ]
+        }
+        with self.assertRaisesRegex(RuntimeError, "duplicate source URLs"):
+            validate_watchlist(watchlist)
+
+    def test_watchlist_rejects_malformed_source_structure(self):
+        invalid_watchlists = (
+            ({"sources": {}}, "must contain a sources array"),
+            ({"sources": ["not-an-object"]}, "sources[0] must be a JSON object"),
+            ({"sources": [{"name": "release-notes", "url": "relative/path"}]}, "URL must be absolute"),
+            ({"sources": [{"name": 12, "url": "https://example.invalid/updates"}]}, "name must be a string"),
+        )
+        for watchlist, expected_error in invalid_watchlists:
+            with self.subTest(watchlist=watchlist):
+                with self.assertRaisesRegex(RuntimeError, expected_error):
+                    validate_watchlist(watchlist)
+
+    def test_run_rejects_ambiguous_watchlist_before_state_load_or_fetch(self):
+        with tempfile.TemporaryDirectory(prefix="nova-ambiguous-watchlist-") as temp_dir:
+            repo_root = Path(temp_dir)
+            nova_root = repo_root / "NOVA"
+            nova_root.mkdir()
+            (nova_root / "watchlist.json").write_text(
+                json.dumps({
+                    "sources": [
+                        {"name": "release-notes", "url": "https://example.invalid/a"},
+                        {"name": " RELEASE-NOTES ", "url": "https://example.invalid/b"},
+                    ]
+                }),
+                encoding="utf-8",
+            )
+
+            with patch("NOVA.operational_observer.load_health_state") as load_state, patch(
+                "NOVA.operational_observer.fetch_text"
+            ) as fetch, patch("NOVA.operational_observer.atomic_write_json") as write_state:
+                with self.assertRaisesRegex(RuntimeError, "duplicate source identities"):
+                    run(repo_root)
+
+            load_state.assert_not_called()
+            fetch.assert_not_called()
+            write_state.assert_not_called()
+
     def test_normalize_content_removes_html_noise(self):
         content = "<html><script>bad()</script><body>Hello   NOVA</body></html>"
         self.assertEqual(normalize_content(content), "Hello NOVA")
