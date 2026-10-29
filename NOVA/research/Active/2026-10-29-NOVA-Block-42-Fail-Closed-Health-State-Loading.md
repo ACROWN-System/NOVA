@@ -25,14 +25,14 @@ That recovery behavior is unsafe for operational state: a caller can proceed wit
 Keep the generic `load_json()` fallback semantics for non-operational configuration callers, but make `load_health_state()` strict for an existing state file:
 
 - If the file does not exist, initialize the documented default state (first-run behavior).
-- If it exists but cannot be read, is invalid JSON, or has a non-object root, raise an explicit, content-redacted error and do not synthesize replacement state.
+- If it exists but cannot be read, is invalid JSON, has duplicate JSON object keys at any depth, or has a non-object root, raise an explicit, content-redacted error and do not synthesize replacement state.
 - Require the core mapping fields `targets`, `observations`, `events`, and `provider_rotation` to be objects when present; absent fields can still be initialized for schema-compatible older state.
 - Never modify, rename, or delete the existing file on a failed load.
 
 ## Actions
 
-1. Implement strict health-state parsing and top-level structural validation in `NOVA/health.py`.
-2. Add offline tests for missing-file first-run defaults, malformed JSON, non-object roots, and malformed core mapping fields.
+1. Implement strict health-state parsing, duplicate-key rejection, and top-level structural validation in `NOVA/health.py`.
+2. Add offline tests for missing-file first-run defaults, malformed JSON, duplicate keys, undecodable bytes, non-object roots, and malformed core mapping fields.
 3. Where an existing corrupt file is rejected, verify its bytes remain unchanged.
 4. Run NOVA Health Tests on the pull request head and inspect the workflow result.
 5. Open a focused pull request and merge only after all required checks pass.
@@ -44,7 +44,7 @@ Keep the generic `load_json()` fallback semantics for non-operational configurat
 - **Compatibility:** Missing state remains a valid first-run case; absent newer fields still receive defaults. Generic `load_json()` behavior is unchanged.
 - **Resources/cost:** Offline tests only; no provider requests or new dependencies.
 - **Secrets/backups:** Unchanged.
-- **Scope boundary:** This checks top-level state shape and load integrity; it does not prove every nested observation or health claim is truthful.
+- **Scope boundary:** This checks JSON load integrity, duplicate-key ambiguity, and top-level state shape; it does not prove every nested observation or health claim is truthful.
 
 ## Completion evidence
 
