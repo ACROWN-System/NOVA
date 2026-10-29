@@ -288,6 +288,22 @@ def _aggregate_usage(
             "reserved_gpu_minutes": None,
         }
 
+    provider_names = [
+        str(provider.get("name", "")).strip()
+        for provider in providers
+        if str(provider.get("name", "")).strip()
+    ]
+    if len(provider_names) != len(set(provider_names)) and active_names.intersection(
+        name for name in provider_names if provider_names.count(name) > 1
+    ):
+        return {
+            "month": month,
+            "status": "DUPLICATE_PROVIDER_IDENTITY",
+            "completed_useful_gpu_minutes": None,
+            "idle_gpu_minutes": None,
+            "reserved_gpu_minutes": None,
+        }
+
     by_name = {
         str(provider.get("name", "")).strip(): provider
         for provider in providers
@@ -399,6 +415,30 @@ def build_capacity_report(
         for record in providers
     ]
 
+    provider_names = [
+        str(record.get("name", "")).strip()
+        for record in providers
+        if str(record.get("name", "")).strip()
+    ]
+    duplicate_provider_names = sorted({
+        name for name in provider_names if provider_names.count(name) > 1
+    })
+    if duplicate_provider_names:
+        # Duplicate evidence records do not identify distinct providers. Block
+        # every occurrence of a duplicated identity so repeated records cannot
+        # inflate recurring or one-time totals.
+        for item in assessments:
+            if item["provider"] not in duplicate_provider_names:
+                continue
+            for capacity_key in ("recurring_capacity", "one_time_capacity"):
+                item[capacity_key] = {
+                    "status": "BLOCKED",
+                    "gpu_minutes": None,
+                    "reason_codes": ["duplicate_provider_identity"],
+                }
+            item["status"] = "BLOCKED"
+            item["duplicate_provider_identity"] = True
+
     verified_recurring = [
         item for item in assessments
         if item["recurring_capacity"]["status"] in {
@@ -479,6 +519,11 @@ def build_capacity_report(
         )
     if use_mode_mismatch:
         warnings.append("Evidence register intended_use_mode differs from the code's current intended-use policy.")
+    if duplicate_provider_names:
+        warnings.append(
+            "Duplicate provider identities are blocked from capacity totals until the evidence register is disambiguated: "
+            + ", ".join(duplicate_provider_names)
+        )
     return {
         "schema_version": 1,
         "observed_at": current.isoformat(),
