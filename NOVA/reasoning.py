@@ -24,7 +24,7 @@ try:
         record_probe,
         utc_now,
     )
-    from .router import call_provider, order_providers
+    from .router import call_provider, order_providers, validate_health_probe_policy
 except ImportError:  # direct script execution
     import alerts
     from health import (
@@ -34,7 +34,7 @@ except ImportError:  # direct script execution
         record_probe,
         utc_now,
     )
-    from router import call_provider, order_providers
+    from router import call_provider, order_providers, validate_health_probe_policy
 
 
 ROOT = Path(__file__).resolve().parent
@@ -268,6 +268,19 @@ def analyze_pending(root: Path) -> int:
     # Keep all state/config reads and state writes inside the requested checkout.
     nova_root = Path(root).resolve() / "NOVA"
     health_state_path = nova_root / "health_state.json"
+
+    # Validate shared health settings before reading/mutating state or calling
+    # a provider. The heartbeat router uses the same validator; keep reasoning
+    # on the same policy contract rather than duplicating numeric validation.
+    policy = load_json(nova_root / "health_policy.json", {})
+    validated_policy = validate_health_probe_policy(policy)
+    reasoning_policy = policy.get("reasoning", {})
+    if not isinstance(reasoning_policy, dict):
+        raise RuntimeError("health_policy.json reasoning policy must be a JSON object.")
+    max_attempts = reasoning_policy.get("max_attempts_per_event", 3)
+    if isinstance(max_attempts, bool) or not isinstance(max_attempts, int) or max_attempts < 1:
+        raise RuntimeError("health_policy.json reasoning.max_attempts_per_event must be a positive integer.")
+
     state = load_health_state(health_state_path)
     superseded = supersede_stale_pending_events(state)
     if superseded:
@@ -276,13 +289,6 @@ def analyze_pending(root: Path) -> int:
         atomic_write_json(health_state_path, state)
 
     roster = load_json(nova_root / "roster.json", {"providers": []})
-    policy = load_json(nova_root / "health_policy.json", {})
-    reasoning_policy = policy.get("reasoning", {})
-    if not isinstance(reasoning_policy, dict):
-        raise RuntimeError("health_policy.json reasoning policy must be a JSON object.")
-    max_attempts = reasoning_policy.get("max_attempts_per_event", 3)
-    if isinstance(max_attempts, bool) or not isinstance(max_attempts, int) or max_attempts < 1:
-        raise RuntimeError("health_policy.json reasoning.max_attempts_per_event must be a positive integer.")
     watchlist = load_json(nova_root / "watchlist.json", {"sources": []})
     action_policy = load_json(nova_root / "action_policy.json", {})
 
@@ -301,8 +307,6 @@ def analyze_pending(root: Path) -> int:
         print(json.dumps({"status": "BLOCKED", "reason": "No active AI providers.", "action": "WAIT_FOR_CREDENTIAL_CONFIGURATION"}))
         return 0
 
-    latency_policy = policy.get("latency", {})
-    failure_policy = policy.get("failure", {})
     processed = 0
 
     for event in pending:
@@ -354,10 +358,10 @@ def analyze_pending(root: Path) -> int:
                 latency_ms=probe.get("latency_ms"),
                 error_class=probe.get("error_class"),
                 error_detail=probe.get("error_detail"),
-                max_samples=int(latency_policy.get("max_samples_per_target", 24)),
-                latency_degraded_multiplier=float(latency_policy.get("degraded_multiplier", 2.0)),
-                latency_min_samples=int(latency_policy.get("minimum_samples_for_comparison", 4)),
-                unacceptable_failure_streak=int(failure_policy.get("unacceptable_consecutive_failures", 3)),
+                max_samples=validated_policy["max_samples_per_target"],
+                latency_degraded_multiplier=validated_policy["degraded_multiplier"],
+                latency_min_samples=validated_policy["minimum_samples_for_comparison"],
+                unacceptable_failure_streak=validated_policy["unacceptable_consecutive_failures"],
             )
 
         if not response_text:
