@@ -670,6 +670,14 @@ class HealthResponseContractTests(unittest.TestCase):
         self.assertEqual(probes[0]["error_class"], "exception")
         self.assertNotIn(health_payload, json.dumps(probes))
 
+    def test_router_roster_loader_preserves_valid_roster(self):
+        expected = {"providers": [{"name": "groq", "status": "active"}]}
+        with tempfile.TemporaryDirectory(prefix="nova-valid-router-roster-") as temp_dir:
+            path = Path(temp_dir) / "roster.json"
+            path.write_text(json.dumps(expected), encoding="utf-8")
+            with patch("NOVA.router.ROSTER_PATH", path):
+                self.assertEqual(load_roster(), expected)
+
     def test_router_roster_loader_rejects_duplicate_keys(self):
         invalid_documents = (
             '{"providers": [], "providers": []}',
