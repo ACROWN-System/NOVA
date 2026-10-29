@@ -86,26 +86,28 @@ def validate_quality_cases_payload(
                     "refusing to overwrite persisted RCA evidence."
                 )
 
-        occurrences = case.get("occurrences")
-        if occurrences is not None and (
-            isinstance(occurrences, bool)
-            or not isinstance(occurrences, int)
-            or occurrences < 1
-        ):
-            raise RuntimeError(
-                f"{description} entry '{key}' field 'occurrences' must be a positive integer; "
-                "refusing to overwrite persisted RCA evidence."
-            )
-        reopened_count = case.get("reopened_count")
-        if reopened_count is not None and (
-            isinstance(reopened_count, bool)
-            or not isinstance(reopened_count, int)
-            or reopened_count < 0
-        ):
-            raise RuntimeError(
-                f"{description} entry '{key}' field 'reopened_count' must be a non-negative integer; "
-                "refusing to overwrite persisted RCA evidence."
-            )
+        if "occurrences" in case:
+            occurrences = case["occurrences"]
+            if (
+                isinstance(occurrences, bool)
+                or not isinstance(occurrences, int)
+                or occurrences < 1
+            ):
+                raise RuntimeError(
+                    f"{description} entry '{key}' field 'occurrences' must be a positive integer; "
+                    "refusing to overwrite persisted RCA evidence."
+                )
+        if "reopened_count" in case:
+            reopened_count = case["reopened_count"]
+            if (
+                isinstance(reopened_count, bool)
+                or not isinstance(reopened_count, int)
+                or reopened_count < 0
+            ):
+                raise RuntimeError(
+                    f"{description} entry '{key}' field 'reopened_count' must be a non-negative integer; "
+                    "refusing to overwrite persisted RCA evidence."
+                )
 
         if "candidate_sha" in case and case["candidate_sha"] is not None and not isinstance(
             case["candidate_sha"], str
