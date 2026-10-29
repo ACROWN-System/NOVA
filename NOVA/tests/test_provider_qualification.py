@@ -68,6 +68,38 @@ class ProviderQualificationTests(unittest.TestCase):
         self.assertNotIn("ordinary response", json.dumps(result))
         self.assertEqual(result["usage"]["total_tokens"], 7)
 
+    def test_probe_marker_must_be_exact_response_not_substring(self):
+        for text, expected_status, expected_marker in (
+            ("NOVA_PROBE_OK", "PASS", True),
+            ("  NOVA_PROBE_OK\\n", "PASS", True),
+            ("I cannot comply. NOVA_PROBE_OK", "RESPONSE_VALID_MARKER_MISSING", False),
+        ):
+            with self.subTest(text=text):
+                class FakeResponse:
+                    status = 200
+                    headers = {}
+
+                    def __enter__(self):
+                        return self
+
+                    def __exit__(self, exc_type, exc, tb):
+                        return False
+
+                    def read(self, size):
+                        return json.dumps({
+                            "choices": [{"message": {"content": text}}]
+                        }).encode("utf-8")
+
+                with patch("NOVA.provider_qualification.urllib.request.build_opener") as opener:
+                    opener.return_value.open.return_value = FakeResponse()
+                    result = probe(
+                        "fixture", "llm_inference", "FIXTURE_KEY", "configured-value",
+                        "https://provider.invalid/v1/chat/completions", "POST",
+                        {"Authorization": "Bearer configured-value"}, b"{}", openai_text,
+                    )
+                self.assertEqual(result["status"], expected_status)
+                self.assertEqual(result["probe_marker_present"], expected_marker)
+
     def test_empty_configuration_skips_all_endpoints(self):
         with patch("NOVA.provider_qualification.urllib.request.build_opener") as opener:
             report = build_report({})
