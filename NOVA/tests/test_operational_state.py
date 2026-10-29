@@ -205,6 +205,44 @@ class OperationalStateRosterMergeTests(unittest.TestCase):
                     self.assertEqual(health_path.read_text(encoding="utf-8"), original_health)
                     self.assertEqual(roster_path.read_text(encoding="utf-8"), original_roster)
 
+    def test_load_rejects_malformed_health_state_maps_before_writing_local_state(self):
+        for field in ("targets", "observations", "events", "provider_rotation"):
+            with self.subTest(field=field):
+                with tempfile.TemporaryDirectory(prefix="nova-invalid-health-shape-load-") as temp_dir:
+                    repo_root = Path(temp_dir)
+                    nova_dir = repo_root / "NOVA"
+                    nova_dir.mkdir()
+                    health_path = nova_dir / "health_state.json"
+                    roster_path = nova_dir / "roster.json"
+                    local_health = json.dumps({"local": {"preserve": "health"}})
+                    local_roster = json.dumps({"providers": [{"name": "groq", "status": "active"}]})
+                    health_path.write_text(local_health, encoding="utf-8")
+                    roster_path.write_text(local_roster, encoding="utf-8")
+
+                    persisted_health = {
+                        "schema_version": 1,
+                        "targets": {},
+                        "observations": {},
+                        "events": {},
+                        "provider_rotation": {},
+                    }
+                    persisted_health[field] = []
+                    invalid_state_text = json.dumps(persisted_health)
+
+                    def fake_ref_text(_repo_root: Path, _state_ref: str, path: str) -> str:
+                        if path == "NOVA/health_state.json":
+                            return invalid_state_text
+                        if path == "NOVA/roster.json":
+                            return json.dumps({"providers": [{"name": "groq", "status": "down"}]})
+                        raise AssertionError(f"Unexpected state path: {path}")
+
+                    with patch("NOVA.operational_state._ref_text", side_effect=fake_ref_text):
+                        with self.assertRaisesRegex(RuntimeError, f"field '{field}'"):
+                            load_operational_state(repo_root, "unused-state-ref")
+
+                    self.assertEqual(health_path.read_text(encoding="utf-8"), local_health)
+                    self.assertEqual(roster_path.read_text(encoding="utf-8"), local_roster)
+
     def test_publish_rejects_unloadable_state_before_git_operations(self):
         with tempfile.TemporaryDirectory(prefix="nova-invalid-state-test-") as temp_dir:
             workspace = Path(temp_dir)
@@ -219,6 +257,14 @@ class OperationalStateRosterMergeTests(unittest.TestCase):
             )
 
             with self.assertRaisesRegex(RuntimeError, "health_state.json is not valid JSON"):
+                publish_operational_state(workspace, "unused-state-ref", "test")
+
+            health_path.write_text(json.dumps({"schema_version": 1, "targets": []}), encoding="utf-8")
+            roster_path.write_text(
+                json.dumps({"providers": [{"name": "groq", "status": "active"}]}),
+                encoding="utf-8",
+            )
+            with self.assertRaisesRegex(RuntimeError, "field 'targets'"):
                 publish_operational_state(workspace, "unused-state-ref", "test")
 
             health_path.write_text(json.dumps({"schema_version": 1, "targets": {}}), encoding="utf-8")
