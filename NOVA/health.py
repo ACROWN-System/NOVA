@@ -631,6 +631,22 @@ def reusable_analysis(
     analysis = previous.get("analysis")
     if not isinstance(analysis, dict):
         return None
+    analysis_fingerprint = previous.get("analysis_fingerprint")
+    if (
+        not isinstance(analysis_fingerprint, str)
+        or not analysis_fingerprint
+        or analysis_fingerprint != previous.get("fingerprint")
+    ):
+        return None
+
+    # An analysis timestamp is separate from the last-seen timestamp. Repeated
+    # observations must not reset the analysis validity window.
+    analysis_age_seconds = observation_age_seconds(
+        previous.get("analysis_observed_at"),
+        now=now,
+    )
+    if analysis_age_seconds is None:
+        return None
 
     # Even without an explicit freshness TTL, a cached analysis must have a
     # parseable, non-future observation timestamp. "Unspecified" means the age
@@ -653,6 +669,6 @@ def reusable_analysis(
             return None
         if not math.isfinite(valid_for_seconds) or valid_for_seconds < 0:
             return None
-        if age_seconds > valid_for_seconds:
+        if analysis_age_seconds > valid_for_seconds:
             return None
     return analysis
