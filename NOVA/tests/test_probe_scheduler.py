@@ -117,6 +117,40 @@ class RollingProbeSchedulerTests(unittest.TestCase):
         self.assertEqual(decision["reason"], "SCHEDULED_PENDING")
         self.assertFalse(decision["preempted"])
 
+    def test_duplicate_active_provider_identities_block_ambiguous_schedule(self):
+        state = _state_defaults()
+        roster = [
+            {"name": "A", "status": "active"},
+            {"name": "a", "status": "active"},
+            {"name": "B", "status": "active"},
+        ]
+
+        decision = select_probe_candidate(
+            roster,
+            state,
+            now=datetime(2026, 10, 8, 20, 55, tzinfo=timezone.utc),
+        )
+        rotation = state["provider_rotation"]["ai-heart"]
+
+        self.assertIsNone(decision["provider"])
+        self.assertEqual(decision["reason"], "BLOCKED_DUPLICATE_PROVIDER_IDENTITIES")
+        self.assertEqual(rotation["schedule_status"], "BLOCKED_DUPLICATE_PROVIDER_IDENTITIES")
+        self.assertEqual(rotation["probe_queue"], [])
+        self.assertEqual(rotation["probe_schedule"], {})
+        self.assertEqual(rotation["duplicate_provider_names"], ["A", "a"])
+
+        # Rescheduling must not reconstruct a duplicated queue.
+        after = reschedule_after_probes(
+            state,
+            roster,
+            ["A"],
+            completed_at=datetime(2026, 10, 8, 21, 0, tzinfo=timezone.utc),
+            interval_seconds=6 * 3600,
+        )
+        self.assertEqual(after["probe_queue"], [])
+        self.assertEqual(after["probe_schedule"], {})
+        self.assertEqual(after["schedule_status"], "BLOCKED_DUPLICATE_PROVIDER_IDENTITIES")
+
     def test_required_health_work_can_reuse_expiring_total_resource_without_inventing_cash_value(self):
         targets = {
             "ai-heart:C:model": {
