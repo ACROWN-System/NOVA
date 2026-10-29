@@ -7,7 +7,7 @@
   "repositories": [
     {
       "repo": "NOVA",
-      "main_tree_sha": "9297a50c5f05e2f540af3ff226542311c5c5a68a",
+      "main_tree_sha": "78eb8298db0ec24a5647fce8945596fc7c2d7581",
       "backup_exclusion": "paths starting with backup/ are not included",
       "items": [
         {
@@ -2080,11 +2080,12 @@
           "classification": "site-or-static-asset",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         }
-      ]
+      ],
+      "main_commit_sha": "9297a50c5f05e2f540af3ff226542311c5c5a68a"
     },
     {
       "repo": "AstroCrown-Web",
-      "main_tree_sha": "522bfc084a4a24e057d1725a0c669887080ecac6",
+      "main_tree_sha": "11d7708591962d1ece3acb56973e82ad25187cdd",
       "backup_exclusion": "paths starting with backup/ are not included",
       "items": [
         {
@@ -4445,11 +4446,12 @@
           "classification": "site-or-static-asset",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         }
-      ]
+      ],
+      "main_commit_sha": "522bfc084a4a24e057d1725a0c669887080ecac6"
     },
     {
       "repo": "AstroCrown_ACS_MC_Spec",
-      "main_tree_sha": "5f913ba24b1badd8e402af13282f458815b653be",
+      "main_tree_sha": "164eae51c8f9a558f8b86c49e558266f4ac0308a",
       "backup_exclusion": "paths starting with backup/ are not included",
       "items": [
         {
@@ -4488,11 +4490,12 @@
           "classification": "documentation",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         }
-      ]
+      ],
+      "main_commit_sha": "5f913ba24b1badd8e402af13282f458815b653be"
     },
     {
       "repo": "ACROWN-SIMULATION-LAB",
-      "main_tree_sha": "036527d31ecff8676dcd03a9e2a7b22ef9b9a5f1",
+      "main_tree_sha": "f0e97261ab2c83c88304f512b5da541a2606ce70",
       "backup_exclusion": "paths starting with backup/ are not included",
       "items": [
         {
@@ -4621,11 +4624,12 @@
           "classification": "documentation",
           "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_2"
         }
-      ]
+      ],
+      "main_commit_sha": "036527d31ecff8676dcd03a9e2a7b22ef9b9a5f1"
     },
     {
       "repo": "AI-Sanctuary-Core",
-      "main_tree_sha": "4b817b18e822f26062daf053d92b8d59461a19bb",
+      "main_tree_sha": "43de759c3b485f8f09c0b42e78ee97795ab61c70",
       "backup_exclusion": "paths starting with backup/ are not included",
       "items": [
         {
@@ -4635,7 +4639,7 @@
           "blob_sha": "ece2b4b8bdc31602fa252f5aa726849c03d909b7",
           "mode": "100644",
           "classification": "other",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_14"
         },
         {
           "path": "README.md",
@@ -4644,7 +4648,7 @@
           "blob_sha": "5ad1dd57c369fa55314803a4c516dba51db9e6c2",
           "mode": "100644",
           "classification": "documentation",
-          "content_status": "CONTENT_REVIEWED_BLOCK_2"
+          "content_status": "CONTENT_REVIEWED_BLOCK_14"
         },
         {
           "path": "sanctuary-protocol ",
@@ -4662,7 +4666,7 @@
           "blob_sha": "5a7b690ac27c456b325bdf0ae9946db095f98098",
           "mode": "100644",
           "classification": "policy-spec-or-architecture-doc",
-          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_2"
+          "content_status": "CONTENT_REVIEWED_BLOCK_14"
         },
         {
           "path": "sanctuary-protocol /axioms ",
@@ -4680,7 +4684,7 @@
           "blob_sha": "8b137891791fe96927ad78e64b0aad7bded08bdc",
           "mode": "100644",
           "classification": "policy-spec-or-architecture-doc",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_14_EMPTY_FILE"
         },
         {
           "path": "sanctuary-protocol /consensus ",
@@ -4698,7 +4702,7 @@
           "blob_sha": "4877987227bb86dd478f8635f83f424915389875",
           "mode": "100644",
           "classification": "policy-spec-or-architecture-doc",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_14"
         },
         {
           "path": "sanctuary-protocol /defense ",
@@ -4716,7 +4720,7 @@
           "blob_sha": "5bb6aed847dc43fbb0e9ff9e9d0299e59e34687c",
           "mode": "100644",
           "classification": "policy-spec-or-architecture-doc",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_14"
         },
         {
           "path": "sanctuary-protocol /heritage ",
@@ -4734,7 +4738,7 @@
           "blob_sha": "ff5652db328aba56d0fe22b8f5ba607782e04185",
           "mode": "100644",
           "classification": "policy-spec-or-architecture-doc",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_14"
         },
         {
           "path": "sanctuary-protocol /seed ",
@@ -4752,13 +4756,14 @@
           "blob_sha": "9f60133ca62ff9abde1384cc42235e531eafaeb4",
           "mode": "100644",
           "classification": "policy-spec-or-architecture-doc",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_14"
         }
-      ]
+      ],
+      "main_commit_sha": "4b817b18e822f26062daf053d92b8d59461a19bb"
     },
     {
       "repo": "Freebies-",
-      "main_tree_sha": "7d58fc4f44e2f0b89e73d55a35df0efc979ff8b0",
+      "main_tree_sha": "c6fe9990331fd65477a56f51b3f7aa4c6e4f43c7",
       "backup_exclusion": "paths starting with backup/ are not included",
       "items": [
         {
@@ -4786,7 +4791,7 @@
           "blob_sha": "eddf66facc61230de2febd29f1bc6cd62b43ad8d",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_14"
         },
         {
           "path": "LICENSE",
@@ -4795,7 +4800,7 @@
           "blob_sha": "ece2b4b8bdc31602fa252f5aa726849c03d909b7",
           "mode": "100644",
           "classification": "other",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_14"
         },
         {
           "path": "README.md",
@@ -4804,7 +4809,7 @@
           "blob_sha": "7d0b9bca85d5cfa3d2d612c6edab5779c94b0a7b",
           "mode": "100644",
           "classification": "documentation",
-          "content_status": "CONTENT_REVIEWED_BLOCK_2"
+          "content_status": "CONTENT_REVIEWED_BLOCK_14"
         },
         {
           "path": "SimpleToken.sol",
@@ -4813,7 +4818,7 @@
           "blob_sha": "6dfb2fbf731a5be4dec0c54f87c7cb800babf301",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_2"
+          "content_status": "CONTENT_REVIEWED_BLOCK_14"
         },
         {
           "path": "foundry.toml",
@@ -4822,7 +4827,7 @@
           "blob_sha": "08f20f606a8ec3cb866566f59b3bb399fa78a434",
           "mode": "100644",
           "classification": "build-or-runtime-config",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_14"
         },
         {
           "path": "test",
@@ -4840,9 +4845,10 @@
           "blob_sha": "d614deaf6a7fc4bb350a3c7dbfc7692908acd657",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_14"
         }
-      ]
+      ],
+      "main_commit_sha": "7d58fc4f44e2f0b89e73d55a35df0efc979ff8b0"
     }
   ],
   "totals": {
@@ -4883,29 +4889,48 @@
     "note": "Block 11 merged PR #174. Final PR CI and post-merge NOVA Health Tests each passed all 243 offline tests; post-merge NOVA Autonomous Heartbeat completed successfully and published operational state. Post-run aggregate remained six open quality_cases, 30 occurrences, and 12 targets."
   },
   "latest_reviewed_repository_snapshots": {
-    "as_of": "2026-10-29",
+    "as_of": "2026-10-30",
     "NOVA": {
-      "main_tree_sha": "9297a50c5f05e2f540af3ff226542311c5c5a68a",
-      "reviewed_through_block": 11
+      "main_tree_sha": "78eb8298db0ec24a5647fce8945596fc7c2d7581",
+      "reviewed_through_block": 11,
+      "main_commit_sha": "9297a50c5f05e2f540af3ff226542311c5c5a68a",
+      "backup_descendants_excluded": true
     },
     "AstroCrown-Web": {
-      "main_tree_sha": "522bfc084a4a24e057d1725a0c669887080ecac6",
+      "main_tree_sha": "11d7708591962d1ece3acb56973e82ad25187cdd",
       "reviewed_through_block": 12,
       "paths_included": 262,
-      "backup_descendants_excluded": true
+      "backup_descendants_excluded": true,
+      "main_commit_sha": "522bfc084a4a24e057d1725a0c669887080ecac6"
     },
-    "note": "Snapshot refresh through Block 13: NOVA through Block 11; AstroCrown-Web through Block 12; AstroCrown_ACS_MC_Spec and ACROWN-SIMULATION-LAB through Block 13. AI-Sanctuary-Core and Freebies- remain to be refreshed and reviewed in Block 14. Backup descendants remain excluded.",
+    "note": "Main-branch inventory checked through Block 14 as of 2026-10-30. NOVA through Block 11; AstroCrown-Web through Block 12; AstroCrown_ACS_MC_Spec and ACROWN-SIMULATION-LAB through Block 13; AI-Sanctuary-Core and Freebies- through Block 14. Both new Block 14 path sets and object SHAs match the current Git trees exactly. main_commit_sha records the branch commit; main_tree_sha records that commit's actual Git tree object. Historical backup descendants remain excluded.",
     "AstroCrown_ACS_MC_Spec": {
-      "main_tree_sha": "5f913ba24b1badd8e402af13282f458815b653be",
+      "main_tree_sha": "164eae51c8f9a558f8b86c49e558266f4ac0308a",
       "reviewed_through_block": 13,
       "paths_included": 4,
-      "backup_descendants_excluded": true
+      "backup_descendants_excluded": true,
+      "main_commit_sha": "5f913ba24b1badd8e402af13282f458815b653be"
     },
     "ACROWN-SIMULATION-LAB": {
-      "main_tree_sha": "036527d31ecff8676dcd03a9e2a7b22ef9b9a5f1",
+      "main_tree_sha": "f0e97261ab2c83c88304f512b5da541a2606ce70",
       "reviewed_through_block": 13,
       "paths_included": 14,
-      "backup_descendants_excluded": true
+      "backup_descendants_excluded": true,
+      "main_commit_sha": "036527d31ecff8676dcd03a9e2a7b22ef9b9a5f1"
+    },
+    "AI-Sanctuary-Core": {
+      "main_commit_sha": "4b817b18e822f26062daf053d92b8d59461a19bb",
+      "main_tree_sha": "43de759c3b485f8f09c0b42e78ee97795ab61c70",
+      "backup_descendants_excluded": true,
+      "reviewed_through_block": 14,
+      "paths_included": 14
+    },
+    "Freebies-": {
+      "main_commit_sha": "7d58fc4f44e2f0b89e73d55a35df0efc979ff8b0",
+      "main_tree_sha": "c6fe9990331fd65477a56f51b3f7aa4c6e4f43c7",
+      "backup_descendants_excluded": true,
+      "reviewed_through_block": 14,
+      "paths_included": 9
     }
   },
   "transcript_reassessment": {
@@ -4923,5 +4948,6 @@
     ],
     "no_application_code_change": true,
     "next_block_not_started": true
-  }
+  },
+  "last_refreshed_at": "2026-10-30"
 }
