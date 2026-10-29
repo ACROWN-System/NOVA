@@ -95,8 +95,8 @@ class ReasoningTests(unittest.TestCase):
             self.assertEqual(
                 [call.args[0] for call in read_json.call_args_list],
                 [
-                    nova_root / "roster.json",
                     nova_root / "health_policy.json",
+                    nova_root / "roster.json",
                     nova_root / "watchlist.json",
                     nova_root / "action_policy.json",
                 ],
