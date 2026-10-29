@@ -194,6 +194,7 @@ def observe_source(source: dict, state: dict, *, timeout: int, max_bytes: int) -
                 "source": str(name),
                 "observed_at": memory["observed_at"],
                 "fingerprint": memory["fingerprint"],
+                "analysis_attempt_count": 0,
                 "analysis_status": "PENDING",
                 "action_status": "PENDING_POLICY_DECISION",
                 "risk_level": source.get("risk_level", "UNKNOWN"),
