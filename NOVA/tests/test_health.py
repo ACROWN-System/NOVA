@@ -57,6 +57,22 @@ class HealthTests(unittest.TestCase):
 
             self.assertEqual(path.read_bytes(), invalid_bytes)
 
+    def test_health_state_loader_rejects_duplicate_json_keys_without_modifying_file(self):
+        invalid_documents = (
+            '{"events": {}, "events": {}}',
+            '{"events": {"event-id": 1, "event-id": 2}}',
+        )
+        for invalid_json in invalid_documents:
+            with self.subTest(invalid_json=invalid_json):
+                with tempfile.TemporaryDirectory(prefix="nova-duplicate-health-key-") as temp_dir:
+                    path = Path(temp_dir) / "health_state.json"
+                    path.write_text(invalid_json, encoding="utf-8")
+
+                    with self.assertRaisesRegex(RuntimeError, "duplicate JSON object keys"):
+                        load_health_state(path)
+
+                    self.assertEqual(path.read_text(encoding="utf-8"), invalid_json)
+
     def test_health_state_loader_rejects_non_object_root_without_modifying_file(self):
         for invalid_root in ("[]", "null", '"state"', "17", "true"):
             with self.subTest(invalid_root=invalid_root):
