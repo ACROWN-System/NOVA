@@ -277,6 +277,11 @@ def _reject_duplicate_json_keys(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
     return result
 
 
+def loads_json_no_duplicate_keys(raw: str) -> Any:
+    """Parse JSON while rejecting duplicate object keys at every nesting depth."""
+    return json.loads(raw, object_pairs_hook=_reject_duplicate_json_keys)
+
+
 def validate_health_state_payload(
     state: Any, *, description: str = "NOVA health state"
 ) -> dict[str, Any]:
