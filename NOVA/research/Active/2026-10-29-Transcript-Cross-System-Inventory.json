@@ -431,7 +431,7 @@
           "blob_sha": "6e77327427af70af5abf147d9ecaad7b058056d5",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "CONTENT_REVIEWED_AND_MODIFIED_BLOCK9_PR173_MERGED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_16;FINGERPRINT_BOUND_REUSE"
         },
         {
           "path": "NOVA/health_policy.json",
@@ -539,7 +539,7 @@
           "blob_sha": "9ee146b8c7e0dcc68eba632e783de86e4fa1a2e4",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "CONTENT_REVIEWED_BLOCKS_8_9_11;PR173_AND_PR174_MERGED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_16;PROVIDER_RCA_AND_VERIFIED_CLOSURE_SCHEMA"
         },
         {
           "path": "NOVA/reasoning.py",
@@ -548,7 +548,7 @@
           "blob_sha": "27a63a64c09f36244a67a62283bb740661e40c1d",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "CONTENT_REVIEWED_BLOCKS_3_6_8_10_11_AND_15;ADVISORY_ACTION_BOUNDARY"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_3_6_8_10_11_15_16;EXPLICIT_EVIDENCE_FIELDS_GAP"
         },
         {
           "path": "NOVA/research",
@@ -3085,7 +3085,7 @@
           "blob_sha": "4726c0a0ed4c626ba7f522550cda1a58953b1d55",
           "mode": "100644",
           "classification": "policy-spec-or-architecture-doc",
-          "content_status": "CONTENT_REVIEWED_BLOCK12;PROPOSED_EVIDENCE_GOVERNANCE"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_12_AND_16;PROPOSED_NOT_ENFORCED"
         },
         {
           "path": "development/audit/PUBLIC-CLAIMS-AND-LEGAL-COMMUNICATIONS.md",
@@ -3211,7 +3211,7 @@
           "blob_sha": "cb4c959900dafdce77a43b15f4d5c5b481e43922",
           "mode": "100644",
           "classification": "documentation",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_16;MANUAL_PASS_FAIL_NA_BLOCKED_TEMPLATE"
         },
         {
           "path": "development/audit/templates/FACT-OBSERVATION-RECORD.md",
@@ -3220,7 +3220,7 @@
           "blob_sha": "e7e527050f2d9485201b6b31f59949228d1d5427",
           "mode": "100644",
           "classification": "documentation",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_16;MANUAL_EVIDENCE_RECORD_TEMPLATE"
         },
         {
           "path": "development/audit/templates/TEST-CASE.md",
@@ -3229,7 +3229,7 @@
           "blob_sha": "8f4fc0167353b3e336e2444fa2f6e2a40e48b1b4",
           "mode": "100644",
           "classification": "documentation",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_16;MANUAL_EXPECTED_ACTUAL_RESULT_TEMPLATE"
         },
         {
           "path": "development/audit/tests",
@@ -3598,7 +3598,7 @@
           "blob_sha": "531b711165b590686ae054ad6d8ed7c66aef089c",
           "mode": "100644",
           "classification": "policy-spec-or-architecture-doc",
-          "content_status": "CONTENT_REVIEWED_BLOCK12;EXACT_BASELINE_CANDIDATE_AND_SANDBOX"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_12_AND_16;METRIC_SEMANTICS_REQUIRE_TASK_REVIEW"
         },
         {
           "path": "development/nova-recursive-self-improvement/CREDENTIAL-READINESS.md",
@@ -3697,7 +3697,7 @@
           "blob_sha": "5ac09ddeec0528e11120895841c85a7a015f3895",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "CONTENT_REVIEWED_BLOCK_4"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_4_AND_16;EXACT_SCOPE_AND_APPROVAL_GATE"
         },
         {
           "path": "development/nova-recursive-self-improvement/benchmark_profiles.json",
@@ -3733,7 +3733,7 @@
           "blob_sha": "5149618495e611d2b5d5964ff38748dedd85734b",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_4"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_4_AND_16;PER_CASE_SYNTHETIC_DETERMINISTIC_EVIDENCE"
         },
         {
           "path": "development/nova-recursive-self-improvement/candidate.schema.json",
@@ -3742,7 +3742,7 @@
           "blob_sha": "7b9c2c656af0be56545e91d814154904e976240f",
           "mode": "100644",
           "classification": "structured-data",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_16;UNCERTAINTY_AND_COUNTEREVIDENCE_NOT_REQUIRED"
         },
         {
           "path": "development/nova-recursive-self-improvement/cycle_detector.py",
@@ -3760,7 +3760,7 @@
           "blob_sha": "1600068f0c0b9532c3c6cac35e36afae846674e6",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "CONTENT_REVIEWED_BLOCKS_4_AND_5"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_4_5_AND_16;BOUND_ENVELOPE_NOT_METRIC_SEMANTICS"
         },
         {
           "path": "development/nova-recursive-self-improvement/evidence_verifier.py",
@@ -3769,7 +3769,7 @@
           "blob_sha": "e8ea5822ce7feb9763ad7064f10900ad64e1e006",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "CONTENT_REVIEWED_BLOCK_4"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_4_AND_16;PASS_RETENTION_AND_HASH_MANIFEST"
         },
         {
           "path": "development/nova-recursive-self-improvement/preflight.py",
@@ -3796,7 +3796,7 @@
           "blob_sha": "e4842493d1f378562008eb851a5c697dea3d219d",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_4"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_4_AND_16;CYCLE_STATUS_AND_ATTEMPT_ACCOUNTING"
         },
         {
           "path": "development/nova-recursive-self-improvement/rsi_policy.json",
@@ -3832,7 +3832,7 @@
           "blob_sha": "3f361785666d8f64df84f24577658d08945b96a6",
           "mode": "100644",
           "classification": "workflow-or-configuration",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_16;SUSPENDED_ALWAYS_UPLOADS_CYCLE_ARTIFACT"
         },
         {
           "path": "development/nova-recursive-self-improvement/tests",
@@ -3850,7 +3850,7 @@
           "blob_sha": "52cc5c05dd1e7099ec0a988523433ed96f67d9db",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_4"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_4_AND_16;PROFILE_FAIL_CLOSED_TESTS"
         },
         {
           "path": "development/nova-recursive-self-improvement/tests/test_context_packing_benchmark.py",
@@ -3859,7 +3859,7 @@
           "blob_sha": "67e04c3b6fcc0e88092afca5fb47545671c9a786",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_16;PER_CASE_AND_REGRESSION_TESTS"
         },
         {
           "path": "development/nova-recursive-self-improvement/tests/test_cycle_detector.py",
@@ -3877,7 +3877,7 @@
           "blob_sha": "179c9f34792a0a059c5f6e98d7b87cad4a196716",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_4"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_4_AND_16;OUTPUT_ENVELOPE_TESTS"
         },
         {
           "path": "development/nova-recursive-self-improvement/tests/test_evidence_verifier.py",
@@ -3886,7 +3886,7 @@
           "blob_sha": "6ab6ac06153dec85780cdcfa20c9d0e49772c8ac",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_4"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_4_AND_16;MANIFEST_AND_COMMIT_BINDING_TESTS"
         },
         {
           "path": "development/nova-recursive-self-improvement/tests/test_preflight.py",
@@ -3913,7 +3913,7 @@
           "blob_sha": "f04ddf0c4ab4e38fa8a8944adb9593b120c4c640",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_16;NO_CHANGE_AND_ATTEMPT_BUDGET_TESTS"
         },
         {
           "path": "development/nova-recursive-self-improvement/tests/test_sandbox_runtime.py",
@@ -3931,7 +3931,7 @@
           "blob_sha": "a6b4e3440554701b3d47f00e8356c3f78306e898",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_4"
+          "content_status": "CONTENT_REVIEWED_BLOCK_16;HUMAN_REVIEW_AND_CALL_COUNT_TESTS"
         },
         {
           "path": "development/nova-recursive-self-improvement/weak_rsi_report.py",
@@ -3940,7 +3940,7 @@
           "blob_sha": "c12ad3eb29ac1f6dd52b493bb8b559f1fce232ae",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_4"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_4_AND_16;ADVISORY_MARKDOWN_NOT_STRUCTURED_RESULT"
         },
         {
           "path": "development/public-relations",
@@ -4604,7 +4604,7 @@
           "blob_sha": "f5d4af29d91e5bcd8ab936f6c4b3456fcc989b4b",
           "mode": "100644",
           "classification": "documentation",
-          "content_status": "CONTENT_REVIEWED_BLOCK_2"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_2_AND_16;FAILURE_RETENTION_DOCUMENTED_NO_RESULT_LEDGER"
         },
         {
           "path": "scenarios",
@@ -4892,18 +4892,18 @@
     "as_of": "2026-10-30",
     "NOVA": {
       "main_tree_sha": "78eb8298db0ec24a5647fce8945596fc7c2d7581",
-      "reviewed_through_block": 15,
+      "reviewed_through_block": 16,
       "main_commit_sha": "9297a50c5f05e2f540af3ff226542311c5c5a68a",
       "backup_descendants_excluded": true
     },
     "AstroCrown-Web": {
       "main_tree_sha": "11d7708591962d1ece3acb56973e82ad25187cdd",
-      "reviewed_through_block": 12,
+      "reviewed_through_block": 16,
       "paths_included": 262,
       "backup_descendants_excluded": true,
       "main_commit_sha": "522bfc084a4a24e057d1725a0c669887080ecac6"
     },
-    "note": "Main-branch inventory checked through Block 15 as of 2026-10-30. NOVA through Block 15; AstroCrown-Web through Block 12; AstroCrown_ACS_MC_Spec and ACROWN-SIMULATION-LAB through Block 13; AI-Sanctuary-Core and Freebies- through Block 14. Main commit SHAs and actual Git tree-object SHAs are recorded separately. Backup descendants remain excluded.",
+    "note": "Main-branch inventory checked through Block 16 as of 2026-10-30. NOVA and AstroCrown-Web have transcript/evidence-contract review through Block 16; AstroCrown_ACS_MC_Spec and ACROWN-SIMULATION-LAB through Block 13; AI-Sanctuary-Core and Freebies- through Block 14. Main commit SHAs and actual Git tree-object SHAs are recorded separately. The latest source review does not claim all inventory paths have been content-reviewed. Backup descendants remain excluded.",
     "AstroCrown_ACS_MC_Spec": {
       "main_tree_sha": "164eae51c8f9a558f8b86c49e558266f4ac0308a",
       "reviewed_through_block": 13,
