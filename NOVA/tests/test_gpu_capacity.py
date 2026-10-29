@@ -114,6 +114,35 @@ class AggregateGpuCapacityTests(unittest.TestCase):
         self.assertEqual(report["verified_active_recurring_gpu_minutes_per_month"], 0)
         self.assertEqual(report["providers"][0]["status"], "QUALIFIED_NOT_ACTIVE")
 
+    def test_duplicate_provider_records_cannot_inflate_capacity_totals(self):
+        duplicate_first = qualified_record("provider-a", minutes=12_000)
+        duplicate_second = qualified_record("provider-a", minutes=24_000)
+        distinct = qualified_record("provider-b", minutes=6_000)
+
+        report = build_capacity_report(
+            evidence(duplicate_first, duplicate_second, distinct),
+            active_provider_names={"provider-a", "provider-b"},
+            now=NOW,
+        )
+
+        # Both provider-a rows are ambiguous and excluded; the independent
+        # provider-b record remains eligible and active.
+        self.assertEqual(report["verified_eligible_recurring_gpu_minutes_per_month"], 6_000)
+        self.assertEqual(report["verified_active_recurring_gpu_minutes_per_month"], 6_000)
+        self.assertEqual(report["providers"][0]["recurring_capacity"]["gpu_minutes"], None)
+        self.assertIn(
+            "duplicate_provider_identity",
+            report["providers"][0]["recurring_capacity"]["reason_codes"],
+        )
+        self.assertIn("provider-a", report["warnings"][-1])
+        self.assertEqual(
+            report["useful_work_and_allocation_usage_month_to_date"]["status"],
+            "DUPLICATE_PROVIDER_IDENTITY",
+        )
+        self.assertIsNone(
+            report["useful_work_and_allocation_usage_month_to_date"]["completed_useful_gpu_minutes"]
+        )
+
     def test_unknown_or_partial_gate_blocks_capacity(self):
         for gate in (
             "account_eligibility",
