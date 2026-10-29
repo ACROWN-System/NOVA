@@ -65,6 +65,80 @@ class ObserverTests(unittest.TestCase):
             ["SUPERSEDED_BY_NEW_OBSERVATION", "SUPERSEDED_BY_NEW_OBSERVATION", "PENDING_POLICY_DECISION"],
         )
 
+    def test_cached_analysis_without_matching_fingerprint_is_requeued_without_duplicate_event(self):
+        state = {"observations": {}, "events": {}}
+        source = {
+            "name": "release-notes",
+            "url": "https://example.invalid/annotation",
+            "analysis_valid_for_seconds": 3600,
+        }
+        with patch("NOVA.operational_observer.fetch_text", return_value=(200, "Content A", None)):
+            first = observe_source(source, state, timeout=5, max_bytes=1024)
+        memory = state["observations"]["external-annotation:release-notes"]
+        memory["analysis"] = {"decision": "legacy cached result"}
+        memory.pop("analysis_fingerprint", None)
+        memory.pop("analysis_observed_at", None)
+
+        with patch("NOVA.operational_observer.fetch_text", return_value=(200, "Content A", None)):
+            second = observe_source(source, state, timeout=5, max_bytes=1024)
+
+        memory = state["observations"]["external-annotation:release-notes"]
+        self.assertEqual(first["analysis_action"], "ANALYSIS_REQUIRED")
+        self.assertEqual(second["status"], "UNCHANGED")
+        self.assertEqual(second["analysis_action"], "ANALYSIS_REQUIRED")
+        self.assertIsNone(memory["analysis"])
+        self.assertTrue(memory["analysis_invalidated"])
+        self.assertEqual(memory["analysis_history"][-1]["provenance_status"], "UNVERIFIED_ANALYSIS_FINGERPRINT")
+        self.assertEqual(len(state["events"]), 1)
+        self.assertEqual(next(iter(state["events"].values()))["analysis_status"], "PENDING")
+
+    def test_cached_analysis_without_analysis_timestamp_is_requeued(self):
+        state = {"observations": {}, "events": {}}
+        source = {
+            "name": "release-notes",
+            "url": "https://example.invalid/annotation",
+            "analysis_valid_for_seconds": 3600,
+        }
+        with patch("NOVA.operational_observer.fetch_text", return_value=(200, "Content A", None)):
+            observe_source(source, state, timeout=5, max_bytes=1024)
+        memory = state["observations"]["external-annotation:release-notes"]
+        memory["analysis"] = {"decision": "untimed cached result"}
+        memory["analysis_fingerprint"] = memory["fingerprint"]
+        memory.pop("analysis_observed_at", None)
+
+        with patch("NOVA.operational_observer.fetch_text", return_value=(200, "Content A", None)):
+            result = observe_source(source, state, timeout=5, max_bytes=1024)
+
+        memory = state["observations"]["external-annotation:release-notes"]
+        self.assertEqual(result["analysis_action"], "ANALYSIS_REQUIRED")
+        self.assertIsNone(memory["analysis"])
+        self.assertTrue(memory["analysis_invalidated"])
+        self.assertEqual(memory["analysis_history"][-1]["provenance_status"], "UNVERIFIED_ANALYSIS_TIMESTAMP")
+
+    def test_pending_current_event_prevents_cache_reuse_without_duplicate_event(self):
+        state = {"observations": {}, "events": {}}
+        source = {
+            "name": "release-notes",
+            "url": "https://example.invalid/annotation",
+            "analysis_valid_for_seconds": 3600,
+        }
+        with patch("NOVA.operational_observer.fetch_text", return_value=(200, "Content A", None)):
+            first = observe_source(source, state, timeout=5, max_bytes=1024)
+        memory = state["observations"]["external-annotation:release-notes"]
+        memory["analysis"] = {"decision": "review"}
+        memory["analysis_fingerprint"] = memory["fingerprint"]
+        memory["analysis_observed_at"] = memory["observed_at"]
+        self.assertEqual(first["analysis_action"], "ANALYSIS_REQUIRED")
+        self.assertEqual(len(state["events"]), 1)
+
+        with patch("NOVA.operational_observer.fetch_text", return_value=(200, "Content A", None)):
+            second = observe_source(source, state, timeout=5, max_bytes=1024)
+
+        self.assertEqual(second["analysis_action"], "ANALYSIS_REQUIRED")
+        self.assertEqual(len(state["events"]), 1)
+        pending = next(iter(state["events"].values()))
+        self.assertEqual(pending["analysis_status"], "PENDING")
+
     def test_failed_fetch_preserves_previous_successful_observation(self):
         state = {
             "observations": {

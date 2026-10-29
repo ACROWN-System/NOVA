@@ -299,6 +299,13 @@ class HealthTests(unittest.TestCase):
             state, namespace="external-annotation", source="source",
             observation=observation, analysis={"decision": "monitor"}, valid_for_seconds=3600,
         )
+        analysis_timestamp = state["observations"]["external-annotation:source"]["analysis_observed_at"]
+        second = remember_observation(
+            state, namespace="external-annotation", source="source",
+            observation=observation, valid_for_seconds=3600,
+        )
+        self.assertEqual(second["analysis_fingerprint"], second["fingerprint"])
+        self.assertEqual(second["analysis_observed_at"], analysis_timestamp)
         reused = reusable_analysis(
             state, namespace="external-annotation", source="source",
             current_observation=observation, now=datetime.now(timezone.utc),
@@ -312,6 +319,62 @@ class HealthTests(unittest.TestCase):
         )
 
 
+
+    def test_reusable_analysis_rejects_missing_or_mismatched_analysis_fingerprint(self):
+        state = _state_defaults()
+        observation = {"headline": "A"}
+        remember_observation(
+            state,
+            namespace="external-annotation",
+            source="source",
+            observation=observation,
+            analysis={"decision": "review"},
+        )
+        record = state["observations"]["external-annotation:source"]
+
+        record["analysis_fingerprint"] = "other-fingerprint"
+        self.assertIsNone(
+            reusable_analysis(
+                state,
+                namespace="external-annotation",
+                source="source",
+                current_observation=observation,
+            )
+        )
+        record.pop("analysis_fingerprint")
+        self.assertIsNone(
+            reusable_analysis(
+                state,
+                namespace="external-annotation",
+                source="source",
+                current_observation=observation,
+            )
+        )
+
+    def test_analysis_ttl_uses_analysis_timestamp_not_last_seen_timestamp(self):
+        state = _state_defaults()
+        observation = {"headline": "A"}
+        record = remember_observation(
+            state,
+            namespace="external-annotation",
+            source="source",
+            observation=observation,
+            analysis={"decision": "review"},
+            valid_for_seconds=60,
+        )
+        now = datetime(2026, 10, 29, 12, 0, tzinfo=timezone.utc)
+        record["observed_at"] = now.isoformat()
+        record["analysis_observed_at"] = (now - timedelta(seconds=120)).isoformat()
+
+        self.assertIsNone(
+            reusable_analysis(
+                state,
+                namespace="external-annotation",
+                source="source",
+                current_observation=observation,
+                now=now,
+            )
+        )
 
     def test_reusable_analysis_rejects_untrusted_timestamp_without_freshness_ttl(self):
         now = datetime.now(timezone.utc)
