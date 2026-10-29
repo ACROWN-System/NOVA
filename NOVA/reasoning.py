@@ -230,7 +230,7 @@ def analyze_pending(root: Path) -> int:
 
     roster = load_json(nova_root / "roster.json", {"providers": []})
     policy = load_json(nova_root / "health_policy.json", {})
-    watchlist = load_json(nova_root / "watchlist.json", {})
+    watchlist = load_json(nova_root / "watchlist.json", {"sources": []})
     action_policy = load_json(nova_root / "action_policy.json", {})
 
     events = state.get("events", {})
