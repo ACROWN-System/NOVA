@@ -1,7 +1,7 @@
 # Active Navigation Plan — NOVA Block 53: Strict Local Roster Loading
 
 **Date:** 2026-10-29  
-**Status:** ACTIVE — remove direct local roster readers that bypass strict JSON parsing  
+**Status:** COMPLETE — PR #165 merged after successful regression-test workflows  
 **Objective:** Make the router and credential-readiness CLI reject duplicate-key or structurally invalid local provider roster files instead of interpreting ambiguous provider configuration.
 
 ## Navigation and source of truth
@@ -41,4 +41,10 @@ Use the shared `loads_json_no_duplicate_keys()` parser for both local roster rea
 
 ## Completion evidence
 
-Record the pull request, successful regression workflows, final review, and merge commit here before marking this plan COMPLETE.
+- **Pull request:** https://github.com/ACROWN-System/NOVA/pull/165 — squash-merged.
+- **Merge commit:** `0d8dfa2c4ec26595b8990c20b5ea609f48b9dd9a`.
+- **Push workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40836657197 — NOVA Health Tests passed on head `7c9433e0932a4b6c017d94b5e74633dd6e7c66a6`.
+- **Pull-request workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40836664966 — NOVA Health Tests passed on the same head commit.
+- **Regression evidence:** All 213 offline tests passed. New tests cover valid local rosters, duplicate top-level/nested keys, wrong root types, missing/wrong providers arrays, and invalid optional GPU candidates containers.
+- **Review:** The router and credential-readiness CLI now use `loads_json_no_duplicate_keys()` and validate roster container shape. Missing optional GPU candidates remain compatible; malformed present candidates data is rejected.
+- **Boundaries confirmed:** No provider requests, credential changes, state writes, operational-state branch writes, or backup modifications were made.
