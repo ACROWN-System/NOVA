@@ -139,6 +139,72 @@ class OperationalStateRosterMergeTests(unittest.TestCase):
                 {"providers": [{"name": "groq", "status": "active"}]},
             )
 
+    def test_load_rejects_duplicate_json_keys_before_writing_local_state(self):
+        duplicate_documents = (
+            ("NOVA/health_state.json", '{"saved": {"event": 1, "event": 2}}'),
+            ("NOVA/roster.json", '{"providers": [], "providers": []}'),
+        )
+        for duplicated_path, invalid_json in duplicate_documents:
+            with self.subTest(duplicated_path=duplicated_path):
+                with tempfile.TemporaryDirectory(prefix="nova-duplicate-load-json-key-") as temp_dir:
+                    repo_root = Path(temp_dir)
+                    nova_dir = repo_root / "NOVA"
+                    nova_dir.mkdir()
+                    health_path = nova_dir / "health_state.json"
+                    roster_path = nova_dir / "roster.json"
+                    local_health = json.dumps({"local": {"keep": "health"}})
+                    local_roster = json.dumps({"providers": [{"name": "groq", "status": "active"}]})
+                    health_path.write_text(local_health, encoding="utf-8")
+                    roster_path.write_text(local_roster, encoding="utf-8")
+
+                    def fake_ref_text(_repo_root: Path, _state_ref: str, path: str) -> str:
+                        if path == duplicated_path:
+                            return invalid_json
+                        if path == "NOVA/health_state.json":
+                            return json.dumps({"saved": "health"})
+                        if path == "NOVA/roster.json":
+                            return json.dumps({"providers": [{"name": "groq", "status": "down"}]})
+                        raise AssertionError(f"Unexpected state path: {path}")
+
+                    with patch("NOVA.operational_state._ref_text", side_effect=fake_ref_text):
+                        with self.assertRaisesRegex(RuntimeError, "duplicate JSON object keys"):
+                            load_operational_state(repo_root, "unused-state-ref")
+
+                    self.assertEqual(health_path.read_text(encoding="utf-8"), local_health)
+                    self.assertEqual(roster_path.read_text(encoding="utf-8"), local_roster)
+
+    def test_publish_rejects_duplicate_json_keys_before_git_operations(self):
+        duplicate_documents = (
+            ("NOVA/health_state.json", '{"events": {"event": 1, "event": 2}}'),
+            ("NOVA/roster.json", '{"providers": [], "providers": []}'),
+        )
+        for duplicated_path, invalid_json in duplicate_documents:
+            with self.subTest(duplicated_path=duplicated_path):
+                with tempfile.TemporaryDirectory(prefix="nova-duplicate-publish-json-key-") as temp_dir:
+                    workspace = Path(temp_dir)
+                    nova_dir = workspace / "NOVA"
+                    nova_dir.mkdir()
+                    health_path = nova_dir / "health_state.json"
+                    roster_path = nova_dir / "roster.json"
+                    valid_health = json.dumps({"schema_version": 1, "targets": {}})
+                    valid_roster = json.dumps({"providers": [{"name": "groq", "status": "active"}]})
+                    health_path.write_text(
+                        invalid_json if duplicated_path == "NOVA/health_state.json" else valid_health,
+                        encoding="utf-8",
+                    )
+                    roster_path.write_text(
+                        invalid_json if duplicated_path == "NOVA/roster.json" else valid_roster,
+                        encoding="utf-8",
+                    )
+                    original_health = health_path.read_text(encoding="utf-8")
+                    original_roster = roster_path.read_text(encoding="utf-8")
+
+                    with self.assertRaisesRegex(RuntimeError, "duplicate JSON object keys"):
+                        publish_operational_state(workspace, "unused-state-ref", "test")
+
+                    self.assertEqual(health_path.read_text(encoding="utf-8"), original_health)
+                    self.assertEqual(roster_path.read_text(encoding="utf-8"), original_roster)
+
     def test_publish_rejects_unloadable_state_before_git_operations(self):
         with tempfile.TemporaryDirectory(prefix="nova-invalid-state-test-") as temp_dir:
             workspace = Path(temp_dir)
