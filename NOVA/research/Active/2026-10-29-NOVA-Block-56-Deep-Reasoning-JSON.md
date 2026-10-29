@@ -1,7 +1,7 @@
 # Active Navigation Plan — NOVA Block 56: Fail Closed on Deeply Nested Reasoning JSON
 
 **Date:** 2026-10-29  
-**Status:** ACTIVE — prevent deeply nested model output from escaping the controlled reasoning failure path  
+**Status:** COMPLETE — PR #168 merged after successful regression-test workflows  
 **Objective:** Ensure a deeply nested or otherwise decoder-hostile reasoning response is treated as invalid JSON and follows the bounded retry policy rather than raising an uncaught exception.
 
 ## Navigation and source of truth
@@ -41,4 +41,10 @@ Treat `RecursionError` from the initial response parse as invalid provider JSON 
 
 ## Completion evidence
 
-Record the pull request, successful regression workflows, final review, and merge commit here before marking this plan COMPLETE.
+- **Pull request:** https://github.com/ACROWN-System/NOVA/pull/168 — squash-merged.
+- **Merge commit:** `33bb6fb25c4dd1568e24440c399b8077a4c5e4dd`.
+- **Push workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40837973142 — NOVA Health Tests passed on head `50e8ec123183d06ff054ae03ddacfa69e99c37d0`.
+- **Pull-request workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40838026781 — NOVA Health Tests passed on the same head commit.
+- **Regression evidence:** All 218 offline tests passed. The new test supplies deeply nested mock reasoning JSON and verifies an ordinary controlled failure: event remains pending below retry limit, one attempt is counted, no analysis is stored, and the runner returns normally.
+- **Review:** The initial response parse now catches `RecursionError` together with `json.JSONDecodeError`, passing both through the existing bounded failure handler. Strict payload validation, retry-limit semantics, and action-policy gates remain unchanged.
+- **Boundaries confirmed:** No live provider calls, alert emission, real state writes, credentials changes, operational-state branch writes, or backup modifications were made.
