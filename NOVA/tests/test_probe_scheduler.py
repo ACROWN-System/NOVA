@@ -1,9 +1,11 @@
 import unittest
 from datetime import datetime, timezone
+from unittest.mock import patch
 
 from NOVA.health import _state_defaults
 from NOVA.capacity import provider_capacity_opportunity
 from NOVA.probe_scheduler import (
+    _policy,
     reschedule_after_probes,
     select_probe_candidate,
 )
@@ -19,6 +21,53 @@ def providers():
 
 
 class RollingProbeSchedulerTests(unittest.TestCase):
+    def test_scheduler_policy_uses_defaults_and_accepts_finite_numbers(self):
+        with patch("NOVA.probe_scheduler.load_json", return_value={}):
+            self.assertEqual(_policy(), (6 * 60 * 60, 60.0))
+
+        with patch(
+            "NOVA.probe_scheduler.load_json",
+            return_value={
+                "scheduler": {
+                    "interval_seconds": 12.5,
+                    "opportunistic_preemption_safety_margin_seconds": 3,
+                }
+            },
+        ):
+            self.assertEqual(_policy(), (12.5, 3.0))
+
+    def test_scheduler_policy_clamps_negative_finite_values_to_existing_minimums(self):
+        with patch(
+            "NOVA.probe_scheduler.load_json",
+            return_value={
+                "scheduler": {
+                    "interval_seconds": -5,
+                    "opportunistic_preemption_safety_margin_seconds": -10,
+                }
+            },
+        ):
+            self.assertEqual(_policy(), (1.0, 0.0))
+
+    def test_scheduler_policy_rejects_non_object_scheduler_section(self):
+        with patch("NOVA.probe_scheduler.load_json", return_value={"scheduler": []}):
+            with self.assertRaisesRegex(ValueError, "scheduler must be a JSON object"):
+                _policy()
+
+    def test_scheduler_policy_rejects_booleans_strings_and_non_finite_values(self):
+        invalid_values = (True, False, "30", "not-a-number", float("nan"), float("inf"), float("-inf"))
+        for field in (
+            "interval_seconds",
+            "opportunistic_preemption_safety_margin_seconds",
+        ):
+            for value in invalid_values:
+                with self.subTest(field=field, value=repr(value)):
+                    with patch(
+                        "NOVA.probe_scheduler.load_json",
+                        return_value={"scheduler": {field: value}},
+                    ):
+                        with self.assertRaisesRegex(ValueError, field):
+                            _policy()
+
     def test_expiring_provider_is_pulled_forward_and_checked_provider_moves_to_end(self):
         state = _state_defaults()
         roster = providers()
