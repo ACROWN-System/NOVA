@@ -1,5 +1,6 @@
 import json
 import os
+import tempfile
 import unittest
 from contextlib import redirect_stdout
 from email.message import Message
@@ -18,6 +19,7 @@ from NOVA.router import (
     classify_http_error,
     diagnostic_http_headers,
     health_order_providers,
+    load_roster,
     scheduled_probe_provider_order,
     should_emit_health_alert,
     validate_health_payload,
@@ -667,6 +669,34 @@ class HealthResponseContractTests(unittest.TestCase):
         self.assertFalse(probes[0]["response_valid"])
         self.assertEqual(probes[0]["error_class"], "exception")
         self.assertNotIn(health_payload, json.dumps(probes))
+
+    def test_router_roster_loader_rejects_duplicate_keys(self):
+        invalid_documents = (
+            '{"providers": [], "providers": []}',
+            '{"providers": [{"name": "groq", "status": "active", "status": "down"}]}',
+        )
+        for raw in invalid_documents:
+            with self.subTest(raw=raw):
+                with tempfile.TemporaryDirectory(prefix="nova-router-roster-json-") as temp_dir:
+                    path = Path(temp_dir) / "roster.json"
+                    path.write_text(raw, encoding="utf-8")
+                    with patch("NOVA.router.ROSTER_PATH", path):
+                        with self.assertRaisesRegex(ValueError, "duplicate JSON object key"):
+                            load_roster()
+
+    def test_router_roster_loader_rejects_wrong_root_or_provider_type(self):
+        invalid_documents = (
+            ("[]", "must be a JSON object"),
+            ('{"providers": {}}', "must contain a providers array"),
+        )
+        for raw, expected_error in invalid_documents:
+            with self.subTest(raw=raw):
+                with tempfile.TemporaryDirectory(prefix="nova-router-roster-shape-") as temp_dir:
+                    path = Path(temp_dir) / "roster.json"
+                    path.write_text(raw, encoding="utf-8")
+                    with patch("NOVA.router.ROSTER_PATH", path):
+                        with self.assertRaisesRegex(ValueError, expected_error):
+                            load_roster()
 
     def test_health_alert_only_fires_on_transition_into_unacceptable(self):
         self.assertTrue(should_emit_health_alert("HEALTHY", "UNACCEPTABLE"))
