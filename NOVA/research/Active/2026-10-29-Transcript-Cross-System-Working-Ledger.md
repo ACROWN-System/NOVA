@@ -187,3 +187,38 @@ Block 2 — Produce the machine-readable inventory and relationship map for all 
 **Side-effect review:** This was read-only inspection. No runtime state, source, tests, policies, workflows, secrets or backups changed.
 
 **Next block:** Block 4 — cross-check the AstroCrown RSI control/evaluator boundary against the same transcript principles, including benchmark criteria, result evidence, sandbox independence, failure retention, and current suspension/readiness state. Then examine which requirements are canonical and which are duplicated in downstream docs.
+
+
+### Block 4 — AstroCrown RSI evaluator, benchmark and evidence lifecycle
+**Status:** COMPLETE — reviewed core policies, evaluator/verifier, candidate benchmark, source-state detector, workflows, and tests. No implementation change in this block.
+
+#### Existing controls verified
+- The current operating-mode documents and policy state say **Weak RSI is manual/report-only** and **Strong RSI is SUSPENDED**, with implementation readiness `INCOMPLETE`. The monthly workflow remains outside active GitHub Actions discovery. This is the correct state to preserve until its requirements have independent evidence.
+- `CAPABILITY-BENCHMARK-PROTOCOL.md` states that passing code execution is insufficient, that baseline/candidate comparison must bind exact commits, that a single improved metric cannot override mandatory regressions, and that benchmark integrity/adequacy require independent review.
+- `benchmark_profiles.json` labels the registry as not independently approved; the only profile is narrow `context-packing-v1`, disabled pending independent benchmark and execution review. The evaluator blocks missing, ambiguous, mismatched, unapproved, or disabled profiles.
+- `evaluator.py` validates structured benchmark output and finite comparable metrics, binds results to baseline/candidate commit IDs, runs the benchmark through the protected sandbox, and reports `PASS`, `FAIL`, or `BLOCKED` distinctly.
+- `evidence_verifier.py` checks exact evidence inventory and SHA-256 manifest, regular/non-symlink files, schema, full baseline/candidate/tree SHAs, consistency between cycle/evaluator/candidate patch, candidate scope/content, protected results, and budget evidence before retention.
+- `rsi_engine.py` writes a machine-readable cycle record and manifest for readiness blocks, NO_CHANGE outcomes, failures, or candidate evaluations. Its NO_CHANGE interpretation explicitly says it is not proof of global optimality. The README requires failed/inconclusive experiments to leave the active baseline unchanged and calls for provenance/evidence including failures and limitations.
+- `cycle_detector.py` is explicitly read-only and says identical Git object IDs show tracked-state recurrence, not capability quality or improvement.
+- `weak_rsi_report.py` restricts itself to one approved provider call, makes no mutation/PR/merge, redacts secrets, treats generated review text as untrusted, and recommends NO_CHANGE when evidence does not justify a narrow safe improvement. Tests cover no-call gates, call bounds, redaction, and report-only behavior.
+- The protected CI workflows have read-oriented permissions and test the subsystem; their existence is not proof of independent benchmark review or production readiness.
+
+#### Transcript mapping
+- T-01/T-02 (answer vs. understanding, and cumulative insight): directly reflected in capability-benchmark gating and the warning that benchmark correctness does not itself prove the benchmark is sound or generalizable.
+- T-03/T-04 (models, assumptions, low-risk experimentation): reflected in exact-baseline comparison, sandbox execution, narrow task-specific profiles, and regression gates.
+- T-08 (verifier and autonomous-agent risk): reflected in protected evaluator/evidence verifier separation, sandbox/credential controls, and Strong RSI suspension.
+- T-10 (selective success/failure reporting): current design explicitly requires recording failures and inconclusive results; the cycle runner produces machine-readable outcome records.
+
+#### Disposition
+**No additional RSI-specific control is justified by this transcript alone.** The existing architecture is already more concrete and restrictive than the interview's general recommendations, and it correctly blocks autonomous RSI pending independent approval. A proposed extra benchmark, second evidence verifier, new safety policy, or new "understanding score" would currently duplicate or undermine the existing staged readiness design unless a separate demonstrated defect justifies it.
+
+Keep these distinctions:
+- Deterministic test pass ≠ demonstrated capability improvement.
+- One narrow context-packing workload ≠ general intelligence or general reasoning.
+- Candidate profile/config status ≠ proof an independent review occurred.
+- Repeated source state ≠ proof of no capability improvement.
+- Structured proof/evidence integrity ≠ proof every benchmark assumption is adequate.
+
+**Side-effect review:** No RSI code, benchmark, status, workflow, provider configuration, credentials, or backups were changed. No candidate cycle, provider call, or CI run was triggered.
+
+**Next block:** Block 5 — validate external references already named by NOVA (NIST SSDF root-cause/recurrence practice, official AI risk-management evaluation guidance, and OWASP authorization guidance) and decide whether they add any concrete requirement not already covered. Keep any source-derived statements distinct from external recommendations and avoid adding references for decoration.
