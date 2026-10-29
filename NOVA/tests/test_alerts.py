@@ -76,6 +76,27 @@ class GitHubAlertDeduplicationTests(unittest.TestCase):
         sms.assert_not_called()
         voice.assert_not_called()
 
+    def test_duplicate_key_issue_listing_fails_closed_without_post(self):
+        issue_title = "NOVA AI heart: groq model ambiguous-listing"
+        listing_response = MagicMock()
+        listing_response.__enter__.return_value = listing_response
+        listing_response.read.return_value = (
+            b'[{"number":42,"number":43,"title":"NOVA AI heart: groq model ambiguous-listing"}]'
+        )
+        with patch.dict(os.environ, {
+            "GITHUB_TOKEN": "test-token",
+            "GITHUB_REPOSITORY": "example/repo",
+        }):
+            with patch(
+                "NOVA.alerts.urllib.request.urlopen",
+                return_value=listing_response,
+            ) as urlopen:
+                result = send_github_issue(issue_title, '{"health_status":"UNACCEPTABLE"}')
+
+        self.assertFalse(result)
+        self.assertEqual(urlopen.call_count, 1)
+        self.assertEqual(urlopen.call_args.args[0].method, "GET")
+
     def test_issue_listing_failure_does_not_fall_back_to_duplicate_creation(self):
         issue_title = "NOVA AI heart: groq model model-c health is unacceptable"
         with patch.dict(os.environ, {
