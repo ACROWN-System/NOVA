@@ -1,7 +1,7 @@
 # Active Navigation Plan — NOVA Block 42: Fail Closed on Corrupt Health State
 
 **Date:** 2026-10-29  
-**Status:** ACTIVE — protect persisted health-state history from silent reset  
+**Status:** COMPLETE — PR #154 merged after successful regression-test workflows  
 **Objective:** Ensure a present but unreadable, malformed, or structurally invalid `NOVA/health_state.json` blocks runtime state loading instead of silently substituting defaults that a caller may later write over the original file.
 
 ## Navigation and source of truth
@@ -48,4 +48,10 @@ Keep the generic `load_json()` fallback semantics for non-operational configurat
 
 ## Completion evidence
 
-Record the pull request, successful regression workflow, final review, and merge commit here before marking this plan COMPLETE.
+- **Pull request:** https://github.com/ACROWN-System/NOVA/pull/154 — squash-merged.
+- **Merge commit:** `f7734e61e362e5ed1dcbe8259a2e6722bcbf995b`.
+- **PR workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40830859479 — NOVA Health Tests passed on head `ceb9b87728a56dbcae872ca5400e6b4d9ef631b9`.
+- **Push workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40830853616 — NOVA Health Tests passed on the same head commit.
+- **Regression evidence:** All 178 offline tests passed. New tests cover missing-file first-run defaults; malformed JSON; undecodable bytes; duplicate JSON object keys at top-level and nested levels; non-object roots; unreadable files; malformed core state maps; and preservation of source file bytes after every rejected-load case.
+- **Review:** The loader now distinguishes file absence (`FileNotFoundError`) from all read failures, rejects duplicate JSON keys and invalid state shape, and leaves generic `load_json()` fallback semantics unchanged.
+- **Boundaries confirmed:** No live provider calls, credential/configuration changes, operational-state branch writes, backups, or new dependencies were introduced.
