@@ -9,6 +9,7 @@ from NOVA.health import (
     _state_defaults,
     fingerprint,
     load_health_state,
+    load_json,
     observation_freshness,
     provider_health_status,
     record_probe,
@@ -113,6 +114,100 @@ class HealthTests(unittest.TestCase):
                             load_health_state(path)
 
                         self.assertEqual(path.read_text(encoding="utf-8"), serialized)
+
+    def test_load_json_returns_default_only_when_file_is_missing(self):
+        with tempfile.TemporaryDirectory(prefix="nova-missing-config-") as temp_dir:
+            path = Path(temp_dir) / "watchlist.json"
+            default = {"sources": []}
+
+            loaded = load_json(path, default)
+
+            self.assertIs(loaded, default)
+            self.assertFalse(path.exists())
+
+    def test_load_json_returns_valid_json_with_the_expected_root_type(self):
+        with tempfile.TemporaryDirectory(prefix="nova-valid-config-") as temp_dir:
+            object_path = Path(temp_dir) / "policy.json"
+            array_path = Path(temp_dir) / "items.json"
+            object_value = {"schema_version": 1, "rules": {"safe": True}}
+            array_value = [{"name": "one"}]
+            object_path.write_text(json.dumps(object_value), encoding="utf-8")
+            array_path.write_text(json.dumps(array_value), encoding="utf-8")
+
+            self.assertEqual(load_json(object_path, {}), object_value)
+            self.assertEqual(load_json(array_path, []), array_value)
+
+    def test_load_json_rejects_malformed_existing_file_without_modifying_it(self):
+        invalid_json = '{"sources": '
+        with tempfile.TemporaryDirectory(prefix="nova-corrupt-config-") as temp_dir:
+            path = Path(temp_dir) / "watchlist.json"
+            path.write_text(invalid_json, encoding="utf-8")
+
+            with self.assertRaisesRegex(RuntimeError, "is not valid JSON"):
+                load_json(path, {"sources": []})
+
+            self.assertEqual(path.read_text(encoding="utf-8"), invalid_json)
+
+    def test_load_json_rejects_duplicate_keys_without_modifying_file(self):
+        invalid_documents = (
+            '{"sources": [], "sources": []}',
+            '{"policy": {"ttl": 60, "ttl": 120}}',
+        )
+        for invalid_json in invalid_documents:
+            with self.subTest(invalid_json=invalid_json):
+                with tempfile.TemporaryDirectory(prefix="nova-duplicate-config-key-") as temp_dir:
+                    path = Path(temp_dir) / "policy.json"
+                    path.write_text(invalid_json, encoding="utf-8")
+
+                    with self.assertRaisesRegex(RuntimeError, "duplicate object keys"):
+                        load_json(path, {})
+
+                    self.assertEqual(path.read_text(encoding="utf-8"), invalid_json)
+
+    def test_load_json_rejects_undecodable_bytes_without_modifying_file(self):
+        invalid_bytes = bytes((0xFF, 0xFE, 0x80))
+        with tempfile.TemporaryDirectory(prefix="nova-undecodable-config-") as temp_dir:
+            path = Path(temp_dir) / "policy.json"
+            path.write_bytes(invalid_bytes)
+
+            with self.assertRaisesRegex(RuntimeError, "could not be read"):
+                load_json(path, {})
+
+            self.assertEqual(path.read_bytes(), invalid_bytes)
+
+    def test_load_json_rejects_read_errors_without_using_defaults(self):
+        with tempfile.TemporaryDirectory(prefix="nova-unreadable-config-") as temp_dir:
+            path = Path(temp_dir) / "health_policy.json"
+            original = '{"latency": {}}'
+            path.write_text(original, encoding="utf-8")
+
+            with patch.object(Path, "read_text", side_effect=PermissionError("permission denied")):
+                with self.assertRaisesRegex(RuntimeError, "could not be read"):
+                    load_json(path, {})
+
+            self.assertEqual(path.read_text(encoding="utf-8"), original)
+
+    def test_load_json_rejects_wrong_top_level_container_type(self):
+        for invalid_json in ("[]", "null", '"policy"', "17", "true"):
+            with self.subTest(invalid_json=invalid_json):
+                with tempfile.TemporaryDirectory(prefix="nova-wrong-config-root-") as temp_dir:
+                    path = Path(temp_dir) / "health_policy.json"
+                    path.write_text(invalid_json, encoding="utf-8")
+
+                    with self.assertRaisesRegex(RuntimeError, "must contain a JSON object"):
+                        load_json(path, {})
+
+                    self.assertEqual(path.read_text(encoding="utf-8"), invalid_json)
+
+        with tempfile.TemporaryDirectory(prefix="nova-wrong-array-root-") as temp_dir:
+            path = Path(temp_dir) / "items.json"
+            invalid_json = '{"items": []}'
+            path.write_text(invalid_json, encoding="utf-8")
+
+            with self.assertRaisesRegex(RuntimeError, "must contain a JSON array"):
+                load_json(path, [])
+
+            self.assertEqual(path.read_text(encoding="utf-8"), invalid_json)
 
     def test_fingerprint_ignores_transport_noise(self):
         left = {"value": 1, "observed_at": "2026-10-07T00:00:00Z", "latency_ms": 100}
