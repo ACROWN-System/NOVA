@@ -151,7 +151,15 @@ class ReasoningTests(unittest.TestCase):
             if name == "roster.json":
                 return {"providers": [provider]}
             if name == "health_policy.json":
-                return {"reasoning": {"max_attempts_per_event": 3}}
+                return {
+                    "reasoning": {"max_attempts_per_event": 3},
+                    "latency": {
+                        "max_samples_per_target": 6,
+                        "degraded_multiplier": 1.5,
+                        "minimum_samples_for_comparison": 2,
+                    },
+                    "failure": {"unacceptable_consecutive_failures": 4},
+                }
             if name == "watchlist.json":
                 return {"sources": [{"name": source, "analysis_valid_for_seconds": 3600}]}
             if name == "action_policy.json":
@@ -167,7 +175,7 @@ class ReasoningTests(unittest.TestCase):
             ), patch("NOVA.reasoning.order_providers", return_value=[provider]), patch(
                 "NOVA.reasoning.call_provider",
                 return_value=(None, "quality_or_transient", [probe]),
-            ) as call_provider, patch("NOVA.reasoning.record_probe"), patch(
+            ) as call_provider, patch("NOVA.reasoning.record_probe") as record_probe, patch(
                 "NOVA.reasoning.atomic_write_json"
             ), redirect_stdout(output):
                 self.assertEqual(analyze_pending(repo_root), 0)
@@ -189,6 +197,45 @@ class ReasoningTests(unittest.TestCase):
                 # A terminal event is not sent to providers again.
                 self.assertEqual(analyze_pending(repo_root), 0)
                 self.assertEqual(call_provider.call_count, 3)
+
+            self.assertEqual(record_probe.call_count, 3)
+            for recorded in record_probe.call_args_list:
+                self.assertEqual(recorded.kwargs["max_samples"], 6)
+                self.assertEqual(recorded.kwargs["latency_degraded_multiplier"], 1.5)
+                self.assertEqual(recorded.kwargs["latency_min_samples"], 2)
+                self.assertEqual(recorded.kwargs["unacceptable_failure_streak"], 4)
+
+    def test_invalid_shared_health_policy_stops_before_state_load_or_provider_request(self):
+        cases = (
+            ("string-multiplier", {"latency": {"degraded_multiplier": "2"}}),
+            ("non-object-freshness", {"freshness": []}),
+            (
+                "impossible-sample-threshold",
+                {"latency": {"max_samples_per_target": 3, "minimum_samples_for_comparison": 4}},
+            ),
+            ("boolean-failure-threshold", {"failure": {"unacceptable_consecutive_failures": True}}),
+        )
+
+        for case_name, policy in cases:
+            with self.subTest(case=case_name):
+                def fake_load_json(path, default):
+                    self.assertEqual(Path(path).name, "health_policy.json")
+                    return policy
+
+                with tempfile.TemporaryDirectory(prefix="nova-invalid-shared-health-policy-") as temp_dir:
+                    repo_root = Path(temp_dir)
+                    (repo_root / "NOVA").mkdir()
+                    with patch("NOVA.reasoning.load_json", side_effect=fake_load_json), patch(
+                        "NOVA.reasoning.load_health_state"
+                    ) as load_state, patch("NOVA.reasoning.atomic_write_json") as write_state, patch(
+                        "NOVA.reasoning.call_provider"
+                    ) as call_provider, redirect_stdout(StringIO()):
+                        with self.assertRaises(ValueError):
+                            analyze_pending(repo_root)
+
+                    load_state.assert_not_called()
+                    write_state.assert_not_called()
+                    call_provider.assert_not_called()
 
     def test_deeply_nested_reasoning_json_uses_bounded_failure_path(self):
         source = "release-notes"
