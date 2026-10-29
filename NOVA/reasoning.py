@@ -126,7 +126,7 @@ def _record_reasoning_root_cause_case(
         return None
 
     failure_class = probe.get("error_class")
-    if failure_class not in _REASONING_RCA_FAILURES:
+    if not isinstance(failure_class, str) or failure_class not in _REASONING_RCA_FAILURES:
         return None
 
     provider = probe.get("provider")
