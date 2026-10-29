@@ -44,7 +44,7 @@
           "blob_sha": "bb1acd59abd5192dd6b2e0b086bbad92273f6129",
           "mode": "100644",
           "classification": "workflow",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_15;MANUAL_NO_GITHUB_WRITE_PERMISSION"
         },
         {
           "path": ".github/workflows/nova-provider-qualification.yml",
@@ -62,7 +62,7 @@
           "blob_sha": "0d1ed3146c1851107c05bb2a22df3847cd191c78",
           "mode": "100644",
           "classification": "workflow",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_15;MANUAL_READ_ONLY_REPORT"
         },
         {
           "path": ".github/workflows/nova_GPU_heartbeat.yml",
@@ -71,7 +71,7 @@
           "blob_sha": "8bfd9292d823c9833a28911a191a4a793d163ca7",
           "mode": "100644",
           "classification": "workflow",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_15;SCHEDULED_STATE_AND_ISSUE_WRITER"
         },
         {
           "path": ".github/workflows/nova_cloudflare_smoke_test.yml",
@@ -80,7 +80,7 @@
           "blob_sha": "c9e3dbf5509cd4dcbebee39a4bf97382e07cb4f1",
           "mode": "100644",
           "classification": "workflow",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_15;MANUAL_NO_GITHUB_WRITE_PERMISSION"
         },
         {
           "path": ".github/workflows/nova_health_tests.yml",
@@ -89,7 +89,7 @@
           "blob_sha": "2f2fbfed66e4de0b719c000fd888cc874e3ab46c",
           "mode": "100644",
           "classification": "workflow",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_15;READ_ONLY_TEST_WORKFLOW"
         },
         {
           "path": ".github/workflows/nova_heartbeat.yml",
@@ -98,7 +98,7 @@
           "blob_sha": "1702f28c738b519ad2bfea39be9a6c530e45ddd6",
           "mode": "100644",
           "classification": "workflow",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_15;SCHEDULED_STATE_AND_ISSUE_WRITER"
         },
         {
           "path": ".github/workflows/nova_probe_scheduler.yml",
@@ -107,7 +107,7 @@
           "blob_sha": "ccdd55bbe8854d7f382d3bc2e2f78c350e1acea3",
           "mode": "100644",
           "classification": "workflow",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_15;CONDITIONAL_STATE_AND_ISSUE_WRITER"
         },
         {
           "path": ".github/workflows/nova_validation.yml",
@@ -116,7 +116,7 @@
           "blob_sha": "fee807bfb8bea849d2ce31eb4156314f85ef45fc",
           "mode": "100644",
           "classification": "workflow",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_15;READ_ONLY_VALIDATION_WORKFLOW"
         },
         {
           "path": ".gitignore",
@@ -287,7 +287,7 @@
           "blob_sha": "f479bb29bb8ef5658eb8c98e9e214d41d06a3972",
           "mode": "100644",
           "classification": "policy-spec-or-config",
-          "content_status": "CONTENT_REVIEWED_BLOCK_3"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_3_AND_15;DECLARATIVE_POLICY_BOUNDARY"
         },
         {
           "path": "NOVA/alerts.py",
@@ -296,7 +296,7 @@
           "blob_sha": "f9ff0986ebc7936f7fb0b07895e3f3c9944037dd",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_6"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_6_AND_15;CHANNEL_GATE"
         },
         {
           "path": "NOVA/allocation.py",
@@ -305,7 +305,7 @@
           "blob_sha": "e36445d126dad679be14b2da28cc8c12d300ecb6",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_15;NO_PAYMENT_EXECUTOR_IN_SCOPED_FILE"
         },
         {
           "path": "NOVA/capacity.py",
@@ -386,7 +386,7 @@
           "blob_sha": "098fb18e90ddbc488407554a5a7bc38a38135b60",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_15;ACCOUNTING_NOT_PAYMENT_EXECUTION"
         },
         {
           "path": "NOVA/gpu_capacity.py",
@@ -467,7 +467,7 @@
           "blob_sha": "a371d6a28b7073728ed181716c8f79f12e8f233d",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "CONTENT_REVIEWED_BLOCKS_8_AND_9;SHARED_VALIDATION_BOUNDARY"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_8_9_AND_15;STATE_BRANCH_WRITE_BOUNDARY"
         },
         {
           "path": "NOVA/payments.py",
@@ -548,7 +548,7 @@
           "blob_sha": "27a63a64c09f36244a67a62283bb740661e40c1d",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "CONTENT_REVIEWED_BLOCKS_3_6_8_10_11;PR172_AND_PR174_MERGED"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_3_6_8_10_11_AND_15;ADVISORY_ACTION_BOUNDARY"
         },
         {
           "path": "NOVA/research",
@@ -1736,7 +1736,7 @@
           "blob_sha": "064193551adaded901a36d7d942eeded0b62c74e",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "CONTENT_REVIEWED_BLOCKS_3_6_AND_8;RCA_CALL_SITE"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_3_6_8_AND_15;HARDCODED_HEALTH_SIDE_EFFECTS"
         },
         {
           "path": "NOVA/sanctuary",
@@ -1799,7 +1799,7 @@
           "blob_sha": "d21eae11cb2d41040e0f6623a3552896576d0917",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_15;NOTICE_CHANNEL_GATE_TEST"
         },
         {
           "path": "NOVA/tests/test_allocation.py",
@@ -1880,7 +1880,7 @@
           "blob_sha": "6c7f0d1b913e62a14c24bfebf261aecc8d66bc36",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "CONTENT_REVIEWED_AND_MODIFIED_BLOCK9_PR173_MERGED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_15;STATE_BRANCH_ISOLATION_TEST"
         },
         {
           "path": "NOVA/tests/test_payments_and_pricing.py",
@@ -1934,7 +1934,7 @@
           "blob_sha": "64a055b7ecc0704d6f3b58a73ef9b87d021be6ca",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "CONTENT_REVIEWED_BLOCKS_3_6_8_11;PR172_AND_PR174_MERGED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_15;ADVISORY_POLICY_TEST_COVERAGE"
         },
         {
           "path": "NOVA/tests/test_router.py",
@@ -1943,7 +1943,7 @@
           "blob_sha": "900915dd7e88abd2e723506c43ba895d2f1f5570",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "CONTENT_REVIEWED_BLOCKS_3_6_AND_8;RCA_CALL_SITE"
+          "content_status": "CONTENT_REVIEWED_BLOCK_15;HEALTH_POLICY_TEST_COVERAGE"
         },
         {
           "path": "NOVA/tests/test_weak_rsi_workflow.py",
@@ -1952,7 +1952,7 @@
           "blob_sha": "9d991fc907d70bdd76f4240bd4c95f0d17cdcb25",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_15;MANUAL_READ_ONLY_WORKFLOW_TEST"
         },
         {
           "path": "NOVA/tests/test_workflow_coverage.py",
@@ -1961,7 +1961,7 @@
           "blob_sha": "2d14d46bdf8b13538c6266fb4c2b1f632fb16086",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_15;WORKFLOW_SCOPE_ASSERTIONS"
         },
         {
           "path": "NOVA/watchlist.json",
@@ -4892,7 +4892,7 @@
     "as_of": "2026-10-30",
     "NOVA": {
       "main_tree_sha": "78eb8298db0ec24a5647fce8945596fc7c2d7581",
-      "reviewed_through_block": 11,
+      "reviewed_through_block": 15,
       "main_commit_sha": "9297a50c5f05e2f540af3ff226542311c5c5a68a",
       "backup_descendants_excluded": true
     },
@@ -4903,7 +4903,7 @@
       "backup_descendants_excluded": true,
       "main_commit_sha": "522bfc084a4a24e057d1725a0c669887080ecac6"
     },
-    "note": "Main-branch inventory checked through Block 14 as of 2026-10-30. NOVA through Block 11; AstroCrown-Web through Block 12; AstroCrown_ACS_MC_Spec and ACROWN-SIMULATION-LAB through Block 13; AI-Sanctuary-Core and Freebies- through Block 14. Both new Block 14 path sets and object SHAs match the current Git trees exactly. main_commit_sha records the branch commit; main_tree_sha records that commit's actual Git tree object. Historical backup descendants remain excluded.",
+    "note": "Main-branch inventory checked through Block 15 as of 2026-10-30. NOVA through Block 15; AstroCrown-Web through Block 12; AstroCrown_ACS_MC_Spec and ACROWN-SIMULATION-LAB through Block 13; AI-Sanctuary-Core and Freebies- through Block 14. Main commit SHAs and actual Git tree-object SHAs are recorded separately. Backup descendants remain excluded.",
     "AstroCrown_ACS_MC_Spec": {
       "main_tree_sha": "164eae51c8f9a558f8b86c49e558266f4ac0308a",
       "reviewed_through_block": 13,
