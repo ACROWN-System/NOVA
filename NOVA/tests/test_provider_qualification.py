@@ -68,6 +68,36 @@ class ProviderQualificationTests(unittest.TestCase):
         self.assertNotIn("ordinary response", json.dumps(result))
         self.assertEqual(result["usage"]["total_tokens"], 7)
 
+    def test_qualification_rejects_duplicate_keys_in_provider_envelope(self):
+        class FakeResponse:
+            status = 200
+            headers = {"x-ratelimit-remaining": "7"}
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, exc_type, exc, tb):
+                return False
+
+            def read(self, size):
+                return (
+                    b'{"choices":[{"message":{"content":"NOVA_PROBE_OK"}}],'
+                    b'"choices":[],"usage":{"total_tokens":7}}'
+                )
+
+        with patch("NOVA.provider_qualification.urllib.request.build_opener") as opener:
+            opener.return_value.open.return_value = FakeResponse()
+            result = probe(
+                "fixture", "llm_inference", "FIXTURE_KEY", "configured-value",
+                "https://provider.invalid/v1/chat/completions", "POST",
+                {"Authorization": "Bearer configured-value"}, b"{}", openai_text,
+            )
+
+        self.assertEqual(result["http_status"], 200)
+        self.assertEqual(result["status"], "INVALID_JSON_RESPONSE")
+        self.assertIsNone(result["response_shape_valid"])
+        self.assertNotIn("NOVA_PROBE_OK", json.dumps(result))
+
     def test_probe_marker_must_be_exact_response_not_substring(self):
         for text, expected_status, expected_marker in (
             ("NOVA_PROBE_OK", "PASS", True),

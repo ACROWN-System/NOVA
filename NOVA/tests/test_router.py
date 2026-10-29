@@ -630,6 +630,44 @@ class HealthResponseContractTests(unittest.TestCase):
         self.assertEqual(probes[0]["quality_status"], "PASS")
         self.assertIn(f"/{model}:generateContent", urlopen.call_args.args[0].full_url)
 
+    def test_duplicate_keys_in_provider_envelope_fail_closed(self):
+        model = "gemini-3.1-flash-lite"
+        health_payload = json.dumps({
+            "nova_health": "OK",
+            "ack": "NOVA_HEALTH_PROBE",
+        })
+        candidate = {
+            "content": {"parts": [{"text": health_payload}]}
+        }
+        response_body = (
+            '{"candidates":[' + json.dumps(candidate) + '],"candidates":[]}'
+        )
+        response = MagicMock()
+        response.__enter__.return_value = response
+        response.status = 200
+        response.headers = Message()
+        response.read.return_value = response_body.encode("utf-8")
+        gemini = {
+            "name": "gemini",
+            "api_key_env": "TEST_GEMINI_KEY",
+            "base_url": "https://generativelanguage.googleapis.com/v1beta/models",
+            "models": [model],
+            "model_contracts": {model: {"structured_json": "VERIFIED"}},
+        }
+
+        with patch.dict(os.environ, {"TEST_GEMINI_KEY": "test-key"}), patch(
+            "NOVA.router.urllib.request.urlopen",
+            return_value=response,
+        ):
+            content, signal, probes = call_gemini(gemini, "test prompt")
+
+        self.assertIsNone(content)
+        self.assertNotEqual(signal, "success")
+        self.assertEqual(len(probes), 1)
+        self.assertFalse(probes[0]["response_valid"])
+        self.assertEqual(probes[0]["error_class"], "exception")
+        self.assertNotIn(health_payload, json.dumps(probes))
+
     def test_health_alert_only_fires_on_transition_into_unacceptable(self):
         self.assertTrue(should_emit_health_alert("HEALTHY", "UNACCEPTABLE"))
         self.assertTrue(should_emit_health_alert("UNKNOWN", "UNACCEPTABLE"))

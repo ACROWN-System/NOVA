@@ -9,6 +9,11 @@ import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
+try:
+    from .health import loads_json_no_duplicate_keys
+except ImportError:  # Direct script execution
+    from health import loads_json_no_duplicate_keys
+
 MARKER = "NOVA_PROBE_OK"
 MAX_BYTES = 65536
 TIMEOUT = 18
@@ -100,8 +105,8 @@ def probe(name, kind, env_name, credential, url, method, headers, body, validato
             base["status"] = "RESPONSE_TOO_LARGE"
             return base
         try:
-            payload = json.loads(raw.decode("utf-8"))
-        except (UnicodeDecodeError, json.JSONDecodeError):
+            payload = loads_json_no_duplicate_keys(raw.decode("utf-8"))
+        except (UnicodeDecodeError, ValueError, RecursionError):
             base["status"] = "INVALID_JSON_RESPONSE"
             return base
         if not isinstance(payload, dict):

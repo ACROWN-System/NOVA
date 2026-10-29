@@ -22,12 +22,12 @@ from pathlib import Path
 
 try:
     from . import alerts
-    from .health import atomic_write_json, load_health_state, load_json, record_probe, utc_now
+    from .health import atomic_write_json, load_health_state, load_json, loads_json_no_duplicate_keys, record_probe, utc_now
     from .capacity import annotate_probe
     from .gpu_capacity import DEFAULT_PLANNING_REFERENCE_GPU_MINUTES_PER_MONTH, build_capacity_report, load_capacity_evidence
 except ImportError:  # Direct script execution
     import alerts
-    from health import atomic_write_json, load_health_state, load_json, record_probe, utc_now
+    from health import atomic_write_json, load_health_state, load_json, loads_json_no_duplicate_keys, record_probe, utc_now
     from capacity import annotate_probe
     from gpu_capacity import DEFAULT_PLANNING_REFERENCE_GPU_MINUTES_PER_MONTH, build_capacity_report, load_capacity_evidence
 
@@ -146,8 +146,8 @@ def check_candidate_credential(provider: dict) -> dict:
             base["auth_probe_status"] = "RESPONSE_TOO_LARGE"
             return base
         try:
-            payload = json.loads(raw.decode("utf-8"))
-        except (UnicodeDecodeError, json.JSONDecodeError):
+            payload = loads_json_no_duplicate_keys(raw.decode("utf-8"))
+        except (UnicodeDecodeError, ValueError, RecursionError):
             base["auth_probe_status"] = "AUTHENTICATED_RESPONSE_NOT_JSON"
             return base
         if not isinstance(payload, dict):
