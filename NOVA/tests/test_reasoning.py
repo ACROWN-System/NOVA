@@ -6,12 +6,149 @@ from io import StringIO
 from pathlib import Path
 from unittest.mock import patch
 
+from NOVA.quality_gate import record_failure_case
 from NOVA.reasoning import (
+    _record_reasoning_root_cause_case,
     analyze_pending,
     build_alert_body,
     supersede_stale_pending_events,
     validate_reasoning_payload,
 )
+
+
+class ReasoningRcaTests(unittest.TestCase):
+    SHARED_EXPECTED = (
+        "Provider response satisfies NOVA's required structured response contract."
+    )
+
+    def test_transient_failure_joins_existing_provider_case_without_raw_details(self):
+        state = {}
+        existing = record_failure_case(
+            state,
+            source="groq:test-model",
+            failure_class="transient",
+            expected_result=self.SHARED_EXPECTED,
+            observed_result="transient:NOT_APPLICABLE",
+        )
+        probe = {
+            "provider": "groq",
+            "requested_model": "test-model",
+            "response_valid": False,
+            "error_class": "transient",
+            "quality_status": "NOT_APPLICABLE",
+            "error_detail": "RAW RESPONSE BODY AND SECRET MUST NOT PERSIST",
+        }
+
+        recorded = _record_reasoning_root_cause_case(state, probe)
+
+        self.assertEqual(recorded["case_id"], existing["case_id"])
+        self.assertEqual(recorded["occurrences"], 2)
+        self.assertNotIn("failure_domain", recorded)
+        self.assertEqual(len(state["quality_cases"]), 1)
+        serialized = json.dumps(state, sort_keys=True)
+        self.assertNotIn("RAW RESPONSE BODY", serialized)
+        self.assertNotIn("SECRET MUST NOT PERSIST", serialized)
+        self.assertNotIn("error_detail", recorded)
+
+    def test_reasoning_contract_failure_is_distinct_from_health_contract_case(self):
+        state = {}
+        health_case = record_failure_case(
+            state,
+            source="gemini:test-model",
+            failure_class="response_contract",
+            expected_result=self.SHARED_EXPECTED,
+            observed_result="response_contract:EMPTY_RESPONSE",
+        )
+        reasoning_case = _record_reasoning_root_cause_case(
+            state,
+            {
+                "provider": "gemini",
+                "requested_model": "test-model",
+                "response_valid": False,
+                "error_class": "response_contract",
+                "quality_status": "INVALID_JSON",
+                "error_detail": "untrusted response text",
+            },
+        )
+
+        self.assertNotEqual(reasoning_case["case_id"], health_case["case_id"])
+        self.assertEqual(reasoning_case["failure_domain"], "reasoning_analysis")
+        self.assertEqual(reasoning_case["failure_class"], "response_contract")
+        self.assertEqual(len(state["quality_cases"]), 2)
+        self.assertNotIn("untrusted response text", json.dumps(state))
+
+    def test_permanent_and_exception_cases_use_reasoning_domain(self):
+        for failure_class in ("permanent", "exception"):
+            with self.subTest(failure_class=failure_class):
+                state = {}
+                case = _record_reasoning_root_cause_case(
+                    state,
+                    {
+                        "provider": "groq",
+                        "requested_model": "test-model",
+                        "response_valid": False,
+                        "error_class": failure_class,
+                        "quality_status": "NOT_APPLICABLE",
+                        "error_detail": "private raw error",
+                    },
+                )
+                self.assertIsNotNone(case)
+                self.assertEqual(case["failure_domain"], "reasoning_analysis")
+                self.assertEqual(case["failure_class"], failure_class)
+                self.assertNotIn("private raw error", json.dumps(state))
+
+    def test_local_blocks_unknown_classes_and_successes_do_not_create_cases(self):
+        excluded_classes = (
+            None,
+            "contract_gate",
+            "credential_not_configured",
+            "account_id_not_configured",
+            "health_url_not_configured",
+            "unsupported_auth_type",
+            "unreviewed_failure",
+            ["transient"],
+        )
+        for failure_class in excluded_classes:
+            with self.subTest(failure_class=repr(failure_class)):
+                state = {}
+                result = _record_reasoning_root_cause_case(
+                    state,
+                    {
+                        "provider": "groq",
+                        "requested_model": "test-model",
+                        "response_valid": False,
+                        "error_class": failure_class,
+                    },
+                )
+                self.assertIsNone(result)
+                self.assertNotIn("quality_cases", state)
+
+        success_state = {}
+        self.assertIsNone(_record_reasoning_root_cause_case(
+            success_state,
+            {
+                "provider": "groq",
+                "requested_model": "test-model",
+                "response_valid": True,
+                "error_class": "response_contract",
+            },
+        ))
+        self.assertNotIn("quality_cases", success_state)
+
+    def test_missing_model_identity_does_not_create_case(self):
+        state = {}
+        result = _record_reasoning_root_cause_case(
+            state,
+            {
+                "provider": "groq",
+                "requested_model": None,
+                "actual_model": None,
+                "response_valid": False,
+                "error_class": "transient",
+            },
+        )
+        self.assertIsNone(result)
+        self.assertNotIn("quality_cases", state)
 
 
 class ReasoningTests(unittest.TestCase):
