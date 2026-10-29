@@ -178,6 +178,66 @@ class RollingProbeSchedulerTests(unittest.TestCase):
         self.assertEqual(rotation["probe_queue"], [])
         self.assertEqual(rotation["invalid_active_provider_count"], 1)
 
+    def test_skips_move_to_end_without_being_recorded_as_probes(self):
+        state = _state_defaults()
+        roster = providers()
+        rotation = state["provider_rotation"]["ai-heart"]
+        rotation["last_selection_decision"] = {
+            "provider": "A",
+            "reason": "SCHEDULED_DUE",
+        }
+
+        result = reschedule_after_probes(
+            state,
+            roster,
+            ["B"],
+            skipped_provider_names=["A"],
+            completed_at=datetime(2026, 10, 8, 20, 55, tzinfo=timezone.utc),
+            interval_seconds=6 * 3600,
+        )
+
+        self.assertEqual(result["probe_queue"], ["C", "D", "A", "B"])
+        self.assertEqual(result["last_probe_providers"], ["B"])
+        self.assertEqual(result["last_skipped_providers"], ["A"])
+        self.assertEqual(result["last_selection_reason"], "SCHEDULED_DUE")
+        self.assertEqual(result["last_schedule_reason"], "ROLLING_INTERVAL")
+
+    def test_expiry_reallocation_reason_requires_selected_provider_to_be_attempted(self):
+        state = _state_defaults()
+        roster = providers()
+        rotation = state["provider_rotation"]["ai-heart"]
+        rotation["last_selection_decision"] = {
+            "provider": "C",
+            "reason": "EXPIRY_REALLOCATION",
+        }
+
+        result = reschedule_after_probes(
+            state,
+            roster,
+            ["B"],
+            skipped_provider_names=["C"],
+            completed_at=datetime(2026, 10, 8, 20, 55, tzinfo=timezone.utc),
+            interval_seconds=6 * 3600,
+        )
+        self.assertEqual(result["last_schedule_reason"], "EXPIRY_PREEMPTION_SKIPPED")
+        self.assertEqual(result["last_probe_providers"], ["B"])
+        self.assertEqual(result["last_skipped_providers"], ["C"])
+
+    def test_no_network_attempt_is_not_reported_as_a_completed_probe(self):
+        state = _state_defaults()
+        roster = providers()
+        result = reschedule_after_probes(
+            state,
+            roster,
+            [],
+            skipped_provider_names=["A", "B", "C", "D"],
+            completed_at=datetime(2026, 10, 8, 20, 55, tzinfo=timezone.utc),
+            interval_seconds=6 * 3600,
+        )
+        self.assertEqual(result["last_probe_providers"], [])
+        self.assertEqual(result["last_skipped_providers"], ["A", "B", "C", "D"])
+        self.assertEqual(result["last_schedule_reason"], "SKIPPED_NO_NETWORK_ATTEMPT")
+
     def test_required_health_work_can_reuse_expiring_total_resource_without_inventing_cash_value(self):
         targets = {
             "ai-heart:C:model": {
