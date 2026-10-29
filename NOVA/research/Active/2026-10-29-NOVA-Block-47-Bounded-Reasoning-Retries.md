@@ -1,7 +1,7 @@
 # Active Navigation Plan — NOVA Block 47: Bounded Reasoning Retry and Recovery
 
 **Date:** 2026-10-29  
-**Status:** ACTIVE — recover from transient reasoning failures without unbounded provider usage  
+**Status:** COMPLETE — PR #159 merged after successful regression-test workflows  
 **Objective:** Avoid permanently losing a valid pending analysis after a transient provider failure, while limiting repeated provider usage and not charging the retry budget for failures that never reached an API request.
 
 ## Navigation and source of truth
@@ -51,4 +51,10 @@ Add a policy-defined maximum number of reasoning cycles per event (default confi
 
 ## Completion evidence
 
-Record the pull request, successful regression workflow(s), final review, and merge commit here before marking this plan COMPLETE.
+- **Pull request:** https://github.com/ACROWN-System/NOVA/pull/159 — squash-merged.
+- **Merge commit:** `130d118c1d34212f5c24df0194f46e2e227c306d`.
+- **Push workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40833533253 — NOVA Health Tests passed on head `a7e4a77febe663ae35a4a41ee00f9611ca6ee478`.
+- **Pull-request workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40833577720 — NOVA Health Tests passed on the same head commit.
+- **Regression evidence:** All 195 offline tests passed. New tests cover retry-pending then retry-exhausted behavior, no provider calls after exhaustion, no-request attempts not consuming budget, and invalid retry-policy rejection.
+- **Review:** Retry limit is read from trusted `health_policy.json`; it must be a positive integer (booleans are rejected). Each reasoning cycle only counts when a probe contains an HTTP status or measured latency. Missing credentials or locally blocked models remain pending without consuming the attempt budget.
+- **Boundaries confirmed:** No live provider calls, alert emission, real state-file writes, credential changes, operational-state branch writes, or backup modifications were made.
