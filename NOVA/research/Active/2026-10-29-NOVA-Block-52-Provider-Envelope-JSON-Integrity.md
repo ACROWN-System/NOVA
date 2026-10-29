@@ -1,7 +1,7 @@
 # Active Navigation Plan — NOVA Block 52: Reject Duplicate Keys in Provider Response Envelopes
 
 **Date:** 2026-10-29  
-**Status:** ACTIVE — apply consistent duplicate-key protection to external provider JSON  
+**Status:** COMPLETE — PR #164 merged after successful regression-test workflows  
 **Objective:** Ensure provider response envelopes used for health routing, GPU credential qualification, and provider qualification are rejected if they contain duplicate JSON object keys, rather than allowing last-value-wins parsing.
 
 ## Navigation and source of truth
@@ -44,4 +44,10 @@ Keep request contracts, markers, capability gates, provider ordering, error clas
 
 ## Completion evidence
 
-Record the pull request, successful regression workflows, final review, and merge commit here before marking this plan COMPLETE.
+- **Pull request:** https://github.com/ACROWN-System/NOVA/pull/164 — squash-merged.
+- **Merge commit:** `25d736841cf63f7b29f08507e634510b9bbfa093`.
+- **Push workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40835875647 — NOVA Health Tests passed on head `66fd3022876a5b192988d7dc1436a7481f41a23a`.
+- **Pull-request workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40835996048 — NOVA Health Tests passed on the same head commit.
+- **Regression evidence:** All 208 offline tests passed, including duplicate top-level/nested JSON checks and mocked duplicate provider envelopes in the LLM router, GPU credential probe, and qualification probe.
+- **Review:** `loads_json_no_duplicate_keys()` centralizes strict JSON parsing for provider response envelopes. Ambiguous/malformed responses continue through existing failed/invalid response handling; valid provider schemas and markers are unchanged.
+- **Boundaries confirmed:** No live provider requests, credential changes, state writes, operational-state branch writes, or backup modifications were made.
