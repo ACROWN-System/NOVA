@@ -11,6 +11,11 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
+try:
+    from .health import validate_health_state_payload
+except ImportError:  # direct script execution from the NOVA directory
+    from health import validate_health_state_payload
+
 STATE_BRANCH = "nova-operational-state"
 STATE_PATHS = ("NOVA/health_state.json", "NOVA/roster.json")
 
@@ -84,10 +89,11 @@ def _validate_provider_roster(
 
 def _validate_publishable_state(repo_root: Path) -> None:
     """Reject state that would make the next operational-state load fail."""
-    _read_json_text(
+    health_state = _read_json_text(
         (repo_root / "NOVA/health_state.json").read_text(encoding="utf-8"),
         description="NOVA/health_state.json",
     )
+    validate_health_state_payload(health_state, description="NOVA/health_state.json")
     roster = _read_json_text(
         (repo_root / "NOVA/roster.json").read_text(encoding="utf-8"),
         description="NOVA/roster.json",
@@ -142,6 +148,9 @@ def load_operational_state(repo_root: Path, state_ref: str) -> None:
     health_state = _read_json_text(
         _ref_text(repo_root, state_ref, "NOVA/health_state.json"),
         description=f"{state_ref}:NOVA/health_state.json",
+    )
+    validate_health_state_payload(
+        health_state, description=f"{state_ref}:NOVA/health_state.json"
     )
     persisted_roster = _read_json_text(
         _ref_text(repo_root, state_ref, "NOVA/roster.json"),
