@@ -1,11 +1,14 @@
+import copy
 import unittest
 from datetime import datetime, timezone
+from pathlib import Path
 from unittest.mock import patch
 
 from NOVA.health import _state_defaults
 from NOVA.capacity import provider_capacity_opportunity
 from NOVA.probe_scheduler import (
     _policy,
+    _runtime_allocation_policy,
     reschedule_after_probes,
     select_probe_candidate,
 )
@@ -67,6 +70,119 @@ class RollingProbeSchedulerTests(unittest.TestCase):
                     ):
                         with self.assertRaisesRegex(ValueError, field):
                             _policy()
+
+    def test_runtime_allocation_policy_uses_defaults_and_accepts_valid_values(self):
+        def fake_load_json(path, default):
+            if Path(path).name == "capacity_policy.json":
+                return {"runtime_allocation": {}}
+            if Path(path).name == "health_policy.json":
+                return {"freshness": {}}
+            raise AssertionError(f"Unexpected policy path: {path}")
+
+        with patch("NOVA.probe_scheduler.load_json", side_effect=fake_load_json):
+            self.assertEqual(_runtime_allocation_policy(), (300.0, 0.2, None, None))
+
+        def valid_policy(path, default):
+            if Path(path).name == "capacity_policy.json":
+                return {
+                    "runtime_allocation": {
+                        "urgency_window_seconds": 45.5,
+                        "minimum_remaining_reserve_fraction": 0.35,
+                        "maximum_capacity_observation_age_seconds": 600,
+                    }
+                }
+            if Path(path).name == "health_policy.json":
+                return {"freshness": {"heart_observation_max_age_seconds": 3600}}
+            raise AssertionError(f"Unexpected policy path: {path}")
+
+        with patch("NOVA.probe_scheduler.load_json", side_effect=valid_policy):
+            self.assertEqual(
+                _runtime_allocation_policy(),
+                (45.5, 0.35, 600.0, 3600.0),
+            )
+
+    def test_runtime_allocation_policy_rejects_wrong_nested_containers(self):
+        with patch(
+            "NOVA.probe_scheduler.load_json",
+            side_effect=lambda path, default: (
+                {"runtime_allocation": []}
+                if Path(path).name == "capacity_policy.json"
+                else {"freshness": {}}
+            ),
+        ):
+            with self.assertRaisesRegex(ValueError, "runtime_allocation must be a JSON object"):
+                _runtime_allocation_policy()
+
+        with patch(
+            "NOVA.probe_scheduler.load_json",
+            side_effect=lambda path, default: (
+                {"runtime_allocation": {}}
+                if Path(path).name == "capacity_policy.json"
+                else {"freshness": []}
+            ),
+        ):
+            with self.assertRaisesRegex(ValueError, "freshness must be a JSON object"):
+                _runtime_allocation_policy()
+
+    def test_runtime_allocation_policy_rejects_invalid_numeric_values(self):
+        capacity_cases = (
+            ("urgency_window_seconds", True, "urgency_window_seconds must be a finite number"),
+            ("urgency_window_seconds", "30", "urgency_window_seconds must be a finite number"),
+            ("urgency_window_seconds", float("nan"), "urgency_window_seconds must be a finite number"),
+            ("urgency_window_seconds", float("inf"), "urgency_window_seconds must be a finite number"),
+            ("minimum_remaining_reserve_fraction", False, "minimum_remaining_reserve_fraction must be a finite number"),
+            ("minimum_remaining_reserve_fraction", "0.2", "minimum_remaining_reserve_fraction must be a finite number"),
+            ("minimum_remaining_reserve_fraction", -0.01, "must be between 0 and 1"),
+            ("minimum_remaining_reserve_fraction", 1.01, "must be between 0 and 1"),
+            ("maximum_capacity_observation_age_seconds", True, "maximum_capacity_observation_age_seconds must be a finite number"),
+            ("maximum_capacity_observation_age_seconds", float("inf"), "maximum_capacity_observation_age_seconds must be a finite number"),
+            ("maximum_capacity_observation_age_seconds", -1, "maximum_capacity_observation_age_seconds must be non-negative"),
+        )
+        for field, value, message in capacity_cases:
+            with self.subTest(field=field, value=repr(value)):
+                def fake_load_json(path, default):
+                    if Path(path).name == "capacity_policy.json":
+                        return {"runtime_allocation": {field: value}}
+                    return {"freshness": {"heart_observation_max_age_seconds": 3600}}
+
+                with patch("NOVA.probe_scheduler.load_json", side_effect=fake_load_json):
+                    with self.assertRaisesRegex(ValueError, message):
+                        _runtime_allocation_policy()
+
+        freshness_cases = (
+            (True, "heart_observation_max_age_seconds must be a finite number"),
+            ("3600", "heart_observation_max_age_seconds must be a finite number"),
+            (float("nan"), "heart_observation_max_age_seconds must be a finite number"),
+            (float("-inf"), "heart_observation_max_age_seconds must be a finite number"),
+            (-1, "heart_observation_max_age_seconds must be non-negative"),
+        )
+        for value, message in freshness_cases:
+            with self.subTest(heart_observation_max_age_seconds=repr(value)):
+                def fake_load_json(path, default):
+                    if Path(path).name == "capacity_policy.json":
+                        return {"runtime_allocation": {}}
+                    return {"freshness": {"heart_observation_max_age_seconds": value}}
+
+                with patch("NOVA.probe_scheduler.load_json", side_effect=fake_load_json):
+                    with self.assertRaisesRegex(ValueError, message):
+                        _runtime_allocation_policy()
+
+    def test_invalid_preemption_policy_fails_before_probe_queue_mutation(self):
+        state = _state_defaults()
+        before = copy.deepcopy(state)
+
+        def fake_load_json(path, default):
+            if Path(path).name == "capacity_policy.json":
+                return {"runtime_allocation": {"minimum_remaining_reserve_fraction": 1.5}}
+            if Path(path).name == "health_policy.json":
+                return {"freshness": {"heart_observation_max_age_seconds": 3600}}
+            raise AssertionError(f"Unexpected policy path: {path}")
+
+        with patch("NOVA.probe_scheduler.load_json", side_effect=fake_load_json):
+            with self.assertRaisesRegex(ValueError, "must be between 0 and 1"):
+                select_probe_candidate(providers(), state, now=datetime(2026, 10, 13, tzinfo=timezone.utc))
+
+        self.assertEqual(state, before)
 
     def test_expiring_provider_is_pulled_forward_and_checked_provider_moves_to_end(self):
         state = _state_defaults()

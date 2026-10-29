@@ -95,13 +95,15 @@ def _provider_map(providers: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
     }
 
 
-def _finite_policy_number(value: Any, *, field: str) -> float:
+def _finite_policy_number(
+    value: Any, *, field: str, policy_file: str = "health_policy.json"
+) -> float:
     """Read a finite JSON number without accepting booleans or numeric strings."""
     if isinstance(value, bool) or not isinstance(value, (int, float)):
-        raise ValueError(f"health_policy.json scheduler.{field} must be a finite number.")
+        raise ValueError(f"{policy_file} {field} must be a finite number.")
     number = float(value)
     if not math.isfinite(number):
-        raise ValueError(f"health_policy.json scheduler.{field} must be a finite number.")
+        raise ValueError(f"{policy_file} {field} must be a finite number.")
     return number
 
 
@@ -113,13 +115,77 @@ def _policy() -> tuple[float, float]:
 
     interval = _finite_policy_number(
         scheduler.get("interval_seconds", DEFAULT_INTERVAL_SECONDS),
-        field="interval_seconds",
+        field="scheduler.interval_seconds",
     )
     safety_margin = _finite_policy_number(
         scheduler.get("opportunistic_preemption_safety_margin_seconds", 60),
-        field="opportunistic_preemption_safety_margin_seconds",
+        field="scheduler.opportunistic_preemption_safety_margin_seconds",
     )
     return max(interval, 1.0), max(safety_margin, 0.0)
+
+
+def _runtime_allocation_policy() -> tuple[float, float, float | None, float | None]:
+    """Validate preemption and freshness settings before any schedule mutation."""
+    capacity_policy = load_json(CAPACITY_POLICY_PATH, {})
+    allocation = capacity_policy.get("runtime_allocation", {})
+    if not isinstance(allocation, Mapping):
+        raise ValueError("capacity_policy.json runtime_allocation must be a JSON object.")
+
+    urgency_window = max(
+        _finite_policy_number(
+            allocation.get("urgency_window_seconds", 300),
+            field="runtime_allocation.urgency_window_seconds",
+            policy_file="capacity_policy.json",
+        ),
+        1.0,
+    )
+    reserve_fraction = _finite_policy_number(
+        allocation.get("minimum_remaining_reserve_fraction", 0.2),
+        field="runtime_allocation.minimum_remaining_reserve_fraction",
+        policy_file="capacity_policy.json",
+    )
+    if not 0.0 <= reserve_fraction <= 1.0:
+        raise ValueError(
+            "capacity_policy.json runtime_allocation.minimum_remaining_reserve_fraction "
+            "must be between 0 and 1."
+        )
+
+    max_age_value = allocation.get("maximum_capacity_observation_age_seconds")
+    max_capacity_age = (
+        _finite_policy_number(
+            max_age_value,
+            field="runtime_allocation.maximum_capacity_observation_age_seconds",
+            policy_file="capacity_policy.json",
+        )
+        if max_age_value is not None
+        else None
+    )
+    if max_capacity_age is not None and max_capacity_age < 0:
+        raise ValueError(
+            "capacity_policy.json runtime_allocation.maximum_capacity_observation_age_seconds "
+            "must be non-negative."
+        )
+
+    health_policy = load_json(HEALTH_POLICY_PATH, {})
+    freshness = health_policy.get("freshness", {})
+    if not isinstance(freshness, Mapping):
+        raise ValueError("health_policy.json freshness must be a JSON object.")
+    heart_age_value = freshness.get("heart_observation_max_age_seconds")
+    heart_max_age = (
+        _finite_policy_number(
+            heart_age_value,
+            field="freshness.heart_observation_max_age_seconds",
+        )
+        if heart_age_value is not None
+        else None
+    )
+    if heart_max_age is not None and heart_max_age < 0:
+        raise ValueError(
+            "health_policy.json freshness.heart_observation_max_age_seconds "
+            "must be non-negative."
+        )
+
+    return urgency_window, reserve_fraction, max_capacity_age, heart_max_age
 
 
 def ensure_probe_schedule(
@@ -269,6 +335,7 @@ def select_probe_candidate(
         current = current.replace(tzinfo=timezone.utc)
     current = current.astimezone(timezone.utc)
 
+    urgency, reserve, max_age, heart_max_age = _runtime_allocation_policy()
     rotation = ensure_probe_schedule(state, providers, now=current)
     queue = [str(name) for name in rotation.get("probe_queue", [])]
     schedule = rotation.get("probe_schedule", {})
@@ -285,12 +352,6 @@ def select_probe_candidate(
     scheduled_name = queue[0]
     scheduled_due = _parse_time(schedule.get(scheduled_name))
 
-    policy = load_json(CAPACITY_POLICY_PATH, {})
-    allocation = policy.get("runtime_allocation", {})
-    urgency = float(allocation.get("urgency_window_seconds", 300))
-    reserve = float(allocation.get("minimum_remaining_reserve_fraction", 0.2))
-    max_age = allocation.get("maximum_capacity_observation_age_seconds")
-
     _, safety_margin = _policy()
     opportunities: list[dict[str, Any]] = []
     for name in queue:
@@ -301,9 +362,7 @@ def select_probe_candidate(
             state,
             provider=name,
             namespace=SCHEDULE_NAMESPACE,
-            max_observation_age_seconds=load_json(
-                HEALTH_POLICY_PATH, {}
-            ).get("freshness", {}).get("heart_observation_max_age_seconds"),
+            max_observation_age_seconds=heart_max_age,
         )
         if status == "UNACCEPTABLE":
             continue
