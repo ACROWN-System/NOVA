@@ -241,9 +241,38 @@ def _state_defaults() -> dict[str, Any]:
 
 
 def load_health_state(path: Path) -> dict[str, Any]:
-    state = load_json(path, _state_defaults())
-    if not isinstance(state, dict):
+    """Load operational state without silently replacing an existing corrupt file."""
+    if not path.exists():
         state = _state_defaults()
+    else:
+        try:
+            raw = path.read_text(encoding="utf-8")
+        except OSError as exc:
+            raise RuntimeError(
+                "NOVA health state exists but could not be read; refusing to reset persisted state."
+            ) from exc
+
+        try:
+            state = json.loads(raw)
+        except (json.JSONDecodeError, RecursionError) as exc:
+            raise RuntimeError(
+                "NOVA health state is not valid JSON; refusing to reset persisted state."
+            ) from exc
+
+        if not isinstance(state, dict):
+            raise RuntimeError(
+                "NOVA health state must be a JSON object; refusing to reset persisted state."
+            )
+
+        # These core maps are written by NOVA's runtime. Replacing a malformed
+        # map with an empty default would silently discard retained evidence.
+        for key in ("targets", "observations", "events", "provider_rotation"):
+            if key in state and not isinstance(state[key], dict):
+                raise RuntimeError(
+                    f"NOVA health state field '{key}' must be a JSON object; "
+                    "refusing to reset persisted state."
+                )
+
     for key, value in _state_defaults().items():
         state.setdefault(key, value)
     return state
