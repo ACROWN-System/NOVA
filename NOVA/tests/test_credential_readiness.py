@@ -12,6 +12,13 @@ from NOVA.credential_readiness import (
 
 
 class CredentialReadinessTests(unittest.TestCase):
+    def test_roster_file_loader_preserves_valid_rosters_without_candidates(self):
+        expected = {"providers": [{"name": "groq", "api_key_env": "GROQ_API_KEY_01"}]}
+        with tempfile.TemporaryDirectory(prefix="nova-valid-readiness-roster-") as temp_dir:
+            path = Path(temp_dir) / "roster.json"
+            path.write_text(json.dumps(expected), encoding="utf-8")
+            self.assertEqual(_load_roster_file(path), expected)
+
     def test_roster_file_loader_rejects_duplicate_keys_and_invalid_shapes(self):
         invalid_documents = (
             ('{"providers": [], "providers": []}', "duplicate JSON object key"),
