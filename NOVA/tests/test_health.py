@@ -47,7 +47,7 @@ class HealthTests(unittest.TestCase):
             self.assertEqual(path.read_text(encoding="utf-8"), invalid_json)
 
     def test_health_state_loader_rejects_undecodable_bytes_without_modifying_file(self):
-        invalid_bytes = b"\\xff\\xfe\\x80"
+        invalid_bytes = bytes((0xFF, 0xFE, 0x80))
         with tempfile.TemporaryDirectory(prefix="nova-undecodable-health-state-") as temp_dir:
             path = Path(temp_dir) / "health_state.json"
             path.write_bytes(invalid_bytes)
