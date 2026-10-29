@@ -1,11 +1,32 @@
 import os
+import tempfile
 import unittest
+from pathlib import Path
 from unittest.mock import patch
 
-from NOVA.credential_readiness import build_readiness_report, inspect_roster
+from NOVA.credential_readiness import (
+    _load_roster_file,
+    build_readiness_report,
+    inspect_roster,
+)
 
 
 class CredentialReadinessTests(unittest.TestCase):
+    def test_roster_file_loader_rejects_duplicate_keys_and_invalid_shapes(self):
+        invalid_documents = (
+            ('{"providers": [], "providers": []}', "duplicate JSON object key"),
+            ("[]", "must be a JSON object"),
+            ('{"providers": {}}', "must contain a providers array"),
+            ('{"providers": [], "candidates": {}}', "candidates field must be a JSON array"),
+        )
+        for raw, expected_error in invalid_documents:
+            with self.subTest(raw=raw):
+                with tempfile.TemporaryDirectory(prefix="nova-credential-roster-") as temp_dir:
+                    path = Path(temp_dir) / "roster.json"
+                    path.write_text(raw, encoding="utf-8")
+                    with self.assertRaisesRegex(ValueError, expected_error):
+                        _load_roster_file(path)
+
     def test_missing_secret_is_required_not_configured(self):
         with patch.dict(os.environ, {}, clear=True):
             result = inspect_roster({"providers": [{"name": "test", "api_key_env": "TEST_KEY"}]})
