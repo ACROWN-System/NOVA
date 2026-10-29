@@ -1,7 +1,7 @@
 # Active Navigation Plan — NOVA Block 46: Honor the Reasoning Repository Root
 
 **Date:** 2026-10-29  
-**Status:** ACTIVE — prevent reasoning commands from silently reading/writing the script checkout when a different repository root is supplied  
+**Status:** COMPLETE — PR #158 merged after successful regression-test workflows  
 **Objective:** Make `NOVA/reasoning.py --repo PATH --pending` use the supplied repository's `NOVA/` state, roster, and policy files rather than silently ignoring `PATH`.
 
 ## Navigation and source of truth
@@ -44,4 +44,10 @@ Treat the supplied root as the repository root. Derive a local `nova_root = root
 
 ## Completion evidence
 
-Record the pull request, successful regression workflow(s), final review, and merge commit here before marking this plan COMPLETE.
+- **Pull request:** https://github.com/ACROWN-System/NOVA/pull/158 — squash-merged.
+- **Merge commit:** `f1eaa61395b9ba7f0623ccf7179b408eee9ad6a6`.
+- **Push workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40833024059 — NOVA Health Tests passed on head `769a9580cd8ba8dbf9d6b968fe8a2460f3e2b696`.
+- **Pull-request workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40833050056 — NOVA Health Tests passed on the same head commit.
+- **Regression evidence:** The offline reasoning tests passed, including assertions that the chosen repository root supplies the health state, provider roster, health policy, watchlist, action policy, and health-state destination.
+- **Review:** `analyze_pending(root)` no longer discards `root`. It derives all runtime paths from `Path(root).resolve() / "NOVA"` while retaining current defaults, source-bound analysis, stale-event superseding, provider selection, policy, and alert semantics.
+- **Boundaries confirmed:** No live provider calls, alert emission, real state-file writes, credentials changes, or backup modifications were made.
