@@ -109,6 +109,15 @@ def validate_quality_cases_payload(
                     "refusing to overwrite persisted RCA evidence."
                 )
 
+        if "failure_domain" in case and (
+            not _nonempty(case["failure_domain"])
+            or len(case["failure_domain"]) > 80
+        ):
+            raise RuntimeError(
+                f"{description} entry '{key}' field 'failure_domain' must be a non-empty string of at most 80 characters; "
+                "refusing to overwrite persisted RCA evidence."
+            )
+
         if "candidate_sha" in case and case["candidate_sha"] is not None and not isinstance(
             case["candidate_sha"], str
         ):
@@ -190,18 +199,29 @@ def model_capability_decision(
     }
 
 
-def _case_signature(source: str, failure_class: str, expected_result: str) -> str:
-    payload = json.dumps(
-        {
-            "source": source,
-            "failure_class": failure_class,
-            "expected_result": expected_result,
-        },
+def _case_signature(
+    source: str,
+    failure_class: str,
+    expected_result: str,
+    failure_domain: str | None = None,
+) -> str:
+    payload = {
+        "source": source,
+        "failure_class": failure_class,
+        "expected_result": expected_result,
+    }
+    # Omitting the domain preserves the established signature for all existing
+    # health-router cases. Callers add a domain only when the failure semantics
+    # are intentionally distinct despite sharing provider/model and class.
+    if failure_domain is not None:
+        payload["failure_domain"] = failure_domain
+    encoded = json.dumps(
+        payload,
         sort_keys=True,
         separators=(",", ":"),
         ensure_ascii=False,
     ).encode("utf-8")
-    return "rca-" + hashlib.sha256(payload).hexdigest()[:16]
+    return "rca-" + hashlib.sha256(encoded).hexdigest()[:16]
 
 
 def record_failure_case(
@@ -213,12 +233,19 @@ def record_failure_case(
     observed_result: str,
     candidate_sha: str | None = None,
     now: str | None = None,
+    failure_domain: str | None = None,
 ) -> dict[str, Any]:
     """Open or join a sanitized RCA case; repeated failures do not duplicate it.
 
     Only stable classifications and short caller-authored descriptions belong
     here. Callers must not provide raw prompts, response bodies, or credentials.
+    An optional failure domain creates a distinct case identity; omitting it
+    preserves historical signatures used by the health router.
     """
+    if failure_domain is not None and (
+        not _nonempty(failure_domain) or len(failure_domain) > 80
+    ):
+        raise RuntimeError("RCA failure_domain must be a non-empty string of at most 80 characters.")
     if not isinstance(state, dict):
         raise RuntimeError("NOVA health state must be a JSON object to record an RCA case.")
     if "quality_cases" not in state:
@@ -228,7 +255,7 @@ def record_failure_case(
     )
 
     stamp = now or _now_iso()
-    case_id = _case_signature(source, failure_class, expected_result)
+    case_id = _case_signature(source, failure_class, expected_result, failure_domain)
     existing = cases.get(case_id)
     if not isinstance(existing, dict):
         existing = {
@@ -244,6 +271,8 @@ def record_failure_case(
             "occurrences": 1,
             "reopened_count": 0,
         }
+        if failure_domain is not None:
+            existing["failure_domain"] = failure_domain
         cases[case_id] = existing
         return existing
 
