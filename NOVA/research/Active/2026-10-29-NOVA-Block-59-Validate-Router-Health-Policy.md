@@ -1,7 +1,7 @@
 # Active Navigation Plan — NOVA Block 59: Validate Router Health Policy Before Probes
 
 **Date:** 2026-10-29  
-**Status:** ACTIVE — reject malformed health-probe policy before any provider request  
+**Status:** COMPLETE — PR #171 merged after successful regression-test workflows  
 **Objective:** Validate heartbeat freshness, latency, and failure settings up front so invalid policy cannot consume a provider request and then abort before the response is recorded.
 
 ## Navigation and source of truth
@@ -51,4 +51,10 @@ Validate all health-probe settings before loading/mutating runtime state or maki
 
 ## Completion evidence
 
-Record the pull request, successful regression workflows, final review, and merge commit here before marking this plan COMPLETE.
+- **Pull request:** https://github.com/ACROWN-System/NOVA/pull/171 — squash-merged.
+- **Merge commit:** `532305fc98befae621d305db94df4d74fed540ea`.
+- **Push workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40855820650 — NOVA Health Tests passed on head `2c82393c6cc928e169bf0a0a0f1980cba79b4ddc`.
+- **Pull-request workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40855830164 — NOVA Health Tests passed on the same head commit.
+- **Regression evidence:** All 231 offline tests passed. New tests cover valid/default policy, wrong nested section types, invalid freshness/latency/failure values, contradictory sample thresholds, and proof that malformed policy stops before state loading, provider calls, or state writes.
+- **Review:** Health-policy validation runs immediately after policy loading and before state loading/provider selection. Validated numeric values are reused in `record_probe()`; booleans, strings, non-finite multipliers, non-positive thresholds, negative freshness ages, and impossible sample-threshold relationships fail explicitly.
+- **Boundaries confirmed:** No live provider requests, alert emission, real state writes, credential changes, operational-state branch writes, or backup modifications were made.
