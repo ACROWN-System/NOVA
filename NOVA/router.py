@@ -137,12 +137,27 @@ def safe_exception_detail(exc: Exception) -> str:
     )
 
 
+class _DuplicateHealthJSONKeyError(ValueError):
+    """Raised when a health response JSON object repeats a member name."""
+
+
+def _health_object_without_duplicate_keys(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    result: dict[str, Any] = {}
+    for key, value in pairs:
+        if key in result:
+            raise _DuplicateHealthJSONKeyError
+        result[key] = value
+    return result
+
+
 def validate_health_payload(content: Any) -> tuple[bool, str]:
     if not isinstance(content, str) or not content.strip():
         return False, "EMPTY_RESPONSE"
     try:
-        payload = json.loads(content)
-    except json.JSONDecodeError:
+        payload = json.loads(content, object_pairs_hook=_health_object_without_duplicate_keys)
+    except _DuplicateHealthJSONKeyError:
+        return False, "DUPLICATE_JSON_KEYS"
+    except (json.JSONDecodeError, RecursionError):
         return False, "INVALID_JSON"
     if not isinstance(payload, dict):
         return False, "JSON_NOT_OBJECT"
