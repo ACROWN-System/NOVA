@@ -548,7 +548,7 @@
           "blob_sha": "70b0022348abc19da0bc6978e45997fb90cf071f",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "CONTENT_REVIEWED_BLOCKS_3_AND_6"
+          "content_status": "CONTENT_REVIEWED_AND_MODIFIED_BLOCK7_PR172_MERGED"
         },
         {
           "path": "NOVA/research",
@@ -1934,7 +1934,7 @@
           "blob_sha": "71c7db23f115078ac14dfaa9559f225801c7de1a",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "CONTENT_REVIEWED_BLOCKS_3_AND_6"
+          "content_status": "CONTENT_REVIEWED_AND_MODIFIED_BLOCK7_PR172_MERGED"
         },
         {
           "path": "NOVA/tests/test_router.py",
@@ -4874,7 +4874,12 @@
   "review_tracking": {
     "note": "Content review status records the bounded passes described in the working ledger. PARTIAL means excerpts/selected sections were inspected, not the whole file. All other file paths remain inventoried but not content-reviewed.",
     "last_updated_at": "2026-10-29",
-    "last_completed_block": 6,
+    "last_completed_block": 7,
     "modified_paths": 54
+  },
+  "latest_reviewed_main": {
+    "commit_sha": "7c63ac80329820af40968633b6d8a2efecf50090",
+    "as_of": "2026-10-29",
+    "note": "Block 7 merged after 232 offline tests and post-merge workflows passed. Original tree SHAs above remain the baseline snapshots for the inventory."
   }
 }
