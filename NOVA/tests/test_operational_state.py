@@ -3,6 +3,7 @@ import subprocess
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from NOVA.operational_state import (
     load_operational_state,
@@ -58,6 +59,85 @@ class OperationalStateRosterMergeTests(unittest.TestCase):
         repository = {"providers": [{"name": "groq", "status": "active"}]}
         persisted = {"providers": [{"name": "groq", "status": "active"}]}
         self.assertEqual(merge_dynamic_roster(repository, persisted), repository)
+
+    def test_merge_normalizes_persisted_identity_for_down_marker_match(self):
+        repository = {
+            "providers": [
+                {"name": "groq", "status": "active", "models": ["current-model"]}
+            ]
+        }
+        persisted = {
+            "providers": [
+                {
+                    "name": " GROQ ",
+                    "status": "down",
+                    "marked_down_at": "2026-10-10T10:00:00+00:00",
+                    "models": ["obsolete-model"],
+                }
+            ]
+        }
+
+        result = merge_dynamic_roster(repository, persisted)
+
+        self.assertEqual(result["providers"][0]["status"], "down")
+        self.assertEqual(
+            result["providers"][0]["marked_down_at"],
+            "2026-10-10T10:00:00+00:00",
+        )
+        self.assertEqual(result["providers"][0]["name"], "groq")
+        self.assertEqual(result["providers"][0]["models"], ["current-model"])
+
+    def test_merge_rejects_duplicate_normalized_persisted_identities(self):
+        repository = {"providers": [{"name": "groq", "status": "active"}]}
+        persisted = {
+            "providers": [
+                {"name": "groq", "status": "down"},
+                {"name": " GROQ ", "status": "active"},
+            ]
+        }
+
+        with self.assertRaisesRegex(RuntimeError, "duplicate provider identities"):
+            merge_dynamic_roster(repository, persisted)
+
+    def test_load_rejects_duplicate_persisted_identities_without_writing_local_state(self):
+        with tempfile.TemporaryDirectory(prefix="nova-invalid-load-state-test-") as temp_dir:
+            repo_root = Path(temp_dir)
+            nova_dir = repo_root / "NOVA"
+            nova_dir.mkdir()
+            health_path = nova_dir / "health_state.json"
+            roster_path = nova_dir / "roster.json"
+            health_path.write_text(json.dumps({"local": "health"}), encoding="utf-8")
+            roster_path.write_text(
+                json.dumps({"providers": [{"name": "groq", "status": "active"}]}),
+                encoding="utf-8",
+            )
+
+            def fake_ref_text(_repo_root: Path, _state_ref: str, path: str) -> str:
+                if path == "NOVA/health_state.json":
+                    return json.dumps({"saved": "health"})
+                if path == "NOVA/roster.json":
+                    return json.dumps(
+                        {
+                            "providers": [
+                                {"name": "groq", "status": "down"},
+                                {"name": " GROQ ", "status": "active"},
+                            ]
+                        }
+                    )
+                raise AssertionError(f"Unexpected state path: {path}")
+
+            with patch("NOVA.operational_state._ref_text", side_effect=fake_ref_text):
+                with self.assertRaisesRegex(RuntimeError, "duplicate provider identities"):
+                    load_operational_state(repo_root, "unused-state-ref")
+
+            self.assertEqual(
+                json.loads(health_path.read_text(encoding="utf-8")),
+                {"local": "health"},
+            )
+            self.assertEqual(
+                json.loads(roster_path.read_text(encoding="utf-8")),
+                {"providers": [{"name": "groq", "status": "active"}]},
+            )
 
     def test_publish_rejects_unloadable_state_before_git_operations(self):
         with tempfile.TemporaryDirectory(prefix="nova-invalid-state-test-") as temp_dir:
