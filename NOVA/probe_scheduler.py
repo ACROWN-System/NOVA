@@ -380,12 +380,13 @@ def select_probe_candidate(
 def reschedule_after_probes(
     state: dict[str, Any],
     providers: list[dict[str, Any]],
-    probed_provider_names: list[str],
+    probed_provider_names: list[str] | None = None,
     *,
+    skipped_provider_names: list[str] | None = None,
     completed_at: datetime | None = None,
     interval_seconds: float | None = None,
 ) -> dict[str, Any]:
-    """Move every checked provider to the end and preserve 6h-style spacing."""
+    """Move attempted probes and no-request skips separately in the rolling queue."""
     current = completed_at or datetime.now(timezone.utc)
     if current.tzinfo is None:
         current = current.replace(tzinfo=timezone.utc)
@@ -405,27 +406,41 @@ def reschedule_after_probes(
     old_queue = [str(name) for name in rotation.get("probe_queue", [])]
     active_names = _active_names(providers)
 
-    probed_order = []
-    seen = set()
-    for name in probed_provider_names:
+    probed_order: list[str] = []
+    probed_set: set[str] = set()
+    for name in probed_provider_names or []:
         value = str(name)
-        if value in active_names and value not in seen:
+        if value in active_names and value not in probed_set:
             probed_order.append(value)
-            seen.add(value)
+            probed_set.add(value)
 
-    # Preserve the existing queue order for untouched providers, then append
-    # the providers that were actually checked. This is the rolling ring.
+    requested_skips: list[str] = []
+    skip_set: set[str] = set()
+    for name in skipped_provider_names or []:
+        value = str(name)
+        if value in active_names and value not in probed_set and value not in skip_set:
+            requested_skips.append(value)
+            skip_set.add(value)
+
+    # Keep the order of skipped identities from the prior queue where possible.
+    # They move out of the head position, but are not misreported as probed.
+    skipped_order = [
+        name for name in old_queue
+        if name in skip_set and name not in probed_set
+    ]
+    skipped_order.extend(
+        name for name in requested_skips if name not in skipped_order
+    )
+
+    # Preserve untouched providers, then place skipped providers, and finally
+    # the providers for which a real request was attempted.
     new_queue = [
         name for name in old_queue
-        if name in active_names and name not in seen
+        if name in active_names and name not in probed_set and name not in skip_set
     ]
-    new_queue.extend(
-        name for name in probed_order if name not in new_queue
-    )
-    new_queue.extend(
-        name for name in active_names
-        if name not in new_queue
-    )
+    new_queue.extend(name for name in skipped_order if name not in new_queue)
+    new_queue.extend(name for name in probed_order if name not in new_queue)
+    new_queue.extend(name for name in active_names if name not in new_queue)
 
     # The checked providers become last in the next cycle. Each future check is
     # exactly one interval after the previous one, measured from completion.
@@ -442,14 +457,20 @@ def reschedule_after_probes(
         active_names.index(new_queue[0]) if new_queue and new_queue[0] in active_names else 0
     )
     rotation["last_probe_providers"] = list(probed_order)
+    rotation["last_skipped_providers"] = list(skipped_order)
     rotation["last_completed_at"] = _iso(current)
-    rotation["last_schedule_reason"] = (
-        "EXPIRY_REALLOCATION" if (
-            probed_order
-            and old_queue
-            and probed_order[0] != old_queue[0]
-        ) else "ROLLING_INTERVAL"
-    )
+    selection = rotation.get("last_selection_decision")
+    selection_reason = selection.get("reason") if isinstance(selection, Mapping) else None
+    selected_provider = selection.get("provider") if isinstance(selection, Mapping) else None
+    rotation["last_selection_reason"] = selection_reason or "UNKNOWN"
+    if not probed_order:
+        rotation["last_schedule_reason"] = "SKIPPED_NO_NETWORK_ATTEMPT"
+    elif selection_reason == "EXPIRY_REALLOCATION" and selected_provider in probed_set:
+        rotation["last_schedule_reason"] = "EXPIRY_REALLOCATION"
+    elif selection_reason == "EXPIRY_REALLOCATION" and selected_provider in skip_set:
+        rotation["last_schedule_reason"] = "EXPIRY_PREEMPTION_SKIPPED"
+    else:
+        rotation["last_schedule_reason"] = "ROLLING_INTERVAL"
     return rotation
 
 
