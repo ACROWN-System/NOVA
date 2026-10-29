@@ -10,6 +10,7 @@ from NOVA.health import (
     fingerprint,
     load_health_state,
     load_json,
+    loads_json_no_duplicate_keys,
     observation_freshness,
     provider_health_status,
     record_probe,
@@ -114,6 +115,17 @@ class HealthTests(unittest.TestCase):
                             load_health_state(path)
 
                         self.assertEqual(path.read_text(encoding="utf-8"), serialized)
+
+    def test_strict_json_parser_rejects_duplicate_keys_at_any_depth(self):
+        invalid_documents = (
+            '{"status": "HEALTHY", "status": "UNACCEPTABLE"}',
+            '{"choices": [{"message": {"content": "OK"}}], "choices": []}',
+            '{"result": {"usage": {"tokens": 1, "tokens": 999}}}',
+        )
+        for raw in invalid_documents:
+            with self.subTest(raw=raw):
+                with self.assertRaisesRegex(ValueError, "duplicate JSON object key"):
+                    loads_json_no_duplicate_keys(raw)
 
     def test_load_json_returns_default_only_when_file_is_missing(self):
         with tempfile.TemporaryDirectory(prefix="nova-missing-config-") as temp_dir:
