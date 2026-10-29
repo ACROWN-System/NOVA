@@ -1,7 +1,7 @@
 # Active Navigation Plan — NOVA Block 55: Strict GPU Capacity Evidence JSON
 
 **Date:** 2026-10-29  
-**Status:** ACTIVE — prevent ambiguous capacity evidence from influencing GPU qualification totals  
+**Status:** COMPLETE — PR #167 merged after successful regression-test workflows  
 **Objective:** Make the GPU-capacity evidence register use the shared duplicate-key rejecting JSON parser, so duplicate fields cannot silently alter provider qualification or calculated capacity.
 
 ## Navigation and source of truth
@@ -41,4 +41,10 @@ Use `loads_json_no_duplicate_keys()` from `NOVA/health.py` to parse the evidence
 
 ## Completion evidence
 
-Record the pull request, successful regression workflows, final review, and merge commit here before marking this plan COMPLETE.
+- **Pull request:** https://github.com/ACROWN-System/NOVA/pull/167 — squash-merged.
+- **Merge commit:** `18b295006249f9cd3c447fa09e9b8f34e5256033`.
+- **Push workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40837525213 — NOVA Health Tests passed on head `8ba1e75079a1ff2105178bebcd1e4fead8928966`.
+- **Pull-request workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40837565095 — NOVA Health Tests passed on the same head commit.
+- **Regression evidence:** All 217 offline tests passed. New tests cover valid evidence loading, duplicate top-level/nested object keys, wrong JSON root type, and a non-list `providers` field.
+- **Review:** `load_capacity_evidence()` now uses `loads_json_no_duplicate_keys()` while retaining its existing root-object/providers-list checks and explicit missing-file error behavior. Capacity qualification calculations remain unchanged for valid registers.
+- **Boundaries confirmed:** No GPU allocations, provider calls, credential changes, state writes, operational-state branch writes, or backup modifications were made.
