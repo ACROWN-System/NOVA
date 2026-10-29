@@ -442,3 +442,33 @@ No reasoning-path RCA creation was added. The critical follow-up remains G-001: 
 **Proceed to a separate, narrowly scoped G-001 implementation block using the matrix above.** Do not merge implementation with this design-record update. Preserve legacy health-case IDs, retain the intentional local-block exclusions, distinguish reasoning-specific contract failures, and test fallback semantics. No source code or operational-state branch was changed in Block 10.
 
 **Next block:** Block 11 — implement the G-001 reasoning RCA integration on a feature branch, add offline regression tests, inspect the exact diff and push-trigger consequences, and stop before merge until verification and risk review are complete.
+
+### Block 11 — Reasoning-path RCA integration (G-001)
+**Status:** COMPLETE — PR merged; final pre-merge and post-merge verification passed.
+
+#### Implementation
+- **PR:** https://github.com/ACROWN-System/NOVA/pull/174
+- **Feature branch:** `fix/reasoning-rca-integration-2026-10-29`
+- **Merge commit / verified current `main`:** `9297a50c5f05e2f540af3ff226542311c5c5a68a`
+- Changed only `NOVA/quality_gate.py`, `NOVA/reasoning.py`, `NOVA/tests/test_quality_gate.py`, and `NOVA/tests/test_reasoning.py`. The workflow definitions, provider roster, credentials, main static `health_state.json`, and backup paths were not part of the PR.
+- Added optional `failure_domain` support to `record_failure_case()`. When omitted, the case-signature payload is identical to the legacy signature; a regression test pins a known historical identifier. When supplied, the domain is included in the signature and validated as a non-empty string of at most 80 characters.
+- Reasoning RCA is recorded only for the explicit eligible classes `transient`, `permanent`, `exception`, and `response_contract`. Local non-attempts, successful probes, missing model identity, and unrecognized classes do not create cases.
+- Transient provider failures reuse the existing provider/model plus expected-result identity, so equivalent failures can join a heartbeat case. Permanent, exception, and reasoning-analysis contract failures use fixed caller-authored expected results and `failure_domain="reasoning_analysis"`, avoiding contract collisions.
+- RCA records contain stable provider/model identifiers and fixed classifications only. Probe error details, prompts, event source URLs/excerpts, raw response bodies, and credentials are not passed to `record_failure_case()`.
+- The reasoning loop records probe telemetry as before, then records eligible RCA cases. It does not change event retry count or status; provider fallback can still succeed and mark the overall event `ANALYZED`.
+
+#### Regression and review evidence
+- Final PR-head workflow: https://github.com/ACROWN-System/NOVA/actions/runs/40922419034 — compile step passed and **243 offline tests passed**. Specific passing tests cover legacy identifier compatibility, scoped case validation/deduplication, transient joining, contract-domain separation, permanent/exception classifications, exclusion/sanitization, and failed-provider-A followed by successful-provider-B fallback.
+- PR merged with squash; the merge was guarded by expected PR head SHA `ef47e62506c56073ca232c7f07a6e498ce5d2adb`.
+- Post-merge Health Tests: https://github.com/ACROWN-System/NOVA/actions/runs/40922814642 — compile and test workflow succeeded; **243 tests passed**.
+- Post-merge Autonomous Heartbeat: https://github.com/ACROWN-System/NOVA/actions/runs/40922814677 — succeeded through its steps for external observation, AI heart, pending reasoning analysis, configured-credential qualification and state publication.
+- The existing post-merge heartbeat workflow did run and publish to `nova-operational-state` as an existing consequence of the main-branch path filter. The post-run `NOVA/health_state.json` blob was `970cb93730fd57697930d8a28f3e1a7b86ca17ba`. Read-only post-run inspection found 6 `quality_cases`, all `INVESTIGATION_REQUIRED`, 30 total occurrences and 12 targets. Those aggregates match the last verified pre-merge snapshot; the inspection did not establish a field-by-field equality comparison of every case.
+- No direct edit, manual publish, or case closure was made on the operational-state branch. Its content update in this block came from the already-configured `NOVA Autonomous Heartbeat` workflow.
+- A subsequent repository-tree refresh confirmed the NOVA main path set remains 230 entries, with no added or removed paths. The research-branch inventory metadata for NOVA was refreshed to current main; its other five repository entries retain their original snapshot SHAs. Backup paths remain excluded and untouched.
+
+#### Acceptance and boundary
+**G-001: IMPLEMENTED AND MERGED.** The reasoning path now records sanitized provider failure evidence using the existing canonical RCA case store, with stable compatibility and failure-domain separation. This is still evidence capture, not automatic diagnosis or closure. The six open operational cases remain open; no closure was inferred.
+
+The merge activated the existing configured heartbeat workflow once, which successfully republished operational state. No additional standalone provider request was created by the RCA helper or its tests.
+
+**Next block:** Continue the transcript-based cross-repository review from the next bounded research question in the ledger. Keep the working notes on the unmerged research branch and keep `backup/` excluded.
