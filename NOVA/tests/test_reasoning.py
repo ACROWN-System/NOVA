@@ -106,6 +106,187 @@ class ReasoningTests(unittest.TestCase):
         self.assertEqual(state["events"]["old-event"]["analysis_status"], "SUPERSEDED")
         self.assertIn("NO_PENDING_EVENTS", output.getvalue())
 
+    def test_reasoning_failure_retries_boundedly_then_blocks(self):
+        source = "release-notes"
+        state = {
+            "events": {
+                "event-1": {
+                    "event_id": "event-1",
+                    "source": source,
+                    "fingerprint": "fingerprint-a",
+                    "analysis_status": "PENDING",
+                    "analysis_attempt_count": 0,
+                }
+            },
+            "observations": {
+                f"external-annotation:{source}": {
+                    "fingerprint": "fingerprint-a",
+                    "observation": {
+                        "url": "https://example.invalid/release-notes",
+                        "content_excerpt": "Release notes A",
+                        "content_fingerprint": "fingerprint-a",
+                    },
+                }
+            },
+            "targets": {},
+            "provider_rotation": {},
+        }
+        provider = {"name": "groq", "status": "active", "kind": "openai-compatible"}
+        probe = {
+            "provider": "groq",
+            "credential_env": "GROQ_API_KEY_01",
+            "requested_model": "test-model",
+            "actual_model": None,
+            "api_status": 503,
+            "authentication": "UNKNOWN",
+            "response_valid": False,
+            "quality_status": "NOT_APPLICABLE",
+            "latency_ms": 10.0,
+            "error_class": "transient",
+            "error_detail": "HTTP 503",
+        }
+
+        def fake_load_json(path, default):
+            name = Path(path).name
+            if name == "roster.json":
+                return {"providers": [provider]}
+            if name == "health_policy.json":
+                return {"reasoning": {"max_attempts_per_event": 3}}
+            if name == "watchlist.json":
+                return {"sources": [{"name": source, "analysis_valid_for_seconds": 3600}]}
+            if name == "action_policy.json":
+                return {"external_event_actions": {}}
+            raise AssertionError(f"Unexpected configuration path: {path}")
+
+        output = StringIO()
+        with tempfile.TemporaryDirectory(prefix="nova-reasoning-retry-limit-") as temp_dir:
+            repo_root = Path(temp_dir)
+            (repo_root / "NOVA").mkdir()
+            with patch("NOVA.reasoning.load_health_state", return_value=state), patch(
+                "NOVA.reasoning.load_json", side_effect=fake_load_json
+            ), patch("NOVA.reasoning.order_providers", return_value=[provider]), patch(
+                "NOVA.reasoning.call_provider",
+                return_value=(None, "quality_or_transient", [probe]),
+            ) as call_provider, patch("NOVA.reasoning.record_probe"), patch(
+                "NOVA.reasoning.atomic_write_json"
+            ), redirect_stdout(output):
+                self.assertEqual(analyze_pending(repo_root), 0)
+                self.assertEqual(state["events"]["event-1"]["analysis_status"], "PENDING")
+                self.assertEqual(state["events"]["event-1"]["analysis_attempt_count"], 1)
+                self.assertEqual(state["events"]["event-1"]["last_attempt_status"], "RETRY_PENDING")
+
+                self.assertEqual(analyze_pending(repo_root), 0)
+                self.assertEqual(state["events"]["event-1"]["analysis_status"], "PENDING")
+                self.assertEqual(state["events"]["event-1"]["analysis_attempt_count"], 2)
+
+                self.assertEqual(analyze_pending(repo_root), 0)
+                event = state["events"]["event-1"]
+                self.assertEqual(event["analysis_status"], "BLOCKED")
+                self.assertEqual(event["analysis_attempt_count"], 3)
+                self.assertEqual(event["last_attempt_status"], "RETRY_EXHAUSTED")
+                self.assertTrue(event["retry_exhausted"])
+
+                # A terminal event is not sent to providers again.
+                self.assertEqual(analyze_pending(repo_root), 0)
+                self.assertEqual(call_provider.call_count, 3)
+
+    def test_no_request_provider_gates_do_not_consume_reasoning_retry_budget(self):
+        source = "release-notes"
+        state = {
+            "events": {
+                "event-1": {
+                    "event_id": "event-1",
+                    "source": source,
+                    "fingerprint": "fingerprint-a",
+                    "analysis_status": "PENDING",
+                    "analysis_attempt_count": 0,
+                }
+            },
+            "observations": {
+                f"external-annotation:{source}": {
+                    "fingerprint": "fingerprint-a",
+                    "observation": {
+                        "url": "https://example.invalid/release-notes",
+                        "content_excerpt": "Release notes A",
+                        "content_fingerprint": "fingerprint-a",
+                    },
+                }
+            },
+            "targets": {},
+            "provider_rotation": {},
+        }
+        provider = {"name": "groq", "status": "active", "kind": "openai-compatible"}
+        no_request_probe = {
+            "provider": "groq",
+            "credential_env": "GROQ_API_KEY_01",
+            "requested_model": None,
+            "actual_model": None,
+            "api_status": None,
+            "authentication": "NOT_CONFIGURED",
+            "response_valid": False,
+            "quality_status": "NOT_APPLICABLE",
+            "latency_ms": None,
+            "error_class": "credential_not_configured",
+            "error_detail": "Credential is not configured.",
+        }
+
+        def fake_load_json(path, default):
+            name = Path(path).name
+            if name == "roster.json":
+                return {"providers": [provider]}
+            if name == "health_policy.json":
+                return {"reasoning": {"max_attempts_per_event": 1}}
+            if name == "watchlist.json":
+                return {"sources": [{"name": source}]}
+            if name == "action_policy.json":
+                return {"external_event_actions": {}}
+            raise AssertionError(f"Unexpected configuration path: {path}")
+
+        with tempfile.TemporaryDirectory(prefix="nova-reasoning-no-request-") as temp_dir:
+            repo_root = Path(temp_dir)
+            (repo_root / "NOVA").mkdir()
+            with patch("NOVA.reasoning.load_health_state", return_value=state), patch(
+                "NOVA.reasoning.load_json", side_effect=fake_load_json
+            ), patch("NOVA.reasoning.order_providers", return_value=[provider]), patch(
+                "NOVA.reasoning.call_provider",
+                return_value=(None, "unconfigured", [no_request_probe]),
+            ) as call_provider, patch("NOVA.reasoning.record_probe"), patch(
+                "NOVA.reasoning.atomic_write_json"
+            ), redirect_stdout(StringIO()):
+                self.assertEqual(analyze_pending(repo_root), 0)
+
+        event = state["events"]["event-1"]
+        self.assertEqual(event["analysis_status"], "PENDING")
+        self.assertEqual(event["analysis_attempt_count"], 0)
+        self.assertEqual(
+            event["last_attempt_status"],
+            "WAITING_FOR_PROVIDER_CONFIGURATION_OR_CAPABILITY",
+        )
+        self.assertEqual(call_provider.call_count, 1)
+
+    def test_invalid_reasoning_retry_policy_fails_closed(self):
+        state = {"events": {}, "observations": {}, "targets": {}, "provider_rotation": {}}
+
+        def fake_load_json(path, default):
+            if Path(path).name == "health_policy.json":
+                return {"reasoning": {"max_attempts_per_event": True}}
+            if Path(path).name == "roster.json":
+                return {"providers": []}
+            if Path(path).name == "watchlist.json":
+                return {"sources": []}
+            if Path(path).name == "action_policy.json":
+                return {"external_event_actions": {}}
+            raise AssertionError(f"Unexpected configuration path: {path}")
+
+        with tempfile.TemporaryDirectory(prefix="nova-invalid-reasoning-policy-") as temp_dir:
+            repo_root = Path(temp_dir)
+            (repo_root / "NOVA").mkdir()
+            with patch("NOVA.reasoning.load_health_state", return_value=state), patch(
+                "NOVA.reasoning.load_json", side_effect=fake_load_json
+            ):
+                with self.assertRaisesRegex(RuntimeError, "must be a positive integer"):
+                    analyze_pending(repo_root)
+
     def test_reasoning_prompt_marks_external_source_as_untrusted_data(self):
         from NOVA.reasoning import REASONING_PROMPT_PREFIX
 

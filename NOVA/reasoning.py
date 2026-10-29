@@ -216,6 +216,53 @@ def supersede_stale_pending_events(state: dict[str, Any]) -> int:
     return superseded
 
 
+def _record_reasoning_attempt(event: dict[str, Any], probes: list[dict[str, Any]], max_attempts: int) -> int | None:
+    """Count one reasoning cycle only when at least one provider API was attempted."""
+    event["last_attempt_at"] = utc_now()
+    attempted_request = any(
+        probe.get("api_status") is not None or probe.get("latency_ms") is not None
+        for probe in probes
+    )
+    if not attempted_request:
+        return None
+
+    previous = event.get("analysis_attempt_count", 0)
+    if isinstance(previous, bool) or not isinstance(previous, int) or previous < 0:
+        # A malformed persisted counter must not grant unlimited extra retries.
+        previous = max_attempts - 1
+    return min(max_attempts, previous + 1)
+
+
+def _record_reasoning_failure(
+    event: dict[str, Any],
+    *,
+    attempt_count: int | None,
+    max_attempts: int,
+    reason: str,
+) -> None:
+    """Retain retryable work below the configured limit, then stop safely."""
+    event["last_attempt_reason"] = reason
+    if attempt_count is None:
+        event["last_attempt_status"] = "WAITING_FOR_PROVIDER_CONFIGURATION_OR_CAPABILITY"
+        event["analysis_status"] = "PENDING"
+        event.pop("block_reason", None)
+        return
+
+    event["analysis_attempt_count"] = attempt_count
+    if attempt_count >= max_attempts:
+        event["analysis_status"] = "BLOCKED"
+        event["last_attempt_status"] = "RETRY_EXHAUSTED"
+        event["retry_exhausted"] = True
+        event["block_reason"] = (
+            f"Reasoning attempt limit ({max_attempts}) reached without valid analysis."
+        )
+    else:
+        event["analysis_status"] = "PENDING"
+        event["last_attempt_status"] = "RETRY_PENDING"
+        event.pop("block_reason", None)
+        event.pop("retry_exhausted", None)
+
+
 def analyze_pending(root: Path) -> int:
     # Match operational_observer.run(): root is the repository root.
     # Keep all state/config reads and state writes inside the requested checkout.
@@ -230,6 +277,12 @@ def analyze_pending(root: Path) -> int:
 
     roster = load_json(nova_root / "roster.json", {"providers": []})
     policy = load_json(nova_root / "health_policy.json", {})
+    reasoning_policy = policy.get("reasoning", {})
+    if not isinstance(reasoning_policy, dict):
+        raise RuntimeError("health_policy.json reasoning policy must be a JSON object.")
+    max_attempts = reasoning_policy.get("max_attempts_per_event", 3)
+    if isinstance(max_attempts, bool) or not isinstance(max_attempts, int) or max_attempts < 1:
+        raise RuntimeError("health_policy.json reasoning.max_attempts_per_event must be a positive integer.")
     watchlist = load_json(nova_root / "watchlist.json", {"sources": []})
     action_policy = load_json(nova_root / "action_policy.json", {})
 
@@ -282,6 +335,10 @@ def analyze_pending(root: Path) -> int:
             if signal == "permanent":
                 provider["status"] = "down"
 
+        attempt_count = _record_reasoning_attempt(event, probes, max_attempts)
+        if attempt_count is not None:
+            event["analysis_attempt_count"] = attempt_count
+
         for probe in probes:
             record_probe(
                 state,
@@ -304,21 +361,33 @@ def analyze_pending(root: Path) -> int:
             )
 
         if not response_text:
-            event["analysis_status"] = "BLOCKED"
-            event["block_reason"] = "No AI provider produced a valid reasoning response."
+            _record_reasoning_failure(
+                event,
+                attempt_count=attempt_count,
+                max_attempts=max_attempts,
+                reason="No AI provider produced a valid reasoning response.",
+            )
             continue
 
         try:
             analysis = json.loads(response_text)
         except json.JSONDecodeError:
-            event["analysis_status"] = "BLOCKED"
-            event["block_reason"] = "Reasoning provider returned invalid JSON."
+            _record_reasoning_failure(
+                event,
+                attempt_count=attempt_count,
+                max_attempts=max_attempts,
+                reason="Reasoning provider returned invalid JSON.",
+            )
             continue
 
         ok, reason = validate_reasoning_payload(response_text)
         if not ok:
-            event["analysis_status"] = "BLOCKED"
-            event["block_reason"] = reason
+            _record_reasoning_failure(
+                event,
+                attempt_count=attempt_count,
+                max_attempts=max_attempts,
+                reason=reason,
+            )
             continue
 
         source_config = _watch_source_config(watchlist, source)
@@ -333,6 +402,10 @@ def analyze_pending(root: Path) -> int:
 
         significance = analysis["significance"]
         event["analysis_status"] = "ANALYZED"
+        event["last_attempt_status"] = "SUCCEEDED"
+        event.pop("last_attempt_reason", None)
+        event.pop("block_reason", None)
+        event.pop("retry_exhausted", None)
         event["significance"] = significance
         event["model_recommended_autonomy_level"] = analysis["model_recommended_autonomy_level"]
         event["model_recommended_requires_human_gate"] = analysis["model_recommended_requires_human_gate"]
