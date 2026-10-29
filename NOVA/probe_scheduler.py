@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Mapping
@@ -94,14 +95,29 @@ def _provider_map(providers: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
     }
 
 
+def _finite_policy_number(value: Any, *, field: str) -> float:
+    """Read a finite JSON number without accepting booleans or numeric strings."""
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        raise ValueError(f"health_policy.json scheduler.{field} must be a finite number.")
+    number = float(value)
+    if not math.isfinite(number):
+        raise ValueError(f"health_policy.json scheduler.{field} must be a finite number.")
+    return number
+
+
 def _policy() -> tuple[float, float]:
     health_policy = load_json(HEALTH_POLICY_PATH, {})
     scheduler = health_policy.get("scheduler", {})
-    interval = float(
-        scheduler.get("interval_seconds", DEFAULT_INTERVAL_SECONDS)
+    if not isinstance(scheduler, Mapping):
+        raise ValueError("health_policy.json scheduler must be a JSON object.")
+
+    interval = _finite_policy_number(
+        scheduler.get("interval_seconds", DEFAULT_INTERVAL_SECONDS),
+        field="interval_seconds",
     )
-    safety_margin = float(
-        scheduler.get("opportunistic_preemption_safety_margin_seconds", 60)
+    safety_margin = _finite_policy_number(
+        scheduler.get("opportunistic_preemption_safety_margin_seconds", 60),
+        field="opportunistic_preemption_safety_margin_seconds",
     )
     return max(interval, 1.0), max(safety_margin, 0.0)
 
