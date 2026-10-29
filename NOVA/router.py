@@ -140,6 +140,12 @@ def validate_health_probe_policy(policy: Mapping[str, Any]) -> dict[str, Any]:
             "must be a positive integer."
         )
 
+    if minimum_samples > max_samples:
+        raise ValueError(
+            "health_policy.json latency.minimum_samples_for_comparison must not exceed "
+            "latency.max_samples_per_target."
+        )
+
     failure = sections["failure"]
     unacceptable_failures = failure.get("unacceptable_consecutive_failures", 3)
     if (
