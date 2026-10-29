@@ -431,7 +431,7 @@
           "blob_sha": "780feda6110fc95cafcc106bfb1b30d21f445839",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "CONTENT_REVIEWED_BLOCKS_3_AND_6"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_3_6_AND_8;G005_PREREQUISITE_IDENTIFIED"
         },
         {
           "path": "NOVA/health_policy.json",
@@ -467,7 +467,7 @@
           "blob_sha": "a371d6a28b7073728ed181716c8f79f12e8f233d",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_8;VALIDATION_BOUNDARY"
         },
         {
           "path": "NOVA/payments.py",
@@ -539,7 +539,7 @@
           "blob_sha": "d9d8ac71e219639f8ef976fb7c3f31e276ce6d47",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "CONTENT_REVIEWED_BLOCK_3"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_3_AND_8;G005_PREREQUISITE_IDENTIFIED"
         },
         {
           "path": "NOVA/reasoning.py",
@@ -1880,7 +1880,7 @@
           "blob_sha": "7a365da0d4cb668e4ed159ee465ba3d58f199788",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK_8;PERSISTENCE_TESTS"
         },
         {
           "path": "NOVA/tests/test_payments_and_pricing.py",
@@ -1925,7 +1925,7 @@
           "blob_sha": "0cdec9d560f4c8e6873361713ace26fc5d2056d2",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "CONTENT_REVIEWED_BLOCK_3"
+          "content_status": "CONTENT_REVIEWED_BLOCK_8;RCA_TESTS"
         },
         {
           "path": "NOVA/tests/test_reasoning.py",
@@ -1934,7 +1934,7 @@
           "blob_sha": "71c7db23f115078ac14dfaa9559f225801c7de1a",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "CONTENT_REVIEWED_AND_MODIFIED_BLOCK7_PR172_MERGED"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_3_6_AND_8;RETRY_FALLBACK_CONTEXT"
         },
         {
           "path": "NOVA/tests/test_router.py",
@@ -1943,7 +1943,7 @@
           "blob_sha": "900915dd7e88abd2e723506c43ba895d2f1f5570",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "CONTENT_REVIEWED_BLOCKS_3_AND_6"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_3_6_AND_8;RCA_CALL_SITE"
         },
         {
           "path": "NOVA/tests/test_weak_rsi_workflow.py",
@@ -4872,9 +4872,9 @@
     "Path classification is heuristic and may need correction; it is triage metadata, not a semantic or implementation finding."
   ],
   "review_tracking": {
-    "note": "Content review status records the bounded passes described in the working ledger. PARTIAL means excerpts/selected sections were inspected, not the whole file. All other file paths remain inventoried but not content-reviewed.",
+    "note": "Content review status records the bounded passes described in the working ledger. PARTIAL means excerpts/selected sections were inspected, not the whole file. All other file paths remain inventoried but not content-reviewed. Block 8 added RCA map integrity and existing operational branch case inventory findings; no operational state was changed.",
     "last_updated_at": "2026-10-29",
-    "last_completed_block": 7,
+    "last_completed_block": 8,
     "modified_paths": 54
   },
   "latest_reviewed_main": {
