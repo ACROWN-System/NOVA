@@ -1,7 +1,7 @@
 # Active Navigation Plan — NOVA Block 54: Strict Alert API JSON Responses
 
 **Date:** 2026-10-29  
-**Status:** ACTIVE — prevent ambiguous alert API responses from influencing issue deduplication or notification bookkeeping  
+**Status:** COMPLETE — PR #166 merged after successful regression-test workflows  
 **Objective:** Reject duplicate JSON object keys in GitHub and Twilio API responses consumed by NOVA alerts, with particular care that ambiguous issue listings never cause NOVA to create or comment on an issue using last-value-wins interpretation.
 
 ## Navigation and source of truth
@@ -43,4 +43,10 @@ Keep issue-title matching, pull-request exclusion, comment/create flow, severity
 
 ## Completion evidence
 
-Record the pull request, successful regression workflows, final review, and merge commit here before marking this plan COMPLETE.
+- **Pull request:** https://github.com/ACROWN-System/NOVA/pull/166 — squash-merged.
+- **Merge commit:** `6c19402e5b394f7072c89a489d5a6c3c8a8bf9f7`.
+- **Push workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40836992618 — NOVA Health Tests passed on head `f122d1053ea5350dc9b8069bed0ffed406dee55d`.
+- **Pull-request workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40837033156 — NOVA Health Tests passed on the same head commit.
+- **Regression evidence:** All 214 offline tests passed. The new alert regression proves duplicate keys in a GitHub open-issue listing return failure after only the GET and do not comment or create an issue.
+- **Review:** All four alert API response-body parses (GitHub issue listing/comment/create and Twilio response) now use the shared duplicate-key rejecting parser. Valid responses and severity/notification policy remain unchanged.
+- **Boundaries confirmed:** No live GitHub issue/comments, Twilio calls, provider calls, credential changes, operational-state branch writes, or backup modifications were made.
