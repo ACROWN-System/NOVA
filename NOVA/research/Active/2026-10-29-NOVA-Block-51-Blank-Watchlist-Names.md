@@ -1,7 +1,7 @@
 # Active Navigation Plan — NOVA Block 51: Reject Blank Watchlist Source Names
 
 **Date:** 2026-10-29  
-**Status:** ACTIVE — make validated source identity match the identity used at runtime  
+**Status:** COMPLETE — PR #163 merged after successful regression-test workflows  
 **Objective:** Prevent whitespace-only source names from passing watchlist validation when the observer will use them as literal source identities rather than falling back to the URL.
 
 ## Navigation and source of truth
@@ -40,4 +40,10 @@ Treat a missing name as a request to use the URL identity, but reject any suppli
 
 ## Completion evidence
 
-Record the pull request, successful regression workflows, final review, and merge commit here before marking this plan COMPLETE.
+- **Pull request:** https://github.com/ACROWN-System/NOVA/pull/163 — squash-merged.
+- **Merge commit:** `da42c3ec82f17325bb5fd82b982df73398c21687`.
+- **Push workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40835110689 — NOVA Health Tests passed on head `749518d583acd128681bde4c48a4fca4e444e6c9`.
+- **Pull-request workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40835147723 — NOVA Health Tests passed on the same head commit.
+- **Regression evidence:** All 204 offline tests passed. Empty and whitespace-only supplied names are rejected; an omitted name remains valid and can use the URL as identity.
+- **Review:** The Block 49 source validator now cannot accept a supplied blank name that the runtime observer would treat as a literal source key. Existing HTTP(S)/credential checks and duplicate-source detection remain unchanged.
+- **Boundaries confirmed:** No network requests, provider calls, state writes, credentials changes, operational-state branch writes, or backup modifications were made.
