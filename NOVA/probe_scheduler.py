@@ -458,7 +458,9 @@ def reschedule_after_probes(
     )
     rotation["last_probe_providers"] = list(probed_order)
     rotation["last_skipped_providers"] = list(skipped_order)
-    rotation["last_completed_at"] = _iso(current)
+    rotation["last_schedule_processed_at"] = _iso(current)
+    if probed_order:
+        rotation["last_completed_at"] = _iso(current)
     selection = rotation.get("last_selection_decision")
     selection_reason = selection.get("reason") if isinstance(selection, Mapping) else None
     selected_provider = selection.get("provider") if isinstance(selection, Mapping) else None
