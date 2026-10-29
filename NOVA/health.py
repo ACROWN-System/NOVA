@@ -247,7 +247,7 @@ def load_health_state(path: Path) -> dict[str, Any]:
     else:
         try:
             raw = path.read_text(encoding="utf-8")
-        except OSError as exc:
+        except (OSError, UnicodeError) as exc:
             raise RuntimeError(
                 "NOVA health state exists but could not be read; refusing to reset persisted state."
             ) from exc
