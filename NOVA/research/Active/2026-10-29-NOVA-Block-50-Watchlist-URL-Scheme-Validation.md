@@ -1,7 +1,7 @@
 # Active Navigation Plan — NOVA Block 50: Restrict Watchlist URL Schemes and Credentials
 
 **Date:** 2026-10-29  
-**Status:** ACTIVE — constrain external observation fetching to the intended HTTP(S) boundary  
+**Status:** COMPLETE — PR #162 merged after successful regression-test workflows  
 **Objective:** Ensure watchlist URLs cannot select unrelated URL handlers or embed credentials that may be retained in persisted observation metadata.
 
 ## Navigation and source of truth
@@ -44,4 +44,10 @@ Restrict watched sources to absolute `http://` or `https://` URLs with a valid h
 
 ## Completion evidence
 
-Record the pull request, successful regression workflows, final review, and merge commit here before marking this plan COMPLETE.
+- **Pull request:** https://github.com/ACROWN-System/NOVA/pull/162 — squash-merged.
+- **Merge commit:** `e10745e30b3861a03767487571d0fd3bf9f72815`.
+- **Push workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40834777673 — NOVA Health Tests passed on head `2bc0ae0198f18966b4fb0f87861430f6b4261a06`.
+- **Pull-request workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40834784581 — NOVA Health Tests passed on the same head commit.
+- **Regression evidence:** All 202 offline tests passed, including tests rejecting `file:` and `ftp:`, URL userinfo, absent hosts, invalid ports, and proof unsafe URLs are rejected before health-state loading or any fetch.
+- **Review:** Watchlist URL validation now requires HTTP(S), a hostname, syntactically valid optional port, and no username/password userinfo. URL scheme/authority normalization for duplicate detection remains in place.
+- **Boundaries confirmed:** No live network calls, provider calls, state writes, credentials changes, operational-state branch writes, or backup modifications were made.
