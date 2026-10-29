@@ -56,6 +56,31 @@ class GPUCredentialHeartbeatTests(unittest.TestCase):
         self.assertNotIn("token-secret", json.dumps(result))
         self.assertEqual(result["gpu_capacity_status"], "UNVERIFIED")
 
+    def test_gpu_credential_probe_rejects_duplicate_json_response_keys(self):
+        class FakeResponse:
+            status = 200
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, exc_type, exc, tb):
+                return False
+
+            def read(self, size):
+                return b'{"name":"private-account","name":"ambiguous-account","orgs":[]}'
+
+        with patch.dict("os.environ", {"HF_ZEROGPU_TOKEN_01": "token-secret"}, clear=True), patch(
+            "NOVA.gpu_heartbeat.urllib.request.build_opener"
+        ) as opener:
+            opener.return_value.open.return_value = FakeResponse()
+            result = check_candidate_credential(self.HF_PROVIDER)
+
+        self.assertEqual(result["api_status"], 200)
+        self.assertEqual(result["auth_probe_status"], "AUTHENTICATED_RESPONSE_NOT_JSON")
+        self.assertNotIn("private-account", json.dumps(result))
+        self.assertNotIn("ambiguous-account", json.dumps(result))
+        self.assertNotIn("token-secret", json.dumps(result))
+
     def test_nosana_read_only_auth_probe_does_not_infer_credit_balance(self):
         class FakeResponse:
             status = 200
