@@ -1,7 +1,7 @@
 # Active Navigation Plan — NOVA Block 57: Validate Scheduler Policy Numbers
 
 **Date:** 2026-10-29  
-**Status:** ACTIVE — prevent malformed scheduler settings from producing invalid scheduling intervals or deadlines  
+**Status:** COMPLETE — PR #169 merged after successful regression-test workflows  
 **Objective:** Validate the nested health scheduler policy before using numeric settings, rejecting booleans, non-finite values, and wrong container types rather than silently coercing them or crashing later in scheduling.
 
 ## Navigation and source of truth
@@ -41,4 +41,10 @@ Keep existing defaults for missing policy fields and preserve the documented min
 
 ## Completion evidence
 
-Record the pull request, successful regression workflows, final review, and merge commit here before marking this plan COMPLETE.
+- **Pull request:** https://github.com/ACROWN-System/NOVA/pull/169 — squash-merged.
+- **Merge commit:** `9c3998ec32321601fecc1e5de6c4f8704dab849f`.
+- **Push workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40838474516 — NOVA Health Tests passed on head `1ce5c2db0682b9abd854b63ec74cf9d838f9ee7a`.
+- **Pull-request workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40838521666 — NOVA Health Tests passed on the same head commit.
+- **Regression evidence:** All 222 offline tests passed. Added tests cover defaults, finite integers/floats, preserved minimum clamping, wrong scheduler container type, booleans, strings, NaN, and positive/negative infinity.
+- **Review:** `_policy()` now requires the scheduler section to be a mapping and both timing values to be finite JSON numbers; policy failure occurs before scheduling mutations.
+- **Boundaries confirmed:** No provider calls, state writes, credential changes, operational-state branch writes, or backup modifications were made.
