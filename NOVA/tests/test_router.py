@@ -11,6 +11,7 @@ from unittest.mock import MagicMock, patch
 
 from NOVA.health import _state_defaults
 from NOVA.router import (
+    _has_actual_probe_attempt,
     advance_scheduled_probe_rotation,
     call_gemini,
     call_openai_compatible,
@@ -89,6 +90,54 @@ class RouterRotationTests(unittest.TestCase):
         self.assertEqual(rotation["next_provider"], "test_provider_d")
         self.assertEqual(rotation["next_index"], 3)
         self.assertEqual(rotation["last_probe_providers"], probed)
+
+    def test_local_blocks_are_skips_not_probe_attempts(self):
+        self.assertFalse(_has_actual_probe_attempt([]))
+        self.assertFalse(_has_actual_probe_attempt([{
+            "error_class": "contract_gate",
+            "api_status": None,
+            "latency_ms": None,
+        }]))
+        self.assertFalse(_has_actual_probe_attempt([{
+            "error_class": "credential_not_configured",
+            "api_status": None,
+            "latency_ms": None,
+        }]))
+        self.assertTrue(_has_actual_probe_attempt([{
+            "error_class": "response_contract",
+            "api_status": 200,
+            "latency_ms": 2.5,
+        }]))
+        self.assertTrue(_has_actual_probe_attempt([{
+            "error_class": "exception",
+            "api_status": None,
+            "latency_ms": 2.5,
+        }]))
+
+    def test_skipped_scheduled_provider_does_not_get_mislabeled_as_probed(self):
+        rotation = self.state["provider_rotation"]["ai-heart"]
+        rotation["last_selection_decision"] = {
+            "provider": "groq",
+            "reason": "SCHEDULED_DUE",
+        }
+        scheduled = self.providers[0]
+
+        with patch.dict(os.environ, {"NOVA_ADVANCE_PROVIDER_ROTATION": "true"}):
+            advance_scheduled_probe_rotation(
+                self.state,
+                self.providers,
+                scheduled,
+                ["gemini"],
+                ["groq"],
+            )
+
+        self.assertEqual(rotation["last_probe_providers"], ["gemini"])
+        self.assertEqual(rotation["last_skipped_providers"], ["groq"])
+        self.assertEqual(rotation["last_schedule_reason"], "ROLLING_INTERVAL")
+        self.assertEqual(rotation["last_selection_reason"], "SCHEDULED_DUE")
+        self.assertEqual(rotation["probe_queue"], [
+            "cerebras", "test_provider_d", "cloudflare", "groq", "gemini"
+        ])
 
     def test_rotation_continues_without_retesting_previous_heartbeat_probes(self):
         rotation = self.state["provider_rotation"]["ai-heart"]
