@@ -27,11 +27,26 @@ def _ref_text(repo_root: Path, ref: str, path: str) -> str:
     return _git(repo_root, "show", f"{ref}:{path}").stdout
 
 
+class _DuplicateJSONKeyError(ValueError):
+    """Raised when operational state contains an ambiguous duplicate object key."""
+
+
+def _reject_duplicate_json_keys(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    result: dict[str, Any] = {}
+    for key, value in pairs:
+        if key in result:
+            raise _DuplicateJSONKeyError("duplicate JSON object key")
+        result[key] = value
+    return result
+
+
 def _read_json_text(text: str, *, description: str) -> dict[str, Any]:
     try:
-        value = json.loads(text)
-    except json.JSONDecodeError as exc:
-        raise RuntimeError(f"{description} is not valid JSON: {exc}") from exc
+        value = json.loads(text, object_pairs_hook=_reject_duplicate_json_keys)
+    except _DuplicateJSONKeyError as exc:
+        raise RuntimeError(f"{description} contains duplicate JSON object keys.") from exc
+    except (json.JSONDecodeError, RecursionError) as exc:
+        raise RuntimeError(f"{description} is not valid JSON.") from exc
     if not isinstance(value, dict):
         raise RuntimeError(f"{description} must be a JSON object.")
     return value
