@@ -46,6 +46,17 @@ class HealthTests(unittest.TestCase):
 
             self.assertEqual(path.read_text(encoding="utf-8"), invalid_json)
 
+    def test_health_state_loader_rejects_undecodable_bytes_without_modifying_file(self):
+        invalid_bytes = b"\\xff\\xfe\\x80"
+        with tempfile.TemporaryDirectory(prefix="nova-undecodable-health-state-") as temp_dir:
+            path = Path(temp_dir) / "health_state.json"
+            path.write_bytes(invalid_bytes)
+
+            with self.assertRaisesRegex(RuntimeError, "could not be read"):
+                load_health_state(path)
+
+            self.assertEqual(path.read_bytes(), invalid_bytes)
+
     def test_health_state_loader_rejects_non_object_root_without_modifying_file(self):
         for invalid_root in ("[]", "null", '"state"', "17", "true"):
             with self.subTest(invalid_root=invalid_root):
