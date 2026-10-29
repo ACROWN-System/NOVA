@@ -431,7 +431,7 @@
           "blob_sha": "780feda6110fc95cafcc106bfb1b30d21f445839",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "CONTENT_REVIEWED_BLOCKS_3_6_AND_8;G005_PREREQUISITE_IDENTIFIED"
+          "content_status": "CONTENT_REVIEWED_AND_MODIFIED_BLOCK9_PR173_MERGED"
         },
         {
           "path": "NOVA/health_policy.json",
@@ -449,7 +449,7 @@
           "blob_sha": "515c37cdb7d2fd9ff63191bd18a49397f486eee9",
           "mode": "100644",
           "classification": "structured-data",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "MAIN_SNAPSHOT_METADATA_REVIEWED;OPERATIONAL_BRANCH_READ_ONLY_CHECKED"
         },
         {
           "path": "NOVA/operational_observer.py",
@@ -467,7 +467,7 @@
           "blob_sha": "a371d6a28b7073728ed181716c8f79f12e8f233d",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "CONTENT_REVIEWED_BLOCK_8;VALIDATION_BOUNDARY"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_8_AND_9;SHARED_VALIDATION_BOUNDARY"
         },
         {
           "path": "NOVA/payments.py",
@@ -539,7 +539,7 @@
           "blob_sha": "d9d8ac71e219639f8ef976fb7c3f31e276ce6d47",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "CONTENT_REVIEWED_BLOCKS_3_AND_8;G005_PREREQUISITE_IDENTIFIED"
+          "content_status": "CONTENT_REVIEWED_AND_MODIFIED_BLOCK9_PR173_MERGED"
         },
         {
           "path": "NOVA/reasoning.py",
@@ -548,7 +548,7 @@
           "blob_sha": "70b0022348abc19da0bc6978e45997fb90cf071f",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "CONTENT_REVIEWED_AND_MODIFIED_BLOCK7_PR172_MERGED"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_3_6_AND_8;G001_NOT_YET_IMPLEMENTED"
         },
         {
           "path": "NOVA/research",
@@ -1736,7 +1736,7 @@
           "blob_sha": "064193551adaded901a36d7d942eeded0b62c74e",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "CONTENT_REVIEWED_BLOCKS_3_AND_6"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_3_6_AND_8;RCA_CALL_SITE"
         },
         {
           "path": "NOVA/sanctuary",
@@ -1862,7 +1862,7 @@
           "blob_sha": "37e4c2b73f9998ffd3244d661b6a5737114e6846",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "CONTENT_REVIEWED_BLOCK_3"
+          "content_status": "CONTENT_REVIEWED_AND_MODIFIED_BLOCK9_PR173_MERGED"
         },
         {
           "path": "NOVA/tests/test_observer.py",
@@ -1880,7 +1880,7 @@
           "blob_sha": "7a365da0d4cb668e4ed159ee465ba3d58f199788",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "CONTENT_REVIEWED_BLOCK_8;PERSISTENCE_TESTS"
+          "content_status": "CONTENT_REVIEWED_AND_MODIFIED_BLOCK9_PR173_MERGED"
         },
         {
           "path": "NOVA/tests/test_payments_and_pricing.py",
@@ -1925,7 +1925,7 @@
           "blob_sha": "0cdec9d560f4c8e6873361713ace26fc5d2056d2",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "CONTENT_REVIEWED_BLOCK_8;RCA_TESTS"
+          "content_status": "CONTENT_REVIEWED_AND_MODIFIED_BLOCK9_PR173_MERGED"
         },
         {
           "path": "NOVA/tests/test_reasoning.py",
@@ -4872,14 +4872,14 @@
     "Path classification is heuristic and may need correction; it is triage metadata, not a semantic or implementation finding."
   ],
   "review_tracking": {
-    "note": "Content review status records the bounded passes described in the working ledger. PARTIAL means excerpts/selected sections were inspected, not the whole file. All other file paths remain inventoried but not content-reviewed. Block 8 added RCA map integrity and existing operational branch case inventory findings; no operational state was changed.",
+    "note": "Content review status records the bounded passes described in the working ledger. PARTIAL means excerpts/selected sections were inspected, not the whole file. All other file paths remain inventoried but not content-reviewed. Block 8 added RCA map integrity and existing operational branch case inventory findings; no operational state was changed. Block 9 merged G-005 case-map and record validation; G-001 reasoning RCA integration remains separate and not implemented.",
     "last_updated_at": "2026-10-29",
-    "last_completed_block": 8,
+    "last_completed_block": 9,
     "modified_paths": 54
   },
   "latest_reviewed_main": {
-    "commit_sha": "7c63ac80329820af40968633b6d8a2efecf50090",
+    "commit_sha": "f43ee9c550b4862e28a759dbeda988ed2f07e11b",
     "as_of": "2026-10-29",
-    "note": "Block 7 merged after 232 offline tests and post-merge workflows passed. Original tree SHAs above remain the baseline snapshots for the inventory."
+    "note": "Block 9 merged after 236 offline tests and post-merge Health Tests, Autonomous Heartbeat and GPU Heartbeat workflows passed. Current operational-state branch retained six valid open quality_cases records after those workflows."
   }
 }
