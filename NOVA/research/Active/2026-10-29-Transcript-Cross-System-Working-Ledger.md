@@ -692,3 +692,160 @@ These controls show that some concrete paths already have deterministic boundari
 The most relevant transfer from Chapters 11 and 13–14 is not to assume a written rule or a model's stated intention guarantees a safe result. A policy must be connected to the concrete side effect and tested at the boundary where the effect occurs. The existing code has useful local safeguards; the unresolved work is to ensure that those guards form a coherent, verifiable path when entry points and capabilities expand.
 
 **Block 15 disposition:** source review and inventory statuses updated. No application code, workflow, action policy, credential, payment, runtime or production state was changed. No external AI/provider was called. Backups remain excluded. The research branch remains unmerged.
+
+
+### Block 16 — NOVA result and evidence contracts across research and benchmarks
+**Status:** COMPLETE — bounded source/schema/test review, 2026-10-30. This block evaluates existing contracts and their consumers; it does not propose a replacement framework or change any application schema.
+
+#### Scope and current source revisions
+- **NOVA main:** commit `9297a50c5f05e2f540af3ff226542311c5c5a68a`; tree `78eb8298db0ec24a5647fce8945596fc7c2d7581`.
+- **AstroCrown-Web main:** commit `522bfc084a4a24e057d1725a0c669887080ecac6`; tree `11d7708591962d1ece3acb56973e82ad25187cdd`.
+- **Simulation Lab main:** commit `036527d31ecff8676dcd03a9e2a7b22ef9b9a5f1`; tree `f0e97261ab2c83c88304f512b5da541a2606ce70`.
+- Reviewed NOVA reasoning/state/RCA code; AstroCrown's proposed Fact Observation and Candidate Evaluation templates; RSI candidate schema, engine, evaluator, benchmark protocol/dispatcher/runner, evidence verifier, Weak RSI report and their relevant test sources; the suspended Strong RSI workflow's artifact and retention boundaries; and the Simulation Lab result-retention README.
+- This was a read-only source/schema/test inspection. Test sources were inspected, but no test suite or workflow was executed in this block. No provider calls or real research/benchmark runs occurred.
+
+#### Summary judgement
+The repositories already contain **useful, complementary evidence mechanisms**, but they do not yet form one consistently required contract across research, reasoning, candidate evaluation, and benchmarking.
+
+- NOVA records a structured conclusion and evidence, treats model confidence as uncalibrated, reuses analysis only with matching observation fingerprints and freshness/provenance checks, and has a deterministic RCA case-closure gate for provider failures.
+- AstroCrown has a relatively strong candidate/evaluator evidence package: exact commit binding, named PASS/FAIL/BLOCKED check results, usage and attempt budgets, file hashes, protected-scope checks, and re-verification of the actual applied worktree before privileged retention.
+- The manual Fact Observation record is the richest existing human-readable vocabulary for distinguishing observations, source claims, inferences, alternatives, uncertainty, missing evidence, contradictions and independently verified outcomes.
+- Yet some high-value fields are only prompt/document guidance, optional on the wire, or absent from the relevant machine-readable result. A valid evidence envelope can establish integrity and scope while still not establish that assumptions were sound, counterevidence was addressed, a metric measured the claimed capability, or a conclusion generalizes.
+
+Do not respond by creating a second general-purpose evidence taxonomy. Reuse existing Fact Observation terminology and strengthen only the relevant current contract where an actual downstream consumer can enforce it.
+
+#### 1. NOVA reasoning and reuse
+
+**Files:** `NOVA/reasoning.py`, `NOVA/health.py`, `NOVA/quality_gate.py`, `NOVA/ROOT-CAUSE-PREVENTION-AND-SHARED-KNOWLEDGE-GOVERNANCE.md`.
+
+The enforced reasoning JSON payload requires exactly:
+- `significance`;
+- `affected_areas`;
+- `evidence`;
+- `conclusion`;
+- `recommended_actions`;
+- `model_recommended_autonomy_level`;
+- `model_recommended_requires_human_gate`;
+- `confidence`.
+
+The prompt correctly marks source JSON as untrusted, tells the model to distinguish source claims from independently established facts, states that the conclusion must disclose material uncertainty, and labels confidence an uncalibrated self-assessment. The full payload is stored against the associated external-observation record. The source observation is fingerprinted; health-state reuse checks the analysis fingerprint and freshness/timestamp provenance before reusing prior analysis for unchanged content.
+
+**Finding NOVA-EVID-P-001 — the enforced reasoning contract does not require explicit assumptions, alternatives/counterevidence or a separate uncertainty field.**
+- `evidence` is a list of non-empty strings, while `conclusion` is free text. The schema does not require the evidence strings to identify source artifacts, distinguish evidence against the conclusion, list assumptions, identify alternatives, state what was not established, or state a verification method/result.
+- Uncertainty is requested in the prompt, but the exact required JSON fields contain no `uncertainties`, `assumptions`, `alternatives`, `counterevidence`, or `verification` property. The required-field validator therefore cannot guarantee that those distinctions survive in a machine-readable result.
+- This is a contract-completeness gap, not proof that every generated conclusion is wrong. The current prompt instructions and fingerprint-bound reuse remain useful; do not remove them.
+
+**Disposition:** preserve the existing payload and consumers for now. First establish which downstream consumers need machine-readable assumptions, conflicting evidence and uncertainty, then consider a compatibility-controlled extension to this existing contract. Keep confidence separate from measured reliability. Do not add a parallel schema.
+
+#### 2. NOVA failure and root-cause evidence
+
+The existing `NOVA/quality_gate.py` RCA case model has stronger, enforceable closure semantics than the short reasoning payload. Provider failure cases retain source/failure class, expected and observed result, first/last seen times, occurrence counts and the implicated candidate SHA where available. Closure requires expected and observed results, direct and systemic cause, missed control, prevention control, regression test, verification result, candidate commit SHA, matching verified commit SHA, and a timezone-aware verification time. The closure decision is BLOCKED if a required field is missing, the verified candidate SHA differs, or the verification result is not PASS. Recurrent failure reopens a previously closed case and preserves prior closure evidence.
+
+**Boundary:** the call sites reviewed in this work use this store for classified provider/response-contract failures. It is not evidence of a universal ledger for every research hypothesis, benchmark attempt, failed test, or inconclusive experiment. The root-cause/shared-knowledge governance document itself states that universal entry-point enforcement is still proposed.
+
+**Disposition:** reuse this RCA case store for eligible recurring system failures as intended. Do not stretch provider-specific failure signatures into a universal experiment-results database without a demonstrated consumer need.
+
+#### 3. Fact-observation and candidate-evaluation templates
+
+**Files:** `development/audit/FACT-OBSERVATION-AND-EVIDENCE-GOVERNANCE.md`, `development/audit/templates/FACT-OBSERVATION-RECORD.md`, `development/audit/templates/CANDIDATE-EVALUATION.md`, `development/audit/templates/TEST-CASE.md`.
+
+These existing documents already specify much of the semantic vocabulary that cross-system results need:
+- observed fact versus a source's claim versus inference/hypothesis;
+- alternatives and uncertainty, and what the record does not establish;
+- source/path/version/time/access provenance and evidence artifact references;
+- expected versus observed result, reproduction method, result status, reproducibility and measurement limitations;
+- multiplicity, source independence, conflict and disagreement;
+- decision influenced, rejected/unimplemented alternatives, acceptance criteria, independent verification and closure reason;
+- PASS, FAIL, N/A (with reason) and BLOCKED as non-interchangeable outcomes.
+
+The Candidate Evaluation template states that a mandatory FAIL makes a candidate ineligible, a mandatory BLOCKED prevents acceptance until resolved, and N/A requires a justification. The Test Case template records expected result, actual result, result state, evidence and re-test.
+
+**Boundary:** these are explicitly documentation/templates. The Fact Observation governance document is marked proposed, and the templates do not by themselves prove that every runtime, research or benchmark result is recorded in them.
+
+**Disposition:** use these existing terms as the review crosswalk and as the basis for human research records. Do not claim their requirements are universally enforced by code.
+
+#### 4. AstroCrown RSI candidate and cycle evidence
+
+**Files:** `candidate.schema.json`, `rsi_engine.py`, `evaluator.py`, `evidence_verifier.py`, `IMPLEMENTATION.md`, and the associated tests.
+
+The machine-readable candidate identifies a hypothesis and rationale against a baseline and supplies a patch. It can also carry `expected_improvement` and `risks`. However:
+- `candidate.schema.json` only makes candidate ID, baseline commit, hypothesis, rationale and patch required.
+- The engine's protected candidate validator requires that same minimum set; `expected_improvement` and `risks` are type-checked if present, but are not required.
+- Explicit assumptions and counterevidence are not candidate fields.
+
+For `NO_CHANGE`, the engine requires a short rationale and 1–10 references in `evidence_reviewed`; it supports an `uncertainties` list, but defaults missing uncertainty to an empty list. Thus the contract does not force a non-empty statement of uncertainty or a specific reason why alternatives were rejected.
+
+The cycle record captures the decision/stage, error or result details, baseline commit, model/usage metadata, context size, duration, and configured/used proposer-call and candidate-attempt budgets. The evaluator produces named PASS/FAIL/BLOCKED results, with exit codes, duration and bounded output where available. The evidence manifest hashes the exact approved file set; the retention verifier checks the manifest and file inventory, requires cycle and evaluator PASS, binds baseline/candidate commit and tree, matches the patch to evaluated paths, requires all named evaluator checks to PASS, and verifies provider-usage and attempt budgets. The post-application verifier checks the actual worktree path set and candidate tree before retention.
+
+**Finding ACW-RSI-EVID-P-001 — the successful-candidate envelope is strong on identity/integrity, but does not require the full reasoning basis.**
+- Exact baseline/candidate identity, patch integrity, test/evaluator outcomes and budget accounting are materially stronger than a free-text claim.
+- The enforced candidate fields do not require a structured list of assumptions, counterevidence/contradictions, alternatives considered, scope limits or uncertainty. Risks and expected improvement remain optional; NO_CHANGE uncertainty may be omitted.
+- The verifier ensures the artifact is internally consistent and that prescribed gates passed. It cannot infer that missing reasoning has been considered.
+
+**Disposition:** before any schema migration, map the existing Candidate Evaluation/Fact Observation fields to actual producer and consumer needs. Require only fields that are necessary for the relevant decision, while preserving the current exact-commit binding and compatibility safeguards. Do not expand the candidate schema by default into a generic all-purpose record.
+
+#### 5. Benchmark output and what PASS means
+
+**Files:** `CAPABILITY-BENCHMARK-PROTOCOL.md`, `evaluator.py`, `benchmark_dispatcher.py`, `benchmark_profiles.json`, `benchmarks/run_context_packing_benchmark.py`, and the benchmark tests.
+
+The generic benchmark result requires a benchmark ID, exact baseline/candidate SHAs, a boolean `candidate_better`, non-empty matching finite numeric metric objects, named boolean checks and a non-empty evidence description. The evaluator rejects malformed output, commit mismatches, non-finite metrics, invalid check types, and `candidate_better: true` if any reported check is false. The profile dispatcher also requires an exact changed-file scope and command, enabled profile, and explicit registry/profile approval states.
+
+The protocol explicitly warns that validating this envelope **does not prove metric definitions, benchmark implementation, or the claimed improvement are sound**. That limitation is correctly disclosed. It is not itself a false-claim finding.
+
+The context-packing workload goes farther for its specific deterministic synthetic workload: it retains per-case results, required record IDs, missing-required IDs, provenance/integrity errors, whole-record and character-budget checks, baseline/candidate totals, and explicit no-regression checks. Its result can expose concrete counterexamples such as a candidate losing a required record while substituting another. This is more informative than a single score.
+
+**Important readiness boundary:** the only registered context-packing profile remains disabled and unapproved; the RSI implementation readiness is INCOMPLETE and Strong RSI is SUSPENDED. This review does not claim a currently active Strong RSI benchmark or an actual candidate improvement. A CI test of the benchmark code, if/when run, is evidence for that test and not approval to use the benchmark for general capability claims.
+
+**Finding ACW-BENCH-EVID-P-001 — metric meaning is task-specific and outside generic envelope validation.**
+- The generic evaluator checks structure and binding but cannot verify that a metric measures the property claimed or that reported boolean checks were substantively adequate.
+- The current context-packing workload is narrow, deterministic and transparent about its synthetic test scope; it is not a general capability benchmark and does not need statistical variance merely because the transcript discusses uncertainty.
+- A future stochastic or model-output benchmark would need a separate decision on repeated trials, variability/uncertainty, evaluation-set adequacy, counterexamples and exclusions appropriate to that workload before its result is used as a high-confidence claim.
+
+**Disposition:** maintain the current approval/readiness blocks. Do not add repeated runs to the deterministic context-packing case merely to imitate statistical reporting. Add uncertainty/variability only for workloads whose data generation or outputs make it material, and document the metric's intended meaning, scope, limitations and independent review evidence.
+
+#### 6. Weak RSI report: useful human review, not machine-verified research evidence
+
+**File:** `weak_rsi_report.py` and `tests/test_weak_rsi_report.py`.
+
+The report generator records a baseline commit, included source paths, provider/model, provider call count, returned usage where available, reason for blocked runs, and explicit false flags for file changes, candidate execution, PR creation and merge. The prompt requests exact source paths; observations; at most one improvement hypothesis; acceptance criteria; verification/rollback; risks and uncertainty; and a human decision. The output is labeled untrusted until human-reviewed, and tests cover blocked calls, absent credential, redaction and report-only behavior.
+
+However, the generated report is Markdown. The code checks that a non-empty textual response exists, sanitizes credential patterns, and puts the report into an artifact; it does not parse the report into a structured record or enforce that every requested heading/field was actually supplied. That is consistent with its current report-only/manual-review role.
+
+**Disposition:** no defect if the output remains a human-review report. Do not treat a plausible Markdown response as verified evidence, feed it into candidate acceptance, or count its recommendations as successful improvements without a separate verification record.
+
+#### 7. Failure, blocked and inconclusive outcome retention across workflows
+
+The reviewed mechanisms are complementary but scoped:
+- NOVA's RCA store deduplicates eligible classified provider failures and preserves recurrence/closure evidence.
+- NOVA reasoning retries are bounded and records attempts/statuses for its current operational events; reused analysis is tied to a matching fingerprint and a freshness window.
+- Strong RSI's `cycle.json` represents PASS, FAIL, BLOCKED and NO_CHANGE decisions and configured/used budgets. Its suspended workflow template uploads the evidence directory with `if: always`, so run artifacts are intended to preserve available outcomes even when later candidate retention is not reached.
+- The privileged RSI retention path is intentionally PASS-only and cannot turn a FAIL/BLOCKED result into a retained candidate. The artifact hash manifest is an integrity check, not a digital signature or proof that every claim inside the result is true.
+- Weak RSI preserves a blocked reason or a report-only result and call count; it is not a universal experiment ledger.
+- The Simulation Lab results README says material failed and inconclusive runs should be retained, but Block 13 found no substantive simulation implementation, scenario data or result artifacts in that repository.
+
+**Finding XW-EVID-P-001 — no single demonstrated, searchable outcome ledger covers all research and benchmark paths.**
+The existence of scoped event/RCA state, workflow artifacts, benchmark outputs and manual templates does not establish that every attempt across all these paths can be queried together with a common denominator and linked to an approved conclusion. Some output is designed for human review, some only for candidate retention, and some documentation is not implemented. Failed and inconclusive data should not be silently lost, but the current sources do not establish universal cross-workflow accounting.
+
+**Disposition:** preserve failure/inconclusive outputs in each existing workflow first, with exact scope and version, run/case ID, outcome status, exclusions/selection rules, and a concise explanation. For workflows that make capability claims, report the relevant attempted, completed, failed, blocked and inconclusive denominators. Build a shared index only if a concrete consumer cannot use the existing artifacts/RCA store; do not create a new telemetry platform by default.
+
+#### Cross-contract field assessment
+
+| Evidence dimension | What is present/enforced today | Gap or limit |
+|---|---|---|
+| Conclusion/decision | NOVA `conclusion`; RSI cycle/evaluator decisions; benchmark `candidate_better`; Weak RSI human-review result | Strength and meaning differ by pathway; free text is not independently verified |
+| Provenance/version | NOVA source/fingerprint/freshness; RSI baseline/candidate commits/tree; evidence SHA-256 manifest; benchmark case source IDs; observation template | Provenance depth is inconsistent; a hash protects integrity, not truth or independence |
+| Assumptions | Context in human records and task-specific benchmark design | Not a required structured field for NOVA reasoning or RSI candidate records |
+| Alternatives/counterevidence | Observation template asks for alternatives, uncertainty and contradictions; context-packing benchmark records missing required evidence/regression errors | Not a required field in the main reasoning/candidate schemas; generic benchmark checks are only names/booleans |
+| Uncertainty/calibration | NOVA confidence explicitly uncalibrated; Weak RSI asks for risks/uncertainties; NO_CHANGE supports uncertainties | Core reasoning payload has no uncertainty field; NO_CHANGE can omit uncertainty; report Markdown is not schema-validated |
+| Failed/blocked/inconclusive attempts | RCA counts provider-failure recurrences; cycle decisions, attempt budgets and evaluator checks; report blocked reasons | These are separate stores/artifacts, not a verified cross-workflow denominator ledger |
+| Verified outcome | Exact-commit evaluation, required PASS gates, manifest validation and applied-worktree verification for RSI retention | Verifies prescribed checks and artifact identity, not semantic adequacy of every conclusion or metric |
+| Reuse | Matching-fingerprint/freshness analysis reuse; RCA case deduplication and recurrence reopening; version-bound RSI artifacts | No evidence here of a general reusable cross-project research knowledge store whose claim, counterevidence and uncertainty are consistently queryable |
+
+#### Priority disposition
+1. **Keep existing terminology and contracts.** The Fact Observation record is the best current vocabulary source; the Candidate Evaluation/TEST-CASE templates capture the manual decision and verification states. They are templates, not universal runtime guarantees.
+2. **First compatibility check, not a code migration:** construct a field-to-consumer crosswalk for NOVA reasoning, the Weak RSI report, RSI candidate/cycle/evaluation artifacts, and task-specific benchmark results. Mark each item REQUIRED, OPTIONAL, NOT APPLICABLE or NOT CURRENTLY CAPTURED, and identify the downstream code/tests that depend on the current fields.
+3. **If a change is later justified, make it narrow:** for consequential structured conclusions, consider explicit assumptions, material alternatives/counterevidence, uncertainty, what is not established, and source/evidence references in the existing contract, with tests for producers, consumers, reuse and old records. Do not treat absence of a counterargument as proof it was examined.
+4. **For capability claims, preserve outcome accounting:** exact workload, baseline/candidate versions, metrics and directions, check details, run/case counts, all material failures/blocked/inconclusive outcomes, exclusions, and limitations. For stochastic workflows, decide explicitly whether repeated trials and variability are required; deterministic workloads need not add meaningless statistics.
+5. **Retain fail-closed gates.** Strong RSI remains SUSPENDED and its benchmark profile remains unapproved. A new schema field, a PASS unit test, or an unchanged/no-change recommendation must not be treated as readiness approval.
+
+**Block 16 disposition:** review and inventory metadata updated on the research branch. No application code, schema, candidate contract, test suite, CI workflow, readiness flag, provider, or benchmark was changed or run. No live AI/provider call occurred. Backup descendants remain excluded. The research branch remains unmerged.
