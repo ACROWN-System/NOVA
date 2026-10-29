@@ -1,7 +1,7 @@
 # Active Navigation Plan — NOVA Block 58: Validate Capacity-Preemption Policy
 
 **Date:** 2026-10-29  
-**Status:** ACTIVE — validate runtime allocation/freshness policy before expiry-aware scheduling  
+**Status:** COMPLETE — PR #170 merged after successful regression-test workflows  
 **Objective:** Prevent malformed or out-of-range capacity-preemption settings from causing scheduler crashes or distorting decisions about whether required probes should be advanced to reuse expiring capacity.
 
 ## Navigation and source of truth
@@ -49,4 +49,10 @@ Validate both nested policy sections before calling `ensure_probe_schedule()` or
 
 ## Completion evidence
 
-Record the pull request, successful regression workflows, final review, and merge commit here before marking this plan COMPLETE.
+- **Pull request:** https://github.com/ACROWN-System/NOVA/pull/170 — squash-merged.
+- **Merge commit:** `9a1162188345981edb07c8fce8c66748b5130a77`.
+- **Push workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40839036724 — NOVA Health Tests passed on head `3ee208e97bb56dbf4e775a095942f2a185679454`.
+- **Pull-request workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40839100986 — NOVA Health Tests passed on the same head commit.
+- **Regression evidence:** All 226 offline tests passed. Tests cover valid/default preemption policy, nested container shape, booleans, numeric strings, non-finite values, reserve fractions outside [0,1], negative ages, and proof invalid policy leaves schedule state unchanged.
+- **Review:** Capacity-preemption/freshness settings are validated before `ensure_probe_schedule()` mutates queue state. The validated health observation age is reused for the provider loop; existing urgency minimum and valid-policy behavior are preserved.
+- **Boundaries confirmed:** No provider calls, state writes, credential changes, operational-state branch writes, or backup modifications were made.
