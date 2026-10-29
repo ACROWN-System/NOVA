@@ -292,3 +292,38 @@ External research largely confirms the existing architecture and helps make its 
 3. **G-003:** broader audit of execution-point authorization across all future entry points remains a separate architecture workstream and must not be claimed complete from these sampled files.
 
 **Next block:** Block 7 — implement G-004 alone in a small feature branch / PR, reusing existing policy validation and offline tests; then inspect the resulting diff and run the full offline NOVA suite. If the change cannot be proven safe without additional abstraction, stop and record the blocker rather than expanding scope.
+
+
+### Block 7 — Implement shared health-policy validation in reasoning path
+**Status:** COMPLETE — PR merged; pre-merge and post-merge CI passed.
+
+- **PR:** https://github.com/ACROWN-System/NOVA/pull/172
+- **Feature branch:** `fix/validate-health-policy-before-reasoning-2026-10-29`
+- **Squash merge commit:** `7c63ac80329820af40968633b6d8a2efecf50090`
+- **Post-merge main:** `7c63ac80329820af40968633b6d8a2efecf50090`
+- **Scope:** Only `NOVA/reasoning.py` and `NOVA/tests/test_reasoning.py` were changed by the PR.
+
+#### Change
+1. Reuse `router.validate_health_probe_policy()` in `reasoning.py`; do not duplicate the common health-policy rules.
+2. Load and validate shared health settings, plus the reasoning retry limit, before loading/mutating health state or requesting a provider.
+3. Reuse the validator's checked sample limit, finite positive degradation multiplier, comparison threshold, and failure-streak limit in `record_probe()` without late `int()`/`float()` conversions.
+4. Keep the existing retry/failover decision, provider ordering, action policy, and telemetry namespace intact for valid policy.
+
+#### Tests and verification
+- Added malformed-policy cases for string multiplier, non-object freshness section, minimum-samples threshold exceeding the retained-sample limit, and boolean failure threshold. Each asserts no state load, state write, or provider request.
+- Extended the existing bounded-retry test to assert valid custom health settings are passed unchanged to telemetry.
+- Updated the existing read-order test to expect health policy to be loaded/validated before the roster and state processing.
+- Full offline suite on the exact final feature-branch head `9e99dd5a66f9e80fc71f4b44b0448d2cf32c5b2b`: **232 tests passed**.
+- Push workflow: https://github.com/ACROWN-System/NOVA/actions/runs/40909170599 — passed.
+- Pull-request workflow: https://github.com/ACROWN-System/NOVA/actions/runs/40909180100 — passed.
+- Post-merge NOVA Health Tests: https://github.com/ACROWN-System/NOVA/actions/runs/40909345196 — passed on merge commit.
+- Post-merge NOVA Autonomous Heartbeat workflow: https://github.com/ACROWN-System/NOVA/actions/runs/40909345210 — passed on merge commit.
+- Initial feature branch test attempts failed only because the existing test expected the previous configuration-read order; this was corrected and the final runs passed. The unsuccessful interim runs are preserved in Actions history rather than represented as successes.
+
+#### Side-effect check
+No live provider call was introduced by this change; the CI job ran offline tests. No credentials, provider roster, action permissions, production state, operational-state branch, workflow definitions, or backups were edited. CI executed the repo's existing heartbeat workflow after the merge; its reported run conclusion is success. No separate claims are made about external provider health beyond what that workflow actually tested.
+
+#### Result
+**G-004: RESOLVED for the inspected reasoning path.** The shared policy is now validated before state reads/writes and provider requests, with no redundant validator or new dependency. This is a narrow cross-path hardening measure, not proof that every policy or every NOVA entry point is globally correct.
+
+**Next block:** Block 8 — examine the root-cause integration candidate (G-001) more deeply: define provider-level versus reasoning-event-level case semantics, inspect how `quality_cases` is validated/persisted, and check whether one failing probe could already be recorded by the heartbeat path before any design change. Do not implement G-001 until deduplication, false-positive exclusions, persistence, privacy and retry/failover invariants are backed by tests.
