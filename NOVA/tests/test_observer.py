@@ -39,7 +39,7 @@ class ObserverTests(unittest.TestCase):
     def test_watchlist_rejects_malformed_source_structure(self):
         invalid_watchlists = (
             ({"sources": {}}, "must contain a sources array"),
-            ({"sources": ["not-an-object"]}, String.raw`sources\[0\] must be a JSON object`),
+            ({"sources": ["not-an-object"]}, "must be a JSON object"),
             ({"sources": [{"name": "release-notes", "url": "relative/path"}]}, "URL must be absolute"),
             ({"sources": [{"name": 12, "url": "https://example.invalid/updates"}]}, "name must be a string"),
         )
