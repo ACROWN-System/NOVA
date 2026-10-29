@@ -115,6 +115,9 @@ def validate_quality_cases_payload(
                 "refusing to overwrite persisted RCA evidence."
             )
         for field in CLOSURE_FIELDS:
+            if field == "candidate_sha":
+                # Candidate identity is optional for a locally recorded case.
+                continue
             if field in case and not _nonempty(case[field]):
                 raise RuntimeError(
                     f"{description} entry '{key}' field '{field}' must be a non-empty string when present; "
