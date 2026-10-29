@@ -59,6 +59,34 @@ class OperationalStateRosterMergeTests(unittest.TestCase):
         persisted = {"providers": [{"name": "groq", "status": "active"}]}
         self.assertEqual(merge_dynamic_roster(repository, persisted), repository)
 
+    def test_publish_rejects_unloadable_state_before_git_operations(self):
+        with tempfile.TemporaryDirectory(prefix="nova-invalid-state-test-") as temp_dir:
+            workspace = Path(temp_dir)
+            nova_dir = workspace / "NOVA"
+            nova_dir.mkdir()
+            health_path = nova_dir / "health_state.json"
+            roster_path = nova_dir / "roster.json"
+            health_path.write_text("{invalid JSON", encoding="utf-8")
+            roster_path.write_text(
+                json.dumps({"providers": [{"name": "groq", "status": "active"}]}),
+                encoding="utf-8",
+            )
+
+            with self.assertRaisesRegex(RuntimeError, "health_state.json is not valid JSON"):
+                publish_operational_state(workspace, "unused-state-ref", "test")
+
+            health_path.write_text(json.dumps({"schema_version": 1, "targets": {}}), encoding="utf-8")
+            roster_path.write_text(json.dumps({"providers": {}}), encoding="utf-8")
+            with self.assertRaisesRegex(RuntimeError, "must contain a providers array"):
+                publish_operational_state(workspace, "unused-state-ref", "test")
+
+            roster_path.write_text(
+                json.dumps({"providers": [{"name": "groq"}, {"name": "GROQ"}]}),
+                encoding="utf-8",
+            )
+            with self.assertRaisesRegex(RuntimeError, "duplicate provider identities"):
+                publish_operational_state(workspace, "unused-state-ref", "test")
+
     def test_load_and_publish_persist_only_state_files_to_the_state_branch(self):
         with tempfile.TemporaryDirectory(prefix="nova-state-test-") as temp_dir:
             workspace = Path(temp_dir) / "workspace"
