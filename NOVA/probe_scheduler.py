@@ -52,10 +52,25 @@ def _iso(value: datetime) -> str:
 
 def _active_names(providers: list[dict[str, Any]]) -> list[str]:
     return [
-        str(provider["name"])
+        str(provider["name"]).strip()
         for provider in providers
-        if provider.get("status") == "active" and provider.get("name")
+        if provider.get("status") == "active"
+        and isinstance(provider.get("name"), str)
+        and provider["name"].strip()
     ]
+
+
+def _duplicate_active_names(providers: list[dict[str, Any]]) -> list[str]:
+    """Find ambiguous active-provider identities, ignoring case and surrounding space."""
+    names = _active_names(providers)
+    counts: dict[str, int] = {}
+    for name in names:
+        key = name.casefold()
+        counts[key] = counts.get(key, 0) + 1
+    return sorted(
+        {name for name in names if counts[name.casefold()] > 1},
+        key=str.casefold,
+    )
 
 
 def _provider_map(providers: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
@@ -99,6 +114,20 @@ def ensure_probe_schedule(
         {},
     )
     active_names = _active_names(providers)
+    duplicate_names = _duplicate_active_names(providers)
+    if duplicate_names:
+        # The queue is keyed by provider name; duplicate active identities make
+        # it impossible to assign an unambiguous due time. Fail closed rather
+        # than scheduling a duplicated provider or silently selecting one record.
+        rotation["probe_queue"] = []
+        rotation["probe_schedule"] = {}
+        rotation["schedule_interval_seconds"] = interval
+        rotation["schedule_status"] = "BLOCKED_DUPLICATE_PROVIDER_IDENTITIES"
+        rotation["duplicate_provider_names"] = duplicate_names
+        return rotation
+
+    rotation["schedule_status"] = "READY"
+    rotation.pop("duplicate_provider_names", None)
     existing_queue = rotation.get("probe_queue")
     if (
         isinstance(existing_queue, list)
@@ -153,6 +182,7 @@ def next_probe_due(
             "due_at": None,
             "due": False,
             "queue": [],
+            "reason": rotation.get("schedule_status", "NO_ACTIVE_PROVIDERS"),
         }
 
     provider = str(queue[0])
@@ -197,7 +227,7 @@ def select_probe_candidate(
     if not queue:
         return {
             "provider": None,
-            "reason": "NO_ACTIVE_PROVIDERS",
+            "reason": rotation.get("schedule_status", "NO_ACTIVE_PROVIDERS"),
             "preempted": False,
             "details": {},
         }
@@ -336,6 +366,8 @@ def reschedule_after_probes(
         now=current,
         interval_seconds=interval,
     )
+    if rotation.get("schedule_status") == "BLOCKED_DUPLICATE_PROVIDER_IDENTITIES":
+        return rotation
     old_queue = [str(name) for name in rotation.get("probe_queue", [])]
     active_names = _active_names(providers)
 
