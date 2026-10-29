@@ -1,7 +1,7 @@
 # Active Navigation Plan — NOVA Block 41: Validate Operational State Before Loading
 
 **Date:** 2026-10-29  
-**Status:** ACTIVE — prevent ambiguous persisted provider identity from affecting the runtime roster  
+**Status:** COMPLETE — PR #153 merged after successful regression-test workflows  
 **Objective:** Make operational-state loading reject malformed or duplicate provider identities before writing loaded state, and make identity matching consistent with the publication validator.
 
 ## Navigation and source of truth
@@ -45,4 +45,9 @@ Malformed data must fail before `load_operational_state()` writes either state f
 
 ## Completion evidence
 
-Record the branch's regression-test workflow, final review, and pull-request URL here before setting this plan to COMPLETE.
+- **Pull request:** https://github.com/ACROWN-System/NOVA/pull/153 — squash-merged.
+- **Merge commit:** `edd659be7cfdb207c1e0e06dea066d4e30e3f0c6`.
+- **PR workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40829926281 — NOVA Health Tests passed on head `a5cfd9b923e9662ca865ca7732dc42ddf309446f`.
+- **Push workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40829889129 — NOVA Health Tests passed on the same head commit.
+- **Review:** The changed implementation and regression tests were inspected. The shared validator is used by publish and merge/load paths; duplicate normalized identities fail before state writes; normalized matches preserve only the permitted `down` marker and keep current repository configuration authoritative.
+- **Boundaries confirmed:** No live provider calls, new dependencies, credential/configuration changes, operational-state branch writes, or backup modifications were made for this block.
