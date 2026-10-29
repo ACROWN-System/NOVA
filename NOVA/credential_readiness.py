@@ -9,6 +9,22 @@ import os
 from pathlib import Path
 from typing import Any, Mapping
 
+try:
+    from .health import loads_json_no_duplicate_keys
+except ImportError:  # Direct script execution
+    from health import loads_json_no_duplicate_keys
+
+
+def _load_roster_file(path: Path) -> dict[str, Any]:
+    roster = loads_json_no_duplicate_keys(path.read_text(encoding="utf-8"))
+    if not isinstance(roster, dict):
+        raise ValueError(f"{path.name} must be a JSON object.")
+    if not isinstance(roster.get("providers"), list):
+        raise ValueError(f"{path.name} must contain a providers array.")
+    if "candidates" in roster and not isinstance(roster["candidates"], list):
+        raise ValueError(f"{path.name} candidates field must be a JSON array.")
+    return roster
+
 
 def _state_for_env(env_name: str) -> str:
     return "CONFIGURED_NOT_VERIFIED" if os.environ.get(env_name, "").strip() else "REQUIRED_NOT_CONFIGURED"
@@ -140,8 +156,8 @@ def main() -> int:
     parser.add_argument("--summary-file", default=os.environ.get("GITHUB_STEP_SUMMARY", ""))
     args = parser.parse_args()
 
-    llm_roster = json.loads(Path(args.llm_roster).read_text(encoding="utf-8"))
-    gpu_roster = json.loads(Path(args.gpu_roster).read_text(encoding="utf-8"))
+    llm_roster = _load_roster_file(Path(args.llm_roster))
+    gpu_roster = _load_roster_file(Path(args.gpu_roster))
     report = build_readiness_report(llm_roster, gpu_roster)
     print(json.dumps(report, indent=2, sort_keys=True))
 

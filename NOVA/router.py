@@ -75,7 +75,12 @@ HEALTH_PROMPT = (
 
 
 def load_roster() -> dict[str, Any]:
-    return json.loads(ROSTER_PATH.read_text(encoding="utf-8"))
+    roster = loads_json_no_duplicate_keys(ROSTER_PATH.read_text(encoding="utf-8"))
+    if not isinstance(roster, dict):
+        raise ValueError("NOVA/roster.json must be a JSON object.")
+    if not isinstance(roster.get("providers"), list):
+        raise ValueError("NOVA/roster.json must contain a providers array.")
+    return roster
 
 
 def save_roster(roster: dict[str, Any]) -> None:
