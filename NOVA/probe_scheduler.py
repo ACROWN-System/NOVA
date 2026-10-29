@@ -51,11 +51,39 @@ def _iso(value: datetime) -> str:
 
 
 def _active_names(providers: list[dict[str, Any]]) -> list[str]:
+    # Preserve the configured label for exact roster lookups; normalize only
+    # for identity comparison, not for provider selection.
     return [
-        str(provider["name"])
+        provider["name"]
         for provider in providers
-        if provider.get("status") == "active" and provider.get("name")
+        if provider.get("status") == "active"
+        and isinstance(provider.get("name"), str)
+        and provider["name"].strip()
     ]
+
+
+def _duplicate_active_names(providers: list[dict[str, Any]]) -> list[str]:
+    """Find ambiguous active-provider identities, ignoring case and surrounding space."""
+    names = _active_names(providers)
+    counts: dict[str, int] = {}
+    for name in names:
+        key = name.strip().casefold()
+        counts[key] = counts.get(key, 0) + 1
+    return sorted(
+        {name for name in names if counts[name.strip().casefold()] > 1},
+        key=lambda name: (name.strip().casefold(), name),
+    )
+
+
+def _invalid_active_provider_count(providers: list[dict[str, Any]]) -> int:
+    return sum(
+        1 for provider in providers
+        if provider.get("status") == "active"
+        and (
+            not isinstance(provider.get("name"), str)
+            or not provider["name"].strip()
+        )
+    )
 
 
 def _provider_map(providers: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
@@ -99,6 +127,41 @@ def ensure_probe_schedule(
         {},
     )
     active_names = _active_names(providers)
+    duplicate_names = _duplicate_active_names(providers)
+    invalid_name_count = _invalid_active_provider_count(providers)
+    if duplicate_names or invalid_name_count:
+        # The queue is keyed by provider name; duplicate or absent active
+        # identities make due-time assignment and roster lookup ambiguous.
+        rotation["probe_queue"] = []
+        rotation["probe_schedule"] = {}
+        rotation["schedule_interval_seconds"] = interval
+        rotation["schedule_status"] = (
+            "BLOCKED_DUPLICATE_PROVIDER_IDENTITIES"
+            if duplicate_names
+            else "BLOCKED_INVALID_PROVIDER_IDENTITIES"
+        )
+        if duplicate_names:
+            rotation["duplicate_provider_names"] = duplicate_names
+        else:
+            rotation.pop("duplicate_provider_names", None)
+        if invalid_name_count:
+            rotation["invalid_active_provider_count"] = invalid_name_count
+        else:
+            rotation.pop("invalid_active_provider_count", None)
+        return rotation
+
+    if not active_names:
+        rotation["probe_queue"] = []
+        rotation["probe_schedule"] = {}
+        rotation["schedule_interval_seconds"] = interval
+        rotation["schedule_status"] = "NO_ACTIVE_PROVIDERS"
+        rotation.pop("duplicate_provider_names", None)
+        rotation.pop("invalid_active_provider_count", None)
+        return rotation
+
+    rotation["schedule_status"] = "READY"
+    rotation.pop("duplicate_provider_names", None)
+    rotation.pop("invalid_active_provider_count", None)
     existing_queue = rotation.get("probe_queue")
     if (
         isinstance(existing_queue, list)
@@ -153,6 +216,7 @@ def next_probe_due(
             "due_at": None,
             "due": False,
             "queue": [],
+            "reason": rotation.get("schedule_status", "NO_ACTIVE_PROVIDERS"),
         }
 
     provider = str(queue[0])
@@ -197,7 +261,7 @@ def select_probe_candidate(
     if not queue:
         return {
             "provider": None,
-            "reason": "NO_ACTIVE_PROVIDERS",
+            "reason": rotation.get("schedule_status", "NO_ACTIVE_PROVIDERS"),
             "preempted": False,
             "details": {},
         }
@@ -336,6 +400,8 @@ def reschedule_after_probes(
         now=current,
         interval_seconds=interval,
     )
+    if str(rotation.get("schedule_status", "")).startswith("BLOCKED_"):
+        return rotation
     old_queue = [str(name) for name in rotation.get("probe_queue", [])]
     active_names = _active_names(providers)
 
