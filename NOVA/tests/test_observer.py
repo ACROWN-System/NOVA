@@ -36,6 +36,48 @@ class ObserverTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "duplicate source URLs"):
             validate_watchlist(watchlist)
 
+    def test_watchlist_rejects_non_http_schemes_and_embedded_credentials(self):
+        invalid_urls = (
+            ("file://localhost/etc/passwd", "scheme must be HTTP or HTTPS"),
+            ("ftp://example.invalid/updates", "scheme must be HTTP or HTTPS"),
+            ("https://user@example.invalid/updates", "must not contain embedded credentials"),
+            ("https://user:password@example.invalid/updates", "must not contain embedded credentials"),
+            ("https://example.invalid:bad/updates", "has an invalid URL"),
+            ("https:///updates", "must be absolute and have a hostname"),
+        )
+        for url, expected_error in invalid_urls:
+            with self.subTest(url=url):
+                with self.assertRaisesRegex(RuntimeError, expected_error):
+                    validate_watchlist({"sources": [{"name": "source-a", "url": url}]})
+
+    def test_run_rejects_unsafe_url_before_state_load_or_fetch(self):
+        with tempfile.TemporaryDirectory(prefix="nova-unsafe-watchlist-url-") as temp_dir:
+            repo_root = Path(temp_dir)
+            nova_root = repo_root / "NOVA"
+            nova_root.mkdir()
+            (nova_root / "watchlist.json").write_text(
+                json.dumps({
+                    "sources": [{
+                        "name": "local-file-source",
+                        "url": "file://localhost/etc/passwd",
+                    }]
+                }),
+                encoding="utf-8",
+            )
+
+            with patch("NOVA.operational_observer.load_health_state") as load_state, patch(
+                "NOVA.operational_observer.fetch_text"
+            ) as fetch, patch("NOVA.operational_observer.urllib.request.urlopen") as urlopen, patch(
+                "NOVA.operational_observer.atomic_write_json"
+            ) as write_state:
+                with self.assertRaisesRegex(RuntimeError, "scheme must be HTTP or HTTPS"):
+                    run(repo_root)
+
+            load_state.assert_not_called()
+            fetch.assert_not_called()
+            urlopen.assert_not_called()
+            write_state.assert_not_called()
+
     def test_watchlist_rejects_malformed_source_structure(self):
         invalid_watchlists = (
             ({"sources": {}}, "must contain a sources array"),

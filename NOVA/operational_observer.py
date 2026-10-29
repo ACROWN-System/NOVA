@@ -106,17 +106,35 @@ def validate_watchlist(watchlist: dict) -> list[dict]:
             )
         try:
             parsed = urlsplit(url.strip())
+            port = parsed.port  # Accessing .port validates numeric/range syntax.
         except ValueError as exc:
             raise RuntimeError(
                 f"NOVA/watchlist.json sources[{index}] has an invalid URL."
             ) from exc
-        if not parsed.scheme or not parsed.netloc:
+        scheme = parsed.scheme.casefold()
+        if not parsed.netloc or not parsed.hostname:
             raise RuntimeError(
-                f"NOVA/watchlist.json sources[{index}] URL must be absolute."
+                f"NOVA/watchlist.json sources[{index}] URL must be absolute and have a hostname."
             )
+        if scheme not in {"http", "https"}:
+            raise RuntimeError(
+                f"NOVA/watchlist.json sources[{index}] URL scheme must be HTTP or HTTPS."
+            )
+        if parsed.username is not None or parsed.password is not None:
+            raise RuntimeError(
+                f"NOVA/watchlist.json sources[{index}] URL must not contain embedded credentials."
+            )
+        # Keep an explicit port only after urllib.parse has validated it.
+        normalized_authority = parsed.hostname.casefold()
+        if port is not None:
+            normalized_authority += f":{port}"
+        if ":" in parsed.hostname and not parsed.hostname.startswith("["):
+            normalized_authority = f"[{parsed.hostname.casefold()}]"
+            if port is not None:
+                normalized_authority += f":{port}"
         normalized_url = urlunsplit((
-            parsed.scheme.casefold(),
-            parsed.netloc.casefold(),
+            scheme,
+            normalized_authority,
             parsed.path,
             parsed.query,
             parsed.fragment,
