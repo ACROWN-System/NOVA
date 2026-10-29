@@ -277,6 +277,23 @@ def _reject_duplicate_json_keys(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
     return result
 
 
+def validate_health_state_payload(
+    state: Any, *, description: str = "NOVA health state"
+) -> dict[str, Any]:
+    """Validate the core map shapes shared by runtime and state-branch boundaries."""
+    if not isinstance(state, dict):
+        raise RuntimeError(
+            f"{description} must be a JSON object; refusing to reset persisted state."
+        )
+    for key in ("targets", "observations", "events", "provider_rotation"):
+        if key in state and not isinstance(state[key], dict):
+            raise RuntimeError(
+                f"{description} field '{key}' must be a JSON object; "
+                "refusing to reset persisted state."
+            )
+    return state
+
+
 def load_health_state(path: Path) -> dict[str, Any]:
     """Load operational state without silently replacing an existing corrupt file."""
     try:
@@ -301,19 +318,7 @@ def load_health_state(path: Path) -> dict[str, Any]:
                 "NOVA health state is not valid JSON; refusing to reset persisted state."
             ) from exc
 
-        if not isinstance(state, dict):
-            raise RuntimeError(
-                "NOVA health state must be a JSON object; refusing to reset persisted state."
-            )
-
-        # These core maps are written by NOVA's runtime. Replacing a malformed
-        # map with an empty default would silently discard retained evidence.
-        for key in ("targets", "observations", "events", "provider_rotation"):
-            if key in state and not isinstance(state[key], dict):
-                raise RuntimeError(
-                    f"NOVA health state field '{key}' must be a JSON object; "
-                    "refusing to reset persisted state."
-                )
+    state = validate_health_state_payload(state)
 
     for key, value in _state_defaults().items():
         state.setdefault(key, value)
