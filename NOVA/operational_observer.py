@@ -112,13 +112,13 @@ def validate_watchlist(watchlist: dict) -> list[dict]:
                 f"NOVA/watchlist.json sources[{index}] has an invalid URL."
             ) from exc
         scheme = parsed.scheme.casefold()
-        if scheme not in {"http", "https"}:
-            raise RuntimeError(
-                f"NOVA/watchlist.json sources[{index}] URL scheme must be HTTP or HTTPS."
-            )
         if not parsed.netloc or not parsed.hostname:
             raise RuntimeError(
                 f"NOVA/watchlist.json sources[{index}] URL must be absolute and have a hostname."
+            )
+        if scheme not in {"http", "https"}:
+            raise RuntimeError(
+                f"NOVA/watchlist.json sources[{index}] URL scheme must be HTTP or HTTPS."
             )
         if parsed.username is not None or parsed.password is not None:
             raise RuntimeError(
