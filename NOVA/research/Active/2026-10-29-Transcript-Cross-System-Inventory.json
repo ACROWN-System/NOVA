@@ -4872,9 +4872,9 @@
     "Path classification is heuristic and may need correction; it is triage metadata, not a semantic or implementation finding."
   ],
   "review_tracking": {
-    "note": "Bounded content review is documented in the working ledger. Blocks 8–11 reviewed NOVA RCA persistence, integrity and reasoning integration; Block 12 reviewed AstroCrown-Web preview/account behavior, evidence/public-claims guidance and source-vs-derived market-data requirements. Block 12 made no code or workflow changes. The current AstroCrown-Web path set (262 paths excluding backup descendants) matches the refreshed tree snapshot. The other repository snapshots remain as previously recorded; backup descendants remain excluded.",
+    "note": "Bounded content review is documented in the working ledger. Blocks 8–11 reviewed NOVA RCA persistence, integrity and reasoning integration; Block 12 reviewed AstroCrown-Web preview/account behavior, public-claims guidance and source-vs-derived market-data requirements; Block 13 reviewed AstroCrown_ACS_MC_Spec and ACROWN-SIMULATION-LAB together. Both Block 13 repository trees exactly match their recorded path inventories. The ACS spec explicitly keeps decision-grade Monte Carlo BLOCKED; its current v1.1.3 has an unterminated terminal code fence and unspecified fee-formula parameters. Simulation Lab accurately identifies all six model areas as scaffolds, with no implementation, scenarios or results present. No code or simulation was run. AI-Sanctuary-Core and Freebies- remain to be reviewed in Block 14. Backup descendants remain excluded.",
     "last_updated_at": "2026-10-29",
-    "last_completed_block": 12,
+    "last_completed_block": 13,
     "modified_paths": 54
   },
   "latest_reviewed_main": {
@@ -4894,6 +4894,18 @@
       "paths_included": 262,
       "backup_descendants_excluded": true
     },
-    "note": "Other four repository snapshots have not yet been refreshed as part of Blocks 12–14."
+    "note": "Snapshot refresh through Block 13: NOVA through Block 11; AstroCrown-Web through Block 12; AstroCrown_ACS_MC_Spec and ACROWN-SIMULATION-LAB through Block 13. AI-Sanctuary-Core and Freebies- remain to be refreshed and reviewed in Block 14. Backup descendants remain excluded.",
+    "AstroCrown_ACS_MC_Spec": {
+      "main_tree_sha": "5f913ba24b1badd8e402af13282f458815b653be",
+      "reviewed_through_block": 13,
+      "paths_included": 4,
+      "backup_descendants_excluded": true
+    },
+    "ACROWN-SIMULATION-LAB": {
+      "main_tree_sha": "036527d31ecff8676dcd03a9e2a7b22ef9b9a5f1",
+      "reviewed_through_block": 13,
+      "paths_included": 14,
+      "backup_descendants_excluded": true
+    }
   }
 }
