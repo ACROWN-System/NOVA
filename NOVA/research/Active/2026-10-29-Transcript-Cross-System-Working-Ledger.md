@@ -368,3 +368,34 @@ No live provider call was introduced by this change; the CI job ran offline test
 **Impact and preservation check:** Only the operational state branch was read for a sanitized summary; no changes were made there. No live provider calls, state publish, alert, credential mutation, workflow run, source-code change or backup access occurred during this block.
 
 **Next block:** Block 9 — design and implement the `quality_cases` integrity prerequisite only, on a separate feature branch, with backwards-compatible tests. Do not add reasoning RCA integration in the same PR.
+
+
+### Block 9 — Preserve RCA case integrity at state boundaries
+**Status:** COMPLETE — PR merged; pre-merge and post-merge verification passed.
+
+- **PR:** https://github.com/ACROWN-System/NOVA/pull/173
+- **Feature branch:** `fix/validate-quality-case-state-integrity-2026-10-29`
+- **Merge commit / latest verified `main`:** `f43ee9c550b4862e28a759dbeda988ed2f07e11b`
+- **Files changed:** `NOVA/quality_gate.py`, `NOVA/health.py`, `NOVA/tests/test_quality_gate.py`, `NOVA/tests/test_health.py`, `NOVA/tests/test_operational_state.py`. No workflow, provider, credential, pricing or application behavior changes.
+
+#### Implemented
+1. Added one canonical `validate_quality_cases_payload()` function to `quality_gate.py`. It checks map/key/record structure, case ID-to-key identity, required case text fields, positive/non-negative integer counters (rejecting booleans and nulls), candidate-SHA type, optional closure-field types and prior-closure shape. It preserves optional fields and does not mutate the payload.
+2. The existing `record_failure_case()` now validates an existing `quality_cases` map before mutation and raises explicitly instead of replacing a malformed map with an empty dictionary. A missing `quality_cases` key remains valid for legacy first-run state; the key is initialized only when a case is being recorded.
+3. `health.validate_health_state_payload()` now invokes that canonical validation if `quality_cases` is present. This protects both `load_health_state()` and `operational_state.py` load/publish paths, which already share the health-state validator.
+4. Added regression tests for malformed containers/records/counters, non-overwrite on rejected records, preservation of valid existing cases, state-file preservation on invalid load, and refusal to begin operational-state Git publication for malformed case data.
+
+#### Compatibility and verification
+- The current `nova-operational-state` branch was inspected before merging: all six existing open cases passed the new schema checks, so no migration was necessary.
+- Exact final feature-branch CI: https://github.com/ACROWN-System/NOVA/actions/runs/40913121371 — **236 offline tests passed**. Push CI also passed: https://github.com/ACROWN-System/NOVA/actions/runs/40913107672.
+- Post-merge Health Tests passed on merge commit: https://github.com/ACROWN-System/NOVA/actions/runs/40913304229 — **236 tests passed**.
+- Existing Autonomous Heartbeat workflow passed: https://github.com/ACROWN-System/NOVA/actions/runs/40913304248.
+- Existing GPU Heartbeat workflow passed: https://github.com/ACROWN-System/NOVA/actions/runs/40913304232.
+- After the automatic post-merge workflows, the dedicated operational branch still contained six valid `quality_cases` records (six open, zero closed); the cases were not silently discarded.
+- Intermediate push runs on earlier commits also passed; only the final-head and post-merge runs are used as acceptance evidence.
+
+#### Boundary and result
+**G-005: RESOLVED for validated `quality_cases` state.** Malformed RCA state now fails closed at the shared load/publish boundary and before case mutation. This protects records; it does not implement RCA triage or closure. The six open cases remain open, as this block intentionally did not modify operational state or infer closure.
+
+No reasoning-path RCA creation was added. The critical follow-up remains G-001: specify the distinction between health-probe and reasoning contract failures, decide whether a transient incident should join a shared provider case, preserve explicit exclusions, and then integrate the existing case mechanism with tests for provider fallback and sanitized persistence.
+
+**Next block:** Block 10 — finalize the RCA failure-domain and trigger matrix for G-001 using current router probes and reasoning provider responses. Keep the decision record separate from any implementation so case identity, false-positive exclusions, fallback semantics, and case volume are fixed before modifying the runtime.
