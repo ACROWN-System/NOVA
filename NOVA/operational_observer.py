@@ -18,6 +18,7 @@ import re
 import urllib.error
 import urllib.request
 from pathlib import Path
+from urllib.parse import urlsplit, urlunsplit
 
 try:
     from .health import (
@@ -80,6 +81,61 @@ def normalize_content(content: str) -> str:
     content = re.sub(r"(?is)<[^>]+>", " ", content)
     content = re.sub(r"\s+", " ", content)
     return content.strip()
+
+
+def validate_watchlist(watchlist: dict) -> list[dict]:
+    """Reject ambiguous source identities before any source fetch or state access."""
+    if not isinstance(watchlist, dict):
+        raise RuntimeError("NOVA/watchlist.json must be a JSON object.")
+    sources = watchlist.get("sources")
+    if not isinstance(sources, list):
+        raise RuntimeError("NOVA/watchlist.json must contain a sources array.")
+
+    seen_identities: set[str] = set()
+    seen_urls: set[str] = set()
+    for index, source in enumerate(sources):
+        if not isinstance(source, dict):
+            raise RuntimeError(
+                f"NOVA/watchlist.json sources[{index}] must be a JSON object."
+            )
+
+        url = source.get("url")
+        if not isinstance(url, str) or not url.strip():
+            raise RuntimeError(
+                f"NOVA/watchlist.json sources[{index}] must have a non-empty URL."
+            )
+        try:
+            parsed = urlsplit(url.strip())
+        except ValueError as exc:
+            raise RuntimeError(
+                f"NOVA/watchlist.json sources[{index}] has an invalid URL."
+            ) from exc
+        if not parsed.scheme or not parsed.netloc:
+            raise RuntimeError(
+                f"NOVA/watchlist.json sources[{index}] URL must be absolute."
+            )
+        normalized_url = urlunsplit((
+            parsed.scheme.casefold(),
+            parsed.netloc.casefold(),
+            parsed.path,
+            parsed.query,
+            parsed.fragment,
+        ))
+        if normalized_url in seen_urls:
+            raise RuntimeError("NOVA/watchlist.json contains duplicate source URLs.")
+        seen_urls.add(normalized_url)
+
+        name = source.get("name")
+        if name is not None and not isinstance(name, str):
+            raise RuntimeError(
+                f"NOVA/watchlist.json sources[{index}] name must be a string."
+            )
+        identity = name.strip().casefold() if isinstance(name, str) and name.strip() else normalized_url
+        if identity in seen_identities:
+            raise RuntimeError("NOVA/watchlist.json contains duplicate source identities.")
+        seen_identities.add(identity)
+
+    return sources
 
 
 def observe_source(source: dict, state: dict, *, timeout: int, max_bytes: int) -> dict:
@@ -212,11 +268,12 @@ def observe_source(source: dict, state: dict, *, timeout: int, max_bytes: int) -
 
 def run(root: Path) -> int:
     watchlist = load_json(root / "NOVA/watchlist.json", DEFAULT_WATCHLIST)
+    sources = validate_watchlist(watchlist)
     state_path = root / "NOVA/health_state.json"
     state = load_health_state(state_path)
 
     results = []
-    for source in watchlist.get("sources", []):
+    for source in sources:
         if not source.get("enabled", True):
             continue
         results.append(
