@@ -2211,7 +2211,7 @@
           "blob_sha": "9db53204e39a8acfb769d50e1c3fa1cf516922be",
           "mode": "100644",
           "classification": "documentation",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_1_AND_12"
         },
         {
           "path": "SECURITY.md",
@@ -2220,7 +2220,7 @@
           "blob_sha": "e870673e7052a0b2660eea67cac0dc6f47abbc91",
           "mode": "100644",
           "classification": "policy-spec-or-architecture-doc",
-          "content_status": "CONTENT_REVIEWED_BLOCKS_2_AND_4"
+          "content_status": "CONTENT_REVIEWED_BLOCK12;SECURITY_CLAIM_LIMITATIONS"
         },
         {
           "path": "_config.yml",
@@ -3066,7 +3066,7 @@
           "blob_sha": "bdc5b6c1279af4c8f66525b8d982fe61542b7b55",
           "mode": "100644",
           "classification": "research-or-audit-record",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK12;ROADMAP_NOT_RUNTIME_IMPLEMENTATION"
         },
         {
           "path": "development/audit/Completed/2026-10-17-HSIAN-Cognitive-Extension-Integration.md",
@@ -3084,7 +3084,7 @@
           "blob_sha": "4726c0a0ed4c626ba7f522550cda1a58953b1d55",
           "mode": "100644",
           "classification": "policy-spec-or-architecture-doc",
-          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_2"
+          "content_status": "CONTENT_REVIEWED_BLOCK12;PROPOSED_EVIDENCE_GOVERNANCE"
         },
         {
           "path": "development/audit/PUBLIC-CLAIMS-AND-LEGAL-COMMUNICATIONS.md",
@@ -3093,7 +3093,7 @@
           "blob_sha": "7bc015ef84e202940356943b17af428b99fd5841",
           "mode": "100644",
           "classification": "documentation",
-          "content_status": "PARTIAL_CONTENT_REVIEWED_BLOCK_2"
+          "content_status": "CONTENT_REVIEWED_BLOCK12;PROPOSED_PUBLIC_CLAIMS_GOVERNANCE"
         },
         {
           "path": "development/audit/README.md",
@@ -3264,7 +3264,7 @@
           "blob_sha": "98f953d91e6a9bea12dca5a928cd71d7a6004da0",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK12;TEST_SOURCE_REVIEWED_NOT_EXECUTED"
         },
         {
           "path": "development/gpu-infrastructure",
@@ -3336,7 +3336,7 @@
           "blob_sha": "e300be472be18f4cf3c15a3600195a1262f7e0e2",
           "mode": "100644",
           "classification": "documentation",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK12;SOURCE_FRESHNESS_AND_MISSING_DATA_REQUIREMENTS"
         },
         {
           "path": "development/index-reference/ICONS-AND-INDICATORS.md",
@@ -3462,7 +3462,7 @@
           "blob_sha": "1aa678d5eb29defd1017c455ab82c1743d447752",
           "mode": "100644",
           "classification": "documentation",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK12;CANDIDATE_REQUIREMENTS_NOT_APPROVED"
         },
         {
           "path": "development/index-section/FOOTER.md",
@@ -3534,7 +3534,7 @@
           "blob_sha": "70d8ac99a46f41a9d063465338804efbd4d55223",
           "mode": "100644",
           "classification": "site-or-static-asset",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK12;DEV_SAMPLE_PREVIEW"
         },
         {
           "path": "development/nova-ai-orchestration",
@@ -3597,7 +3597,7 @@
           "blob_sha": "531b711165b590686ae054ad6d8ed7c66aef089c",
           "mode": "100644",
           "classification": "policy-spec-or-architecture-doc",
-          "content_status": "CONTENT_REVIEWED_BLOCKS_4_AND_5"
+          "content_status": "CONTENT_REVIEWED_BLOCK12;EXACT_BASELINE_CANDIDATE_AND_SANDBOX"
         },
         {
           "path": "development/nova-recursive-self-improvement/CREDENTIAL-READINESS.md",
@@ -4371,7 +4371,7 @@
           "blob_sha": "ffbd85057fc358c84331c2cf6ec47ef45bd3c67c",
           "mode": "100644",
           "classification": "site-or-static-asset",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK12;ACCOUNT_UI_STYLES"
         },
         {
           "path": "preview/account-ui.js",
@@ -4380,7 +4380,7 @@
           "blob_sha": "c2c1775014d54949bdf1b6efb986f9145dcbe3b6",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK12;BROWSER_MEMORY_AUTH_DEMO"
         },
         {
           "path": "preview/assets",
@@ -4425,7 +4425,7 @@
           "blob_sha": "5509d0e1721e570b2f437a0fd9d86c5d197cee58",
           "mode": "100644",
           "classification": "site-or-static-asset",
-          "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
+          "content_status": "CONTENT_REVIEWED_BLOCK12;PUBLIC_TEST_PREVIEW_AND_SAMPLE_DATA"
         },
         {
           "path": "preview/privacy-policy.html",
@@ -4872,14 +4872,28 @@
     "Path classification is heuristic and may need correction; it is triage metadata, not a semantic or implementation finding."
   ],
   "review_tracking": {
-    "note": "Bounded content review status is documented in the working ledger. Blocks 8–11 reviewed RCA persistence, integrity, trigger/domain rules, and reasoning integration. Block 9 merged G-005; Block 11 merged G-001 in PR #174. NOVA main tree metadata was refreshed after merge; the other five repository entries retain their original snapshot SHAs. Operational state was changed only by the existing post-merge heartbeat workflow; no backup/ path was reviewed or modified.",
+    "note": "Bounded content review is documented in the working ledger. Blocks 8–11 reviewed NOVA RCA persistence, integrity and reasoning integration; Block 12 reviewed AstroCrown-Web preview/account behavior, evidence/public-claims guidance and source-vs-derived market-data requirements. Block 12 made no code or workflow changes. The current AstroCrown-Web path set (262 paths excluding backup descendants) matches the refreshed tree snapshot. The other repository snapshots remain as previously recorded; backup descendants remain excluded.",
     "last_updated_at": "2026-10-29",
-    "last_completed_block": 11,
+    "last_completed_block": 12,
     "modified_paths": 54
   },
   "latest_reviewed_main": {
     "commit_sha": "9297a50c5f05e2f540af3ff226542311c5c5a68a",
     "as_of": "2026-10-29",
     "note": "Block 11 merged PR #174. Final PR CI and post-merge NOVA Health Tests each passed all 243 offline tests; post-merge NOVA Autonomous Heartbeat completed successfully and published operational state. Post-run aggregate remained six open quality_cases, 30 occurrences, and 12 targets."
+  },
+  "latest_reviewed_repository_snapshots": {
+    "as_of": "2026-10-29",
+    "NOVA": {
+      "main_tree_sha": "9297a50c5f05e2f540af3ff226542311c5c5a68a",
+      "reviewed_through_block": 11
+    },
+    "AstroCrown-Web": {
+      "main_tree_sha": "522bfc084a4a24e057d1725a0c669887080ecac6",
+      "reviewed_through_block": 12,
+      "paths_included": 262,
+      "backup_descendants_excluded": true
+    },
+    "note": "Other four repository snapshots have not yet been refreshed as part of Blocks 12–14."
   }
 }
