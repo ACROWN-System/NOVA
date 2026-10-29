@@ -200,12 +200,36 @@ def observation_record_freshness(
     )
 
 def load_json(path: Path, default: Any) -> Any:
-    if not path.exists():
-        return default
+    """Load optional JSON configuration without hiding errors in existing files."""
     try:
-        return json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError):
+        raw = path.read_text(encoding="utf-8")
+    except FileNotFoundError:
         return default
+    except (OSError, UnicodeError) as exc:
+        raise RuntimeError(
+            f"JSON file '{path.name}' exists but could not be read; refusing to use defaults."
+        ) from exc
+
+    try:
+        value = json.loads(raw, object_pairs_hook=_reject_duplicate_json_keys)
+    except _DuplicateJSONKeyError as exc:
+        raise RuntimeError(
+            f"JSON file '{path.name}' contains duplicate object keys; refusing to use defaults."
+        ) from exc
+    except (json.JSONDecodeError, RecursionError) as exc:
+        raise RuntimeError(
+            f"JSON file '{path.name}' is not valid JSON; refusing to use defaults."
+        ) from exc
+
+    if isinstance(default, dict) and not isinstance(value, dict):
+        raise RuntimeError(
+            f"JSON file '{path.name}' must contain a JSON object; refusing to use defaults."
+        )
+    if isinstance(default, list) and not isinstance(value, list):
+        raise RuntimeError(
+            f"JSON file '{path.name}' must contain a JSON array; refusing to use defaults."
+        )
+    return value
 
 
 def atomic_write_json(path: Path, payload: Any) -> None:
