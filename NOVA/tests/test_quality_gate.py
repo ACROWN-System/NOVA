@@ -89,6 +89,83 @@ class RootCauseClosureGateTests(unittest.TestCase):
         self.assertEqual(len(state["quality_cases"]), 1)
         self.assertNotIn("raw_response", second)
 
+    def test_malformed_case_map_or_record_is_rejected_without_overwriting(self):
+        state = {}
+        legacy = record_failure_case(
+            state,
+            source="provider:model-a",
+            failure_class="transient",
+            expected_result="A provider request completes under the selected contract.",
+            observed_result="TIMEOUT",
+            candidate_sha=None,
+            now="2026-10-13T00:00:00+00:00",
+        )
+        case_id = legacy["case_id"]
+        self.assertIsNone(legacy["candidate_sha"])
+
+        # A legacy open case without a candidate SHA remains valid and can be
+        # updated without rewriting its identity or losing evidence.
+        repeated = record_failure_case(
+            state,
+            source="provider:model-a",
+            failure_class="transient",
+            expected_result="A provider request completes under the selected contract.",
+            observed_result="CONNECTION_RESET",
+            candidate_sha=None,
+            now="2026-10-13T01:00:00+00:00",
+        )
+        self.assertEqual(repeated["case_id"], case_id)
+        self.assertEqual(repeated["occurrences"], 2)
+
+        valid_case = dict(repeated)
+        invalid_maps = (
+            None,
+            [],
+            {"rca-corrupt": "not a case object"},
+            {"rca-corrupt": {**valid_case, "case_id": "different-key"}},
+            {"rca-corrupt": {**valid_case, "occurrences": True}},
+            {"rca-corrupt": {**valid_case, "occurrences": 0}},
+            {"rca-corrupt": {**valid_case, "reopened_count": "1"}},
+        )
+        for malformed in invalid_maps:
+            with self.subTest(malformed=repr(malformed)[:100]):
+                candidate_state = {"quality_cases": malformed}
+                before = {
+                    "quality_cases": (
+                        dict(malformed) if isinstance(malformed, dict) else malformed
+                    )
+                }
+                with self.assertRaisesRegex(RuntimeError, "refusing to"):
+                    record_failure_case(
+                        candidate_state,
+                        source="new-provider:model-b",
+                        failure_class="response_contract",
+                        expected_result="Structured reasoning output matches its schema.",
+                        observed_result="INVALID_JSON",
+                    )
+                self.assertEqual(candidate_state, before)
+
+    def test_new_case_preserves_existing_valid_cases(self):
+        state = {}
+        first = record_failure_case(
+            state,
+            source="provider:model-a",
+            failure_class="transient",
+            expected_result="Provider request is completed.",
+            observed_result="TIMEOUT",
+        )
+        original = dict(first)
+        second = record_failure_case(
+            state,
+            source="provider:model-b",
+            failure_class="response_contract",
+            expected_result="Reasoning JSON satisfies the required schema.",
+            observed_result="INVALID_JSON",
+        )
+        self.assertNotEqual(first["case_id"], second["case_id"])
+        self.assertEqual(state["quality_cases"][first["case_id"]], original)
+        self.assertEqual(len(state["quality_cases"]), 2)
+
     def test_incomplete_case_cannot_be_closed(self):
         decision = closure_decision({
             "expected_result": "Structured output",
