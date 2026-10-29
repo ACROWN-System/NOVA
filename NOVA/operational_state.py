@@ -37,6 +37,39 @@ def _read_json_text(text: str, *, description: str) -> dict[str, Any]:
     return value
 
 
+def _validate_publishable_state(repo_root: Path) -> None:
+    """Reject state that would make the next operational-state load fail."""
+    _read_json_text(
+        (repo_root / "NOVA/health_state.json").read_text(encoding="utf-8"),
+        description="NOVA/health_state.json",
+    )
+    roster = _read_json_text(
+        (repo_root / "NOVA/roster.json").read_text(encoding="utf-8"),
+        description="NOVA/roster.json",
+    )
+    providers = roster.get("providers")
+    if not isinstance(providers, list):
+        raise RuntimeError("NOVA/roster.json must contain a providers array.")
+
+    seen_names: set[str] = set()
+    for index, provider in enumerate(providers):
+        if not isinstance(provider, dict):
+            raise RuntimeError(
+                f"NOVA/roster.json providers[{index}] must be a JSON object."
+            )
+        name = provider.get("name")
+        if not isinstance(name, str) or not name.strip():
+            raise RuntimeError(
+                f"NOVA/roster.json providers[{index}] must have a non-empty name."
+            )
+        normalized_name = name.strip().casefold()
+        if normalized_name in seen_names:
+            raise RuntimeError(
+                "NOVA/roster.json contains duplicate provider identities."
+            )
+        seen_names.add(normalized_name)
+
+
 def _write_json(path: Path, value: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     temp_path: Path | None = None
@@ -102,6 +135,7 @@ def load_operational_state(repo_root: Path, state_ref: str) -> None:
 
 def publish_operational_state(repo_root: Path, state_ref: str, message: str) -> bool:
     """Commit changed state paths to the state branch, never to the code branch."""
+    _validate_publishable_state(repo_root)
     temp_root = Path(tempfile.mkdtemp(prefix="nova-operational-state-"))
     worktree_path = temp_root / "worktree"
     worktree_added = False
