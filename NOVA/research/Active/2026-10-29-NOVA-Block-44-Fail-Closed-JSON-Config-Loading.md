@@ -1,7 +1,7 @@
 # Active Navigation Plan — NOVA Block 44: Fail Closed on JSON Configuration Loading
 
 **Date:** 2026-10-29  
-**Status:** ACTIVE — prevent existing malformed configuration from silently becoming defaults  
+**Status:** COMPLETE — PR #156 merged after successful regression-test workflows  
 **Objective:** Make the shared JSON configuration loader distinguish an absent optional file from an existing but unreadable, malformed, ambiguous, or structurally incorrect file, so monitoring and policy settings cannot be silently disabled by parse failures.
 
 ## Navigation and source of truth
@@ -44,4 +44,10 @@ Keep the current caller-supplied defaults only for a genuinely absent optional f
 
 ## Completion evidence
 
-Record the pull request, successful regression workflow, final review, and merge commit here before marking this plan COMPLETE.
+- **Pull request:** https://github.com/ACROWN-System/NOVA/pull/156 — squash-merged.
+- **Merge commit:** `9000e67db8e02e41d98d064e4601e0d7bf6b5920`.
+- **Push workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40831782271 — NOVA Health Tests passed on head `567e186ace5f4008593c28543a8e77fde694987a`.
+- **Pull-request workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40831812178 — NOVA Health Tests passed on the same head commit.
+- **Regression evidence:** All 190 offline tests passed. The added tests cover absent-file defaults, valid object/array input, malformed JSON, duplicate top-level/nested keys, unreadable and undecodable files, and wrong root types; rejected reads leave source bytes unchanged.
+- **Review:** The diff changes only `NOVA/health.py`, `NOVA/tests/test_health.py`, and this Active plan. Generic defaults are now only used when the optional file is genuinely missing. Block 42 strict state loading and Block 43 analysis-cache provenance checks remain intact.
+- **Boundaries confirmed:** No live provider calls, credential/configuration edits, operational-state branch writes, backup changes, or new dependencies were introduced.
