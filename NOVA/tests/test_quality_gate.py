@@ -125,7 +125,9 @@ class RootCauseClosureGateTests(unittest.TestCase):
             {"rca-corrupt": {**valid_case, "case_id": "different-key"}},
             {"rca-corrupt": {**valid_case, "occurrences": True}},
             {"rca-corrupt": {**valid_case, "occurrences": 0}},
+            {"rca-corrupt": {**valid_case, "occurrences": None}},
             {"rca-corrupt": {**valid_case, "reopened_count": "1"}},
+            {"rca-corrupt": {**valid_case, "reopened_count": None}},
         )
         for malformed in invalid_maps:
             with self.subTest(malformed=repr(malformed)[:100]):
