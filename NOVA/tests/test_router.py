@@ -503,6 +503,23 @@ class HealthResponseContractTests(unittest.TestCase):
             with self.subTest(body=body):
                 self.assertEqual(validate_health_payload(body), (False, "JSON_NOT_OBJECT"))
 
+    def test_duplicate_json_health_fields_are_rejected(self):
+        bodies = (
+            '{"nova_health":"FAIL","nova_health":"OK","ack":"NOVA_HEALTH_PROBE"}',
+            '{"nova_health":"OK","ack":"NO","ack":"NOVA_HEALTH_PROBE"}',
+            '{"nova_health":"OK","ack":"NOVA_HEALTH_PROBE","meta":{"x":1,"x":2}}',
+        )
+        for body in bodies:
+            with self.subTest(body=body):
+                self.assertEqual(
+                    validate_health_payload(body),
+                    (False, "DUPLICATE_JSON_KEYS"),
+                )
+
+    def test_deeply_nested_health_json_is_rejected_without_exception(self):
+        body = "[" * 2000 + "0" + "]" * 2000
+        self.assertEqual(validate_health_payload(body), (False, "INVALID_JSON"))
+
     def test_unverified_gemini_model_is_blocked_before_network(self):
         model = "gemini-3.8-flash"
         gemini = {
