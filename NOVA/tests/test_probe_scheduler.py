@@ -151,6 +151,33 @@ class RollingProbeSchedulerTests(unittest.TestCase):
         self.assertEqual(after["probe_schedule"], {})
         self.assertEqual(after["schedule_status"], "BLOCKED_DUPLICATE_PROVIDER_IDENTITIES")
 
+    def test_empty_roster_is_reported_as_no_active_providers(self):
+        state = _state_defaults()
+        decision = select_probe_candidate(
+            [],
+            state,
+            now=datetime(2026, 10, 8, 20, 55, tzinfo=timezone.utc),
+        )
+        self.assertIsNone(decision["provider"])
+        self.assertEqual(decision["reason"], "NO_ACTIVE_PROVIDERS")
+
+    def test_active_provider_without_name_blocks_probe_schedule(self):
+        state = _state_defaults()
+        roster = [
+            {"status": "active"},
+            {"name": "A", "status": "active"},
+        ]
+        decision = select_probe_candidate(
+            roster,
+            state,
+            now=datetime(2026, 10, 8, 20, 55, tzinfo=timezone.utc),
+        )
+        rotation = state["provider_rotation"]["ai-heart"]
+        self.assertIsNone(decision["provider"])
+        self.assertEqual(decision["reason"], "BLOCKED_INVALID_PROVIDER_IDENTITIES")
+        self.assertEqual(rotation["probe_queue"], [])
+        self.assertEqual(rotation["invalid_active_provider_count"], 1)
+
     def test_required_health_work_can_reuse_expiring_total_resource_without_inventing_cash_value(self):
         targets = {
             "ai-heart:C:model": {
