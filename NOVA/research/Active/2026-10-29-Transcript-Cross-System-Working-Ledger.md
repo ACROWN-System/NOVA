@@ -399,3 +399,46 @@ No live provider call was introduced by this change; the CI job ran offline test
 No reasoning-path RCA creation was added. The critical follow-up remains G-001: specify the distinction between health-probe and reasoning contract failures, decide whether a transient incident should join a shared provider case, preserve explicit exclusions, and then integrate the existing case mechanism with tests for provider fallback and sanitized persistence.
 
 **Next block:** Block 10 — finalize the RCA failure-domain and trigger matrix for G-001 using current router probes and reasoning provider responses. Keep the decision record separate from any implementation so case identity, false-positive exclusions, fallback semantics, and case volume are fixed before modifying the runtime.
+
+
+### Block 10 — RCA failure-domain and trigger matrix
+**Status:** COMPLETE — decision recorded; no runtime code, workflow, provider, credential or operational-state changes made in this block.
+
+#### Source review and confirmed current behavior
+- Reviewed current `main` source for `NOVA/router.py`, `NOVA/reasoning.py`, `NOVA/quality_gate.py`, the router RCA tests, reasoning retry tests, and `.github/workflows/nova_heartbeat.yml`.
+- `router.intelligent_router()` calls the existing `_record_root_cause_case()` for each recorded health-probe attempt. The helper excludes intentional local/non-attempt outcomes such as `contract_gate`, `credential_not_configured`, `account_id_not_configured`, `health_url_not_configured`, and `unsupported_auth_type`; actual non-valid provider responses can open a case.
+- `reasoning.analyze_pending()` calls providers in order, records each returned probe with `record_probe()`, and updates bounded per-event retry status. It does not currently create an RCA case for a failed reasoning probe.
+- The shared `record_failure_case()` signature is derived from `source`, `failure_class`, and `expected_result`. The router currently uses source `provider:model` and the same general expected-result string for each failure class. Consequently, blindly reusing that exact signature for reasoning `response_contract` failures would merge two different output contracts.
+- The current error classifier distinguishes `transient` and `permanent` HTTP failures. The request/response exception path is classified as `exception`; successful HTTP responses that fail the caller's deterministic validator are `response_contract`. Reasoning uses its own `validate_reasoning_payload()` contract.
+- The existing reasoning tests establish bounded retries and successful isolation of a failed reasoning attempt, but do not yet assert RCA creation, contract-domain separation, or provider-A-fails/provider-B-succeeds RCA behavior.
+
+#### Final trigger matrix
+| Outcome | RCA disposition | Identity / rationale |
+|---|---|---|
+| `contract_gate`, missing credentials/account configuration, other known local non-attempts | Exclude | These are expected gates or configuration prerequisites, not observed provider request failures. Preserve existing router exclusions. |
+| `transient` from an actual provider request | Record on first occurrence; share when identical provider/model/failure signature already exists | Preserve the current heartbeat trigger semantics and existing generic expected-result string so a same-class provider transport failure can join the established case rather than duplicate it. No new retry threshold is introduced. |
+| `permanent` | Record in the reasoning-specific domain | Error classification may arise from request/endpoint/model differences; don't merge it with a health-probe case on class alone. |
+| `exception` | Record in the reasoning-specific domain | The exception boundary covers response-envelope parsing and other operations as well as transport, so the class alone is not enough to prove equivalent cause. |
+| `response_contract` | Record with an explicit reasoning-analysis expected-result identity | Must not collide with the health-probe structured-response contract for the same provider/model. Preserve existing health-case signatures and content. |
+| Unknown/missing failure class | Telemetry only until a classification is reviewed | Avoid implicitly converting an arbitrary quality status into a new persistent RCA category in the reasoning path. |
+| Provider/model A fails, and provider/model B later succeeds | Keep eligible provider-level failure cases; keep the event-level analysis successful | A fallback success is not an event failure and must not erase the earlier provider-level evidence. |
+| No actual request or successful valid response | No new failure case | Respect the probe boundary and do not create a defect record for a successful result or a skipped attempt. |
+
+#### Implementation contract for G-001
+1. Integrate the existing RCA helper; do not create a second case schema, event-level case store, new dependency, provider call, or external triage service.
+2. Add an explicit caller/failure-domain choice to the existing helper or equivalent single canonical path. Preserve byte-for-byte the existing health-router signature by default, so already stored health-case IDs remain stable. Use the current shared identity only for `transient` as defined above; use fixed, short, reasoning-specific expected-result strings for `permanent`, `exception`, and `response_contract`.
+3. Invoke case creation only for the reviewed eligible error-class set (`transient`, `permanent`, `exception`, `response_contract`) and only for failed probes. Keep all existing local-block exclusions. Do not let an unrecognized class generate a case via a fallback to an arbitrary quality status.
+4. Keep source/provider/model IDs and caller-authored classifications only. Do not persist event `source`, source URL/excerpt, prompt, model response body, raw provider body, credentials, authorization headers, or untrusted exception text.
+5. Case creation must not change event retry counts, terminal status, or fallback success. The existing case store's data validator remains the state-integrity boundary; a recording error must fail closed instead of resetting or discarding persisted cases.
+6. Make the first-occurrence trigger consistent with the current router rather than introducing a new threshold. Because case identity is stable at provider/model/domain level, repeated failures should increment an existing case instead of creating one case per event/retry.
+7. Keep the change in its own feature branch and PR. Offline tests must cover the exclusions, stable existing health-case identity, transient deduplication, health-vs-reasoning response-contract separation, scoped permanent/exception outcomes, sanitized persistence, and the provider-A-fails/provider-B-succeeds invariant. Review push-triggered heartbeat behavior before merge because `nova_heartbeat.yml` already runs on main pushes that change `router.py`, `quality_gate.py`, or `reasoning.py`.
+
+#### Volume and operational lifecycle
+- At the end of Block 9's read-only verification, the operational branch retained six valid open cases, zero closed cases, and 30 recorded occurrences. This Block 10 did not reread or mutate that branch; the cited count is the last verified snapshot, not a new claim about the current runtime state.
+- This confirms that the existing RCA recorder can preserve and deduplicate cases, but does not by itself provide an end-to-end investigation/closure workflow. G-001 must not silently claim or implement automatic closure; reviewed exact-commit closure evidence remains a separate concern.
+- To limit added case volume, G-001 is deliberately scoped to a fixed eligible classification set and stable provider/model/domain signatures. It must not create a distinct record per external event or repeated retry.
+
+#### Block 10 decision
+**Proceed to a separate, narrowly scoped G-001 implementation block using the matrix above.** Do not merge implementation with this design-record update. Preserve legacy health-case IDs, retain the intentional local-block exclusions, distinguish reasoning-specific contract failures, and test fallback semantics. No source code or operational-state branch was changed in Block 10.
+
+**Next block:** Block 11 — implement the G-001 reasoning RCA integration on a feature branch, add offline regression tests, inspect the exact diff and push-trigger consequences, and stop before merge until verification and risk review are complete.
