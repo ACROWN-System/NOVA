@@ -9,6 +9,7 @@ memory elsewhere so expensive reasoning calls can be reused when appropriate.
 from __future__ import annotations
 
 import json
+import math
 import os
 import sys
 import time
@@ -81,6 +82,89 @@ def load_roster() -> dict[str, Any]:
     if not isinstance(roster.get("providers"), list):
         raise ValueError("NOVA/roster.json must contain a providers array.")
     return roster
+
+
+def validate_health_probe_policy(policy: Mapping[str, Any]) -> dict[str, Any]:
+    """Validate all heartbeat policy values before any provider API request."""
+    if not isinstance(policy, Mapping):
+        raise ValueError("health_policy.json must be a JSON object.")
+
+    sections: dict[str, Mapping[str, Any]] = {}
+    for name in ("freshness", "latency", "failure"):
+        section = policy.get(name, {})
+        if not isinstance(section, Mapping):
+            raise ValueError(f"health_policy.json {name} must be a JSON object.")
+        sections[name] = section
+
+    freshness = sections["freshness"]
+    heart_age = freshness.get("heart_observation_max_age_seconds")
+    if heart_age is not None and (
+        isinstance(heart_age, bool) or not isinstance(heart_age, int) or heart_age < 0
+    ):
+        raise ValueError(
+            "health_policy.json freshness.heart_observation_max_age_seconds "
+            "must be a non-negative integer when supplied."
+        )
+
+    latency = sections["latency"]
+    max_samples = latency.get("max_samples_per_target", 24)
+    if isinstance(max_samples, bool) or not isinstance(max_samples, int) or max_samples < 1:
+        raise ValueError(
+            "health_policy.json latency.max_samples_per_target must be a positive integer."
+        )
+
+    degraded_multiplier = latency.get("degraded_multiplier", 2.0)
+    if isinstance(degraded_multiplier, bool) or not isinstance(degraded_multiplier, (int, float)):
+        raise ValueError(
+            "health_policy.json latency.degraded_multiplier must be a finite positive number."
+        )
+    try:
+        multiplier = float(degraded_multiplier)
+    except (OverflowError, ValueError) as exc:
+        raise ValueError(
+            "health_policy.json latency.degraded_multiplier must be a finite positive number."
+        ) from exc
+    if not math.isfinite(multiplier) or multiplier <= 0:
+        raise ValueError(
+            "health_policy.json latency.degraded_multiplier must be a finite positive number."
+        )
+
+    minimum_samples = latency.get("minimum_samples_for_comparison", 4)
+    if (
+        isinstance(minimum_samples, bool)
+        or not isinstance(minimum_samples, int)
+        or minimum_samples < 1
+    ):
+        raise ValueError(
+            "health_policy.json latency.minimum_samples_for_comparison "
+            "must be a positive integer."
+        )
+
+    if minimum_samples > max_samples:
+        raise ValueError(
+            "health_policy.json latency.minimum_samples_for_comparison must not exceed "
+            "latency.max_samples_per_target."
+        )
+
+    failure = sections["failure"]
+    unacceptable_failures = failure.get("unacceptable_consecutive_failures", 3)
+    if (
+        isinstance(unacceptable_failures, bool)
+        or not isinstance(unacceptable_failures, int)
+        or unacceptable_failures < 1
+    ):
+        raise ValueError(
+            "health_policy.json failure.unacceptable_consecutive_failures "
+            "must be a positive integer."
+        )
+
+    return {
+        "heart_observation_max_age_seconds": heart_age,
+        "max_samples_per_target": max_samples,
+        "degraded_multiplier": multiplier,
+        "minimum_samples_for_comparison": minimum_samples,
+        "unacceptable_consecutive_failures": unacceptable_failures,
+    }
 
 
 def save_roster(roster: dict[str, Any]) -> None:
@@ -724,10 +808,10 @@ def intelligent_router(prompt: str) -> tuple[str, dict[str, Any]]:
     print(f"[{datetime.now(timezone.utc).isoformat()}] NOVA AI Heart Pulse Initiated...")
     roster = load_roster()
     policy = load_json(HEALTH_POLICY_PATH, {})
+    validated_policy = validate_health_probe_policy(policy)
     state = load_health_state(HEALTH_STATE_PATH)
     active_roster = [p for p in roster["providers"] if p["status"] == "active"]
-    freshness_policy = policy.get("freshness", {})
-    heart_max_age = freshness_policy.get("heart_observation_max_age_seconds")
+    heart_max_age = validated_policy["heart_observation_max_age_seconds"]
     active = scheduled_probe_provider_order(
         active_roster,
         state,
@@ -737,8 +821,6 @@ def intelligent_router(prompt: str) -> tuple[str, dict[str, Any]]:
     )
     scheduled_provider = active[0] if active else None
 
-    latency_policy = policy.get("latency", {})
-    failure_policy = policy.get("failure", {})
     all_probes: list[dict[str, Any]] = []
     probed_provider_names: list[str] = []
     skipped_provider_names: list[str] = []
@@ -791,10 +873,10 @@ def intelligent_router(prompt: str) -> tuple[str, dict[str, Any]]:
                     else None
                 ),
                 probe_role=probe_role,
-                max_samples=int(latency_policy.get("max_samples_per_target", 24)),
-                latency_degraded_multiplier=float(latency_policy.get("degraded_multiplier", 2.0)),
-                latency_min_samples=int(latency_policy.get("minimum_samples_for_comparison", 4)),
-                unacceptable_failure_streak=int(failure_policy.get("unacceptable_consecutive_failures", 3)),
+                max_samples=validated_policy["max_samples_per_target"],
+                latency_degraded_multiplier=validated_policy["degraded_multiplier"],
+                latency_min_samples=validated_policy["minimum_samples_for_comparison"],
+                unacceptable_failure_streak=validated_policy["unacceptable_consecutive_failures"],
             )
             all_probes.append(observation)
             _record_root_cause_case(state, provider, probe)

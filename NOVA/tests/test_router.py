@@ -22,7 +22,9 @@ from NOVA.router import (
     load_roster,
     scheduled_probe_provider_order,
     should_emit_health_alert,
+    intelligent_router,
     validate_health_payload,
+    validate_health_probe_policy,
     _record_root_cause_case,
 )
 
@@ -41,6 +43,98 @@ class RouterRotationTests(unittest.TestCase):
             provider("cloudflare"),
         ]
         self.state = _state_defaults()
+
+    def test_health_probe_policy_defaults_and_accepts_valid_values(self):
+        self.assertEqual(
+            validate_health_probe_policy({}),
+            {
+                "heart_observation_max_age_seconds": None,
+                "max_samples_per_target": 24,
+                "degraded_multiplier": 2.0,
+                "minimum_samples_for_comparison": 4,
+                "unacceptable_consecutive_failures": 3,
+            },
+        )
+        valid = {
+            "freshness": {"heart_observation_max_age_seconds": 21600},
+            "latency": {
+                "max_samples_per_target": 16,
+                "degraded_multiplier": 1.75,
+                "minimum_samples_for_comparison": 3,
+            },
+            "failure": {"unacceptable_consecutive_failures": 2},
+        }
+        self.assertEqual(
+            validate_health_probe_policy(valid),
+            {
+                "heart_observation_max_age_seconds": 21600,
+                "max_samples_per_target": 16,
+                "degraded_multiplier": 1.75,
+                "minimum_samples_for_comparison": 3,
+                "unacceptable_consecutive_failures": 2,
+            },
+        )
+
+    def test_health_probe_policy_rejects_non_object_sections(self):
+        for section in ("freshness", "latency", "failure"):
+            with self.subTest(section=section):
+                with self.assertRaisesRegex(ValueError, f"{section} must be a JSON object"):
+                    validate_health_probe_policy({section: []})
+
+    def test_health_probe_policy_rejects_invalid_numeric_settings(self):
+        cases = (
+            ("freshness", "heart_observation_max_age_seconds", True, "non-negative integer"),
+            ("freshness", "heart_observation_max_age_seconds", "21600", "non-negative integer"),
+            ("freshness", "heart_observation_max_age_seconds", -1, "non-negative integer"),
+            ("freshness", "heart_observation_max_age_seconds", 2.5, "non-negative integer"),
+            ("latency", "max_samples_per_target", True, "positive integer"),
+            ("latency", "max_samples_per_target", 0, "positive integer"),
+            ("latency", "max_samples_per_target", "24", "positive integer"),
+            ("latency", "minimum_samples_for_comparison", -1, "positive integer"),
+            ("failure", "unacceptable_consecutive_failures", False, "positive integer"),
+            ("failure", "unacceptable_consecutive_failures", 0, "positive integer"),
+            ("latency", "degraded_multiplier", True, "finite positive number"),
+            ("latency", "degraded_multiplier", "2", "finite positive number"),
+            ("latency", "degraded_multiplier", 0, "finite positive number"),
+            ("latency", "degraded_multiplier", -1, "finite positive number"),
+            ("latency", "degraded_multiplier", float("nan"), "finite positive number"),
+            ("latency", "degraded_multiplier", float("inf"), "finite positive number"),
+            ("latency", "degraded_multiplier", float("-inf"), "finite positive number"),
+        )
+        for section, field, value, expected_error in cases:
+            with self.subTest(section=section, field=field, value=repr(value)):
+                with self.assertRaisesRegex(ValueError, expected_error):
+                    validate_health_probe_policy({section: {field: value}})
+
+    def test_health_probe_policy_rejects_minimum_samples_above_retained_sample_limit(self):
+        policy = {
+            "latency": {
+                "max_samples_per_target": 3,
+                "minimum_samples_for_comparison": 4,
+            }
+        }
+        with self.assertRaisesRegex(
+            ValueError,
+            "minimum_samples_for_comparison must not exceed latency.max_samples_per_target",
+        ):
+            validate_health_probe_policy(policy)
+
+    def test_invalid_health_policy_stops_before_state_load_or_provider_request(self):
+        invalid_policy = {"latency": {"degraded_multiplier": "2"}}
+        roster = {"providers": [provider("groq")]}
+        with patch("NOVA.router.load_roster", return_value=roster), patch(
+            "NOVA.router.load_json", return_value=invalid_policy
+        ), patch("NOVA.router.load_health_state") as load_state, patch(
+            "NOVA.router.call_provider"
+        ) as call, patch("NOVA.router.atomic_write_json") as write_state, redirect_stdout(
+            StringIO()
+        ):
+            with self.assertRaisesRegex(ValueError, "degraded_multiplier must be a finite positive number"):
+                intelligent_router("test prompt")
+
+        load_state.assert_not_called()
+        call.assert_not_called()
+        write_state.assert_not_called()
 
     def test_stale_provider_is_deprioritized_when_age_boundary_is_enabled(self):
         old = (datetime.now(timezone.utc) - timedelta(hours=8)).isoformat()
