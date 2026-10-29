@@ -255,16 +255,16 @@ def _reject_duplicate_json_keys(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
 
 def load_health_state(path: Path) -> dict[str, Any]:
     """Load operational state without silently replacing an existing corrupt file."""
-    if not path.exists():
+    try:
+        raw = path.read_text(encoding="utf-8")
+    except FileNotFoundError:
+        # An absent file is a valid first-run state; other read errors are not.
         state = _state_defaults()
+    except (OSError, UnicodeError) as exc:
+        raise RuntimeError(
+            "NOVA health state exists but could not be read; refusing to reset persisted state."
+        ) from exc
     else:
-        try:
-            raw = path.read_text(encoding="utf-8")
-        except (OSError, UnicodeError) as exc:
-            raise RuntimeError(
-                "NOVA health state exists but could not be read; refusing to reset persisted state."
-            ) from exc
-
         try:
             state = json.loads(raw, object_pairs_hook=_reject_duplicate_json_keys)
         except _DuplicateJSONKeyError as exc:
