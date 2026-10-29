@@ -108,6 +108,30 @@ class ReasoningTests(unittest.TestCase):
         self.assertFalse(ok)
         self.assertEqual(reason, "SCHEMA_FIELDS_MISMATCH")
 
+    def test_duplicate_json_object_keys_are_rejected(self):
+        content = (
+            '{"significance":"LOW","affected_areas":[],"evidence":[],'
+            '"conclusion":"Observed result needs review.",'
+            '"recommended_actions":[],"model_recommended_autonomy_level":"L1_ANALYZE",'
+            '"model_recommended_requires_human_gate":true,'
+            '"confidence":0.1,"confidence":0.9}'
+        )
+        ok, reason = validate_reasoning_payload(content)
+        self.assertFalse(ok)
+        self.assertEqual(reason, "DUPLICATE_JSON_KEYS")
+
+        # The hook applies recursively, not only to top-level members.
+        nested = (
+            '{"significance":"LOW","affected_areas":[],"evidence":[],'
+            '"conclusion":"Observed result needs review.",'
+            '"recommended_actions":[],"model_recommended_autonomy_level":"L1_ANALYZE",'
+            '"model_recommended_requires_human_gate":true,"confidence":0.5,'
+            '"extension":{"source":"one","source":"two"}}'
+        )
+        ok, reason = validate_reasoning_payload(nested)
+        self.assertFalse(ok)
+        self.assertEqual(reason, "DUPLICATE_JSON_KEYS")
+
     def test_non_object_json_payloads_are_rejected_without_exception(self):
         for content in ("null", "123", "true", '"text"', "[]"):
             with self.subTest(content=content):
