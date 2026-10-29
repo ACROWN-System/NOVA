@@ -26,6 +26,21 @@ class ObserverTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "duplicate source identities"):
             validate_watchlist(watchlist)
 
+    def test_watchlist_rejects_supplied_blank_or_whitespace_source_names(self):
+        for name in ("", " ", "\t \n"):
+            with self.subTest(name=repr(name)):
+                watchlist = {
+                    "sources": [
+                        {"name": name, "url": "https://example.invalid/source"}
+                    ]
+                }
+                with self.assertRaisesRegex(RuntimeError, "name must not be empty when supplied"):
+                    validate_watchlist(watchlist)
+
+    def test_watchlist_allows_omitted_name_to_use_url_identity(self):
+        source = {"url": "https://example.invalid/source"}
+        self.assertEqual(validate_watchlist({"sources": [source]}), [source])
+
     def test_watchlist_rejects_duplicate_urls_even_when_names_differ(self):
         watchlist = {
             "sources": [
