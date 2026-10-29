@@ -148,7 +148,11 @@ def validate_watchlist(watchlist: dict) -> list[dict]:
             raise RuntimeError(
                 f"NOVA/watchlist.json sources[{index}] name must be a string."
             )
-        identity = name.strip().casefold() if isinstance(name, str) and name.strip() else normalized_url
+        if isinstance(name, str) and not name.strip():
+            raise RuntimeError(
+                f"NOVA/watchlist.json sources[{index}] name must not be empty when supplied."
+            )
+        identity = name.strip().casefold() if isinstance(name, str) else normalized_url
         if identity in seen_identities:
             raise RuntimeError("NOVA/watchlist.json contains duplicate source identities.")
         seen_identities.add(identity)
