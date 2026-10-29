@@ -7,7 +7,7 @@
   "repositories": [
     {
       "repo": "NOVA",
-      "main_tree_sha": "7d3675eab01d26dcb1b08c60f787274185457236",
+      "main_tree_sha": "9297a50c5f05e2f540af3ff226542311c5c5a68a",
       "backup_exclusion": "paths starting with backup/ are not included",
       "items": [
         {
@@ -149,7 +149,7 @@
           "path": "NOVA",
           "type": "tree",
           "size_bytes": null,
-          "blob_sha": "432ad65823d9af8a8a50630d0d6503aeb35c8192",
+          "blob_sha": "9dde15cc855c6bb483ef5629c6e8a62131fa610b",
           "mode": "040000",
           "classification": "directory",
           "content_status": "DIRECTORY_NOT_A_FILE"
@@ -427,8 +427,8 @@
         {
           "path": "NOVA/health.py",
           "type": "blob",
-          "size_bytes": 25096,
-          "blob_sha": "780feda6110fc95cafcc106bfb1b30d21f445839",
+          "size_bytes": 25453,
+          "blob_sha": "6e77327427af70af5abf147d9ecaad7b058056d5",
           "mode": "100644",
           "classification": "executable-source",
           "content_status": "CONTENT_REVIEWED_AND_MODIFIED_BLOCK9_PR173_MERGED"
@@ -535,20 +535,20 @@
         {
           "path": "NOVA/quality_gate.py",
           "type": "blob",
-          "size_bytes": 8428,
-          "blob_sha": "d9d8ac71e219639f8ef976fb7c3f31e276ce6d47",
+          "size_bytes": 14091,
+          "blob_sha": "9ee146b8c7e0dcc68eba632e783de86e4fa1a2e4",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "CONTENT_REVIEWED_AND_MODIFIED_BLOCK9_PR173_MERGED"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_8_9_11;PR173_AND_PR174_MERGED"
         },
         {
           "path": "NOVA/reasoning.py",
           "type": "blob",
-          "size_bytes": 18280,
-          "blob_sha": "70b0022348abc19da0bc6978e45997fb90cf071f",
+          "size_bytes": 21467,
+          "blob_sha": "27a63a64c09f36244a67a62283bb740661e40c1d",
           "mode": "100644",
           "classification": "executable-source",
-          "content_status": "CONTENT_REVIEWED_BLOCKS_3_6_AND_8;G001_NOT_YET_IMPLEMENTED"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_3_6_8_10_11;PR172_AND_PR174_MERGED"
         },
         {
           "path": "NOVA/research",
@@ -1787,7 +1787,7 @@
           "path": "NOVA/tests",
           "type": "tree",
           "size_bytes": null,
-          "blob_sha": "24a462aea331a1f491baf0921fcc0c6fc46bbe05",
+          "blob_sha": "4273b26f2096254c78fb24fd39bd1439c092097a",
           "mode": "040000",
           "classification": "directory",
           "content_status": "DIRECTORY_NOT_A_FILE"
@@ -1858,8 +1858,8 @@
         {
           "path": "NOVA/tests/test_health.py",
           "type": "blob",
-          "size_bytes": 24795,
-          "blob_sha": "37e4c2b73f9998ffd3244d661b6a5737114e6846",
+          "size_bytes": 26436,
+          "blob_sha": "bcb6df3580778b6d6d2009112dd0158a96d302c5",
           "mode": "100644",
           "classification": "test-or-test-spec",
           "content_status": "CONTENT_REVIEWED_AND_MODIFIED_BLOCK9_PR173_MERGED"
@@ -1876,8 +1876,8 @@
         {
           "path": "NOVA/tests/test_operational_state.py",
           "type": "blob",
-          "size_bytes": 18999,
-          "blob_sha": "7a365da0d4cb668e4ed159ee465ba3d58f199788",
+          "size_bytes": 20634,
+          "blob_sha": "6c7f0d1b913e62a14c24bfebf261aecc8d66bc36",
           "mode": "100644",
           "classification": "test-or-test-spec",
           "content_status": "CONTENT_REVIEWED_AND_MODIFIED_BLOCK9_PR173_MERGED"
@@ -1921,20 +1921,20 @@
         {
           "path": "NOVA/tests/test_quality_gate.py",
           "type": "blob",
-          "size_bytes": 9413,
-          "blob_sha": "0cdec9d560f4c8e6873361713ace26fc5d2056d2",
+          "size_bytes": 15288,
+          "blob_sha": "d75928a3a0a45575f18c9dc3a766678e6422e5a6",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "CONTENT_REVIEWED_AND_MODIFIED_BLOCK9_PR173_MERGED"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_8_9_11;PR173_AND_PR174_MERGED"
         },
         {
           "path": "NOVA/tests/test_reasoning.py",
           "type": "blob",
-          "size_bytes": 24073,
-          "blob_sha": "71c7db23f115078ac14dfaa9559f225801c7de1a",
+          "size_bytes": 37622,
+          "blob_sha": "64a055b7ecc0704d6f3b58a73ef9b87d021be6ca",
           "mode": "100644",
           "classification": "test-or-test-spec",
-          "content_status": "CONTENT_REVIEWED_BLOCKS_3_6_AND_8;RETRY_FALLBACK_CONTEXT"
+          "content_status": "CONTENT_REVIEWED_BLOCKS_3_6_8_11;PR172_AND_PR174_MERGED"
         },
         {
           "path": "NOVA/tests/test_router.py",
@@ -4872,14 +4872,14 @@
     "Path classification is heuristic and may need correction; it is triage metadata, not a semantic or implementation finding."
   ],
   "review_tracking": {
-    "note": "Tree metadata remains heuristic. Content-review status records bounded passes in the working ledger. Block 8 recorded RCA state/lifecycle observations; Block 9 merged G-005 quality_cases integrity validation; Block 10 finalized G-001 failure-domain/trigger rules. The implementation remains separate and not yet applied. No operational state was changed in Block 10.",
+    "note": "Bounded content review status is documented in the working ledger. Blocks 8–11 reviewed RCA persistence, integrity, trigger/domain rules, and reasoning integration. Block 9 merged G-005; Block 11 merged G-001 in PR #174. NOVA main tree metadata was refreshed after merge; the other five repository entries retain their original snapshot SHAs. Operational state was changed only by the existing post-merge heartbeat workflow; no backup/ path was reviewed or modified.",
     "last_updated_at": "2026-10-29",
-    "last_completed_block": 10,
+    "last_completed_block": 11,
     "modified_paths": 54
   },
   "latest_reviewed_main": {
-    "commit_sha": "f43ee9c550b4862e28a759dbeda988ed2f07e11b",
+    "commit_sha": "9297a50c5f05e2f540af3ff226542311c5c5a68a",
     "as_of": "2026-10-29",
-    "note": "Block 10 reviewed router, reasoning, quality_gate, RCA tests, retry tests and heartbeat workflow. No production or operational-state change in this block. G-001 failure-domain/trigger matrix is documented in the separate research ledger."
+    "note": "Block 11 merged PR #174. Final PR CI and post-merge NOVA Health Tests each passed all 243 offline tests; post-merge NOVA Autonomous Heartbeat completed successfully and published operational state. Post-run aggregate remained six open quality_cases, 30 occurrences, and 12 targets."
   }
 }
