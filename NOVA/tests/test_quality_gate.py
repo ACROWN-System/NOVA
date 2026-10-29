@@ -128,6 +128,8 @@ class RootCauseClosureGateTests(unittest.TestCase):
             {case_id: {**valid_case, "occurrences": None}},
             {case_id: {**valid_case, "reopened_count": "1"}},
             {case_id: {**valid_case, "reopened_count": None}},
+            {case_id: {**valid_case, "failure_domain": None}},
+            {case_id: {**valid_case, "failure_domain": "x" * 81}},
         )
         for malformed in invalid_maps:
             with self.subTest(malformed=repr(malformed)[:100]):
@@ -167,6 +169,54 @@ class RootCauseClosureGateTests(unittest.TestCase):
         self.assertNotEqual(first["case_id"], second["case_id"])
         self.assertEqual(state["quality_cases"][first["case_id"]], original)
         self.assertEqual(len(state["quality_cases"]), 2)
+
+    def test_optional_failure_domain_preserves_legacy_identity_and_scopes_new_cases(self):
+        state = {}
+        expected = "Provider response satisfies NOVA's required structured response contract."
+        legacy = record_failure_case(
+            state,
+            source="provider:model-a",
+            failure_class="transient",
+            expected_result=expected,
+            observed_result="transient:NOT_APPLICABLE",
+        )
+        # This identifier is produced by the pre-domain signature formula.
+        self.assertEqual(legacy["case_id"], "rca-77cc4926a00f9826")
+        self.assertNotIn("failure_domain", legacy)
+
+        repeated = record_failure_case(
+            state,
+            source="provider:model-a",
+            failure_class="transient",
+            expected_result=expected,
+            observed_result="transient:NOT_APPLICABLE",
+        )
+        self.assertEqual(repeated["case_id"], legacy["case_id"])
+        self.assertEqual(repeated["occurrences"], 2)
+
+        scoped = record_failure_case(
+            state,
+            source="provider:model-a",
+            failure_class="transient",
+            expected_result=expected,
+            observed_result="transient:NOT_APPLICABLE",
+            failure_domain="reasoning_analysis",
+        )
+        self.assertNotEqual(scoped["case_id"], legacy["case_id"])
+        self.assertEqual(scoped["failure_domain"], "reasoning_analysis")
+        self.assertEqual(len(state["quality_cases"]), 2)
+
+        before = dict(state["quality_cases"])
+        with self.assertRaisesRegex(RuntimeError, "failure_domain"):
+            record_failure_case(
+                state,
+                source="provider:model-b",
+                failure_class="exception",
+                expected_result="Expected result.",
+                observed_result="exception:FAILED",
+                failure_domain="",
+            )
+        self.assertEqual(state["quality_cases"], before)
 
     def test_incomplete_case_cannot_be_closed(self):
         decision = closure_decision({
