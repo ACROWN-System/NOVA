@@ -28,6 +28,7 @@ Validate all health-probe settings before loading/mutating runtime state or maki
 - Treat a missing freshness age as unspecified; if supplied, require a non-negative integer.
 - Require `max_samples_per_target`, `minimum_samples_for_comparison`, and `unacceptable_consecutive_failures` to be positive integers, rejecting booleans.
 - Require `degraded_multiplier` to be a finite positive JSON number, rejecting booleans and strings.
+- Require `minimum_samples_for_comparison` not to exceed `max_samples_per_target`, so the configured comparison threshold is reachable.
 - Keep existing policy defaults for absent fields and pass validated values unchanged into the health recorder.
 
 ## Actions
@@ -35,7 +36,7 @@ Validate all health-probe settings before loading/mutating runtime state or maki
 1. Add a health-probe policy validator in `NOVA/router.py`.
 2. Call it immediately after reading `health_policy.json`, before state loading/provider ordering/API requests.
 3. Reuse the validated values later when calling `record_probe()`; remove late unvalidated `int()`/`float()` conversions.
-4. Add offline tests for defaults and malformed section/value cases, plus an end-to-end guard that invalid latency policy causes no provider call.
+4. Add offline tests for defaults, malformed section/value cases, contradictory sample thresholds, and an end-to-end guard that invalid latency policy causes no provider call.
 5. Run the full NOVA Health Tests workflow, review the diff, and merge only after all checks pass.
 6. Record the PR, successful workflows, and merge commit here before marking this plan COMPLETE.
 
