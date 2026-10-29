@@ -644,3 +644,51 @@ The transcript reinforces several important ideas that already exist in NOVA/Ast
 4. Treat successful tests as evidence for the asserted properties and tested environment only. Stronger security, protocol, standards-conformance or deployment claims require appropriately broader evidence.
 
 **Block 14 disposition:** review and inventory refresh complete. No application-code, policy, contract, runtime, CI, credential, deployment or production changes were made. No paid service or external AI/provider was used. No backup descendants were accessed. The research branch remains unmerged; the next block has not been started.
+
+
+### Block 15 — NOVA action-boundary enforcement review
+**Status:** COMPLETE — bounded source/configuration/test review of the actual current-main action paths, 2026-10-30. This block records an architecture/enforcement gap, not a demonstrated exploit. No application-code or policy change was made.
+
+#### Scope and exact revision
+- NOVA current `main`: commit `9297a50c5f05e2f540af3ff226542311c5c5a68a`; actual Git tree `78eb8298db0ec24a5647fce8945596fc7c2d7581`.
+- Reviewed the action policy, reasoning stage, operational router, operational-state persistence, alert dispatcher, allocation/economic modules, relevant health/weak-RSI/qualification workflows, and tests for reasoning, routing, alerts, operational-state persistence, weak-RSI workflow constraints and workflow coverage.
+- The review is source-level and test-assertion-level. No workflow was triggered and no live provider, payment, alert, or production side effect was executed. No backup descendants were included.
+
+#### Existing safeguards verified in source
+1. **Model output is explicitly advisory in the reasoning stage.** `NOVA/reasoning.py` labels source JSON as untrusted data, prohibits treating source text as authorization, says model autonomy/human-gate fields are recommendations, validates an exact JSON payload, and rejects a model recommendation of `L4_HIGH_IMPACT` or `L5_IRREVERSIBLE` unless its human-gate field is true. It stores recommended actions and a policy-derived action-class list; it does not dispatch the model's free-text `recommended_actions` as executable commands.
+2. **The operational-state publisher has a narrow state-path contract.** `NOVA/operational_state.py` defines `STATE_PATHS` as only `NOVA/health_state.json` and `NOVA/roster.json`, validates the health-state payload and provider identities before publish, writes commits to the dedicated `nova-operational-state` branch, and does not target `main`. Existing tests construct a local Git repository and assert that only the two state files change on the state branch and the main commit remains unchanged.
+3. **Routine health alerts have a channel gate.** `NOVA/router.py` uses notice severity for the normal automated health alerts. `NOVA/alerts.py` sends GitHub issue alerts for notices but skips SMS/voice unless severity is urgent or the explicit `force_all_channels` path is used. `NOVA/tests/test_alerts.py` asserts that a notice does not invoke SMS or voice.
+4. **The Weak RSI report workflow has a deliberately restrictive interface.** `.github/workflows/nova-weak-rsi.yml` is manual-dispatch only, runs on `main`, grants contents-read rather than contents-write permissions, defaults data-use eligibility to `NOT_APPROVED`, and does not schedule or publish repository mutations. Its tests assert these constraints.
+5. **The scheduled health workflows are bounded but have write capabilities.** The AI heartbeat, GPU heartbeat and opportunistic probe workflow run on `main` and grant their operational job `contents: write` and `issues: write` for state-branch updates and GitHub issue alerting. The inspected publisher limits its state push to `nova-operational-state`; this review did not independently verify repository branch-protection/ruleset settings, so no claim is made that GitHub token permissions are branch-scoped.
+
+These controls show that some concrete paths already have deterministic boundaries. They do not establish a universal action policy for every NOVA-controlled entry point.
+
+#### Finding
+**NOVA-ACT-P-001 — `NOVA/action_policy.json` is not a shared pre-action authorization gate for the reviewed operational side effects.**
+
+**Evidence**
+- `NOVA/action_policy.json` defines health actions, autonomy levels, external-event action classes, financial action states and public-pricing rules.
+- The reasoning path loads `external_event_actions` and records the resulting list as `permitted_action_classes` on the event and in its alert payload. However, the list is descriptive metadata on this path: the code decides whether to call `alerts.send_all_alerts` from the event's significance, and does not first verify that the policy-derived list authorizes that actual issue/alert side effect.
+- The router independently marks a provider down when its response is classified as a permanent failure, updates the in-memory roster, records operational state and sends a GitHub notice. Those branches do not call a common executor or ask `action_policy.json` for permission before each side effect. Changing `health_actions` in the JSON therefore would not, by itself, gate that router behavior.
+- The state publisher validates its own permitted paths and state payload, but does not call a shared action-policy gate. The inspected allocation/economic modules calculate and record capacity/economic values; their reviewed paths do not submit crypto payments or execute irreversible financial transfers.
+- The root-cause/shared-knowledge governance document already labels the common control plane as **PROPOSED ARCHITECTURE — not yet enforced across all NOVA entry points**, and explicitly describes the missing universal pre/post execution gate. This source review confirms the bounded examples above rather than discovering a wholly new requirement.
+
+**Disposition:** **CONFIRMED ARCHITECTURE GAP; no current unsafe execution demonstrated.** The JSON file is a useful policy declaration and the reasoning prompt has a correct advisory boundary, but neither should be represented as proof that every action is centrally authorized. The current reviewed paths do not execute arbitrary model-recommended commands; the concern is that independent operational side-effect paths can drift from the declarative policy.
+
+#### What is and is not established
+- Established: the current action policy does not act as one shared executable authorization gate in the reviewed router, event-alerting and state-publish paths.
+- Established: those paths have narrower, purpose-specific controls (notice channel behavior, schema/state validation, state-path allowlist and branch target, manual/read-only Weak RSI workflow).
+- **Not established:** an observed unauthorized payment, arbitrary command execution, unprotected main branch, credentials compromise, or a successful policy bypass exploit. None was attempted or demonstrated. The repository branch-protection configuration was not checked in this block.
+- **Not established:** that current NOVA code can submit a crypto payment or perform an irreversible token transfer. The financial policy fields are declarative at this stage; the reviewed economics/allocation modules do not implement those actions.
+
+#### Candidate remediation for a later implementation block
+1. Before describing `action_policy.json` as an enforcement mechanism, either scope its language accurately to policy metadata for the current implementation or implement a deterministic, shared pre-action check at the trusted execution boundary.
+2. Bind every supported side effect to an explicit action identifier, required authority, scope, policy version and evidence requirement. Unknown, malformed or denied action identifiers should fail closed.
+3. For the current narrow system, begin with **policy-to-side-effect tests** rather than a broad new framework: show that provider demotion, GitHub issue creation, state-branch publication, paid-channel alerts and any future financial operation are either explicitly permitted by a validated policy or blocked. Preserve the current special handling for read-only reports and routine notice alerts.
+4. Keep independent post-action verification and sanitized audit evidence for changes that can alter state. Confirm GitHub branch rules and the effective scope of write-capable workflow tokens before claiming the operational-state branch is protected from other writes.
+5. Keep the current distinction among model recommendation, policy classification, execution authorization, observed side effect and verified outcome. Do not add generic payment or autonomous repository-editing functionality as part of this review.
+
+#### Transcript connection
+The most relevant transfer from Chapters 11 and 13–14 is not to assume a written rule or a model's stated intention guarantees a safe result. A policy must be connected to the concrete side effect and tested at the boundary where the effect occurs. The existing code has useful local safeguards; the unresolved work is to ensure that those guards form a coherent, verifiable path when entry points and capabilities expand.
+
+**Block 15 disposition:** source review and inventory statuses updated. No application code, workflow, action policy, credential, payment, runtime or production state was changed. No external AI/provider was called. Backups remain excluded. The research branch remains unmerged.
