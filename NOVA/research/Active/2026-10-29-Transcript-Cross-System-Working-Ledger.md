@@ -472,3 +472,51 @@ No reasoning-path RCA creation was added. The critical follow-up remains G-001: 
 The merge activated the existing configured heartbeat workflow once, which successfully republished operational state. No additional standalone provider request was created by the RCA helper or its tests.
 
 **Next block:** Continue the transcript-based cross-repository review from the next bounded research question in the ledger. Keep the working notes on the unmerged research branch and keep `backup/` excluded.
+
+### Block 12 — AstroCrown-Web preview, data claims, and evidence boundaries
+**Status:** COMPLETE — source-level review; no production code, workflow, published file, account state, or backup modified.
+
+#### Scope and sources inspected
+- Current `AstroCrown-Web/main` tree snapshot: `522bfc084a4a24e057d1725a0c669887080ecac6`; 262 inventory entries including the root `backup` directory entry but excluding its descendants. This path set is identical to the inventory; no files were added/removed relative to the recorded snapshot.
+- Read current source for `preview/index.html`, `preview/account-ui.js`, `preview/account-prototype.css`, `development/index.html`, `development/audit/tests/homepage_browser_smoke.py`, `development/index-reference/DATA-DISPLAY-CONVENTIONS.md`, `development/index-section/DISCOVERY-INFORMATION-BAR.md`, `development/audit/FACT-OBSERVATION-AND-EVIDENCE-GOVERNANCE.md`, `development/audit/PUBLIC-CLAIMS-AND-LEGAL-COMMUNICATIONS.md`, `SECURITY.md`, `README.md`, `development/audit/Completed/2026-10-16-Account-Continuity-and-Privacy-Preserving-Access-Foundation.md`, and `development/nova-recursive-self-improvement/CAPABILITY-BENCHMARK-PROTOCOL.md`.
+- The direct hosted preview URL could not be retrieved by the available page-inspection route in this turn. Accordingly, claims below are grounded in repository source and test definitions, not a fresh browser-rendered visual inspection. The browser smoke test source was reviewed but not executed as part of Block 12.
+
+#### Confirmed preview and authentication behavior
+1. `preview/index.html` describes itself as a public live-hosted test preview, declares `noindex, nofollow, noarchive`, and explicitly states that market data are illustrative and the account interaction is a browser-only demo. Its visible ribbon warns “never enter real credentials.” The page repeats sample labels on its cards/metrics and explains in prototype notes that all market figures, price changes, rankings, sentiment scores, influence weights, search/filter/sort/pagination, and dialogs are illustrative/local sample behavior; wallet, trading, token creation, external market data and separate destination pages are not connected.
+2. The related `development/index.html` is also a design preview and describes illustrative demo data, rather than providing a separate verified live-data path.
+3. The hosted-browser account flow chooses browser-preview mode on non-loopback hosts, and `requestJson()` then dispatches to `browserPreviewRequest()` instead of its HTTP `fetch()` path. The account store is an in-memory object; summaries label scope `browser-preview-memory-only`, preview `admin` is hard-coded false, and the demo state disappears on page reload. Password reset, email verification/delivery, newsletter email and external sign-in are explicitly unavailable/not sent.
+4. The browser smoke-test source explicitly checks for the illustrative-data/real-credentials warning, account-demo warning, basic disposable signup/login behavior and non-persistence after reload; the test code also blocks non-loopback browser requests when used in its configured smoke-test run. Those assertions were not executed during this block.
+5. A repository path-name inventory shows security policy/baseline material and development audit/benchmark reports, but no dedicated public security-assurance page/route. The preview account script contains no security-assurance link. Per the existing product direction, record this as an outstanding product integration item; do not insert a dead link or imply a security certification before there is a reviewed destination.
+
+#### Requirements and governance state
+- `DATA-DISPLAY-CONVENTIONS.md` specifies that consensus should synthesize multiple independent sources; identify sources and freshness; document methodology; distinguish source values from derived values; and define missing, stale, conflicting, malformed, insufficient-data and failure states. It explicitly rejects silently translating missing evidence to zero, neutral, healthy or positive values without an approved method.
+- `FACT-OBSERVATION-AND-EVIDENCE-GOVERNANCE.md` distinguishes facts, source claims, hypotheses/inferences, source multiplicity and missing evidence, and cautions that documentation/hash/provenance alone does not prove permission, ownership or truth. The document labels itself proposed governance.
+- `PUBLIC-CLAIMS-AND-LEGAL-COMMUNICATIONS.md` calls for exact claim scope, dates/versions, matching evidence, material limitations and counterpart evidence. It says successful API calls and limited benchmarks do not independently prove sustainable quota, general quality, commercial-use permission, security, or production readiness. That document also labels itself proposed operational guidance, not counsel-approved.
+- `SECURITY.md` explicitly warns that passing CI or automated scanning does not prove the sandbox is escape-proof. This is an appropriate limitation statement, not a claim of complete assurance.
+- `CAPABILITY-BENCHMARK-PROTOCOL.md` says code execution success alone is insufficient and binds comparison to exact baseline/candidate commits, a protected sandbox and structured evidence. This is relevant supporting implementation policy; a protocol document is not itself proof that every feature/claim has been independently verified.
+
+#### Comparison with the supplied video transcript
+This comparison uses the transcript's framing as supplied; it does not independently fact-check the speaker's external technical examples.
+
+- **Chapters 1–3: answers versus understanding, verified output versus reusable mathematical insight.** The preview currently offers interaction and sample cards, not a substantiated market signal or new insight. The visible sample labels preserve that distinction instead of implying real consensus.
+- **Chapter 4: models versus reality and model limits.** The display conventions' source, freshness, missing/conflicting/stale and source-vs-derived requirements align with the transcript's distinction between observed data and a model that tries to explain it. They remain requirements until a live data path implements and tests them.
+- **Chapters 5 and 9–10: safe abstraction, empirical tests, and incomplete theory.** The static demo and isolated browser-only auth are useful low-cost test surfaces; they must not be treated as validated production behavior or general capability. The security and claim docs appropriately warn that CI/API success alone cannot support broader claims.
+- **Chapter 11: capability-linked cyber risk.** The explicit ban on real credentials in the public preview and the no-network/browser-only behavior are consistent with a cautious test boundary. They do not replace server-side security design or a security assessment for future real authentication.
+
+#### Block 12 findings and dispositions
+**ACW-P-001 — Live-data product blocker (explicitly disclosed, not a false-claim defect).**
+- **Evidence:** The current preview says all financial values are illustrative, all data APIs are not connected, and local interactions operate on sample data. The current data-display spec has not yet been implemented as an external source pipeline in this preview.
+- **Disposition:** The homepage is visually testable but is not yet a live market-data product. Before replacing samples, establish lawful/usable $0-first sources, source and license checks, timestamp/freshness rules, calculation methodology, source independence, missing/stale/conflict behavior, and offline tests. Do not label derived scores or market values as live/verified until those gates pass. No provider API was called during Block 12.
+
+**ACW-P-002 — Public security-assurance destination and sign-in link remain unimplemented.**
+- **Evidence:** Current repository tree offers security policy/baseline and development audit/benchmark materials, but no dedicated public assurance page/route; the hosted account-modal source contains no assurance link. The account is only a browser-memory prototype with no production auth.
+- **Disposition:** Retain as a separate product backlog item. First define bounded scope, evidence/status wording and what the page can truthfully claim; then build and link the page. A security-policy file, automated test result or benchmark protocol must not be presented as a formal certification or completed independent assessment.
+
+**ACW-P-003 — Written governance is proposed, not enforced by itself.**
+- **Evidence:** Both the fact/evidence governance and public-claims documents declare proposed status. Their rules are strong design criteria but are not proof of automated publication gating across the website.
+- **Disposition:** Keep the proposal status explicit. If later automating claim gates, add only controls tied to concrete data/content paths and test the behavior; do not create an unrelated governance engine for the current static demo.
+
+#### Block 12 decision
+**No code change is justified in this block.** The public preview's disclosures match its actual demo boundary in source. The important gap is a declared product readiness state, not a hidden contradiction: live market integration and production authentication are absent, and the assurance-page link is not present. Preserve preview warnings until evidence-backed replacement functionality passes the relevant tests.
+
+**Next block:** Block 13 — inspect `AstroCrown_ACS_MC_Spec` and `ACROWN-SIMULATION-LAB` together as a bounded models-versus-reality review: identify assumptions, evidence provenance, reproducibility, uncertainty and explicit limits; distinguish an offline simulation result from real-world validation. Then continue with `AI-Sanctuary-Core` and `Freebies-` so all six repositories receive content review without walking backup archives.
