@@ -156,3 +156,34 @@ Block 2 — Produce the machine-readable inventory and relationship map for all 
 **Preservation/cost check:** no `backup/` content was fetched or changed for this pass; no source code, policy, workflow, runtime state, credentials or public product files were changed; no provider API calls or CI runs were triggered.
 
 **Next block:** Block 3 — inspect the canonical NOVA reasoning, action-policy, root-cause-governance, freshness/reuse, and test paths together to determine which transcript-derived controls already exist at runtime, which are documentation-only, and which failure cases remain untested. Then verify the RSI counterpart before proposing any duplicate control.
+
+
+### Block 3 — NOVA reasoning, policy, freshness, and root-cause controls
+**Status:** COMPLETE — one bounded code/test comparison; no implementation change in this block.
+
+#### Controls verified in source and tests
+- `reasoning.py` requires an exact structured JSON field set, rejects duplicate keys and invalid field types, labels model confidence as `UNCALIBRATED_SELF_ASSESSMENT`, and marks model recommendations as advisory. It relies on the trusted `action_policy.json` to label permitted action classes. Tests cover schema failure, duplicate keys, recursion failures, bounded retries, malformed retry policy, non-string evidence/action entries, high-impact human-gate requirements, and confidence boundaries.
+- `health.py` validates state/config parsing, duplicate JSON keys and core state shape; observation freshness is explicit; cached analysis requires matching fingerprints/timestamps and respects staleness/validity windows. Tests cover malformed files without overwriting them, duplicate keys, precision/order in fingerprints, stale evidence, mismatched fingerprints, and restricted diagnostic-header persistence.
+- `quality_gate.py` implements deterministic model-contract gating and RCA case closure. Its tests verify incomplete evidence blocks closure, the exact candidate commit must be verified, a PASS and timezone-aware timestamp are required, recurrence reopens a case, duplicate failures join one sanitized case, and raw provider response material is not added to the record.
+- `router.py` checks model-specific structured-output capability before provider requests and records actual failed health-probe responses through `_record_root_cause_case`; missing credentials and local configuration/contract skips are intentionally excluded from incident records. Tests exercise the policy validation and selected RCA/capability-gate behavior.
+- The latest Block 59 router-health-policy work complements these controls by validating policy before state load or provider request.
+
+#### Verified gap candidate
+**Finding G-001 — RCA capture is not uniformly integrated into the reasoning execution path.**
+- **Transcript linkage:** T-02 and T-10 (distinguish answer/result from cumulative learning; preserve meaningful failure evidence rather than only success).
+- **Evidence:** Current `reasoning.py` failure paths call `_record_reasoning_failure`, which updates the source event's analysis/retry status. It records provider probes through health telemetry, but `reasoning.py` does not import or call `record_failure_case` or create a corresponding structured `quality_cases` investigation. The root-cause closure API is imported by the operational health router, while the 18 NOVA executable-source files were checked for call sites and showed direct runtime use of these RCA helpers only in `router.py`.
+- **Scope qualification:** This is a narrower integration gap, not proof that every NOVA failure is untracked. The source event and probe telemetry already retain some failure information. The proposed RCA model explicitly says universal root-cause enforcement is not yet implemented.
+- **Potential useful improvement:** Consider a small, schema-safe adapter so recurring, actual provider/response-contract failures in the reasoning path can open/join a sanitized RCA case, reusing the existing `quality_gate.py` case format and `health_state.json` store. Do not build a second incident schema, and do not classify routine missing credentials, policy blocks, or intentional negative tests as defects.
+- **Risks requiring follow-up:** Avoid false-positive incidents for expected transient/unconfigured cases; avoid storing raw prompts/responses/secrets; prevent redundant cases between probes and reasoning events; preserve retry/failover behavior; ensure state schema and alert payloads remain compatible; add offline regression tests proving a failure opens/joins one case without leaking data, while excluded/not-attempted conditions do not.
+- **Disposition:** `GAP-VERIFIED / CANDIDATE — NOT APPROVED FOR IMPLEMENTATION YET`. Recheck the AstroCrown RSI evaluator/benchmark controls and the repository-wide canonical ownership model first. A narrower patch should be made only if it is not already covered by another intended event/lifecycle path.
+
+#### Existing design that must not be duplicated
+- Do not add a new generic confidence framework: current reasoning already rejects booleans and out-of-range values and explicitly denies calibration.
+- Do not add a new local root-cause case data model: `quality_gate.py` already owns a deterministic case format and closure validation.
+- Do not add a second observation cache: `health.py` already owns fingerprint/freshness/validity semantics for external annotations. The broader privacy-aware cross-user cache remains a documented architecture gap, not a reason to copy the existing observation cache.
+- Do not infer real-world/model capability from mocked tests. This distinction is already stated in the root-cause governance and the Simulation Lab.
+- Do not mark the universal control-plane design complete: the architecture remains proposed and not enforced across all entry points.
+
+**Side-effect review:** This was read-only inspection. No runtime state, source, tests, policies, workflows, secrets or backups changed.
+
+**Next block:** Block 4 — cross-check the AstroCrown RSI control/evaluator boundary against the same transcript principles, including benchmark criteria, result evidence, sandbox independence, failure retention, and current suspension/readiness state. Then examine which requirements are canonical and which are duplicated in downstream docs.
