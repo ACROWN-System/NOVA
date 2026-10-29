@@ -226,6 +226,8 @@ class RollingProbeSchedulerTests(unittest.TestCase):
     def test_no_network_attempt_is_not_reported_as_a_completed_probe(self):
         state = _state_defaults()
         roster = providers()
+        rotation = state["provider_rotation"]["ai-heart"]
+        rotation["last_completed_at"] = "2026-10-08T18:00:00+00:00"
         result = reschedule_after_probes(
             state,
             roster,
@@ -237,6 +239,8 @@ class RollingProbeSchedulerTests(unittest.TestCase):
         self.assertEqual(result["last_probe_providers"], [])
         self.assertEqual(result["last_skipped_providers"], ["A", "B", "C", "D"])
         self.assertEqual(result["last_schedule_reason"], "SKIPPED_NO_NETWORK_ATTEMPT")
+        self.assertEqual(result["last_completed_at"], "2026-10-08T18:00:00+00:00")
+        self.assertEqual(result["last_schedule_processed_at"], "2026-10-08T20:55:00+00:00")
 
     def test_required_health_work_can_reuse_expiring_total_resource_without_inventing_cash_value(self):
         targets = {
