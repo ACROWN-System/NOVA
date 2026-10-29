@@ -1,7 +1,7 @@
 # Active Navigation Plan — NOVA Block 45: Reject Duplicate JSON Keys in Operational-State Persistence
 
 **Date:** 2026-10-29  
-**Status:** ACTIVE — make the operational-state reader and publisher enforce the same JSON-key integrity rule as health/configuration loading  
+**Status:** COMPLETE — PR #157 merged after successful regression-test workflows  
 **Objective:** Prevent duplicate JSON object member names inside operational-state files from being silently interpreted with parser last-value-wins behavior during state loading or publishing.
 
 ## Navigation and source of truth
@@ -45,4 +45,10 @@ The parser must not expose the duplicate value or mutate local files before all 
 
 ## Completion evidence
 
-Record the pull request, successful regression workflows, final review, and merge commit here before marking this plan COMPLETE.
+- **Pull request:** https://github.com/ACROWN-System/NOVA/pull/157 — squash-merged.
+- **Merge commit:** `e2b72b102f2d5e743b002679a463b922cd6e81ec`.
+- **Push workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40832027688 — NOVA Health Tests passed on head `b8be24f9c113b99783c01d5fefc8cf6414e15a42`.
+- **Pull-request workflow:** https://github.com/ACROWN-System/NOVA/actions/runs/40832057108 — NOVA Health Tests passed on the same head commit.
+- **Regression evidence:** All 192 offline tests passed. The new tests cover duplicate nested member names in health-state data and duplicate top-level keys in rosters; both load and publish paths reject the records before modifying local files or beginning git/worktree operations.
+- **Review:** `_read_json_text()` now uses duplicate-key detection before enforcing JSON-object roots. Existing provider identity validation and state-branch isolation remain unchanged.
+- **Boundaries confirmed:** No live provider calls, credential/configuration changes, operational-state branch writes, backups, or new dependencies were introduced.
