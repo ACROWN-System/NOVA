@@ -358,7 +358,7 @@
           "size_bytes": 2909,
           "blob_sha": "9fe5dbfbdb27dc54d95af83358fedfd901dd10bc",
           "mode": "100644",
-          "classification": "test",
+          "classification": "structured-data",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -934,7 +934,7 @@
           "size_bytes": 6858,
           "blob_sha": "99edc48ef0643dba89e4f35b26de69a6b17830d3",
           "mode": "100644",
-          "classification": "policy-spec-or-config",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -1078,7 +1078,7 @@
           "size_bytes": 7747,
           "blob_sha": "8bd309a34f80d8d596a0d876b47bf33e3b3b0f03",
           "mode": "100644",
-          "classification": "research-or-audit-record",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -1798,7 +1798,7 @@
           "size_bytes": 4843,
           "blob_sha": "d21eae11cb2d41040e0f6623a3552896576d0917",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -1807,7 +1807,7 @@
           "size_bytes": 4167,
           "blob_sha": "24cc8d16e86d956d33b80689997e697cad4c4428",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -1816,7 +1816,7 @@
           "size_bytes": 10411,
           "blob_sha": "1682448c3b498157c24eaa8180c977054915c674",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -1825,7 +1825,7 @@
           "size_bytes": 4301,
           "blob_sha": "f7bf80781204fc14685ef5e6ee7f296367670250",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -1834,7 +1834,7 @@
           "size_bytes": 2248,
           "blob_sha": "6f8101318b269a44d01974d7a93b156faf1a4768",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -1843,7 +1843,7 @@
           "size_bytes": 21316,
           "blob_sha": "a3def8383ebedcc49b35164b8856afbe2f14b9fc",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -1852,7 +1852,7 @@
           "size_bytes": 9724,
           "blob_sha": "875db3d767d1df2dbad334cd8eb8eb1a512b2672",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -1861,7 +1861,7 @@
           "size_bytes": 24795,
           "blob_sha": "37e4c2b73f9998ffd3244d661b6a5737114e6846",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -1870,7 +1870,7 @@
           "size_bytes": 13750,
           "blob_sha": "5d1a35aacee78dc6c21b62424ea639e74038f0c4",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -1879,7 +1879,7 @@
           "size_bytes": 18999,
           "blob_sha": "7a365da0d4cb668e4ed159ee465ba3d58f199788",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -1888,7 +1888,7 @@
           "size_bytes": 3421,
           "blob_sha": "b216f0b47a1123198d7d271b32388cd9b531334b",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -1897,7 +1897,7 @@
           "size_bytes": 18873,
           "blob_sha": "7c096d8dc2aab433b45ee0b59b91b0479ef8a876",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -1906,7 +1906,7 @@
           "size_bytes": 1514,
           "blob_sha": "e1cdbbf9b2925de9701c9425d3bb3e87fafd8ead",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -1915,7 +1915,7 @@
           "size_bytes": 10736,
           "blob_sha": "3527fa8c3bb6ee284a4637f88e0153ce145ed127",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -1924,7 +1924,7 @@
           "size_bytes": 9413,
           "blob_sha": "0cdec9d560f4c8e6873361713ace26fc5d2056d2",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -1933,7 +1933,7 @@
           "size_bytes": 24073,
           "blob_sha": "71c7db23f115078ac14dfaa9559f225801c7de1a",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -1942,7 +1942,7 @@
           "size_bytes": 36156,
           "blob_sha": "900915dd7e88abd2e723506c43ba895d2f1f5570",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -1951,7 +1951,7 @@
           "size_bytes": 2175,
           "blob_sha": "9d991fc907d70bdd76f4240bd4c95f0d17cdcb25",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -1960,7 +1960,7 @@
           "size_bytes": 2797,
           "blob_sha": "2d14d46bdf8b13538c6266fb4c2b1f632fb16086",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -2156,7 +2156,7 @@
           "size_bytes": 1218,
           "blob_sha": "c4de1f9bc507b3326a5739a3f21f947b3114a5e9",
           "mode": "100644",
-          "classification": "workflow",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -2381,7 +2381,7 @@
           "size_bytes": 14187,
           "blob_sha": "df7c2d770091d60a0314a6b4372ff7d413e3a7c2",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -3155,7 +3155,7 @@
           "size_bytes": 7986,
           "blob_sha": "4d8b547f62c2426cd073cff70096f80403f4b00e",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -3245,7 +3245,7 @@
           "size_bytes": 4351,
           "blob_sha": "cf588fd90ecf6510a4f32e4a19f1d249f11f9dcf",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -3254,7 +3254,7 @@
           "size_bytes": 997,
           "blob_sha": "fda3f291aa504034e7ce868ec6dd0b5779acd94f",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -3263,7 +3263,7 @@
           "size_bytes": 39544,
           "blob_sha": "98f953d91e6a9bea12dca5a928cd71d7a6004da0",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -3848,7 +3848,7 @@
           "size_bytes": 5555,
           "blob_sha": "52cc5c05dd1e7099ec0a988523433ed96f67d9db",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -3857,7 +3857,7 @@
           "size_bytes": 11212,
           "blob_sha": "67e04c3b6fcc0e88092afca5fb47545671c9a786",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -3866,7 +3866,7 @@
           "size_bytes": 8086,
           "blob_sha": "6a7f5bf020284967599747379eba140acff8a70d",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -3875,7 +3875,7 @@
           "size_bytes": 15561,
           "blob_sha": "179c9f34792a0a059c5f6e98d7b87cad4a196716",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -3884,7 +3884,7 @@
           "size_bytes": 17488,
           "blob_sha": "6ab6ac06153dec85780cdcfa20c9d0e49772c8ac",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -3893,7 +3893,7 @@
           "size_bytes": 6524,
           "blob_sha": "81daefcc8cfaff37a7d0f7b64a2ff91b91fb5082",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -3902,7 +3902,7 @@
           "size_bytes": 6139,
           "blob_sha": "549d9e3f6556cbf7ad568621699e781d8ddc2872",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -3911,7 +3911,7 @@
           "size_bytes": 24373,
           "blob_sha": "f04ddf0c4ab4e38fa8a8944adb9593b120c4c640",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -3920,7 +3920,7 @@
           "size_bytes": 15357,
           "blob_sha": "bdf3d87f01e64544c549a680d2b06a965e9cfa17",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -3929,7 +3929,7 @@
           "size_bytes": 3809,
           "blob_sha": "a6b4e3440554701b3d47f00e8356c3f78306e898",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -4785,7 +4785,7 @@
           "size_bytes": 758,
           "blob_sha": "eddf66facc61230de2febd29f1bc6cd62b43ad8d",
           "mode": "100644",
-          "classification": "workflow",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         },
         {
@@ -4839,7 +4839,7 @@
           "size_bytes": 3481,
           "blob_sha": "d614deaf6a7fc4bb350a3c7dbfc7692908acd657",
           "mode": "100644",
-          "classification": "test",
+          "classification": "test-or-test-spec",
           "content_status": "INVENTORIED_CONTENT_NOT_YET_REVIEWED"
         }
       ]
@@ -4851,15 +4851,15 @@
     "classification_counts": {
       "directory": 70,
       "documentation": 106,
-      "workflow": 17,
+      "workflow": 15,
       "other": 11,
       "site-or-static-asset": 10,
       "policy-spec-or-architecture-doc": 25,
-      "policy-spec-or-config": 14,
+      "policy-spec-or-config": 13,
       "executable-source": 33,
-      "structured-data": 14,
-      "test": 36,
-      "research-or-audit-record": 191,
+      "structured-data": 15,
+      "research-or-audit-record": 190,
+      "test-or-test-spec": 39,
       "workflow-or-configuration": 5,
       "build-or-runtime-config": 1
     }
@@ -4868,6 +4868,7 @@
     "Tree metadata does not establish file contents or implementation status.",
     "Directory paths are counted as inventory paths; they are not files.",
     "Binary/static assets require format-specific review only when relevant to a concrete finding.",
-    "File content review status must be updated as review progresses."
+    "File content review status must be updated as review progresses.",
+    "Path classification is heuristic and may need correction; it is triage metadata, not a semantic or implementation finding."
   ]
 }
