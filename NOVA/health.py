@@ -240,10 +240,57 @@ def _state_defaults() -> dict[str, Any]:
     }
 
 
+class _DuplicateJSONKeyError(ValueError):
+    """Raised when persisted JSON contains an ambiguous duplicate object key."""
+
+
+def _reject_duplicate_json_keys(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    result: dict[str, Any] = {}
+    for key, value in pairs:
+        if key in result:
+            raise _DuplicateJSONKeyError("duplicate JSON object key")
+        result[key] = value
+    return result
+
+
 def load_health_state(path: Path) -> dict[str, Any]:
-    state = load_json(path, _state_defaults())
-    if not isinstance(state, dict):
+    """Load operational state without silently replacing an existing corrupt file."""
+    try:
+        raw = path.read_text(encoding="utf-8")
+    except FileNotFoundError:
+        # An absent file is a valid first-run state; other read errors are not.
         state = _state_defaults()
+    except (OSError, UnicodeError) as exc:
+        raise RuntimeError(
+            "NOVA health state exists but could not be read; refusing to reset persisted state."
+        ) from exc
+    else:
+        try:
+            state = json.loads(raw, object_pairs_hook=_reject_duplicate_json_keys)
+        except _DuplicateJSONKeyError as exc:
+            raise RuntimeError(
+                "NOVA health state contains duplicate JSON object keys; "
+                "refusing to reset persisted state."
+            ) from exc
+        except (json.JSONDecodeError, RecursionError) as exc:
+            raise RuntimeError(
+                "NOVA health state is not valid JSON; refusing to reset persisted state."
+            ) from exc
+
+        if not isinstance(state, dict):
+            raise RuntimeError(
+                "NOVA health state must be a JSON object; refusing to reset persisted state."
+            )
+
+        # These core maps are written by NOVA's runtime. Replacing a malformed
+        # map with an empty default would silently discard retained evidence.
+        for key in ("targets", "observations", "events", "provider_rotation"):
+            if key in state and not isinstance(state[key], dict):
+                raise RuntimeError(
+                    f"NOVA health state field '{key}' must be a JSON object; "
+                    "refusing to reset persisted state."
+                )
+
     for key, value in _state_defaults().items():
         state.setdefault(key, value)
     return state

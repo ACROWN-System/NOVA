@@ -1,10 +1,14 @@
 import json
+import tempfile
 import unittest
 from datetime import datetime, timedelta, timezone
+from pathlib import Path
+from unittest.mock import patch
 
 from NOVA.health import (
     _state_defaults,
     fingerprint,
+    load_health_state,
     observation_freshness,
     provider_health_status,
     record_probe,
@@ -14,6 +18,102 @@ from NOVA.health import (
 
 
 class HealthTests(unittest.TestCase):
+    def test_health_state_loader_missing_file_uses_defaults(self):
+        with tempfile.TemporaryDirectory(prefix="nova-missing-health-state-") as temp_dir:
+            path = Path(temp_dir) / "health_state.json"
+
+            state = load_health_state(path)
+
+            self.assertEqual(state["targets"], {})
+            self.assertEqual(state["observations"], {})
+            self.assertEqual(state["events"], {})
+            self.assertEqual(state["provider_rotation"], {"ai-heart": {
+                "next_index": 0,
+                "next_provider": None,
+                "last_probe_providers": [],
+                "last_scheduled_provider": None,
+                "last_scheduled_at": None,
+            }})
+            self.assertFalse(path.exists())
+
+    def test_health_state_loader_rejects_malformed_json_without_modifying_file(self):
+        invalid_json = '{"events": '
+        with tempfile.TemporaryDirectory(prefix="nova-corrupt-health-state-") as temp_dir:
+            path = Path(temp_dir) / "health_state.json"
+            path.write_text(invalid_json, encoding="utf-8")
+
+            with self.assertRaisesRegex(RuntimeError, "not valid JSON"):
+                load_health_state(path)
+
+            self.assertEqual(path.read_text(encoding="utf-8"), invalid_json)
+
+    def test_health_state_loader_rejects_undecodable_bytes_without_modifying_file(self):
+        invalid_bytes = bytes((0xFF, 0xFE, 0x80))
+        with tempfile.TemporaryDirectory(prefix="nova-undecodable-health-state-") as temp_dir:
+            path = Path(temp_dir) / "health_state.json"
+            path.write_bytes(invalid_bytes)
+
+            with self.assertRaisesRegex(RuntimeError, "could not be read"):
+                load_health_state(path)
+
+            self.assertEqual(path.read_bytes(), invalid_bytes)
+
+    def test_health_state_loader_rejects_read_error_without_modifying_file(self):
+        original = '{"events": {}}'
+        with tempfile.TemporaryDirectory(prefix="nova-unreadable-health-state-") as temp_dir:
+            path = Path(temp_dir) / "health_state.json"
+            path.write_text(original, encoding="utf-8")
+
+            with patch.object(Path, "read_text", side_effect=PermissionError("permission denied")):
+                with self.assertRaisesRegex(RuntimeError, "could not be read"):
+                    load_health_state(path)
+
+            self.assertEqual(path.read_text(encoding="utf-8"), original)
+
+    def test_health_state_loader_rejects_duplicate_json_keys_without_modifying_file(self):
+        invalid_documents = (
+            '{"events": {}, "events": {}}',
+            '{"events": {"event-id": 1, "event-id": 2}}',
+        )
+        for invalid_json in invalid_documents:
+            with self.subTest(invalid_json=invalid_json):
+                with tempfile.TemporaryDirectory(prefix="nova-duplicate-health-key-") as temp_dir:
+                    path = Path(temp_dir) / "health_state.json"
+                    path.write_text(invalid_json, encoding="utf-8")
+
+                    with self.assertRaisesRegex(RuntimeError, "duplicate JSON object keys"):
+                        load_health_state(path)
+
+                    self.assertEqual(path.read_text(encoding="utf-8"), invalid_json)
+
+    def test_health_state_loader_rejects_non_object_root_without_modifying_file(self):
+        for invalid_root in ("[]", "null", '"state"', "17", "true"):
+            with self.subTest(invalid_root=invalid_root):
+                with tempfile.TemporaryDirectory(prefix="nova-nonobject-health-state-") as temp_dir:
+                    path = Path(temp_dir) / "health_state.json"
+                    path.write_text(invalid_root, encoding="utf-8")
+
+                    with self.assertRaisesRegex(RuntimeError, "must be a JSON object"):
+                        load_health_state(path)
+
+                    self.assertEqual(path.read_text(encoding="utf-8"), invalid_root)
+
+    def test_health_state_loader_rejects_malformed_core_maps_without_modifying_file(self):
+        for field in ("targets", "observations", "events", "provider_rotation"):
+            for invalid_value in (None, [], "invalid", 7, True):
+                with self.subTest(field=field, invalid_value=invalid_value):
+                    with tempfile.TemporaryDirectory(prefix="nova-invalid-health-map-") as temp_dir:
+                        path = Path(temp_dir) / "health_state.json"
+                        state = _state_defaults()
+                        state[field] = invalid_value
+                        serialized = json.dumps(state)
+                        path.write_text(serialized, encoding="utf-8")
+
+                        with self.assertRaisesRegex(RuntimeError, f"field '{field}'"):
+                            load_health_state(path)
+
+                        self.assertEqual(path.read_text(encoding="utf-8"), serialized)
+
     def test_fingerprint_ignores_transport_noise(self):
         left = {"value": 1, "observed_at": "2026-10-07T00:00:00Z", "latency_ms": 100}
         right = {"value": 1, "observed_at": "2026-10-07T01:00:00Z", "latency_ms": 900}
