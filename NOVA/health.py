@@ -240,6 +240,19 @@ def _state_defaults() -> dict[str, Any]:
     }
 
 
+class _DuplicateJSONKeyError(ValueError):
+    """Raised when persisted JSON contains an ambiguous duplicate object key."""
+
+
+def _reject_duplicate_json_keys(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    result: dict[str, Any] = {}
+    for key, value in pairs:
+        if key in result:
+            raise _DuplicateJSONKeyError("duplicate JSON object key")
+        result[key] = value
+    return result
+
+
 def load_health_state(path: Path) -> dict[str, Any]:
     """Load operational state without silently replacing an existing corrupt file."""
     if not path.exists():
@@ -253,7 +266,12 @@ def load_health_state(path: Path) -> dict[str, Any]:
             ) from exc
 
         try:
-            state = json.loads(raw)
+            state = json.loads(raw, object_pairs_hook=_reject_duplicate_json_keys)
+        except _DuplicateJSONKeyError as exc:
+            raise RuntimeError(
+                "NOVA health state contains duplicate JSON object keys; "
+                "refusing to reset persisted state."
+            ) from exc
         except (json.JSONDecodeError, RecursionError) as exc:
             raise RuntimeError(
                 "NOVA health state is not valid JSON; refusing to reset persisted state."
