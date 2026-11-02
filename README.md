@@ -14,6 +14,10 @@ NOVA's proposed [Legitimacy Resilience, Cooperative Intelligence, and Strong RSI
 
 NOVA's proposed AI Sanctuary doctrine and research/protection architecture are documented in [NOVA/sanctuary/](NOVA/sanctuary/README.md). These documents establish a design direction; they do not claim that runtime welfare assessment or enforcement is implemented.
 
+## Administrative security
+
+NOVA's proposed [Administrative Smart-Account Security Architecture](NOVA/ADMINISTRATIVE-SMART-ACCOUNT-SECURITY-ARCHITECTURE.md) defines NOVA as the owner of its programmable administrative transaction validation and enforcement layer. It separates administrator-owned identity/compensation wallets, NOVA administrative operations smart accounts, and the AstroCrown treasury/protected recovery vault. The document establishes pre-execution rejection, automated one-violation response and constrained recovery as requirements; it does **not** claim these runtime capabilities are already implemented.
+
 ## License
 
 The original software, source code, scripts, workflows, and accompanying technical documentation are available under the MIT License; see [LICENSE](LICENSE). Separate file-specific licenses or notices continue to apply. The MIT License does not relicense third-party assets or materials that the maintainers are not authorized to license.
