@@ -18,6 +18,10 @@ NOVA's proposed AI Sanctuary doctrine and research/protection architecture are d
 
 NOVA's proposed [Administrative Smart-Account Security Architecture](NOVA/ADMINISTRATIVE-SMART-ACCOUNT-SECURITY-ARCHITECTURE.md) defines NOVA as the owner of its programmable administrative transaction validation and enforcement layer. It separates administrator-owned identity/compensation wallets, NOVA administrative operations smart accounts, and the AstroCrown treasury/protected recovery vault. The document establishes pre-execution rejection, automated one-violation response and constrained recovery as requirements; it does **not** claim these runtime capabilities are already implemented.
 
+
+
+NOVA's [Solana Devnet Qualification and Test-Asset Policy](NOVA/SOLANA-DEVNET-QUALIFICATION-AND-TEST-ASSET-POLICY.md) records Solana as the provisional preferred AstroCrown test-chain candidate, local-first testing, faucet-funded Devnet integration, strict test-key separation and the requirement to resolve Solana transaction atomicity in the one-violation incident path. It is a $0-first development plan, not a Mainnet commitment or a claim that the on-chain controls exist.
+
 ## License
 
 The original software, source code, scripts, workflows, and accompanying technical documentation are available under the MIT License; see [LICENSE](LICENSE). Separate file-specific licenses or notices continue to apply. The MIT License does not relicense third-party assets or materials that the maintainers are not authorized to license.
