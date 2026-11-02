@@ -136,10 +136,75 @@ The qualification record must identify:
 
 Do not include private keys, seed phrases, passwords, secret RPC URLs, access tokens or sensitive incident data.
 
-## 9. Acceptance gates
+
+## 10. Testnet: supplemental network and release-compatibility stage
+
+Solana Testnet should be included as a **supplemental, targeted qualification environment**, not as the primary application-development environment.
+
+Solana's documented cluster purposes are different:
+- **Devnet** is the recommended public environment for application developers, token holders and program integration.
+- **Testnet** is primarily where Solana core contributors stress-test release candidates, network upgrades, performance, stability and validator behavior. It may run a newer software release branch than Devnet and Mainnet.
+- **Local validator** remains the best place for repeatable application and adversarial regression tests.
+- **Mainnet** remains production and is not part of the $0 test workflow.
+
+Accordingly, use Testnet later in the qualification sequence to catch cluster/runtime/version-specific compatibility issues and to run controlled end-to-end smoke/stress tests where the test depends on the shared Testnet environment. Do not duplicate every Devnet test on Testnet by default, and do not interpret a Testnet pass as proof of Mainnet equivalence.
+
+The official Testnet RPC is shared and may experience intermittent downtime. A Testnet faucet is documented, but its current limits, availability and eligibility must be checked live. Do not assume that every Testnet test asset is available from a faucet or that its limits match Devnet. If the faucet is unavailable, create controlled test mints where permitted or defer that test; do not use a paid source or Mainnet asset.
+
+Official cluster-purpose reference: [Solana clusters and public RPC endpoints](https://solana.com/docs/references/clusters). Official Testnet endpoint: `https://api.testnet.solana.com`.
+
+## 11. Asset compatibility matrix — create controlled mints rather than chase faucets
+
+The main asset-compatibility objective is to test how NOVA parses, validates, monitors and authorizes **different asset programs and mint configurations**. Acquiring random faucet tokens is not a substitute for this testing.
+
+A token mint created on Devnet does not automatically exist on Testnet or Mainnet. Each cluster has a separate ledger. For reproducible tests, create a controlled fixture mint and token accounts separately on Localnet, Devnet and (only for selected tests) Testnet. Record a fixture manifest that identifies cluster, token program, mint address, decimals, extension set, authorities, test scenario and build/version. Never assume the same symbol/name or mint address implies the same asset on another cluster.
+
+At minimum, qualify the following asset classes where the project plans to support them:
+
+| Asset class | Required test cases |
+|---|---|
+| Native SOL | Balance/transfer, account funding, rent/required account allocation, insufficient funds, fee-payer separation |
+| Classic SPL Token | Mint and token-account identification, transfer, decimals, freeze/mint authority, owner/delegate, close authority and rejection of unsupported instructions |
+| Token-2022 basic mint | Program-ID identification, mint/account parsing and transfer with no optional extensions |
+| Token-2022 transfer fee | Fee calculation/withheld amounts, fee authority and gross-versus-net transfer accounting |
+| Token-2022 transfer hook | Required extra accounts, CPI invocation, hook program allowlisting, hook failure and malicious/unapproved hook rejection |
+| Token-2022 permanent delegate | Detection and policy treatment of authority that may transfer/burn tokens beyond ordinary owner/delegate expectations |
+| Token-2022 default account state / pausable | Frozen/paused behavior, authority changes and fail-closed handling |
+| Token-2022 metadata / metadata pointer | Correct mint binding and treating names/symbols/URIs as untrusted descriptive metadata rather than asset identity |
+| Token-2022 confidential transfer | Explicit support decision; reject by default until confidentiality-aware balance, validation, monitoring and compliance behavior is independently designed and tested |
+| NFTs and other asset standards | Test only standards that AstroCrown explicitly chooses to support (for example, Metaplex Token Metadata, programmable NFTs, compressed NFTs or Metaplex Core); validate their owning program, authority and transfer path separately |
+
+This matrix is a scope proposal, not a claim that all listed types are supported. The supported asset policy must be explicit. An unrecognized program ID, mint, extension, hook or asset standard must be rejected by default until it has an approved test profile.
+
+Token-2022 extensions are optional features and some extension combinations are incompatible. Extension selection often has to be made at mint/account initialization; it cannot safely be assumed that missing capabilities can be added later. Consult the [official Token Extensions documentation](https://solana.com/docs/tokens/extensions) and [official Token Programs guide](https://solana.com/docs/tokens) when building fixture profiles.
+
+For each supported asset profile, test:
+- correct parsing of mint and token-account data;
+- owner, delegate, close authority, freeze authority, mint authority, permanent delegate, transfer-fee authority, transfer-hook program and other relevant authorities;
+- exact amount/decimal handling without floating-point loss;
+- transfer simulation and execution, including fee/gross/net effects;
+- program/extension compatibility and required accounts;
+- allowlisted and denied destinations;
+- unsupported extension and malicious hook behavior;
+- monitoring and incident attribution; and
+- recovery/asset accounting limitations.
+
+Do not treat a token ticker, displayed name, logo, metadata URI or faucet label as proof of authenticity. Identify an asset by its cluster, owning program and mint/asset address, plus the exact configuration and authorities that NOVA has qualified.
+
+### Asset-fixture funding rules
+
+- Local validator: use controlled local airdrops and mint fixtures; no public faucet is required for deterministic tests.
+- Devnet: use faucet SOL for transaction fees and native-SOL cases; create controlled SPL/Token-2022 test mints for token cases. Use third-party asset faucets only after verifying the exact mint and test purpose.
+- Testnet: use its current official faucet only for test SOL when it is available. Create controlled token fixtures on Testnet if the test requires that cluster; do not assume Devnet mints or tokens are replicated there.
+- All faucet assets are valueless, cluster-specific test data. They are never reserves, collateral, compensation, project revenue or live token holdings.
+
+## 12. Acceptance gates
 
 - [ ] Local/offline model passes before any Devnet integration work.
-- [ ] Devnet test keypairs are disposable, separated from Mainnet and never committed.
+- [ ] Devnet and Testnet keypairs are disposable, separated from Mainnet and never committed.
+- [ ] Devnet is used for application integration; Testnet is used selectively for network/release compatibility, not as a substitute for Devnet.
+- [ ] Controlled test mints are created separately on each cluster for the asset profiles being qualified; no cross-cluster mint equivalence is assumed.
+- [ ] Unknown token programs, mints, Token-2022 extensions, hooks and asset standards fail closed unless an explicit support profile has passed tests.
 - [ ] Devnet configuration is explicitly verified before every write/deployment command.
 - [ ] Faucet airdrops are confirmed and balances checked; no paid service is used.
 - [ ] Public RPC limits and faucet failures are handled without paid fallback or uncontrolled retry loops.
