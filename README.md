@@ -20,7 +20,7 @@ NOVA's proposed [Administrative Smart-Account Security Architecture](NOVA/ADMINI
 
 
 
-NOVA's [Solana Devnet Qualification and Test-Asset Policy](NOVA/SOLANA-DEVNET-QUALIFICATION-AND-TEST-ASSET-POLICY.md) records Solana as the provisional preferred AstroCrown test-chain candidate, local-first testing, faucet-funded Devnet integration, strict test-key separation and the requirement to resolve Solana transaction atomicity in the one-violation incident path. It is a $0-first development plan, not a Mainnet commitment or a claim that the on-chain controls exist.
+NOVA's [Solana Devnet Qualification and Test-Asset Policy](NOVA/SOLANA-DEVNET-QUALIFICATION-AND-TEST-ASSET-POLICY.md) records Solana as the provisional preferred AstroCrown test-chain candidate, local-first testing, faucet-funded Devnet integration, selective Testnet network/release qualification, a controlled SPL Token/Token-2022/asset-standard compatibility matrix, strict test-key separation and the separate incident path required by Solana transaction atomicity. It is a $0-first development plan, not a Mainnet commitment or a claim that the on-chain controls exist.
 
 ## License
 
