@@ -247,7 +247,24 @@ Use a strict $0-first progression:
 4. **Separate test-asset scenarios:** create controlled test mints and accounts for SPL-token/Token-2022 coverage as appropriate. A native SOL faucet does not automatically provision arbitrary SPL tokens.
 5. **Mainnet decision gate:** no mainnet deployment, real treasury asset, real salary/bonus payment or real operational funds until program invariants, adversarial tests, independent review, monitoring and recovery drills all pass and the separate chain-selection decision is approved.
 
-### 9.4 Faucet and RPC controls
+### 9.4 Testnet and asset-compatibility qualification
+
+Solana Testnet is a supplemental environment, not a replacement for Devnet. Devnet is the primary public application-development/integration environment. Testnet is primarily used to stress-test Solana releases, network upgrades, validator behavior, performance and stability, and may run a newer software release branch. Use Testnet selectively for runtime/version compatibility and controlled end-to-end smoke/stress tests; do not treat a Testnet pass as proof of Mainnet equivalence.
+
+Different asset compatibility must be tested by program and mint configuration, not by collecting arbitrary faucet tokens. Build a controlled asset matrix for supported classes:
+- native SOL;
+- classic SPL Token;
+- Token-2022 base mints;
+- Token-2022 transfer fees, transfer hooks, permanent delegate, default account state/pausable, metadata and confidential transfer (explicitly unsupported until designed and qualified);
+- only those NFT/asset standards AstroCrown chooses to support, such as Metaplex Token Metadata, programmable NFTs, compressed NFTs or Metaplex Core.
+
+A token mint and its balances are cluster-specific. A Devnet mint is not automatically present on Testnet. Create a matching controlled test mint and associated accounts separately on each cluster where the corresponding test is required. Maintain a fixture manifest with cluster, mint, owning program, decimals, extensions, authorities and test scenario. Token name, logo, symbol or metadata URI is not proof of identity. NOVA identifies test assets by cluster, owning program, mint address and verified configuration.
+
+Token-2022 extensions can have incompatible combinations, and extension selection must be planned when mint/account state is initialized. The NOVA supported-asset registry must explicitly state accepted programs/extensions and fail closed for unknown mints, programs, extensions, hooks and standards. Review the [official Token Extensions documentation](https://solana.com/docs/tokens/extensions) and [Token Programs guide](https://solana.com/docs/tokens).
+
+Testnet has valueless test tokens, may reset and has a public faucet, but faucet availability, quotas and eligibility may change. Confirm the official live service before requesting assets. Use local controlled fixtures for deterministic tests, Devnet for application integration, and Testnet only for the specific network/version compatibility scenarios that benefit from it. Do not pay for tokens or services to complete this initial test plan.
+
+### 9.5 Faucet and RPC controls
 
 - Primary official sources: [Solana Devnet faucet](https://faucet.solana.com/), [Solana Devnet SOL guide](https://solana.com/developers/cookbook/development/airdrops-and-faucets), [Solana cluster documentation](https://solana.com/docs/references/clusters) and [Solana CLI basics](https://solana.com/docs/intro/installation/solana-cli-basics).
 - The CLI can request an airdrop to a disposable Devnet test wallet, for example: `solana airdrop 2 <DEVNET_TEST_ADDRESS> --url devnet`. The currently documented CLI limit is up to 5 SOL per request, subject to RPC/faucet rate limits. Web-faucet limits and verification requirements can change; check the live faucet rather than encoding a permanent quota.
@@ -257,9 +274,10 @@ Use a strict $0-first progression:
 - Do not store test keypairs, recovery phrases or private keys in Git, PRs, issues, CI logs or screenshots. Create them locally or ephemerally and label them unambiguously as test-only.
 - The faucet supplies test SOL, not Mainnet SOL. Testnet/Devnet balances have no monetary value and must never be included in treasury, provider-budget, compensation or revenue calculations.
 
-### 9.5 Solana-specific acceptance additions
+### 9.6 Solana-specific acceptance additions
 
-- [ ] The first implementation target is Solana Devnet, subject to later chain-selection approval; local/offline tests precede Devnet usage.
+- [ ] The first public integration target is Solana Devnet; local/offline tests precede Devnet usage, and Testnet is used selectively for cluster/runtime compatibility.
+- [ ] A controlled asset compatibility matrix covers every asset program and extension AstroCrown intends to support; cluster-specific test mints are created separately and unknown assets fail closed.
 - [ ] NOVA uses Solana programs, explicit account state, PDAs and CPI authorization as appropriate, rather than an assumed EVM account-abstraction design.
 - [ ] All supported operational assets are held under program-controlled authorities; no external administrator wallet can bypass NOVA to move those vault assets.
 - [ ] The program validates signer, authority, policy version, account relationships, destination, mint/program, amount and instruction scope before CPI.
