@@ -1674,34 +1674,34 @@
   "observations": {},
   "provider_rotation": {
     "ai-heart": {
-      "last_completed_at": "2026-11-03T13:15:18.788459+00:00",
+      "last_completed_at": "2026-11-03T21:17:17.329198+00:00",
       "last_probe_providers": [
-        "cloudflare"
+        "gemini"
       ],
-      "last_schedule_processed_at": "2026-11-03T13:15:18.788459+00:00",
+      "last_schedule_processed_at": "2026-11-03T21:17:17.329198+00:00",
       "last_schedule_reason": "ROLLING_INTERVAL",
       "last_scheduled_at": "2026-10-08T12:32:24.729000+00:00",
       "last_scheduled_provider": "mistral",
       "last_selection_decision": {
         "details": {},
-        "due_at": "2026-11-03T13:51:52.064969+00:00",
+        "due_at": "2026-11-03T19:15:18.788459+00:00",
         "preempted": false,
-        "provider": "cloudflare",
-        "reason": "SCHEDULED_PENDING"
+        "provider": "gemini",
+        "reason": "SCHEDULED_DUE"
       },
-      "last_selection_reason": "SCHEDULED_PENDING",
+      "last_selection_reason": "SCHEDULED_DUE",
       "last_skipped_providers": [],
-      "next_index": 1,
-      "next_provider": "gemini",
+      "next_index": 0,
+      "next_provider": "groq",
       "probe_queue": [
-        "gemini",
         "groq",
-        "cloudflare"
+        "cloudflare",
+        "gemini"
       ],
       "probe_schedule": {
-        "cloudflare": "2026-11-04T07:15:18.788459+00:00",
-        "gemini": "2026-11-03T19:15:18.788459+00:00",
-        "groq": "2026-11-04T01:15:18.788459+00:00"
+        "cloudflare": "2026-11-04T09:17:17.329198+00:00",
+        "gemini": "2026-11-04T15:17:17.329198+00:00",
+        "groq": "2026-11-04T03:17:17.329198+00:00"
       },
       "schedule_interval_seconds": 21600.0,
       "schedule_status": "READY"
@@ -3591,28 +3591,9 @@
     "ai-heart:gemini:gemini-3.1-flash-lite": {
       "actual_model": "gemini-3.1-flash-lite",
       "credential_env": "GEMINI_API_KEY_01",
-      "failure_streak": 2,
+      "failure_streak": 0,
       "health_status": "DEGRADED",
       "history": [
-        {
-          "action": "MONITOR_AND_DEPRIORITIZE",
-          "actual_model": null,
-          "api_status": 503,
-          "authentication": "UNKNOWN",
-          "baseline_latency_ms": 3041.469,
-          "credential_env": "GEMINI_API_KEY_01",
-          "error_class": "transient",
-          "error_detail": "{\n  \"error\": {\n    \"code\": 503,\n    \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",\n    \"status\": \"UNAVAILABLE\"\n  }\n}\n",
-          "health_status": "DEGRADED",
-          "latency_degraded": false,
-          "latency_ms": 1203.049,
-          "observed_at": "2026-10-25T15:15:29.586934+00:00",
-          "probe_role": "scheduled_probe",
-          "provider": "gemini",
-          "quality_status": "NOT_APPLICABLE",
-          "requested_model": "gemini-3.1-flash-lite",
-          "response_valid": false
-        },
         {
           "action": "MONITOR_AND_DEPRIORITIZE",
           "actual_model": null,
@@ -4289,6 +4270,40 @@
           "quality_status": "NOT_APPLICABLE",
           "requested_model": "gemini-3.1-flash-lite",
           "response_valid": false
+        },
+        {
+          "action": "MONITOR_AND_DEPRIORITIZE",
+          "actual_model": "gemini-3.1-flash-lite",
+          "api_status": 200,
+          "authentication": "PASS",
+          "baseline_latency_ms": 1003.709,
+          "capacity": {
+            "call_allowances": {},
+            "last_request_usage": {
+              "candidatesTokenCount": 20,
+              "promptTokenCount": 34,
+              "promptTokensDetails": "[{'modality': 'TEXT', 'tokenCount': 34}]",
+              "serviceTier": "standard",
+              "totalTokenCount": 54
+            },
+            "measurement_state": "NOT_EXPOSED",
+            "metrics": {},
+            "observed_at": "2026-11-03T21:17:17.329072+00:00",
+            "provider": "gemini",
+            "resources": {}
+          },
+          "credential_env": "GEMINI_API_KEY_01",
+          "error_class": null,
+          "error_detail": null,
+          "health_status": "DEGRADED",
+          "latency_degraded": true,
+          "latency_ms": 2028.541,
+          "observed_at": "2026-11-03T21:17:17.329171+00:00",
+          "probe_role": "scheduled_probe",
+          "provider": "gemini",
+          "quality_status": "PASS",
+          "requested_model": "gemini-3.1-flash-lite",
+          "response_valid": true
         }
       ],
       "last_action": "MONITOR_AND_DEPRIORITIZE",
@@ -4303,31 +4318,45 @@
         },
         "measurement_state": "NOT_EXPOSED",
         "metrics": {},
-        "observed_at": "2026-11-01T12:18:42.708352+00:00",
+        "observed_at": "2026-11-03T21:17:17.329072+00:00",
         "provider": "gemini",
         "resources": {}
       },
       "last_observation": {
         "action": "MONITOR_AND_DEPRIORITIZE",
-        "actual_model": null,
-        "api_status": 503,
-        "authentication": "UNKNOWN",
-        "baseline_latency_ms": 1160.698,
+        "actual_model": "gemini-3.1-flash-lite",
+        "api_status": 200,
+        "authentication": "PASS",
+        "baseline_latency_ms": 1003.709,
+        "capacity": {
+          "call_allowances": {},
+          "last_request_usage": {
+            "candidatesTokenCount": 20,
+            "promptTokenCount": 34,
+            "promptTokensDetails": "[{'modality': 'TEXT', 'tokenCount': 34}]",
+            "serviceTier": "standard",
+            "totalTokenCount": 54
+          },
+          "measurement_state": "NOT_EXPOSED",
+          "metrics": {},
+          "observed_at": "2026-11-03T21:17:17.329072+00:00",
+          "provider": "gemini",
+          "resources": {}
+        },
         "credential_env": "GEMINI_API_KEY_01",
-        "error_class": "transient",
-        "error_detail": "{\"code\":\"503\",\"http_status\":503}",
+        "error_class": null,
+        "error_detail": null,
         "health_status": "DEGRADED",
-        "latency_degraded": false,
-        "latency_ms": 8260.636,
-        "observed_at": "2026-11-03T07:51:51.706377+00:00",
+        "latency_degraded": true,
+        "latency_ms": 2028.541,
+        "observed_at": "2026-11-03T21:17:17.329171+00:00",
         "probe_role": "scheduled_probe",
         "provider": "gemini",
-        "quality_status": "NOT_APPLICABLE",
+        "quality_status": "PASS",
         "requested_model": "gemini-3.1-flash-lite",
-        "response_valid": false
+        "response_valid": true
       },
       "latency_ms": [
-        3787.465,
         874.21,
         598.916,
         5262.138,
@@ -4350,7 +4379,8 @@
         1866.852,
         8633.753,
         636.932,
-        958.436
+        958.436,
+        2028.541
       ],
       "namespace": "ai-heart",
       "provider": "gemini",
@@ -9577,5 +9607,5 @@
       "requested_model": "mistral-small-latest"
     }
   },
-  "updated_at": "2026-11-03T13:25:26.285894+00:00"
+  "updated_at": "2026-11-03T21:17:17.329181+00:00"
 }
