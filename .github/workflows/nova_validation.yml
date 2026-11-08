@@ -51,8 +51,8 @@ jobs:
     env:
       GROQ_API_KEY_01: ${{ secrets.GROQ_API_KEY_01 }}
       GEMINI_API_KEY_01: ${{ secrets.GEMINI_API_KEY_01 }}
-      CLOUDFLARE_API_KEY_01: ${{ secrets.CLOUDFLARE_API_KEY_01 }}
-      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_API_TOKEN_02: ${{ secrets.CLOUDFLARE_API_TOKEN_02 }}
+      CLOUDFLARE_ACCOUNT_ID_02: ${{ vars.CLOUDFLARE_ACCOUNT_ID_02 }}
       NOSANA_GPU_API_KEY_01: ${{ secrets.NOSANA_GPU_API_KEY_01 }}
       HF_ZEROGPU_TOKEN_01: ${{ secrets.HF_ZEROGPU_TOKEN_01 }}
     steps:
