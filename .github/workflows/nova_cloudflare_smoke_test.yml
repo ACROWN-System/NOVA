@@ -19,7 +19,7 @@ jobs:
       CLOUDFLARE_API_TOKEN_02: ${{ secrets.CLOUDFLARE_API_TOKEN_02 }}
       CLOUDFLARE_ACCOUNT_ID_02: ${{ vars.CLOUDFLARE_ACCOUNT_ID_02 }}
     steps:
-      - name: Verify documented Workers AI chat-completions request
+      - name: Verify direct Workers AI REST request
         shell: bash
         run: |
           python3 - <<'PY'
