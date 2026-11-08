@@ -67,9 +67,6 @@ class WorkflowCoverageTests(unittest.TestCase):
         )
 
 
-if __name__ == "__main__":
-    unittest.main()
-
     def test_cloudflare_provider_uses_account_02_only(self):
         roster = json.loads((ROOT / "NOVA/roster.json").read_text(encoding="utf-8"))
         provider = next(item for item in roster["providers"] if item["name"] == "cloudflare")
@@ -90,3 +87,6 @@ if __name__ == "__main__":
             self.assertNotIn("CLOUDFLARE_API_KEY_01", text, path.name)
             self.assertNotIn("secrets.CLOUDFLARE_ACCOUNT_ID", text, path.name)
 
+
+if __name__ == "__main__":
+    unittest.main()
