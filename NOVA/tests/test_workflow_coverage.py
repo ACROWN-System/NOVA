@@ -67,5 +67,26 @@ class WorkflowCoverageTests(unittest.TestCase):
         )
 
 
+    def test_cloudflare_provider_uses_account_02_only(self):
+        roster = json.loads((ROOT / "NOVA/roster.json").read_text(encoding="utf-8"))
+        provider = next(item for item in roster["providers"] if item["name"] == "cloudflare")
+        self.assertEqual(provider["api_key_env"], "CLOUDFLARE_API_TOKEN_02")
+        self.assertEqual(provider["account_id_env"], "CLOUDFLARE_ACCOUNT_ID_02")
+
+        workflow_paths = [
+            ROOT / ".github/workflows/nova_heartbeat.yml",
+            ROOT / ".github/workflows/nova_probe_scheduler.yml",
+            ROOT / ".github/workflows/nova_validation.yml",
+            ROOT / ".github/workflows/nova_cloudflare_smoke_test.yml",
+            ROOT / ".github/workflows/astrocrown-cloudflare-image-qualification.yml",
+        ]
+        for path in workflow_paths:
+            text = path.read_text(encoding="utf-8")
+            self.assertIn("secrets.CLOUDFLARE_API_TOKEN_02", text, path.name)
+            self.assertIn("vars.CLOUDFLARE_ACCOUNT_ID_02", text, path.name)
+            self.assertNotIn("CLOUDFLARE_API_KEY_01", text, path.name)
+            self.assertNotIn("secrets.CLOUDFLARE_ACCOUNT_ID", text, path.name)
+
+
 if __name__ == "__main__":
     unittest.main()

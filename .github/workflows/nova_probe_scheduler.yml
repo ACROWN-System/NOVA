@@ -63,8 +63,8 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
           GROQ_API_KEY_01: ${{ secrets.GROQ_API_KEY_01 }}
           GEMINI_API_KEY_01: ${{ secrets.GEMINI_API_KEY_01 }}
-          CLOUDFLARE_API_KEY_01: ${{ secrets.CLOUDFLARE_API_KEY_01 }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN_02: ${{ secrets.CLOUDFLARE_API_TOKEN_02 }}
+          CLOUDFLARE_ACCOUNT_ID_02: ${{ vars.CLOUDFLARE_ACCOUNT_ID_02 }}
           NOVA_ADVANCE_PROVIDER_ROTATION: 'true'
           TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
           TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}

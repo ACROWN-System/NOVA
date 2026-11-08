@@ -16,8 +16,8 @@ jobs:
     timeout-minutes: 3
     permissions: {}
     env:
-      CLOUDFLARE_API_KEY_01: ${{ secrets.CLOUDFLARE_API_KEY_01 }}
-      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_API_TOKEN_02: ${{ secrets.CLOUDFLARE_API_TOKEN_02 }}
+      CLOUDFLARE_ACCOUNT_ID_02: ${{ vars.CLOUDFLARE_ACCOUNT_ID_02 }}
     steps:
       - name: Verify documented Workers AI chat-completions request
         shell: bash
@@ -29,8 +29,8 @@ jobs:
           import urllib.error
           import urllib.request
 
-          token = os.environ.get("CLOUDFLARE_API_KEY_01", "").strip()
-          account_id = os.environ.get("CLOUDFLARE_ACCOUNT_ID", "").strip()
+          token = os.environ.get("CLOUDFLARE_API_TOKEN_02", "").strip()
+          account_id = os.environ.get("CLOUDFLARE_ACCOUNT_ID_02", "").strip()
           if not token or not account_id:
               print("CONFIGURATION=FAIL_MISSING_SECRET")
               print(f"TOKEN_PRESENT={bool(token)}")

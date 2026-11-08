@@ -194,7 +194,7 @@ def build_report(environ=None):
     # the source evidence is recorded in NOVA/roster.json.
     rows.append({
         "provider": "cloudflare", "provider_type": "llm_inference",
-        "credential_env": "CLOUDFLARE_API_KEY_01+CLOUDFLARE_ACCOUNT_ID",
+        "credential_env": "CLOUDFLARE_API_TOKEN_02+CLOUDFLARE_ACCOUNT_ID_02",
         # This diagnostic intentionally does not receive Cloudflare secrets. None
         # means "not checked here", not "missing" (the production heartbeat verifies separately).
         "credential_configured": None,

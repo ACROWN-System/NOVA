@@ -168,8 +168,8 @@ class ProviderQualificationTests(unittest.TestCase):
 
     def test_cloudflare_qualification_uses_recorded_smoke_evidence_without_duplicate_request(self):
         env = {
-            "CLOUDFLARE_API_KEY_01": "synthetic-token-placeholder",
-            "CLOUDFLARE_ACCOUNT_ID": "synthetic-account-placeholder",
+            "CLOUDFLARE_API_TOKEN_02": "synthetic-token-placeholder",
+            "CLOUDFLARE_ACCOUNT_ID_02": "synthetic-account-placeholder",
         }
         with patch("NOVA.provider_qualification.urllib.request.build_opener") as opener:
             report = build_report(env)

@@ -101,8 +101,8 @@
       }
     },
     {
-      "account_id_env": "CLOUDFLARE_ACCOUNT_ID",
-      "api_key_env": "CLOUDFLARE_API_KEY_01",
+      "account_id_env": "CLOUDFLARE_ACCOUNT_ID_02",
+      "api_key_env": "CLOUDFLARE_API_TOKEN_02",
       "base_url": "https://api.cloudflare.com/client/v4/accounts/{CF_ACCOUNT_ID}/ai/v1/chat/completions",
       "kind": "openai_compatible",
       "models": [
