@@ -18,7 +18,7 @@ class WorkflowCoverageTests(unittest.TestCase):
         self.assertIn("'.github/workflows/**'", push)
         self.assertIn("pull_request:", workflow)
 
-    def test_manual_cloudflare_smoke_uses_documented_json_mode_candidate(self):
+    def test_manual_cloudflare_smoke_uses_direct_workers_ai_rest_candidate(self):
         workflow = (
             ROOT / ".github/workflows/nova_cloudflare_smoke_test.yml"
         ).read_text(encoding="utf-8")
@@ -27,11 +27,17 @@ class WorkflowCoverageTests(unittest.TestCase):
         self.assertNotIn("  push:", workflow)
         self.assertIn("@cf/meta/llama-3.1-8b-instruct-fast", workflow)
         self.assertNotIn("@cf/zai-org/glm-4.7-flash", workflow)
-        self.assertIn('"type": "json_schema"', workflow)
-        self.assertIn('"additionalProperties": False', workflow)
+        self.assertIn("/ai/run/@cf/meta/llama-3.1-8b-instruct-fast", workflow)
+        self.assertNotIn("/ai/v1/chat/completions", workflow)
+        self.assertNotIn("cf-aig-gateway-id", workflow)
+        self.assertIn('"prompt":', workflow)
+        self.assertIn('"max_tokens": 64', workflow)
+        self.assertIn('response.get("result", {})', workflow)
+        self.assertIn('result.get("response")', workflow)
         self.assertIn('health.get("nova_health") != "OK"', workflow)
         self.assertIn('health.get("ack") != "NOVA_HEALTH_PROBE"', workflow)
-
+        self.assertIn("CLOUDFLARE_ERROR_CODE=", workflow)
+        self.assertIn("CLOUDFLARE_ERROR_MESSAGE=", workflow)
 
     def test_cloudflare_roster_uses_only_live_verified_json_model(self):
         roster = json.loads((ROOT / "NOVA/roster.json").read_text(encoding="utf-8"))
