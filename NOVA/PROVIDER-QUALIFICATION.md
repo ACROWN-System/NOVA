@@ -6,7 +6,7 @@ Mistral is probed only for diagnostic health because the user requested visibili
 
 ## Heartbeat persistence
 
-The scheduled six-hour LLM heartbeat executes this diagnostic after its regular AI/reasoning tasks and before publishing operational state. It probes Groq, Gemini, Mistral as diagnostic-only, and Cloudflare only when its key and account ID are present. Cerebras is recorded as presence-only/deferred and is not called. The result contains no secret values, raw response bodies or generated response text.
+The scheduled six-hour LLM heartbeat executes this diagnostic after its regular AI/reasoning tasks and before publishing operational state. It probes Groq, Gemini, Mistral as diagnostic-only, and Cloudflare only when `CLOUDFLARE_API_TOKEN_02` and `CLOUDFLARE_ACCOUNT_ID_02` are present. Cerebras is recorded as presence-only/deferred and is not called. The result contains no secret values, raw response bodies or generated response text.
 
 Sanitized snapshots are retained in NOVA/health_state.json under credential_health and last_llm_key_heartbeat and are published only to nova-operational-state through the existing operational-state writer. These fields do not live in the ai-heart provider-routing namespace and cannot activate providers or clear persistent down markers.
 
