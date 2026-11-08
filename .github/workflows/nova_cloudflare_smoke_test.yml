@@ -68,32 +68,15 @@ jobs:
               sys.exit(1)
           print("TOKEN_VERIFY=PASS")
 
-          # Candidate smoke test uses the exact model and schema documented by
-          # Cloudflare's JSON Mode supported-model list. The workflow is manual-only.
+          # Direct Workers AI REST endpoint; avoids AI Gateway routing and its gateway header.
           payload = {
-              "model": "@cf/meta/llama-3.1-8b-instruct-fast",
-              "messages": [{
-                  "role": "user",
-                  "content": 'Return exactly this JSON object with no additional keys: {"nova_health":"OK","ack":"NOVA_HEALTH_PROBE"}',
-              }],
+              "prompt": 'Return exactly this JSON object with no additional keys or markdown: {"nova_health":"OK","ack":"NOVA_HEALTH_PROBE"}',
               "temperature": 0,
               "max_tokens": 64,
-              "response_format": {
-                  "type": "json_schema",
-                  "json_schema": {
-                      "type": "object",
-                      "properties": {
-                          "nova_health": {"type": "string", "enum": ["OK"]},
-                          "ack": {"type": "string", "enum": ["NOVA_HEALTH_PROBE"]},
-                      },
-                      "required": ["nova_health", "ack"],
-                      "additionalProperties": False,
-                  },
-              },
           }
           url = (
               "https://api.cloudflare.com/client/v4/accounts/"
-              + account_id + "/ai/v1/chat/completions"
+              + account_id + "/ai/run/@cf/meta/llama-3.1-8b-instruct-fast"
           )
           try:
               status, raw = post(url, payload)
@@ -118,30 +101,20 @@ jobs:
                               if isinstance(message, str):
                                   safe_message = " ".join(message.split())[:240]
                                   print(f"CLOUDFLARE_ERROR_MESSAGE={safe_message}")
-                  elif isinstance(error_payload.get("error"), dict):
-                      item = error_payload["error"]
-                      if item.get("code") is not None:
-                          print(f"CLOUDFLARE_ERROR_CODE={str(item['code'])[:40]}")
-                      if isinstance(item.get("message"), str):
-                          safe_message = " ".join(item["message"].split())[:240]
-                          print(f"CLOUDFLARE_ERROR_MESSAGE={safe_message}")
               except (ValueError, UnicodeDecodeError, AttributeError, TypeError):
                   print("CLOUDFLARE_ERROR_DETAILS=UNAVAILABLE_OR_NON_JSON")
               sys.exit(1)
+
           try:
-              result = json.loads(raw.decode("utf-8"))
-              choice = result.get("choices", [])[0]
-              message = choice.get("message", {})
-          except (ValueError, UnicodeDecodeError, AttributeError, IndexError, TypeError):
+              response = json.loads(raw.decode("utf-8"))
+              result = response.get("result", {})
+              content = result.get("response") if isinstance(result, dict) else None
+          except (ValueError, UnicodeDecodeError, AttributeError, TypeError):
               print("WORKERS_AI_INFERENCE=FAIL")
-              print("RESPONSE_CONTRACT=INVALID_CHAT_COMPLETION")
+              print("RESPONSE_CONTRACT=INVALID_WORKERS_AI_RESPONSE")
               sys.exit(1)
 
-          content = message.get("content")
           print(f"MESSAGE_CONTENT_PRESENT={isinstance(content, str) and bool(content.strip())}")
-          print(f"MESSAGE_REASONING_PRESENT={bool(message.get('reasoning') or message.get('reasoning_content'))}")
-          print(f"FINISH_REASON={choice.get('finish_reason')}")
-          print(f"COMPLETION_TOKENS={result.get('usage', {}).get('completion_tokens', 'unknown')}")
           if not isinstance(content, str) or not content.strip():
               print("WORKERS_AI_INFERENCE=FAIL")
               print("RESPONSE_CONTRACT=NO_TEXT_CONTENT")
