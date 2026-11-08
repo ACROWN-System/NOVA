@@ -105,6 +105,28 @@ jobs:
           print(f"WORKERS_AI_HTTP_STATUS={status}")
           if not 200 <= status < 300:
               print("WORKERS_AI_INFERENCE=HTTP_ERROR")
+              try:
+                  error_payload = json.loads(raw.decode("utf-8"))
+                  errors = error_payload.get("errors", [])
+                  if isinstance(errors, list):
+                      for item in errors[:5]:
+                          if isinstance(item, dict):
+                              code = item.get("code")
+                              message = item.get("message")
+                              if code is not None:
+                                  print(f"CLOUDFLARE_ERROR_CODE={str(code)[:40]}")
+                              if isinstance(message, str):
+                                  safe_message = " ".join(message.split())[:240]
+                                  print(f"CLOUDFLARE_ERROR_MESSAGE={safe_message}")
+                  elif isinstance(error_payload.get("error"), dict):
+                      item = error_payload["error"]
+                      if item.get("code") is not None:
+                          print(f"CLOUDFLARE_ERROR_CODE={str(item['code'])[:40]}")
+                      if isinstance(item.get("message"), str):
+                          safe_message = " ".join(item["message"].split())[:240]
+                          print(f"CLOUDFLARE_ERROR_MESSAGE={safe_message}")
+              except (ValueError, UnicodeDecodeError, AttributeError, TypeError):
+                  print("CLOUDFLARE_ERROR_DETAILS=UNAVAILABLE_OR_NON_JSON")
               sys.exit(1)
           try:
               result = json.loads(raw.decode("utf-8"))
