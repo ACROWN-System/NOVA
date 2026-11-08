@@ -10,6 +10,18 @@ The credential-readiness report distinguishes whether a secret is present from w
 
 The NOVA Validation workflow reports presence for the active LLM slots (Groq, Gemini, Cloudflare Workers AI token plus account ID 02) and the two GPU candidates (Nosana and Hugging Face ZeroGPU). It prints environment-variable names and presence states only—never credential values—and does not call providers. A push to main affecting the readiness files generates a current report. It is also manually dispatchable from GitHub Actions.
 
+## Cloudflare account 02 configuration
+
+The active Cloudflare configuration is account 02 only:
+
+- NOVA repository Actions secret: `CLOUDFLARE_API_TOKEN_02`.
+- NOVA repository Actions variable: `CLOUDFLARE_ACCOUNT_ID_02`.
+- AstroCrown-Web also needs the same account-02 token/ID while its staging deployment and NOVA portability checks run from that repository.
+- Preserve the existing Worker Admin and D1 Read/Edit permissions for the staging deployment. Add Account → Workers AI → Read and Account → Workers AI → Edit to the same account-02 token before using it for NOVA inference or AstroCrown image generation. Cloudflare's custom-token Workers AI REST setup guide lists both permissions.
+- The prior response-contract smoke evidence is historical evidence from account 01. It does not prove account-02 authentication or current quota. The manual account-02 smoke workflow must pass before reporting the new credential pair as requalified.
+
+Account IDs are identifiers, not secrets. Keep `CLOUDFLARE_ACCOUNT_ID_02` in Actions variables and keep the token value only in Actions secrets.
+
 ## Known separations
 
 - An LLM API key and a GPU allocation key are not interchangeable. Nosana LLM inference and Nosana GPU job/market APIs are separate operational paths, even if the vendor account may issue related credentials.
