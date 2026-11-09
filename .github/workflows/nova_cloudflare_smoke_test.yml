@@ -37,7 +37,7 @@ jobs:
               print(f"ACCOUNT_ID_PRESENT={bool(account_id)}")
               sys.exit(1)
 
-          def post(url, payload=None):
+          def request(method, url, payload=None):
               headers = {
                   "Authorization": f"Bearer {token}",
                   "Accept": "application/json",
@@ -48,16 +48,27 @@ jobs:
               if payload is not None:
                   headers["Content-Type"] = "application/json"
                   data = json.dumps(payload).encode("utf-8")
-              request = urllib.request.Request(url, data=data, headers=headers)
+              request = urllib.request.Request(
+                  url, data=data, headers=headers, method=method
+              )
               try:
                   with urllib.request.urlopen(request, timeout=25) as response:
                       return response.status, response.read()
               except urllib.error.HTTPError as error:
                   return error.code, error.read()
 
-          # Cloudflare's documented token verification endpoint.
+          def get(url):
+              return request("GET", url)
+
+          def post(url, payload=None):
+              return request("POST", url, payload)
+
+          # Account-owned token verification is a documented GET endpoint.
           try:
-              status, raw = post("https://api.cloudflare.com/client/v4/accounts/" + account_id + "/tokens/verify")
+              status, raw = get(
+                  "https://api.cloudflare.com/client/v4/accounts/"
+                  + account_id + "/tokens/verify"
+              )
               verification = json.loads(raw.decode("utf-8"))
           except (urllib.error.URLError, TimeoutError, OSError, ValueError):
               print("TOKEN_VERIFY=FAIL")
@@ -69,7 +80,44 @@ jobs:
               sys.exit(1)
           print("TOKEN_VERIFY=PASS")
 
-          # Direct Workers AI REST endpoint; avoids AI Gateway routing and its gateway header.
+          # Check the account's Workers AI model catalog independently from inference.
+          # Both catalog search and model execution accept Workers AI Read or Write.
+          catalog_url = (
+              "https://api.cloudflare.com/client/v4/accounts/"
+              + account_id + "/ai/models/search?page=1&per_page=1"
+          )
+          try:
+              catalog_status, catalog_raw = get(catalog_url)
+          except (urllib.error.URLError, TimeoutError, OSError) as error:
+              print("WORKERS_AI_CATALOG=NETWORK_ERROR")
+              print(f"CATALOG_ERROR_TYPE={type(error).__name__}")
+          else:
+              print(f"WORKERS_AI_CATALOG_HTTP_STATUS={catalog_status}")
+              try:
+                  catalog_payload = json.loads(catalog_raw.decode("utf-8"))
+              except (ValueError, UnicodeDecodeError):
+                  catalog_payload = {}
+              if 200 <= catalog_status < 300 and catalog_payload.get("success") is True:
+                  catalog_result = catalog_payload.get("result")
+                  print("WORKERS_AI_CATALOG=PASS")
+                  if isinstance(catalog_result, list):
+                      print(f"WORKERS_AI_CATALOG_RESULT_COUNT={len(catalog_result)}")
+              else:
+                  print("WORKERS_AI_CATALOG=HTTP_ERROR")
+                  errors = catalog_payload.get("errors", [])
+                  if isinstance(errors, list):
+                      for item in errors[:5]:
+                          if isinstance(item, dict):
+                              code = item.get("code")
+                              message = item.get("message")
+                              if code is not None:
+                                  print(f"CATALOG_ERROR_CODE={str(code)[:40]}")
+                              if isinstance(message, str):
+                                  safe_message = " ".join(message.split())[:240]
+                                  print(f"CATALOG_ERROR_MESSAGE={safe_message}")
+
+          # Direct Workers AI REST inference endpoint. Cloudflare also requires
+          # cf-aig-gateway-id for Workers AI requests; this test uses the default.
           payload = {
               "prompt": 'Return exactly this JSON object with no additional keys or markdown: {"nova_health":"OK","ack":"NOVA_HEALTH_PROBE"}',
               "temperature": 0,
