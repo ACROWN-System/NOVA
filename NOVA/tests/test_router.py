@@ -385,6 +385,59 @@ class RouterRotationTests(unittest.TestCase):
         )
 
 
+    def test_cloudflare_request_uses_default_ai_gateway_header(self):
+        response_payload = {
+            "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+            "choices": [{
+                "message": {
+                    "content": json.dumps({
+                        "nova_health": "OK",
+                        "ack": "NOVA_HEALTH_PROBE",
+                    })
+                }
+            }],
+        }
+        response = MagicMock()
+        response.__enter__.return_value = response
+        response.status = 200
+        response.headers = Message()
+        response.read.return_value = json.dumps(response_payload).encode("utf-8")
+        cloudflare = {
+            "name": "cloudflare",
+            "api_key_env": "TEST_CLOUDFLARE_TOKEN",
+            "account_id_env": "TEST_CLOUDFLARE_ACCOUNT_ID",
+            "base_url": (
+                "https://api.cloudflare.com/client/v4/accounts/"
+                "{CF_ACCOUNT_ID}/ai/v1/chat/completions"
+            ),
+            "models": ["@cf/meta/llama-3.1-8b-instruct-fast"],
+        }
+
+        with patch.dict(os.environ, {
+            "TEST_CLOUDFLARE_TOKEN": "test-cloudflare-token",
+            "TEST_CLOUDFLARE_ACCOUNT_ID": "a" * 32,
+        }):
+            with patch(
+                "NOVA.router.urllib.request.urlopen", return_value=response
+            ) as urlopen:
+                content, signal, probes = call_openai_compatible(
+                    cloudflare, "Return only the expected NOVA health JSON."
+                )
+
+        request = urlopen.call_args.args[0]
+        request_headers = {
+            name.lower(): value for name, value in request.header_items()
+        }
+        self.assertEqual(signal, "success")
+        self.assertEqual(probes[0]["api_status"], 200)
+        self.assertIsNotNone(content)
+        self.assertEqual(
+            request_headers.get("cf-aig-gateway-id"),
+            "default",
+        )
+        self.assertIn("/accounts/" + ("a" * 32) + "/ai/v1/chat/completions", request.full_url)
+
+
     def test_groq_gpt_oss_uses_bounded_completion_token_budget(self):
         response_payload = {
             "model": "openai/gpt-oss-120b",
