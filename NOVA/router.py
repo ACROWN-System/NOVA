@@ -296,6 +296,8 @@ def call_openai_compatible(provider: dict[str, Any], prompt: str, validator=vali
         base_url = base_url.format(CF_ACCOUNT_ID=account_id)
 
     headers = {**COMMON_HEADERS, "Authorization": f"Bearer {api_key}"}
+    if provider.get("name") == "cloudflare":
+        headers["cf-aig-gateway-id"] = "default"
     probes: list[dict[str, Any]] = []
 
     for model in provider["models"]:
