@@ -42,6 +42,7 @@ jobs:
                   "Authorization": f"Bearer {token}",
                   "Accept": "application/json",
                   "User-Agent": "NOVA-Cloudflare-Smoke-Test/1.0",
+                  "cf-aig-gateway-id": "default",
               }
               data = None
               if payload is not None:
