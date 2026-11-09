@@ -29,7 +29,7 @@ class WorkflowCoverageTests(unittest.TestCase):
         self.assertNotIn("@cf/zai-org/glm-4.7-flash", workflow)
         self.assertIn("/ai/run/@cf/meta/llama-3.1-8b-instruct-fast", workflow)
         self.assertNotIn("/ai/v1/chat/completions", workflow)
-        self.assertNotIn("cf-aig-gateway-id", workflow)
+        self.assertIn(\'"cf-aig-gateway-id": "default"\', workflow)
         self.assertIn('"prompt":', workflow)
         self.assertIn('"max_tokens": 64', workflow)
         self.assertIn('response.get("result", {})', workflow)
