@@ -1662,35 +1662,35 @@
   "observations": {},
   "provider_rotation": {
     "ai-heart": {
-      "last_completed_at": "2026-11-13T13:38:49.576736+00:00",
+      "last_completed_at": "2026-11-13T20:35:07.494500+00:00",
       "last_probe_providers": [
-        "gemini",
+        "cloudflare",
         "groq"
       ],
-      "last_schedule_processed_at": "2026-11-13T13:38:49.576736+00:00",
+      "last_schedule_processed_at": "2026-11-13T20:35:07.494500+00:00",
       "last_schedule_reason": "ROLLING_INTERVAL",
       "last_scheduled_at": "2026-10-08T12:32:24.729000+00:00",
       "last_scheduled_provider": "mistral",
       "last_selection_decision": {
         "details": {},
-        "due_at": "2026-11-13T19:22:46.837955+00:00",
+        "due_at": "2026-11-13T19:38:49.576736+00:00",
         "preempted": false,
-        "provider": "gemini",
-        "reason": "SCHEDULED_PENDING"
+        "provider": "cloudflare",
+        "reason": "SCHEDULED_DUE"
       },
-      "last_selection_reason": "SCHEDULED_PENDING",
+      "last_selection_reason": "SCHEDULED_DUE",
       "last_skipped_providers": [],
-      "next_index": 2,
-      "next_provider": "cloudflare",
+      "next_index": 1,
+      "next_provider": "gemini",
       "probe_queue": [
-        "cloudflare",
         "gemini",
+        "cloudflare",
         "groq"
       ],
       "probe_schedule": {
-        "cloudflare": "2026-11-13T19:38:49.576736+00:00",
-        "gemini": "2026-11-14T01:38:49.576736+00:00",
-        "groq": "2026-11-14T07:38:49.576736+00:00"
+        "cloudflare": "2026-11-14T08:35:07.494500+00:00",
+        "gemini": "2026-11-14T02:35:07.494500+00:00",
+        "groq": "2026-11-14T14:35:07.494500+00:00"
       },
       "schedule_interval_seconds": 21600.0,
       "schedule_status": "READY"
@@ -1742,9 +1742,9 @@
       "expected_result": "Provider response satisfies NOVA's required structured response contract.",
       "failure_class": "transient",
       "first_seen": "2026-11-09T06:41:07.815000+00:00",
-      "last_seen": "2026-11-13T13:22:46.542946+00:00",
+      "last_seen": "2026-11-13T20:35:07.153102+00:00",
       "observed_result": "transient:NOT_APPLICABLE",
-      "occurrences": 10,
+      "occurrences": 11,
       "reopened_count": 0,
       "source": "cloudflare:@cf/meta/llama-3.1-8b-instruct-fast",
       "state": "INVESTIGATION_REQUIRED"
@@ -2494,43 +2494,9 @@
     "ai-heart:cloudflare:@cf/meta/llama-3.1-8b-instruct-fast": {
       "actual_model": "@cf/meta/llama-3.1-8b-instruct-fast",
       "credential_env": "CLOUDFLARE_API_TOKEN_02",
-      "failure_streak": 10,
+      "failure_streak": 11,
       "health_status": "UNACCEPTABLE",
       "history": [
-        {
-          "action": "MAINTAIN",
-          "actual_model": "@cf/meta/llama-3.1-8b-instruct-fast",
-          "api_status": 200,
-          "authentication": "PASS",
-          "baseline_latency_ms": 370.763,
-          "capacity": {
-            "call_allowances": {},
-            "last_request_usage": {
-              "completion_tokens": 15,
-              "neurons": 0.7948424816131592,
-              "prompt_tokens": 66,
-              "prompt_tokens_details": "{'cached_tokens': 0}",
-              "total_tokens": 81
-            },
-            "measurement_state": "NOT_EXPOSED",
-            "metrics": {},
-            "observed_at": "2026-10-30T17:27:16.838124+00:00",
-            "provider": "cloudflare",
-            "resources": {}
-          },
-          "credential_env": "CLOUDFLARE_API_KEY_01",
-          "error_class": null,
-          "error_detail": null,
-          "health_status": "HEALTHY",
-          "latency_degraded": false,
-          "latency_ms": 517.76,
-          "observed_at": "2026-10-30T17:27:16.838263+00:00",
-          "probe_role": "scheduled_probe",
-          "provider": "cloudflare",
-          "quality_status": "PASS",
-          "requested_model": "@cf/meta/llama-3.1-8b-instruct-fast",
-          "response_valid": true
-        },
         {
           "action": "MAINTAIN",
           "actual_model": "@cf/meta/llama-3.1-8b-instruct-fast",
@@ -3242,6 +3208,33 @@
           "quality_status": "NOT_APPLICABLE",
           "requested_model": "@cf/meta/llama-3.1-8b-instruct-fast",
           "response_valid": false
+        },
+        {
+          "action": "FAILOVER_AND_ALERT",
+          "actual_model": null,
+          "api_status": 401,
+          "authentication": "FAIL",
+          "baseline_latency_ms": 340.302,
+          "capacity": {
+            "call_allowances": {},
+            "measurement_state": "NOT_EXPOSED",
+            "metrics": {},
+            "observed_at": "2026-11-13T20:35:07.152945+00:00",
+            "provider": "cloudflare",
+            "resources": {}
+          },
+          "credential_env": "CLOUDFLARE_API_TOKEN_02",
+          "error_class": "transient",
+          "error_detail": "{\"body\":\"REDACTED\",\"http_status\":401}",
+          "health_status": "UNACCEPTABLE",
+          "latency_degraded": false,
+          "latency_ms": 209.787,
+          "observed_at": "2026-11-13T20:35:07.153058+00:00",
+          "probe_role": "scheduled_probe",
+          "provider": "cloudflare",
+          "quality_status": "NOT_APPLICABLE",
+          "requested_model": "@cf/meta/llama-3.1-8b-instruct-fast",
+          "response_valid": false
         }
       ],
       "last_action": "FAILOVER_AND_ALERT",
@@ -3249,7 +3242,7 @@
         "call_allowances": {},
         "measurement_state": "NOT_EXPOSED",
         "metrics": {},
-        "observed_at": "2026-11-13T13:22:46.542791+00:00",
+        "observed_at": "2026-11-13T20:35:07.152945+00:00",
         "provider": "cloudflare",
         "resources": {}
       },
@@ -3263,7 +3256,7 @@
           "call_allowances": {},
           "measurement_state": "NOT_EXPOSED",
           "metrics": {},
-          "observed_at": "2026-11-13T13:22:46.542791+00:00",
+          "observed_at": "2026-11-13T20:35:07.152945+00:00",
           "provider": "cloudflare",
           "resources": {}
         },
@@ -3272,8 +3265,8 @@
         "error_detail": "{\"body\":\"REDACTED\",\"http_status\":401}",
         "health_status": "UNACCEPTABLE",
         "latency_degraded": false,
-        "latency_ms": 78.532,
-        "observed_at": "2026-11-13T13:22:46.542899+00:00",
+        "latency_ms": 209.787,
+        "observed_at": "2026-11-13T20:35:07.153058+00:00",
         "probe_role": "scheduled_probe",
         "provider": "cloudflare",
         "quality_status": "NOT_APPLICABLE",
@@ -6952,96 +6945,6 @@
               }
             },
             "estimated_next_reset_at": {
-              "requests": "2026-10-31T20:49:23.940581+00:00",
-              "tokens": "2026-10-31T20:48:00.682581+00:00"
-            },
-            "last_request_usage": {
-              "completion_time": 0.039196249,
-              "completion_tokens": 37,
-              "completion_tokens_details": "{'reasoning_tokens': 8}",
-              "prompt_time": 0.008168612,
-              "prompt_tokens": 163,
-              "queue_time": 0.241741081,
-              "total_time": 0.047364861,
-              "total_tokens": 200
-            },
-            "measurement_state": "OBSERVED",
-            "metrics": {
-              "requests": {
-                "limit": 1000,
-                "measurement_type": "CALL_ALLOWANCE",
-                "remaining": 999,
-                "reset_after_seconds": 86.4,
-                "source": "http_response_headers",
-                "unit": "requests",
-                "window_seconds": null
-              },
-              "tokens": {
-                "limit": 8000,
-                "measurement_type": "CALL_ALLOWANCE",
-                "remaining": 7581,
-                "reset_after_seconds": 3.142,
-                "source": "http_response_headers",
-                "unit": "tokens",
-                "window_seconds": null
-              }
-            },
-            "observed_at": "2026-10-31T20:47:57.540581+00:00",
-            "provider": "groq",
-            "resources": {}
-          },
-          "credential_env": "GROQ_API_KEY_01",
-          "error_class": null,
-          "error_detail": null,
-          "health_status": "HEALTHY",
-          "latency_degraded": false,
-          "latency_ms": 374.67,
-          "observed_at": "2026-10-31T20:47:57.540748+00:00",
-          "probe_role": "scheduled_probe",
-          "provider": "groq",
-          "quality_status": "PASS",
-          "requested_model": "openai/gpt-oss-20b",
-          "response_headers": {
-            "x-ratelimit-limit-requests": "1000",
-            "x-ratelimit-limit-tokens": "8000",
-            "x-ratelimit-remaining-requests": "999",
-            "x-ratelimit-remaining-tokens": "7581",
-            "x-ratelimit-reset-requests": "1m26.4s",
-            "x-ratelimit-reset-tokens": "3.142s",
-            "x-request-id": "req_01m69vg59ge15sk8ae4g1rx8d8"
-          },
-          "response_valid": true
-        },
-        {
-          "action": "MAINTAIN",
-          "actual_model": "openai/gpt-oss-20b",
-          "api_status": 200,
-          "authentication": "PASS",
-          "baseline_latency_ms": 334.769,
-          "capacity": {
-            "call_allowances": {
-              "requests": {
-                "limit": 1000,
-                "measurement_type": "CALL_ALLOWANCE",
-                "name": "requests",
-                "remaining": 999,
-                "reset_after_seconds": 86.4,
-                "source": "rate_limit_observation",
-                "unit": "requests",
-                "window_seconds": null
-              },
-              "tokens": {
-                "limit": 8000,
-                "measurement_type": "CALL_ALLOWANCE",
-                "name": "tokens",
-                "remaining": 7581,
-                "reset_after_seconds": 3.142,
-                "source": "rate_limit_observation",
-                "unit": "tokens",
-                "window_seconds": null
-              }
-            },
-            "estimated_next_reset_at": {
               "requests": "2026-11-01T21:30:26.458615+00:00",
               "tokens": "2026-11-01T21:29:03.200615+00:00"
             },
@@ -9081,6 +8984,96 @@
             "x-request-id": "req_01m7aj3qsfemfrvhgz9p490czc"
           },
           "response_valid": true
+        },
+        {
+          "action": "MAINTAIN",
+          "actual_model": "openai/gpt-oss-20b",
+          "api_status": 200,
+          "authentication": "PASS",
+          "baseline_latency_ms": 357.872,
+          "capacity": {
+            "call_allowances": {
+              "requests": {
+                "limit": 1000,
+                "measurement_type": "CALL_ALLOWANCE",
+                "name": "requests",
+                "remaining": 999,
+                "reset_after_seconds": 86.4,
+                "source": "rate_limit_observation",
+                "unit": "requests",
+                "window_seconds": null
+              },
+              "tokens": {
+                "limit": 8000,
+                "measurement_type": "CALL_ALLOWANCE",
+                "name": "tokens",
+                "remaining": 7581,
+                "reset_after_seconds": 3.142,
+                "source": "rate_limit_observation",
+                "unit": "tokens",
+                "window_seconds": null
+              }
+            },
+            "estimated_next_reset_at": {
+              "requests": "2026-11-13T20:36:33.894355+00:00",
+              "tokens": "2026-11-13T20:35:10.636355+00:00"
+            },
+            "last_request_usage": {
+              "completion_time": 0.037881242,
+              "completion_tokens": 37,
+              "completion_tokens_details": "{'reasoning_tokens': 8}",
+              "prompt_time": 0.007959249,
+              "prompt_tokens": 163,
+              "queue_time": 0.242986344,
+              "total_time": 0.045840491,
+              "total_tokens": 200
+            },
+            "measurement_state": "OBSERVED",
+            "metrics": {
+              "requests": {
+                "limit": 1000,
+                "measurement_type": "CALL_ALLOWANCE",
+                "remaining": 999,
+                "reset_after_seconds": 86.4,
+                "source": "http_response_headers",
+                "unit": "requests",
+                "window_seconds": null
+              },
+              "tokens": {
+                "limit": 8000,
+                "measurement_type": "CALL_ALLOWANCE",
+                "remaining": 7581,
+                "reset_after_seconds": 3.142,
+                "source": "http_response_headers",
+                "unit": "tokens",
+                "window_seconds": null
+              }
+            },
+            "observed_at": "2026-11-13T20:35:07.494355+00:00",
+            "provider": "groq",
+            "resources": {}
+          },
+          "credential_env": "GROQ_API_KEY_01",
+          "error_class": null,
+          "error_detail": null,
+          "health_status": "HEALTHY",
+          "latency_degraded": false,
+          "latency_ms": 340.864,
+          "observed_at": "2026-11-13T20:35:07.494469+00:00",
+          "probe_role": "failover_probe",
+          "provider": "groq",
+          "quality_status": "PASS",
+          "requested_model": "openai/gpt-oss-20b",
+          "response_headers": {
+            "x-ratelimit-limit-requests": "1000",
+            "x-ratelimit-limit-tokens": "8000",
+            "x-ratelimit-remaining-requests": "999",
+            "x-ratelimit-remaining-tokens": "7581",
+            "x-ratelimit-reset-requests": "1m26.4s",
+            "x-ratelimit-reset-tokens": "3.142s",
+            "x-request-id": "req_01m7b9y09me028919fjnej3hmk"
+          },
+          "response_valid": true
         }
       ],
       "last_action": "MAINTAIN",
@@ -9100,25 +9093,25 @@
             "limit": 8000,
             "measurement_type": "CALL_ALLOWANCE",
             "name": "tokens",
-            "remaining": 7647,
-            "reset_after_seconds": 2.647,
+            "remaining": 7581,
+            "reset_after_seconds": 3.142,
             "source": "rate_limit_observation",
             "unit": "tokens",
             "window_seconds": null
           }
         },
         "estimated_next_reset_at": {
-          "requests": "2026-11-13T13:40:15.976589+00:00",
-          "tokens": "2026-11-13T13:38:52.223589+00:00"
+          "requests": "2026-11-13T20:36:33.894355+00:00",
+          "tokens": "2026-11-13T20:35:10.636355+00:00"
         },
         "last_request_usage": {
-          "completion_time": 0.038197568,
+          "completion_time": 0.037881242,
           "completion_tokens": 37,
           "completion_tokens_details": "{'reasoning_tokens': 8}",
-          "prompt_time": 0.011013434,
+          "prompt_time": 0.007959249,
           "prompt_tokens": 163,
-          "queue_time": 0.243690945,
-          "total_time": 0.049211002,
+          "queue_time": 0.242986344,
+          "total_time": 0.045840491,
           "total_tokens": 200
         },
         "measurement_state": "OBSERVED",
@@ -9135,14 +9128,14 @@
           "tokens": {
             "limit": 8000,
             "measurement_type": "CALL_ALLOWANCE",
-            "remaining": 7647,
-            "reset_after_seconds": 2.647,
+            "remaining": 7581,
+            "reset_after_seconds": 3.142,
             "source": "http_response_headers",
             "unit": "tokens",
             "window_seconds": null
           }
         },
-        "observed_at": "2026-11-13T13:38:49.576589+00:00",
+        "observed_at": "2026-11-13T20:35:07.494355+00:00",
         "provider": "groq",
         "resources": {}
       },
@@ -9168,25 +9161,25 @@
               "limit": 8000,
               "measurement_type": "CALL_ALLOWANCE",
               "name": "tokens",
-              "remaining": 7647,
-              "reset_after_seconds": 2.647,
+              "remaining": 7581,
+              "reset_after_seconds": 3.142,
               "source": "rate_limit_observation",
               "unit": "tokens",
               "window_seconds": null
             }
           },
           "estimated_next_reset_at": {
-            "requests": "2026-11-13T13:40:15.976589+00:00",
-            "tokens": "2026-11-13T13:38:52.223589+00:00"
+            "requests": "2026-11-13T20:36:33.894355+00:00",
+            "tokens": "2026-11-13T20:35:10.636355+00:00"
           },
           "last_request_usage": {
-            "completion_time": 0.038197568,
+            "completion_time": 0.037881242,
             "completion_tokens": 37,
             "completion_tokens_details": "{'reasoning_tokens': 8}",
-            "prompt_time": 0.011013434,
+            "prompt_time": 0.007959249,
             "prompt_tokens": 163,
-            "queue_time": 0.243690945,
-            "total_time": 0.049211002,
+            "queue_time": 0.242986344,
+            "total_time": 0.045840491,
             "total_tokens": 200
           },
           "measurement_state": "OBSERVED",
@@ -9203,14 +9196,14 @@
             "tokens": {
               "limit": 8000,
               "measurement_type": "CALL_ALLOWANCE",
-              "remaining": 7647,
-              "reset_after_seconds": 2.647,
+              "remaining": 7581,
+              "reset_after_seconds": 3.142,
               "source": "http_response_headers",
               "unit": "tokens",
               "window_seconds": null
             }
           },
-          "observed_at": "2026-11-13T13:38:49.576589+00:00",
+          "observed_at": "2026-11-13T20:35:07.494355+00:00",
           "provider": "groq",
           "resources": {}
         },
@@ -9219,8 +9212,8 @@
         "error_detail": null,
         "health_status": "HEALTHY",
         "latency_degraded": false,
-        "latency_ms": 372.651,
-        "observed_at": "2026-11-13T13:38:49.576704+00:00",
+        "latency_ms": 340.864,
+        "observed_at": "2026-11-13T20:35:07.494469+00:00",
         "probe_role": "failover_probe",
         "provider": "groq",
         "quality_status": "PASS",
@@ -9229,15 +9222,14 @@
           "x-ratelimit-limit-requests": "1000",
           "x-ratelimit-limit-tokens": "8000",
           "x-ratelimit-remaining-requests": "999",
-          "x-ratelimit-remaining-tokens": "7647",
+          "x-ratelimit-remaining-tokens": "7581",
           "x-ratelimit-reset-requests": "1m26.4s",
-          "x-ratelimit-reset-tokens": "2.647s",
-          "x-request-id": "req_01m7aj3qsfemfrvhgz9p490czc"
+          "x-ratelimit-reset-tokens": "3.142s",
+          "x-request-id": "req_01m7b9y09me028919fjnej3hmk"
         },
         "response_valid": true
       },
       "latency_ms": [
-        374.67,
         256.444,
         313.834,
         357.872,
@@ -9260,7 +9252,8 @@
         222.452,
         398.376,
         294.401,
-        372.651
+        372.651,
+        340.864
       ],
       "namespace": "ai-heart",
       "provider": "groq",
@@ -9555,5 +9548,5 @@
       "requested_model": "mistral-small-latest"
     }
   },
-  "updated_at": "2026-11-13T13:44:31.751736+00:00"
+  "updated_at": "2026-11-13T20:35:07.494483+00:00"
 }
