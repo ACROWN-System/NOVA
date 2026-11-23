@@ -1674,35 +1674,34 @@
   "observations": {},
   "provider_rotation": {
     "ai-heart": {
-      "last_completed_at": "2026-11-23T04:44:40.085972+00:00",
+      "last_completed_at": "2026-11-23T13:15:46.038466+00:00",
       "last_probe_providers": [
-        "cloudflare",
-        "groq"
+        "gemini"
       ],
-      "last_schedule_processed_at": "2026-11-23T04:44:40.085972+00:00",
+      "last_schedule_processed_at": "2026-11-23T13:15:46.038466+00:00",
       "last_schedule_reason": "ROLLING_INTERVAL",
       "last_scheduled_at": "2026-10-08T12:32:24.729000+00:00",
       "last_scheduled_provider": "mistral",
       "last_selection_decision": {
         "details": {},
-        "due_at": "2026-11-23T04:57:33.911144+00:00",
+        "due_at": "2026-11-23T10:44:40.085972+00:00",
         "preempted": false,
-        "provider": "cloudflare",
-        "reason": "SCHEDULED_PENDING"
+        "provider": "gemini",
+        "reason": "SCHEDULED_DUE"
       },
-      "last_selection_reason": "SCHEDULED_PENDING",
+      "last_selection_reason": "SCHEDULED_DUE",
       "last_skipped_providers": [],
-      "next_index": 1,
-      "next_provider": "gemini",
+      "next_index": 2,
+      "next_provider": "cloudflare",
       "probe_queue": [
-        "gemini",
         "cloudflare",
-        "groq"
+        "groq",
+        "gemini"
       ],
       "probe_schedule": {
-        "cloudflare": "2026-11-23T16:44:40.085972+00:00",
-        "gemini": "2026-11-23T10:44:40.085972+00:00",
-        "groq": "2026-11-23T22:44:40.085972+00:00"
+        "cloudflare": "2026-11-23T19:15:46.038466+00:00",
+        "gemini": "2026-11-24T07:15:46.038466+00:00",
+        "groq": "2026-11-24T01:15:46.038466+00:00"
       },
       "schedule_interval_seconds": 21600.0,
       "schedule_status": "READY"
@@ -3443,40 +3442,6 @@
             },
             "measurement_state": "NOT_EXPOSED",
             "metrics": {},
-            "observed_at": "2026-11-11T03:45:19.843157+00:00",
-            "provider": "gemini",
-            "resources": {}
-          },
-          "credential_env": "GEMINI_API_KEY_01",
-          "error_class": null,
-          "error_detail": null,
-          "health_status": "HEALTHY",
-          "latency_degraded": false,
-          "latency_ms": 1015.688,
-          "observed_at": "2026-11-11T03:45:19.843254+00:00",
-          "probe_role": "scheduled_probe",
-          "provider": "gemini",
-          "quality_status": "PASS",
-          "requested_model": "gemini-3.1-flash-lite",
-          "response_valid": true
-        },
-        {
-          "action": "MAINTAIN",
-          "actual_model": "gemini-3.1-flash-lite",
-          "api_status": 200,
-          "authentication": "PASS",
-          "baseline_latency_ms": 860.921,
-          "capacity": {
-            "call_allowances": {},
-            "last_request_usage": {
-              "candidatesTokenCount": 20,
-              "promptTokenCount": 34,
-              "promptTokensDetails": "[{'modality': 'TEXT', 'tokenCount': 34}]",
-              "serviceTier": "standard",
-              "totalTokenCount": 54
-            },
-            "measurement_state": "NOT_EXPOSED",
-            "metrics": {},
             "observed_at": "2026-11-11T22:12:50.327439+00:00",
             "provider": "gemini",
             "resources": {}
@@ -4226,6 +4191,40 @@
           "quality_status": "PASS",
           "requested_model": "gemini-3.1-flash-lite",
           "response_valid": true
+        },
+        {
+          "action": "MAINTAIN",
+          "actual_model": "gemini-3.1-flash-lite",
+          "api_status": 200,
+          "authentication": "PASS",
+          "baseline_latency_ms": 1092.846,
+          "capacity": {
+            "call_allowances": {},
+            "last_request_usage": {
+              "candidatesTokenCount": 20,
+              "promptTokenCount": 34,
+              "promptTokensDetails": "[{'modality': 'TEXT', 'tokenCount': 34}]",
+              "serviceTier": "standard",
+              "totalTokenCount": 54
+            },
+            "measurement_state": "NOT_EXPOSED",
+            "metrics": {},
+            "observed_at": "2026-11-23T13:15:46.038312+00:00",
+            "provider": "gemini",
+            "resources": {}
+          },
+          "credential_env": "GEMINI_API_KEY_01",
+          "error_class": null,
+          "error_detail": null,
+          "health_status": "HEALTHY",
+          "latency_degraded": false,
+          "latency_ms": 802.167,
+          "observed_at": "2026-11-23T13:15:46.038433+00:00",
+          "probe_role": "scheduled_probe",
+          "provider": "gemini",
+          "quality_status": "PASS",
+          "requested_model": "gemini-3.1-flash-lite",
+          "response_valid": true
         }
       ],
       "last_action": "MAINTAIN",
@@ -4240,7 +4239,7 @@
         },
         "measurement_state": "NOT_EXPOSED",
         "metrics": {},
-        "observed_at": "2026-11-22T22:57:33.910974+00:00",
+        "observed_at": "2026-11-23T13:15:46.038312+00:00",
         "provider": "gemini",
         "resources": {}
       },
@@ -4261,7 +4260,7 @@
           },
           "measurement_state": "NOT_EXPOSED",
           "metrics": {},
-          "observed_at": "2026-11-22T22:57:33.910974+00:00",
+          "observed_at": "2026-11-23T13:15:46.038312+00:00",
           "provider": "gemini",
           "resources": {}
         },
@@ -4270,8 +4269,8 @@
         "error_detail": null,
         "health_status": "HEALTHY",
         "latency_degraded": false,
-        "latency_ms": 938.019,
-        "observed_at": "2026-11-22T22:57:33.911089+00:00",
+        "latency_ms": 802.167,
+        "observed_at": "2026-11-23T13:15:46.038433+00:00",
         "probe_role": "scheduled_probe",
         "provider": "gemini",
         "quality_status": "PASS",
@@ -4279,7 +4278,6 @@
         "response_valid": true
       },
       "latency_ms": [
-        838.506,
         1015.688,
         834.337,
         7512.444,
@@ -4302,7 +4300,8 @@
         14546.503,
         921.605,
         2273.005,
-        938.019
+        938.019,
+        802.167
       ],
       "namespace": "ai-heart",
       "provider": "gemini",
@@ -9529,5 +9528,5 @@
       "requested_model": "mistral-small-latest"
     }
   },
-  "updated_at": "2026-11-23T05:06:07.307755+00:00"
+  "updated_at": "2026-11-23T13:15:46.038446+00:00"
 }
