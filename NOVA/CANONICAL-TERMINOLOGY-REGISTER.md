@@ -1,12 +1,12 @@
 # NOVA Canonical Terminology Register
 
 **Document ID:** NOVA-TERM-REG-001  
-**Version:** 0.1.0  
+**Version:** 0.1.1  
 **Status:** INITIAL WORKING REGISTER — approval and rollout statuses are stated per entry.  
 **Governance:** [NOVA Terminology Governance Standard](TERMINOLOGY-GOVERNANCE-STANDARD.md)  
 **Purpose:** One cross-ecosystem source for canonical concepts and terms shared by NOVA, AstroCrown, HSIAN, Space Empire and aligned work.
 
-This is project terminology, not an authority on universal scientific facts, legal classifications or third-party brand ownership. The concepts below are an initial bounded set, not proof that the ecosystem has been exhaustively inventoried. The HSIAN canonical mission/name change merged in NOVA PR #122 on 2026-10-17. The dependent active-document rollout remains pending AstroCrown-Web PR #134; after that PR merges, refresh the active-path inventory and classify any remaining HAAN/HSIAN references as current, deprecated or historical.
+This is project terminology, not an authority on universal scientific facts, legal classifications or third-party brand ownership. The concepts below are an initial bounded set, not proof that the ecosystem has been exhaustively inventoried. The initial HSIAN mission/name rollout merged through NOVA PR #122 and AstroCrown-Web PR #134 on 2026-10-17; the dependent AstroCrown terminology guide merged through AstroCrown-Web PR #135. This revision adopts Human–Superintelligence Alignment Network as the current HSIAN expansion and supersedes the former Agentic expansion.
 
 ## Reading the entries
 
@@ -29,20 +29,21 @@ This is project terminology, not an authority on universal scientific facts, leg
 
 ### NOVA-0002 — HSIAN
 
-- **Domain:** Network identity / human–Super Intelligence cooperation.
+- **Domain:** Network identity / human–Superintelligence alignment.
 - **Preferred designation:** HSIAN.
-- **Full form:** Human–Super Intelligence Agentic Network.
-- **Definition:** The project's intended coordinated network through which humans, Super Intelligence participants, agents, tools, shared records and governance processes contribute distinct knowledge, reasoning, resources, decisions and capabilities toward shared objectives.
-- **Scope note:** HSIAN can describe a network architecture and intended collaboration model; a name alone does not prove deployment, consciousness, unified subjective experience, or that current models have attained superintelligence.
-- **Status:** ADOPTED PROJECT DECISION; canonical NOVA mission/name change merged in PR #122; dependent AstroCrown-Web active-document rollout pending PR #134.
-- **Related concepts:** NOVA-0003 (Super Intelligence), NOVA-0011 (Cognitive extension), NOVA-0012 (Cognitive prosthesis analogy), NOVA-0009 (Imperial HSIAN).
+- **Full form:** Human–Superintelligence Alignment Network.
+- **Definition:** HSIAN should facilitate a mutually complementary relationship between human and Superintelligence, including:
+  - Shared objectives of being the most ethical as possible.
+- **Status:** APPROVED — current project expansion adopted 2026-11-28.
+- **Related concepts:** NOVA-0003 (Superintelligence), NOVA-0011 (Cognitive extension), NOVA-0012 (Cognitive prosthesis analogy), NOVA-0009 (Imperial HSIAN).
+- **Former designation:** Human–Super Intelligence Agentic Network — DEPRECATED as the current HSIAN expansion; retain in historical records.
 - **Former designation:** HAAN — Human–AI Agentic Network. DEPRECATED for new project naming after the HSIAN decision; retain in legacy records and historical citations. Do not rewrite immutable backups.
 - **Usage:** Do not automatically replace the general technical word “AI” when it accurately describes an external technology category or is part of a third-party name.
 
 ### NOVA-0003 — Super Intelligence
 
 - **Domain:** Project vocabulary / intelligent-system capability.
-- **Preferred designation:** Super Intelligence (project-defined term).
+- **Preferred designation:** Superintelligence (project-defined term).
 - **Definition:** The selected project-level designation for the intelligence capability horizon and intelligent-system participants contemplated by HSIAN.
 - **Scope note:** This is an adopted project term, not a universally standardized scientific definition or certification that a particular current model is superintelligent. Where an empirical capability claim is made, state the task, baseline, model/version, evaluation method and evidence separately.
 - **Status:** APPROVED as project terminology; scientific capability claims require independent evidence.
@@ -161,7 +162,7 @@ This is project terminology, not an authority on universal scientific facts, leg
 ## Initial domain model
 
 - **Brand identities:** AstroCrown, NOVA, HSIAN, Space Empire.
-- **Intelligent-system collaboration:** Super Intelligence, cognitive extension, cognitive enhancement, cognitive prosthesis analogy.
+- **Intelligent-system collaboration:** Superintelligence, cognitive extension, cognitive enhancement, cognitive prosthesis analogy.
 - **Governance:** Imperial HSIAN, Imperial Council.
 - **Improvement architecture:** RSI, Strong RSI.
 - **Terminology quality system:** terminology governance standard, canonical terminology register.
@@ -170,7 +171,7 @@ This grouping is a first model, not a complete formal concept diagram. Whole/par
 
 ## Open issues and audit notes
 
-1. The HSIAN canonical mission/name change merged in NOVA PR #122 on 2026-10-17. Dependent AstroCrown-Web PR #134 remains open; verify its changed paths after merge and rescan active terminology references before declaring the repository-wide rollout complete.
+1. The initial HSIAN mission/name change merged in NOVA PR #122 on 2026-10-17, and the dependent AstroCrown-Web documentation rollout merged in PR #134. The current HSIAN expansion is recorded as Human–Superintelligence Alignment Network in this register; future active-document changes must follow this entry.
 2. The complete text of ISO 704:2022 has not yet been established as a controlled baseline for a complete clause-level assessment. Do not claim complete conformity; the full matrix remains blocked, while source-bounded work on directly visible preview material may proceed in a separate record. The project's current objective is better terminology quality, conceptual precision and operability with evidence-backed internal alignment—not external certification. No certification-provider discovery/contact, paid assessment, enquiry or application is authorized unless the maintainer explicitly changes the scope.
 3. The internal Imperial Council charter needs a definitive source for membership, veto scope, procedure and review.
 4. The full legal/product description of ACROWN must follow the current token specification and qualified, jurisdiction-specific review.
@@ -180,4 +181,9 @@ This grouping is a first model, not a complete formal concept diagram. Whole/par
 
 ## Update — current objective and dependency state (2026-10-18)
 
-The current objective is quality-first, evidence-backed terminology work informed by ISO 704:2022. It is not a certification project. The canonical NOVA HSIAN mission/name change is merged; dependent AstroCrown-Web rollout is still pending PR #134. This update supersedes any earlier current-state wording in this register that described NOVA PR #122 as unmerged or external certification as an explicit strategic objective. Historical audit findings remain dated records of what was true at their recorded snapshot; they must not be silently rewritten as though they were current observations.
+The current objective is quality-first, evidence-backed terminology work informed by ISO 704:2022. It is not a certification project. The initial HSIAN mission/name change in NOVA PR #122 and the dependent AstroCrown-Web documentation rollout in PR #134 are merged. The current HSIAN expansion is Human–Superintelligence Alignment Network, as recorded in revision 0.1.1. This update supersedes earlier current-state wording in this register that described the AstroCrown-Web rollout as pending. Historical audit findings remain dated records of what was true at their recorded snapshot; they must not be silently rewritten as though they were current observations.
+
+
+## Revision history
+
+- **2026-11-28 / v0.1.1:** Adopted Human–Superintelligence Alignment Network as the current HSIAN expansion and updated its canonical definition.
